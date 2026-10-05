@@ -1,4 +1,4 @@
-const SHELL_CACHE='michino-shell-v1.0.3';
+const SHELL_CACHE='michino-shell-v1.0.4';
 const DB_CACHE='michino-db';
 const SHELL=[
   './','./index.html','./style.css','./app.js','./pwa.js','./manifest.webmanifest',
