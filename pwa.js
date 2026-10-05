@@ -1,4 +1,4 @@
-const PWA_APP_VERSION='1.0.3';
+const PWA_APP_VERSION='1.0.4';
 const PWA_DEFAULT_DB_VERSION='2.8.20';
 let pwaUpdateRunning=false;
 
