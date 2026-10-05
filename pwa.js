@@ -1,6 +1,7 @@
-const PWA_APP_VERSION='1.0.4';
+const PWA_APP_VERSION='1.0.5';
 const PWA_DEFAULT_DB_VERSION='2.8.20';
 let pwaUpdateRunning=false;
+let pwaStartupComplete=false;
 
 function pwaStoredDbVersion(){
   return localStorage.getItem('michino_db_version')||PWA_DEFAULT_DB_VERSION;
@@ -13,6 +14,20 @@ function setPwaStatus(text,hasUpdate=false){
   const f=document.getElementById('footerVersion');
   if(f)f.textContent=`PWA Ver${PWA_APP_VERSION} / DB Ver${pwaStoredDbVersion()}`;
 }
+function setStartupText(text){
+  const s=document.getElementById('pwaStartupText');
+  if(s)s.textContent=text;
+}
+function finishStartup(){
+  if(pwaStartupComplete)return;
+  pwaStartupComplete=true;
+  document.body.classList.remove('pwa-starting');
+  const gate=document.getElementById('pwaStartupGate');
+  if(gate){
+    gate.classList.add('done');
+    setTimeout(()=>gate.remove(),220);
+  }
+}
 function setPwaUpdateButton(busy){
   const b=document.getElementById('pwaUpdateButton');
   if(!b)return;
@@ -24,10 +39,11 @@ async function fetchLatestVersion(){
   if(!r.ok)throw new Error('version');
   return await r.json();
 }
-async function updateDbIfNeeded(v){
+async function updateDbIfNeeded(v,isStartup=false){
   const cur=pwaStoredDbVersion();
   if(!v.dbVersion||v.dbVersion===cur)return false;
   setPwaStatus(`DB Ver${v.dbVersion}を更新中…`,true);
+  if(isStartup)setStartupText(`DB Ver${cur} → ${v.dbVersion} を更新中`);
   const url=(v.dataFile||'data/app_data.js')+`?db=${encodeURIComponent(v.dbVersion)}&t=${Date.now()}`;
   const r=await fetch(url,{cache:'no-store'});
   if(!r.ok)throw new Error('data');
@@ -41,33 +57,39 @@ async function updateDbIfNeeded(v){
 function versionDifferent(latest,current){
   return String(latest||'').trim()!==String(current||'').trim();
 }
-async function updateAppShellIfNeeded(v){
+async function updateAppShellIfNeeded(v,isStartup=false){
   if(!v.appVersion||!versionDifferent(v.appVersion,PWA_APP_VERSION))return false;
   setPwaStatus(`PWA Ver${v.appVersion}を更新中…`,true);
+  if(isStartup)setStartupText(`PWA Ver${PWA_APP_VERSION} → ${v.appVersion} を更新中`);
   if(!('serviceWorker' in navigator))return true;
   const reg=await navigator.serviceWorker.getRegistration('./')||await navigator.serviceWorker.register('./service-worker.js');
   await reg.update();
   const worker=reg.installing||reg.waiting;
   if(worker&&worker.state!=='activated'){
     await new Promise(resolve=>{
-      const done=()=>resolve();
+      let settled=false;
+      const done=()=>{if(!settled){settled=true;resolve();}};
       worker.addEventListener('statechange',()=>{if(worker.state==='activated')done();});
       setTimeout(done,5000);
     });
   }
   return true;
 }
-async function updateEverything(manual=false){
+async function updateEverything(manual=false,isStartup=false){
   if(pwaUpdateRunning)return;
   pwaUpdateRunning=true;
   setPwaUpdateButton(true);
   setPwaStatus('最新版を確認しています…',false);
+  if(isStartup)setStartupText('PWA本体とデータベースを確認中');
+  let shouldReload=false;
   try{
     const v=await fetchLatestVersion();
-    const dbUpdated=await updateDbIfNeeded(v);
-    const appUpdated=await updateAppShellIfNeeded(v);
-    if(appUpdated||dbUpdated){
+    const dbUpdated=await updateDbIfNeeded(v,isStartup);
+    const appUpdated=await updateAppShellIfNeeded(v,isStartup);
+    shouldReload=appUpdated||dbUpdated;
+    if(shouldReload){
       setPwaStatus('更新しました。再読み込みします…',false);
+      if(isStartup)setStartupText('更新完了。最新版で起動します…');
       setTimeout(()=>location.reload(),350);
       return;
     }
@@ -76,21 +98,21 @@ async function updateEverything(manual=false){
   }catch(e){
     console.warn('PWA update failed',e);
     setPwaStatus(`PWA Ver${PWA_APP_VERSION} / DB Ver${pwaStoredDbVersion()}（オフライン）`,false);
+    if(isStartup)setStartupText('更新確認できませんでした。保存済みの版で起動します');
     if(manual)alert('最新版を確認できませんでした。通信状態を確認してください。');
   }finally{
     pwaUpdateRunning=false;
     setPwaUpdateButton(false);
+    if(isStartup&&!shouldReload)setTimeout(finishStartup,250);
   }
 }
 window.updateEverything=updateEverything;
 
 window.addEventListener('load',async()=>{
   if('serviceWorker' in navigator){
-    try{
-      const reg=await navigator.serviceWorker.register('./service-worker.js');
-      await reg.update();
-    }catch(e){console.warn(e);}
+    try{await navigator.serviceWorker.register('./service-worker.js');}
+    catch(e){console.warn(e);}
   }
   setPwaStatus('最新版を確認しています…');
-  await updateEverything(false);
+  await updateEverything(false,true);
 });
