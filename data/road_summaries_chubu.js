@@ -309,7 +309,6 @@
   "したら": "設楽町の山あいにあり、旧田口線の鉄道文化や奥三河の自然、地域の食に触れられる。山道を走る途中で、鉄道や里山文化に寄り道したい時に向いている。",
   "マチテラス日進": "日進市にあり、尾張東部の農産物や地域の交流機能を楽しめる新しい道の駅。名古屋近郊を走る途中で、食事や買い物をしながら休憩したい時に使いやすい。"
 });
-  //__INSERT__
   const norm=s=>String(s||'').normalize('NFKC').replace(/^道の駅\s*/,'').replace(/[\s　・･「」『』（）()]/g,'').toLowerCase();
   const byNorm=new Map(Object.entries(SUMMARIES).map(([k,v])=>[norm(k),v]));
   Object.entries(ALIASES).forEach(([a,k])=>{const v=SUMMARIES[k];if(v)byNorm.set(norm(a),v);});
