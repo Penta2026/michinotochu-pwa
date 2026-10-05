@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.0.1';
+const APP_VERSION='PWA 1.0.2';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -32,7 +32,7 @@ function openContact(){
     <form id="contactForm" class="contact-form" onsubmit="sendContact(event)">
       <div id="contactFields" class="contact-fields"><p class="contact-hint">上のカテゴリを選ぶと入力欄が表示されます。</p></div>
     </form>
-    <p class="contact-note">送信時に端末のメールアプリが開きます。内容を確認して、そのまま送信してください。</p>`);
+    <p class="contact-note">メールアプリは不要です。この画面から直接送信できます。</p>`);
 }
 
 function contactSelectCategory(category){
@@ -61,7 +61,7 @@ function contactSelectCategory(category){
   }
   $('contactFields').innerHTML=`<div class="contact-selected">選択中：<b>${esc(category)}</b></div>${fields}
     <label>返信用メールアドレス（任意）<input name="replyEmail" type="email" autocomplete="email" placeholder="返信が必要な場合だけ"></label>
-    <button type="submit" class="primary contact-submit">✉ メールを作成する</button>`;
+    <button type="submit" class="primary contact-submit" id="contactSubmitButton">✉ 送信する</button><div id="contactSendStatus" class="contact-send-status" aria-live="polite"></div>`;
 }
 
 function sendContact(event){
@@ -70,20 +70,51 @@ function sendContact(event){
   const category=form.dataset.category||'';
   if(!CONTACT_CATEGORIES.includes(category)){alert('カテゴリを選んでください。');return;}
   if(!form.reportValidity())return;
+  submitContactForm(form,category);
+}
+async function submitContactForm(form,category){
   const fd=new FormData(form);
   const val=name=>String(fd.get(name)||'').trim();
-  const lines=[`カテゴリ：${category}`];
-  if(val('recommendType'))lines.push(`区分：${val('recommendType')}`);
-  if(val('prefecture'))lines.push(`都道府県：${val('prefecture')}`);
-  if(val('screen'))lines.push(`画面：${val('screen')}`);
-  if(val('title'))lines.push(`タイトル / 対象名：${val('title')}`);
-  if(val('mapUrl'))lines.push(`Googleマップ：${val('mapUrl')}`);
-  if(val('replyEmail'))lines.push(`返信先：${val('replyEmail')}`);
-  lines.push('', '内容：', val('details'), '', '--- 自動情報 ---');
-  const dbVersion=localStorage.getItem('michino_db_version')||'2.8.20';
-  lines.push(`PWA：${APP_VERSION}`,`DB：${dbVersion}`,`送信日時：${new Date().toLocaleString('ja-JP')}`,`端末・ブラウザ：${navigator.userAgent}`);
-  const subject=`【道の途中。】【${category}】`;
-  location.href=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\\n'))}`;
+  const payload={
+    _subject:`【道の途中。】【${category}】`,
+    _template:'table',
+    _captcha:'false',
+    _honey:'',
+    カテゴリ:category,
+    内容:val('details'),
+    PWA:APP_VERSION,
+    DB:localStorage.getItem('michino_db_version')||'2.8.20',
+    送信日時:new Date().toLocaleString('ja-JP'),
+    端末ブラウザ:navigator.userAgent
+  };
+  if(val('recommendType'))payload['区分']=val('recommendType');
+  if(val('prefecture'))payload['都道府県']=val('prefecture');
+  if(val('screen'))payload['画面']=val('screen');
+  if(val('title'))payload['タイトル・対象名']=val('title');
+  if(val('mapUrl'))payload['Googleマップ']=val('mapUrl');
+  if(val('replyEmail'))payload['email']=val('replyEmail');
+  const button=$('contactSubmitButton');
+  const status=$('contactSendStatus');
+  if(button){button.disabled=true;button.textContent='送信中…';}
+  if(status){status.className='contact-send-status';status.textContent='送信しています…';}
+  try{
+    const response=await fetch('https://formsubmit.co/ajax/'+encodeURIComponent(CONTACT_EMAIL),{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    let data=null;
+    try{data=await response.json();}catch(e){}
+    if(!response.ok || (data&&data.success===false))throw new Error((data&&data.message)||'send failed');
+    if(status){status.className='contact-send-status success';status.textContent='送信しました。ご協力ありがとうございます！';}
+    form.reset();
+    setTimeout(()=>closeModal(),1600);
+  }catch(e){
+    console.warn('Contact send failed',e);
+    if(status){status.className='contact-send-status error';status.textContent='送信できませんでした。通信状態を確認して、もう一度お試しください。';}
+  }finally{
+    if(button){button.disabled=false;button.textContent='✉ 送信する';}
+  }
 }
 
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
