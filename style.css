@@ -150,3 +150,14 @@ main{padding-top:24px}
 
 /* PWA Ver1.0.4 map / gourmet actions */
 .route-buttons .gourmet-search{background:#fff4e6;color:#8a4f12;border:1px solid #efc48e}
+
+/* PWA Ver1.0.5 startup gate */
+.pwa-startup-gate{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:20px;background:rgba(244,241,235,.96);backdrop-filter:blur(3px);transition:opacity .2s ease}
+.pwa-startup-gate.done{opacity:0;pointer-events:none}
+.pwa-startup-card{width:min(92vw,420px);padding:24px 22px;border-radius:22px;background:#fff;border:1px solid #dce7ee;box-shadow:0 18px 48px #173a4f28;text-align:center;display:grid;justify-items:center;gap:10px;color:#274657}
+.pwa-startup-card b{font-size:18px}
+.pwa-startup-card span{font-size:13px;color:#6f7b84;line-height:1.6}
+.pwa-startup-spinner{width:34px;height:34px;border-radius:50%;border:4px solid #dbe8ef;border-top-color:#377bd8;animation:pwa-spin .8s linear infinite}
+@keyframes pwa-spin{to{transform:rotate(360deg)}}
+body.pwa-starting{overflow:hidden}
+body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{pointer-events:none}
