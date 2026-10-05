@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.0.21';
+const APP_VERSION='PWA 1.0.22';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -293,9 +293,17 @@ function uiCategoryTags(x){
 }
 function featureMatch(x,f){if(!f)return true;return uiCategoryTags(x).has(f)}
 function runBrowse(){const p=$('browsePref').value,t=$('browseType').value,f=$('browseFeature').value,q=$('browseQuery').value.trim();let pool=[];if((t==='all'||t==='road')&&!f)pool.push(...D.roads.filter(x=>x.prefecture===p).map(x=>({...x,kind:'道の駅'})));if(t==='all'||t==='A')pool.push(...D.landmarks.filter(x=>x.prefecture===p&&x.level==='A'&&featureMatch(x,f)).map(x=>({...x,kind:'定番スポット'})));if(t==='all'||t==='B')pool.push(...D.landmarks.filter(x=>x.prefecture===p&&x.level==='B'&&featureMatch(x,f)).map(x=>({...x,kind:'寄り道スポット'})));if(q)pool=pool.filter(x=>x.name.includes(q));pool.sort((a,b)=>a.name.localeCompare(b.name,'ja'));$('browseResult').innerHTML=`<div class="panel full">${esc(p)} / ${pool.length}件</div>`+pool.map(x=>spotCard(x,x.kind)).join('')}
-function spotCard(x,kind,d,selectable=false,saveAction=null,index=0,routeOrigin=null,detailAction=null){const feature=x.featureLabel||x.category||'';const navActions=routeOrigin?routeButtons(routeOrigin,[x]):mapBtn(x);return `<div class="spot-card"><div class="spot-main${detailAction?' detail-clickable':''}"${detailAction?` onclick="${detailAction}" role="button" tabindex="0"`:''}>${selectable?`<input class="spot-select near-check" type="checkbox" data-i="${index}">`:''}${iconBadge(x,kind)}<div class="spot-info"><h3>${esc(x.name)}</h3><div class="meta">${esc(x.prefecture||'')} ${esc(x.municipality||'')} / ${esc(kind)}${feature?` / ${esc(feature)}`:''}${Number.isFinite(d)?` / 約${d.toFixed(1)}km`:''}</div>${x.summary?`<div class="meta">${esc(x.summary)}</div>`:''}</div></div><div class="actions">${navActions}${saveAction?`<button class="soft" onclick="${saveAction}">保存</button>`:''}</div></div>`}
+function spotMeta(x,kind,d){
+  const parts=[x.prefecture||'',x.municipality||''].filter(Boolean);
+  const feature=(x.featureLabel||x.category||'').trim();
+  if(kind!=='道の駅')parts.push(kind);
+  if(feature && feature!==kind && feature!=='道の駅')parts.push(feature);
+  if(Number.isFinite(d))parts.push('約'+d.toFixed(1)+'km');
+  return parts.join(' / ');
+}
+function spotCard(x,kind,d,selectable=false,saveAction=null,index=0,routeOrigin=null,detailAction=null){const navActions=routeOrigin?routeButtons(routeOrigin,[x]):mapBtn(x);return `<div class="spot-card"><div class="spot-main${detailAction?' detail-clickable':''}"${detailAction?` onclick="${detailAction}" role="button" tabindex="0"`:''}>${selectable?`<input class="spot-select near-check" type="checkbox" data-i="${index}">`:''}${iconBadge(x,kind)}<div class="spot-info"><h3>${esc(x.name)}</h3><div class="meta">${esc(spotMeta(x,kind,d))}</div>${x.summary?`<div class="meta">${esc(x.summary)}</div>`:''}</div></div><div class="actions">${navActions}${saveAction?`<button class="soft" onclick="${saveAction}">保存</button>`:''}</div></div>`}
 function interestItemById(id,kind){const src=kind==='道の駅'?D.roads:D.landmarks;const x=src.find(v=>String(v.id)===String(id));return x?{...x,kind}:null}
-function showInterestDetailById(id,kind){const x=interestItemById(id,kind);if(!x)return;const feature=x.featureLabel||x.category||'';const details=[];if(x.summary)details.push(`<p>${esc(x.summary)}</p>`);if(x.access)details.push(`<div class="detail-block"><b>🚗 アクセス</b><div>${esc(x.access)}</div></div>`);if(x.arrivalPointType)details.push(`<div class="detail-block"><b>📍 到着目安</b><div>${esc(x.arrivalPointType)}</div></div>`);modal(`<h2 class="detail-title">${esc(x.name)}</h2><div class="meta detail-meta">${esc(x.prefecture||'')} ${esc(x.municipality||'')} / ${esc(kind)}${feature?` / ${esc(feature)}`:''}</div>${details.join('')||'<p class="meta">この地点の追加説明は登録されていません。</p>'}<div class="route-buttons detail-route">${mapBtn(x,'Googleマップで確認')}</div>`)}
+function showInterestDetailById(id,kind){const x=interestItemById(id,kind);if(!x)return;const details=[];if(x.summary)details.push(`<p>${esc(x.summary)}</p>`);if(x.access)details.push(`<div class="detail-block"><b>🚗 アクセス</b><div>${esc(x.access)}</div></div>`);if(x.arrivalPointType)details.push(`<div class="detail-block"><b>📍 到着目安</b><div>${esc(x.arrivalPointType)}</div></div>`);modal(`<h2 class="detail-title">${esc(x.name)}</h2><div class="meta detail-meta">${esc(spotMeta(x,kind,null))}</div>${details.join('')||'<p class="meta">この地点の追加説明は登録されていません。</p>'}<div class="route-buttons detail-route">${mapBtn(x,'Googleマップで確認')}</div>`)}
 
 function favoriteKey(){return'michinotochu_favorites_v2'}
 function loadFavorites(){try{return JSON.parse(localStorage.getItem(favoriteKey())||'[]')}catch(e){return[]}}
