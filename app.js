@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.0.9';
+const APP_VERSION='PWA 1.0.10';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -148,8 +148,8 @@ function googlePoint(lat,lng,name='',x=null){
 function googleFoodSearch(x,style='walk'){
   if(!x)return'#';
   const base=useNameNavigation(x)?navSearchQuery(x):(Number.isFinite(+x.lat)&&Number.isFinite(+x.lng)?`${x.lat},${x.lng}`:navSearchQuery(x));
-  const words={walk:'食べ歩き たい焼き 団子 ソフトクリーム 軽食 ご当地グルメ',rest:'カフェ 喫茶店 甘味処 スイーツ ジェラート パン 休憩',hearty:'ラーメン うどん 定食 丼 食堂 お好み焼き ランチ ご当地グルメ'};
-  const q=`${words[style]||words.walk} near ${base}`;
+  const words={walk:'食べ歩き たい焼き 団子 ソフトクリーム 軽食',rest:'カフェ 喫茶店 甘味処 スイーツ ジェラート パン',hearty:'定食 食堂 ラーメン うどん 丼 お好み焼き'};
+  const q=`${base} 周辺 ${words[style]||words.walk}`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`
 }
 function googleRoute(origin,pts,vehicle='250'){
@@ -281,5 +281,40 @@ function initChoiceUI(){
   document.querySelectorAll('.free-number input').forEach(inp=>inp.addEventListener('input',()=>{if(inp.value!==''){const base=inp.id.replace(/Free$/,'');document.querySelectorAll(`.choice-grid[data-target="${base}"] button`).forEach(b=>b.classList.remove('active'));}}));
   document.querySelectorAll('.toggle-choice button').forEach(b=>b.addEventListener('click',()=>{const on=b.dataset.mission==='on';$('sugMission').checked=on;document.querySelectorAll('.toggle-choice button').forEach(x=>x.classList.toggle('active',x===b));}));
 }
-function init(){renderStartPanels();fillSelectors();initChoiceUI();const fv=$('footerVersion');if(fv)fv.textContent='PWA Ver1.0.0 / DB Ver'+(localStorage.getItem('michino_db_version')||'2.8.20');}
+const RETURN_STATE_KEY='michinotochu_return_state_v1';
+function saveReturnState(){
+  try{
+    const active=document.querySelector('.view.active')?.id||'home';
+    const ids=['sugResult','destResult','relayResult','relayHistory','seasonResult','nearbyResult','interestResult'];
+    const results={};
+    ids.forEach(id=>{const el=$(id);if(el)results[id]=el.innerHTML;});
+    localStorage.setItem(RETURN_STATE_KEY,JSON.stringify({
+      ts:Date.now(),active,scrollY:window.scrollY,results,
+      origins:JSON.parse(JSON.stringify(origins)),
+      relayTrail:JSON.parse(JSON.stringify(relayTrail))
+    }));
+  }catch(e){console.warn('return state save failed',e)}
+}
+function restoreReturnState(){
+  try{
+    const raw=localStorage.getItem(RETURN_STATE_KEY);
+    if(!raw)return;
+    localStorage.removeItem(RETURN_STATE_KEY);
+    const st=JSON.parse(raw);
+    if(!st||!st.ts||Date.now()-st.ts>30*60*1000)return;
+    if(st.origins&&typeof st.origins==='object')Object.keys(origins).forEach(k=>origins[k]=st.origins[k]||null);
+    if(Array.isArray(st.relayTrail))relayTrail=st.relayTrail;
+    if(st.results)Object.entries(st.results).forEach(([id,html])=>{const el=$(id);if(el&&typeof html==='string')el.innerHTML=html;});
+    if(st.active&&$(st.active))showView(st.active);
+    setTimeout(()=>window.scrollTo({top:Number(st.scrollY)||0,behavior:'auto'}),0);
+  }catch(e){
+    localStorage.removeItem(RETURN_STATE_KEY);
+    console.warn('return state restore failed',e);
+  }
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest&&e.target.closest('a.mapbtn');
+  if(a&&String(a.href||'').includes('google.com/maps/'))saveReturnState();
+});
+function init(){renderStartPanels();fillSelectors();initChoiceUI();const fv=$('footerVersion');if(fv)fv.textContent='PWA Ver1.0.10 / DB Ver'+(localStorage.getItem('michino_db_version')||'2.8.20');restoreReturnState();}
 init();
