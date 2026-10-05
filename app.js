@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.0.19';
+const APP_VERSION='PWA 1.0.20';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -10,6 +10,21 @@ let relayTrail=[];
 const FEATURES=[
  ['','すべて'],['history','歴史・街並み'],['shrine','神社・お寺'],['nature','山・自然'],['sea','海・島'],['construction','橋・建設物'],['museum','博物館・資料館'],['onsen','温泉'],['park','公園・花'],['view','展望・景色'],['road_drive','道・ドライブ'],['experience','体験・文化'],['unusual_ui','珍スポット']
 ];
+const PREFECTURE_ORDER=[
+'北海道',
+'青森県','岩手県','宮城県','秋田県','山形県','福島県',
+'茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県',
+'新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県',
+'三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県',
+'鳥取県','島根県','岡山県','広島県','山口県',
+'徳島県','香川県','愛媛県','高知県',
+'福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県'
+];
+const PREFECTURE_INDEX=new Map(PREFECTURE_ORDER.map((p,i)=>[p,i]));
+function sortPrefectures(list){
+  return [...list].sort((a,b)=>(PREFECTURE_INDEX.get(a)??999)-(PREFECTURE_INDEX.get(b)??999)||a.localeCompare(b,'ja'));
+}
+
 const MISSIONS=[
 'その土地っぽいお菓子を1つ探す','1000円以内で一番気になったものを選ぶ','コーヒーかお茶を1杯飲む','道の駅の看板とバイクを撮る','「誰が買うんだこれ」と思う商品を探す','地元野菜を1つ見つける','変わった飲み物を1つ探す','この駅で一番いい景色を撮る','500円以内で旅の記念になりそうなものを探す','何も買わずに、この駅の良いところを1つ見つける','ご当地キャラを探す','パン・饅頭・団子のどれかを探す','地元産と書かれた商品を3つ見つける','初めて見る食べ物を1つ探す','ご当地ソフト・アイスを探す','その地域らしい調味料を1つ探す','一番高そうなお土産を探す','一番小さいお土産を探す','面白い商品名を1つ見つける','方言や地名が入った商品を探す','道の駅から見える山・海・川のどれかを撮る','「この場所っぽいな」と思う風景を1枚撮る','建物や看板で気になるデザインを1つ見つける','バイク以外の旅人っぽい乗り物を1台見つける','駐車場で一番遠くから来てそうなナンバーを探す','次回来たら食べてみたいものを1つ決める','その駅でおすすめされている観光地を1つ見つける','駅の掲示板やパンフレットから知らなかった場所を1つ見つける','「今日ここに来てよかった」と思えるものを1つ見つける','何もしないで5分だけ休憩する'
 ];
@@ -182,7 +197,7 @@ function geo(){return new Promise((resolve,reject)=>navigator.geolocation?naviga
 async function useCurrent(k){try{const p=await geo();setOrigin(k,p.lat,p.lng,'現在地')}catch(e){alert('現在地を取得できません。Windowsまたはブラウザの位置情報を許可して、もう一度お試しください。')}}
 let stationAdminReady=false;
 function estimateStationAdmin(){if(stationAdminReady)return;const anchors=[...D.roads,...D.landmarks].filter(x=>x.prefecture&&x.municipality&&Number.isFinite(+x.lat)&&Number.isFinite(+x.lng));for(const st of JR){let best=null,bd=1e9;for(const a of anchors){const dx=st.lat-(+a.lat),dy=(st.lng-(+a.lng))*Math.cos(rad(st.lat)),q=dx*dx+dy*dy;if(q<bd){bd=q;best=a}}if(best){st.prefecture=best.prefecture;st.municipality=best.municipality}}stationAdminReady=true;}
-function stationPicker(k){estimateStationAdmin();const prefs=[...new Set(JR.map(x=>x.prefecture).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ja'));modal(`<h2>🚉 駅を選ぶ</h2><div class="meta">県 → 市区町村 → 駅名 の順に選択してください。</div><label>県<select id="stPref" onchange="fillStationCities('${k}')"><option>すべて</option>${prefs.map(p=>`<option>${esc(p)}</option>`).join('')}</select></label><label>市区町村<select id="stCity" onchange="fillStationModal('${k}')"><option>すべて</option></select></label><label>駅名<select id="stStation"></select></label><button class="primary" style="width:100%;margin-top:12px" onclick="applyStationModal('${k}')">この駅をスタートにする</button>`);fillStationCities(k)}
+function stationPicker(k){estimateStationAdmin();const prefs=sortPrefectures(new Set(JR.map(x=>x.prefecture).filter(Boolean)));modal(`<h2>🚉 駅を選ぶ</h2><div class="meta">県 → 市区町村 → 駅名 の順に選択してください。</div><label>県<select id="stPref" onchange="fillStationCities('${k}')"><option>すべて</option>${prefs.map(p=>`<option>${esc(p)}</option>`).join('')}</select></label><label>市区町村<select id="stCity" onchange="fillStationModal('${k}')"><option>すべて</option></select></label><label>駅名<select id="stStation"></select></label><button class="primary" style="width:100%;margin-top:12px" onclick="applyStationModal('${k}')">この駅をスタートにする</button>`);fillStationCities(k)}
 function fillStationCities(k){const p=$('stPref').value,cs=[...new Set(JR.filter(x=>p==='すべて'||x.prefecture===p).map(x=>x.municipality).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ja'));$('stCity').innerHTML='<option>すべて</option>'+cs.map(c=>`<option>${esc(c)}</option>`).join('');fillStationModal(k)}
 function fillStationModal(k){const p=$('stPref').value,c=$('stCity').value;const list=JR.filter(x=>(p==='すべて'||x.prefecture===p)&&(c==='すべて'||x.municipality===c)).sort((a,b)=>a.name.localeCompare(b.name,'ja')).slice(0,1000);$('stStation').innerHTML=list.map(x=>`<option value="${JR.indexOf(x)}">${esc(x.name)}駅</option>`).join('')}
 function applyStationModal(k){const idx=+$('stStation').value,st=JR[idx];if(!st)return alert('駅を選択してください。');if(k==='interestSave'){closeModal();setOrigin(k,st.lat,st.lng,st.name+'駅');return;}setOrigin(k,st.lat,st.lng,st.name+'駅');closeModal()}
@@ -233,7 +248,7 @@ function commitInterestSave(){
   saveSingle('気になる場所',x.name,x.lat,x.lng,x.kind,o.label,o.lat,o.lng);
   pendingInterestSave=null;origins.interestSave=null;closeModal();
 }
-function fillSelectors(){const prefs=[...new Set([...D.roads,...D.landmarks].map(x=>x.prefecture).filter(Boolean))];for(const id of ['interestPref','browsePref'])$(id).innerHTML=prefs.map(p=>`<option>${esc(p)}</option>`).join('');for(const id of ['interestFeature','browseFeature'])$(id).innerHTML=FEATURES.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}
+function fillSelectors(){const prefs=sortPrefectures(new Set([...D.roads,...D.landmarks].map(x=>x.prefecture).filter(Boolean)));for(const id of ['interestPref','browsePref'])$(id).innerHTML=prefs.map(p=>`<option>${esc(p)}</option>`).join('');for(const id of ['interestFeature','browseFeature'])$(id).innerHTML=FEATURES.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}
 function runInterest(){const p=$('interestPref').value,t=$('interestType').value,f=$('interestFeature').value;let pool=[];if((t==='all'||t==='road')&&!f)pool.push(...D.roads.filter(x=>x.prefecture===p).map(x=>({...x,kind:'道の駅'})));if(t==='all'||t==='A')pool.push(...D.landmarks.filter(x=>x.prefecture===p&&x.level==='A'&&featureMatch(x,f)).map(x=>({...x,kind:'定番スポット'})));if(t==='all'||t==='B')pool.push(...D.landmarks.filter(x=>x.prefecture===p&&x.level==='B'&&featureMatch(x,f)).map(x=>({...x,kind:'寄り道スポット'})));pool.sort((a,b)=>a.name.localeCompare(b.name,'ja'));$('interestResult').innerHTML=`<div class="panel full">${esc(p)} / ${pool.length}件</div>`+pool.map(x=>spotCard(x,x.kind,null,false,`beginInterestSave('${escJs(x.name)}',${x.lat},${x.lng},'${escJs(x.kind)}')`,0,null,`showInterestDetailById('${escJs(x.id)}','${escJs(x.kind)}')`)).join('')}
 function uiCategoryTags(x){
   const tags=new Set(),fc=x.featureCategory||'',text=`${x.name||''} ${x.featureLabel||''}`;
@@ -316,5 +331,5 @@ document.addEventListener('click',e=>{
   const a=e.target.closest&&e.target.closest('a.mapbtn');
   if(a&&String(a.href||'').includes('google.com/maps/'))saveReturnState();
 });
-function init(){renderStartPanels();fillSelectors();initChoiceUI();const fv=$('footerVersion');if(fv)fv.textContent='PWA Ver1.0.10 / DB Ver'+(localStorage.getItem('michino_db_version')||'2.8.20');restoreReturnState();}
+function init(){renderStartPanels();fillSelectors();initChoiceUI();const fv=$('footerVersion');if(fv)fv.textContent=APP_VERSION+' / DB Ver'+(localStorage.getItem('michino_db_version')||'2.8.20');restoreReturnState();}
 init();
