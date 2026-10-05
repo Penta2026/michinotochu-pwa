@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.0.20';
+const APP_VERSION='PWA 1.0.21';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -33,7 +33,21 @@ function showView(id){document.querySelectorAll('.view').forEach(x=>x.classList.
 document.querySelectorAll('.side button').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
 function closeModal(){$('modal').classList.add('hidden');$('modalBody').innerHTML='';}
 function modal(html){$('modalBody').innerHTML=html;$('modal').classList.remove('hidden');}
-function openAbout(){modal(`<h2>道の途中。</h2><p><b>Ver${esc(APP_VERSION)}</b></p><p>乗る理由を作ったり、行ってみたい場所を眺めたりするためのツールです。</p><p><b>製作者：ぺんた</b><br>Created by ぺんた<br>© 2026 Penta</p>`)}
+function openAbout(){modal(`<h2>道の途中。</h2>
+  <p><b>Ver${esc(APP_VERSION)}</b></p>
+  <p>乗る理由を作ったり、行ってみたい場所を眺めたりするためのツールです。</p>
+  <details class="about-disclaimer">
+    <summary>⚠ 免責事項</summary>
+    <div class="about-disclaimer-body">
+      <p>「道の途中。」は、ツーリングやドライブの行き先選びを楽しむための補助ツールです。掲載している施設情報・位置情報・道路情報・ルート候補などは、正確性や最新性を保証するものではありません。</p>
+      <p>実際の走行時は、現地の道路標識・交通規制・通行止め・施設案内などを優先してください。</p>
+      <p><b>125cc以下のルート表示について：</b>高速道路・有料道路を避ける設定を利用した参考ルートであり、すべての道路が車両区分上通行可能であることを保証するものではありません。必ず現地の標識・規制に従ってください。</p>
+      <p>天候、道路状況、災害、施設の休業・閉鎖などにより、表示内容と実際の状況が異なる場合があります。</p>
+      <p>本アプリの利用によって生じた事故・損害・トラブルについて、製作者は責任を負いかねます。安全を最優先にご利用ください。</p>
+      <p>Google Mapsなど外部サービスを開いた場合は、それぞれのサービスの利用条件・案内に従ってください。</p>
+    </div>
+  </details>
+  <p><b>製作者：ぺんた</b><br>Created by ぺんた<br>© 2026 Penta</p>`)}
 
 const CONTACT_EMAIL='penta.michi.2026@gmail.com';
 const CONTACT_CATEGORIES=['バグ報告','ポイントズレ報告','要望','オススメ追加'];
