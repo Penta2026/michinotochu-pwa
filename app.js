@@ -24,15 +24,15 @@ const CONTACT_EMAIL='penta.michi.2026@gmail.com';
 const CONTACT_CATEGORIES=['バグ報告','ポイントズレ報告','要望','オススメ追加'];
 
 function openContact(){
-  modal(\`<h2>✉ 製作者に連絡</h2>
+  modal(`<h2>✉ 製作者に連絡</h2>
     <p class="contact-lead">内容に近いカテゴリを選んでください。</p>
     <div class="contact-category-grid">
-      \${CONTACT_CATEGORIES.map(c=>\`<button type="button" class="contact-category-btn" data-contact-category="\${esc(c)}" onclick="contactSelectCategory('\${esc(c)}')">\${esc(c)}</button>\`).join('')}
+      ${CONTACT_CATEGORIES.map(c=>`<button type="button" class="contact-category-btn" data-contact-category="${esc(c)}" onclick="contactSelectCategory('${esc(c)}')">${esc(c)}</button>`).join('')}
     </div>
     <form id="contactForm" class="contact-form" onsubmit="sendContact(event)">
       <div id="contactFields" class="contact-fields"><p class="contact-hint">上のカテゴリを選ぶと入力欄が表示されます。</p></div>
     </form>
-    <p class="contact-note">送信時に端末のメールアプリが開きます。内容を確認して、そのまま送信してください。</p>\`);
+    <p class="contact-note">送信時に端末のメールアプリが開きます。内容を確認して、そのまま送信してください。</p>`);
 }
 
 function contactSelectCategory(category){
@@ -42,26 +42,26 @@ function contactSelectCategory(category){
   document.querySelectorAll('.contact-category-btn').forEach(b=>b.classList.toggle('active',b.dataset.contactCategory===category));
   let fields='';
   if(category==='バグ報告'){
-    fields=\`<label>どの画面で？<input name="screen" placeholder="例：行先ガチャ"></label>
+    fields=`<label>どの画面で？<input name="screen" placeholder="例：行先ガチャ"></label>
       <label>ひとことで<input name="title" required placeholder="例：ボタンを押しても反応しない"></label>
-      <label>詳しい内容<textarea name="details" rows="6" required placeholder="何をした時に、どうなったかを書いてください"></textarea></label>\`;
+      <label>詳しい内容<textarea name="details" rows="6" required placeholder="何をした時に、どうなったかを書いてください"></textarea></label>`;
   }else if(category==='ポイントズレ報告'){
-    fields=\`<label>スポット名<input name="title" required placeholder="例：○○展望台"></label>
+    fields=`<label>スポット名<input name="title" required placeholder="例：○○展望台"></label>
       <label>正しい場所のGoogleマップURL<input name="mapUrl" inputmode="url" placeholder="共有リンクを貼り付け"></label>
-      <label>詳しい内容<textarea name="details" rows="5" required placeholder="どのくらいずれているか、正しい場所の目印など"></textarea></label>\`;
+      <label>詳しい内容<textarea name="details" rows="5" required placeholder="どのくらいずれているか、正しい場所の目印など"></textarea></label>`;
   }else if(category==='要望'){
-    fields=\`<label>要望のタイトル<input name="title" required placeholder="例：検索条件を追加してほしい"></label>
-      <label>詳しい内容<textarea name="details" rows="6" required placeholder="こんな機能がほしい、こうなると使いやすい、など"></textarea></label>\`;
+    fields=`<label>要望のタイトル<input name="title" required placeholder="例：検索条件を追加してほしい"></label>
+      <label>詳しい内容<textarea name="details" rows="6" required placeholder="こんな機能がほしい、こうなると使いやすい、など"></textarea></label>`;
   }else{
-    fields=\`<label>区分<select name="recommendType" required><option value="定番">定番</option><option value="寄り道">寄り道</option></select></label>
+    fields=`<label>区分<select name="recommendType" required><option value="定番">定番</option><option value="寄り道">寄り道</option></select></label>
       <label>都道府県<input name="prefecture" placeholder="例：広島県"></label>
       <label>おすすめ名称<input name="title" required placeholder="例：○○展望台"></label>
       <label>GoogleマップURL<input name="mapUrl" inputmode="url" placeholder="分かれば共有リンクを貼り付け"></label>
-      <label>おすすめポイント<textarea name="details" rows="5" required placeholder="どんな場所か、何がおすすめかを教えてください"></textarea></label>\`;
+      <label>おすすめポイント<textarea name="details" rows="5" required placeholder="どんな場所か、何がおすすめかを教えてください"></textarea></label>`;
   }
-  $('contactFields').innerHTML=\`<div class="contact-selected">選択中：<b>\${esc(category)}</b></div>\${fields}
+  $('contactFields').innerHTML=`<div class="contact-selected">選択中：<b>${esc(category)}</b></div>${fields}
     <label>返信用メールアドレス（任意）<input name="replyEmail" type="email" autocomplete="email" placeholder="返信が必要な場合だけ"></label>
-    <button type="submit" class="primary contact-submit">✉ メールを作成する</button>\`;
+    <button type="submit" class="primary contact-submit">✉ メールを作成する</button>`;
 }
 
 function sendContact(event){
@@ -72,18 +72,18 @@ function sendContact(event){
   if(!form.reportValidity())return;
   const fd=new FormData(form);
   const val=name=>String(fd.get(name)||'').trim();
-  const lines=[\`カテゴリ：\${category}\`];
-  if(val('recommendType'))lines.push(\`区分：\${val('recommendType')}\`);
-  if(val('prefecture'))lines.push(\`都道府県：\${val('prefecture')}\`);
-  if(val('screen'))lines.push(\`画面：\${val('screen')}\`);
-  if(val('title'))lines.push(\`タイトル / 対象名：\${val('title')}\`);
-  if(val('mapUrl'))lines.push(\`Googleマップ：\${val('mapUrl')}\`);
-  if(val('replyEmail'))lines.push(\`返信先：\${val('replyEmail')}\`);
+  const lines=[`カテゴリ：${category}`];
+  if(val('recommendType'))lines.push(`区分：${val('recommendType')}`);
+  if(val('prefecture'))lines.push(`都道府県：${val('prefecture')}`);
+  if(val('screen'))lines.push(`画面：${val('screen')}`);
+  if(val('title'))lines.push(`タイトル / 対象名：${val('title')}`);
+  if(val('mapUrl'))lines.push(`Googleマップ：${val('mapUrl')}`);
+  if(val('replyEmail'))lines.push(`返信先：${val('replyEmail')}`);
   lines.push('', '内容：', val('details'), '', '--- 自動情報 ---');
   const dbVersion=localStorage.getItem('michino_db_version')||'2.8.20';
-  lines.push(\`PWA：\${APP_VERSION}\`,\`DB：\${dbVersion}\`,\`送信日時：\${new Date().toLocaleString('ja-JP')}\`,\`端末・ブラウザ：\${navigator.userAgent}\`);
-  const subject=\`【道の途中。】【\${category}】\`;
-  location.href=\`mailto:\${CONTACT_EMAIL}?subject=\${encodeURIComponent(subject)}&body=\${encodeURIComponent(lines.join('\\n'))}\`;
+  lines.push(`PWA：${APP_VERSION}`,`DB：${dbVersion}`,`送信日時：${new Date().toLocaleString('ja-JP')}`,`端末・ブラウザ：${navigator.userAgent}`);
+  const subject=`【道の途中。】【${category}】`;
+  location.href=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\\n'))}`;
 }
 
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
