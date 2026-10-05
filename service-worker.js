@@ -1,4 +1,4 @@
-const SHELL_CACHE='michino-shell-v1.0.2';
+const SHELL_CACHE='michino-shell-v1.0.3';
 const DB_CACHE='michino-db';
 const SHELL=[
   './','./index.html','./style.css','./app.js','./pwa.js','./manifest.webmanifest',
@@ -25,9 +25,16 @@ self.addEventListener('fetch',event=>{
     event.respondWith((async()=>{const db=await caches.open(DB_CACHE); return (await db.match('./data/app_data.js')) || fetch(event.request);})()); return;
   }
   event.respondWith((async()=>{
+    if(event.request.mode==='navigate'){
+      try{
+        const res=await fetch(event.request,{cache:'no-store'});
+        if(res&&res.ok){const c=await caches.open(SHELL_CACHE); c.put('./index.html',res.clone());}
+        return res;
+      }catch(e){return caches.match('./index.html');}
+    }
     const cached=await caches.match(event.request);
     if(cached) return cached;
     try{const res=await fetch(event.request); if(res&&res.ok){const c=await caches.open(SHELL_CACHE); c.put(event.request,res.clone());} return res;}
-    catch(e){if(event.request.mode==='navigate') return caches.match('./index.html'); throw e;}
+    catch(e){throw e;}
   })());
 });
