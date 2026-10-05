@@ -1,0 +1,431 @@
+[
+  {
+    "name": "広島駅北口周辺",
+    "lat": 34.3995,
+    "lng": 132.4759,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "宇品港",
+    "lat": 34.3526,
+    "lng": 132.4622,
+    "tags": [
+      "sea",
+      "port"
+    ]
+  },
+  {
+    "name": "竜王公園",
+    "lat": 34.414,
+    "lng": 132.4341,
+    "tags": [
+      "park",
+      "view"
+    ]
+  },
+  {
+    "name": "比治山公園",
+    "lat": 34.3847,
+    "lng": 132.4741,
+    "tags": [
+      "park",
+      "city"
+    ]
+  },
+  {
+    "name": "黄金山展望エリア",
+    "lat": 34.3617,
+    "lng": 132.4902,
+    "tags": [
+      "view",
+      "mountain"
+    ]
+  },
+  {
+    "name": "広島みなと公園",
+    "lat": 34.352,
+    "lng": 132.4594,
+    "tags": [
+      "park",
+      "sea"
+    ]
+  },
+  {
+    "name": "瀬野川公園",
+    "lat": 34.4123,
+    "lng": 132.617,
+    "tags": [
+      "park",
+      "country"
+    ]
+  },
+  {
+    "name": "海田総合公園",
+    "lat": 34.3731,
+    "lng": 132.5652,
+    "tags": [
+      "park",
+      "mountain"
+    ]
+  },
+  {
+    "name": "坂町ベイサイド周辺",
+    "lat": 34.3391,
+    "lng": 132.5076,
+    "tags": [
+      "sea",
+      "city"
+    ]
+  },
+  {
+    "name": "呉ポートピアパーク",
+    "lat": 34.268,
+    "lng": 132.5243,
+    "tags": [
+      "park",
+      "sea"
+    ]
+  },
+  {
+    "name": "呉駅前",
+    "lat": 34.2442,
+    "lng": 132.5573,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "音戸の瀬戸公園",
+    "lat": 34.1904,
+    "lng": 132.5358,
+    "tags": [
+      "park",
+      "sea",
+      "view"
+    ]
+  },
+  {
+    "name": "野呂山ビジターセンター周辺",
+    "lat": 34.2532,
+    "lng": 132.6981,
+    "tags": [
+      "mountain",
+      "view"
+    ]
+  },
+  {
+    "name": "安芸津港周辺",
+    "lat": 34.3176,
+    "lng": 132.8171,
+    "tags": [
+      "sea",
+      "port"
+    ]
+  },
+  {
+    "name": "竹原駅前",
+    "lat": 34.3416,
+    "lng": 132.9117,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "忠海港",
+    "lat": 34.3368,
+    "lng": 132.9922,
+    "tags": [
+      "sea",
+      "port"
+    ]
+  },
+  {
+    "name": "三原駅前",
+    "lat": 34.4,
+    "lng": 133.0834,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "尾道駅前",
+    "lat": 34.4044,
+    "lng": 133.1928,
+    "tags": [
+      "city",
+      "station",
+      "sea"
+    ]
+  },
+  {
+    "name": "千光寺公園駐車場周辺",
+    "lat": 34.4109,
+    "lng": 133.1992,
+    "tags": [
+      "park",
+      "view",
+      "mountain"
+    ]
+  },
+  {
+    "name": "西条駅前",
+    "lat": 34.4269,
+    "lng": 132.7431,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "鏡山公園",
+    "lat": 34.4054,
+    "lng": 132.7211,
+    "tags": [
+      "park",
+      "city"
+    ]
+  },
+  {
+    "name": "道の駅 西条のん太の酒蔵",
+    "lat": 34.4236,
+    "lng": 132.7272,
+    "tags": [
+      "rest",
+      "city"
+    ]
+  },
+  {
+    "name": "福富ダム周辺",
+    "lat": 34.5364,
+    "lng": 132.7888,
+    "tags": [
+      "view",
+      "country"
+    ]
+  },
+  {
+    "name": "土師ダム周辺",
+    "lat": 34.6672,
+    "lng": 132.6307,
+    "tags": [
+      "view",
+      "country"
+    ]
+  },
+  {
+    "name": "可部駅前",
+    "lat": 34.517,
+    "lng": 132.5103,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "千代田IC周辺",
+    "lat": 34.6812,
+    "lng": 132.5357,
+    "tags": [
+      "rest",
+      "country"
+    ]
+  },
+  {
+    "name": "三次駅前",
+    "lat": 34.8026,
+    "lng": 132.8553,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "みよし運動公園",
+    "lat": 34.796,
+    "lng": 132.8745,
+    "tags": [
+      "park",
+      "city"
+    ]
+  },
+  {
+    "name": "廿日市駅前",
+    "lat": 34.3524,
+    "lng": 132.3357,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "宮島口駅前",
+    "lat": 34.3124,
+    "lng": 132.3024,
+    "tags": [
+      "city",
+      "station",
+      "sea"
+    ]
+  },
+  {
+    "name": "大野浦駅前",
+    "lat": 34.2837,
+    "lng": 132.2687,
+    "tags": [
+      "city",
+      "station",
+      "sea"
+    ]
+  },
+  {
+    "name": "妹背の滝入口周辺",
+    "lat": 34.2971,
+    "lng": 132.2772,
+    "tags": [
+      "park",
+      "mountain"
+    ]
+  },
+  {
+    "name": "岩国駅前",
+    "lat": 34.1717,
+    "lng": 132.2256,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "錦帯橋河川敷周辺",
+    "lat": 34.1675,
+    "lng": 132.1784,
+    "tags": [
+      "view",
+      "city"
+    ]
+  },
+  {
+    "name": "柳井駅前",
+    "lat": 33.9655,
+    "lng": 132.1016,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "徳山駅前",
+    "lat": 34.0517,
+    "lng": 131.8022,
+    "tags": [
+      "city",
+      "station",
+      "sea"
+    ]
+  },
+  {
+    "name": "防府駅前",
+    "lat": 34.0518,
+    "lng": 131.568,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "新山口駅前",
+    "lat": 34.0937,
+    "lng": 131.3958,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "山口駅前",
+    "lat": 34.178,
+    "lng": 131.473,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "萩駅前",
+    "lat": 34.3998,
+    "lng": 131.405,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "長門市駅前",
+    "lat": 34.3757,
+    "lng": 131.1836,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "浜田駅前",
+    "lat": 34.8994,
+    "lng": 132.0793,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "出雲市駅前",
+    "lat": 35.3604,
+    "lng": 132.7568,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "松江駅前",
+    "lat": 35.4638,
+    "lng": 133.0632,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "米子駅前",
+    "lat": 35.4232,
+    "lng": 133.3362,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "倉敷駅前",
+    "lat": 34.6016,
+    "lng": 133.765,
+    "tags": [
+      "city",
+      "station"
+    ]
+  },
+  {
+    "name": "岡山駅西口周辺",
+    "lat": 34.6663,
+    "lng": 133.9186,
+    "tags": [
+      "city",
+      "station"
+    ]
+  }
+]

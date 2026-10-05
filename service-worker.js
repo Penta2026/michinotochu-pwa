@@ -1,0 +1,33 @@
+const SHELL_CACHE='michino-shell-v1.0.0';
+const DB_CACHE='michino-db';
+const SHELL=[
+  './','./index.html','./style.css','./app.js','./pwa.js','./manifest.webmanifest',
+  './assets/home/home_background.png','./assets/home/home_btn_sugoroku.png','./assets/home/home_btn_destination.png',
+  './assets/home/home_btn_relay.png','./assets/home/home_btn_season.png','./assets/home/home_btn_nearby.png',
+  './assets/home/home_btn_interest.png','./assets/home/home_btn_saved.png','./icons/apple-touch-icon.png','./icons/icon-192.png','./icons/icon-512.png'
+];
+self.addEventListener('install',event=>{event.waitUntil((async()=>{
+  const shell=await caches.open(SHELL_CACHE); await shell.addAll(SHELL);
+  const db=await caches.open(DB_CACHE); if(!(await db.match('./data/app_data.js'))){try{await db.add('./data/app_data.js');}catch(e){}}
+  self.skipWaiting();
+})());});
+self.addEventListener('activate',event=>{event.waitUntil((async()=>{
+  const keys=await caches.keys(); await Promise.all(keys.filter(k=>k.startsWith('michino-shell-')&&k!==SHELL_CACHE).map(k=>caches.delete(k)));
+  await self.clients.claim();
+})());});
+self.addEventListener('fetch',event=>{
+  const u=new URL(event.request.url);
+  if(event.request.method!=='GET') return;
+  if(u.pathname.endsWith('/data/version.json')){
+    event.respondWith(fetch(event.request,{cache:'no-store'}).catch(()=>caches.match(event.request))); return;
+  }
+  if(u.pathname.endsWith('/data/app_data.js')){
+    event.respondWith((async()=>{const db=await caches.open(DB_CACHE); return (await db.match('./data/app_data.js')) || fetch(event.request);})()); return;
+  }
+  event.respondWith((async()=>{
+    const cached=await caches.match(event.request);
+    if(cached) return cached;
+    try{const res=await fetch(event.request); if(res&&res.ok){const c=await caches.open(SHELL_CACHE); c.put(event.request,res.clone());} return res;}
+    catch(e){if(event.request.mode==='navigate') return caches.match('./index.html'); throw e;}
+  })());
+});

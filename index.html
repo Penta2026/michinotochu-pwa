@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>道の途中。 PWA</title>
+<meta name="theme-color" content="#f7fbff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="道の途中。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+<script src="data/app_data.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.0.0</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
+</header>
+<div class="shell">
+<nav class="side" id="sideNav">
+  <button data-view="home" class="active">🏠 ホーム</button>
+  <button data-view="sug">🎲 道の駅すごろく</button>
+  <button data-view="dest">🧭 行先ガチャ</button>
+  <button data-view="relay">🏍️ 乗り継ぎガチャ</button>
+  <button data-view="season">🌸 季節を走る</button>
+  <button data-view="nearby">🧩 ここからどこ行く？</button>
+  <button data-view="interest">🗾 気になる場所</button>
+  <button data-view="favorites">🏍️ お気に入りのルート</button>
+</nav>
+<main>
+<section id="home" class="view active">
+  <div class="home-stage">
+    <div class="home-title" aria-label="旅の途中。"><span class="home-title-trip">旅</span><span class="home-title-no">の</span><span class="home-title-way">途中。</span><span class="home-pin">●</span></div>
+    <div class="home-tagline">－ さあ、どこへ行こう？－</div>
+    <div class="home-version">PWA Ver1.0.0</div>
+    <div class="home-spacer" aria-hidden="true"></div>
+    <div class="home-image-grid">
+      <button class="home-img-button" type="button" onclick="showView('sug')" aria-label="道の駅すごろく"><img src="assets/home/home_btn_sugoroku.png" alt="道の駅すごろく　道の駅をめぐる旅"></button>
+      <button class="home-img-button" type="button" onclick="showView('dest')" aria-label="行先ガチャ"><img src="assets/home/home_btn_destination.png" alt="行先ガチャ　次の目的地を決める"></button>
+      <button class="home-img-button" type="button" onclick="showView('relay')" aria-label="乗り継ぎガチャ"><img src="assets/home/home_btn_relay.png" alt="乗り継ぎガチャ　行き先をつないで旅する"></button>
+      <button class="home-img-button" type="button" onclick="showView('season')" aria-label="季節を走る"><img src="assets/home/home_btn_season.png" alt="季節を走る　今だけの景色へ"></button>
+      <button class="home-img-button" type="button" onclick="showView('nearby')" aria-label="ここからどこ行く？"><img src="assets/home/home_btn_nearby.png" alt="ここからどこ行く？　近くのスポットを探す"></button>
+      <button class="home-img-button" type="button" onclick="showView('interest')" aria-label="気になる場所"><img src="assets/home/home_btn_interest.png" alt="気になる場所　行きたい場所をチェック"></button>
+      <button class="home-img-button home-img-button-wide" type="button" onclick="showView('favorites')" aria-label="お気に入りのルート"><img src="assets/home/home_btn_saved.png" alt="お気に入りのルート　保存した旅をもう一度"></button>
+    </div>
+    <div class="home-about-row"><button type="button" onclick="openAbout()">ⓘ このアプリについて</button></div>
+    <div class="pwa-update-panel" id="pwaUpdatePanel">
+      <span id="pwaDbStatus">DB Ver2.8.20</span>
+      <button type="button" id="pwaUpdateButton" onclick="checkPwaDataUpdate(true)">🔄 データ更新を確認</button>
+    </div>
+  </div>
+</section>
+
+<section id="sug" class="view"><div class="screen-card menu-sug">
+  <div class="screen-title-card"><h2>🎲  道の駅すごろく</h2><button class="screen-close" onclick="showView('home')">×</button></div>
+  <div class="screen-body"><div id="sugStart"></div>
+    <div class="choice-section"><h3>📏 目的地までの最大直線距離</h3><select id="sugRadius" class="logic-control"><option selected>50</option><option>100</option><option>150</option><option>200</option><option>300</option><option>500</option></select><div class="choice-grid" data-target="sugRadius" data-values="50,100,150,200,300,500"></div><div class="free-number"><input id="sugRadiusFree" type="number" min="1" max="2000" placeholder="自由入力"><span>km</span></div></div>
+    <div class="choice-section"><h3>🛣 目標総走行距離</h3><select id="sugTravel" class="logic-control"><option selected>100</option><option>200</option><option>300</option><option>400</option><option>500</option></select><div class="choice-grid" data-target="sugTravel" data-values="100,200,300,400,500"></div><div class="free-number"><input id="sugTravelFree" type="number" min="1" max="3000" placeholder="自由入力"><span>km</span></div></div>
+    <div class="choice-section"><h3>🎯 立ち寄る道の駅の数</h3><select id="sugCount" class="logic-control"><option value="0" selected>ランダム</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select><div class="choice-grid" data-target="sugCount" data-values="0,1,2,3,4,5,6" data-labels="ランダム,1,2,3,4,5,6"></div></div>
+    <div class="choice-section"><h3>🎁 ミッション</h3><input type="checkbox" id="sugMission" checked class="logic-control"><div class="toggle-choice"><button data-mission="on" class="active">あり</button><button data-mission="off">なし</button></div></div>
+    <div class="note">※ 距離は地図上の直線距離です。実際の走行距離は道路状況やルートにより増減します。</div><button class="primary action-main" onclick="runSugoroku()">🎲 すごろく開始！</button>
+    <div id="sugResult" class="result empty">条件を設定してください。</div>
+  </div></div></section>
+
+<section id="dest" class="view"><div class="screen-card menu-dest">
+  <div class="screen-title-card"><h2>📍  行先ガチャ</h2><button class="screen-close" onclick="showView('home')">×</button></div>
+  <div class="screen-body"><div id="destStart"></div>
+    <div class="choice-section"><h3>📏 目的地までの目安直線距離</h3><select id="destDist" class="logic-control"><option>10</option><option>20</option><option selected>30</option><option>50</option><option>80</option><option>100</option><option>150</option><option>200</option><option>300</option></select><div class="choice-grid" data-target="destDist" data-values="10,20,30,50,80,100,150,200,300"></div><div class="free-number"><input id="destDistFree" type="number" min="1" max="2000" placeholder="自由入力"><span>km</span></div></div>
+    <div class="choice-section"><h3>↔ 距離の許容幅（±）</h3><select id="destTol" class="logic-control"><option>5</option><option selected>10</option><option>20</option><option>30</option></select><div class="choice-grid" data-target="destTol" data-values="5,10,20,30"></div><div class="free-number"><input id="destTolFree" type="number" min="1" max="500" placeholder="自由入力"><span>km</span></div></div>
+    <div class="choice-section"><h3>✨ 雰囲気</h3><select id="destMood" class="logic-control"><option>なんでも</option><option>海</option><option>山</option><option>田舎</option><option>市街地</option><option>ランドマーク</option></select><div class="choice-grid" data-target="destMood" data-values="なんでも,海,山,田舎,市街地,ランドマーク" data-labels="✨ なんでも,🌊 海,⛰ 山,🌾 田舎,🏙 市街地,📍 ランドマーク"></div></div>
+    <div class="note">※ 距離は地図上の直線距離です。実際の走行距離は道路状況やルートにより増減します。</div><button class="primary action-main" onclick="runDestination()">🎲 行先ガチャ！</button>
+    <div id="destResult" class="result empty">条件を設定してください。</div>
+  </div></div></section>
+
+<section id="relay" class="view"><div class="screen-card menu-relay">
+  <div class="screen-title-card"><h2>🔗  乗り継ぎガチャ</h2><button class="screen-close" onclick="showView('home')">×</button></div>
+  <div class="screen-body"><div id="relayStart"></div>
+    <div class="choice-section"><h3>📏 次の移動距離</h3><select id="relayDist" class="logic-control"><option>3</option><option>5</option><option selected>10</option><option>15</option><option>20</option><option>30</option><option>50</option></select><div class="choice-grid" data-target="relayDist" data-values="3,5,10,15,20,30,50"></div><div class="free-number"><input id="relayDistFree" type="number" min="1" max="500" placeholder="自由入力"><span>km</span></div></div>
+    <div class="choice-section"><h3>🧭 進む方向</h3><select id="relayDir" class="logic-control"><option selected>北</option><option>東</option><option>南</option><option>西</option></select><div class="direction-grid" data-target="relayDir"><button data-value="北">↑ 北</button><button data-value="東">→ 東</button><button data-value="南">↓ 南</button><button data-value="西">← 西</button></div></div>
+    <button class="primary action-main" onclick="runRelay()">🎲 次のマスを決める！</button><div id="relayResult" class="result empty">スタート地点を設定してください。</div><div id="relayHistory"></div>
+  </div></div></section>
+
+<section id="season" class="view"><div class="screen-card menu-season">
+  <div class="screen-title-card"><h2>🌸  季節を走る</h2><button class="screen-close" onclick="showView('home')">×</button></div>
+  <div class="screen-body"><div id="seasonStart"></div>
+    <div class="choice-section"><h3>🌼 どの季節の景色を探す？</h3><select id="seasonSelect" class="logic-control"><option value="auto">今の季節（自動）</option><option>春</option><option>夏</option><option>秋</option><option>冬</option></select><div class="choice-grid season-grid" data-target="seasonSelect" data-values="auto,春,夏,秋,冬" data-labels="今の季節（自動）,🌸 春,☀ 夏,🍁 秋,❄ 冬"></div></div>
+    <div class="choice-section"><h3>📏 最大直線距離</h3><select id="seasonRadius" class="logic-control"><option>50</option><option selected>100</option><option>150</option><option>200</option><option>300</option><option>500</option></select><div class="choice-grid" data-target="seasonRadius" data-values="50,100,150,200,300,500"></div><div class="free-number"><input id="seasonRadiusFree" type="number" min="1" max="2000" placeholder="自由入力"><span>km</span></div></div>
+    <div class="note">※ 距離は地図上の直線距離です。実際の走行距離は道路状況やルートにより増減します。</div><button class="primary action-main" onclick="runSeason()">✨ この条件で季節の候補を見る</button><div id="seasonResult" class="spot-grid"></div>
+  </div></div></section>
+
+<section id="nearby" class="view"><div class="screen-card menu-nearby">
+  <div class="screen-title-card"><h2>🧭  ここからどこ行く？</h2><button class="screen-close" onclick="showView('home')">×</button></div>
+  <div class="screen-body"><div id="nearbyStart"></div>
+    <div class="choice-section"><h3>📏 どのくらい先まで行く？</h3><select id="nearbyDist" class="logic-control"><option>20</option><option>30</option><option selected>50</option><option>80</option><option>100</option><option>150</option><option>200</option><option>300</option></select><div class="choice-grid" data-target="nearbyDist" data-values="20,30,50,80,100,150,200,300"></div><div class="free-number"><input id="nearbyDistFree" type="number" min="1" max="2000" placeholder="自由入力"><span>km</span></div></div>
+    <div class="choice-section"><h3>🎯 何を探す？</h3><select id="nearbyType" class="logic-control"><option value="all">すべて（道の駅＋定番＋寄り道）</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option></select><div class="choice-grid" data-target="nearbyType" data-values="all,road,A,B" data-labels="✨ すべて,🎲 道の駅,⭐ 定番,🌿 寄り道"></div></div>
+    <div class="note">距離の許容幅は ±10km。距離は抽出用の目安です。</div><button class="primary action-main" onclick="runNearby()">🧭 この条件で探す</button><div id="nearbyResult" class="spot-grid"></div>
+  </div></div></section>
+
+<section id="interest" class="view"><div class="screen-card menu-interest">
+  <div class="screen-title-card"><h2>🗾  気になる場所</h2><button class="screen-close" onclick="showView('home')">×</button></div>
+  <div class="screen-body"><p class="lead">県やカテゴリから、ふらっと行ってみたい場所を眺めます。</p><div class="panel form-grid">
+    <label>都道府県<select id="interestPref"></select></label><label>スポット区分<select id="interestType"><option value="all">なんでも</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option></select></label><label>カテゴリ<select id="interestFeature"></select></label><button class="primary full" onclick="runInterest()">候補を見る</button>
+  </div><div id="interestResult" class="spot-grid"></div></div></div></section>
+
+<section id="favorites" class="view"><div class="screen-card menu-favorites">
+  <div class="screen-title-card"><h2>🏍️  お気に入りのルート</h2><button class="screen-close" onclick="showView('home')">×</button></div><div class="screen-body"><div class="toolbar"><span>最大20件まで保存</span><button class="danger" onclick="deleteSelectedFavorites()">選択したコースを削除</button></div><div id="favoriteList"></div></div></div></section>
+
+<section id="browse" class="view"><div class="viewhead"><button class="back" onclick="showView('home')">← メニューへ</button><h2>📚 登録スポットを見る</h2></div>
+  <div class="panel form-grid">
+    <label>都道府県<select id="browsePref"></select></label>
+    <label>区分<select id="browseType"><option value="all">すべて</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option></select></label>
+    <label>カテゴリ<select id="browseFeature"></select></label>
+    <label class="full">名称で絞り込み<input id="browseQuery" placeholder="スポット名"></label>
+    <button class="primary full" onclick="runBrowse()">表示</button>
+  </div><div id="browseResult" class="spot-grid"></div>
+</section>
+</main>
+</div>
+<div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
+<footer>製作者：ぺんた / © 2026 Penta<br><span id="footerVersion">PWA Ver1.0.0 / DB Ver2.8.20</span></footer>
+<script src="app.js"></script>
+<script src="pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "appVersion": "1.0.0",
+  "dbVersion": "2.8.20",
+  "spots": 3573,
+  "roadStations": 1234,
+  "dataFile": "data/app_data.js",
+  "updated": "2026-10-05"
+}
