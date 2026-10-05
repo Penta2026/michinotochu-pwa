@@ -15,7 +15,7 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.0.2</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
+  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.0.3</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
 </header>
 <div class="shell">
 <nav class="side" id="sideNav">
@@ -33,7 +33,7 @@
   <div class="home-stage">
     <div class="home-title" aria-label="旅の途中。"><span class="home-title-trip">旅</span><span class="home-title-no">の</span><span class="home-title-way">途中。</span><span class="home-pin">●</span></div>
     <div class="home-tagline">－ さあ、どこへ行こう？－</div>
-    <div class="home-version">PWA Ver1.0.2</div>
+    <div class="home-version">PWA Ver1.0.3</div>
     <div class="home-spacer" aria-hidden="true"></div>
     <div class="home-image-grid">
       <button class="home-img-button" type="button" onclick="showView('sug')" aria-label="道の駅すごろく"><img src="assets/home/home_btn_sugoroku.png" alt="道の駅すごろく　道の駅をめぐる旅"></button>
@@ -46,8 +46,8 @@
     </div>
     <div class="home-about-row"><button type="button" onclick="openAbout()">ⓘ このアプリについて</button><button type="button" class="contact-open-btn" onclick="openContact()">✉ 製作者に連絡</button></div>
     <div class="pwa-update-panel" id="pwaUpdatePanel">
-      <span id="pwaDbStatus">DB Ver2.8.20</span>
-      <button type="button" id="pwaUpdateButton" onclick="checkPwaDataUpdate(true)">🔄 データ更新を確認</button>
+      <span id="pwaDbStatus">更新確認中…</span>
+      <button type="button" id="pwaUpdateButton" onclick="updateEverything(true)">🔄 最新版に更新</button>
     </div>
   </div>
 </section>
@@ -118,7 +118,7 @@
 </main>
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
-<footer>製作者：ぺんた / © 2026 Penta<br><span id="footerVersion">PWA Ver1.0.2 / DB Ver2.8.20</span></footer>
+<footer>製作者：ぺんた / © 2026 Penta<br><span id="footerVersion">PWA Ver1.0.3 / DB Ver2.8.20</span></footer>
 <script src="app.js"></script>
 <script src="pwa.js"></script>
 </body>
