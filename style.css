@@ -120,3 +120,25 @@ main{padding-top:24px}
 /* Ver2.8.19 interest detail parity with Android */
 .detail-clickable{cursor:pointer;border-radius:14px;padding:4px;transition:.12s ease}.detail-clickable:hover{background:#f4f9fc}.detail-title{font-size:22px!important;line-height:1.35;margin-right:36px!important;overflow-wrap:anywhere}.detail-meta{margin:4px 0 14px}.detail-block{margin:14px 0;padding:12px 14px;border-radius:14px;background:#f6fafc;border:1px solid #dfeaf0;line-height:1.7}.detail-block b{display:block;margin-bottom:3px;color:#284b62}.detail-route{margin-top:16px}.detail-route .mapbtn{grid-column:1/-1}
 \n\n/* ===== PWA / iPhone overrides ===== */\nhtml,body{min-height:100%;}\nbody{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);}\n.topbar{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));}\n.pwa-update-panel{margin:12px auto 0;max-width:520px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:13px;color:#4c6170;}\n.pwa-update-panel button{border:1px solid #b9d8ee;background:#f6fbff;color:#176fa9;border-radius:999px;padding:9px 14px;font-weight:700;cursor:pointer;}\n.pwa-update-panel button:disabled{opacity:.55;cursor:default;}\n.pwa-update-panel.has-update{background:#fff8dc;border:1px solid #ead384;border-radius:16px;padding:10px;}\n@media(max-width:760px){\n  .shell{display:block;}\n  .side{position:static;width:auto;display:flex;overflow-x:auto;gap:6px;padding:8px 10px;-webkit-overflow-scrolling:touch;}\n  .side button{flex:0 0 auto;white-space:nowrap;padding:9px 12px;font-size:12px;}\n  main{width:100%;padding:8px;}\n  .topbar .brand h1{font-size:20px;}\n  .topbar .brand p{font-size:11px;}\n  .screen-card{border-radius:22px;}\n  .screen-title-card{min-height:56px;}\n  .screen-title-card h2{font-size:18px;}\n  .screen-body{padding:10px;}\n  .home-stage{min-height:auto;padding:8px 4px 14px;}\n  .home-image-grid{grid-template-columns:1fr 1fr;gap:8px;}\n  .home-img-button-wide{grid-column:1 / -1;}\n  .choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}\n  .spot-grid{grid-template-columns:1fr!important;}\n  .modal{padding:calc(12px + env(safe-area-inset-top)) 10px calc(12px + env(safe-area-inset-bottom));}\n  .modal-card{max-height:86vh;overflow:auto;border-radius:22px;}\n  input,select,button{font-size:16px;}\n}\n
+
+/* PWA Ver1.0.1 contact form */
+.home-about-row{gap:8px;flex-wrap:wrap}
+.home-about-row .contact-open-btn{border-color:#9bcdb8;background:#f4fff9;color:#236a4e}
+.contact-lead{color:var(--muted);margin:0 0 12px}
+.contact-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0 16px}
+.contact-category-btn{min-height:48px;border:1px solid #cfdde6;background:#f8fbfd;color:#29465b;border-radius:12px;padding:10px;font:inherit;font-weight:700;cursor:pointer}
+.contact-category-btn.active{background:#e8f6ef;border-color:#3a9b76;color:#247455;box-shadow:inset 0 0 0 1px #3a9b76}
+.contact-form{display:grid;gap:10px}
+.contact-fields{display:grid;gap:11px}
+.contact-fields label{display:block}
+.contact-fields input,.contact-fields select,.contact-fields textarea{width:100%;margin-top:5px;padding:11px;border:1px solid #c7d1d8;border-radius:10px;background:#fff;font:inherit;color:var(--text)}
+.contact-fields textarea{resize:vertical;min-height:110px;line-height:1.6}
+.contact-selected{padding:10px 12px;background:#f2f8f5;border:1px solid #d0e8dc;border-radius:11px;color:#315d4b}
+.contact-hint{margin:2px 0 8px;padding:12px;border-radius:11px;background:#f6f9fb;color:var(--muted)}
+.contact-submit{width:100%;min-height:52px;margin-top:4px}
+.contact-note{font-size:12px;line-height:1.6;color:var(--muted);margin:12px 0 0}
+@media(max-width:520px){
+  .contact-category-grid{grid-template-columns:1fr}
+  .home-about-row{width:100%}
+  .home-about-row button{flex:1 1 100%}
+}
