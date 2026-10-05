@@ -161,3 +161,15 @@ main{padding-top:24px}
 @keyframes pwa-spin{to{transform:rotate(360deg)}}
 body.pwa-starting{overflow:hidden}
 body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{pointer-events:none}
+
+
+/* PWA 1.0.9 food search choices */
+.route-buttons .food-search-group{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.route-buttons .food-search-group .mapbtn{min-height:48px}
+.route-buttons .food-walk{background:#d98b42;color:#fff}
+.route-buttons .food-rest{background:#8a6bb8;color:#fff}
+.route-buttons .food-hearty{background:#c35d52;color:#fff}
+@media(max-width:760px){
+  .route-buttons .food-search-group{grid-column:auto;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .route-buttons .food-search-group .mapbtn{font-size:13px;padding:10px 6px}
+}
