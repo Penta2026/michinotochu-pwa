@@ -1,7 +1,7 @@
-const SHELL_CACHE='michino-shell-v1.0.11';
+const SHELL_CACHE='michino-shell-v1.0.12';
 const DB_CACHE='michino-db';
 const SHELL=[
-  './','./index.html','./style.css?v=1.0.11','./app.js?v=1.0.11','./pwa.js?v=1.0.11','./data/road_summaries_chugoku.js?v=1.0.11','./data/spot_overrides.js?v=1.0.11','./manifest.webmanifest',
+  './','./index.html','./style.css?v=1.0.12','./app.js?v=1.0.12','./pwa.js?v=1.0.12','./data/road_summaries_chugoku.js?v=1.0.12','./data/road_summaries_shikoku.js?v=1.0.12','./data/spot_overrides.js?v=1.0.12','./manifest.webmanifest',
   './assets/home/home_background.png','./assets/home/home_btn_sugoroku.png','./assets/home/home_btn_destination.png',
   './assets/home/home_btn_relay.png','./assets/home/home_btn_season.png','./assets/home/home_btn_nearby.png',
   './assets/home/home_btn_interest.png','./assets/home/home_btn_saved.png','./icons/apple-touch-icon.png','./icons/icon-192.png','./icons/icon-512.png'
