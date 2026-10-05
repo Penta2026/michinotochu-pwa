@@ -142,3 +142,8 @@ main{padding-top:24px}
   .home-about-row{width:100%}
   .home-about-row button{flex:1 1 100%}
 }
+
+.contact-send-status{min-height:20px;margin-top:8px;text-align:center;font-size:13px;color:var(--muted)}
+.contact-send-status.success{color:#247455;font-weight:700}
+.contact-send-status.error{color:#a84036;font-weight:700}
+.contact-submit:disabled{opacity:.6;cursor:wait}
