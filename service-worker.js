@@ -1,7 +1,7 @@
-const SHELL_CACHE='michino-shell-v1.0.7';
+const SHELL_CACHE='michino-shell-v1.0.8';
 const DB_CACHE='michino-db';
 const SHELL=[
-  './','./index.html','./style.css?v=1.0.7','./app.js?v=1.0.7','./pwa.js?v=1.0.7','./manifest.webmanifest',
+  './','./index.html','./style.css?v=1.0.8','./app.js?v=1.0.8','./pwa.js?v=1.0.8','./data/spot_overrides.js?v=1.0.8','./manifest.webmanifest',
   './assets/home/home_background.png','./assets/home/home_btn_sugoroku.png','./assets/home/home_btn_destination.png',
   './assets/home/home_btn_relay.png','./assets/home/home_btn_season.png','./assets/home/home_btn_nearby.png',
   './assets/home/home_btn_interest.png','./assets/home/home_btn_saved.png','./icons/apple-touch-icon.png','./icons/icon-192.png','./icons/icon-512.png'
