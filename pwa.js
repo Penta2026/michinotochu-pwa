@@ -1,4 +1,4 @@
-const PWA_APP_VERSION='1.0.1';
+const PWA_APP_VERSION='1.0.2';
 const PWA_DEFAULT_DB_VERSION='2.8.20';
 function pwaStoredDbVersion(){return localStorage.getItem('michino_db_version')||PWA_DEFAULT_DB_VERSION;}
 function setPwaStatus(text,hasUpdate=false){
