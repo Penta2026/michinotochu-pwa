@@ -52,7 +52,7 @@
       <button class="home-img-button" type="button" onclick="showView('interest')" aria-label="気になる場所"><img src="assets/home/home_btn_interest.png" alt="気になる場所　行きたい場所をチェック"></button>
       <button class="home-img-button home-img-button-wide" type="button" onclick="showView('favorites')" aria-label="お気に入りのルート"><img src="assets/home/home_btn_saved.png" alt="お気に入りのルート　保存した旅をもう一度"></button>
     </div>
-    <div class="home-about-row"><button type="button" onclick="openAbout()">ⓘ このアプリについて</button><button type="button" class="contact-open-btn" onclick="openContact()">✉ 製作者に連絡</button></div>
+    <div class="home-about-row"><button type="button" onclick="openAbout()">ⓘ このアプリについて</button><button type="button" id="installGuideButton" onclick="location.href='install.html'">📱 インストール方法</button><button type="button" class="contact-open-btn" onclick="openContact()">✉ 製作者に連絡</button></div>
     <div class="pwa-update-panel" id="pwaUpdatePanel">
       <span id="pwaDbStatus">更新確認中…</span>
       <button type="button" id="pwaUpdateButton" onclick="updateEverything(true)">🔄 最新版に更新</button>
@@ -127,6 +127,15 @@
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
 <footer>製作者：ぺんた / © 2026 Penta<br><span id="footerVersion">PWA Ver1.0.8 / DB Ver2.8.20</span></footer>
+<script>
+(function(){
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if(isStandalone){
+    const b=document.getElementById('installGuideButton');
+    if(b)b.style.display='none';
+  }
+})();
+</script>
 <script src="app.js?v=1.0.8"></script>
 <script src="pwa.js?v=1.0.8"></script>
 </body>
