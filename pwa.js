@@ -1,5 +1,6 @@
-const PWA_APP_VERSION='1.0.6';
+const PWA_APP_VERSION='1.0.7';
 const PWA_DEFAULT_DB_VERSION='2.8.20';
+const PWA_NETWORK_TIMEOUT_MS=5000;
 let pwaUpdateRunning=false;
 let pwaStartupComplete=false;
 
@@ -34,8 +35,17 @@ function setPwaUpdateButton(busy){
   b.disabled=!!busy;
   b.textContent=busy?'更新中…':'🔄 最新版に更新';
 }
+async function fetchWithTimeout(url,options={},timeout=PWA_NETWORK_TIMEOUT_MS){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),timeout);
+  try{
+    return await fetch(url,{...options,signal:controller.signal});
+  }finally{
+    clearTimeout(timer);
+  }
+}
 async function fetchLatestVersion(){
-  const r=await fetch(`data/version.json?t=${Date.now()}`,{cache:'no-store'});
+  const r=await fetchWithTimeout(`data/version.json?t=${Date.now()}`,{cache:'no-store'});
   if(!r.ok)throw new Error('version');
   return await r.json();
 }
@@ -45,7 +55,7 @@ async function updateDbIfNeeded(v,isStartup=false){
   setPwaStatus(`DB Ver${v.dbVersion}を更新中…`,true);
   if(isStartup)setStartupText(`DB Ver${cur} → ${v.dbVersion} を更新中`);
   const url=(v.dataFile||'data/app_data.js')+`?db=${encodeURIComponent(v.dbVersion)}&t=${Date.now()}`;
-  const r=await fetch(url,{cache:'no-store'});
+  const r=await fetchWithTimeout(url,{cache:'no-store'},12000);
   if(!r.ok)throw new Error('data');
   const text=await r.text();
   if(!text.includes('window.APP_DATA=')||text.length<1000)throw new Error('invalid data');
@@ -57,22 +67,25 @@ async function updateDbIfNeeded(v,isStartup=false){
 function versionDifferent(latest,current){
   return String(latest||'').trim()!==String(current||'').trim();
 }
+async function serviceWorkerRegistration(){
+  if(!('serviceWorker' in navigator))return null;
+  const existing=await navigator.serviceWorker.getRegistration('./');
+  if(existing)return existing;
+  return await Promise.race([
+    navigator.serviceWorker.register('./service-worker.js'),
+    new Promise((_,reject)=>setTimeout(()=>reject(new Error('sw timeout')),3000))
+  ]);
+}
 async function updateAppShellIfNeeded(v,isStartup=false){
   if(!v.appVersion||!versionDifferent(v.appVersion,PWA_APP_VERSION))return false;
   setPwaStatus(`PWA Ver${v.appVersion}を更新中…`,true);
   if(isStartup)setStartupText(`PWA Ver${PWA_APP_VERSION} → ${v.appVersion} を更新中`);
-  if(!('serviceWorker' in navigator))return true;
-  const reg=await navigator.serviceWorker.getRegistration('./')||await navigator.serviceWorker.register('./service-worker.js');
-  await reg.update();
-  const worker=reg.installing||reg.waiting;
-  if(worker&&worker.state!=='activated'){
-    await new Promise(resolve=>{
-      let settled=false;
-      const done=()=>{if(!settled){settled=true;resolve();}};
-      worker.addEventListener('statechange',()=>{if(worker.state==='activated')done();});
-      setTimeout(done,5000);
-    });
-  }
+  const reg=await serviceWorkerRegistration();
+  if(!reg)return true;
+  await Promise.race([
+    reg.update(),
+    new Promise((_,reject)=>setTimeout(()=>reject(new Error('sw update timeout')),4000))
+  ]);
   return true;
 }
 async function updateEverything(manual=false,isStartup=false){
@@ -97,22 +110,24 @@ async function updateEverything(manual=false,isStartup=false){
     if(manual)alert('PWA本体・データベースともに最新版です。');
   }catch(e){
     console.warn('PWA update failed',e);
-    setPwaStatus(`PWA Ver${PWA_APP_VERSION} / DB Ver${pwaStoredDbVersion()}（オフライン）`,false);
-    if(isStartup)setStartupText('更新確認できませんでした。保存済みの版で起動します');
-    if(manual)alert('最新版を確認できませんでした。通信状態を確認してください。');
+    setPwaStatus(`PWA Ver${PWA_APP_VERSION} / DB Ver${pwaStoredDbVersion()}（確認省略）`,false);
+    if(isStartup)setStartupText('更新確認を終了して起動します');
+    if(manual)alert('更新確認に時間がかかったため終了しました。現在の版はそのまま使えます。');
   }finally{
     pwaUpdateRunning=false;
     setPwaUpdateButton(false);
-    if(isStartup&&!shouldReload)setTimeout(finishStartup,250);
+    if(isStartup&&!shouldReload)setTimeout(finishStartup,150);
   }
 }
 window.updateEverything=updateEverything;
 
-window.addEventListener('load',async()=>{
-  if('serviceWorker' in navigator){
-    try{await navigator.serviceWorker.register('./service-worker.js');}
-    catch(e){console.warn(e);}
-  }
+window.addEventListener('load',()=>{
+  const startupSafety=setTimeout(()=>{
+    if(!pwaStartupComplete){
+      setPwaStatus(`PWA Ver${PWA_APP_VERSION} / DB Ver${pwaStoredDbVersion()}（起動優先）`,false);
+      finishStartup();
+    }
+  },6500);
   setPwaStatus('最新版を確認しています…');
-  await updateEverything(false,true);
+  updateEverything(false,true).finally(()=>clearTimeout(startupSafety));
 });
