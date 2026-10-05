@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.0.5';
+const APP_VERSION='PWA 1.0.6';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -142,13 +142,13 @@ function navSearchQuery(x){
 function coordTarget(x){return `${x.latRaw||String(x.lat)},${x.lngRaw||String(x.lng)}`}
 function navTarget(x){return useNameNavigation(x)?navSearchQuery(x):coordTarget(x)}
 function googlePoint(lat,lng,name='',x=null){
-  const q=x&&useNameNavigation(x)?navSearchQuery(x):(x?coordTarget(x):`${lat},${lng}`);
+  const q=`${Number(lat)},${Number(lng)}`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`
 }
 function googleFoodSearch(x){
   if(!x)return'#';
   const base=Number.isFinite(+x.lat)&&Number.isFinite(+x.lng)?`${x.lat},${x.lng}`:navSearchQuery(x);
-  const q=`飲食店 カフェ ラーメン ${base}`;
+  const q=`飲食店 カフェ ラーメン near ${base}`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`
 }
 function googleRoute(origin,pts,vehicle='250'){
