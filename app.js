@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.0.8';
+const APP_VERSION='PWA 1.0.9';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -145,10 +145,11 @@ function googlePoint(lat,lng,name='',x=null){
   const q=(x&&useNameNavigation(x))?navSearchQuery(x):`${Number(lat)},${Number(lng)}`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`
 }
-function googleFoodSearch(x){
+function googleFoodSearch(x,style='walk'){
   if(!x)return'#';
   const base=useNameNavigation(x)?navSearchQuery(x):(Number.isFinite(+x.lat)&&Number.isFinite(+x.lng)?`${x.lat},${x.lng}`:navSearchQuery(x));
-  const q=`飲食店 カフェ ラーメン near ${base}`;
+  const words={walk:'食べ歩き たい焼き 団子 ソフトクリーム 軽食 ご当地グルメ',rest:'カフェ 喫茶店 甘味処 スイーツ ジェラート パン 休憩',hearty:'ラーメン うどん 定食 丼 食堂 お好み焼き ランチ ご当地グルメ'};
+  const q=`${words[style]||words.walk} near ${base}`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`
 }
 function googleRoute(origin,pts,vehicle='250'){
@@ -164,7 +165,7 @@ function featureOf(x,kind){return kind==='道の駅'?'road_station':(x.featureCa
 function iconBadge(x,kind){return `<div class="icon-badge ${groupClass(kind)}"><img src="${iconPath(featureOf(x,kind))}" onerror="this.src='assets/icons/ic_feature_generic.png'" alt=""></div>`}
 function pointKind(x){if(x.groupName)return x.groupName; if(x.level==='A')return'定番スポット';if(x.level==='B')return'寄り道スポット';return'道の駅'}
 function mapBtn(x,label='マップで確認'){return `<a class="mapbtn map-check" href="${googlePoint(x.lat,x.lng,x.name,x)}" target="_blank" rel="noopener">🗺 ${label}</a>`}
-function routeButtons(origin,pts){if(!origin||!pts||!pts.length)return'';const d=pts[pts.length-1];return `<div class="route-buttons"><a class="mapbtn map-check" href="${googlePoint(d.lat,d.lng,d.name,d)}" target="_blank" rel="noopener">🗺 マップで確認</a><a class="mapbtn gourmet-search" href="${googleFoodSearch(d)}" target="_blank" rel="noopener">🍜 周辺グルメを検索</a><a class="mapbtn bike125" href="${googleRoute(origin,pts,'125')}" target="_blank" rel="noopener">🛵 125cc以下</a><a class="mapbtn bike250" href="${googleRoute(origin,pts,'250')}" target="_blank" rel="noopener">🏍 250cc以上</a></div>`}
+function routeButtons(origin,pts){if(!origin||!pts||!pts.length)return'';const d=pts[pts.length-1];return `<div class="route-buttons"><a class="mapbtn map-check" href="${googlePoint(d.lat,d.lng,d.name,d)}" target="_blank" rel="noopener">🗺 マップで確認</a><div class="food-search-group"><a class="mapbtn food-walk" href="${googleFoodSearch(d,'walk')}" target="_blank" rel="noopener">🍡 食べ歩き</a><a class="mapbtn food-rest" href="${googleFoodSearch(d,'rest')}" target="_blank" rel="noopener">☕ ひと息</a><a class="mapbtn food-hearty" href="${googleFoodSearch(d,'hearty')}" target="_blank" rel="noopener">🍜 がっつり</a></div><a class="mapbtn bike125" href="${googleRoute(origin,pts,'125')}" target="_blank" rel="noopener">🛵 125cc以下</a><a class="mapbtn bike250" href="${googleRoute(origin,pts,'250')}" target="_blank" rel="noopener">🏍 250cc以上</a></div>`}
 function numericValue(selectId,freeId,min,max){const e=$(freeId);if(e&&String(e.value).trim()!==''){const n=+e.value;if(Number.isFinite(n)&&n>=min&&n<=max)return n;}return +$(selectId).value}
 function dirText16(v){return ['北','北北東','北東','東北東','東','東南東','南東','南南東','南','南南西','南西','西南西','西','西北西','北西','北北西'][Math.round(v/22.5)%16]}
 
