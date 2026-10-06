@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.5.4';
+const APP_VERSION='PWA 1.5.5';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -99,27 +99,33 @@ function contactSelectCategory(category){
       <label>おすすめ名称<input name="title" required placeholder="例：○○展望台"></label>
       <label>GoogleマップURL<input name="mapUrl" inputmode="url" placeholder="分かれば共有リンクを貼り付け"></label>
       <label>座標（必須）<input name="coordinates" required inputmode="text" placeholder="例：36.123456,136.123456"></label>
-      <button type="button" class="soft contact-current-location" onclick="fillContactCurrentCoordinates()">◎ 現在地を入れる</button>
+      <button type="button" class="soft contact-current-location" onclick="fillContactCurrentCoordinates(true)">◎ 現在地を再取得</button>
       <div id="contactCoordStatus" class="contact-coord-status"></div>
       <label>おすすめポイント<textarea name="details" rows="5" required placeholder="どんな場所か、何がおすすめかを教えてください"></textarea></label>`;
   }
   $('contactFields').innerHTML=`<div class="contact-selected">選択中：<b>${esc(category)}</b></div>${fields}
     <label>返信用メールアドレス（任意）<input name="replyEmail" type="email" autocomplete="email" placeholder="返信が必要な場合だけ"></label>
     <button type="submit" class="primary contact-submit" id="contactSubmitButton">✉ 送信する</button><div id="contactSendStatus" class="contact-send-status" aria-live="polite"></div>`;
+  if(category==='オススメ追加')fillContactCurrentCoordinates(false);
 }
 
-async function fillContactCurrentCoordinates(){
+async function fillContactCurrentCoordinates(force=false){
   const form=$('contactForm');if(!form||!form.elements.coordinates)return;
   const status=$('contactCoordStatus');
-  if(status)status.textContent='現在地を取得しています…';
+  if(!force&&String(form.elements.coordinates.value||'').trim())return;
+  if(status){status.className='contact-coord-status';status.textContent='現在地を取得しています…'}
   try{
     const p=await geo();
+    if(!force&&String(form.elements.coordinates.value||'').trim()){
+      if(status){status.className='contact-coord-status success';status.textContent='保存済みの地点座標を使用しています。'}
+      return;
+    }
     const coord=Number(p.lat).toFixed(6)+','+Number(p.lng).toFixed(6);
     form.elements.coordinates.value=coord;
-    if(form.elements.mapUrl&&!String(form.elements.mapUrl.value||'').trim())form.elements.mapUrl.value=googlePoint(p.lat,p.lng,'');
+    if(form.elements.mapUrl&&(force||!String(form.elements.mapUrl.value||'').trim()))form.elements.mapUrl.value=googlePoint(p.lat,p.lng,'');
     if(status){status.className='contact-coord-status success';status.textContent='現在地を入力しました：'+coord}
   }catch(e){
-    if(status){status.className='contact-coord-status error';status.textContent='現在地を取得できませんでした。位置情報を許可して再試行してください。'}
+    if(status){status.className='contact-coord-status error';status.textContent='現在地を取得できませんでした。位置情報を許可して「現在地を再取得」を押してください。'}
   }
 }
 
