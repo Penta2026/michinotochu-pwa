@@ -208,7 +208,7 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   aspect-ratio:3/1;
   min-height:0;
   padding:0;
-  background-image:url('assets/home/home_buttons_sprite.webp');
+  background-image:var(--home-sprite-image);
   background-repeat:no-repeat;
   background-size:200% 500%;
   border-radius:16px;
