@@ -1,8 +1,9 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.3.1';
+const APP_VERSION='PWA 1.3.2';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
+const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
 const $=id=>document.getElementById(id);
 const origins={sug:null,dest:null,relay:null,season:null,nearby:null,detour:null,interestSave:null};
 let pendingInterestSave=null;
@@ -399,54 +400,21 @@ function openDetourDestinationMap(){
 }
 async function reflectDetourDestination(){
   const raw=await clipboardText();
-  if(!raw)return alert('Googleマップで目的地の共有リンクをコピーしてください。');
-  const q=await resolveMapLink(raw);
-  if(!q){
-    const box=$('detourDestinationText');
-    if(box&&!box.value)box.value=raw;
-    return alert('Googleマップの短縮共有リンクから座標を直接取得できませんでした。下の欄に目的地名または住所を入力して「目的地名・住所から設定」を押してください。');
-  }
+  if(!raw)return alert('Googleマップで目的地を選び、共有 → Copy Link を押してから反映してください。');
   if(!origins.detour)return alert('先に出発地を設定してください。');
+  const q=await resolveMapLink(raw);
+  if(!q)return alert('Googleマップの共有リンクから目的地を取得できませんでした。もう一度 Copy Link して再試行してください。');
   detourRoute={
     origin:{...origins.detour},
     points:[{lat:q[0],lng:q[1],name:'Googleマップ共有地点',kind:'目的地'}],
     source:'manual',
-    title:'自分で選んだルート'
+    title:'Googleマップで選んだルート'
   };
   renderDetourRouteStatus();
   const host=$('detourResult');
-  if(host){host.className='result empty';host.textContent='道草レベルとジャンルを選んでガチャしてください。';}
+  if(host){host.className='result empty';host.textContent='目的地を反映しました。道草レベルとジャンルを選んでください。';}
 }
-async function applyDetourDestinationText(){
-  if(!origins.detour)return alert('先に出発地を設定してください。');
-  const text=String($('detourDestinationText')?.value||'').trim();
-  if(!text)return alert('目的地名または住所を入力してください。');
-  const direct=parseCoords(text);
-  if(direct){
-    detourRoute={origin:{...origins.detour},points:[{lat:direct[0],lng:direct[1],name:text,kind:'目的地'}],source:'manual',title:'自分で選んだルート'};
-    renderDetourRouteStatus();
-    return;
-  }
-  try{
-    const url='https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q='+encodeURIComponent(text);
-    const r=await fetch(url,{headers:{'Accept':'application/json'}});
-    if(!r.ok)throw new Error('geocode');
-    const list=await r.json();
-    const hit=list&&list[0];
-    if(!hit||!Number.isFinite(+hit.lat)||!Number.isFinite(+hit.lon))throw new Error('no result');
-    detourRoute={
-      origin:{...origins.detour},
-      points:[{lat:+hit.lat,lng:+hit.lon,name:text,kind:'目的地'}],
-      source:'manual',
-      title:'自分で選んだルート'
-    };
-    renderDetourRouteStatus();
-    const host=$('detourResult');
-    if(host){host.className='result empty';host.textContent='目的地を設定しました。道草レベルとジャンルを選んでください。';}
-  }catch(e){
-    alert('目的地名・住所から場所を取得できませんでした。住所をもう少し具体的にして再試行してください。');
-  }
-}
+
 function openDetourFavoritePicker(){
   const a=loadFavorites().filter(x=>x.origin&&(x.points||[]).length);
   if(!a.length)return modal(`<h2>⭐ お気に入りのルート</h2><p>寄り道に使える保存ルートがまだありません。</p><div class="actions"><button class="soft" onclick="closeModal()">閉じる</button></div>`);
@@ -608,9 +576,11 @@ async function resolveMapLink(raw){
   const u=firstUrl(raw);
   if(!u)return null;
   try{
-    const r=await fetch(u,{mode:'no-cors',redirect:'follow',cache:'no-store'});
-    const q=parseCoords(r.url||'');
-    if(q)return q;
+    const api=MAPS_RESOLVER_URL+'?url='+encodeURIComponent(u);
+    const r=await fetch(api,{cache:'no-store'});
+    if(!r.ok)return null;
+    const j=await r.json();
+    if(j&&j.ok&&Number.isFinite(+j.lat)&&Number.isFinite(+j.lng))return[+j.lat,+j.lng];
   }catch(e){}
   return null
 }
