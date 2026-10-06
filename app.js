@@ -593,7 +593,7 @@ function routeButtons(origin,pts){
     </div>
     <a class="mapbtn bike125" href="${googleRoute(origin,pts,'125')}" target="_blank" rel="noopener">🛵 125cc以下</a>
     <a class="mapbtn bike250" href="${googleRoute(origin,pts,'250')}" target="_blank" rel="noopener">🏍 250cc以上</a>
-    <button type="button" class="soft detour-open" onclick="openDetour('${detourId}')">🎲 寄り道する？</button>
+    <button type="button" class="soft detour-open" onclick="openDetour('${detourId}')">🛣️ 寄り道しよう</button>
   </div>`;
 }
 function numericValue(selectId,freeId,min,max){const e=$(freeId);if(e&&String(e.value).trim()!==''){const n=+e.value;if(Number.isFinite(n)&&n>=min&&n<=max)return n;}return +$(selectId).value}
