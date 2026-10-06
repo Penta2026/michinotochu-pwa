@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.1.6';
+const APP_VERSION='PWA 1.2.0';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -188,9 +188,203 @@ function googleFoodSearch(x,style='walk'){
 function googleRoute(origin,pts,vehicle='250'){
   if(!pts.length)return'#';
   const d=pts[pts.length-1],wps=pts.slice(0,-1).map(navTarget).join('|');
-  const avoid=vehicle==='125'?'&avoid=highways%2Ctolls':'';
+  const avoid=(vehicle==='50'||vehicle==='125')?'&avoid=highways%2Ctolls':'';
   return `https://www.google.com/maps/dir/?api=1&origin=${origin.lat},${origin.lng}&destination=${encodeURIComponent(navTarget(d))}${wps?`&waypoints=${encodeURIComponent(wps)}`:''}&travelmode=driving${avoid}`;
 }
+
+const DETOUR_GENRES=[
+  ['random','🎲 完全ランダム'],
+  ['view','🌄 景色・展望'],
+  ['cafe','☕ カフェ'],
+  ['sweets','🍡 甘味'],
+  ['food','🍜 食事'],
+  ['onsen','♨️ 温泉'],
+  ['road','🛣️ 道の駅'],
+  ['shrine','⛩️ 神社・寺'],
+  ['park','🌳 公園'],
+  ['unusual','👀 珍スポット'],
+  ['season','🌸 季節スポット']
+];
+const detourContexts=new Map();
+let detourContextSeq=0;
+
+function registerDetourContext(origin,destination){
+  if(detourContexts.size>300)detourContexts.clear();
+  const id='dt'+(++detourContextSeq);
+  detourContexts.set(id,{
+    origin:{...origin},
+    destination:{...destination},
+    candidate:null,
+    vehicle:'250'
+  });
+  return id;
+}
+function detourCorridorKm(vehicle){
+  return ({'50':3,'125':5,'250':8,'car':10})[vehicle]||8;
+}
+function detourVehicleLabel(vehicle){
+  return ({'50':'50cc','125':'125cc以下','250':'250cc以上','car':'車'})[vehicle]||'250cc以上';
+}
+function detourSegmentMetric(origin,destination,p){
+  const midLat=rad((+origin.lat + +destination.lat)/2);
+  const kx=111.32*Math.cos(midLat),ky=110.574;
+  const dx=(+destination.lng-(+origin.lng))*kx;
+  const dy=(+destination.lat-(+origin.lat))*ky;
+  const px=(+p.lng-(+origin.lng))*kx;
+  const py=(+p.lat-(+origin.lat))*ky;
+  const len2=dx*dx+dy*dy;
+  if(!len2)return{t:0,perp:Math.hypot(px,py)};
+  const rawT=(px*dx+py*dy)/len2;
+  const t=Math.max(0,Math.min(1,rawT));
+  const qx=dx*t,qy=dy*t;
+  return{t:rawT,perp:Math.hypot(px-qx,py-qy)};
+}
+function detourText(x){
+  return [x.name,x.category,x.summary,x.featureLabel,x.featureCategory,x.kind].filter(Boolean).join(' ');
+}
+function detourGenreMatch(x,genre){
+  if(genre==='random')return true;
+  if(genre==='road')return x.kind==='道の駅';
+  if(genre==='season')return seasonMatch(x,currentSeason());
+  const t=detourText(x);
+  const fc=String(x.featureCategory||'');
+  const re={
+    view:/展望|眺望|景色|岬|高原|山頂|海岸|湖|滝|渓谷|峡谷|棚田|橋/,
+    cafe:/カフェ|喫茶|珈琲|コーヒー|茶房|茶屋/,
+    sweets:/甘味|スイーツ|団子|饅頭|まんじゅう|たい焼|ソフト|ジェラート|アイス|菓子|ケーキ|プリン/,
+    food:/食堂|レストラン|ラーメン|うどん|そば|丼|定食|焼肉|お好み|バーガー|食事|グルメ/,
+    onsen:/温泉|温浴|銭湯|スパ|湯/,
+    shrine:/神社|神宮|大社|寺|寺院|観音|不動|霊場/,
+    park:/公園|庭園|植物園|花畑|フラワー/,
+    unusual:/珍スポット|珍|奇|巨大|レトロ|秘境|廃|不思議/
+  }[genre];
+  const fcMap={view:'view',onsen:'onsen',shrine:'shrine',park:'park',unusual:'unusual_ui'};
+  return (fcMap[genre]&&fc===fcMap[genre]) || Boolean(re&&re.test(t));
+}
+function detourStayMinutes(x,genre){
+  if(genre==='onsen'||detourGenreMatch(x,'onsen'))return 70;
+  if(genre==='food'||detourGenreMatch(x,'food'))return 45;
+  if(genre==='cafe'||detourGenreMatch(x,'cafe'))return 35;
+  if(genre==='park'||detourGenreMatch(x,'park'))return 40;
+  if(genre==='season')return 45;
+  if(genre==='shrine'||detourGenreMatch(x,'shrine'))return 30;
+  if(genre==='sweets'||detourGenreMatch(x,'sweets'))return 20;
+  if(genre==='road'||x.kind==='道の駅')return 20;
+  if(genre==='view'||detourGenreMatch(x,'view'))return 20;
+  return 30;
+}
+function detourTimeAllowed(x,time,genre){
+  if(time==='any')return true;
+  const mins=detourStayMinutes(x,genre);
+  if(time==='quick')return mins<=20;
+  if(time==='30')return mins<=35;
+  if(time==='60')return mins<=70;
+  return true;
+}
+function detourAllSpots(){
+  return [
+    ...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})),
+    ...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)}))
+  ].filter(x=>Number.isFinite(+x.lat)&&Number.isFinite(+x.lng));
+}
+function detourFoodSearchUrl(ctx,genre){
+  const lat=(+ctx.origin.lat + +ctx.destination.lat)/2;
+  const lng=(+ctx.origin.lng + +ctx.destination.lng)/2;
+  const word={cafe:'カフェ 喫茶店',sweets:'甘味 スイーツ',food:'食事 レストラン'}[genre]||'飲食店';
+  return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(lat+','+lng+' 周辺 '+word);
+}
+function openDetour(id){
+  const ctx=detourContexts.get(id);
+  if(!ctx)return alert('寄り道条件を作り直してください。');
+  const genreOptions=DETOUR_GENRES.map(([v,l])=>`<option value="${v}">${l}</option>`).join('');
+  modal(`<h2>🎲 寄り道ガチャ</h2>
+    <p class="detour-lead"><b>${esc(ctx.origin.label||'スタート')}</b> → <b>${esc(ctx.destination.name||'目的地')}</b><br>
+    最終目的地は変えず、道中に1か所だけ寄り道候補を追加します。</p>
+    <div class="detour-form">
+      <label>寄り道ジャンル<select id="detourGenre">${genreOptions}</select></label>
+      <label>寄り道時間<select id="detourTime">
+        <option value="quick">ちょっとだけ</option>
+        <option value="30">30分程度</option>
+        <option value="60">1時間程度</option>
+        <option value="any" selected>時間は気にしない</option>
+      </select></label>
+      <label>車両区分<select id="detourVehicle">
+        <option value="50">50cc</option>
+        <option value="125">125cc以下</option>
+        <option value="250" selected>250cc以上</option>
+        <option value="car">車</option>
+      </select></label>
+    </div>
+    <p class="detour-note">※ 現在地と目的地を結ぶ直線周辺から軽量判定で候補を探します。実際の道路ルートからの距離ではありません。</p>
+    <button type="button" class="primary detour-roll" onclick="rollDetour('${id}')">🎲 寄り道を探す</button>
+    <div id="detourResult" class="detour-result"><p class="meta">条件を選んでガチャしてください。</p></div>`);
+}
+function rollDetour(id){
+  const ctx=detourContexts.get(id);
+  if(!ctx)return;
+  const genre=$('detourGenre')?.value||'random';
+  const time=$('detourTime')?.value||'any';
+  const vehicle=$('detourVehicle')?.value||'250';
+  ctx.vehicle=vehicle;
+  const baseCorridor=detourCorridorKm(vehicle);
+  const routeLen=dist(ctx.origin.lat,ctx.origin.lng,ctx.destination.lat,ctx.destination.lng);
+  const all=detourAllSpots();
+
+  const buildPool=(corridor)=>all.map(x=>{
+    const m=detourSegmentMetric(ctx.origin,ctx.destination,x);
+    return {...x,_detourPerp:m.perp,_detourT:m.t};
+  }).filter(x=>{
+    if(x._detourT<0.05||x._detourT>0.95)return false;
+    if(x._detourPerp>corridor)return false;
+    if(dist(ctx.origin.lat,ctx.origin.lng,x.lat,x.lng)<Math.min(1.5,routeLen*0.08))return false;
+    if(dist(ctx.destination.lat,ctx.destination.lng,x.lat,x.lng)<1)return false;
+    if(!detourGenreMatch(x,genre))return false;
+    return detourTimeAllowed(x,time,genre);
+  });
+
+  let pool=buildPool(baseCorridor),widened=false;
+  if(!pool.length){pool=buildPool(baseCorridor*1.5);widened=pool.length>0;}
+  const host=$('detourResult');
+  if(!host)return;
+
+  if(!pool.length){
+    ctx.candidate=null;
+    if(['cafe','sweets','food'].includes(genre)){
+      host.innerHTML=`<div class="detour-empty"><b>アプリ内データでは候補が見つかりませんでした。</b>
+        <p class="meta">このジャンルだけGoogle Mapsでルート中間付近を検索できます。</p>
+        <a class="mapbtn" href="${detourFoodSearchUrl(ctx,genre)}" target="_blank" rel="noopener">🗺 Google Mapsで探す</a>
+        <button type="button" class="soft" onclick="rollDetour('${id}')">🎲 もう一度ガチャ</button></div>`;
+    }else{
+      host.innerHTML=`<div class="detour-empty"><b>この条件では候補が見つかりませんでした。</b>
+        <p class="meta">ジャンル・時間・車両区分を変えてみてください。</p>
+        <button type="button" class="soft" onclick="rollDetour('${id}')">🎲 もう一度ガチャ</button></div>`;
+    }
+    return;
+  }
+
+  pool.sort((a,b)=>(a._detourPerp+Math.random()*baseCorridor*.7)-(b._detourPerp+Math.random()*baseCorridor*.7));
+  const pick=rand(pool.slice(0,Math.min(30,pool.length)));
+  ctx.candidate=pick;
+  const meta=spotMeta(pick,pick.kind,null);
+  host.innerHTML=`<div class="detour-picked">
+    <div class="detour-picked-head">${iconBadge(pick,pick.kind)}<div><h3>${esc(pick.name)}</h3><div class="meta">${esc(meta)}</div></div></div>
+    ${pick.summary?`<p>${esc(pick.summary)}</p>`:''}
+    <div class="meta">ルート軸から約 ${pick._detourPerp.toFixed(1)}km / ${esc(detourVehicleLabel(vehicle))}${widened?' / 候補範囲を少し拡大':''}</div>
+    <div class="detour-actions">
+      <button type="button" class="primary" onclick="acceptDetour('${id}')">ここに寄る</button>
+      <button type="button" class="soft" onclick="rollDetour('${id}')">🎲 もう一度ガチャ</button>
+      <button type="button" class="soft" onclick="closeModal()">寄り道しない</button>
+    </div>
+  </div>`;
+}
+function acceptDetour(id){
+  const ctx=detourContexts.get(id);
+  if(!ctx||!ctx.candidate)return;
+  const vehicle=ctx.vehicle||'250';
+  const url=googleRoute(ctx.origin,[ctx.candidate,ctx.destination],vehicle);
+  window.open(url,'_blank','noopener');
+}
+
 function active(v){return !String(v||'').includes('除外')}
 function groupClass(kind){return kind==='道の駅'?'group-road':kind==='定番スポット'?'group-A':'group-B'}
 function iconPath(feature){const f=feature||'generic';return `assets/icons/ic_feature_${f}.png`}
@@ -198,7 +392,22 @@ function featureOf(x,kind){return kind==='道の駅'?'road_station':(x.featureCa
 function iconBadge(x,kind){return `<div class="icon-badge ${groupClass(kind)}"><img src="${iconPath(featureOf(x,kind))}" onerror="this.src='assets/icons/ic_feature_generic.png'" alt=""></div>`}
 function pointKind(x){if(x.groupName)return x.groupName; if(x.level==='A')return'定番スポット';if(x.level==='B')return'寄り道スポット';return'道の駅'}
 function mapBtn(x,label='マップで確認'){return `<a class="mapbtn map-check" href="${googlePoint(x.lat,x.lng,x.name,x)}" target="_blank" rel="noopener">🗺 ${label}</a>`}
-function routeButtons(origin,pts){if(!origin||!pts||!pts.length)return'';const d=pts[pts.length-1];return `<div class="route-buttons"><a class="mapbtn map-check" href="${googlePoint(d.lat,d.lng,d.name,d)}" target="_blank" rel="noopener">🗺 マップで確認</a><div class="food-search-group"><a class="mapbtn food-walk" href="${googleFoodSearch(d,'walk')}" target="_blank" rel="noopener">🍡 食べ歩き</a><a class="mapbtn food-rest" href="${googleFoodSearch(d,'rest')}" target="_blank" rel="noopener">☕ ひと息</a><a class="mapbtn food-hearty" href="${googleFoodSearch(d,'hearty')}" target="_blank" rel="noopener">🍜 がっつり</a></div><a class="mapbtn bike125" href="${googleRoute(origin,pts,'125')}" target="_blank" rel="noopener">🛵 125cc以下</a><a class="mapbtn bike250" href="${googleRoute(origin,pts,'250')}" target="_blank" rel="noopener">🏍 250cc以上</a></div>`}
+function routeButtons(origin,pts){
+  if(!origin||!pts||!pts.length)return'';
+  const d=pts[pts.length-1];
+  const detourId=registerDetourContext(origin,d);
+  return `<div class="route-buttons">
+    <a class="mapbtn map-check" href="${googlePoint(d.lat,d.lng,d.name,d)}" target="_blank" rel="noopener">🗺 マップで確認</a>
+    <div class="food-search-group">
+      <a class="mapbtn food-walk" href="${googleFoodSearch(d,'walk')}" target="_blank" rel="noopener">🍡 食べ歩き</a>
+      <a class="mapbtn food-rest" href="${googleFoodSearch(d,'rest')}" target="_blank" rel="noopener">☕ ひと息</a>
+      <a class="mapbtn food-hearty" href="${googleFoodSearch(d,'hearty')}" target="_blank" rel="noopener">🍜 がっつり</a>
+    </div>
+    <a class="mapbtn bike125" href="${googleRoute(origin,pts,'125')}" target="_blank" rel="noopener">🛵 125cc以下</a>
+    <a class="mapbtn bike250" href="${googleRoute(origin,pts,'250')}" target="_blank" rel="noopener">🏍 250cc以上</a>
+    <button type="button" class="soft detour-open" onclick="openDetour('${detourId}')">🎲 寄り道する？</button>
+  </div>`;
+}
 function numericValue(selectId,freeId,min,max){const e=$(freeId);if(e&&String(e.value).trim()!==''){const n=+e.value;if(Number.isFinite(n)&&n>=min&&n<=max)return n;}return +$(selectId).value}
 function dirText16(v){return ['北','北北東','北東','東北東','東','東南東','南東','南南東','南','南南西','南西','西南西','西','西北西','北西','北北西'][Math.round(v/22.5)%16]}
 
