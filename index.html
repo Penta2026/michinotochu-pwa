@@ -10,18 +10,18 @@
 <meta name="apple-mobile-web-app-title" content="道の途中。">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="stylesheet" href="style.css?v=1.2.0">
+<link rel="stylesheet" href="style.css?v=1.2.1">
 <script src="data/app_data.js"></script>
-<script src="data/road_summaries_chugoku.js?v=1.2.0"></script>
-<script src="data/road_summaries_shikoku.js?v=1.2.0"></script>
-<script src="data/road_summaries_kyushu_okinawa.js?v=1.2.0"></script>
-<script src="data/road_summaries_kinki.js?v=1.2.0"></script>
-<script src="data/road_summaries_chubu.js?v=1.2.0"></script>
-<script src="data/road_summaries_kanto.js?v=1.2.0"></script>
-<script src="data/road_summaries_tohoku.js?v=1.2.0"></script>
-<script src="data/road_summaries_hokkaido.js?v=1.2.0"></script>
-<script src="data/road_summaries_final.js?v=1.2.0"></script>
-<script src="data/spot_overrides.js?v=1.2.0"></script>
+<script src="data/road_summaries_chugoku.js?v=1.2.1"></script>
+<script src="data/road_summaries_shikoku.js?v=1.2.1"></script>
+<script src="data/road_summaries_kyushu_okinawa.js?v=1.2.1"></script>
+<script src="data/road_summaries_kinki.js?v=1.2.1"></script>
+<script src="data/road_summaries_chubu.js?v=1.2.1"></script>
+<script src="data/road_summaries_kanto.js?v=1.2.1"></script>
+<script src="data/road_summaries_tohoku.js?v=1.2.1"></script>
+<script src="data/road_summaries_hokkaido.js?v=1.2.1"></script>
+<script src="data/road_summaries_final.js?v=1.2.1"></script>
+<script src="data/spot_overrides.js?v=1.2.1"></script>
 </head>
 <body class="pwa-starting">
 <div id="pwaStartupGate" class="pwa-startup-gate" role="status" aria-live="polite">
@@ -32,7 +32,7 @@
   </div>
 </div>
 <header class="topbar">
-  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.2.0</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
+  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.2.1</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
 </header>
 <div class="shell">
 <nav class="side" id="sideNav">
@@ -50,16 +50,19 @@
   <div class="home-stage">
     <div class="home-title" aria-label="旅の途中。"><span class="home-title-trip">旅</span><span class="home-title-no">の</span><span class="home-title-way">途中。</span><span class="home-pin">●</span></div>
     <div class="home-tagline">－ さあ、どこへ行こう？－</div>
-    <div class="home-version">PWA Ver1.2.0</div>
+    <div class="home-version">PWA Ver1.2.1</div>
     <div class="home-spacer" aria-hidden="true"></div>
     <div class="home-image-grid">
-      <button class="home-img-button" type="button" onclick="showView('sug')" aria-label="道の駅すごろく"><img src="assets/home/home_btn_sugoroku.png" alt="道の駅すごろく　道の駅をめぐる旅"></button>
-      <button class="home-img-button" type="button" onclick="showView('dest')" aria-label="行先ガチャ"><img src="assets/home/home_btn_destination.png" alt="行先ガチャ　次の目的地を決める"></button>
-      <button class="home-img-button" type="button" onclick="showView('relay')" aria-label="乗り継ぎガチャ"><img src="assets/home/home_btn_relay.png" alt="乗り継ぎガチャ　行き先をつないで旅する"></button>
-      <button class="home-img-button" type="button" onclick="showView('season')" aria-label="季節を走る"><img src="assets/home/home_btn_season.png" alt="季節を走る　今だけの景色へ"></button>
-      <button class="home-img-button" type="button" onclick="showView('nearby')" aria-label="ここからどこ行く？"><img src="assets/home/home_btn_nearby.png" alt="ここからどこ行く？　近くのスポットを探す"></button>
-      <button class="home-img-button" type="button" onclick="showView('interest')" aria-label="気になる場所"><img src="assets/home/home_btn_interest.png" alt="気になる場所　行きたい場所をチェック"></button>
-      <button class="home-img-button home-img-button-wide" type="button" onclick="showView('favorites')" aria-label="お気に入りのルート"><img src="assets/home/home_btn_saved.png" alt="お気に入りのルート　保存した旅をもう一度"></button>
+      <button class="home-img-button home-sprite home-sprite-sug" type="button" onclick="showView('sug')" aria-label="道の駅すごろく"></button>
+      <button class="home-img-button home-sprite home-sprite-dest" type="button" onclick="showView('dest')" aria-label="行き先ガチャ"></button>
+      <button class="home-img-button home-sprite home-sprite-relay" type="button" onclick="showView('relay')" aria-label="乗継ガチャ"></button>
+      <button class="home-img-button home-sprite home-sprite-detour" type="button" onclick="openDetourHome()" aria-label="寄り道ガチャ"></button>
+      <button class="home-img-button home-sprite home-sprite-nearby" type="button" onclick="showView('nearby')" aria-label="ここからどこいく？"></button>
+      <button class="home-img-button home-sprite home-sprite-ride" type="button" onclick="openComingSoon('🌤️ 今日の走り方')" aria-label="今日の走り方"></button>
+      <button class="home-img-button home-sprite home-sprite-season" type="button" onclick="showView('season')" aria-label="季節を走る"></button>
+      <button class="home-img-button home-sprite home-sprite-interest" type="button" onclick="showView('interest')" aria-label="気になる場所"></button>
+      <button class="home-img-button home-sprite home-sprite-saved" type="button" onclick="showView('favorites')" aria-label="お気に入りのルート"></button>
+      <button class="home-img-button home-sprite home-sprite-history" type="button" onclick="openComingSoon('📖 旅の履歴')" aria-label="旅の履歴"></button>
     </div>
     <div class="home-about-row"><button type="button" onclick="openAbout()">ⓘ このアプリについて</button><button type="button" id="installGuideButton" onclick="location.href='install.html'">📱 インストール方法</button><button type="button" class="contact-open-btn" onclick="openContact()">✉ 製作者に連絡</button><button type="button" class="support-open-btn" onclick="openSupport()">❤️ 活動を応援する</button></div>
     <div class="pwa-update-panel" id="pwaUpdatePanel">
@@ -135,7 +138,7 @@
 </main>
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
-<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.2.0 / DB Ver2.8.20</span></footer>
+<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.2.1 / DB Ver2.8.20</span></footer>
 <script>
 (function(){
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -145,7 +148,7 @@
   }
 })();
 </script>
-<script src="app.js?v=1.2.0"></script>
-<script src="pwa.js?v=1.2.0"></script>
+<script src="app.js?v=1.2.1"></script>
+<script src="pwa.js?v=1.2.1"></script>
 </body>
 </html>
