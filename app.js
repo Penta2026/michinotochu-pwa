@@ -569,6 +569,7 @@ function parseCoords(s){const t=decodeURIComponent(String(s||'').replace(/\+/g,'
 function firstUrl(s){const m=String(s||'').match(/https?:\/\/[^\s]+/i);return m?m[0].replace(/[\])。,]+$/,''):null}
 function openStartMap(k){window.open('https://www.google.com/maps','_blank','noopener')}
 function showMapStartHelp(){modal(`<h2>Googleマップから選ぶ</h2><p>ブラウザでGoogleマップが開きます。スタート地点にしたい場所を選択し、<b>共有 → リンクをコピー</b>してください。</p><p>この画面に戻り、<b>「リンクを反映」</b>を押すとスタート地点に設定されます。</p>`)}
+function showDetourDestinationHelp(){modal(`<h2>Googleマップから選ぶ</h2><p>ブラウザでGoogleマップが開きます。目的地にしたい場所を選択し、<b>共有 → リンクをコピー</b>してください。</p><p>この画面に戻り、<b>「コピーしたリンクを反映」</b>を押すと目的地に設定されます。</p>`)}
 async function clipboardText(){try{return(await navigator.clipboard.readText()).trim()}catch(e){const v=window.prompt('Googleマップでコピーした共有リンクを貼り付けてください。','');return(v||'').trim()}}
 async function resolveMapLink(raw){
   const direct=parseCoords(raw);
