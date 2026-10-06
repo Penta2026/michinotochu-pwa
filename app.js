@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.3.0';
+const APP_VERSION='PWA 1.3.1';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -328,12 +328,54 @@ function detourExperienceTitle(x,genre){
   if(genre==='season')return'🌸 季節をひとつ拾う';
   return'🎲 途中でこれ、どう？';
 }
-function detourFoodSearchUrl(route,genre){
-  const destination=route.points[route.points.length-1];
-  const lat=(+route.origin.lat + +destination.lat)/2;
-  const lng=(+route.origin.lng + +destination.lng)/2;
+function detourRandomRoutePoint(route){
+  const nodes=[route.origin,...route.points];
+  if(nodes.length<2)return route.origin;
+  const segs=[];
+  let total=0;
+  for(let i=0;i<nodes.length-1;i++){
+    const len=dist(nodes[i].lat,nodes[i].lng,nodes[i+1].lat,nodes[i+1].lng);
+    segs.push({a:nodes[i],b:nodes[i+1],len});
+    total+=len;
+  }
+  if(!total)return route.origin;
+  const target=total*(0.25+Math.random()*0.5);
+  let acc=0;
+  for(const seg of segs){
+    if(acc+seg.len>=target){
+      const t=seg.len?((target-acc)/seg.len):0.5;
+      return{lat:+seg.a.lat+(+seg.b.lat-(+seg.a.lat))*t,lng:+seg.a.lng+(+seg.b.lng-(+seg.a.lng))*t};
+    }
+    acc+=seg.len;
+  }
+  return nodes[Math.max(0,nodes.length-2)];
+}
+function detourFoodSearchUrl(route,genre,point=null){
+  const p=point||detourRandomRoutePoint(route);
   const word={cafe:'カフェ 喫茶店',sweets:'甘味 スイーツ',food:'食事 レストラン'}[genre]||'飲食店';
-  return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(lat+','+lng+' 周辺 '+word);
+  return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.lat+','+p.lng+' 周辺 '+word);
+}
+function renderExternalDetourSearch(route,genre,level,vehicle){
+  const host=$('detourResult');
+  if(!host)return;
+  const p=detourRandomRoutePoint(route);
+  const spec=detourLevelSpec(level,vehicle);
+  const cfg={
+    cafe:{title:'☕ この辺でひと休み',text:'ルート途中のこの辺りで、カフェ・喫茶店を探してみる？'},
+    sweets:{title:'🍡 この辺で甘いもの',text:'ルート途中のこの辺りで、甘味・スイーツを探してみる？'},
+    food:{title:'🍜 この辺で腹ごしらえ',text:'ルート途中のこの辺りで、ごはん処を探してみる？'}
+  }[genre];
+  host.className='result';
+  host.innerHTML=`<div class="detour-picked">
+    <div class="detour-mission-title">${cfg.title}</div>
+    <p>${cfg.text}</p>
+    <div class="detour-stats"><span>${esc(spec.label)}</span><span>${esc(detourVehicleLabel(vehicle))}</span><span>登録DB不要</span></div>
+    <p class="meta">この3ジャンルはアプリの登録スポット数に依存せず、ルート途中のランダム地点を基準にGoogle Maps検索を開きます。</p>
+    <div class="detour-actions">
+      <a class="mapbtn primary" href="${detourFoodSearchUrl(route,genre,p)}" target="_blank" rel="noopener">Google Mapsでこの辺を探す</a>
+      <button type="button" class="soft" onclick="runDetourGacha()">🎲 別の辺りを引く</button>
+    </div>
+  </div>`;
 }
 function detourRouteLabel(){
   if(!detourRoute.origin||!detourRoute.points.length)return'現在：未設定';
@@ -359,7 +401,11 @@ async function reflectDetourDestination(){
   const raw=await clipboardText();
   if(!raw)return alert('Googleマップで目的地の共有リンクをコピーしてください。');
   const q=await resolveMapLink(raw);
-  if(!q)return alert('共有リンクから目的地を取得できませんでした。');
+  if(!q){
+    const box=$('detourDestinationText');
+    if(box&&!box.value)box.value=raw;
+    return alert('Googleマップの短縮共有リンクから座標を直接取得できませんでした。下の欄に目的地名または住所を入力して「目的地名・住所から設定」を押してください。');
+  }
   if(!origins.detour)return alert('先に出発地を設定してください。');
   detourRoute={
     origin:{...origins.detour},
@@ -370,6 +416,36 @@ async function reflectDetourDestination(){
   renderDetourRouteStatus();
   const host=$('detourResult');
   if(host){host.className='result empty';host.textContent='道草レベルとジャンルを選んでガチャしてください。';}
+}
+async function applyDetourDestinationText(){
+  if(!origins.detour)return alert('先に出発地を設定してください。');
+  const text=String($('detourDestinationText')?.value||'').trim();
+  if(!text)return alert('目的地名または住所を入力してください。');
+  const direct=parseCoords(text);
+  if(direct){
+    detourRoute={origin:{...origins.detour},points:[{lat:direct[0],lng:direct[1],name:text,kind:'目的地'}],source:'manual',title:'自分で選んだルート'};
+    renderDetourRouteStatus();
+    return;
+  }
+  try{
+    const url='https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q='+encodeURIComponent(text);
+    const r=await fetch(url,{headers:{'Accept':'application/json'}});
+    if(!r.ok)throw new Error('geocode');
+    const list=await r.json();
+    const hit=list&&list[0];
+    if(!hit||!Number.isFinite(+hit.lat)||!Number.isFinite(+hit.lon))throw new Error('no result');
+    detourRoute={
+      origin:{...origins.detour},
+      points:[{lat:+hit.lat,lng:+hit.lon,name:text,kind:'目的地'}],
+      source:'manual',
+      title:'自分で選んだルート'
+    };
+    renderDetourRouteStatus();
+    const host=$('detourResult');
+    if(host){host.className='result empty';host.textContent='目的地を設定しました。道草レベルとジャンルを選んでください。';}
+  }catch(e){
+    alert('目的地名・住所から場所を取得できませんでした。住所をもう少し具体的にして再試行してください。');
+  }
 }
 function openDetourFavoritePicker(){
   const a=loadFavorites().filter(x=>x.origin&&(x.points||[]).length);
@@ -429,6 +505,10 @@ function runDetourGacha(){
   const vehicle=$('detourVehicle')?.value||'250';
   const spec=detourLevelSpec(level,vehicle);
   const route=detourRoute;
+  if(['cafe','sweets','food'].includes(genre)){
+    renderExternalDetourSearch(route,genre,level,vehicle);
+    return;
+  }
   const routeNodes=[route.origin,...route.points];
   const routeLen=routeNodes.slice(0,-1).reduce((sum,p,i)=>sum+dist(p.lat,p.lng,routeNodes[i+1].lat,routeNodes[i+1].lng),0);
   const all=detourAllSpots();
@@ -522,7 +602,18 @@ function firstUrl(s){const m=String(s||'').match(/https?:\/\/[^\s]+/i);return m?
 function openStartMap(k){window.open('https://www.google.com/maps','_blank','noopener')}
 function showMapStartHelp(){modal(`<h2>Googleマップから選ぶ</h2><p>ブラウザでGoogleマップが開きます。スタート地点にしたい場所を選択し、<b>共有 → リンクをコピー</b>してください。</p><p>この画面に戻り、<b>「リンクを反映」</b>を押すとスタート地点に設定されます。</p>`)}
 async function clipboardText(){try{return(await navigator.clipboard.readText()).trim()}catch(e){const v=window.prompt('Googleマップでコピーした共有リンクを貼り付けてください。','');return(v||'').trim()}}
-async function resolveMapLink(raw){const direct=parseCoords(raw);if(direct)return direct;const u=firstUrl(raw);if(!u)return null;try{const r=await fetch(`/resolve-map?url=${encodeURIComponent(u)}`,{cache:'no-store'});if(r.ok){const j=await r.json();if(j&&j.ok&&Number.isFinite(+j.lat)&&Number.isFinite(+j.lng))return[+j.lat,+j.lng]}}catch(e){}return null}
+async function resolveMapLink(raw){
+  const direct=parseCoords(raw);
+  if(direct)return direct;
+  const u=firstUrl(raw);
+  if(!u)return null;
+  try{
+    const r=await fetch(u,{mode:'no-cors',redirect:'follow',cache:'no-store'});
+    const q=parseCoords(r.url||'');
+    if(q)return q;
+  }catch(e){}
+  return null
+}
 async function reflectMapLink(k){const raw=await clipboardText();if(!raw)return alert('Googleマップで共有リンクをコピーしてから「リンクを反映」を押してください。');const q=await resolveMapLink(raw);if(!q)return alert('共有リンクから場所を取得できませんでした。Googleマップで地点を選び、共有からリンクをコピーして再試行してください。');setOrigin(k,q[0],q[1],'Googleマップ共有地点');alert('スタート地点を反映しました。')}
 function geo(){return new Promise((resolve,reject)=>navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>resolve({lat:p.coords.latitude,lng:p.coords.longitude}),reject,{enableHighAccuracy:true,timeout:10000,maximumAge:30000}):reject(new Error('geolocation')))}
 async function useCurrent(k){try{const p=await geo();setOrigin(k,p.lat,p.lng,'現在地')}catch(e){alert('現在地を取得できません。Windowsまたはブラウザの位置情報を許可して、もう一度お試しください。')}}
