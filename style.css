@@ -449,3 +449,7 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 .contact-coord-status{min-height:18px;font-size:12px;color:#6e818d}
 .contact-coord-status.success{color:#2e6a4c}
 .contact-coord-status.error{color:#9a463d}
+
+.trip-record-delete-zone{margin-top:12px;padding:16px;border:1px solid #efc6c1;border-radius:14px;background:#fff8f7}
+.trip-record-delete-zone .meta{margin-bottom:9px;color:#8b5c57}
+.trip-record-delete-zone .danger{width:100%;font-weight:800}
