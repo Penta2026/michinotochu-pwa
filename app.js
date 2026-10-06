@@ -1,11 +1,11 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.3.11';
+const APP_VERSION='PWA 1.4.0';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
 const $=id=>document.getElementById(id);
-const origins={sug:null,dest:null,relay:null,season:null,nearby:null,detour:null,interestSave:null};
+const origins={sug:null,dest:null,relay:null,season:null,nearby:null,ride:null,detour:null,interestSave:null};
 let pendingInterestSave=null;
 let relayTrail=[];
 const FEATURES=[
@@ -599,7 +599,7 @@ function routeButtons(origin,pts){
 function numericValue(selectId,freeId,min,max){const e=$(freeId);if(e&&String(e.value).trim()!==''){const n=+e.value;if(Number.isFinite(n)&&n>=min&&n<=max)return n;}return +$(selectId).value}
 function dirText16(v){return ['北','北北東','北東','東北東','東','東南東','南東','南南東','南','南南西','南西','西南西','西','西北西','北西','北北西'][Math.round(v/22.5)%16]}
 
-function renderStartPanels(){['sug','dest','relay','season','nearby','detour'].forEach(k=>{const host=$(k+'Start');host.innerHTML=`<div class="panel start-panel"><h3>📍 スタート地点</h3><div class="origin-status" id="${k}Origin">現在：未設定</div><div class="start-simple"><button class="soft start-current" onclick="useCurrent('${k}')">◎ 現在地を使う</button><button class="soft start-station" onclick="stationPicker('${k}')">🚉 駅を選ぶ</button><div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('${k}')">🗺 Googleマップでスタート地点を選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div><button class="soft reflect-btn start-reflect" onclick="reflectMapLink('${k}')">🔗 コピーしたリンクを反映</button></div></div>`;});}
+function renderStartPanels(){['sug','dest','relay','season','nearby','ride','detour'].forEach(k=>{const host=$(k+'Start');host.innerHTML=`<div class="panel start-panel"><h3>📍 スタート地点</h3><div class="origin-status" id="${k}Origin">現在：未設定</div><div class="start-simple"><button class="soft start-current" onclick="useCurrent('${k}')">◎ 現在地を使う</button><button class="soft start-station" onclick="stationPicker('${k}')">🚉 駅を選ぶ</button><div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('${k}')">🗺 Googleマップでスタート地点を選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div><button class="soft reflect-btn start-reflect" onclick="reflectMapLink('${k}')">🔗 コピーしたリンクを反映</button></div></div>`;});}
 function setOrigin(k,lat,lng,label){origins[k]={lat:+lat,lng:+lng,label:label||'選択地点'};const host=$(`${k}Origin`);if(host)host.textContent=`現在：${origins[k].label}`;if(k==='detour'&&detourRoute.source!=='favorite'){detourRoute.origin={...origins[k]};renderDetourRouteStatus();}if(k==='interestSave'&&pendingInterestSave)showInterestSaveDialog();}
 function parseCoords(s){const t=decodeURIComponent(String(s||'').replace(/\+/g,'%20'));const pats=[/@(-?\d{1,2}(?:\.\d+)?),\s*(-?\d{1,3}(?:\.\d+)?)/,/!3d(-?\d{1,2}(?:\.\d+)?)!4d(-?\d{1,3}(?:\.\d+)?)/,/[?&](?:q|query|ll|center)=(-?\d{1,2}(?:\.\d+)?),\s*(-?\d{1,3}(?:\.\d+)?)/,/(-?\d{1,2}(?:\.\d+)?)\s*,\s*(-?\d{1,3}(?:\.\d+)?)/];for(const p of pats){const m=t.match(p);if(m){const a=+m[1],b=+m[2];if(Math.abs(a)<=90&&Math.abs(b)<=180)return[a,b]}}return null}
 function firstUrl(s){const m=String(s||'').match(/https?:\/\/[^\s]+/i);return m?m[0].replace(/[\])。,]+$/,''):null}
@@ -636,6 +636,48 @@ function runSugoroku(){const o=requireOrigin('sug');if(!o)return;const radius=nu
 function resetResult(k){$(k+'Result').classList.add('empty');$(k+'Result').innerHTML='条件を設定してください。'}
 function runDestination(){const o=requireOrigin('dest');if(!o)return;const target=numericValue('destDist','destDistFree',1,2000),tol=numericValue('destTol','destTolFree',1,500),mood=$('destMood').value;let pool=[];pool.push(...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})));pool.push(...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)})));pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng)})).filter(x=>Math.abs(x.d-target)<=tol);if(mood!=='なんでも'&&mood!=='ランドマーク'){const re={海:/海|岬|島|港|海岸/,山:/山|高原|峠|渓谷|滝/,田舎:/田園|棚田|農|里|高原/,市街地:/街|駅|市場|公園|城/}[mood];const q=pool.filter(x=>re&&re.test(`${x.name} ${x.category||''} ${x.summary||''}`));if(q.length)pool=q}if(mood==='ランドマーク')pool=pool.filter(x=>x.kind!=='道の駅');if(!pool.length)return $('destResult').innerHTML='<p>この距離帯に候補がありません。距離か許容幅を変更してください。</p>';const x=rand(pool);$('destResult').classList.remove('empty');$('destResult').innerHTML=`${spotCard(x,x.kind,x.d,false,null,0,o)}<div class="actions"><button class="soft" onclick='saveFavorite(${JSON.stringify({mode:'行先ガチャ',title:x.name,startLabel:o.label,origin:o,points:[{name:x.name,lat:x.lat,lng:x.lng,latRaw:x.latRaw||String(x.lat),lngRaw:x.lngRaw||String(x.lng),kind:x.kind,prefecture:x.prefecture,featureCategory:x.featureCategory,navMode:useNameNavigation(x)?'name':'coord',navQuery:useNameNavigation(x)?navSearchQuery(x):''}],routeSummary:''}).replaceAll("'","&#39;")})'>お気に入りに保存</button></div>`}
 function runRelay(){const o=requireOrigin('relay');if(!o)return;const t=numericValue('relayDist','relayDistFree',1,500),dir=$('relayDir').value;const options={北:[337.5,0,22.5],東:[67.5,90,112.5],南:[157.5,180,202.5],西:[247.5,270,292.5]};const targetBearing=rand(options[dir]||options.北);let pool=RELAY.map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng),br:bearing(o.lat,o.lng,x.lat,x.lng)})).filter(x=>Math.abs(x.d-t)<=Math.max(3,t*.75)&&Math.abs(((x.br-targetBearing+540)%360)-180)<=32);if(!pool.length)pool=RELAY.map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng),br:bearing(o.lat,o.lng,x.lat,x.lng)})).sort((a,b)=>(Math.abs(a.d-t)+Math.abs(((a.br-targetBearing+540)%360)-180)/8)-(Math.abs(b.d-t)+Math.abs(((b.br-targetBearing+540)%360)-180)/8)).slice(0,10);if(!pool.length)return alert('候補がありません。');const x=rand(pool);relayTrail.push(x);$('relayResult').classList.remove('empty');$('relayResult').innerHTML=`<h3>${esc(x.name)}</h3><div class="meta">距離：約${x.d.toFixed(1)}km / 選択：${esc(dir)} → ガチャ：${dirText16(targetBearing)} / 実際：${dirText16(x.br)}</div><div class="actions">${routeButtons(o,[x])}<button class="soft" onclick='saveFavorite(${JSON.stringify({mode:'乗り継ぎガチャ',title:x.name,startLabel:o.label,origin:o,points:[{name:x.name,lat:x.lat,lng:x.lng,latRaw:x.latRaw||String(x.lat),lngRaw:x.lngRaw||String(x.lng),kind:'目的地'}],routeSummary:''}).replaceAll("'","&#39;")})'>お気に入りに保存</button></div>`;setOrigin('relay',x.lat,x.lng,x.name);$('relayHistory').innerHTML=relayTrail.length?`<div class="panel"><b>今回の乗り継ぎ</b><div class="meta">${relayTrail.map((x,i)=>`${i+1}. ${esc(x.name)}`).join(' → ')}</div></div>`:''}
+const RIDE_STYLE_KEY='michinotochu_ride_style_v1';
+const RIDE_DISTANCE_LABELS={'10':'🛵 ちょい乗り','20':'🌿 ひとっ走り','40':'🏍️ ぶらっと行こう','70':'🌤️ いい感じに走る','100':'🔥 今日は走るぞ','300':'🚀 遠くまで行こう'};
+const RIDE_MOOD_LABELS={random:'🎲 おまかせ',road:'🏠 道の駅へ',classic:'⭐ いいとこ行きたい',detour:'🌿 ちょっと寄りたい',scenery:'🌊 景色が見たい',food:'☕ なんか食べたい',heal:'♨️ 癒されたい'};
+function rideStyleText(x){return [x.name,x.category,x.summary,x.featureLabel,x.featureCategory,x.scenery,x.groupName].filter(Boolean).join(' ')}
+function rideMoodMatch(x,mood){
+  if(mood==='random')return true;
+  if(mood==='road')return x.kind==='道の駅';
+  if(mood==='classic')return x.level==='A';
+  if(mood==='detour')return x.level==='B';
+  const t=rideStyleText(x),fc=String(x.featureCategory||'');
+  if(mood==='scenery')return ['view','sea','nature','park','construction','road_drive'].includes(fc)||/海|海岸|岬|湖|池|沼|展望|眺望|景色|高原|山|峠|滝|渓谷|峡谷|棚田|夕日|夜景|橋/.test(t);
+  if(mood==='food')return /カフェ|喫茶|珈琲|コーヒー|甘味|スイーツ|団子|饅頭|まんじゅう|ソフト|ジェラート|アイス|菓子|ケーキ|プリン|食堂|レストラン|ラーメン|うどん|そば|丼|定食|グルメ|食事/.test(t);
+  if(mood==='heal')return ['onsen','shrine','park','nature'].includes(fc)||/温泉|湯|神社|神宮|大社|寺|寺院|公園|庭園|森林|森|湖|池|滝|高原/.test(t);
+  return true;
+}
+function rideMapWords(mood){return {random:'観光スポット 景色 カフェ',road:'道の駅',classic:'観光名所 定番スポット',detour:'穴場 観光スポット',scenery:'展望 海岸 岬 湖 景色',food:'カフェ スイーツ ごはん',heal:'温泉 神社 寺 公園'}[mood]||'観光スポット'}
+function rideMapZoom(km){if(km<=10)return 11;if(km<=20)return 10;if(km<=40)return 9;if(km<=70)return 8;if(km<=120)return 7;return 6}
+function pointAtDistance(origin,km,bearingDeg){const R=6371,br=rad(bearingDeg),lat1=rad(+origin.lat),lon1=rad(+origin.lng),d=km/R;const lat2=Math.asin(Math.sin(lat1)*Math.cos(d)+Math.cos(lat1)*Math.sin(d)*Math.cos(br));const lon2=lon1+Math.atan2(Math.sin(br)*Math.sin(d)*Math.cos(lat1),Math.cos(d)-Math.sin(lat1)*Math.sin(lat2));return{lat:lat2*180/Math.PI,lng:lon2*180/Math.PI}}
+function rideMapSearchUrl(origin,mood,maxKm,registered=null){let center;if(registered)center={lat:+registered.lat,lng:+registered.lng};else{const d=Math.max(2,maxKm*(.55+Math.random()*.35));center=pointAtDistance(origin,d,Math.random()*360)}return 'https://www.google.com/maps/search/'+encodeURIComponent(rideMapWords(mood))+'/@'+center.lat+','+center.lng+','+rideMapZoom(maxKm)+'z'}
+function rideSaveSelection(){const distance=$('rideDistance')?.value||'40',mood=$('rideMood')?.value||'random';try{localStorage.setItem(RIDE_STYLE_KEY,JSON.stringify({distance,mood}))}catch(e){}const note=$('rideDistanceNote');if(note)note.textContent='目安：スタート地点から'+distance+'km以内'}
+function rideRestoreSelection(){try{const v=JSON.parse(localStorage.getItem(RIDE_STYLE_KEY)||'null');if(v&&$('rideDistance')&&RIDE_DISTANCE_LABELS[String(v.distance)])$('rideDistance').value=String(v.distance);if(v&&$('rideMood')&&RIDE_MOOD_LABELS[v.mood])$('rideMood').value=v.mood}catch(e){}rideSaveSelection()}
+function initRideStyleUI(){document.querySelectorAll('.ride-distance-grid button,.ride-mood-grid button').forEach(b=>b.addEventListener('click',()=>setTimeout(rideSaveSelection,0)))}
+function runRideStyle(){
+  const o=requireOrigin('ride');if(!o)return;
+  const maxKm=+($('rideDistance')?.value||40),mood=$('rideMood')?.value||'random';rideSaveSelection();
+  let pool=[];
+  pool.push(...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})));
+  pool.push(...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)})));
+  pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,+x.lat,+x.lng)})).filter(x=>x.d>0.8&&x.d<=maxKm&&rideMoodMatch(x,mood));
+  const target=maxKm*.72;
+  pool.sort((a,b)=>(Math.abs(a.d-target)+Math.random()*maxKm*.18)-(Math.abs(b.d-target)+Math.random()*maxKm*.18));
+  const pick=pool.length?rand(pool.slice(0,Math.min(30,pool.length))):null;
+  const mapUrl=rideMapSearchUrl(o,mood,maxKm,pick),host=$('rideResult');if(!host)return;host.className='result';
+  let registered='';
+  if(pick){
+    const saveAction="saveSingle('今日の走り方','"+escJs(pick.name)+"',"+pick.lat+","+pick.lng+",'"+escJs(pick.kind)+"','"+escJs(o.label)+"',"+o.lat+","+o.lng+")";
+    registered='<div class="ride-registered"><div class="ride-result-kicker">📚 アプリ登録候補</div>'+spotCard(pick,pick.kind,pick.d,false,saveAction,0,o)+'</div>';
+  }else registered='<div class="ride-registered ride-empty"><div class="ride-result-kicker">📚 アプリ登録候補</div><p class="meta">この距離と気分では登録候補が見つからなかったよ。Google Maps側で新しい場所を探してみよう。</p></div>';
+  host.innerHTML='<div class="ride-result-head"><div class="ride-result-title">'+esc(RIDE_DISTANCE_LABELS[String(maxKm)]||maxKm+'km')+' × '+esc(RIDE_MOOD_LABELS[mood]||mood)+'</div><div class="meta">スタート地点から最大 '+maxKm+'km / 直線距離の目安</div></div>'+
+    '<div class="ride-map-search"><a class="mapbtn primary" href="'+mapUrl+'" target="_blank" rel="noopener">🗺 Google Mapsでも探す</a><p class="meta">登録地点だけに限定せず、この気分に合いそうな場所を地図から探せます。</p></div>'+registered+
+    '<div class="ride-result-actions"><button type="button" class="soft" onclick="runRideStyle()">🎲 別の候補を見る</button></div>';
+}
 function currentSeason(){const m=new Date().getMonth()+1;return m>=3&&m<=5?'春':m>=6&&m<=8?'夏':m>=9&&m<=11?'秋':'冬'}
 function seasonMatch(x,s){const t=`${x.name} ${x.category||''} ${x.summary||''} ${x.featureLabel||''}`;const map={春:/桜|梅|菜の花|芝桜|花畑|チューリップ|藤|新緑|公園/,夏:/海|海岸|岬|湖|滝|高原|ひまわり|渓谷|湿原|島|展望/,秋:/紅葉|銀杏|すすき|棚田|田園|山|峠|高原|渓谷|峡谷/,冬:/雪|氷|樹氷|冬|温泉|流氷|霧氷|雪景色|合掌/};return map[s].test(t)}
 function runSeason(){const o=requireOrigin('season');if(!o)return;let s=$('seasonSelect').value;if(s==='auto')s=currentSeason();const r=numericValue('seasonRadius','seasonRadiusFree',1,2000);let all=D.landmarks.filter(x=>active(x.gacha)&&seasonMatch(x,s)).map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng),kind:pointKind(x)})).sort((a,b)=>a.d-b.d),list=all.filter(x=>x.d<=r),fallback=false;if(!list.length){list=all.slice(0,12);fallback=true}else list=list.slice(0,12);$('seasonResult').innerHTML=(fallback?`<div class="panel full">圏内に候補がないため、近い${s}の候補を表示します。</div>`:'')+list.map(x=>spotCard(x,x.kind,x.d,false,`saveSingle('${escJs('季節を走る')}','${escJs(x.name)}',${x.lat},${x.lng},'${escJs(x.kind)}','${escJs(o.label)}',${o.lat},${o.lng})`,0,o)).join('')}
@@ -737,7 +779,7 @@ const RETURN_STATE_KEY='michinotochu_return_state_v1';
 function saveReturnState(){
   try{
     const active=document.querySelector('.view.active')?.id||'home';
-    const ids=['sugResult','destResult','relayResult','relayHistory','seasonResult','nearbyResult','interestResult'];
+    const ids=['sugResult','destResult','relayResult','relayHistory','seasonResult','nearbyResult','rideResult','interestResult'];
     const results={};
     ids.forEach(id=>{const el=$(id);if(el)results[id]=el.innerHTML;});
     localStorage.setItem(RETURN_STATE_KEY,JSON.stringify({
@@ -768,5 +810,5 @@ document.addEventListener('click',e=>{
   const a=e.target.closest&&e.target.closest('a.mapbtn');
   if(a&&String(a.href||'').includes('google.com/maps/'))saveReturnState();
 });
-function init(){if(window.HOME_SPRITE_B64)document.documentElement.style.setProperty('--home-sprite-image',`url("data:image/webp;base64,${window.HOME_SPRITE_B64}")`);renderStartPanels();fillSelectors();initChoiceUI();const fv=$('footerVersion');if(fv)fv.textContent=APP_VERSION+' / DB Ver'+(localStorage.getItem('michino_db_version')||'2.8.20');restoreReturnState();}
+function init(){if(window.HOME_SPRITE_B64)document.documentElement.style.setProperty('--home-sprite-image',`url("data:image/webp;base64,${window.HOME_SPRITE_B64}")`);renderStartPanels();fillSelectors();rideRestoreSelection();initChoiceUI();initRideStyleUI();const fv=$('footerVersion');if(fv)fv.textContent=APP_VERSION+' / DB Ver'+(localStorage.getItem('michino_db_version')||'2.8.20');restoreReturnState();}
 init();
