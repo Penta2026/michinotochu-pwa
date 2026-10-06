@@ -354,6 +354,14 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 }
 .ride-result-head{padding:4px 0 10px}
 .ride-result-title{font-size:18px;font-weight:800;color:#24465c;margin-bottom:4px}
+.ride-search-guide{margin:8px 0 12px;padding:15px 16px;border:2px solid #9ec9df;border-radius:16px;background:#f3fbff;box-shadow:0 4px 14px #31567112}
+.ride-search-guide-title{font-size:16px;font-weight:900;color:#24465c;margin-bottom:10px}
+.ride-search-area{display:flex;gap:10px;align-items:flex-start;margin:7px 0;line-height:1.5;color:#203f59}
+.ride-search-area b{font-size:16px}
+.ride-search-label{flex:0 0 auto;display:inline-block;min-width:62px;padding:3px 8px;border-radius:999px;background:#dceff8;color:#315671;font-size:12px;font-weight:800;text-align:center}
+.ride-search-sub{margin:-2px 0 8px 72px;color:#6b7e8a;font-size:12px}
+.ride-search-query{margin-top:10px;padding-top:10px;border-top:1px solid #cee2ed;color:#526a79;font-size:13px}
+.ride-search-query b{color:#24465c}
 .ride-map-search{margin:8px 0 16px}
 .ride-map-search .mapbtn{width:100%;min-height:50px}
 .ride-registered{
