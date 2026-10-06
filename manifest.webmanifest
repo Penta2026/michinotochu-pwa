@@ -11,15 +11,15 @@
   "lang": "ja",
   "icons": [
     {
-      "src": "icons/icon-192-v143.png",
+      "src": "icons/icon-192-v144.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icons/icon-512-v143.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "icons/icon-v144.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any"
     }
   ],
