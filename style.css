@@ -485,3 +485,19 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   .home-usage-button{font-size:13px;padding:8px 16px}
   .usage-menu-body{padding-left:16px}
 }
+
+
+/* PWA Ver1.5.10 mobile single-column home */
+@media(max-width:600px){
+  .home-image-grid{
+    grid-template-columns:1fr !important;
+    width:min(100%,440px) !important;
+    gap:12px !important;
+    margin:0 auto;
+  }
+  .home-sprite{
+    aspect-ratio:2.8/1 !important;
+    min-height:0;
+    border-radius:15px !important;
+  }
+}
