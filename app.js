@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.5.12';
+const APP_VERSION='PWA 1.5.13';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -41,7 +41,7 @@ function openUsageGuide(){
     {icon:'🔗',title:'乗り継ぎガチャ',feature:'次の行き先を少しずつ決めながら、行き当たりばったりで走る。',steps:['最初のスタート地点を決める','次に進む距離と方角を選ぶ','「次のマスを決める！」を押す','到着候補が次のスタートになり、続けて乗り継げる']},
     {icon:'🛣️',title:'寄り道しよう',feature:'最終目的地は変えず、途中に小さな道草を1つ足す。',steps:['スタート地点と最終目的地を設定する','道草レベルを選ぶ','景色・甘味・カフェ・温泉など種類を選ぶ','基準地点と半径を決めて「途中でこれ、どう？」を押す']},
     {icon:'🧩',title:'ここからどこ行く？',feature:'「このくらい先」にある登録スポットを距離帯から探す。',steps:['スタート地点を決める','どのくらい先まで行くか選ぶ','道の駅・定番・寄り道など対象を選ぶ','「この条件で探す」で候補を見る']},
-    {icon:'🌤️',title:'今日の走り方',feature:'距離・気分・方角から、今日ちょうどよさそうな走り方を提案する。',steps:['スタート地点を決める','今日はどのくらい走るか選ぶ','景色・食べ物・癒しなど気分を選ぶ','方角を選び「この感じで探す！」を押す','「なんか食べたい」を選んだ時は、結果画面の「食べ物ジャンルを変える」からカフェ・ハンバーガー・スイーツ・ごはんを選び直せる','検索エリアと検索テーマを確認してGoogle Mapsでも探せる']},
+    {icon:'🌤️',title:'今日の走り方',feature:'距離・気分・方角から、今日ちょうどよさそうな走り方を提案する。',steps:['スタート地点を決める','今日はどのくらい走るか選ぶ','景色・食べ物・癒しなど気分を選ぶ','方角を選び「この感じで探す！」を押す','結果画面の「探すものジャンルを変える」から、今の大ジャンルの中で探す内容を切り替えられる。「なんか食べたい」ではカフェ・ハンバーガー・スイーツ・ごはんを選択可能','検索エリアと検索テーマを確認してGoogle Mapsでも探せる']},
     {icon:'🌸',title:'季節を走る',feature:'春夏秋冬の景色や、その時期らしい場所を探す。',steps:['スタート地点を決める','季節を選ぶ。今の季節は自動選択も可能','最大直線距離を決める','「この条件で季節の候補を見る」で探す']},
     {icon:'🗾',title:'気になる場所',feature:'県・スポット区分・カテゴリから、登録地点を眺めて次の候補を探す。',steps:['都道府県を選ぶ','定番・寄り道・道の駅など区分を選ぶ','カテゴリを選び「候補を見る」','マップ確認・保存・☆訪問済み・メモを使える']},
     {icon:'📚',title:'登録スポットを見る',feature:'登録済みスポットを一覧から細かく探すための検索メニュー。',steps:['都道府県・区分・カテゴリを選ぶ','必要なら名称でも絞り込む','「表示」で一覧を見る','マップ確認・☆訪問済み・メモを使える']},
@@ -823,9 +823,8 @@ function runRideStyle(){
   host.innerHTML='<div class="ride-result-head"><div class="ride-result-title">'+esc(RIDE_DISTANCE_LABELS[String(targetKm)]||targetKm+'km')+' × '+esc(RIDE_MOOD_LABELS[mood]||mood)+'</div>'+
     '<div class="meta">直線距離 '+band.min+'〜'+band.max+'km / 方向 '+esc(directionLabel)+'（±'+RIDE_DIRECTION_HALF_WIDTH+'°）</div></div>'+
     searchGuide+
-    (mood==='food'?'<div class="ride-mood-change-wrap"><button type="button" class="ride-mood-change-button" onclick="openRideFoodGenreChanger()">🍴 食べ物ジャンルを変える <span>現在：'+esc(RIDE_FOOD_GENRES[foodGenre].label)+(rideFoodGenre==='random'?'（おまかせ）':'')+'</span></button></div>':'')+
-    '<div class="ride-map-search"><a class="mapbtn primary" href="'+mapUrl+'" target="_blank" rel="noopener">🗺 このエリアをGoogle Mapsで探す</a></div>'+registered+
-    '<div class="ride-result-actions"><button type="button" class="soft" onclick="runRideStyle()">🎲 別の候補を見る</button></div>';
+    '<div class="ride-mood-change-wrap"><button type="button" class="ride-mood-change-button" onclick="'+(mood==='food'?'openRideFoodGenreChanger()':'runRideStyle()')+'">🔄 探すものジャンルを変える <span>現在：'+esc(foodGenre?RIDE_FOOD_GENRES[foodGenre].label:(healTheme?healTheme.label:mapQuery))+(mood==='food'&&rideFoodGenre==='random'?'（おまかせ）':'')+'</span></button></div>'+
+    '<div class="ride-map-search"><a class="mapbtn primary" href="'+mapUrl+'" target="_blank" rel="noopener">🗺 このエリアをGoogle Mapsで探す</a></div>'+registered;
 }
 function currentSeason(){const m=new Date().getMonth()+1;return m>=3&&m<=5?'春':m>=6&&m<=8?'夏':m>=9&&m<=11?'秋':'冬'}
 function seasonMatch(x,s){const t=`${x.name} ${x.category||''} ${x.summary||''} ${x.featureLabel||''}`;const map={春:/桜|梅|菜の花|芝桜|花畑|チューリップ|藤|新緑|公園/,夏:/海|海岸|岬|湖|滝|高原|ひまわり|渓谷|湿原|島|展望/,秋:/紅葉|銀杏|すすき|棚田|田園|山|峠|高原|渓谷|峡谷/,冬:/雪|氷|樹氷|冬|温泉|流氷|霧氷|雪景色|合掌/};return map[s].test(t)}
