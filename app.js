@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.5.10';
+const APP_VERSION='PWA 1.5.11';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -753,6 +753,21 @@ function rideMapSearchUrl(origin,query,targetKm,targetBearing){const center=poin
 function rideSaveSelection(){const distance=$('rideDistance')?.value||'40',mood=$('rideMood')?.value||'random',direction=$('rideDirection')?.value||'random';try{localStorage.setItem(RIDE_STYLE_KEY,JSON.stringify({distance,mood,direction}))}catch(e){}const band=rideDistanceBand(+distance),note=$('rideDistanceNote');if(note)note.textContent='目安：スタート地点から'+band.min+'〜'+band.max+'km'}
 function rideRestoreSelection(){try{const v=JSON.parse(localStorage.getItem(RIDE_STYLE_KEY)||'null');if(v&&$('rideDistance')&&RIDE_DISTANCE_LABELS[String(v.distance)])$('rideDistance').value=String(v.distance);if(v&&$('rideMood')&&RIDE_MOOD_LABELS[v.mood])$('rideMood').value=v.mood;if(v&&$('rideDirection')&&RIDE_DIRECTION_LABELS[v.direction])$('rideDirection').value=v.direction}catch(e){}rideSaveSelection()}
 function initRideStyleUI(){document.querySelectorAll('.ride-distance-grid button,.ride-mood-grid button,.ride-direction-grid button').forEach(b=>b.addEventListener('click',()=>setTimeout(rideSaveSelection,0)))}
+function openRideMoodChanger(){
+  const current=$('rideMood')?.value||'random';
+  const order=['random','road','classic','detour','scenery','food','heal'];
+  const buttons=order.map(key=>'<button type="button" class="ride-mood-change-option'+(key===current?' active':'')+'" onclick="setRideMoodFromResult(\''+escJs(key)+'\')">'+esc(RIDE_MOOD_LABELS[key]||key)+(key===current?'<small>現在の雰囲気</small>':'')+'</button>').join('');
+  modal('<div class="ride-mood-change-modal"><h2>🎨 雰囲気ジャンルを変える</h2><p class="meta">距離と方角はそのまま。雰囲気だけ変えて探し直します。</p><div class="ride-mood-change-grid">'+buttons+'</div></div>');
+}
+function setRideMoodFromResult(mood){
+  if(!RIDE_MOOD_LABELS[mood]||!$('rideMood'))return;
+  $('rideMood').value=mood;
+  document.querySelectorAll('.ride-mood-grid button').forEach(b=>b.classList.toggle('active',b.dataset.value===mood));
+  rideSaveSelection();
+  closeModal();
+  runRideStyle();
+}
+
 function runRideStyle(){
   const o=requireOrigin('ride');if(!o)return;
   const targetKm=+($('rideDistance')?.value||40),mood=$('rideMood')?.value||'random',direction=$('rideDirection')?.value||'random';
@@ -788,6 +803,7 @@ function runRideStyle(){
   host.innerHTML='<div class="ride-result-head"><div class="ride-result-title">'+esc(RIDE_DISTANCE_LABELS[String(targetKm)]||targetKm+'km')+' × '+esc(RIDE_MOOD_LABELS[mood]||mood)+'</div>'+
     '<div class="meta">直線距離 '+band.min+'〜'+band.max+'km / 方向 '+esc(directionLabel)+'（±'+RIDE_DIRECTION_HALF_WIDTH+'°）</div></div>'+
     searchGuide+
+    '<div class="ride-mood-change-wrap"><button type="button" class="ride-mood-change-button" onclick="openRideMoodChanger()">🎨 雰囲気ジャンルを変える <span>現在：'+esc(RIDE_MOOD_LABELS[mood]||mood)+'</span></button></div>'+
     '<div class="ride-map-search"><a class="mapbtn primary" href="'+mapUrl+'" target="_blank" rel="noopener">🗺 このエリアをGoogle Mapsで探す</a></div>'+registered+
     '<div class="ride-result-actions"><button type="button" class="soft" onclick="runRideStyle()">🎲 別の候補を見る</button></div>';
 }
