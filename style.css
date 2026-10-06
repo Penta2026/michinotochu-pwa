@@ -285,3 +285,19 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   .detour-route-source{grid-template-columns:1fr}
   .detour-genre-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+
+/* PWA Ver1.3.1 detour fixes */
+.detour-destination-input{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  margin-top:10px;
+}
+.detour-destination-input input{
+  width:100%;
+  min-width:0;
+}
+@media(max-width:620px){
+  .detour-destination-input{grid-template-columns:1fr}
+}
