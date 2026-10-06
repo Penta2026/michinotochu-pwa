@@ -10,18 +10,18 @@
 <meta name="apple-mobile-web-app-title" content="道の途中。">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="stylesheet" href="style.css?v=1.4.1">
+<link rel="stylesheet" href="style.css?v=1.4.2">
 <script src="data/app_data.js"></script>
-<script src="data/road_summaries_chugoku.js?v=1.4.1"></script>
-<script src="data/road_summaries_shikoku.js?v=1.4.1"></script>
-<script src="data/road_summaries_kyushu_okinawa.js?v=1.4.1"></script>
-<script src="data/road_summaries_kinki.js?v=1.4.1"></script>
-<script src="data/road_summaries_chubu.js?v=1.4.1"></script>
-<script src="data/road_summaries_kanto.js?v=1.4.1"></script>
-<script src="data/road_summaries_tohoku.js?v=1.4.1"></script>
-<script src="data/road_summaries_hokkaido.js?v=1.4.1"></script>
-<script src="data/road_summaries_final.js?v=1.4.1"></script>
-<script src="data/spot_overrides.js?v=1.4.1"></script>
+<script src="data/road_summaries_chugoku.js?v=1.4.2"></script>
+<script src="data/road_summaries_shikoku.js?v=1.4.2"></script>
+<script src="data/road_summaries_kyushu_okinawa.js?v=1.4.2"></script>
+<script src="data/road_summaries_kinki.js?v=1.4.2"></script>
+<script src="data/road_summaries_chubu.js?v=1.4.2"></script>
+<script src="data/road_summaries_kanto.js?v=1.4.2"></script>
+<script src="data/road_summaries_tohoku.js?v=1.4.2"></script>
+<script src="data/road_summaries_hokkaido.js?v=1.4.2"></script>
+<script src="data/road_summaries_final.js?v=1.4.2"></script>
+<script src="data/spot_overrides.js?v=1.4.2"></script>
 </head>
 <body class="pwa-starting">
 <div id="pwaStartupGate" class="pwa-startup-gate" role="status" aria-live="polite">
@@ -32,7 +32,7 @@
   </div>
 </div>
 <header class="topbar">
-  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.4.1</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
+  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.4.2</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
 </header>
 <div class="shell">
 <nav class="side" id="sideNav">
@@ -50,7 +50,7 @@
   <div class="home-stage">
     <div class="home-title" aria-label="旅の途中。"><span class="home-title-trip">旅</span><span class="home-title-no">の</span><span class="home-title-way">途中。</span><span class="home-pin">●</span></div>
     <div class="home-tagline">－ さあ、どこへ行こう？－</div>
-    <div class="home-version">PWA Ver1.4.1</div>
+    <div class="home-version">PWA Ver1.4.2</div>
     <div class="home-spacer" aria-hidden="true"></div>
     <div class="home-image-grid">
       <button class="home-img-button home-sprite home-sprite-sug" type="button" onclick="showView('sug')" aria-label="道の駅すごろく"></button>
@@ -182,15 +182,15 @@
     <div class="choice-section">
       <h3>🏍️ 今日はどのくらい走る？</h3>
       <select id="rideDistance" class="logic-control">
-        <option value="10">🛵 ちょい乗り（～10km）</option>
-        <option value="20">🌿 ひとっ走り（～20km）</option>
-        <option value="40" selected>🏍️ ぶらっと行こう（～40km）</option>
-        <option value="70">🌤️ いい感じに走る（～70km）</option>
-        <option value="100">🔥 今日は走るぞ（～100km）</option>
-        <option value="300">🚀 遠くまで行こう（～300km）</option>
+        <option value="10">🛵 ちょい乗り（10km前後）</option>
+        <option value="20">🌿 ひとっ走り（20km前後）</option>
+        <option value="40" selected>🏍️ ぶらっと行こう（40km前後）</option>
+        <option value="70">🌤️ いい感じに走る（70km前後）</option>
+        <option value="100">🔥 今日は走るぞ（100km前後）</option>
+        <option value="300">🚀 遠くまで行こう（300km前後）</option>
       </select>
       <div class="choice-grid ride-distance-grid" data-target="rideDistance" data-values="10,20,40,70,100,300" data-labels="🛵 ちょい乗り,🌿 ひとっ走り,🏍️ ぶらっと行こう,🌤️ いい感じに走る,🔥 今日は走るぞ,🚀 遠くまで行こう"></div>
-      <div class="ride-distance-note" id="rideDistanceNote">目安：スタート地点から40km以内</div>
+      <div class="ride-distance-note" id="rideDistanceNote">目安：スタート地点から32〜48km</div>
     </div>
 
     <div class="choice-section">
@@ -207,7 +207,20 @@
       <div class="choice-grid ride-mood-grid" data-target="rideMood" data-values="random,road,classic,detour,scenery,food,heal" data-labels="🎲 おまかせ,🏠 道の駅へ,⭐ いいとこ行きたい,🌿 ちょっと寄りたい,🌊 景色が見たい,☕ なんか食べたい,♨️ 癒されたい"></div>
     </div>
 
-    <div class="note">※ 距離は候補抽出用の直線距離です。実際の走行距離は道路状況やルートによって長くなります。選択内容は次回も保持されます。</div>
+    <div class="choice-section">
+      <h3>🧭 どっち方面へ走る？</h3>
+      <select id="rideDirection" class="logic-control">
+        <option value="random" selected>🎲 おまかせ</option>
+        <option value="north">⬆️ 北</option>
+        <option value="east">➡️ 東</option>
+        <option value="south">⬇️ 南</option>
+        <option value="west">⬅️ 西</option>
+      </select>
+      <div class="choice-grid ride-direction-grid" data-target="rideDirection" data-values="random,north,east,south,west" data-labels="🎲 おまかせ,⬆️ 北,➡️ 東,⬇️ 南,⬅️ 西"></div>
+      <div class="ride-direction-note">方角はだいたい±45°。おまかせは毎回ランダムな方向を選びます。</div>
+    </div>
+
+    <div class="note">※ 距離は候補抽出用の直線距離帯です。実際の走行距離は道路状況やルートによって長くなります。距離・気分・方角は次回も保持されます。</div>
     <button class="primary action-main" type="button" onclick="runRideStyle()">✨ この感じで探す！</button>
     <div id="rideResult" class="result empty">スタート地点と今日の気分を選んでください。</div>
   </div>
@@ -250,7 +263,7 @@
 </main>
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
-<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.4.1 / DB Ver2.8.20</span></footer>
+<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.4.2 / DB Ver2.8.20</span></footer>
 <script>
 (function(){
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -260,11 +273,11 @@
   }
 })();
 </script>
-<script src="assets/home/home_sprite_0.js?v=1.4.1"></script>
-<script src="assets/home/home_sprite_1.js?v=1.4.1"></script>
-<script src="assets/home/home_sprite_2.js?v=1.4.1"></script>
-<script src="assets/home/home_sprite_3.js?v=1.4.1"></script>
-<script src="app.js?v=1.4.1"></script>
-<script src="pwa.js?v=1.4.1"></script>
+<script src="assets/home/home_sprite_0.js?v=1.4.2"></script>
+<script src="assets/home/home_sprite_1.js?v=1.4.2"></script>
+<script src="assets/home/home_sprite_2.js?v=1.4.2"></script>
+<script src="assets/home/home_sprite_3.js?v=1.4.2"></script>
+<script src="app.js?v=1.4.2"></script>
+<script src="pwa.js?v=1.4.2"></script>
 </body>
 </html>

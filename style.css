@@ -367,3 +367,12 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 @media(max-width:760px){
   .ride-distance-grid,.ride-mood-grid{grid-template-columns:1fr 1fr}
 }
+
+
+/* PWA Ver1.4.2 ride direction */
+.ride-direction-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ride-direction-grid button:first-child{grid-column:1/-1}
+.ride-direction-note{
+  margin-top:9px;padding:9px 12px;border-radius:11px;
+  background:#f8fafb;border:1px dashed #d9e3e8;color:#687985;font-size:12px
+}

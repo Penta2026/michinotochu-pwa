@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.4.1';
+const APP_VERSION='PWA 1.4.2';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -639,6 +639,9 @@ function runRelay(){const o=requireOrigin('relay');if(!o)return;const t=numericV
 const RIDE_STYLE_KEY='michinotochu_ride_style_v1';
 const RIDE_DISTANCE_LABELS={'10':'🛵 ちょい乗り','20':'🌿 ひとっ走り','40':'🏍️ ぶらっと行こう','70':'🌤️ いい感じに走る','100':'🔥 今日は走るぞ','300':'🚀 遠くまで行こう'};
 const RIDE_MOOD_LABELS={random:'🎲 おまかせ',road:'🏠 道の駅へ',classic:'⭐ いいとこ行きたい',detour:'🌿 ちょっと寄りたい',scenery:'🌊 景色が見たい',food:'☕ なんか食べたい',heal:'♨️ 癒されたい'};
+const RIDE_DIRECTION_LABELS={random:'🎲 おまかせ',north:'⬆️ 北',east:'➡️ 東',south:'⬇️ 南',west:'⬅️ 西'};
+const RIDE_DIRECTION_BEARINGS={north:0,east:90,south:180,west:270};
+function rideDistanceBand(km){const t={10:5,20:5,40:8,70:10,100:15,300:15}[+km]||Math.max(5,Math.round(+km*.15));return{min:Math.max(1,+km-t),max:+km+t,tol:t}}
 function rideStyleText(x){return [x.name,x.category,x.summary,x.featureLabel,x.featureCategory,x.scenery,x.groupName].filter(Boolean).join(' ')}
 function rideMoodMatch(x,mood){
   if(mood==='random')return true;
@@ -654,28 +657,34 @@ function rideMoodMatch(x,mood){
 function rideMapWords(mood){return {random:'観光スポット 景色 カフェ',road:'道の駅',classic:'観光名所 定番スポット',detour:'穴場 観光スポット',scenery:'展望 海岸 岬 湖 景色',food:'カフェ スイーツ ごはん',heal:'温泉 神社 寺 公園'}[mood]||'観光スポット'}
 function rideMapZoom(km){if(km<=10)return 11;if(km<=20)return 10;if(km<=40)return 9;if(km<=70)return 8;if(km<=120)return 7;return 6}
 function pointAtDistance(origin,km,bearingDeg){const R=6371,br=rad(bearingDeg),lat1=rad(+origin.lat),lon1=rad(+origin.lng),d=km/R;const lat2=Math.asin(Math.sin(lat1)*Math.cos(d)+Math.cos(lat1)*Math.sin(d)*Math.cos(br));const lon2=lon1+Math.atan2(Math.sin(br)*Math.sin(d)*Math.cos(lat1),Math.cos(d)-Math.sin(lat1)*Math.sin(lat2));return{lat:lat2*180/Math.PI,lng:lon2*180/Math.PI}}
-function rideMapSearchUrl(origin,mood,maxKm,registered=null){let center;if(registered)center={lat:+registered.lat,lng:+registered.lng};else{const d=Math.max(2,maxKm*(.55+Math.random()*.35));center=pointAtDistance(origin,d,Math.random()*360)}return 'https://www.google.com/maps/search/'+encodeURIComponent(rideMapWords(mood))+'/@'+center.lat+','+center.lng+','+rideMapZoom(maxKm)+'z'}
-function rideSaveSelection(){const distance=$('rideDistance')?.value||'40',mood=$('rideMood')?.value||'random';try{localStorage.setItem(RIDE_STYLE_KEY,JSON.stringify({distance,mood}))}catch(e){}const note=$('rideDistanceNote');if(note)note.textContent='目安：スタート地点から'+distance+'km以内'}
-function rideRestoreSelection(){try{const v=JSON.parse(localStorage.getItem(RIDE_STYLE_KEY)||'null');if(v&&$('rideDistance')&&RIDE_DISTANCE_LABELS[String(v.distance)])$('rideDistance').value=String(v.distance);if(v&&$('rideMood')&&RIDE_MOOD_LABELS[v.mood])$('rideMood').value=v.mood}catch(e){}rideSaveSelection()}
-function initRideStyleUI(){document.querySelectorAll('.ride-distance-grid button,.ride-mood-grid button').forEach(b=>b.addEventListener('click',()=>setTimeout(rideSaveSelection,0)))}
+function rideDirectionDelta(actual,target){return Math.abs(((actual-target+540)%360)-180)}
+function rideMapSearchUrl(origin,mood,targetKm,targetBearing,registered=null){let center;if(registered)center={lat:+registered.lat,lng:+registered.lng};else center=pointAtDistance(origin,targetKm,targetBearing);return 'https://www.google.com/maps/search/'+encodeURIComponent(rideMapWords(mood))+'/@'+center.lat+','+center.lng+','+rideMapZoom(targetKm)+'z'}
+function rideSaveSelection(){const distance=$('rideDistance')?.value||'40',mood=$('rideMood')?.value||'random',direction=$('rideDirection')?.value||'random';try{localStorage.setItem(RIDE_STYLE_KEY,JSON.stringify({distance,mood,direction}))}catch(e){}const band=rideDistanceBand(+distance),note=$('rideDistanceNote');if(note)note.textContent='目安：スタート地点から'+band.min+'〜'+band.max+'km'}
+function rideRestoreSelection(){try{const v=JSON.parse(localStorage.getItem(RIDE_STYLE_KEY)||'null');if(v&&$('rideDistance')&&RIDE_DISTANCE_LABELS[String(v.distance)])$('rideDistance').value=String(v.distance);if(v&&$('rideMood')&&RIDE_MOOD_LABELS[v.mood])$('rideMood').value=v.mood;if(v&&$('rideDirection')&&RIDE_DIRECTION_LABELS[v.direction])$('rideDirection').value=v.direction}catch(e){}rideSaveSelection()}
+function initRideStyleUI(){document.querySelectorAll('.ride-distance-grid button,.ride-mood-grid button,.ride-direction-grid button').forEach(b=>b.addEventListener('click',()=>setTimeout(rideSaveSelection,0)))}
 function runRideStyle(){
   const o=requireOrigin('ride');if(!o)return;
-  const maxKm=+($('rideDistance')?.value||40),mood=$('rideMood')?.value||'random';rideSaveSelection();
+  const targetKm=+($('rideDistance')?.value||40),mood=$('rideMood')?.value||'random',direction=$('rideDirection')?.value||'random';
+  rideSaveSelection();
+  const band=rideDistanceBand(targetKm);
+  const targetBearing=direction==='random'?Math.random()*360:RIDE_DIRECTION_BEARINGS[direction];
   let pool=[];
   pool.push(...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})));
   pool.push(...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)})));
-  pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,+x.lat,+x.lng)})).filter(x=>x.d>0.8&&x.d<=maxKm&&rideMoodMatch(x,mood));
-  const target=maxKm*.72;
-  pool.sort((a,b)=>(Math.abs(a.d-target)+Math.random()*maxKm*.18)-(Math.abs(b.d-target)+Math.random()*maxKm*.18));
-  const pick=pool.length?rand(pool.slice(0,Math.min(30,pool.length))):null;
-  const mapUrl=rideMapSearchUrl(o,mood,maxKm,pick),host=$('rideResult');if(!host)return;host.className='result';
+  pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,+x.lat,+x.lng),br:bearing(o.lat,o.lng,+x.lat,+x.lng)}))
+    .filter(x=>x.d>=band.min&&x.d<=band.max&&rideDirectionDelta(x.br,targetBearing)<=45&&rideMoodMatch(x,mood));
+  pool.sort((a,b)=>(Math.abs(a.d-targetKm)+rideDirectionDelta(a.br,targetBearing)/10+Math.random()*4)-(Math.abs(b.d-targetKm)+rideDirectionDelta(b.br,targetBearing)/10+Math.random()*4));
+  const pick=pool.length?rand(pool.slice(0,Math.min(24,pool.length))):null;
+  const mapUrl=rideMapSearchUrl(o,mood,targetKm,targetBearing,pick),host=$('rideResult');if(!host)return;host.className='result';
+  const directionLabel=direction==='random'?'🎲 おまかせ → '+dirText16(targetBearing):RIDE_DIRECTION_LABELS[direction];
   let registered='';
   if(pick){
     const saveAction="saveSingle('今日の走り方','"+escJs(pick.name)+"',"+pick.lat+","+pick.lng+",'"+escJs(pick.kind)+"','"+escJs(o.label)+"',"+o.lat+","+o.lng+")";
     registered='<div class="ride-registered"><div class="ride-result-kicker">📚 アプリ登録候補</div>'+spotCard(pick,pick.kind,pick.d,false,saveAction,0,o)+'</div>';
-  }else registered='<div class="ride-registered ride-empty"><div class="ride-result-kicker">📚 アプリ登録候補</div><p class="meta">この距離と気分では登録候補が見つからなかったよ。Google Maps側で新しい場所を探してみよう。</p></div>';
-  host.innerHTML='<div class="ride-result-head"><div class="ride-result-title">'+esc(RIDE_DISTANCE_LABELS[String(maxKm)]||maxKm+'km')+' × '+esc(RIDE_MOOD_LABELS[mood]||mood)+'</div><div class="meta">スタート地点から最大 '+maxKm+'km / 直線距離の目安</div></div>'+
-    '<div class="ride-map-search"><a class="mapbtn primary" href="'+mapUrl+'" target="_blank" rel="noopener">🗺 Google Mapsでも探す</a><p class="meta">登録地点だけに限定せず、この気分に合いそうな場所を地図から探せます。</p></div>'+registered+
+  }else registered='<div class="ride-registered ride-empty"><div class="ride-result-kicker">📚 アプリ登録候補</div><p class="meta">'+band.min+'〜'+band.max+'km・'+esc(directionLabel)+'方向では登録候補が見つからなかったよ。Google Maps側で探してみよう。</p></div>';
+  host.innerHTML='<div class="ride-result-head"><div class="ride-result-title">'+esc(RIDE_DISTANCE_LABELS[String(targetKm)]||targetKm+'km')+' × '+esc(RIDE_MOOD_LABELS[mood]||mood)+'</div>'+
+    '<div class="meta">直線距離 '+band.min+'〜'+band.max+'km / 方向 '+esc(directionLabel)+'（±45°）</div></div>'+
+    '<div class="ride-map-search"><a class="mapbtn primary" href="'+mapUrl+'" target="_blank" rel="noopener">🗺 Google Mapsでも探す</a><p class="meta">登録地点だけに限定せず、選んだ距離・方向・気分あたりを地図から探せます。</p></div>'+registered+
     '<div class="ride-result-actions"><button type="button" class="soft" onclick="runRideStyle()">🎲 別の候補を見る</button></div>';
 }
 function currentSeason(){const m=new Date().getMonth()+1;return m>=3&&m<=5?'春':m>=6&&m<=8?'夏':m>=9&&m<=11?'秋':'冬'}
