@@ -441,3 +441,6 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   .trip-visit-count{display:inline-block;margin-top:7px}
   .trip-history-card .actions>*{flex:1 1 auto}
 }
+
+.contact-coord-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.contact-coord-row{grid-template-columns:1fr}}
