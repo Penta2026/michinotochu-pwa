@@ -1,7 +1,7 @@
-const SHELL_CACHE='michino-shell-v1.1.2';
+const SHELL_CACHE='michino-shell-v1.1.3';
 const DB_CACHE='michino-db';
 const SHELL=[
-  './','./index.html','./support.html','./legal.html','./style.css?v=1.1.2','./app.js?v=1.1.2','./pwa.js?v=1.1.2','./data/road_summaries_chugoku.js?v=1.1.2','./data/road_summaries_shikoku.js?v=1.1.2','./data/road_summaries_kyushu_okinawa.js?v=1.1.2','./data/road_summaries_kinki.js?v=1.1.2','./data/road_summaries_chubu.js?v=1.1.2','./data/road_summaries_kanto.js?v=1.1.2','./data/road_summaries_tohoku.js?v=1.1.2','./data/road_summaries_hokkaido.js?v=1.1.2','./data/road_summaries_final.js?v=1.1.2','./data/spot_overrides.js?v=1.1.2','./manifest.webmanifest',
+  './','./index.html','./support.html','./legal.html','./style.css?v=1.1.3','./app.js?v=1.1.3','./pwa.js?v=1.1.3','./data/road_summaries_chugoku.js?v=1.1.3','./data/road_summaries_shikoku.js?v=1.1.3','./data/road_summaries_kyushu_okinawa.js?v=1.1.3','./data/road_summaries_kinki.js?v=1.1.3','./data/road_summaries_chubu.js?v=1.1.3','./data/road_summaries_kanto.js?v=1.1.3','./data/road_summaries_tohoku.js?v=1.1.3','./data/road_summaries_hokkaido.js?v=1.1.3','./data/road_summaries_final.js?v=1.1.3','./data/spot_overrides.js?v=1.1.3','./manifest.webmanifest',
   './assets/home/home_background.png','./assets/home/home_btn_sugoroku.png','./assets/home/home_btn_destination.png',
   './assets/home/home_btn_relay.png','./assets/home/home_btn_season.png','./assets/home/home_btn_nearby.png',
   './assets/home/home_btn_interest.png','./assets/home/home_btn_saved.png','./icons/icon-192.png','./icons/icon-512.png'
