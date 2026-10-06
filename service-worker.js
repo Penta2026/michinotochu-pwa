@@ -1,14 +1,14 @@
-const SHELL_CACHE='michino-shell-v1.4.5';
+const SHELL_CACHE='michino-shell-v1.4.6';
 const DB_CACHE='michino-db';
 const SHELL=[
-  './','./index.html','./support.html','./legal.html','./privacy.html','./terms.html','./history.html','./style.css?v=1.4.5','./app.js?v=1.4.5','./pwa.js?v=1.4.5','./data/road_summaries_chugoku.js?v=1.4.5','./data/road_summaries_shikoku.js?v=1.4.5','./data/road_summaries_kyushu_okinawa.js?v=1.4.5','./data/road_summaries_kinki.js?v=1.4.5','./data/road_summaries_chubu.js?v=1.4.5','./data/road_summaries_kanto.js?v=1.4.5','./data/road_summaries_tohoku.js?v=1.4.5','./data/road_summaries_hokkaido.js?v=1.4.5','./data/road_summaries_final.js?v=1.4.5','./data/spot_overrides.js?v=1.4.5','./manifest.webmanifest?v=1.4.5',
-  './assets/home/home_background.png','./assets/home/home_sprite_3.js?v=1.4.5','./assets/home/home_sprite_2.js?v=1.4.5','./assets/home/home_sprite_1.js?v=1.4.5','./assets/home/home_sprite_0.js?v=1.4.5',
-  './assets/home/home_btn_sugoroku.webp?v=1.4.5','./assets/home/home_btn_destination.webp?v=1.4.5','./assets/home/home_btn_relay.webp?v=1.4.5','./assets/home/home_btn_detour.webp?v=1.4.5',
-  './assets/home/home_btn_nearby.webp?v=1.4.5','./assets/home/home_btn_ride_style.webp?v=1.4.5','./assets/home/home_btn_season.webp?v=1.4.5','./assets/home/home_btn_interest.webp?v=1.4.5',
-  './assets/home/home_btn_saved.webp?v=1.4.5','./assets/home/home_btn_history.webp?v=1.4.5','./icons/icon-192-v144.png','./icons/icon-v144.svg'
+  './','./index.html','./support.html','./legal.html','./privacy.html','./terms.html','./history.html','./style.css?v=1.4.6','./app.js?v=1.4.6','./pwa.js?v=1.4.6','./data/road_summaries_chugoku.js?v=1.4.6','./data/road_summaries_shikoku.js?v=1.4.6','./data/road_summaries_kyushu_okinawa.js?v=1.4.6','./data/road_summaries_kinki.js?v=1.4.6','./data/road_summaries_chubu.js?v=1.4.6','./data/road_summaries_kanto.js?v=1.4.6','./data/road_summaries_tohoku.js?v=1.4.6','./data/road_summaries_hokkaido.js?v=1.4.6','./data/road_summaries_final.js?v=1.4.6','./data/spot_overrides.js?v=1.4.6','./manifest.webmanifest?v=1.4.6',
+  './assets/home/home_background.png','./assets/home/home_sprite_3.js?v=1.4.6','./assets/home/home_sprite_2.js?v=1.4.6','./assets/home/home_sprite_1.js?v=1.4.6','./assets/home/home_sprite_0.js?v=1.4.6',
+  './assets/home/home_btn_sugoroku.webp?v=1.4.6','./assets/home/home_btn_destination.webp?v=1.4.6','./assets/home/home_btn_relay.webp?v=1.4.6','./assets/home/home_btn_detour.webp?v=1.4.6',
+  './assets/home/home_btn_nearby.webp?v=1.4.6','./assets/home/home_btn_ride_style.webp?v=1.4.6','./assets/home/home_btn_season.webp?v=1.4.6','./assets/home/home_btn_interest.webp?v=1.4.6',
+  './assets/home/home_btn_saved.webp?v=1.4.6','./assets/home/home_btn_history.webp?v=1.4.6','./icons/icon-192.png?v=1.4.6','./icons/icon-512.png?v=1.4.6'
 ];
 self.addEventListener('install',event=>{event.waitUntil((async()=>{
-  const shell=await caches.open(SHELL_CACHE); await shell.addAll(SHELL);
+  const shell=await caches.open(SHELL_CACHE); for(const url of SHELL){try{await shell.add(url);}catch(e){console.warn('shell cache skip',url,e);}}
   const db=await caches.open(DB_CACHE); if(!(await db.match('./data/app_data.js'))){try{await db.add('./data/app_data.js');}catch(e){}}
   self.skipWaiting();
 })());});
