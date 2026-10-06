@@ -341,3 +341,29 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 .home-sprite-interest{background-image:url('assets/home/home_btn_interest.webp?v=1.3.11')!important;}
 .home-sprite-saved{background-image:url('assets/home/home_btn_saved.webp?v=1.3.11')!important;}
 .home-sprite-history{background-image:url('assets/home/home_btn_history.webp?v=1.3.11')!important;}
+
+
+/* PWA Ver1.4.0 ride style */
+#ride{padding:6px 0 40px}
+.menu-ride{--accent:#5c8f63;--accent-soft:#eef8ef;--accent-border:#cbe3cf}
+.menu-ride .screen-title-card{background:#eef8ef;border-color:#cbe3cf}
+.ride-distance-grid,.ride-mood-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ride-distance-note{
+  margin-top:9px;padding:9px 12px;border-radius:11px;
+  background:#f5f8fa;border:1px dashed #d9e3e8;color:#687985;font-size:12px
+}
+.ride-result-head{padding:4px 0 10px}
+.ride-result-title{font-size:18px;font-weight:800;color:#24465c;margin-bottom:4px}
+.ride-map-search{margin:8px 0 16px}
+.ride-map-search .mapbtn{width:100%;min-height:50px}
+.ride-registered{
+  margin-top:12px;padding:14px;border:1px solid #dfe8ee;border-radius:16px;background:#fbfdff
+}
+.ride-result-kicker{font-size:14px;font-weight:800;color:#315671;margin-bottom:8px}
+.ride-registered .spot-card{box-shadow:none;margin:0;padding:0;border:0;background:transparent}
+.ride-empty{background:#f8fafb}
+.ride-result-actions{margin-top:14px}
+.ride-result-actions .soft{width:100%}
+@media(max-width:760px){
+  .ride-distance-grid,.ride-mood-grid{grid-template-columns:1fr 1fr}
+}
