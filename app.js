@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.4.12';
+const APP_VERSION='PWA 1.5.0';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -30,7 +30,7 @@ const MISSIONS=[
 'その土地っぽいお菓子を1つ探す','1000円以内で一番気になったものを選ぶ','コーヒーかお茶を1杯飲む','道の駅の看板とバイクを撮る','「誰が買うんだこれ」と思う商品を探す','地元野菜を1つ見つける','変わった飲み物を1つ探す','この駅で一番いい景色を撮る','500円以内で旅の記念になりそうなものを探す','何も買わずに、この駅の良いところを1つ見つける','ご当地キャラを探す','パン・饅頭・団子のどれかを探す','地元産と書かれた商品を3つ見つける','初めて見る食べ物を1つ探す','ご当地ソフト・アイスを探す','その地域らしい調味料を1つ探す','一番高そうなお土産を探す','一番小さいお土産を探す','面白い商品名を1つ見つける','方言や地名が入った商品を探す','道の駅から見える山・海・川のどれかを撮る','「この場所っぽいな」と思う風景を1枚撮る','建物や看板で気になるデザインを1つ見つける','バイク以外の旅人っぽい乗り物を1台見つける','駐車場で一番遠くから来てそうなナンバーを探す','次回来たら食べてみたいものを1つ決める','その駅でおすすめされている観光地を1つ見つける','駅の掲示板やパンフレットから知らなかった場所を1つ見つける','「今日ここに来てよかった」と思えるものを1つ見つける','何もしないで5分だけ休憩する'
 ];
 
-function showView(id){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.side button').forEach(x=>x.classList.toggle('active',x.dataset.view===id));if(id==='favorites')renderFavorites();window.scrollTo({top:0,behavior:'smooth'});}
+function showView(id){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.side button').forEach(x=>x.classList.toggle('active',x.dataset.view===id));if(id==='favorites')renderFavorites();if(id==='trip')renderTripHistory();window.scrollTo({top:0,behavior:'smooth'});}
 document.querySelectorAll('.side button').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
 function closeModal(){$('modal').classList.add('hidden');$('modalBody').innerHTML='';}
 function modal(html){$('modalBody').innerHTML=html;$('modal').classList.remove('hidden');}
@@ -814,9 +814,193 @@ function spotMeta(x,kind,d){
   if(Number.isFinite(d))parts.push('約'+d.toFixed(1)+'km');
   return parts.join(' / ');
 }
-function spotCard(x,kind,d,selectable=false,saveAction=null,index=0,routeOrigin=null,detailAction=null){const navActions=routeOrigin?routeButtons(routeOrigin,[x]):mapBtn(x);return `<div class="spot-card"><div class="spot-main${detailAction?' detail-clickable':''}"${detailAction?` onclick="${detailAction}" role="button" tabindex="0"`:''}>${selectable?`<input class="spot-select near-check" type="checkbox" data-i="${index}">`:''}${iconBadge(x,kind)}<div class="spot-info"><h3>${esc(x.name)}</h3><div class="meta">${esc(spotMeta(x,kind,d))}</div>${x.summary?`<div class="meta">${esc(x.summary)}</div>`:''}</div></div><div class="actions">${navActions}${saveAction?`<button class="soft" onclick="${saveAction}">保存</button>`:''}</div></div>`}
+function spotCard(x,kind,d,selectable=false,saveAction=null,index=0,routeOrigin=null,detailAction=null){const navActions=routeOrigin?routeButtons(routeOrigin,[x]):mapBtn(x);const tripActions=routeOrigin?'':tripSpotActions(x,kind);return `<div class="spot-card"><div class="spot-main${detailAction?' detail-clickable':''}"${detailAction?` onclick="${detailAction}" role="button" tabindex="0"`:''}>${selectable?`<input class="spot-select near-check" type="checkbox" data-i="${index}">`:''}${iconBadge(x,kind)}<div class="spot-info"><h3>${esc(x.name)}</h3><div class="meta">${esc(spotMeta(x,kind,d))}</div>${x.summary?`<div class="meta">${esc(x.summary)}</div>`:''}</div></div><div class="actions">${navActions}${saveAction?`<button class="soft" onclick="${saveAction}">保存</button>`:''}${tripActions}</div></div>`}
 function interestItemById(id,kind){const src=kind==='道の駅'?D.roads:D.landmarks;const x=src.find(v=>String(v.id)===String(id));return x?{...x,kind}:null}
-function showInterestDetailById(id,kind){const x=interestItemById(id,kind);if(!x)return;const details=[];if(x.summary)details.push(`<p>${esc(x.summary)}</p>`);if(x.access)details.push(`<div class="detail-block"><b>🚗 アクセス</b><div>${esc(x.access)}</div></div>`);if(x.arrivalPointType)details.push(`<div class="detail-block"><b>📍 到着目安</b><div>${esc(x.arrivalPointType)}</div></div>`);modal(`<h2 class="detail-title">${esc(x.name)}</h2><div class="meta detail-meta">${esc(spotMeta(x,kind,null))}</div>${details.join('')||'<p class="meta">この地点の追加説明は登録されていません。</p>'}<div class="route-buttons detail-route">${mapBtn(x,'Googleマップで確認')}</div>`)}
+function showInterestDetailById(id,kind){const x=interestItemById(id,kind);if(!x)return;const details=[];if(x.summary)details.push(`<p>${esc(x.summary)}</p>`);if(x.access)details.push(`<div class="detail-block"><b>🚗 アクセス</b><div>${esc(x.access)}</div></div>`);if(x.arrivalPointType)details.push(`<div class="detail-block"><b>📍 到着目安</b><div>${esc(x.arrivalPointType)}</div></div>`);modal(`<h2 class="detail-title">${esc(x.name)}</h2><div class="meta detail-meta">${esc(spotMeta(x,kind,null))}</div>${details.join('')||'<p class="meta">この地点の追加説明は登録されていません。</p>'}<div class="route-buttons detail-route">${mapBtn(x,'Googleマップで確認')}</div><div class="actions trip-detail-actions">${tripSpotActions(x,kind)}</div>`)}
+
+
+const TRIP_HISTORY_KEY='michinotochu_trip_history_v1';
+const TRIP_NEARBY_KM=0.3;
+
+function loadTripStore(){
+  try{
+    const v=JSON.parse(localStorage.getItem(TRIP_HISTORY_KEY)||'null');
+    if(v&&v.records&&typeof v.records==='object')return v;
+  }catch(e){}
+  return{records:{}};
+}
+function saveTripStore(store){localStorage.setItem(TRIP_HISTORY_KEY,JSON.stringify(store))}
+function tripRegisteredKey(x,kind){
+  const prefix=kind==='道の駅'?'road':'spot';
+  const id=(x&&x.id!==undefined&&x.id!==null&&String(x.id)!=='')?String(x.id):'';
+  if(id)return prefix+':id:'+id;
+  return prefix+':geo:'+Number(x.lat).toFixed(6)+','+Number(x.lng).toFixed(6);
+}
+function findRegisteredSpotByTripKey(key){
+  const isRoad=String(key).startsWith('road:');
+  const src=isRoad?D.roads:D.landmarks;
+  const body=String(key).replace(/^(road|spot):/,'');
+  let x=null;
+  if(body.startsWith('id:')){
+    const id=body.slice(3);
+    x=src.find(v=>String(v.id)===id)||null;
+  }else if(body.startsWith('geo:')){
+    const [la,ln]=body.slice(4).split(',').map(Number);
+    x=src.find(v=>Math.abs((+v.lat)-la)<1e-5&&Math.abs((+v.lng)-ln)<1e-5)||null;
+  }
+  if(!x)return null;
+  return{...x,kind:isRoad?'道の駅':pointKind(x)};
+}
+function makeRegisteredTripRecord(key){
+  const x=findRegisteredSpotByTripKey(key); if(!x)return null;
+  const now=new Date().toISOString();
+  return{
+    key,registered:true,spotId:x.id??null,kind:x.kind,name:x.name||'登録地点',
+    lat:+x.lat,lng:+x.lng,prefecture:x.prefecture||'',municipality:x.municipality||'',
+    starred:false,starredAt:null,notes:[],visits:[],createdAt:now,updatedAt:now
+  };
+}
+function tripRecordByKey(key){return loadTripStore().records[key]||null}
+function tripRecordForEdit(key){return tripRecordByKey(key)||makeRegisteredTripRecord(key)}
+function tripDateTime(v){try{return new Date(v).toLocaleString('ja-JP',{year:'numeric',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return''}}
+function tripLastActivity(r){
+  const a=[r.updatedAt,r.starredAt,...(r.visits||[]).map(v=>v.at),...(r.notes||[]).map(n=>n.at)].filter(Boolean).map(v=>new Date(v).getTime()).filter(Number.isFinite);
+  return a.length?Math.max(...a):0;
+}
+function tripMemoCount(r){return Array.isArray(r?.notes)?r.notes.length:0}
+function tripLatestMemo(r){const n=Array.isArray(r?.notes)&&r.notes.length?r.notes[r.notes.length-1]:null;return n?n.text:''}
+function tripSpotActions(x,kind){
+  if(!x||!Number.isFinite(+x.lat)||!Number.isFinite(+x.lng))return'';
+  const key=tripRegisteredKey(x,kind),r=tripRecordByKey(key),on=!!r?.starred,count=tripMemoCount(r);
+  return '<button type="button" class="soft trip-star-btn'+(on?' is-on':'')+'" data-trip-star-key="'+esc(key)+'" onclick="toggleTripStar(\''+escJs(key)+'\')">'+(on?'★':'☆')+'</button>'+
+    '<button type="button" class="soft trip-memo-btn" data-trip-memo-key="'+esc(key)+'" onclick="openTripMemo(\''+escJs(key)+'\')">📝 メモ'+(count?' '+count:'')+'</button>';
+}
+function refreshTripSpotButtons(key){
+  const r=tripRecordByKey(key),on=!!r?.starred,count=tripMemoCount(r);
+  document.querySelectorAll('[data-trip-star-key]').forEach(b=>{if(b.dataset.tripStarKey===key){b.textContent=on?'★':'☆';b.classList.toggle('is-on',on)}});
+  document.querySelectorAll('[data-trip-memo-key]').forEach(b=>{if(b.dataset.tripMemoKey===key)b.textContent='📝 メモ'+(count?' '+count:'')});
+}
+function toggleTripStar(key){
+  const store=loadTripStore();
+  let r=store.records[key]||makeRegisteredTripRecord(key); if(!r)return;
+  const next=!r.starred;
+  const msg=next?'「'+r.name+'」を ★ 訪問済みにしますか？':'「'+r.name+'」の ★ 訪問済みを解除しますか？\nメモや訪問記録は残ります。';
+  if(!confirm(msg))return;
+  r.starred=next;r.starredAt=next?new Date().toISOString():null;r.updatedAt=new Date().toISOString();
+  store.records[key]=r;saveTripStore(store);refreshTripSpotButtons(key);
+  if(document.querySelector('#trip.view.active'))renderTripHistory();
+}
+function tripMemoListHtml(r){
+  const notes=r?.notes||[];
+  if(!notes.length)return'<div class="trip-no-memo">まだメモはありません。</div>';
+  return '<div class="trip-memo-list">'+notes.map(n=>'<div class="trip-memo-entry"><div class="trip-memo-date">'+esc(tripDateTime(n.at))+'</div><div>'+esc(n.text).replace(/\n/g,'<br>')+'</div></div>').join('')+'</div>';
+}
+function openTripMemo(key,notice=''){
+  const r=tripRecordForEdit(key);if(!r)return;
+  const map=googlePoint(r.lat,r.lng,r.name);
+  modal('<h2>📝 '+esc(r.name)+'</h2>'+
+    (notice?'<div class="trip-memo-notice">'+esc(notice)+'</div>':'')+
+    '<div class="meta">'+(r.registered?'登録地点':'未登録地点')+' / '+Number(r.lat).toFixed(6)+', '+Number(r.lng).toFixed(6)+'</div>'+
+    tripMemoListHtml(r)+
+    '<label class="trip-memo-label">メモを追記<textarea id="tripMemoText" rows="5" placeholder="ここで見たもの、食べたもの、また来たい理由など"></textarea></label>'+
+    '<button type="button" class="primary trip-memo-add" onclick="appendTripMemo(\''+escJs(key)+'\')">📝 追記する</button>'+
+    '<div class="actions"><a class="mapbtn map-check" href="'+map+'" target="_blank" rel="noopener">🗺 マップで確認</a>'+
+    (!r.registered?'<button type="button" class="soft" onclick="openTripRecommendation(\''+escJs(key)+'\')">✉ 登録地点として送る</button>':'')+'</div>'+
+    (tripMemoCount(r)?'<div class="trip-delete-zone"><button type="button" class="danger" onclick="deleteTripMemo(\''+escJs(key)+'\')">この地点のメモをすべて消す</button></div>':''));
+}
+function appendTripMemo(key){
+  const text=String($('tripMemoText')?.value||'').trim();if(!text)return alert('追記するメモを入力してください。');
+  const store=loadTripStore();let r=store.records[key]||tripRecordForEdit(key);if(!r)return;
+  r.notes=Array.isArray(r.notes)?r.notes:[];r.notes.push({id:Date.now()+'_'+Math.random().toString(36).slice(2,6),text,at:new Date().toISOString()});
+  r.updatedAt=new Date().toISOString();store.records[key]=r;saveTripStore(store);refreshTripSpotButtons(key);renderTripHistory();openTripMemo(key,'メモを追記しました。');
+}
+function deleteTripMemo(key){
+  const store=loadTripStore(),r=store.records[key];if(!r||!tripMemoCount(r))return;
+  if(!confirm('「'+r.name+'」のメモをすべて消しますか？\n訪問記録と★は残ります。'))return;
+  r.notes=[];r.updatedAt=new Date().toISOString();store.records[key]=r;saveTripStore(store);refreshTripSpotButtons(key);renderTripHistory();openTripMemo(key,'メモを削除しました。');
+}
+function allRegisteredTripSpots(){
+  return[
+    ...D.roads.filter(x=>Number.isFinite(+x.lat)&&Number.isFinite(+x.lng)).map(x=>({...x,kind:'道の駅'})),
+    ...D.landmarks.filter(x=>Number.isFinite(+x.lat)&&Number.isFinite(+x.lng)).map(x=>({...x,kind:pointKind(x)}))
+  ];
+}
+function nearestRegisteredTripSpot(p){
+  let best=null,bd=Infinity;
+  for(const x of allRegisteredTripSpots()){
+    const d=dist(p.lat,p.lng,+x.lat,+x.lng);
+    if(d<bd){bd=d;best=x}
+  }
+  return best?{spot:best,d:bd,key:tripRegisteredKey(best,best.kind)}:null;
+}
+async function checkTripCurrentLocation(){
+  const status=$('tripCurrentStatus'),host=$('tripCurrentResult');
+  if(status)status.textContent='現在地を取得しています…';
+  if(host)host.innerHTML='';
+  try{
+    const p=await geo(),near=nearestRegisteredTripSpot(p);
+    if(status)status.textContent='現在地：'+p.lat.toFixed(6)+', '+p.lng.toFixed(6);
+    if(near&&near.d<=TRIP_NEARBY_KM){
+      const m=Math.max(1,Math.round(near.d*1000)),x=near.spot,r=tripRecordByKey(near.key);
+      host.innerHTML='<div class="trip-current-card matched"><div class="trip-current-kicker">📍 近くの登録地点が見つかりました</div><h3>'+(r?.starred?'★ ':'☆ ')+esc(x.name)+'</h3><div class="meta">'+esc(spotMeta(x,x.kind,null))+' / 現在地から約'+m+'m</div><p>この地点として旅の記録を残しますか？</p><div class="actions"><button type="button" class="primary" onclick="recordRegisteredTripVisit(\''+escJs(near.key)+'\','+p.lat+','+p.lng+')">記録を残す</button>'+mapBtn(x,'マップで確認')+'</div></div>';
+    }else{
+      host.innerHTML='<div class="trip-current-card unmatched"><div class="trip-current-kicker">📌 近くに登録地点はありません</div><h3>この座標を旅の履歴に残せます</h3><div class="meta">'+p.lat.toFixed(6)+', '+p.lng.toFixed(6)+'</div><p>どんな場所だったかをメモして保存します。</p><button type="button" class="primary" onclick="openCustomTripRecord('+p.lat+','+p.lng+')">この場所の記録を残す</button></div>';
+    }
+  }catch(e){
+    if(status)status.textContent='現在地を取得できませんでした。';
+    if(host)host.innerHTML='<div class="trip-current-card error">ブラウザまたは端末の位置情報を許可して、もう一度お試しください。</div>';
+  }
+}
+function recordRegisteredTripVisit(key,lat,lng){
+  const store=loadTripStore();let r=store.records[key]||makeRegisteredTripRecord(key);if(!r)return;
+  const meters=Math.round(dist(+lat,+lng,r.lat,r.lng)*1000);
+  if(!confirm('現在地から約'+meters+'mの「'+r.name+'」として記録しますか？'))return;
+  const now=new Date().toISOString();r.starred=true;r.starredAt=r.starredAt||now;r.visits=Array.isArray(r.visits)?r.visits:[];r.visits.push({at:now,lat:+lat,lng:+lng});r.updatedAt=now;
+  store.records[key]=r;saveTripStore(store);refreshTripSpotButtons(key);renderTripHistory();openTripMemo(key,'訪問記録を追加して ★ をONにしました。');
+}
+function openCustomTripRecord(lat,lng){
+  modal('<h2>📌 未登録地点を記録</h2><div class="meta">座標：'+Number(lat).toFixed(6)+', '+Number(lng).toFixed(6)+'</div>'+
+    '<label class="trip-memo-label">場所の呼び名（任意）<input id="tripCustomName" placeholder="例：海沿いの小さな展望所"></label>'+
+    '<label class="trip-memo-label">どんな場所？（必須）<textarea id="tripCustomMemo" rows="6" placeholder="景色、雰囲気、立ち寄った理由などを残してください。"></textarea></label>'+
+    '<button type="button" class="primary trip-memo-add" onclick="saveCustomTripRecord('+Number(lat)+','+Number(lng)+')">この場所を保存</button>');
+}
+function saveCustomTripRecord(lat,lng){
+  const memo=String($('tripCustomMemo')?.value||'').trim();if(!memo)return alert('どんな場所だったか、メモを残してください。');
+  const name=String($('tripCustomName')?.value||'').trim();
+  const now=new Date().toISOString(),key='custom:'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
+  const r={key,registered:false,spotId:null,kind:'未登録地点',name:name||'未登録地点',lat:+lat,lng:+lng,prefecture:'',municipality:'',starred:true,starredAt:now,notes:[{id:Date.now()+'_n',text:memo,at:now}],visits:[{at:now,lat:+lat,lng:+lng}],createdAt:now,updatedAt:now};
+  const store=loadTripStore();store.records[key]=r;saveTripStore(store);closeModal();renderTripHistory();
+  const host=$('tripCurrentResult');if(host)host.innerHTML='<div class="trip-current-card saved">✓ 未登録地点として旅の履歴に保存しました。</div>';
+}
+function openTripRecommendation(key){
+  const r=tripRecordByKey(key);if(!r||r.registered)return;
+  const memo=(r.notes||[]).map(n=>n.text).join('\n---\n');
+  openContact();contactSelectCategory('オススメ追加');
+  const form=$('contactForm');if(!form)return;
+  if(form.elements.recommendType)form.elements.recommendType.value='寄り道';
+  if(form.elements.title)form.elements.title.value=(r.name&&r.name!=='未登録地点')?r.name:'';
+  if(form.elements.mapUrl)form.elements.mapUrl.value=googlePoint(r.lat,r.lng,r.name);
+  if(form.elements.details)form.elements.details.value=(memo?memo+'\n\n':'')+'旅の履歴から送信 / 座標：'+Number(r.lat).toFixed(6)+', '+Number(r.lng).toFixed(6);
+}
+function renderTripHistory(){
+  const host=$('tripHistoryList'),count=$('tripHistoryCount');if(!host)return;
+  const store=loadTripStore();
+  const list=Object.values(store.records).filter(r=>r&&((r.visits||[]).length||tripMemoCount(r)||r.starred)).sort((a,b)=>tripLastActivity(b)-tripLastActivity(a));
+  if(count)count.textContent=list.length+'地点';
+  if(!list.length){host.innerHTML='<div class="panel trip-empty-history">まだ旅の記録はありません。<br>「現在地を取得して記録」から最初の1件を残してみよう。</div>';return}
+  host.innerHTML=list.map(r=>{
+    const visits=r.visits||[],last=visits.length?visits[visits.length-1]:null,memo=tripLatestMemo(r);
+    const key=escJs(r.key),map=googlePoint(r.lat,r.lng,r.name);
+    return '<div class="trip-history-card"><div class="trip-history-top"><div><div class="trip-history-name">'+(r.starred?'★ ':'☆ ')+esc(r.name)+'</div><div class="meta">'+esc(r.registered?(r.kind||'登録地点'):'未登録地点')+(r.prefecture?' / '+esc(r.prefecture)+' '+esc(r.municipality||''):'')+'</div></div><span class="trip-visit-count">'+(visits.length?'訪問 '+visits.length+'回':'訪問時刻なし')+'</span></div>'+
+      (last?'<div class="trip-last-visit">最後の記録：'+esc(tripDateTime(last.at))+'</div>':'')+
+      (memo?'<div class="trip-history-memo">'+esc(memo).replace(/\n/g,'<br>')+'</div>':'<div class="trip-history-memo empty-memo">メモなし</div>')+
+      '<div class="actions"><a class="mapbtn map-check" href="'+map+'" target="_blank" rel="noopener">🗺 マップで確認</a>'+
+      (r.registered?'<button type="button" class="soft trip-star-btn'+(r.starred?' is-on':'')+'" data-trip-star-key="'+esc(r.key)+'" onclick="toggleTripStar(\''+key+'\')">'+(r.starred?'★':'☆')+'</button>':'')+
+      '<button type="button" class="soft trip-memo-btn" data-trip-memo-key="'+esc(r.key)+'" onclick="openTripMemo(\''+key+'\')">📝 メモ'+(tripMemoCount(r)?' '+tripMemoCount(r):'')+'</button>'+
+      (!r.registered?'<button type="button" class="soft" onclick="openTripRecommendation(\''+key+'\')">✉ 登録地点として送る</button>':'')+
+      '</div></div>';
+  }).join('');
+}
 
 function favoriteKey(){return'michinotochu_favorites_v2'}
 function loadFavorites(){try{return JSON.parse(localStorage.getItem(favoriteKey())||'[]')}catch(e){return[]}}
