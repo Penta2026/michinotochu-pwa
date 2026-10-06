@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.3.6';
+const APP_VERSION='PWA 1.3.7';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -350,10 +350,21 @@ function detourRandomRoutePoint(route){
   }
   return nodes[Math.max(0,nodes.length-2)];
 }
-function detourFoodSearchUrl(route,genre,point=null){
+function detourMapZoomForRadius(radius){
+  const r=+radius||10;
+  if(r<=3)return 14;
+  if(r<=5)return 13;
+  if(r<=10)return 12;
+  if(r<=20)return 11;
+  if(r<=30)return 10;
+  if(r<=60)return 9;
+  return 8;
+}
+function detourFoodSearchUrl(route,genre,point=null,radius=10){
   const p=point||detourRandomRoutePoint(route);
   const word={cafe:'カフェ 喫茶店',sweets:'甘味 スイーツ',food:'食事 レストラン'}[genre]||'飲食店';
-  return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.lat+','+p.lng+' 周辺 '+word);
+  const zoom=detourMapZoomForRadius(radius);
+  return 'https://www.google.com/maps/search/'+encodeURIComponent(word)+'/@'+(+p.lat)+','+(+p.lng)+','+zoom+'z';
 }
 function detourAnchorPoint(route,anchor){
   if(anchor==='destination')return route.points[route.points.length-1];
@@ -379,7 +390,7 @@ function renderExternalDetourSearch(route,genre,level,anchor,radius){
     <div class="detour-stats"><span>${esc(spec.label)}</span><span>${esc(detourAnchorLabel(anchor))} 基準</span><span>半径 ${radius}km</span><span>登録DB不要</span></div>
     <p class="meta">Google Mapsの検索範囲は地図側で決まるため、${radius}kmは検索の目安として扱います。</p>
     <div class="detour-actions">
-      <a class="mapbtn primary" href="${detourFoodSearchUrl(route,genre,p)}" target="_blank" rel="noopener">Google Mapsでこの辺を探す</a>
+      <a class="mapbtn primary" href="${detourFoodSearchUrl(route,genre,p,radius)}" target="_blank" rel="noopener">Google Mapsでこの辺を探す</a>
       <button type="button" class="soft" onclick="runDetourGacha()">🎲 別の候補</button>
     </div>
   </div>`;
