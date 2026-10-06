@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.4.11';
+const APP_VERSION='PWA 1.4.12';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -189,7 +189,7 @@ function googlePoint(lat,lng,name='',x=null){
 function googleFoodSearch(x,style='walk'){
   if(!x)return'#';
   const base=useNameNavigation(x)?navSearchQuery(x):(Number.isFinite(+x.lat)&&Number.isFinite(+x.lng)?`${x.lat},${x.lng}`:navSearchQuery(x));
-  const words={walk:'食べ歩き たい焼き 団子 ソフトクリーム 軽食',rest:'カフェ 喫茶店 甘味処 スイーツ ジェラート パン',hearty:'定食 食堂 ラーメン うどん 丼 お好み焼き'};
+  const words={walk:'食べ歩き たい焼き 団子 ソフトクリーム 軽食',rest:'カフェ 喫茶店 ハンバーガー バーガー 甘味処 スイーツ ジェラート パン',hearty:'定食 食堂 ラーメン うどん 丼 お好み焼き'};
   const q=`${base} 周辺 ${words[style]||words.walk}`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`
 }
@@ -285,7 +285,7 @@ function detourGenreMatch(x,genre){
   const fc=String(x.featureCategory||'');
   const re={
     view:/展望|眺望|景色|岬|高原|山頂|海岸|湖|滝|渓谷|峡谷|棚田|橋|夕日|夜景/,
-    cafe:/カフェ|喫茶|珈琲|コーヒー|茶房|茶屋/,
+    cafe:/カフェ|喫茶|珈琲|コーヒー|茶房|茶屋|ハンバーガー|バーガー/,
     sweets:/甘味|スイーツ|団子|饅頭|まんじゅう|たい焼|ソフト|ジェラート|アイス|菓子|ケーキ|プリン/,
     food:/食堂|レストラン|ラーメン|うどん|そば|丼|定食|焼肉|お好み|バーガー|食事|グルメ/,
     onsen:/温泉|温浴|銭湯|スパ|湯/,
@@ -365,7 +365,7 @@ function detourMapSearchWord(genre){
     random:'観光スポット',
     view:'展望 景色',
     sweets:'甘味 スイーツ',
-    cafe:'カフェ 喫茶店',
+    cafe:'カフェ 喫茶店 ハンバーガー バーガー',
     food:'食事 レストラン',
     onsen:'温泉',
     road:'道の駅',
@@ -394,7 +394,7 @@ function renderExternalDetourSearch(route,genre,level,anchor,radius){
   const p=detourAnchorPoint(route,anchor);
   const spec=detourLevelSpec(level);
   const cfg={
-    cafe:{title:'☕ この辺でひと休み',text:'選んだ基準地点の周辺で、カフェ・喫茶店を探してみる？'},
+    cafe:{title:'☕ この辺でひと休み',text:'選んだ基準地点の周辺で、カフェ・喫茶店・ハンバーガー店を探してみる？'},
     sweets:{title:'🍡 この辺で甘いもの',text:'選んだ基準地点の周辺で、甘味・スイーツを探してみる？'},
     food:{title:'🍜 この辺で腹ごしらえ',text:'選んだ基準地点の周辺で、ごはん処を探してみる？'}
   }[genre];
@@ -650,7 +650,7 @@ function rideMoodMatch(x,mood){
   if(mood==='detour')return x.level==='B';
   const t=rideStyleText(x),tags=uiCategoryTags(x);
   if(mood==='scenery')return ['view','sea','nature','park','construction','road_drive'].some(v=>tags.has(v))||/海|海岸|岬|湖|池|沼|展望|眺望|景色|高原|山|峠|滝|渓谷|峡谷|棚田|夕日|夜景|橋/.test(t);
-  if(mood==='food')return /カフェ|喫茶|珈琲|コーヒー|甘味|スイーツ|団子|饅頭|まんじゅう|ソフト|ジェラート|アイス|菓子|ケーキ|プリン|食堂|レストラン|ラーメン|うどん|そば|丼|定食|グルメ|食事/.test(t);
+  if(mood==='food')return /カフェ|喫茶|珈琲|コーヒー|ハンバーガー|バーガー|甘味|スイーツ|団子|饅頭|まんじゅう|ソフト|ジェラート|アイス|菓子|ケーキ|プリン|食堂|レストラン|ラーメン|うどん|そば|丼|定食|グルメ|食事/.test(t);
   if(mood==='heal')return ['onsen','shrine','park','nature'].some(v=>tags.has(v))||/癒し|ヒーリング|パワースポット|森林浴|温泉|湯|神社|神宮|大社|寺|寺院|霊場|庭園|森林|森|湖|池|滝|高原|渓谷|名水|巨木/.test(t);
   return true;
 }
@@ -684,7 +684,7 @@ function rideMapQuery(mood,healTheme=null){
     classic:['観光名所'],
     detour:['穴場スポット','小さな観光スポット','展望スポット'],
     scenery:['展望台','海岸','岬','湖','滝'],
-    food:['カフェ','スイーツ','ごはん']
+    food:['カフェ','ハンバーガー','スイーツ','ごはん']
   }[mood]||['観光スポット'];
   return rand(q)
 }
