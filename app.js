@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.4.9';
+const APP_VERSION='PWA 1.4.10';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -654,12 +654,17 @@ function rideMoodMatch(x,mood){
   if(mood==='heal')return ['onsen','shrine','park','nature'].some(v=>tags.has(v))||/癒し|ヒーリング|パワースポット|森林浴|温泉|湯|神社|神宮|大社|寺|寺院|霊場|庭園|森林|森|湖|池|滝|高原|渓谷|名水|巨木/.test(t);
   return true;
 }
+let rideHealThemeBag=[];
 const RIDE_HEAL_THEMES=[
   {key:'healing',label:'🌿 ヒーリングスポット',queries:['癒しスポット','ヒーリングスポット','パワースポット']},
   {key:'shrine',label:'⛩️ 神社・寺',queries:['神社','寺','神社 寺']},
   {key:'onsen',label:'♨️ 温泉',queries:['日帰り温泉','温泉','露天風呂']},
   {key:'nature',label:'🌲 静かな自然',queries:['森林浴','庭園','滝','湖','高原']}
 ];
+function nextRideHealTheme(){
+  if(!rideHealThemeBag.length)rideHealThemeBag=shuffle([...RIDE_HEAL_THEMES]);
+  return rideHealThemeBag.pop();
+}
 function rideHealThemeMatch(x,key){
   const t=rideStyleText(x),tags=uiCategoryTags(x);
   if(key==='healing')return /癒し|ヒーリング|パワースポット|霊場|名水|巨木|森林浴/.test(t);
@@ -702,11 +707,8 @@ function runRideStyle(){
   pool.push(...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)})));
   pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,+x.lat,+x.lng),br:bearing(o.lat,o.lng,+x.lat,+x.lng)}))
     .filter(x=>x.d>=band.min&&x.d<=band.max&&rideDirectionDelta(x.br,targetBearing)<=RIDE_DIRECTION_HALF_WIDTH&&rideMoodMatch(x,mood));
-  const healTheme=mood==='heal'?rand(RIDE_HEAL_THEMES):null;
-  if(healTheme){
-    const themedPool=pool.filter(x=>rideHealThemeMatch(x,healTheme.key));
-    if(themedPool.length)pool=themedPool;
-  }
+  const healTheme=mood==='heal'?nextRideHealTheme():null;
+  if(healTheme)pool=pool.filter(x=>rideHealThemeMatch(x,healTheme.key));
   pool.sort((a,b)=>(Math.abs(a.d-targetKm)+rideDirectionDelta(a.br,targetBearing)/10+Math.random()*4)-(Math.abs(b.d-targetKm)+rideDirectionDelta(b.br,targetBearing)/10+Math.random()*4));
   const pick=pool.length?rand(pool.slice(0,Math.min(24,pool.length))):null;
   const mapQuery=rideMapQuery(mood,healTheme?.key||null);
