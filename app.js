@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.3.5';
+const APP_VERSION='PWA 1.3.6';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -563,12 +563,12 @@ function routeButtons(origin,pts){
 function numericValue(selectId,freeId,min,max){const e=$(freeId);if(e&&String(e.value).trim()!==''){const n=+e.value;if(Number.isFinite(n)&&n>=min&&n<=max)return n;}return +$(selectId).value}
 function dirText16(v){return ['北','北北東','北東','東北東','東','東南東','南東','南南東','南','南南西','南西','西南西','西','西北西','北西','北北西'][Math.round(v/22.5)%16]}
 
-function renderStartPanels(){['sug','dest','relay','season','nearby','detour'].forEach(k=>{const host=$(k+'Start');host.innerHTML=`<div class="panel start-panel"><h3>📍 スタート地点</h3><div class="origin-status" id="${k}Origin">現在：未設定</div><div class="start-simple"><button class="soft start-current" onclick="useCurrent('${k}')">◎ 現在地を使う</button><button class="soft start-station" onclick="stationPicker('${k}')">🚉 駅を選ぶ</button><div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('${k}')">🗺 Googleマップから選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div><button class="soft reflect-btn start-reflect" onclick="reflectMapLink('${k}')">🔗 コピーしたリンクを反映</button></div></div>`;});}
+function renderStartPanels(){['sug','dest','relay','season','nearby','detour'].forEach(k=>{const host=$(k+'Start');host.innerHTML=`<div class="panel start-panel"><h3>📍 スタート地点</h3><div class="origin-status" id="${k}Origin">現在：未設定</div><div class="start-simple"><button class="soft start-current" onclick="useCurrent('${k}')">◎ 現在地を使う</button><button class="soft start-station" onclick="stationPicker('${k}')">🚉 駅を選ぶ</button><div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('${k}')">🗺 Googleマップでスタート地点を選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div><button class="soft reflect-btn start-reflect" onclick="reflectMapLink('${k}')">🔗 コピーしたリンクを反映</button></div></div>`;});}
 function setOrigin(k,lat,lng,label){origins[k]={lat:+lat,lng:+lng,label:label||'選択地点'};const host=$(`${k}Origin`);if(host)host.textContent=`現在：${origins[k].label}`;if(k==='detour'&&detourRoute.source!=='favorite'){detourRoute.origin={...origins[k]};renderDetourRouteStatus();}if(k==='interestSave'&&pendingInterestSave)showInterestSaveDialog();}
 function parseCoords(s){const t=decodeURIComponent(String(s||'').replace(/\+/g,'%20'));const pats=[/@(-?\d{1,2}(?:\.\d+)?),\s*(-?\d{1,3}(?:\.\d+)?)/,/!3d(-?\d{1,2}(?:\.\d+)?)!4d(-?\d{1,3}(?:\.\d+)?)/,/[?&](?:q|query|ll|center)=(-?\d{1,2}(?:\.\d+)?),\s*(-?\d{1,3}(?:\.\d+)?)/,/(-?\d{1,2}(?:\.\d+)?)\s*,\s*(-?\d{1,3}(?:\.\d+)?)/];for(const p of pats){const m=t.match(p);if(m){const a=+m[1],b=+m[2];if(Math.abs(a)<=90&&Math.abs(b)<=180)return[a,b]}}return null}
 function firstUrl(s){const m=String(s||'').match(/https?:\/\/[^\s]+/i);return m?m[0].replace(/[\])。,]+$/,''):null}
 function openStartMap(k){window.open('https://www.google.com/maps','_blank','noopener')}
-function showMapStartHelp(){modal(`<h2>Googleマップから選ぶ</h2><p>ブラウザでGoogleマップが開きます。スタート地点にしたい場所を選択し、<b>共有 → リンクをコピー</b>してください。</p><p>この画面に戻り、<b>「リンクを反映」</b>を押すとスタート地点に設定されます。</p>`)}
+function showMapStartHelp(){modal(`<h2>Googleマップから選ぶ</h2><p>ブラウザでGoogleマップが開きます。スタート地点にしたい場所を選択し、<b>共有 → リンクをコピー</b>してください。</p><p>この画面に戻り、<b>「コピーしたリンクを反映」</b>を押すとスタート地点に設定されます。</p>`)}
 function showDetourDestinationHelp(){modal(`<h2>Googleマップから選ぶ</h2><p>ブラウザでGoogleマップが開きます。目的地にしたい場所を選択し、<b>共有 → リンクをコピー</b>してください。</p><p>この画面に戻り、<b>「コピーしたリンクを反映」</b>を押すと目的地に設定されます。</p>`)}
 async function clipboardText(){try{return(await navigator.clipboard.readText()).trim()}catch(e){const v=window.prompt('Googleマップでコピーした共有リンクを貼り付けてください。','');return(v||'').trim()}}
 async function resolveMapLink(raw){
@@ -585,7 +585,7 @@ async function resolveMapLink(raw){
   }catch(e){}
   return null
 }
-async function reflectMapLink(k){const raw=await clipboardText();if(!raw)return alert('Googleマップで共有リンクをコピーしてから「リンクを反映」を押してください。');const q=await resolveMapLink(raw);if(!q)return alert('共有リンクから場所を取得できませんでした。Googleマップで地点を選び、共有からリンクをコピーして再試行してください。');setOrigin(k,q[0],q[1],'Googleマップ共有地点');alert('スタート地点を反映しました。')}
+async function reflectMapLink(k){const raw=await clipboardText();if(!raw)return alert('Googleマップで共有リンクをコピーしてから「コピーしたリンクを反映」を押してください。');const q=await resolveMapLink(raw);if(!q)return alert('共有リンクから場所を取得できませんでした。Googleマップで地点を選び、共有からリンクをコピーして再試行してください。');setOrigin(k,q[0],q[1],'Googleマップ共有地点');alert('スタート地点を反映しました。')}
 function geo(){return new Promise((resolve,reject)=>navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>resolve({lat:p.coords.latitude,lng:p.coords.longitude}),reject,{enableHighAccuracy:true,timeout:10000,maximumAge:30000}):reject(new Error('geolocation')))}
 async function useCurrent(k){try{const p=await geo();setOrigin(k,p.lat,p.lng,'現在地')}catch(e){alert('現在地を取得できません。Windowsまたはブラウザの位置情報を許可して、もう一度お試しください。')}}
 let stationAdminReady=false;
@@ -628,7 +628,7 @@ function showInterestSaveDialog(){
       <div class="start-simple">
         <button class="soft start-current" onclick="useCurrent('interestSave')">◎ 現在地を使う</button>
         <button class="soft start-station" onclick="stationPicker('interestSave')">🚉 駅を選ぶ</button>
-        <div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('interestSave')">🗺 Googleマップから選ぶ</button><button class="info-btn" onclick="showMapStartHelp()">ⓘ</button></div>
+        <div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('interestSave')">🗺 Googleマップでスタート地点を選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div>
         <button class="soft reflect-btn start-reflect" onclick="reflectMapLink('interestSave')">🔗 コピーしたリンクを反映</button>
       </div>
     </div>
