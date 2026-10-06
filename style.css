@@ -453,3 +453,35 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 .trip-record-delete-zone{margin-top:12px;padding:16px;border:1px solid #efc6c1;border-radius:14px;background:#fff8f7}
 .trip-record-delete-zone .meta{margin-bottom:9px;color:#8b5c57}
 .trip-record-delete-zone .danger{width:100%;font-weight:800}
+
+
+/* PWA Ver1.5.9 usage guide */
+.home-usage-button{
+  margin-top:8px;padding:8px 18px;border:1px solid #ffffffcc;border-radius:999px;
+  background:#ffffffdd;color:#24465c;font-weight:900;font-size:13px;cursor:pointer;
+  box-shadow:0 4px 14px #164a6b22;backdrop-filter:blur(4px)
+}
+.home-usage-button:hover{background:#fff;transform:translateY(-1px)}
+.usage-guide h2{margin:0 0 8px;color:#203f59}
+.usage-lead{line-height:1.75;color:#536b7a;margin:0 0 14px}
+.usage-common{padding:14px 15px;border-radius:16px;background:#f2f9fc;border:1px solid #d7e8f0;margin-bottom:14px}
+.usage-common h3{margin:0 0 8px;color:#2b536a;font-size:16px}
+.usage-common p{margin:6px 0;line-height:1.65;font-size:13px;color:#4d6574}
+.usage-list{display:grid;gap:9px}
+.usage-menu-card{border:1px solid #dbe7ed;border-radius:14px;background:#fff;overflow:hidden}
+.usage-menu-card summary{list-style:none;display:flex;gap:11px;align-items:flex-start;padding:13px 14px;cursor:pointer}
+.usage-menu-card summary::-webkit-details-marker{display:none}
+.usage-menu-card summary:after{content:'＋';margin-left:auto;color:#75909f;font-size:20px;line-height:1}
+.usage-menu-card[open] summary:after{content:'−'}
+.usage-menu-card summary b{display:block;color:#24465c;font-size:15px;margin-bottom:3px}
+.usage-menu-card summary small{display:block;color:#6b7e89;line-height:1.5;font-size:12px;font-weight:400}
+.usage-icon{font-size:21px;line-height:1.2;flex:0 0 28px;text-align:center}
+.usage-menu-body{padding:0 16px 14px 53px;border-top:1px solid #edf2f5;background:#fbfdfe}
+.usage-label{font-size:12px;font-weight:900;color:#527184;padding-top:10px}
+.usage-menu-body ol{margin:7px 0 0;padding-left:1.35em}
+.usage-menu-body li{margin:5px 0;line-height:1.55;color:#3d5665;font-size:13px}
+.usage-footer-note{margin-top:14px;padding:11px 13px;border-radius:12px;background:#fff8e8;border:1px solid #ecd9a5;color:#6e613e;font-size:12px;line-height:1.6}
+@media(max-width:760px){
+  .home-usage-button{font-size:13px;padding:8px 16px}
+  .usage-menu-body{padding-left:16px}
+}
