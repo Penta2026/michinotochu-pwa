@@ -309,3 +309,18 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   grid-column:1 / -1;
   width:100%;
 }
+
+
+/* PWA Ver1.3.8 hybrid detour results */
+.detour-map-search{margin:12px 0 16px}
+.detour-map-search .mapbtn{width:100%;text-align:center}
+.detour-registered{
+  margin-top:14px;
+  padding:14px;
+  border:1px solid #dfe8ee;
+  border-radius:14px;
+  background:#fbfdff;
+}
+.detour-registered h4{margin:0 0 10px;color:#274e69}
+.detour-registered-empty{background:#f8fafb}
+.detour-registered .mapbtn{margin-top:10px;width:100%;text-align:center}
