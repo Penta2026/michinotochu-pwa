@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.2.0';
+const APP_VERSION='PWA 1.2.1';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -52,6 +52,18 @@ function openAbout(){modal(`<h2>道の途中。</h2>
 function openSupport(){
   location.href='support.html';
 }
+
+function openDetourHome(){
+  modal(`<h2>🎲 寄り道ガチャ</h2>
+    <p>寄り道ガチャは、<b>最終目的地を決めたあと</b>に使う機能です。</p>
+    <p>行き先ガチャや「ここからどこ行く？」などで目的地を決め、ルート結果に表示される <b>「🎲 寄り道する？」</b> から使えます。</p>
+    <div class="actions"><button type="button" class="primary" onclick="closeModal();showView('dest')">行き先を決める</button><button type="button" class="soft" onclick="closeModal()">閉じる</button></div>`);
+}
+
+function openComingSoon(title){
+  modal(`<h2>${esc(title)}</h2><p>この機能はただいま準備中です。</p><p class="meta">ホームの入口を先に追加しました。次のアップデートで使えるようにしていきます。</p><div class="actions"><button type="button" class="soft" onclick="closeModal()">閉じる</button></div>`);
+}
+
 
 const CONTACT_EMAIL='penta.michi.2026@gmail.com';
 const CONTACT_CATEGORIES=['バグ報告','ポイントズレ報告','要望','オススメ追加'];
