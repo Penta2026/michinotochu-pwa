@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.4.10';
+const APP_VERSION='PWA 1.4.11';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -713,7 +713,16 @@ function runRideStyle(){
   const pick=pool.length?rand(pool.slice(0,Math.min(24,pool.length))):null;
   const mapQuery=rideMapQuery(mood,healTheme?.key||null);
   const mapUrl=rideMapSearchUrl(o,mapQuery,targetKm,targetBearing),host=$('rideResult');if(!host)return;host.className='result';
-  const directionLabel=direction==='random'?'🎲 おまかせ → '+dirText16(targetBearing):RIDE_DIRECTION_LABELS[direction];
+  const searchDirection=dirText16(targetBearing);
+  const directionLabel=direction==='random'?'🎲 おまかせ → '+searchDirection:RIDE_DIRECTION_LABELS[direction];
+  const searchTheme=healTheme?healTheme.label:(RIDE_MOOD_LABELS[mood]||mood);
+  const searchGuide='<div class="ride-search-guide">'+
+    '<div class="ride-search-guide-title">📍 今回探す場所</div>'+
+    '<div class="ride-search-area"><span class="ride-search-label">エリア</span><b>スタート地点から '+esc(searchDirection)+'へ 約'+targetKm+'km 周辺</b></div>'+
+    '<div class="ride-search-sub">目安 '+band.min+'〜'+band.max+'km / 検索方向 ±'+RIDE_DIRECTION_HALF_WIDTH+'°</div>'+
+    '<div class="ride-search-area"><span class="ride-search-label">探すもの</span><b>'+esc(searchTheme)+'</b></div>'+
+    '<div class="ride-search-query">Google Maps 検索ワード：<b>'+esc(mapQuery)+'</b></div>'+
+    '</div>';
   let registered='';
   if(pick){
     const saveAction="saveSingle('今日の走り方','"+escJs(pick.name)+"',"+pick.lat+","+pick.lng+",'"+escJs(pick.kind)+"','"+escJs(o.label)+"',"+o.lat+","+o.lng+")";
@@ -721,7 +730,8 @@ function runRideStyle(){
   }else registered='<div class="ride-registered ride-empty"><div class="ride-result-kicker">📚 アプリ登録候補</div><p class="meta">'+band.min+'〜'+band.max+'km・'+esc(directionLabel)+'方向では登録候補が見つからなかったよ。Google Maps側で探してみよう。</p></div>';
   host.innerHTML='<div class="ride-result-head"><div class="ride-result-title">'+esc(RIDE_DISTANCE_LABELS[String(targetKm)]||targetKm+'km')+' × '+esc(RIDE_MOOD_LABELS[mood]||mood)+'</div>'+
     '<div class="meta">直線距離 '+band.min+'〜'+band.max+'km / 方向 '+esc(directionLabel)+'（±'+RIDE_DIRECTION_HALF_WIDTH+'°）</div></div>'+
-    '<div class="ride-map-search"><a class="mapbtn primary" href="'+mapUrl+'" target="_blank" rel="noopener">🗺 Google Mapsでも探す</a><p class="meta">'+(healTheme?'今回の癒しテーマ：'+esc(healTheme.label)+' / ':'')+'今回の地図検索：'+esc(mapQuery)+' / 目標距離・方向の地点周辺を探します。</p></div>'+registered+
+    searchGuide+
+    '<div class="ride-map-search"><a class="mapbtn primary" href="'+mapUrl+'" target="_blank" rel="noopener">🗺 このエリアをGoogle Mapsで探す</a></div>'+registered+
     '<div class="ride-result-actions"><button type="button" class="soft" onclick="runRideStyle()">🎲 別の候補を見る</button></div>';
 }
 function currentSeason(){const m=new Date().getMonth()+1;return m>=3&&m<=5?'春':m>=6&&m<=8?'夏':m>=9&&m<=11?'秋':'冬'}
