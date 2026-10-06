@@ -173,3 +173,24 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   .route-buttons .food-search-group{grid-column:auto;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
   .route-buttons .food-search-group .mapbtn{font-size:13px;padding:10px 6px}
 }
+
+
+/* PWA Ver1.2.0 detour gacha */
+.detour-open{border:1px solid #e2b36f;background:#fff8ec;color:#81520f}
+.detour-lead{line-height:1.7;margin:0 0 14px}
+.detour-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.detour-form label{display:block}
+.detour-form select{width:100%;margin-top:6px}
+.detour-note{font-size:12px;color:var(--muted);line-height:1.6;margin:10px 0 14px}
+.detour-roll{width:100%;min-height:48px}
+.detour-result{margin-top:14px}
+.detour-picked,.detour-empty{background:#fff;border:1px solid #d9e6ee;border-radius:15px;padding:15px}
+.detour-picked-head{display:flex;gap:12px;align-items:flex-start}
+.detour-picked-head h3{margin:0 0 5px}
+.detour-picked p{line-height:1.7}
+.detour-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.detour-actions button{flex:1 1 150px}
+@media(max-width:620px){
+  .detour-form{grid-template-columns:1fr}
+  .detour-open{width:100%}
+}
