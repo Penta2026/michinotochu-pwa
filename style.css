@@ -194,3 +194,41 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   .detour-form{grid-template-columns:1fr}
   .detour-open{width:100%}
 }
+
+
+/* PWA Ver1.2.1 home 2x5 menu */
+.home-image-grid{
+  width:min(100%,620px);
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px 10px;
+}
+.home-sprite{
+  display:block;
+  width:100%;
+  aspect-ratio:3/1;
+  min-height:0;
+  padding:0;
+  background-image:url('assets/home/home_buttons_sprite.webp');
+  background-repeat:no-repeat;
+  background-size:200% 500%;
+  border-radius:16px;
+  box-shadow:0 3px 10px #13374f22;
+}
+.home-sprite-sug{background-position:0% 0%}
+.home-sprite-dest{background-position:100% 0%}
+.home-sprite-relay{background-position:0% 25%}
+.home-sprite-detour{background-position:100% 25%}
+.home-sprite-nearby{background-position:0% 50%}
+.home-sprite-ride{background-position:100% 50%}
+.home-sprite-season{background-position:0% 75%}
+.home-sprite-interest{background-position:100% 75%}
+.home-sprite-saved{background-position:0% 100%}
+.home-sprite-history{background-position:100% 100%}
+@media(max-width:470px){
+  .home-image-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    width:100%;
+    gap:7px 7px;
+  }
+  .home-sprite{border-radius:12px}
+}
