@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.5.1';
+const APP_VERSION='PWA 1.5.2';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -98,6 +98,7 @@ function contactSelectCategory(category){
       <label>都道府県<input name="prefecture" placeholder="例：広島県"></label>
       <label>おすすめ名称<input name="title" required placeholder="例：○○展望台"></label>
       <label>GoogleマップURL<input name="mapUrl" inputmode="url" placeholder="分かれば共有リンクを貼り付け"></label>
+      <div class="contact-coord-row"><label>緯度<input name="latitude" inputmode="decimal" placeholder="例：34.3853"></label><label>経度<input name="longitude" inputmode="decimal" placeholder="例：132.4553"></label></div>
       <label>おすすめポイント<textarea name="details" rows="5" required placeholder="どんな場所か、何がおすすめかを教えてください"></textarea></label>`;
   }
   $('contactFields').innerHTML=`<div class="contact-selected">選択中：<b>${esc(category)}</b></div>${fields}
@@ -133,6 +134,8 @@ async function submitContactForm(form,category){
   if(val('screen'))payload['画面']=val('screen');
   if(val('title'))payload['タイトル・対象名']=val('title');
   if(val('mapUrl'))payload['Googleマップ']=val('mapUrl');
+  if(val('latitude'))payload['緯度']=val('latitude');
+  if(val('longitude'))payload['経度']=val('longitude');
   if(val('replyEmail'))payload['email']=val('replyEmail');
   const button=$('contactSubmitButton');
   const status=$('contactSendStatus');
@@ -980,6 +983,8 @@ function openTripRecommendation(key){
   if(form.elements.recommendType)form.elements.recommendType.value='寄り道';
   if(form.elements.title)form.elements.title.value=(r.name&&r.name!=='未登録地点')?r.name:'';
   if(form.elements.mapUrl)form.elements.mapUrl.value=googlePoint(r.lat,r.lng,r.name);
+  if(form.elements.latitude)form.elements.latitude.value=Number(r.lat).toFixed(6);
+  if(form.elements.longitude)form.elements.longitude.value=Number(r.lng).toFixed(6);
   if(form.elements.details)form.elements.details.value=(memo?memo+'\n\n':'')+'旅の履歴から送信 / 座標：'+Number(r.lat).toFixed(6)+', '+Number(r.lng).toFixed(6);
 }
 function renderTripHistory(){
