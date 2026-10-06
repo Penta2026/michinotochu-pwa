@@ -1,11 +1,11 @@
-const SHELL_CACHE='michino-shell-v1.5.0';
+const SHELL_CACHE='michino-shell-v1.5.1';
 const DB_CACHE='michino-db';
 const SHELL=[
-  './','./index.html','./support.html','./legal.html','./privacy.html','./terms.html','./history.html','./style.css?v=1.5.0','./app.js?v=1.5.0','./pwa.js?v=1.5.0','./data/road_summaries_chugoku.js?v=1.5.0','./data/road_summaries_shikoku.js?v=1.5.0','./data/road_summaries_kyushu_okinawa.js?v=1.5.0','./data/road_summaries_kinki.js?v=1.5.0','./data/road_summaries_chubu.js?v=1.5.0','./data/road_summaries_kanto.js?v=1.5.0','./data/road_summaries_tohoku.js?v=1.5.0','./data/road_summaries_hokkaido.js?v=1.5.0','./data/road_summaries_final.js?v=1.5.0','./data/spot_overrides.js?v=1.5.0','./manifest.webmanifest?v=1.5.0',
-  './assets/home/home_background.png','./assets/home/home_sprite_3.js?v=1.5.0','./assets/home/home_sprite_2.js?v=1.5.0','./assets/home/home_sprite_1.js?v=1.5.0','./assets/home/home_sprite_0.js?v=1.5.0',
-  './assets/home/home_btn_sugoroku.webp?v=1.5.0','./assets/home/home_btn_destination.webp?v=1.5.0','./assets/home/home_btn_relay.webp?v=1.5.0','./assets/home/home_btn_detour.webp?v=1.5.0',
-  './assets/home/home_btn_nearby.webp?v=1.5.0','./assets/home/home_btn_ride_style.webp?v=1.5.0','./assets/home/home_btn_season.webp?v=1.5.0','./assets/home/home_btn_interest.webp?v=1.5.0',
-  './assets/home/home_btn_saved.webp?v=1.5.0','./assets/home/home_btn_history.webp?v=1.5.0','./icons/icon-192.png?v=1.5.0','./icons/icon-512.png?v=1.5.0'
+  './','./index.html','./support.html','./legal.html','./privacy.html','./terms.html','./history.html','./style.css?v=1.5.1','./app.js?v=1.5.1','./pwa.js?v=1.5.1','./data/road_summaries_chugoku.js?v=1.5.1','./data/road_summaries_shikoku.js?v=1.5.1','./data/road_summaries_kyushu_okinawa.js?v=1.5.1','./data/road_summaries_kinki.js?v=1.5.1','./data/road_summaries_chubu.js?v=1.5.1','./data/road_summaries_kanto.js?v=1.5.1','./data/road_summaries_tohoku.js?v=1.5.1','./data/road_summaries_hokkaido.js?v=1.5.1','./data/road_summaries_final.js?v=1.5.1','./data/spot_overrides.js?v=1.5.1','./manifest.webmanifest?v=1.5.1',
+  './assets/home/home_background.png','./assets/home/home_sprite_3.js?v=1.5.1','./assets/home/home_sprite_2.js?v=1.5.1','./assets/home/home_sprite_1.js?v=1.5.1','./assets/home/home_sprite_0.js?v=1.5.1',
+  './assets/home/home_btn_sugoroku.webp?v=1.5.1','./assets/home/home_btn_destination.webp?v=1.5.1','./assets/home/home_btn_relay.webp?v=1.5.1','./assets/home/home_btn_detour.webp?v=1.5.1',
+  './assets/home/home_btn_nearby.webp?v=1.5.1','./assets/home/home_btn_ride_style.webp?v=1.5.1','./assets/home/home_btn_season.webp?v=1.5.1','./assets/home/home_btn_interest.webp?v=1.5.1',
+  './assets/home/home_btn_saved.webp?v=1.5.1','./assets/home/home_btn_history.webp?v=1.5.1','./icons/icon-192.png?v=1.5.1','./icons/icon-512.png?v=1.5.1'
 ];
 self.addEventListener('install',event=>{event.waitUntil((async()=>{
   const shell=await caches.open(SHELL_CACHE); for(const url of SHELL){try{await shell.add(url);}catch(e){console.warn('shell cache skip',url,e);}}
@@ -15,7 +15,12 @@ self.addEventListener('install',event=>{event.waitUntil((async()=>{
 self.addEventListener('activate',event=>{event.waitUntil((async()=>{
   const keys=await caches.keys(); await Promise.all(keys.filter(k=>k.startsWith('michino-shell-')&&k!==SHELL_CACHE).map(k=>caches.delete(k)));
   await self.clients.claim();
+  const clients=await self.clients.matchAll({type:'window',includeUncontrolled:true});
+  await Promise.all(clients.map(client=>{
+    try{return client.navigate(client.url)}catch(e){return Promise.resolve()}
+  }));
 })());});
+self.addEventListener('message',event=>{if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();});
 self.addEventListener('fetch',event=>{
   const u=new URL(event.request.url);
   if(event.request.method!=='GET') return;
