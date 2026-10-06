@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.5.8';
+const APP_VERSION='PWA 1.5.9';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -34,6 +34,28 @@ function showView(id){document.querySelectorAll('.view').forEach(x=>x.classList.
 document.querySelectorAll('.side button').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
 function closeModal(){$('modal').classList.add('hidden');$('modalBody').innerHTML='';}
 function modal(html){$('modalBody').innerHTML=html;$('modal').classList.remove('hidden');}
+function openUsageGuide(){
+  const items=[
+    {icon:'🎲',title:'道の駅すごろく',feature:'道の駅をいくつかつないで、走る理由そのものを作るメニュー。',steps:['スタート地点を決める','目的地までの最大直線距離と、目標総走行距離を選ぶ','立ち寄る道の駅の数とミッション有無を決める','「すごろく開始！」でルート候補を見る']},
+    {icon:'📍',title:'行先ガチャ',feature:'距離と雰囲気だけ決めて、行き先を1か所ランダムに選ぶ。',steps:['スタート地点を決める','行きたい距離と許容幅を選ぶ','海・山・田舎・市街地など雰囲気を選ぶ','「行先ガチャ！」で目的地を決める']},
+    {icon:'🔗',title:'乗り継ぎガチャ',feature:'次の行き先を少しずつ決めながら、行き当たりばったりで走る。',steps:['最初のスタート地点を決める','次に進む距離と方角を選ぶ','「次のマスを決める！」を押す','到着候補が次のスタートになり、続けて乗り継げる']},
+    {icon:'🛣️',title:'寄り道しよう',feature:'最終目的地は変えず、途中に小さな道草を1つ足す。',steps:['スタート地点と最終目的地を設定する','道草レベルを選ぶ','景色・甘味・カフェ・温泉など種類を選ぶ','基準地点と半径を決めて「途中でこれ、どう？」を押す']},
+    {icon:'🧩',title:'ここからどこ行く？',feature:'「このくらい先」にある登録スポットを距離帯から探す。',steps:['スタート地点を決める','どのくらい先まで行くか選ぶ','道の駅・定番・寄り道など対象を選ぶ','「この条件で探す」で候補を見る']},
+    {icon:'🌤️',title:'今日の走り方',feature:'距離・気分・方角から、今日ちょうどよさそうな走り方を提案する。',steps:['スタート地点を決める','今日はどのくらい走るか選ぶ','景色・食べ物・癒しなど気分を選ぶ','方角を選び「この感じで探す！」を押す','検索エリアと検索テーマを確認してGoogle Mapsでも探せる']},
+    {icon:'🌸',title:'季節を走る',feature:'春夏秋冬の景色や、その時期らしい場所を探す。',steps:['スタート地点を決める','季節を選ぶ。今の季節は自動選択も可能','最大直線距離を決める','「この条件で季節の候補を見る」で探す']},
+    {icon:'🗾',title:'気になる場所',feature:'県・スポット区分・カテゴリから、登録地点を眺めて次の候補を探す。',steps:['都道府県を選ぶ','定番・寄り道・道の駅など区分を選ぶ','カテゴリを選び「候補を見る」','マップ確認・保存・☆訪問済み・メモを使える']},
+    {icon:'📚',title:'登録スポットを見る',feature:'登録済みスポットを一覧から細かく探すための検索メニュー。',steps:['都道府県・区分・カテゴリを選ぶ','必要なら名称でも絞り込む','「表示」で一覧を見る','マップ確認・☆訪問済み・メモを使える']},
+    {icon:'📖',title:'旅の履歴',feature:'実際に行った場所へ、訪問記録と自分のメモを残す。',steps:['「現在地を取得して記録」を押す','300m以内の登録地点があれば、その地点として記録できる','登録地点がなければ座標とメモを保存する','★・訪問回数・日時・メモを残せる','不要になったメモや旅の記録は削除できる']},
+    {icon:'🏍️',title:'お気に入りのルート',feature:'各メニューで保存したルートをあとから見返して、もう一度走れる。',steps:['保存済みルートを一覧で見る','「コースを見る」で立ち寄り地点を確認する','Google Mapsや車両別ルートを開く','不要なルートは選択して削除する']}
+  ];
+  const cards=items.map((x,i)=>'<details class="usage-menu-card"'+(i===0?' open':'')+'><summary><span class="usage-icon">'+x.icon+'</span><span><b>'+esc(x.title)+'</b><small>'+esc(x.feature)+'</small></span></summary><div class="usage-menu-body"><div class="usage-label">使い方</div><ol>'+x.steps.map(v=>'<li>'+esc(v)+'</li>').join('')+'</ol></div></details>').join('');
+  modal('<div class="usage-guide"><h2>？ 道の途中。の使い方</h2>'+
+    '<p class="usage-lead">「どこへ行こう？」に迷った時に、目的地を決めたり、寄り道を足したり、走った記録を残したりするためのアプリです。</p>'+
+    '<div class="usage-common"><h3>📍 まず覚えておく共通操作</h3><p><b>スタート地点</b>は、現在地・駅・Google Mapsで選んだ場所などから設定できます。</p><p><b>🗺 マップで確認</b>で場所を見て、ルートがある画面では125cc以下／250cc以上などのナビ用ボタンも使えます。</p><p><b>☆</b> は訪問済みマーク、<b>📝 メモ</b> はその場所の記録です。★の変更や削除は確認してから反映されます。</p></div>'+
+    '<div class="usage-list">'+cards+'</div>'+
+    '<div class="usage-footer-note">※ 各距離は候補抽出用の直線距離が中心です。実際の走行距離や通行可否はGoogle Mapsや現地の道路標識・交通規制を確認してください。</div></div>');
+}
+
 function openAbout(){modal(`<h2>道の途中。</h2>
   <p><b>Ver${esc(APP_VERSION)}</b></p>
   <p>乗る理由を作ったり、行ってみたい場所を眺めたりするためのツールです。</p>
