@@ -108,13 +108,17 @@
     <div id="detourStart"></div>
 
     <div class="panel detour-destination-panel">
-      <h3>🏁 最終目的地</h3>
+      <h3>🛣 どのルートで道草する？</h3>
       <div id="detourDestinationStatus" class="origin-status">現在：未設定</div>
-      <div class="start-simple">
-        <button class="soft start-map" type="button" onclick="openDetourDestinationMap()">🗺 Googleマップから選ぶ</button>
-        <button class="soft reflect-btn" type="button" onclick="reflectDetourDestination()">🔗 コピーしたリンクを反映</button>
+      <div class="detour-route-source">
+        <button class="soft" type="button" onclick="chooseDetourManual()">🗺 自分で目的地を選ぶ</button>
+        <button class="soft" type="button" onclick="openDetourFavoritePicker()">⭐ お気に入りのルートから選ぶ</button>
       </div>
-      <div class="note">行先ガチャなどの結果から入った場合は、目的地が自動で引き継がれます。</div>
+      <div id="detourManualControls" class="start-simple">
+        <button class="soft start-map" type="button" onclick="openDetourDestinationMap()">🗺 Googleマップを開く</button>
+        <button class="soft reflect-btn" type="button" onclick="reflectDetourDestination()">🔗 コピーした目的地を反映</button>
+      </div>
+      <div class="note">寄り道ガチャは目的地を決めません。自分で決めた目的地、または保存したお気に入りルートの“途中”に道草を1つ足します。</div>
     </div>
 
     <div class="choice-section">
