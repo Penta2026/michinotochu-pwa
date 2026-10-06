@@ -108,15 +108,15 @@
     <div id="detourStart"></div>
 
     <div class="panel detour-destination-panel">
-      <h3>🛣 どのルートで道草する？</h3>
+      <h3>🏁 目的地設定</h3>
       <div id="detourDestinationStatus" class="origin-status">現在：未設定</div>
-      <div class="detour-route-source">
-        <button class="soft" type="button" onclick="chooseDetourManual()">🗺 Googleマップでリンクを取得</button>
+      <div class="start-simple detour-destination-actions">
+        <div class="map-pick-row">
+          <button class="soft start-map" type="button" onclick="chooseDetourManual();openDetourDestinationMap()">🗺 Googleマップで目的地を選ぶ</button>
+          <button class="info-btn" type="button" onclick="showDetourDestinationHelp()" title="使い方">ⓘ</button>
+        </div>
         <button class="soft" type="button" onclick="openDetourFavoritePicker()">⭐ お気に入りのルートから選ぶ</button>
-      </div>
-      <div id="detourManualControls" class="start-simple">
-        <button class="soft start-map" type="button" onclick="openDetourDestinationMap()">🗺 Googleマップで目的地を選ぶ</button>
-        <button class="soft reflect-btn" type="button" onclick="reflectDetourDestination()">🔗 Copy Linkを反映</button>
+        <button class="soft reflect-btn" type="button" onclick="reflectDetourDestination()">🔗 コピーしたリンクを反映</button>
       </div>
       <div class="note">寄り道ガチャは目的地を決めません。自分で決めた目的地、または保存したお気に入りルートの“途中”に道草を1つ足します。</div>
     </div>
