@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.5.5';
+const APP_VERSION='PWA 1.5.6';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -931,8 +931,9 @@ function tripMemoListHtml(r){
   return '<div class="trip-memo-list">'+notes.map(n=>'<div class="trip-memo-entry"><div class="trip-memo-date">'+esc(tripDateTime(n.at))+'</div><div>'+esc(n.text).replace(/\n/g,'<br>')+'</div></div>').join('')+'</div>';
 }
 function openTripMemo(key,notice=''){
-  const r=tripRecordForEdit(key);if(!r)return;
+  const stored=tripRecordByKey(key),r=stored||tripRecordForEdit(key);if(!r)return;
   const map=googlePoint(r.lat,r.lng,r.name);
+  const hasRecord=!!stored&&(((stored.visits||[]).length)||tripMemoCount(stored)||stored.starred);
   modal('<h2>📝 '+esc(r.name)+'</h2>'+
     (notice?'<div class="trip-memo-notice">'+esc(notice)+'</div>':'')+
     '<div class="meta">'+(r.registered?'登録地点':'未登録地点')+' / '+Number(r.lat).toFixed(6)+', '+Number(r.lng).toFixed(6)+'</div>'+
@@ -941,7 +942,8 @@ function openTripMemo(key,notice=''){
     '<button type="button" class="primary trip-memo-add" onclick="appendTripMemo(\''+escJs(key)+'\')">📝 追記する</button>'+
     '<div class="actions"><a class="mapbtn map-check" href="'+map+'" target="_blank" rel="noopener">🗺 マップで確認</a>'+
     (!r.registered?'<button type="button" class="soft" onclick="openTripRecommendation(\''+escJs(key)+'\')">✉ 登録地点として送る</button>':'')+'</div>'+
-    (tripMemoCount(r)?'<div class="trip-delete-zone"><button type="button" class="danger" onclick="deleteTripMemo(\''+escJs(key)+'\')">この地点のメモをすべて消す</button></div>':''));
+    (tripMemoCount(r)?'<div class="trip-delete-zone"><button type="button" class="danger" onclick="deleteTripMemo(\''+escJs(key)+'\')">この地点のメモをすべて消す</button></div>':'')+
+    (hasRecord?'<div class="trip-record-delete-zone"><div class="meta">'+(r.registered?'★・訪問履歴・メモをまとめて削除します。登録スポット自体は消えません。':'この未登録地点の履歴を丸ごと削除します。')+'</div><button type="button" class="danger" onclick="deleteTripRecord(\''+escJs(key)+'\')">🗑 この旅の記録を削除</button></div>':''));
 }
 function appendTripMemo(key){
   const text=String($('tripMemoText')?.value||'').trim();if(!text)return alert('追記するメモを入力してください。');
@@ -953,6 +955,18 @@ function deleteTripMemo(key){
   const store=loadTripStore(),r=store.records[key];if(!r||!tripMemoCount(r))return;
   if(!confirm('「'+r.name+'」のメモをすべて消しますか？\n訪問記録と★は残ります。'))return;
   r.notes=[];r.updatedAt=new Date().toISOString();store.records[key]=r;saveTripStore(store);refreshTripSpotButtons(key);renderTripHistory();openTripMemo(key,'メモを削除しました。');
+}
+function deleteTripRecord(key){
+  const store=loadTripStore(),r=store.records[key];if(!r)return;
+  const msg=r.registered
+    ?'「'+r.name+'」の旅の記録を削除しますか？\n\n★・訪問回数・訪問日時・メモがすべて消えます。\n登録スポット自体は残ります。'
+    :'「'+r.name+'」の旅の記録を丸ごと削除しますか？\n\nこの未登録地点の座標・訪問履歴・メモがすべて消えます。';
+  if(!confirm(msg))return;
+  delete store.records[key];
+  saveTripStore(store);
+  refreshTripSpotButtons(key);
+  closeModal();
+  renderTripHistory();
 }
 function allRegisteredTripSpots(){
   return[
