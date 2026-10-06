@@ -17,9 +17,9 @@
       "purpose": "any"
     },
     {
-      "src": "icons/icon-v144.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "icons/icon-512-v144.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     }
   ],
