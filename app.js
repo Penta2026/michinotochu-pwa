@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.3.7';
+const APP_VERSION='PWA 1.3.8';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -360,9 +360,24 @@ function detourMapZoomForRadius(radius){
   if(r<=60)return 9;
   return 8;
 }
+function detourMapSearchWord(genre){
+  return {
+    random:'観光スポット',
+    view:'展望 景色',
+    sweets:'甘味 スイーツ',
+    cafe:'カフェ 喫茶店',
+    food:'食事 レストラン',
+    onsen:'温泉',
+    road:'道の駅',
+    shrine:'神社 寺',
+    park:'公園',
+    unusual:'珍スポット',
+    season:'季節 観光スポット'
+  }[genre]||'観光スポット';
+}
 function detourFoodSearchUrl(route,genre,point=null,radius=10){
   const p=point||detourRandomRoutePoint(route);
-  const word={cafe:'カフェ 喫茶店',sweets:'甘味 スイーツ',food:'食事 レストラン'}[genre]||'飲食店';
+  const word=detourMapSearchWord(genre);
   const zoom=detourMapZoomForRadius(radius);
   return 'https://www.google.com/maps/search/'+encodeURIComponent(word)+'/@'+(+p.lat)+','+(+p.lng)+','+zoom+'z';
 }
@@ -492,12 +507,6 @@ function runDetourGacha(){
   const spec=detourLevelSpec(level);
   const route=detourRoute;
   const base=detourAnchorPoint(route,anchor);
-
-  if(['cafe','sweets','food'].includes(genre)){
-    renderExternalDetourSearch(route,genre,level,anchor,radius);
-    return;
-  }
-
   const routeNodes=[route.origin,...route.points];
   const all=detourAllSpots();
 
@@ -516,34 +525,50 @@ function runDetourGacha(){
   const host=$('detourResult');
   if(!host)return;
 
-  if(!pool.length){
-    host.className='result';
-    host.innerHTML=`<div class="detour-empty"><b>この条件では道草候補が見つからなかったよ。</b>
-      <p class="meta">${esc(detourAnchorLabel(anchor))}から${radius}km以内では候補がありません。距離を広げるか、ジャンルを「おまかせ」にしてみてください。</p></div>`;
-    return;
+  pool.sort((a,b)=>(a._detourDistance+Math.random()*radius*.35)-(b._detourDistance+Math.random()*radius*.35));
+  const pick=pool.length?rand(pool.slice(0,Math.min(25,pool.length))):null;
+  const destination=route.points[route.points.length-1];
+  const mapUrl=detourFoodSearchUrl(route,genre,base,radius);
+  const mapLabel=genre==='random'?'Google Mapsでこの辺を探す':'Google Mapsで'+detourMapSearchWord(genre)+'を探す';
+
+  let registeredHtml='';
+  if(pick){
+    const meta=spotMeta(pick,pick.kind,null);
+    const inserted=detourInsertedPointsByAnchor(route,pick,anchor);
+    const mins=detourStayMinutes(pick,genre);
+    registeredHtml=`<div class="detour-registered">
+      <h4>📚 アプリ登録候補</h4>
+      <div class="detour-picked-head">${iconBadge(pick,pick.kind)}<div><h3>${esc(pick.name)}</h3><div class="meta">${esc(meta)}</div></div></div>
+      ${pick.summary?`<p>${esc(pick.summary)}</p>`:''}
+      <div class="detour-stats">
+        <span>${esc(detourAnchorLabel(anchor))}から約 ${pick._detourDistance.toFixed(1)}km</span>
+        <span>滞在目安 約${mins}分</span>
+      </div>
+      <a class="mapbtn" href="${googleRoute(route.origin,inserted,'250')}" target="_blank" rel="noopener">この登録候補に寄って走る</a>
+    </div>`;
+  }else{
+    registeredHtml=`<div class="detour-registered detour-registered-empty">
+      <h4>📚 アプリ登録候補</h4>
+      <p class="meta">${esc(detourAnchorLabel(anchor))}から${radius}km以内には、このジャンルの登録候補がありません。</p>
+    </div>`;
   }
 
-  pool.sort((a,b)=>(a._detourDistance+Math.random()*radius*.35)-(b._detourDistance+Math.random()*radius*.35));
-  const pick=rand(pool.slice(0,Math.min(25,pool.length)));
-  const meta=spotMeta(pick,pick.kind,null);
-  const inserted=detourInsertedPointsByAnchor(route,pick,anchor);
-  const mins=detourStayMinutes(pick,genre);
-  const destination=route.points[route.points.length-1];
   host.className='result';
   host.innerHTML=`<div class="detour-picked">
-    <div class="detour-mission-title">${esc(detourExperienceTitle(pick,genre))}</div>
-    <div class="detour-picked-head">${iconBadge(pick,pick.kind)}<div><h3>${esc(pick.name)}</h3><div class="meta">${esc(meta)}</div></div></div>
-    ${pick.summary?`<p>${esc(pick.summary)}</p>`:''}
+    <div class="detour-mission-title">${pick?esc(detourExperienceTitle(pick,genre)):'🎲 この辺で道草'}</div>
     <div class="detour-stats">
       <span>${esc(spec.label)}</span>
-      <span>${esc(detourAnchorLabel(anchor))}から約 ${pick._detourDistance.toFixed(1)}km</span>
-      <span>指定範囲 ${radius}km以内</span>
-      <span>滞在目安 約${mins}分</span>
+      <span>${esc(detourAnchorLabel(anchor))} 基準</span>
+      <span>半径 ${radius}km</span>
     </div>
+    <div class="detour-map-search">
+      <a class="mapbtn primary" href="${mapUrl}" target="_blank" rel="noopener">🗺 ${esc(mapLabel)}</a>
+      <p class="meta">Google Mapsでは、選んだ基準地点を中心に検索します。指定kmは地図表示範囲の目安です。</p>
+    </div>
+    ${registeredHtml}
     <p class="meta">最終目的地「${esc(destination.name||'目的地')}」はそのまま。</p>
     <div class="detour-actions">
-      <a class="mapbtn primary" href="${googleRoute(route.origin,inserted,'250')}" target="_blank" rel="noopener">ここに寄って走る</a>
-      <button type="button" class="soft" onclick="runDetourGacha()">🎲 別の道草</button>
+      <button type="button" class="soft" onclick="runDetourGacha()">🎲 別の候補</button>
     </div>
   </div>`;
 }
