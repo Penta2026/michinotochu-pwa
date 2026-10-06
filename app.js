@@ -1,10 +1,10 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.2.2';
+const APP_VERSION='PWA 1.3.0';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
-const origins={sug:null,dest:null,relay:null,season:null,nearby:null,interestSave:null};
+const origins={sug:null,dest:null,relay:null,season:null,nearby:null,detour:null,interestSave:null};
 let pendingInterestSave=null;
 let relayTrail=[];
 const FEATURES=[
@@ -53,12 +53,7 @@ function openSupport(){
   location.href='support.html';
 }
 
-function openDetourHome(){
-  modal(`<h2>🎲 寄り道ガチャ</h2>
-    <p>寄り道ガチャは、<b>最終目的地を決めたあと</b>に使う機能です。</p>
-    <p>行き先ガチャや「ここからどこ行く？」などで目的地を決め、ルート結果に表示される <b>「🎲 寄り道する？」</b> から使えます。</p>
-    <div class="actions"><button type="button" class="primary" onclick="closeModal();showView('dest')">行き先を決める</button><button type="button" class="soft" onclick="closeModal()">閉じる</button></div>`);
-}
+function openDetourHome(){showView('detour');}
 
 function openComingSoon(title){
   modal(`<h2>${esc(title)}</h2><p>この機能はただいま準備中です。</p><p class="meta">ホームの入口を先に追加しました。次のアップデートで使えるようにしていきます。</p><div class="actions"><button type="button" class="soft" onclick="closeModal()">閉じる</button></div>`);
@@ -205,28 +200,34 @@ function googleRoute(origin,pts,vehicle='250'){
 }
 
 const DETOUR_GENRES=[
-  ['random','🎲 完全ランダム'],
-  ['view','🌄 景色・展望'],
+  ['random','🎲 おまかせ'],
+  ['view','🌄 景色を見る'],
+  ['sweets','🍡 甘いもの'],
   ['cafe','☕ カフェ'],
-  ['sweets','🍡 甘味'],
-  ['food','🍜 食事'],
+  ['food','🍜 ごはん'],
   ['onsen','♨️ 温泉'],
   ['road','🛣️ 道の駅'],
   ['shrine','⛩️ 神社・寺'],
   ['park','🌳 公園'],
-  ['unusual','👀 珍スポット'],
-  ['season','🌸 季節スポット']
+  ['unusual','👀 ちょっと変なもの'],
+  ['season','🌸 季節を感じる']
 ];
 const detourContexts=new Map();
 let detourContextSeq=0;
+let detourRoute={
+  origin:null,
+  points:[],
+  source:'manual',
+  title:''
+};
 
-function registerDetourContext(origin,destination){
+function registerDetourContext(origin,destinationOrPoints){
   if(detourContexts.size>300)detourContexts.clear();
   const id='dt'+(++detourContextSeq);
+  const points=Array.isArray(destinationOrPoints)?destinationOrPoints:[destinationOrPoints];
   detourContexts.set(id,{
     origin:{...origin},
-    destination:{...destination},
-    candidate:null,
+    points:points.filter(Boolean).map(x=>({...x})),
     vehicle:'250'
   });
   return id;
@@ -237,13 +238,20 @@ function detourCorridorKm(vehicle){
 function detourVehicleLabel(vehicle){
   return ({'50':'50cc','125':'125cc以下','250':'250cc以上','car':'車'})[vehicle]||'250cc以上';
 }
-function detourSegmentMetric(origin,destination,p){
-  const midLat=rad((+origin.lat + +destination.lat)/2);
+function detourLevelSpec(level,vehicle){
+  const vehicleKm=detourCorridorKm(vehicle);
+  if(level==='quick')return{label:'🌱 ちょい道草',corridor:Math.min(2.5,vehicleKm),maxStay:20,major:false};
+  if(level==='rest')return{label:'☕ ひと休み',corridor:Math.min(4.5,vehicleKm),maxStay:40,major:false};
+  if(level==='why')return{label:'🧭 せっかくだから',corridor:vehicleKm,maxStay:75,major:false};
+  return{label:'🎲 何が出ても知らんw',corridor:vehicleKm*1.5,maxStay:999,major:true};
+}
+function detourSegmentMetric(a,b,p){
+  const midLat=rad((+a.lat + +b.lat)/2);
   const kx=111.32*Math.cos(midLat),ky=110.574;
-  const dx=(+destination.lng-(+origin.lng))*kx;
-  const dy=(+destination.lat-(+origin.lat))*ky;
-  const px=(+p.lng-(+origin.lng))*kx;
-  const py=(+p.lat-(+origin.lat))*ky;
+  const dx=(+b.lng-(+a.lng))*kx;
+  const dy=(+b.lat-(+a.lat))*ky;
+  const px=(+p.lng-(+a.lng))*kx;
+  const py=(+p.lat-(+a.lat))*ky;
   const len2=dx*dx+dy*dy;
   if(!len2)return{t:0,perp:Math.hypot(px,py)};
   const rawT=(px*dx+py*dy)/len2;
@@ -251,8 +259,23 @@ function detourSegmentMetric(origin,destination,p){
   const qx=dx*t,qy=dy*t;
   return{t:rawT,perp:Math.hypot(px-qx,py-qy)};
 }
+function detourClosestSegment(route,p){
+  const nodes=[route.origin,...route.points];
+  let best={segment:-1,perp:Infinity,t:0};
+  for(let i=0;i<nodes.length-1;i++){
+    const m=detourSegmentMetric(nodes[i],nodes[i+1],p);
+    if(m.t<0||m.t>1)continue;
+    if(m.perp<best.perp)best={segment:i,perp:m.perp,t:m.t};
+  }
+  return best;
+}
 function detourText(x){
   return [x.name,x.category,x.summary,x.featureLabel,x.featureCategory,x.kind].filter(Boolean).join(' ');
+}
+function detourIsMajorDestination(x){
+  const t=detourText(x);
+  const fc=String(x.featureCategory||'');
+  return fc==='museum'||/博物館|美術館|ミュージアム|資料館|記念館|科学館|水族館|動物園|遊園地|テーマパーク|大型施設/.test(t);
 }
 function detourGenreMatch(x,genre){
   if(genre==='random')return true;
@@ -261,14 +284,14 @@ function detourGenreMatch(x,genre){
   const t=detourText(x);
   const fc=String(x.featureCategory||'');
   const re={
-    view:/展望|眺望|景色|岬|高原|山頂|海岸|湖|滝|渓谷|峡谷|棚田|橋/,
+    view:/展望|眺望|景色|岬|高原|山頂|海岸|湖|滝|渓谷|峡谷|棚田|橋|夕日|夜景/,
     cafe:/カフェ|喫茶|珈琲|コーヒー|茶房|茶屋/,
     sweets:/甘味|スイーツ|団子|饅頭|まんじゅう|たい焼|ソフト|ジェラート|アイス|菓子|ケーキ|プリン/,
     food:/食堂|レストラン|ラーメン|うどん|そば|丼|定食|焼肉|お好み|バーガー|食事|グルメ/,
     onsen:/温泉|温浴|銭湯|スパ|湯/,
     shrine:/神社|神宮|大社|寺|寺院|観音|不動|霊場/,
     park:/公園|庭園|植物園|花畑|フラワー/,
-    unusual:/珍スポット|珍|奇|巨大|レトロ|秘境|廃|不思議/
+    unusual:/珍スポット|珍|奇|巨大|レトロ|秘境|不思議|変わった/
   }[genre];
   const fcMap={view:'view',onsen:'onsen',shrine:'shrine',park:'park',unusual:'unusual_ui'};
   return (fcMap[genre]&&fc===fcMap[genre]) || Boolean(re&&re.test(t));
@@ -277,21 +300,14 @@ function detourStayMinutes(x,genre){
   if(genre==='onsen'||detourGenreMatch(x,'onsen'))return 70;
   if(genre==='food'||detourGenreMatch(x,'food'))return 45;
   if(genre==='cafe'||detourGenreMatch(x,'cafe'))return 35;
-  if(genre==='park'||detourGenreMatch(x,'park'))return 40;
-  if(genre==='season')return 45;
-  if(genre==='shrine'||detourGenreMatch(x,'shrine'))return 30;
+  if(genre==='park'||detourGenreMatch(x,'park'))return 35;
+  if(genre==='season')return 40;
+  if(genre==='shrine'||detourGenreMatch(x,'shrine'))return 25;
   if(genre==='sweets'||detourGenreMatch(x,'sweets'))return 20;
   if(genre==='road'||x.kind==='道の駅')return 20;
-  if(genre==='view'||detourGenreMatch(x,'view'))return 20;
-  return 30;
-}
-function detourTimeAllowed(x,time,genre){
-  if(time==='any')return true;
-  const mins=detourStayMinutes(x,genre);
-  if(time==='quick')return mins<=20;
-  if(time==='30')return mins<=35;
-  if(time==='60')return mins<=70;
-  return true;
+  if(genre==='view'||detourGenreMatch(x,'view'))return 15;
+  if(genre==='unusual'||detourGenreMatch(x,'unusual'))return 20;
+  return 25;
 }
 function detourAllSpots(){
   return [
@@ -299,102 +315,178 @@ function detourAllSpots(){
     ...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)}))
   ].filter(x=>Number.isFinite(+x.lat)&&Number.isFinite(+x.lng));
 }
-function detourFoodSearchUrl(ctx,genre){
-  const lat=(+ctx.origin.lat + +ctx.destination.lat)/2;
-  const lng=(+ctx.origin.lng + +ctx.destination.lng)/2;
+function detourExperienceTitle(x,genre){
+  if(genre==='view'||detourGenreMatch(x,'view'))return'🌄 ちょっと景色を見る';
+  if(genre==='sweets'||detourGenreMatch(x,'sweets'))return'🍡 甘いものをひとつ';
+  if(genre==='cafe'||detourGenreMatch(x,'cafe'))return'☕ ちょっとひと息';
+  if(genre==='food'||detourGenreMatch(x,'food'))return'🍜 途中で腹ごしらえ';
+  if(genre==='onsen'||detourGenreMatch(x,'onsen'))return'♨️ ひとっ風呂寄ってく？';
+  if(genre==='road'||x.kind==='道の駅')return'🛣️ 道の駅でちょっと休憩';
+  if(genre==='shrine'||detourGenreMatch(x,'shrine'))return'⛩️ 小さくお参り';
+  if(genre==='park'||detourGenreMatch(x,'park'))return'🌳 少しだけ外で休憩';
+  if(genre==='unusual'||detourGenreMatch(x,'unusual'))return'👀 ちょっと変なものを見る';
+  if(genre==='season')return'🌸 季節をひとつ拾う';
+  return'🎲 途中でこれ、どう？';
+}
+function detourFoodSearchUrl(route,genre){
+  const destination=route.points[route.points.length-1];
+  const lat=(+route.origin.lat + +destination.lat)/2;
+  const lng=(+route.origin.lng + +destination.lng)/2;
   const word={cafe:'カフェ 喫茶店',sweets:'甘味 スイーツ',food:'食事 レストラン'}[genre]||'飲食店';
   return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(lat+','+lng+' 周辺 '+word);
 }
-function openDetour(id){
-  const ctx=detourContexts.get(id);
-  if(!ctx)return alert('寄り道条件を作り直してください。');
-  const genreOptions=DETOUR_GENRES.map(([v,l])=>`<option value="${v}">${l}</option>`).join('');
-  modal(`<h2>🎲 寄り道ガチャ</h2>
-    <p class="detour-lead"><b>${esc(ctx.origin.label||'スタート')}</b> → <b>${esc(ctx.destination.name||'目的地')}</b><br>
-    最終目的地は変えず、道中に1か所だけ寄り道候補を追加します。</p>
-    <div class="detour-form">
-      <label>寄り道ジャンル<select id="detourGenre">${genreOptions}</select></label>
-      <label>寄り道時間<select id="detourTime">
-        <option value="quick">ちょっとだけ</option>
-        <option value="30">30分程度</option>
-        <option value="60">1時間程度</option>
-        <option value="any" selected>時間は気にしない</option>
-      </select></label>
-      <label>車両区分<select id="detourVehicle">
-        <option value="50">50cc</option>
-        <option value="125">125cc以下</option>
-        <option value="250" selected>250cc以上</option>
-        <option value="car">車</option>
-      </select></label>
-    </div>
-    <p class="detour-note">※ 現在地と目的地を結ぶ直線周辺から軽量判定で候補を探します。実際の道路ルートからの距離ではありません。</p>
-    <button type="button" class="primary detour-roll" onclick="rollDetour('${id}')">🎲 寄り道を探す</button>
-    <div id="detourResult" class="detour-result"><p class="meta">条件を選んでガチャしてください。</p></div>`);
+function detourRouteLabel(){
+  if(!detourRoute.origin||!detourRoute.points.length)return'現在：未設定';
+  const d=detourRoute.points[detourRoute.points.length-1];
+  const via=Math.max(0,detourRoute.points.length-1);
+  const src=detourRoute.source==='favorite'?'⭐ お気に入り':'🗺 自分で指定';
+  return `${src} / ${detourRoute.origin.label||'スタート'} → ${d.name||'目的地'}${via?`（途中 ${via}件）`:''}`;
 }
-function rollDetour(id){
+function renderDetourRouteStatus(){
+  const el=$('detourDestinationStatus');
+  if(el)el.textContent=detourRouteLabel();
+}
+function chooseDetourManual(){
+  detourRoute={origin:origins.detour?{...origins.detour}:null,points:[],source:'manual',title:''};
+  renderDetourRouteStatus();
+  const host=$('detourResult');
+  if(host){host.className='result empty';host.textContent='出発地と最終目的地を設定してください。';}
+}
+function openDetourDestinationMap(){
+  window.open('https://www.google.com/maps','_blank','noopener');
+}
+async function reflectDetourDestination(){
+  const raw=await clipboardText();
+  if(!raw)return alert('Googleマップで目的地の共有リンクをコピーしてください。');
+  const q=await resolveMapLink(raw);
+  if(!q)return alert('共有リンクから目的地を取得できませんでした。');
+  if(!origins.detour)return alert('先に出発地を設定してください。');
+  detourRoute={
+    origin:{...origins.detour},
+    points:[{lat:q[0],lng:q[1],name:'Googleマップ共有地点',kind:'目的地'}],
+    source:'manual',
+    title:'自分で選んだルート'
+  };
+  renderDetourRouteStatus();
+  const host=$('detourResult');
+  if(host){host.className='result empty';host.textContent='道草レベルとジャンルを選んでガチャしてください。';}
+}
+function openDetourFavoritePicker(){
+  const a=loadFavorites().filter(x=>x.origin&&(x.points||[]).length);
+  if(!a.length)return modal(`<h2>⭐ お気に入りのルート</h2><p>寄り道に使える保存ルートがまだありません。</p><div class="actions"><button class="soft" onclick="closeModal()">閉じる</button></div>`);
+  modal(`<h2>⭐ どのルートで道草する？</h2>
+    <div class="detour-favorite-list">${a.map((x,i)=>`<button type="button" class="detour-favorite-card" onclick="selectDetourFavorite('${esc(x.id)}')">
+      <b>${esc(x.title||'保存ルート')}</b>
+      <span>${esc(x.startLabel||'スタート')} → ${esc((x.points[x.points.length-1]||{}).name||'目的地')}</span>
+      <small>${esc(x.mode||'')} / 立ち寄り ${x.points.length}件</small>
+    </button>`).join('')}</div>`);
+}
+function selectDetourFavorite(id){
+  const x=loadFavorites().find(v=>v.id===id);
+  if(!x||!x.origin||!(x.points||[]).length)return;
+  detourRoute={
+    origin:{...x.origin,label:x.startLabel||x.origin.label||'スタート'},
+    points:x.points.map(p=>({...p})),
+    source:'favorite',
+    title:x.title||'お気に入りルート'
+  };
+  origins.detour={...detourRoute.origin};
+  const originHost=$('detourOrigin');
+  if(originHost)originHost.textContent='現在：'+(detourRoute.origin.label||'スタート');
+  renderDetourRouteStatus();
+  closeModal();
+  const host=$('detourResult');
+  if(host){host.className='result empty';host.textContent='お気に入りルートを読み込みました。道草条件を選んでください。';}
+}
+function loadDetourFromContext(id){
   const ctx=detourContexts.get(id);
-  if(!ctx)return;
+  if(!ctx||!ctx.origin||!ctx.points.length)return alert('ルートを作り直してください。');
+  detourRoute={
+    origin:{...ctx.origin},
+    points:ctx.points.map(p=>({...p})),
+    source:'route',
+    title:'現在のルート'
+  };
+  origins.detour={...ctx.origin};
+  renderDetourRouteStatus();
+  showView('detour');
+  const originHost=$('detourOrigin');
+  if(originHost)originHost.textContent='現在：'+(ctx.origin.label||'スタート');
+}
+function openDetour(id){
+  loadDetourFromContext(id);
+}
+function detourInsertedPoints(route,pick,segment){
+  const pts=route.points.map(p=>({...p}));
+  const insertIndex=Math.max(0,Math.min(pts.length,segment));
+  pts.splice(insertIndex,0,pick);
+  return pts;
+}
+function runDetourGacha(){
+  if(!detourRoute.origin||!detourRoute.points.length)return alert('出発地と最終目的地を設定するか、お気に入りのルートを選んでください。');
   const genre=$('detourGenre')?.value||'random';
-  const time=$('detourTime')?.value||'any';
+  const level=$('detourLevel')?.value||'rest';
   const vehicle=$('detourVehicle')?.value||'250';
-  ctx.vehicle=vehicle;
-  const baseCorridor=detourCorridorKm(vehicle);
-  const routeLen=dist(ctx.origin.lat,ctx.origin.lng,ctx.destination.lat,ctx.destination.lng);
+  const spec=detourLevelSpec(level,vehicle);
+  const route=detourRoute;
+  const routeNodes=[route.origin,...route.points];
+  const routeLen=routeNodes.slice(0,-1).reduce((sum,p,i)=>sum+dist(p.lat,p.lng,routeNodes[i+1].lat,routeNodes[i+1].lng),0);
   const all=detourAllSpots();
 
   const buildPool=(corridor)=>all.map(x=>{
-    const m=detourSegmentMetric(ctx.origin,ctx.destination,x);
-    return {...x,_detourPerp:m.perp,_detourT:m.t};
+    const m=detourClosestSegment(route,x);
+    return {...x,_detourPerp:m.perp,_detourSegment:m.segment,_detourT:m.t};
   }).filter(x=>{
-    if(x._detourT<0.05||x._detourT>0.95)return false;
-    if(x._detourPerp>corridor)return false;
-    if(dist(ctx.origin.lat,ctx.origin.lng,x.lat,x.lng)<Math.min(1.5,routeLen*0.08))return false;
-    if(dist(ctx.destination.lat,ctx.destination.lng,x.lat,x.lng)<1)return false;
+    if(x._detourSegment<0||x._detourPerp>corridor)return false;
     if(!detourGenreMatch(x,genre))return false;
-    return detourTimeAllowed(x,time,genre);
+    if(detourStayMinutes(x,genre)>spec.maxStay)return false;
+    if(!spec.major&&detourIsMajorDestination(x))return false;
+    if(routeNodes.some(n=>dist(n.lat,n.lng,x.lat,x.lng)<0.5))return false;
+    return true;
   });
 
-  let pool=buildPool(baseCorridor),widened=false;
-  if(!pool.length){pool=buildPool(baseCorridor*1.5);widened=pool.length>0;}
+  let pool=buildPool(spec.corridor),widened=false;
+  if(!pool.length){pool=buildPool(spec.corridor*1.5);widened=pool.length>0;}
   const host=$('detourResult');
   if(!host)return;
 
   if(!pool.length){
-    ctx.candidate=null;
     if(['cafe','sweets','food'].includes(genre)){
-      host.innerHTML=`<div class="detour-empty"><b>アプリ内データでは候補が見つかりませんでした。</b>
-        <p class="meta">このジャンルだけGoogle Mapsでルート中間付近を検索できます。</p>
-        <a class="mapbtn" href="${detourFoodSearchUrl(ctx,genre)}" target="_blank" rel="noopener">🗺 Google Mapsで探す</a>
-        <button type="button" class="soft" onclick="rollDetour('${id}')">🎲 もう一度ガチャ</button></div>`;
+      host.className='result';
+      host.innerHTML=`<div class="detour-empty"><b>アプリ内データではこの道草が見つからなかったよ。</b>
+        <p class="meta">ルート中間付近をGoogle Mapsで探せます。</p>
+        <a class="mapbtn" href="${detourFoodSearchUrl(route,genre)}" target="_blank" rel="noopener">🗺 Google Mapsで探す</a></div>`;
     }else{
-      host.innerHTML=`<div class="detour-empty"><b>この条件では候補が見つかりませんでした。</b>
-        <p class="meta">ジャンル・時間・車両区分を変えてみてください。</p>
-        <button type="button" class="soft" onclick="rollDetour('${id}')">🎲 もう一度ガチャ</button></div>`;
+      host.className='result';
+      host.innerHTML=`<div class="detour-empty"><b>この条件では道草候補が見つからなかったよ。</b>
+        <p class="meta">道草レベルを広げるか、ジャンルを「おまかせ」にしてみてください。</p></div>`;
     }
     return;
   }
 
-  pool.sort((a,b)=>(a._detourPerp+Math.random()*baseCorridor*.7)-(b._detourPerp+Math.random()*baseCorridor*.7));
-  const pick=rand(pool.slice(0,Math.min(30,pool.length)));
-  ctx.candidate=pick;
+  pool.sort((a,b)=>(a._detourPerp+Math.random()*spec.corridor*.65)-(b._detourPerp+Math.random()*spec.corridor*.65));
+  const pick=rand(pool.slice(0,Math.min(25,pool.length)));
   const meta=spotMeta(pick,pick.kind,null);
+  const inserted=detourInsertedPoints(route,pick,pick._detourSegment);
+  const mins=detourStayMinutes(pick,genre);
+  const destination=route.points[route.points.length-1];
+  host.className='result';
   host.innerHTML=`<div class="detour-picked">
+    <div class="detour-mission-title">${esc(detourExperienceTitle(pick,genre))}</div>
     <div class="detour-picked-head">${iconBadge(pick,pick.kind)}<div><h3>${esc(pick.name)}</h3><div class="meta">${esc(meta)}</div></div></div>
     ${pick.summary?`<p>${esc(pick.summary)}</p>`:''}
-    <div class="meta">ルート軸から約 ${pick._detourPerp.toFixed(1)}km / ${esc(detourVehicleLabel(vehicle))}${widened?' / 候補範囲を少し拡大':''}</div>
+    <div class="detour-stats">
+      <span>${esc(spec.label)}</span>
+      <span>ルート軸から約 ${pick._detourPerp.toFixed(1)}km</span>
+      <span>滞在目安 約${mins}分</span>
+      <span>${esc(detourVehicleLabel(vehicle))}</span>
+    </div>
+    <p class="meta">最終目的地「${esc(destination.name||'目的地')}」はそのまま。${widened?'候補が少なかったので範囲を少し広げています。':''}</p>
     <div class="detour-actions">
-      <button type="button" class="primary" onclick="acceptDetour('${id}')">ここに寄る</button>
-      <button type="button" class="soft" onclick="rollDetour('${id}')">🎲 もう一度ガチャ</button>
-      <button type="button" class="soft" onclick="closeModal()">寄り道しない</button>
+      <a class="mapbtn primary" href="${googleRoute(route.origin,inserted,vehicle)}" target="_blank" rel="noopener">ここに寄って走る</a>
+      <button type="button" class="soft" onclick="runDetourGacha()">🎲 別の道草</button>
     </div>
   </div>`;
-}
-function acceptDetour(id){
-  const ctx=detourContexts.get(id);
-  if(!ctx||!ctx.candidate)return;
-  const vehicle=ctx.vehicle||'250';
-  const url=googleRoute(ctx.origin,[ctx.candidate,ctx.destination],vehicle);
-  window.open(url,'_blank','noopener');
 }
 
 function active(v){return !String(v||'').includes('除外')}
@@ -407,7 +499,7 @@ function mapBtn(x,label='マップで確認'){return `<a class="mapbtn map-check
 function routeButtons(origin,pts){
   if(!origin||!pts||!pts.length)return'';
   const d=pts[pts.length-1];
-  const detourId=registerDetourContext(origin,d);
+  const detourId=registerDetourContext(origin,pts);
   return `<div class="route-buttons">
     <a class="mapbtn map-check" href="${googlePoint(d.lat,d.lng,d.name,d)}" target="_blank" rel="noopener">🗺 マップで確認</a>
     <div class="food-search-group">
@@ -423,8 +515,8 @@ function routeButtons(origin,pts){
 function numericValue(selectId,freeId,min,max){const e=$(freeId);if(e&&String(e.value).trim()!==''){const n=+e.value;if(Number.isFinite(n)&&n>=min&&n<=max)return n;}return +$(selectId).value}
 function dirText16(v){return ['北','北北東','北東','東北東','東','東南東','南東','南南東','南','南南西','南西','西南西','西','西北西','北西','北北西'][Math.round(v/22.5)%16]}
 
-function renderStartPanels(){['sug','dest','relay','season','nearby'].forEach(k=>{const host=$(k+'Start');host.innerHTML=`<div class="panel start-panel"><h3>📍 スタート地点</h3><div class="origin-status" id="${k}Origin">現在：未設定</div><div class="start-simple"><button class="soft start-current" onclick="useCurrent('${k}')">◎ 現在地を使う</button><button class="soft start-station" onclick="stationPicker('${k}')">🚉 駅を選ぶ</button><div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('${k}')">🗺 Googleマップから選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div><button class="soft reflect-btn start-reflect" onclick="reflectMapLink('${k}')">🔗 コピーしたリンクを反映</button></div></div>`;});}
-function setOrigin(k,lat,lng,label){origins[k]={lat:+lat,lng:+lng,label:label||'選択地点'};const host=$(`${k}Origin`);if(host)host.textContent=`現在：${origins[k].label}`;if(k==='interestSave'&&pendingInterestSave)showInterestSaveDialog();}
+function renderStartPanels(){['sug','dest','relay','season','nearby','detour'].forEach(k=>{const host=$(k+'Start');host.innerHTML=`<div class="panel start-panel"><h3>📍 スタート地点</h3><div class="origin-status" id="${k}Origin">現在：未設定</div><div class="start-simple"><button class="soft start-current" onclick="useCurrent('${k}')">◎ 現在地を使う</button><button class="soft start-station" onclick="stationPicker('${k}')">🚉 駅を選ぶ</button><div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('${k}')">🗺 Googleマップから選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div><button class="soft reflect-btn start-reflect" onclick="reflectMapLink('${k}')">🔗 コピーしたリンクを反映</button></div></div>`;});}
+function setOrigin(k,lat,lng,label){origins[k]={lat:+lat,lng:+lng,label:label||'選択地点'};const host=$(`${k}Origin`);if(host)host.textContent=`現在：${origins[k].label}`;if(k==='detour'&&detourRoute.source!=='favorite'){detourRoute.origin={...origins[k]};renderDetourRouteStatus();}if(k==='interestSave'&&pendingInterestSave)showInterestSaveDialog();}
 function parseCoords(s){const t=decodeURIComponent(String(s||'').replace(/\+/g,'%20'));const pats=[/@(-?\d{1,2}(?:\.\d+)?),\s*(-?\d{1,3}(?:\.\d+)?)/,/!3d(-?\d{1,2}(?:\.\d+)?)!4d(-?\d{1,3}(?:\.\d+)?)/,/[?&](?:q|query|ll|center)=(-?\d{1,2}(?:\.\d+)?),\s*(-?\d{1,3}(?:\.\d+)?)/,/(-?\d{1,2}(?:\.\d+)?)\s*,\s*(-?\d{1,3}(?:\.\d+)?)/];for(const p of pats){const m=t.match(p);if(m){const a=+m[1],b=+m[2];if(Math.abs(a)<=90&&Math.abs(b)<=180)return[a,b]}}return null}
 function firstUrl(s){const m=String(s||'').match(/https?:\/\/[^\s]+/i);return m?m[0].replace(/[\])。,]+$/,''):null}
 function openStartMap(k){window.open('https://www.google.com/maps','_blank','noopener')}
