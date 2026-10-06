@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.5.13';
+const APP_VERSION='PWA 1.5.14';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
@@ -41,7 +41,7 @@ function openUsageGuide(){
     {icon:'🔗',title:'乗り継ぎガチャ',feature:'次の行き先を少しずつ決めながら、行き当たりばったりで走る。',steps:['最初のスタート地点を決める','次に進む距離と方角を選ぶ','「次のマスを決める！」を押す','到着候補が次のスタートになり、続けて乗り継げる']},
     {icon:'🛣️',title:'寄り道しよう',feature:'最終目的地は変えず、途中に小さな道草を1つ足す。',steps:['スタート地点と最終目的地を設定する','道草レベルを選ぶ','景色・甘味・カフェ・温泉など種類を選ぶ','基準地点と半径を決めて「途中でこれ、どう？」を押す']},
     {icon:'🧩',title:'ここからどこ行く？',feature:'「このくらい先」にある登録スポットを距離帯から探す。',steps:['スタート地点を決める','どのくらい先まで行くか選ぶ','道の駅・定番・寄り道など対象を選ぶ','「この条件で探す」で候補を見る']},
-    {icon:'🌤️',title:'今日の走り方',feature:'距離・気分・方角から、今日ちょうどよさそうな走り方を提案する。',steps:['スタート地点を決める','今日はどのくらい走るか選ぶ','景色・食べ物・癒しなど気分を選ぶ','方角を選び「この感じで探す！」を押す','結果画面の「探すものジャンルを変える」から、今の大ジャンルの中で探す内容を切り替えられる。「なんか食べたい」ではカフェ・ハンバーガー・スイーツ・ごはんを選択可能','検索エリアと検索テーマを確認してGoogle Mapsでも探せる']},
+    {icon:'🌤️',title:'今日の走り方',feature:'距離・気分・方角から、今日ちょうどよさそうな走り方を提案する。',steps:['スタート地点を決める','今日はどのくらい走るか選ぶ','景色・食べ物・癒しなど気分を選ぶ','方角を選び「この感じで探す！」を押す','結果画面の「探すものジャンルを変える」から、大ジャンルはそのままで景色・歴史・建築・カフェ・温泉など細かい探し方を切り替えられる','検索エリアと検索テーマを確認してGoogle Mapsでも探せる']},
     {icon:'🌸',title:'季節を走る',feature:'春夏秋冬の景色や、その時期らしい場所を探す。',steps:['スタート地点を決める','季節を選ぶ。今の季節は自動選択も可能','最大直線距離を決める','「この条件で季節の候補を見る」で探す']},
     {icon:'🗾',title:'気になる場所',feature:'県・スポット区分・カテゴリから、登録地点を眺めて次の候補を探す。',steps:['都道府県を選ぶ','定番・寄り道・道の駅など区分を選ぶ','カテゴリを選び「候補を見る」','マップ確認・保存・☆訪問済み・メモを使える']},
     {icon:'📚',title:'登録スポットを見る',feature:'登録済みスポットを一覧から細かく探すための検索メニュー。',steps:['都道府県・区分・カテゴリを選ぶ','必要なら名称でも絞り込む','「表示」で一覧を見る','マップ確認・☆訪問済み・メモを使える']},
@@ -696,21 +696,76 @@ function runRelay(){const o=requireOrigin('relay');if(!o)return;const t=numericV
 const RIDE_STYLE_KEY='michinotochu_ride_style_v1';
 const RIDE_DISTANCE_LABELS={'10':'🛵 ちょい乗り','20':'🌿 ひとっ走り','40':'🏍️ ぶらっと行こう','70':'🌤️ いい感じに走る','100':'🔥 今日は走るぞ','300':'🚀 遠くまで行こう'};
 const RIDE_MOOD_LABELS={random:'🎲 おまかせ',road:'🏠 道の駅へ',classic:'⭐ いいとこ行きたい',detour:'🌿 ちょっと寄りたい',scenery:'🌊 景色が見たい',food:'☕ なんか食べたい',heal:'♨️ 癒されたい'};
+
 const RIDE_FOOD_GENRES={
-  random:{label:'🎲 おまかせ',query:null},
+  random:{label:'🎲 おまかせ'},
   cafe:{label:'☕ カフェ・喫茶',query:'カフェ 喫茶店',re:/カフェ|喫茶|珈琲|コーヒー|茶房|茶屋/},
   burger:{label:'🍔 ハンバーガー',query:'ハンバーガー バーガー',re:/ハンバーガー|バーガー/},
   sweets:{label:'🍰 スイーツ・甘味',query:'スイーツ 甘味',re:/甘味|スイーツ|団子|饅頭|まんじゅう|ソフト|ジェラート|アイス|菓子|ケーキ|プリン|たい焼き/},
   meal:{label:'🍚 ごはん',query:'ごはん 食堂 レストラン',re:/食堂|レストラン|ラーメン|うどん|そば|丼|定食|グルメ|食事|お好み焼き/}
 };
-let rideFoodGenre='random';
-function effectiveRideFoodGenre(){
-  if(rideFoodGenre!=='random'&&RIDE_FOOD_GENRES[rideFoodGenre])return rideFoodGenre;
-  return rand(['cafe','burger','sweets','meal']);
+const RIDE_SCENERY_GENRES={
+  random:{label:'🎲 おまかせ'},
+  sea:{label:'🌊 海・海岸',query:'海岸 景色',tags:['sea'],re:/海|海岸|浜|岬|島|灯台|港|湾|磯|海峡/},
+  mountain:{label:'⛰️ 山・高原',query:'山 高原 絶景',re:/山|岳|高原|峠|峰|丘|草原|牧場/},
+  lake:{label:'🏞️ 湖・池',query:'湖 池 景色',re:/湖|池|沼|湿原/},
+  waterfall:{label:'💧 滝・渓谷',query:'滝 渓谷',re:/滝|渓谷|峡谷|峡|渓流|清流/},
+  view:{label:'🌄 展望・絶景',query:'展望台 絶景',tags:['view'],re:/展望|眺望|パノラマ|ビューポイント|景勝/},
+  night:{label:'🌃 夜景',query:'夜景スポット',re:/夜景|夕景|夕日|星空|ライトアップ/}
+};
+const RIDE_CLASSIC_GENRES={
+  random:{label:'🎲 おまかせ'},
+  scenery:{label:'🌄 絶景・景勝地',query:'絶景 観光名所',tags:['view','sea','nature','park'],re:/絶景|景勝|展望|眺望/},
+  history:{label:'🏯 歴史・史跡',query:'史跡 歴史 観光',tags:['history','shrine'],re:/史跡|歴史|城|古墳|宿場|街並|町並/},
+  architecture:{label:'🌉 建築・橋・ダム',query:'建築 橋 ダム 観光',tags:['construction'],re:/建築|洋館|橋|ダム|塔|水門|発電所/},
+  unusual:{label:'👀 珍スポット',query:'珍スポット',tags:['unusual_ui'],re:/珍|奇妙|不思議|変わった|巨大/},
+  culture:{label:'🏛️ 文化・資料館',query:'博物館 資料館 文化',tags:['museum','experience'],re:/博物館|資料館|記念館|美術館|工房|文化|伝統|工芸/}
+};
+const RIDE_DETOUR_GENRES={
+  random:{label:'🎲 おまかせ'},
+  view:{label:'🌄 景色',query:'展望スポット 景色',tags:['view','sea','nature'],re:/展望|眺望|景色|海|山|高原|湖|滝/},
+  shrine:{label:'⛩️ 神社・寺',query:'神社 寺',tags:['shrine'],re:/神社|大社|神宮|寺|寺院|霊場/},
+  park:{label:'🌳 公園・花',query:'公園 花',tags:['park'],re:/公園|庭園|花園|植物園|花畑|桜並木/},
+  unusual:{label:'👀 珍スポット',query:'珍スポット',tags:['unusual_ui'],re:/珍|奇妙|不思議|変わった|巨大/},
+  construction:{label:'🌉 橋・建設物',query:'橋 ダム 建造物',tags:['construction'],re:/橋|ダム|堰|水門|隧道|トンネル|塔|高架/},
+  experience:{label:'🎨 体験・文化',query:'体験 文化 スポット',tags:['experience','museum'],re:/工房|市場|牧場|農園|ワイナリー|醸造|酒蔵|陶芸|体験|工芸|文化/}
+};
+const RIDE_HEAL_GENRES={
+  random:{label:'🎲 おまかせ'},
+  healing:{label:'🌿 ヒーリングスポット',queries:['癒しスポット','ヒーリングスポット','パワースポット'],re:/癒し|ヒーリング|パワースポット|霊場|名水|巨木|森林浴/},
+  shrine:{label:'⛩️ 神社・寺',queries:['神社','寺','神社 寺'],tags:['shrine']},
+  onsen:{label:'♨️ 温泉',queries:['日帰り温泉','温泉','露天風呂'],tags:['onsen'],re:/温泉|湯治|共同浴場|足湯/},
+  nature:{label:'🌲 静かな自然',queries:['森林浴','庭園','滝','湖','高原'],tags:['nature','park'],re:/庭園|森林|森|湖|池|滝|高原|渓谷|名水|巨木/}
+};
+const RIDE_SUBGENRE_CONFIGS={
+  food:RIDE_FOOD_GENRES,
+  scenery:RIDE_SCENERY_GENRES,
+  classic:RIDE_CLASSIC_GENRES,
+  detour:RIDE_DETOUR_GENRES,
+  heal:RIDE_HEAL_GENRES
+};
+const rideSubgenreSelections={food:'random',scenery:'random',classic:'random',detour:'random',heal:'random'};
+let rideLastSearchBearing=null;
+
+function rideSubgenreConfig(mood){return RIDE_SUBGENRE_CONFIGS[mood]||null}
+function rideSubgenreKeys(mood){const cfg=rideSubgenreConfig(mood);return cfg?Object.keys(cfg).filter(k=>k!=='random'):[]}
+function effectiveRideSubgenre(mood){
+  const cfg=rideSubgenreConfig(mood);if(!cfg)return null;
+  const selected=rideSubgenreSelections[mood]||'random';
+  if(selected!=='random'&&cfg[selected])return selected;
+  return rand(rideSubgenreKeys(mood));
 }
-function rideFoodGenreMatch(x,key){
-  const g=RIDE_FOOD_GENRES[key];
-  return !!(g&&g.re&&g.re.test(rideStyleText(x)));
+function rideSubgenreLabel(mood,key){return rideSubgenreConfig(mood)?.[key]?.label||key||''}
+function rideSubgenreMatch(x,mood,key){
+  const g=rideSubgenreConfig(mood)?.[key];if(!g)return true;
+  const t=rideStyleText(x),tags=uiCategoryTags(x);
+  if(g.tags&&g.tags.some(tag=>tags.has(tag)))return true;
+  return !!(g.re&&g.re.test(t));
+}
+function rideSubgenreQuery(mood,key){
+  const g=rideSubgenreConfig(mood)?.[key];if(!g)return null;
+  if(g.queries)return rand(g.queries);
+  return g.query||null;
 }
 
 const RIDE_DIRECTION_LABELS={random:'🎲 おまかせ',north:'⬆️ 北',east:'➡️ 東',south:'⬇️ 南',west:'⬅️ 西'};
@@ -728,86 +783,82 @@ function rideMoodMatch(x,mood){
   if(mood==='heal')return ['onsen','shrine','park','nature'].some(v=>tags.has(v))||/癒し|ヒーリング|パワースポット|森林浴|温泉|湯|神社|神宮|大社|寺|寺院|霊場|庭園|森林|森|湖|池|滝|高原|渓谷|名水|巨木/.test(t);
   return true;
 }
-let rideHealThemeBag=[];
-const RIDE_HEAL_THEMES=[
-  {key:'healing',label:'🌿 ヒーリングスポット',queries:['癒しスポット','ヒーリングスポット','パワースポット']},
-  {key:'shrine',label:'⛩️ 神社・寺',queries:['神社','寺','神社 寺']},
-  {key:'onsen',label:'♨️ 温泉',queries:['日帰り温泉','温泉','露天風呂']},
-  {key:'nature',label:'🌲 静かな自然',queries:['森林浴','庭園','滝','湖','高原']}
-];
-function nextRideHealTheme(){
-  if(!rideHealThemeBag.length)rideHealThemeBag=shuffle([...RIDE_HEAL_THEMES]);
-  return rideHealThemeBag.pop();
-}
-function rideHealThemeMatch(x,key){
-  const t=rideStyleText(x),tags=uiCategoryTags(x);
-  if(key==='healing')return /癒し|ヒーリング|パワースポット|霊場|名水|巨木|森林浴/.test(t);
-  if(key==='shrine')return tags.has('shrine');
-  if(key==='onsen')return tags.has('onsen');
-  if(key==='nature')return tags.has('nature')||tags.has('park')||/庭園|森林|森|湖|池|滝|高原|渓谷|名水|巨木/.test(t);
-  return true;
-}
-function rideMapQuery(mood,healTheme=null,foodGenre=null){
-  if(mood==='heal'){
-    const theme=RIDE_HEAL_THEMES.find(x=>x.key===healTheme)||rand(RIDE_HEAL_THEMES);
-    return rand(theme.queries);
-  }
-  if(mood==='food'){
-    const g=RIDE_FOOD_GENRES[foodGenre]||RIDE_FOOD_GENRES.cafe;
-    return g.query||'カフェ';
-  }
-  const q={
+function rideMapQuery(mood,subgenre=null){
+  const q=rideSubgenreQuery(mood,subgenre);
+  if(q)return q;
+  const pool={
     random:['観光スポット','展望台','カフェ','道の駅'],
     road:['道の駅'],
     classic:['観光名所'],
     detour:['穴場スポット','小さな観光スポット','展望スポット'],
-    scenery:['展望台','海岸','岬','湖','滝']
+    scenery:['展望台','海岸','岬','湖','滝'],
+    food:['カフェ','ハンバーガー','スイーツ','ごはん'],
+    heal:['癒しスポット','神社','温泉','森林浴']
   }[mood]||['観光スポット'];
-  return rand(q)
+  return rand(pool)
 }
 function rideMapZoom(km){if(km<=20)return 12;if(km<=70)return 11;return 10}
 function pointAtDistance(origin,km,bearingDeg){const R=6371,br=rad(bearingDeg),lat1=rad(+origin.lat),lon1=rad(+origin.lng),d=km/R;const lat2=Math.asin(Math.sin(lat1)*Math.cos(d)+Math.cos(lat1)*Math.sin(d)*Math.cos(br));const lon2=lon1+Math.atan2(Math.sin(br)*Math.sin(d)*Math.cos(lat1),Math.cos(d)-Math.sin(lat1)*Math.sin(lat2));return{lat:lat2*180/Math.PI,lng:lon2*180/Math.PI}}
 const RIDE_DIRECTION_HALF_WIDTH=30;
 function rideDirectionDelta(actual,target){return Math.abs(((actual-target+540)%360)-180)}
 function rideMapSearchUrl(origin,query,targetKm,targetBearing){const center=pointAtDistance(origin,targetKm,targetBearing);return 'https://www.google.com/maps/search/'+encodeURIComponent(query)+'/@'+center.lat+','+center.lng+','+rideMapZoom(targetKm)+'z'}
-function rideSaveSelection(){const distance=$('rideDistance')?.value||'40',mood=$('rideMood')?.value||'random',direction=$('rideDirection')?.value||'random';try{localStorage.setItem(RIDE_STYLE_KEY,JSON.stringify({distance,mood,direction}))}catch(e){}const band=rideDistanceBand(+distance),note=$('rideDistanceNote');if(note)note.textContent='目安：スタート地点から'+band.min+'〜'+band.max+'km'}
-function rideRestoreSelection(){try{const v=JSON.parse(localStorage.getItem(RIDE_STYLE_KEY)||'null');if(v&&$('rideDistance')&&RIDE_DISTANCE_LABELS[String(v.distance)])$('rideDistance').value=String(v.distance);if(v&&$('rideMood')&&RIDE_MOOD_LABELS[v.mood])$('rideMood').value=v.mood;if(v&&$('rideDirection')&&RIDE_DIRECTION_LABELS[v.direction])$('rideDirection').value=v.direction}catch(e){}rideSaveSelection()}
-function initRideStyleUI(){document.querySelectorAll('.ride-distance-grid button,.ride-mood-grid button,.ride-direction-grid button').forEach(b=>b.addEventListener('click',()=>setTimeout(rideSaveSelection,0)))}
-function openRideFoodGenreChanger(){
-  if(($('rideMood')?.value||'')!=='food')return;
-  const order=['random','cafe','burger','sweets','meal'];
-  const buttons=order.map(key=>'<button type="button" class="ride-mood-change-option'+(key===rideFoodGenre?' active':'')+'" onclick="setRideFoodGenre(\''+escJs(key)+'\')">'+esc(RIDE_FOOD_GENRES[key].label)+(key===rideFoodGenre?'<small>現在の食べ物ジャンル</small>':'')+'</button>').join('');
-  modal('<div class="ride-mood-change-modal"><h2>🍴 食べ物ジャンルを変える</h2><p class="meta">「なんか食べたい」はそのまま。食べ物の種類だけ変えて探し直します。</p><div class="ride-mood-change-grid">'+buttons+'</div></div>');
+function rideSaveSelection(){
+  const distance=$('rideDistance')?.value||'40',mood=$('rideMood')?.value||'random',direction=$('rideDirection')?.value||'random';
+  try{localStorage.setItem(RIDE_STYLE_KEY,JSON.stringify({distance,mood,direction,subgenres:{...rideSubgenreSelections}}))}catch(e){}
+  const band=rideDistanceBand(+distance),note=$('rideDistanceNote');if(note)note.textContent='目安：スタート地点から'+band.min+'〜'+band.max+'km'
 }
-function setRideFoodGenre(key){
-  if(!RIDE_FOOD_GENRES[key])return;
-  rideFoodGenre=key;
+function rideRestoreSelection(){
+  try{
+    const v=JSON.parse(localStorage.getItem(RIDE_STYLE_KEY)||'null');
+    if(v&&$('rideDistance')&&RIDE_DISTANCE_LABELS[String(v.distance)])$('rideDistance').value=String(v.distance);
+    if(v&&$('rideMood')&&RIDE_MOOD_LABELS[v.mood])$('rideMood').value=v.mood;
+    if(v&&$('rideDirection')&&RIDE_DIRECTION_LABELS[v.direction])$('rideDirection').value=v.direction;
+    if(v&&v.subgenres)Object.keys(rideSubgenreSelections).forEach(k=>{if(rideSubgenreConfig(k)?.[v.subgenres[k]])rideSubgenreSelections[k]=v.subgenres[k]});
+  }catch(e){}
+  rideSaveSelection()
+}
+function initRideStyleUI(){document.querySelectorAll('.ride-distance-grid button,.ride-mood-grid button,.ride-direction-grid button').forEach(b=>b.addEventListener('click',()=>setTimeout(rideSaveSelection,0)))}
+function openRideSubgenreChanger(mood){
+  const cfg=rideSubgenreConfig(mood);if(!cfg)return;
+  const selected=rideSubgenreSelections[mood]||'random';
+  const buttons=Object.keys(cfg).map(key=>'<button type="button" class="ride-mood-change-option'+(key===selected?' active':'')+'" onclick="setRideSubgenre(\''+escJs(mood)+'\',\''+escJs(key)+'\')">'+esc(cfg[key].label)+(key===selected?'<small>現在の設定</small>':'')+'</button>').join('');
+  modal('<div class="ride-mood-change-modal"><h2>🔄 探すものジャンルを変える</h2><p class="meta">「'+esc(RIDE_MOOD_LABELS[mood]||mood)+'」はそのまま。探す内容だけ変えます。</p><div class="ride-mood-change-grid">'+buttons+'</div></div>');
+}
+function setRideSubgenre(mood,key){
+  const cfg=rideSubgenreConfig(mood);if(!cfg||!cfg[key])return;
+  rideSubgenreSelections[mood]=key;
+  rideSaveSelection();
   closeModal();
-  runRideStyle();
+  runRideStyle(true);
 }
 
-function runRideStyle(){
+function runRideStyle(preserveArea=false){
   const o=requireOrigin('ride');if(!o)return;
   const targetKm=+($('rideDistance')?.value||40),mood=$('rideMood')?.value||'random',direction=$('rideDirection')?.value||'random';
   rideSaveSelection();
   const band=rideDistanceBand(targetKm);
-  const targetBearing=direction==='random'?Math.random()*360:RIDE_DIRECTION_BEARINGS[direction];
+  const targetBearing=(preserveArea&&Number.isFinite(rideLastSearchBearing))
+    ?rideLastSearchBearing
+    :(direction==='random'?Math.random()*360:RIDE_DIRECTION_BEARINGS[direction]);
+  rideLastSearchBearing=targetBearing;
   let pool=[];
   pool.push(...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})));
   pool.push(...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)})));
   pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,+x.lat,+x.lng),br:bearing(o.lat,o.lng,+x.lat,+x.lng)}))
     .filter(x=>x.d>=band.min&&x.d<=band.max&&rideDirectionDelta(x.br,targetBearing)<=RIDE_DIRECTION_HALF_WIDTH&&rideMoodMatch(x,mood));
-  const healTheme=mood==='heal'?nextRideHealTheme():null;
-  if(healTheme)pool=pool.filter(x=>rideHealThemeMatch(x,healTheme.key));
-  const foodGenre=mood==='food'?effectiveRideFoodGenre():null;
-  if(foodGenre)pool=pool.filter(x=>rideFoodGenreMatch(x,foodGenre));
+
+  const subgenre=effectiveRideSubgenre(mood);
+  if(subgenre)pool=pool.filter(x=>rideSubgenreMatch(x,mood,subgenre));
+
   pool.sort((a,b)=>(Math.abs(a.d-targetKm)+rideDirectionDelta(a.br,targetBearing)/10+Math.random()*4)-(Math.abs(b.d-targetKm)+rideDirectionDelta(b.br,targetBearing)/10+Math.random()*4));
   const pick=pool.length?rand(pool.slice(0,Math.min(24,pool.length))):null;
-  const mapQuery=rideMapQuery(mood,healTheme?.key||null,foodGenre);
+  const mapQuery=rideMapQuery(mood,subgenre);
   const mapUrl=rideMapSearchUrl(o,mapQuery,targetKm,targetBearing),host=$('rideResult');if(!host)return;host.className='result';
   const searchDirection=dirText16(targetBearing);
   const directionLabel=direction==='random'?'🎲 おまかせ → '+searchDirection:RIDE_DIRECTION_LABELS[direction];
-  const searchTheme=healTheme?healTheme.label:(foodGenre?(RIDE_MOOD_LABELS[mood]+' ＞ '+RIDE_FOOD_GENRES[foodGenre].label):(RIDE_MOOD_LABELS[mood]||mood));
+  const subgenreLabel=subgenre?rideSubgenreLabel(mood,subgenre):'';
+  const searchTheme=subgenre?(RIDE_MOOD_LABELS[mood]+' ＞ '+subgenreLabel):(RIDE_MOOD_LABELS[mood]||mood);
+  const selectedSubgenre=rideSubgenreSelections[mood]||null;
   const searchGuide='<div class="ride-search-guide">'+
     '<div class="ride-search-guide-title">📍 今回探す場所</div>'+
     '<div class="ride-search-area"><span class="ride-search-label">エリア</span><b>スタート地点から '+esc(searchDirection)+'へ 約'+targetKm+'km 周辺</b></div>'+
@@ -820,10 +871,15 @@ function runRideStyle(){
     const saveAction="saveSingle('今日の走り方','"+escJs(pick.name)+"',"+pick.lat+","+pick.lng+",'"+escJs(pick.kind)+"','"+escJs(o.label)+"',"+o.lat+","+o.lng+")";
     registered='<div class="ride-registered"><div class="ride-result-kicker">📚 アプリ登録候補</div>'+spotCard(pick,pick.kind,pick.d,false,saveAction,0,o)+'</div>';
   }else registered='<div class="ride-registered ride-empty"><div class="ride-result-kicker">📚 アプリ登録候補</div><p class="meta">'+band.min+'〜'+band.max+'km・'+esc(directionLabel)+'方向では登録候補が見つからなかったよ。Google Maps側で探してみよう。</p></div>';
+
+  const changer=rideSubgenreConfig(mood)
+    ?'<div class="ride-mood-change-wrap"><button type="button" class="ride-mood-change-button" onclick="openRideSubgenreChanger(\''+escJs(mood)+'\')">🔄 探すものジャンルを変える <span>現在：'+esc(subgenreLabel)+(selectedSubgenre==='random'?'（おまかせ）':'')+'</span></button></div>'
+    :'';
+
   host.innerHTML='<div class="ride-result-head"><div class="ride-result-title">'+esc(RIDE_DISTANCE_LABELS[String(targetKm)]||targetKm+'km')+' × '+esc(RIDE_MOOD_LABELS[mood]||mood)+'</div>'+
     '<div class="meta">直線距離 '+band.min+'〜'+band.max+'km / 方向 '+esc(directionLabel)+'（±'+RIDE_DIRECTION_HALF_WIDTH+'°）</div></div>'+
     searchGuide+
-    '<div class="ride-mood-change-wrap"><button type="button" class="ride-mood-change-button" onclick="'+(mood==='food'?'openRideFoodGenreChanger()':'runRideStyle()')+'">🔄 探すものジャンルを変える <span>現在：'+esc(foodGenre?RIDE_FOOD_GENRES[foodGenre].label:(healTheme?healTheme.label:mapQuery))+(mood==='food'&&rideFoodGenre==='random'?'（おまかせ）':'')+'</span></button></div>'+
+    changer+
     '<div class="ride-map-search"><a class="mapbtn primary" href="'+mapUrl+'" target="_blank" rel="noopener">🗺 このエリアをGoogle Mapsで探す</a></div>'+registered;
 }
 function currentSeason(){const m=new Date().getMonth()+1;return m>=3&&m<=5?'春':m>=6&&m<=8?'夏':m>=9&&m<=11?'秋':'冬'}
