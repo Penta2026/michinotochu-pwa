@@ -1,4 +1,4 @@
-const PWA_APP_VERSION='1.5.6';
+const PWA_APP_VERSION='1.5.7';
 const PWA_DEFAULT_DB_VERSION='2.8.20';
 const PWA_NETWORK_TIMEOUT_MS=5000;
 let pwaUpdateRunning=false;
@@ -109,7 +109,7 @@ async function updateAppShellIfNeeded(v,isStartup=false){
     if(reg.waiting)try{reg.waiting.postMessage({type:'SKIP_WAITING'})}catch(e){}
     await waitWorkerActivated(worker,9000);
   }
-  if(before===navigator.serviceWorker.controller)await waitControllerChange(5000);
+  if(before===navigator.serviceWorker.controller)await waitControllerChange(1800);
   return true;
 }
 async function updateEverything(manual=false,isStartup=false){
