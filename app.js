@@ -1,6 +1,6 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.1.0';
+const APP_VERSION='PWA 1.1.1';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
 const $=id=>document.getElementById(id);
@@ -48,6 +48,10 @@ function openAbout(){modal(`<h2>道の途中。</h2>
     </div>
   </details>
   <p><b>製作者：ぺんた</b><br>Created by ぺんた<br>© 2026 Penta</p>`)}
+
+function openSupport(){
+  location.href='support.html';
+}
 
 const CONTACT_EMAIL='penta.michi.2026@gmail.com';
 const CONTACT_CATEGORIES=['バグ報告','ポイントズレ報告','要望','オススメ追加'];
