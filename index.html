@@ -10,18 +10,18 @@
 <meta name="apple-mobile-web-app-title" content="道の途中。">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="stylesheet" href="style.css?v=1.3.11">
+<link rel="stylesheet" href="style.css?v=1.4.0">
 <script src="data/app_data.js"></script>
-<script src="data/road_summaries_chugoku.js?v=1.3.11"></script>
-<script src="data/road_summaries_shikoku.js?v=1.3.11"></script>
-<script src="data/road_summaries_kyushu_okinawa.js?v=1.3.11"></script>
-<script src="data/road_summaries_kinki.js?v=1.3.11"></script>
-<script src="data/road_summaries_chubu.js?v=1.3.11"></script>
-<script src="data/road_summaries_kanto.js?v=1.3.11"></script>
-<script src="data/road_summaries_tohoku.js?v=1.3.11"></script>
-<script src="data/road_summaries_hokkaido.js?v=1.3.11"></script>
-<script src="data/road_summaries_final.js?v=1.3.11"></script>
-<script src="data/spot_overrides.js?v=1.3.11"></script>
+<script src="data/road_summaries_chugoku.js?v=1.4.0"></script>
+<script src="data/road_summaries_shikoku.js?v=1.4.0"></script>
+<script src="data/road_summaries_kyushu_okinawa.js?v=1.4.0"></script>
+<script src="data/road_summaries_kinki.js?v=1.4.0"></script>
+<script src="data/road_summaries_chubu.js?v=1.4.0"></script>
+<script src="data/road_summaries_kanto.js?v=1.4.0"></script>
+<script src="data/road_summaries_tohoku.js?v=1.4.0"></script>
+<script src="data/road_summaries_hokkaido.js?v=1.4.0"></script>
+<script src="data/road_summaries_final.js?v=1.4.0"></script>
+<script src="data/spot_overrides.js?v=1.4.0"></script>
 </head>
 <body class="pwa-starting">
 <div id="pwaStartupGate" class="pwa-startup-gate" role="status" aria-live="polite">
@@ -32,7 +32,7 @@
   </div>
 </div>
 <header class="topbar">
-  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.3.11</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
+  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.4.0</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
 </header>
 <div class="shell">
 <nav class="side" id="sideNav">
@@ -50,7 +50,7 @@
   <div class="home-stage">
     <div class="home-title" aria-label="旅の途中。"><span class="home-title-trip">旅</span><span class="home-title-no">の</span><span class="home-title-way">途中。</span><span class="home-pin">●</span></div>
     <div class="home-tagline">－ さあ、どこへ行こう？－</div>
-    <div class="home-version">PWA Ver1.3.11</div>
+    <div class="home-version">PWA Ver1.4.0</div>
     <div class="home-spacer" aria-hidden="true"></div>
     <div class="home-image-grid">
       <button class="home-img-button home-sprite home-sprite-sug" type="button" onclick="showView('sug')" aria-label="道の駅すごろく"></button>
@@ -58,7 +58,7 @@
       <button class="home-img-button home-sprite home-sprite-relay" type="button" onclick="showView('relay')" aria-label="乗継ガチャ"></button>
       <button class="home-img-button home-sprite home-sprite-detour" type="button" onclick="showView('detour')" aria-label="寄り道しよう"></button>
       <button class="home-img-button home-sprite home-sprite-nearby" type="button" onclick="showView('nearby')" aria-label="ここからどこいく？"></button>
-      <button class="home-img-button home-sprite home-sprite-ride" type="button" onclick="openComingSoon('🌤️ 今日の走り方')" aria-label="今日の走り方"></button>
+      <button class="home-img-button home-sprite home-sprite-ride" type="button" onclick="showView('ride')" aria-label="今日の走り方"></button>
       <button class="home-img-button home-sprite home-sprite-season" type="button" onclick="showView('season')" aria-label="季節を走る"></button>
       <button class="home-img-button home-sprite home-sprite-interest" type="button" onclick="showView('interest')" aria-label="気になる場所"></button>
       <button class="home-img-button home-sprite home-sprite-saved" type="button" onclick="showView('favorites')" aria-label="お気に入りのルート"></button>
@@ -173,6 +173,46 @@
   </div>
 </div></section>
 
+<section id="ride" class="view"><div class="screen-card menu-ride">
+  <div class="screen-title-card"><h2>🌤️  今日の走り方</h2><button class="screen-close" onclick="showView('home')">×</button></div>
+  <div class="screen-body">
+    <p class="lead"><b>今日は、どんな感じで走る？</b><br>距離と気分だけ決めたら、あとは「道の途中。」におまかせ。</p>
+    <div id="rideStart"></div>
+
+    <div class="choice-section">
+      <h3>🏍️ 今日はどのくらい走る？</h3>
+      <select id="rideDistance" class="logic-control">
+        <option value="10">🛵 ちょい乗り（～10km）</option>
+        <option value="20">🌿 ひとっ走り（～20km）</option>
+        <option value="40" selected>🏍️ ぶらっと行こう（～40km）</option>
+        <option value="70">🌤️ いい感じに走る（～70km）</option>
+        <option value="100">🔥 今日は走るぞ（～100km）</option>
+        <option value="300">🚀 遠くまで行こう（～300km）</option>
+      </select>
+      <div class="choice-grid ride-distance-grid" data-target="rideDistance" data-values="10,20,40,70,100,300" data-labels="🛵 ちょい乗り,🌿 ひとっ走り,🏍️ ぶらっと行こう,🌤️ いい感じに走る,🔥 今日は走るぞ,🚀 遠くまで行こう"></div>
+      <div class="ride-distance-note" id="rideDistanceNote">目安：スタート地点から40km以内</div>
+    </div>
+
+    <div class="choice-section">
+      <h3>✨ 今日はどんな所へ行きたい？</h3>
+      <select id="rideMood" class="logic-control">
+        <option value="random" selected>🎲 おまかせ</option>
+        <option value="road">🏠 道の駅へ</option>
+        <option value="classic">⭐ いいとこ行きたい</option>
+        <option value="detour">🌿 ちょっと寄りたい</option>
+        <option value="scenery">🌊 景色が見たい</option>
+        <option value="food">☕ なんか食べたい</option>
+        <option value="heal">♨️ 癒されたい</option>
+      </select>
+      <div class="choice-grid ride-mood-grid" data-target="rideMood" data-values="random,road,classic,detour,scenery,food,heal" data-labels="🎲 おまかせ,🏠 道の駅へ,⭐ いいとこ行きたい,🌿 ちょっと寄りたい,🌊 景色が見たい,☕ なんか食べたい,♨️ 癒されたい"></div>
+    </div>
+
+    <div class="note">※ 距離は候補抽出用の直線距離です。実際の走行距離は道路状況やルートによって長くなります。選択内容は次回も保持されます。</div>
+    <button class="primary action-main" type="button" onclick="runRideStyle()">✨ この感じで探す！</button>
+    <div id="rideResult" class="result empty">スタート地点と今日の気分を選んでください。</div>
+  </div>
+</div></section>
+
 <section id="season" class="view"><div class="screen-card menu-season">
   <div class="screen-title-card"><h2>🌸  季節を走る</h2><button class="screen-close" onclick="showView('home')">×</button></div>
   <div class="screen-body"><div id="seasonStart"></div>
@@ -210,7 +250,7 @@
 </main>
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
-<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.3.11 / DB Ver2.8.20</span></footer>
+<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.4.0 / DB Ver2.8.20</span></footer>
 <script>
 (function(){
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -220,11 +260,11 @@
   }
 })();
 </script>
-<script src="assets/home/home_sprite_0.js?v=1.3.11"></script>
-<script src="assets/home/home_sprite_1.js?v=1.3.11"></script>
-<script src="assets/home/home_sprite_2.js?v=1.3.11"></script>
-<script src="assets/home/home_sprite_3.js?v=1.3.11"></script>
-<script src="app.js?v=1.3.11"></script>
-<script src="pwa.js?v=1.3.11"></script>
+<script src="assets/home/home_sprite_0.js?v=1.4.0"></script>
+<script src="assets/home/home_sprite_1.js?v=1.4.0"></script>
+<script src="assets/home/home_sprite_2.js?v=1.4.0"></script>
+<script src="assets/home/home_sprite_3.js?v=1.4.0"></script>
+<script src="app.js?v=1.4.0"></script>
+<script src="pwa.js?v=1.4.0"></script>
 </body>
 </html>
