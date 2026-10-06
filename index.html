@@ -10,18 +10,18 @@
 <meta name="apple-mobile-web-app-title" content="道の途中。">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="stylesheet" href="style.css?v=1.2.2">
+<link rel="stylesheet" href="style.css?v=1.3.0">
 <script src="data/app_data.js"></script>
-<script src="data/road_summaries_chugoku.js?v=1.2.2"></script>
-<script src="data/road_summaries_shikoku.js?v=1.2.2"></script>
-<script src="data/road_summaries_kyushu_okinawa.js?v=1.2.2"></script>
-<script src="data/road_summaries_kinki.js?v=1.2.2"></script>
-<script src="data/road_summaries_chubu.js?v=1.2.2"></script>
-<script src="data/road_summaries_kanto.js?v=1.2.2"></script>
-<script src="data/road_summaries_tohoku.js?v=1.2.2"></script>
-<script src="data/road_summaries_hokkaido.js?v=1.2.2"></script>
-<script src="data/road_summaries_final.js?v=1.2.2"></script>
-<script src="data/spot_overrides.js?v=1.2.2"></script>
+<script src="data/road_summaries_chugoku.js?v=1.3.0"></script>
+<script src="data/road_summaries_shikoku.js?v=1.3.0"></script>
+<script src="data/road_summaries_kyushu_okinawa.js?v=1.3.0"></script>
+<script src="data/road_summaries_kinki.js?v=1.3.0"></script>
+<script src="data/road_summaries_chubu.js?v=1.3.0"></script>
+<script src="data/road_summaries_kanto.js?v=1.3.0"></script>
+<script src="data/road_summaries_tohoku.js?v=1.3.0"></script>
+<script src="data/road_summaries_hokkaido.js?v=1.3.0"></script>
+<script src="data/road_summaries_final.js?v=1.3.0"></script>
+<script src="data/spot_overrides.js?v=1.3.0"></script>
 </head>
 <body class="pwa-starting">
 <div id="pwaStartupGate" class="pwa-startup-gate" role="status" aria-live="polite">
@@ -32,7 +32,7 @@
   </div>
 </div>
 <header class="topbar">
-  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.2.2</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
+  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.3.0</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
 </header>
 <div class="shell">
 <nav class="side" id="sideNav">
@@ -50,13 +50,13 @@
   <div class="home-stage">
     <div class="home-title" aria-label="旅の途中。"><span class="home-title-trip">旅</span><span class="home-title-no">の</span><span class="home-title-way">途中。</span><span class="home-pin">●</span></div>
     <div class="home-tagline">－ さあ、どこへ行こう？－</div>
-    <div class="home-version">PWA Ver1.2.2</div>
+    <div class="home-version">PWA Ver1.3.0</div>
     <div class="home-spacer" aria-hidden="true"></div>
     <div class="home-image-grid">
       <button class="home-img-button home-sprite home-sprite-sug" type="button" onclick="showView('sug')" aria-label="道の駅すごろく"></button>
       <button class="home-img-button home-sprite home-sprite-dest" type="button" onclick="showView('dest')" aria-label="行き先ガチャ"></button>
       <button class="home-img-button home-sprite home-sprite-relay" type="button" onclick="showView('relay')" aria-label="乗継ガチャ"></button>
-      <button class="home-img-button home-sprite home-sprite-detour" type="button" onclick="openDetourHome()" aria-label="寄り道ガチャ"></button>
+      <button class="home-img-button home-sprite home-sprite-detour" type="button" onclick="showView('detour')" aria-label="寄り道ガチャ"></button>
       <button class="home-img-button home-sprite home-sprite-nearby" type="button" onclick="showView('nearby')" aria-label="ここからどこいく？"></button>
       <button class="home-img-button home-sprite home-sprite-ride" type="button" onclick="openComingSoon('🌤️ 今日の走り方')" aria-label="今日の走り方"></button>
       <button class="home-img-button home-sprite home-sprite-season" type="button" onclick="showView('season')" aria-label="季節を走る"></button>
@@ -101,6 +101,67 @@
     <button class="primary action-main" onclick="runRelay()">🎲 次のマスを決める！</button><div id="relayResult" class="result empty">スタート地点を設定してください。</div><div id="relayHistory"></div>
   </div></div></section>
 
+<section id="detour" class="view"><div class="screen-card menu-detour">
+  <div class="screen-title-card"><h2>🎲  寄り道ガチャ</h2><button class="screen-close" onclick="showView('home')">×</button></div>
+  <div class="screen-body">
+    <p class="lead"><b>目的地はそのまま。ちょっと道草。</b><br>「もう1つ目的地を増やす」のではなく、道中でできる小さな体験を1つだけ提案します。</p>
+    <div id="detourStart"></div>
+
+    <div class="panel detour-destination-panel">
+      <h3>🏁 最終目的地</h3>
+      <div id="detourDestinationStatus" class="origin-status">現在：未設定</div>
+      <div class="start-simple">
+        <button class="soft start-map" type="button" onclick="openDetourDestinationMap()">🗺 Googleマップから選ぶ</button>
+        <button class="soft reflect-btn" type="button" onclick="reflectDetourDestination()">🔗 コピーしたリンクを反映</button>
+      </div>
+      <div class="note">行先ガチャなどの結果から入った場合は、目的地が自動で引き継がれます。</div>
+    </div>
+
+    <div class="choice-section">
+      <h3>🌿 道草レベル</h3>
+      <select id="detourLevel" class="logic-control">
+        <option value="quick">🌱 ちょい道草</option>
+        <option value="rest" selected>☕ ひと休み</option>
+        <option value="why">🧭 せっかくだから</option>
+        <option value="chaos">🎲 何が出ても知らんw</option>
+      </select>
+      <div class="choice-grid detour-level-grid" data-target="detourLevel" data-values="quick,rest,why,chaos" data-labels="🌱 ちょい道草,☕ ひと休み,🧭 せっかくだから,🎲 何が出ても知らんw"></div>
+    </div>
+
+    <div class="choice-section">
+      <h3>✨ どんな道草にする？</h3>
+      <select id="detourGenre" class="logic-control">
+        <option value="random" selected>🎲 おまかせ</option>
+        <option value="view">🌄 景色を見る</option>
+        <option value="sweets">🍡 甘いもの</option>
+        <option value="cafe">☕ カフェ</option>
+        <option value="food">🍜 ごはん</option>
+        <option value="onsen">♨️ 温泉</option>
+        <option value="road">🛣️ 道の駅</option>
+        <option value="shrine">⛩️ 神社・寺</option>
+        <option value="park">🌳 公園</option>
+        <option value="unusual">👀 ちょっと変なもの</option>
+        <option value="season">🌸 季節を感じる</option>
+      </select>
+      <div class="choice-grid detour-genre-grid" data-target="detourGenre" data-values="random,view,sweets,cafe,food,onsen,road,shrine,park,unusual,season" data-labels="🎲 おまかせ,🌄 景色,🍡 甘味,☕ カフェ,🍜 ごはん,♨️ 温泉,🛣 道の駅,⛩ 神社寺,🌳 公園,👀 珍スポット,🌸 季節"></div>
+    </div>
+
+    <div class="choice-section">
+      <h3>🏍 車両区分</h3>
+      <select id="detourVehicle" class="logic-control">
+        <option value="50">50cc</option>
+        <option value="125">125cc以下</option>
+        <option value="250" selected>250cc以上</option>
+        <option value="car">車</option>
+      </select>
+      <div class="choice-grid" data-target="detourVehicle" data-values="50,125,250,car" data-labels="🛵 50cc,🛵 125cc以下,🏍 250cc以上,🚗 車"></div>
+    </div>
+
+    <button class="primary action-main" type="button" onclick="runDetourGacha()">🎲 途中でこれ、どう？</button>
+    <div id="detourResult" class="result empty">出発地と最終目的地を設定してください。</div>
+  </div>
+</div></section>
+
 <section id="season" class="view"><div class="screen-card menu-season">
   <div class="screen-title-card"><h2>🌸  季節を走る</h2><button class="screen-close" onclick="showView('home')">×</button></div>
   <div class="screen-body"><div id="seasonStart"></div>
@@ -138,7 +199,7 @@
 </main>
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
-<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.2.2 / DB Ver2.8.20</span></footer>
+<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.3.0 / DB Ver2.8.20</span></footer>
 <script>
 (function(){
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -148,11 +209,11 @@
   }
 })();
 </script>
-<script src="assets/home/home_sprite_0.js?v=1.2.2"></script>
-<script src="assets/home/home_sprite_1.js?v=1.2.2"></script>
-<script src="assets/home/home_sprite_2.js?v=1.2.2"></script>
-<script src="assets/home/home_sprite_3.js?v=1.2.2"></script>
-<script src="app.js?v=1.2.2"></script>
-<script src="pwa.js?v=1.2.2"></script>
+<script src="assets/home/home_sprite_0.js?v=1.3.0"></script>
+<script src="assets/home/home_sprite_1.js?v=1.3.0"></script>
+<script src="assets/home/home_sprite_2.js?v=1.3.0"></script>
+<script src="assets/home/home_sprite_3.js?v=1.3.0"></script>
+<script src="app.js?v=1.3.0"></script>
+<script src="pwa.js?v=1.3.0"></script>
 </body>
 </html>
