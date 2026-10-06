@@ -301,3 +301,11 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 @media(max-width:620px){
   .detour-destination-input{grid-template-columns:1fr}
 }
+
+
+/* PWA Ver1.3.5 unified map-link controls */
+.start-simple .start-reflect,
+.start-simple .reflect-btn{
+  grid-column:1 / -1;
+  width:100%;
+}
