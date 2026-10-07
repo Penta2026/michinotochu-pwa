@@ -8,21 +8,21 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="道の途中。">
-<link rel="manifest" href="manifest.webmanifest?v=1.5.24">
-<link rel="apple-touch-icon" href="icons/icon-192.png?v=1.5.24">
-<link rel="stylesheet" href="style.css?v=1.5.24">
+<link rel="manifest" href="manifest.webmanifest?v=1.5.25">
+<link rel="apple-touch-icon" href="icons/icon-192.png?v=1.5.25">
+<link rel="stylesheet" href="style.css?v=1.5.25">
 <script src="data/app_data.js"></script>
-<script src="data/road_summaries_chugoku.js?v=1.5.24"></script>
-<script src="data/road_summaries_shikoku.js?v=1.5.24"></script>
-<script src="data/road_summaries_kyushu_okinawa.js?v=1.5.24"></script>
-<script src="data/road_summaries_kinki.js?v=1.5.24"></script>
-<script src="data/road_summaries_chubu.js?v=1.5.24"></script>
-<script src="data/road_summaries_kanto.js?v=1.5.24"></script>
-<script src="data/road_summaries_tohoku.js?v=1.5.24"></script>
-<script src="data/road_summaries_hokkaido.js?v=1.5.24"></script>
-<script src="data/road_summaries_final.js?v=1.5.24"></script>
-<script src="data/spot_overrides.js?v=1.5.24"></script>
-<script src="data/riders_cafes.js?v=1.5.24"></script>
+<script src="data/road_summaries_chugoku.js?v=1.5.25"></script>
+<script src="data/road_summaries_shikoku.js?v=1.5.25"></script>
+<script src="data/road_summaries_kyushu_okinawa.js?v=1.5.25"></script>
+<script src="data/road_summaries_kinki.js?v=1.5.25"></script>
+<script src="data/road_summaries_chubu.js?v=1.5.25"></script>
+<script src="data/road_summaries_kanto.js?v=1.5.25"></script>
+<script src="data/road_summaries_tohoku.js?v=1.5.25"></script>
+<script src="data/road_summaries_hokkaido.js?v=1.5.25"></script>
+<script src="data/road_summaries_final.js?v=1.5.25"></script>
+<script src="data/spot_overrides.js?v=1.5.25"></script>
+<script src="data/riders_cafes.js?v=1.5.25"></script>
 </head>
 <body class="pwa-starting">
 <div id="pwaStartupGate" class="pwa-startup-gate" role="status" aria-live="polite">
@@ -33,7 +33,7 @@
   </div>
 </div>
 <header class="topbar">
-<div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.5.24</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
+<div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.5.25</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
 </header>
 <div class="shell">
 <nav class="side" id="sideNav">
@@ -55,7 +55,7 @@
   <div class="home-stage">
     <div class="home-title" aria-label="旅の途中。"><span class="home-title-trip">旅</span><span class="home-title-no">の</span><span class="home-title-way">途中。</span><span class="home-pin">●</span></div>
     <div class="home-tagline">－ さあ、どこへ行こう？－</div>
-    <div class="home-version">PWA Ver1.5.24</div>
+    <div class="home-version">PWA Ver1.5.25</div>
     <button type="button" class="home-usage-button" onclick="openUsageGuide()">？ 使い方</button>
     <div class="home-spacer" aria-hidden="true"></div>
     <div class="home-image-grid">
@@ -121,6 +121,8 @@
           <button class="soft start-map" type="button" onclick="chooseDetourManual();openDetourDestinationMap()">🗺 Googleマップで目的地を選ぶ</button>
           <button class="info-btn" type="button" onclick="showDetourDestinationHelp()" title="使い方">ⓘ</button>
         </div>
+        <input id="detourDestinationLinkInput" class="map-link-input" type="url" inputmode="url" autocomplete="off" placeholder="PC：Google Mapsの共有URLを貼り付け">
+        <button class="soft reflect-btn start-reflect" type="button" onclick="reflectDetourDestination()">🔗 URLから目的地に反映</button>
         <button class="soft" type="button" onclick="openDetourFavoritePicker()">⭐ お気に入りのルートから選ぶ</button></div>
       <div class="note">寄り道しようは目的地を決めません。自分で決めた目的地、または保存したお気に入りルートの“途中”に好きなだけ道草を追加します。寄り道は選択・追加した順番をそのまま使い、最終的な順序調整はGoogle Maps側でも行えます。</div>
     </div>
@@ -274,7 +276,7 @@
 </main>
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
-<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.5.24 / DB Ver2.8.20</span></footer>
+<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.5.25 / DB Ver2.8.20</span></footer>
 <script>
 (function(){
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -284,11 +286,11 @@
   }
 })();
 </script>
-<script src="assets/home/home_sprite_0.js?v=1.5.24"></script>
-<script src="assets/home/home_sprite_1.js?v=1.5.24"></script>
-<script src="assets/home/home_sprite_2.js?v=1.5.24"></script>
-<script src="assets/home/home_sprite_3.js?v=1.5.24"></script>
-<script src="app.js?v=1.5.24"></script>
-<script src="pwa.js?v=1.5.24"></script>
+<script src="assets/home/home_sprite_0.js?v=1.5.25"></script>
+<script src="assets/home/home_sprite_1.js?v=1.5.25"></script>
+<script src="assets/home/home_sprite_2.js?v=1.5.25"></script>
+<script src="assets/home/home_sprite_3.js?v=1.5.25"></script>
+<script src="app.js?v=1.5.25"></script>
+<script src="pwa.js?v=1.5.25"></script>
 </body>
 </html>
