@@ -182,7 +182,7 @@ async function submitContactForm(form,category){
     カテゴリ:category,
     内容:coord?('座標：'+coord+'\n\n'+detailText):detailText,
     PWA:APP_VERSION,
-    DB:localStorage.getItem('michino_dev_db_version')||'2.8.20',
+    DB:localStorage.getItem('michino_db_version')||'2.8.20',
     送信日時:new Date().toLocaleString('ja-JP'),
     端末ブラウザ:navigator.userAgent
   };
@@ -1393,5 +1393,5 @@ document.addEventListener('click',e=>{
   const a=e.target.closest&&e.target.closest('a.mapbtn');
   if(a&&String(a.href||'').includes('google.com/maps/'))saveReturnState();
 });
-function init(){if(window.HOME_SPRITE_B64)document.documentElement.style.setProperty('--home-sprite-image',`url("data:image/webp;base64,${window.HOME_SPRITE_B64}")`);renderStartPanels();fillSelectors();rideRestoreSelection();initChoiceUI();initRideStyleUI();const fv=$('footerVersion');if(fv)fv.textContent=APP_VERSION+' / DB Ver'+(localStorage.getItem('michino_dev_db_version')||'2.8.20');restoreReturnState();}
+function init(){if(window.HOME_SPRITE_B64)document.documentElement.style.setProperty('--home-sprite-image',`url("data:image/webp;base64,${window.HOME_SPRITE_B64}")`);renderStartPanels();fillSelectors();rideRestoreSelection();initChoiceUI();initRideStyleUI();const fv=$('footerVersion');if(fv)fv.textContent=APP_VERSION+' / DB Ver'+(localStorage.getItem('michino_db_version')||'2.8.20');restoreReturnState();}
 init();
