@@ -8,20 +8,21 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="道の途中。">
-<link rel="manifest" href="manifest.webmanifest?v=1.5.15">
-<link rel="apple-touch-icon" href="icons/icon-192.png?v=1.5.15">
-<link rel="stylesheet" href="style.css?v=1.5.15">
+<link rel="manifest" href="manifest.webmanifest?v=1.5.16">
+<link rel="apple-touch-icon" href="icons/icon-192.png?v=1.5.16">
+<link rel="stylesheet" href="style.css?v=1.5.16">
 <script src="data/app_data.js"></script>
-<script src="data/road_summaries_chugoku.js?v=1.5.15"></script>
-<script src="data/road_summaries_shikoku.js?v=1.5.15"></script>
-<script src="data/road_summaries_kyushu_okinawa.js?v=1.5.15"></script>
-<script src="data/road_summaries_kinki.js?v=1.5.15"></script>
-<script src="data/road_summaries_chubu.js?v=1.5.15"></script>
-<script src="data/road_summaries_kanto.js?v=1.5.15"></script>
-<script src="data/road_summaries_tohoku.js?v=1.5.15"></script>
-<script src="data/road_summaries_hokkaido.js?v=1.5.15"></script>
-<script src="data/road_summaries_final.js?v=1.5.15"></script>
-<script src="data/spot_overrides.js?v=1.5.15"></script>
+<script src="data/road_summaries_chugoku.js?v=1.5.16"></script>
+<script src="data/road_summaries_shikoku.js?v=1.5.16"></script>
+<script src="data/road_summaries_kyushu_okinawa.js?v=1.5.16"></script>
+<script src="data/road_summaries_kinki.js?v=1.5.16"></script>
+<script src="data/road_summaries_chubu.js?v=1.5.16"></script>
+<script src="data/road_summaries_kanto.js?v=1.5.16"></script>
+<script src="data/road_summaries_tohoku.js?v=1.5.16"></script>
+<script src="data/road_summaries_hokkaido.js?v=1.5.16"></script>
+<script src="data/road_summaries_final.js?v=1.5.16"></script>
+<script src="data/spot_overrides.js?v=1.5.16"></script>
+<script src="data/riders_cafes.js?v=1.5.16"></script>
 </head>
 <body class="pwa-starting">
 <div id="pwaStartupGate" class="pwa-startup-gate" role="status" aria-live="polite">
@@ -32,7 +33,7 @@
   </div>
 </div>
 <header class="topbar">
-  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.5.15</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
+  <div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.5.16</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
 </header>
 <div class="shell">
 <nav class="side" id="sideNav">
@@ -54,7 +55,7 @@
   <div class="home-stage">
     <div class="home-title" aria-label="旅の途中。"><span class="home-title-trip">旅</span><span class="home-title-no">の</span><span class="home-title-way">途中。</span><span class="home-pin">●</span></div>
     <div class="home-tagline">－ さあ、どこへ行こう？－</div>
-    <div class="home-version">PWA Ver1.5.15</div>
+    <div class="home-version">PWA Ver1.5.16</div>
     <button type="button" class="home-usage-button" onclick="openUsageGuide()">？ 使い方</button>
     <div class="home-spacer" aria-hidden="true"></div>
     <div class="home-image-grid">
@@ -93,7 +94,7 @@
   <div class="screen-body"><div id="destStart"></div>
     <div class="choice-section"><h3>📏 目的地までの目安直線距離</h3><select id="destDist" class="logic-control"><option>10</option><option>20</option><option selected>30</option><option>50</option><option>80</option><option>100</option><option>150</option><option>200</option><option>300</option></select><div class="choice-grid" data-target="destDist" data-values="10,20,30,50,80,100,150,200,300"></div><div class="free-number"><input id="destDistFree" type="number" min="1" max="2000" placeholder="自由入力"><span>km</span></div></div>
     <div class="choice-section"><h3>↔ 距離の許容幅（±）</h3><select id="destTol" class="logic-control"><option>5</option><option selected>10</option><option>20</option><option>30</option></select><div class="choice-grid" data-target="destTol" data-values="5,10,20,30"></div><div class="free-number"><input id="destTolFree" type="number" min="1" max="500" placeholder="自由入力"><span>km</span></div></div>
-    <div class="choice-section"><h3>✨ 雰囲気</h3><select id="destMood" class="logic-control"><option>なんでも</option><option>海</option><option>山</option><option>田舎</option><option>市街地</option><option>ランドマーク</option></select><div class="choice-grid" data-target="destMood" data-values="なんでも,海,山,田舎,市街地,ランドマーク" data-labels="✨ なんでも,🌊 海,⛰ 山,🌾 田舎,🏙 市街地,📍 ランドマーク"></div></div>
+    <div class="choice-section"><h3>✨ 雰囲気</h3><select id="destMood" class="logic-control"><option>なんでも</option><option>海</option><option>山</option><option>田舎</option><option>市街地</option><option>ランドマーク</option><option>ライダーズカフェ</option></select><div class="choice-grid" data-target="destMood" data-values="なんでも,海,山,田舎,市街地,ランドマーク,ライダーズカフェ" data-labels="✨ なんでも,🌊 海,⛰ 山,🌾 田舎,🏙 市街地,📍 ランドマーク,🏍️ ライダーズカフェ"></div></div>
     <div class="note">※ 距離は地図上の直線距離です。実際の走行距離は道路状況やルートにより増減します。</div><button class="primary action-main" onclick="runDestination()">🎲 行先ガチャ！</button>
     <div id="destResult" class="result empty">条件を設定してください。</div>
   </div></div></section>
@@ -123,7 +124,7 @@
         <button class="soft" type="button" onclick="openDetourFavoritePicker()">⭐ お気に入りのルートから選ぶ</button>
         <button class="soft reflect-btn start-reflect" type="button" onclick="reflectDetourDestination()">🔗 コピーしたリンクを反映</button>
       </div>
-      <div class="note">寄り道しようは目的地を決めません。自分で決めた目的地、または保存したお気に入りルートの“途中”に道草を1つ足します。</div>
+      <div class="note">寄り道しようは目的地を決めません。自分で決めた目的地、または保存したお気に入りルートの“途中”に道草を1〜3件足します。複数選ぶと、スタートから目的地への進行方向に沿って順番を整えます。</div>
     </div>
 
     <div class="choice-section">
@@ -135,6 +136,16 @@
         <option value="chaos">🎲 何が出ても知らんw</option>
       </select>
       <div class="choice-grid detour-level-grid" data-target="detourLevel" data-values="quick,rest,why,chaos" data-labels="🌱 ちょい道草,☕ ひと休み,🧭 せっかくだから,🎲 何が出ても知らんw"></div>
+    </div>
+
+    <div class="choice-section">
+      <h3>🔢 寄り道はいくつ？</h3>
+      <select id="detourCount" class="logic-control">
+        <option value="1" selected>1件</option>
+        <option value="2">2件</option>
+        <option value="3">3件</option>
+      </select>
+      <div class="choice-grid" data-target="detourCount" data-values="1,2,3" data-labels="① 1件,② 2件,③ 3件"></div>
     </div>
 
     <div class="choice-section">
@@ -151,8 +162,9 @@
         <option value="park">🌳 公園</option>
         <option value="unusual">👀 ちょっと変なもの</option>
         <option value="season">🌸 季節を感じる</option>
+        <option value="riders_cafe">🏍️ ライダーズカフェ</option>
       </select>
-      <div class="choice-grid detour-genre-grid" data-target="detourGenre" data-values="random,view,sweets,cafe,food,onsen,road,shrine,park,unusual,season" data-labels="🎲 おまかせ,🌄 景色,🍡 甘味,☕ カフェ,🍜 ごはん,♨️ 温泉,🛣 道の駅,⛩ 神社寺,🌳 公園,👀 珍スポット,🌸 季節"></div>
+      <div class="choice-grid detour-genre-grid" data-target="detourGenre" data-values="random,view,sweets,cafe,food,onsen,road,shrine,park,unusual,season,riders_cafe" data-labels="🎲 おまかせ,🌄 景色,🍡 甘味,☕ カフェ,🍜 ごはん,♨️ 温泉,🛣 道の駅,⛩ 神社寺,🌳 公園,👀 珍スポット,🌸 季節,🏍️ ライダーズカフェ"></div>
     </div>
 
     <div class="choice-section">
@@ -208,8 +220,9 @@
         <option value="scenery">🌊 景色が見たい</option>
         <option value="food">☕ なんか食べたい</option>
         <option value="heal">♨️ 癒されたい</option>
+        <option value="riders_cafe">🏍️ ライダーズカフェ</option>
       </select>
-      <div class="choice-grid ride-mood-grid" data-target="rideMood" data-values="random,road,classic,detour,scenery,food,heal" data-labels="🎲 おまかせ,🏠 道の駅へ,⭐ いいとこ行きたい,🌿 ちょっと寄りたい,🌊 景色が見たい,☕ なんか食べたい,♨️ 癒されたい"></div>
+      <div class="choice-grid ride-mood-grid" data-target="rideMood" data-values="random,road,classic,detour,scenery,food,heal,riders_cafe" data-labels="🎲 おまかせ,🏠 道の駅へ,⭐ いいとこ行きたい,🌿 ちょっと寄りたい,🌊 景色が見たい,☕ なんか食べたい,♨️ 癒されたい,🏍️ ライダーズカフェ"></div>
     </div>
 
     <div class="choice-section">
@@ -243,14 +256,14 @@
   <div class="screen-title-card"><h2>🧭  ここからどこ行く？</h2><button class="screen-close" onclick="showView('home')">×</button></div>
   <div class="screen-body"><div id="nearbyStart"></div>
     <div class="choice-section"><h3>📏 どのくらい先まで行く？</h3><select id="nearbyDist" class="logic-control"><option>20</option><option>30</option><option selected>50</option><option>80</option><option>100</option><option>150</option><option>200</option><option>300</option></select><div class="choice-grid" data-target="nearbyDist" data-values="20,30,50,80,100,150,200,300"></div><div class="free-number"><input id="nearbyDistFree" type="number" min="1" max="2000" placeholder="自由入力"><span>km</span></div></div>
-    <div class="choice-section"><h3>🎯 何を探す？</h3><select id="nearbyType" class="logic-control"><option value="all">すべて（道の駅＋定番＋寄り道）</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option></select><div class="choice-grid" data-target="nearbyType" data-values="all,road,A,B" data-labels="✨ すべて,🎲 道の駅,⭐ 定番,🌿 寄り道"></div></div>
+    <div class="choice-section"><h3>🎯 何を探す？</h3><select id="nearbyType" class="logic-control"><option value="all">すべて（道の駅＋定番＋寄り道）</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="cafe">ライダーズカフェ</option></select><div class="choice-grid" data-target="nearbyType" data-values="all,road,A,B,cafe" data-labels="✨ すべて,🎲 道の駅,⭐ 定番,🌿 寄り道,🏍️ ライダーズカフェ"></div></div>
     <div class="note">距離の許容幅は ±10km。距離は抽出用の目安です。</div><button class="primary action-main" onclick="runNearby()">🧭 この条件で探す</button><div id="nearbyResult" class="spot-grid"></div>
   </div></div></section>
 
 <section id="interest" class="view"><div class="screen-card menu-interest">
   <div class="screen-title-card"><h2>🗾  気になる場所</h2><button class="screen-close" onclick="showView('home')">×</button></div>
   <div class="screen-body"><p class="lead">県やカテゴリから、ふらっと行ってみたい場所を眺めます。</p><div class="panel form-grid">
-    <label>都道府県<select id="interestPref"></select></label><label>スポット区分<select id="interestType"><option value="all">なんでも</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option></select></label><label>カテゴリ<select id="interestFeature"></select></label><button class="primary full" onclick="runInterest()">候補を見る</button>
+    <label>都道府県<select id="interestPref"></select></label><label>スポット区分<select id="interestType"><option value="all">なんでも</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="cafe">ライダーズカフェ</option></select></label><label>カテゴリ<select id="interestFeature"></select></label><button class="primary full" onclick="runInterest()">候補を見る</button>
   </div><div id="interestResult" class="spot-grid"></div></div></div></section>
 
 <section id="trip" class="view"><div class="screen-card menu-trip">
@@ -284,7 +297,7 @@
 </main>
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
-<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.5.15 / DB Ver2.8.20</span></footer>
+<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.5.16 / DB Ver2.8.20</span></footer>
 <script>
 (function(){
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -294,11 +307,11 @@
   }
 })();
 </script>
-<script src="assets/home/home_sprite_0.js?v=1.5.15"></script>
-<script src="assets/home/home_sprite_1.js?v=1.5.15"></script>
-<script src="assets/home/home_sprite_2.js?v=1.5.15"></script>
-<script src="assets/home/home_sprite_3.js?v=1.5.15"></script>
-<script src="app.js?v=1.5.15"></script>
-<script src="pwa.js?v=1.5.15"></script>
+<script src="assets/home/home_sprite_0.js?v=1.5.16"></script>
+<script src="assets/home/home_sprite_1.js?v=1.5.16"></script>
+<script src="assets/home/home_sprite_2.js?v=1.5.16"></script>
+<script src="assets/home/home_sprite_3.js?v=1.5.16"></script>
+<script src="app.js?v=1.5.16"></script>
+<script src="pwa.js?v=1.5.16"></script>
 </body>
 </html>
