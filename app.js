@@ -1,8 +1,9 @@
 'use strict';
 const D=window.APP_DATA||{roads:[],landmarks:[],meta:{}};
-const APP_VERSION='PWA 1.5.15';
+const APP_VERSION='PWA 1.5.16';
 const JR=(window.JR_STATIONS||[]).map(x=>({...x,prefecture:'',municipality:''}));
 const RELAY=window.RELAY_STOPS||[];
+const RIDERS_CAFES=window.RIDERS_CAFES||[];
 const MAPS_RESOLVER_URL='https://crimson-dust-53e2.yasutaka5262.workers.dev/';
 const $=id=>document.getElementById(id);
 const origins={sug:null,dest:null,relay:null,season:null,nearby:null,ride:null,detour:null,interestSave:null};
@@ -36,24 +37,25 @@ function closeModal(){$('modal').classList.add('hidden');$('modalBody').innerHTM
 function modal(html){$('modalBody').innerHTML=html;$('modal').classList.remove('hidden');}
 function openUsageGuide(){
   const items=[
-    {icon:'🎲',title:'道の駅すごろく',feature:'道の駅をいくつかつないで、走る理由そのものを作るメニュー。',steps:['スタート地点を決める','目的地までの最大直線距離と、目標総走行距離を選ぶ','立ち寄る道の駅の数とミッション有無を決める','「すごろく開始！」でルート候補を見る']},
-    {icon:'📍',title:'行先ガチャ',feature:'距離と雰囲気だけ決めて、行き先を1か所ランダムに選ぶ。',steps:['スタート地点を決める','行きたい距離と許容幅を選ぶ','海・山・田舎・市街地など雰囲気を選ぶ','「行先ガチャ！」で目的地を決める']},
-    {icon:'🔗',title:'乗り継ぎガチャ',feature:'次の行き先を少しずつ決めながら、行き当たりばったりで走る。',steps:['最初のスタート地点を決める','次に進む距離と方角を選ぶ','「次のマスを決める！」を押す','到着候補が次のスタートになり、続けて乗り継げる']},
-    {icon:'🛣️',title:'寄り道しよう',feature:'最終目的地は変えず、途中に小さな道草を1つ足す。',steps:['スタート地点と最終目的地を設定する','道草レベルを選ぶ','景色・甘味・カフェ・温泉など種類を選ぶ','基準地点と半径を決めて「途中でこれ、どう？」を押す']},
-    {icon:'🧩',title:'ここからどこ行く？',feature:'「このくらい先」にある登録スポットを距離帯から探す。',steps:['スタート地点を決める','どのくらい先まで行くか選ぶ','道の駅・定番・寄り道など対象を選ぶ','「この条件で探す」で候補を見る']},
-    {icon:'🌤️',title:'今日の走り方',feature:'距離・気分・方角から、今日ちょうどよさそうな走り方を提案する。',steps:['スタート地点を決める','今日はどのくらい走るか選ぶ','景色・食べ物・癒しなど気分を選ぶ','方角を選び「この感じで探す！」を押す','結果画面の「探すものジャンルを変える」から、大ジャンルはそのままで景色・道・峠・歴史・建築・カフェ・パン・温泉など細かい探し方を切り替えられる','検索エリアと検索テーマを確認してGoogle Mapsでも探せる']},
-    {icon:'🌸',title:'季節を走る',feature:'春夏秋冬の景色や、その時期らしい場所を探す。',steps:['スタート地点を決める','季節を選ぶ。今の季節は自動選択も可能','最大直線距離を決める','「この条件で季節の候補を見る」で探す']},
-    {icon:'🗾',title:'気になる場所',feature:'県・スポット区分・カテゴリから、登録地点を眺めて次の候補を探す。',steps:['都道府県を選ぶ','定番・寄り道・道の駅など区分を選ぶ','カテゴリを選び「候補を見る」','マップ確認・保存・☆訪問済み・メモを使える']},
-    {icon:'📚',title:'登録スポットを見る',feature:'登録済みスポットを一覧から細かく探すための検索メニュー。',steps:['都道府県・区分・カテゴリを選ぶ','必要なら名称でも絞り込む','「表示」で一覧を見る','マップ確認・☆訪問済み・メモを使える']},
-    {icon:'📖',title:'旅の履歴',feature:'実際に行った場所へ、訪問記録と自分のメモを残す。',steps:['「現在地を取得して記録」を押す','300m以内の登録地点があれば、その地点として記録できる','登録地点がなければ座標とメモを保存する','★・訪問回数・日時・メモを残せる','不要になったメモや旅の記録は削除できる']},
-    {icon:'🏍️',title:'お気に入りのルート',feature:'各メニューで保存したルートをあとから見返して、もう一度走れる。',steps:['保存済みルートを一覧で見る','「コースを見る」で立ち寄り地点を確認する','Google Mapsや車両別ルートを開く','不要なルートは選択して削除する']}
+    {icon:'🎲',title:'道の駅すごろく',feature:'道の駅をマスに見立てて、走る理由そのものを作る遊び。',purpose:'目的地を最初から決めきらず、いくつかの道の駅をつないで「今日はこの順番で巡ってみよう」を作ります。ミッションを付ければ、各道の駅で小さな遊びもできます。',steps:['スタート地点を決める','目的地までの最大直線距離と目標総走行距離を選ぶ','立ち寄る道の駅の数とミッション有無を決める','「すごろく開始！」でルート候補を見る']},
+    {icon:'📍',title:'行先ガチャ',feature:'距離と雰囲気だけ決めて、行き先そのものをガチャに任せる。',purpose:'「今日は特に目的地がない」という日に使うメニューです。距離と大まかな雰囲気だけ決めて、登録地点から行き先をひとつ選びます。ライダーズカフェを目的に選ぶこともできます。',steps:['スタート地点を決める','行きたい距離と許容幅を選ぶ','海・山・田舎・市街地・ランドマーク・ライダーズカフェなど雰囲気を選ぶ','「行先ガチャ！」で目的地を決める']},
+    {icon:'🔗',title:'乗り継ぎガチャ',feature:'短い距離を何度もつないで、知らない方向へ進んでいく遊び。',purpose:'登録スポットを巡る機能ではありません。3km、5kmなど短い距離と方角を決め、ランダム地点を次々につないでいきます。バイクの練習がてら、ジオゲッサーのような感覚で「どこへ出るか」を楽しむためのメニューです。',steps:['最初のスタート地点を決める','次に進む距離と方角を選ぶ','「次のマスを決める！」を押す','表示されたランダム地点へ向かう','行けない地点なら無理をせず、道路で行けるところまで進む','その地点付近を次のスタートにして、またガチャする','履歴で乗り継いだ区間数と直線距離合計を確認できる']},
+    {icon:'🛣️',title:'寄り道しよう',feature:'最終目的地は変えず、途中に小さな道草を加える。',purpose:'目的地はもう決まっているけれど、そのまま行くだけでは少し物足りない時のメニューです。寄り道は1〜3件選べ、複数ならスタートから目的地への進行方向に沿って順番を整えます。基準地点と半径を決めて、その範囲内にある登録地点やGoogle Maps検索から寄り道を探します。',steps:['スタート地点と最終目的地を設定する','寄り道数を1〜3件から選ぶ','道草レベルを選ぶ','景色・甘味・カフェ・温泉・ライダーズカフェなど「どんな道草にする？」を選ぶ','スタート地点基準か目的地基準かを選ぶ','探す半径を決めて「途中でこれ、どう？」を押す','アプリ登録候補には、指定半径内にある選択ジャンルの登録地がすべて表示される','「おまかせ」の場合は、指定半径内の全ジャンル登録地が表示される','候補をタップすると詳細と「この登録候補に寄って走る」を確認できる']},
+    {icon:'🧩',title:'ここからどこ行く？',feature:'「このくらい先」にある登録スポットを距離帯から探す。',purpose:'行き先の名前より、「今いる場所からこのくらい走った先に何がある？」を基準に探すメニューです。道の駅・定番・寄り道・ライダーズカフェを距離帯で見比べられます。',steps:['スタート地点を決める','どのくらい先まで行くか選ぶ','すべて・道の駅・定番・寄り道・ライダーズカフェから対象を選ぶ','「この条件で探す」で候補を見る']},
+    {icon:'🌤️',title:'今日の走り方',feature:'距離・気分・方角から、今日ちょうどよさそうな走り方を決める。',purpose:'目的地の名前ではなく、「今日はどのくらい走りたいか」「どんな気分か」「どちらへ行きたいか」から探します。ライダーズカフェも「癒されたい」などと同じ大項目として選べます。',steps:['スタート地点を決める','今日はどのくらい走るか選ぶ','道の駅・景色・食べ物・癒し・ライダーズカフェなど気分を選ぶ','方角を選び「この感じで探す！」を押す','対応する大項目では「探すものジャンルを変える」から、景色・道・歴史・建築・カフェ・パン・温泉など細かい探し方を切り替えられる','検索エリアと検索テーマを確認してGoogle Mapsでも探せる']},
+    {icon:'🌸',title:'季節を走る',feature:'春夏秋冬、その時期らしい景色を目的に走る。',purpose:'「どこへ行くか」ではなく「今の季節を見に行く」を目的にするメニューです。春の桜、夏の海や高原、秋の紅葉、冬の雪景色や温泉など、その季節らしい候補を探します。',steps:['スタート地点を決める','季節を選ぶ。「今の季節」は自動選択も可能','最大直線距離を決める','「この条件で季節の候補を見る」で探す']},
+    {icon:'🗾',title:'気になる場所',feature:'登録地点を眺めながら、自分で次の行き先候補を探す。',purpose:'ガチャではなく、自分で候補を見比べたい時のメニューです。都道府県・スポット区分・カテゴリから絞り込み、ライダーズカフェも専用区分で探せます。',steps:['都道府県を選ぶ','なんでも・道の駅・定番スポット・寄り道スポット・ライダーズカフェから区分を選ぶ','必要に応じてカテゴリを選び「候補を見る」','候補をタップして詳細を確認する','マップ確認・保存・☆訪問済み・メモを使える']},
+    {icon:'📚',title:'登録スポットを見る',feature:'アプリに登録済みの場所を、一覧から細かく検索する。',purpose:'「この県の展望スポットだけ見たい」「名前を覚えている場所を探したい」といった時の一覧検索です。ガチャを使わず、登録データを直接探します。',steps:['都道府県・区分・カテゴリを選ぶ','必要なら名称でも絞り込む','「表示」で一覧を見る','マップ確認・☆訪問済み・メモを使える']},
+    {icon:'📖',title:'旅の履歴',feature:'実際に行った場所と、その時の記憶を残す。',purpose:'登録スポットだけでなく、偶然立ち寄った場所も自分の旅として残すための記録メニューです。「ここ良かった」「次は違う道から来たい」といった自分だけのメモを蓄積できます。',steps:['「現在地を取得して記録」を押す','300m以内の登録地点があれば、その地点として記録できる','登録地点がなければ座標とメモを保存する','★・訪問回数・日時・メモを残せる','不要になったメモや旅の記録は削除できる']},
+    {icon:'🏍️',title:'お気に入りのルート',feature:'偶然できたルートや気に入ったコースを、あとからもう一度走る。',purpose:'各メニューで作ったルートを保存しておく場所です。ガチャで偶然できた面白いルートや、また走りたいコースを残して再利用できます。',steps:['保存済みルートを一覧で見る','「コースを見る」で立ち寄り地点を確認する','Google Mapsや車両別ルートを開く','不要なルートは選択して削除する']}
   ];
-  const cards=items.map((x,i)=>'<details class="usage-menu-card"'+(i===0?' open':'')+'><summary><span class="usage-icon">'+x.icon+'</span><span><b>'+esc(x.title)+'</b><small>'+esc(x.feature)+'</small></span></summary><div class="usage-menu-body"><div class="usage-label">使い方</div><ol>'+x.steps.map(v=>'<li>'+esc(v)+'</li>').join('')+'</ol></div></details>').join('');
+  const cards=items.map((x,i)=>'<details class="usage-menu-card"'+(i===0?' open':'')+'><summary><span class="usage-icon">'+x.icon+'</span><span><b>'+esc(x.title)+'</b><small>'+esc(x.feature)+'</small></span></summary><div class="usage-menu-body"><div class="usage-label">このメニューの趣旨</div><p class="usage-purpose">'+esc(x.purpose)+'</p><div class="usage-label">使い方</div><ol>'+x.steps.map(v=>'<li>'+esc(v)+'</li>').join('')+'</ol></div></details>').join('');
   modal('<div class="usage-guide"><h2>？ 道の途中。の使い方</h2>'+
-    '<p class="usage-lead">「どこへ行こう？」に迷った時に、目的地を決めたり、寄り道を足したり、走った記録を残したりするためのアプリです。</p>'+
-    '<div class="usage-common"><h3>📍 まず覚えておく共通操作</h3><p><b>スタート地点</b>は、現在地・駅・Google Mapsで選んだ場所などから設定できます。</p><p><b>🗺 マップで確認</b>で場所を見て、ルートがある画面では125cc以下／250cc以上などのナビ用ボタンも使えます。</p><p><b>☆</b> は訪問済みマーク、<b>📝 メモ</b> はその場所の記録です。★の変更や削除は確認してから反映されます。</p></div>'+
+    '<p class="usage-lead">「道の途中。」は、目的地へ最短で着くためだけではなく、<b>走り出す理由をひとつ作る</b>ためのアプリです。行き先を偶然に任せたり、寄り道を足したり、知らない方向へ進んだり。その途中で見つけたものも含めて楽しんでください。</p>'+
+    '<div class="usage-common"><h3>📍 まず覚えておく共通操作</h3><p><b>スタート地点</b>は、現在地・駅・Google Mapsで選んだ場所などから設定できます。</p><p><b>距離表示</b>は候補抽出用の直線距離が中心です。実際の走行距離は道路や地形によって長くなります。</p><p><b>🗺 マップで確認</b>で場所を見て、ルートがある画面では125cc以下／250cc以上などのナビ用ボタンも使えます。</p><p><b>☆</b> は訪問済みマーク、<b>📝 メモ</b> はその場所の記録です。★の変更や削除は確認してから反映されます。</p></div>'+
     '<div class="usage-list">'+cards+'</div>'+
-    '<div class="usage-footer-note">※ 各距離は候補抽出用の直線距離が中心です。実際の走行距離や通行可否はGoogle Mapsや現地の道路標識・交通規制を確認してください。</div></div>');
+    '<div class="usage-common usage-riders-cafe"><h3>🏍️ ライダーズカフェについて</h3><p>ライダーが立ち寄れるカフェや飲食店を、ライダーズカフェとして登録していきます。店名・所在地・営業時間・定休日・食事内容・バイク駐車情報などを確認でき、対応している画面ではライダーズカフェだけを目的に探すこともできます。</p><p>営業時間情報から、営業中・営業前・本日の営業終了・定休日などの状態を表示します。実際の営業状況は店舗の公式情報もあわせて確認してください。</p></div>'+
+    '<div class="usage-footer-note">※ 道路状況・通行止め・交通規制・施設の営業状況は変わることがあります。実際の走行時はGoogle Mapsなどのナビ、現地の道路標識・交通規制・施設案内を優先してください。</div></div>');
 }
 
 function openAbout(){modal(`<h2>道の途中。</h2>
@@ -180,7 +182,7 @@ async function submitContactForm(form,category){
     カテゴリ:category,
     内容:coord?('座標：'+coord+'\n\n'+detailText):detailText,
     PWA:APP_VERSION,
-    DB:localStorage.getItem('michino_db_version')||'2.8.20',
+    DB:localStorage.getItem('michino_dev_db_version')||'2.8.20',
     送信日時:new Date().toLocaleString('ja-JP'),
     端末ブラウザ:navigator.userAgent
   };
@@ -268,7 +270,8 @@ const DETOUR_GENRES=[
   ['shrine','⛩️ 神社・寺'],
   ['park','🌳 公園'],
   ['unusual','👀 ちょっと変なもの'],
-  ['season','🌸 季節を感じる']
+  ['season','🌸 季節を感じる'],
+  ['riders_cafe','🏍️ ライダーズカフェ']
 ];
 const detourContexts=new Map();
 let detourContextSeq=0;
@@ -337,6 +340,7 @@ function detourIsMajorDestination(x){
 function detourGenreMatch(x,genre){
   if(genre==='random')return true;
   if(genre==='road')return x.kind==='道の駅';
+  if(genre==='riders_cafe')return x.kind==='ライダーズカフェ';
   if(genre==='season')return seasonMatch(x,currentSeason());
   const t=detourText(x);
   const fc=String(x.featureCategory||'');
@@ -356,6 +360,7 @@ function detourGenreMatch(x,genre){
 function detourStayMinutes(x,genre){
   if(genre==='onsen'||detourGenreMatch(x,'onsen'))return 70;
   if(genre==='food'||detourGenreMatch(x,'food'))return 45;
+  if(genre==='riders_cafe'||x.kind==='ライダーズカフェ')return 35;
   if(genre==='cafe'||detourGenreMatch(x,'cafe'))return 35;
   if(genre==='park'||detourGenreMatch(x,'park'))return 35;
   if(genre==='season')return 40;
@@ -369,12 +374,14 @@ function detourStayMinutes(x,genre){
 function detourAllSpots(){
   return [
     ...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})),
-    ...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)}))
+    ...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)})),
+    ...RIDERS_CAFES.filter(x=>active(x.gacha)&&(x.publish!==false||x.testOnly)).map(x=>({...x,kind:'ライダーズカフェ'}))
   ].filter(x=>Number.isFinite(+x.lat)&&Number.isFinite(+x.lng));
 }
 function detourExperienceTitle(x,genre){
   if(genre==='view'||detourGenreMatch(x,'view'))return'🌄 ちょっと景色を見る';
   if(genre==='sweets'||detourGenreMatch(x,'sweets'))return'🍡 甘いものをひとつ';
+  if(genre==='riders_cafe'||x.kind==='ライダーズカフェ')return'🏍️ ライダーズカフェへ寄り道';
   if(genre==='cafe'||detourGenreMatch(x,'cafe'))return'☕ ちょっとひと息';
   if(genre==='food'||detourGenreMatch(x,'food'))return'🍜 途中で腹ごしらえ';
   if(genre==='onsen'||detourGenreMatch(x,'onsen'))return'♨️ ひとっ風呂寄ってく？';
@@ -429,7 +436,8 @@ function detourMapSearchWord(genre){
     shrine:'神社 寺',
     park:'公園',
     unusual:'珍スポット',
-    season:'季節 観光スポット'
+    season:'季節 観光スポット',
+    riders_cafe:'ライダーズカフェ'
   }[genre]||'観光スポット';
 }
 function detourFoodSearchUrl(route,genre,point=null,radius=10){
@@ -549,17 +557,96 @@ function loadDetourFromContext(id){
 function openDetour(id){
   loadDetourFromContext(id);
 }
+function detourRouteProgress(route,p){
+  const nodes=[route.origin,...route.points];
+  let best={score:Infinity,progress:0};
+  let acc=0,total=0;
+  const lens=[];
+  for(let i=0;i<nodes.length-1;i++){const len=dist(nodes[i].lat,nodes[i].lng,nodes[i+1].lat,nodes[i+1].lng);lens.push(len);total+=len}
+  for(let i=0;i<nodes.length-1;i++){
+    const m=detourSegmentMetric(nodes[i],nodes[i+1],p);
+    const clamped=Math.max(0,Math.min(1,m.t));
+    const progress=total?((acc+lens[i]*clamped)/total):0;
+    const score=m.perp+(m.t<0||m.t>1?20:0);
+    if(score<best.score)best={score,progress};
+    acc+=lens[i];
+  }
+  return best.progress;
+}
+function detourPickMultiple(route,pool,count){
+  if(!pool.length)return[];
+  const ranked=pool.map(x=>({...x,_routeProgress:detourRouteProgress(route,x)}));
+  ranked.sort((a,b)=>a._routeProgress-b._routeProgress||a._detourDistance-b._detourDistance);
+  if(count<=1)return [ranked[Math.floor(Math.random()*Math.min(8,ranked.length))]];
+  const chosen=[];
+  const buckets=count;
+  for(let i=0;i<buckets;i++){
+    const lo=i/buckets,hi=(i+1)/buckets;
+    let bucket=ranked.filter(x=>x._routeProgress>=lo&&x._routeProgress<=(i===buckets-1?1:hi));
+    if(!bucket.length)bucket=ranked.filter(x=>!chosen.some(c=>c.id===x.id||(+c.lat===+x.lat&&+c.lng===+x.lng)));
+    if(!bucket.length)break;
+    const near=bucket.slice(0,Math.min(10,bucket.length));
+    const pick=near[Math.floor(Math.random()*near.length)];
+    if(!chosen.some(c=>c.id===pick.id||(+c.lat===+pick.lat&&+c.lng===+pick.lng)))chosen.push(pick);
+  }
+  return chosen.sort((a,b)=>a._routeProgress-b._routeProgress);
+}
+function detourInsertedMultiple(route,picks){
+  const nodes=[route.origin,...route.points];
+  let total=0;
+  const lens=[];
+  for(let i=0;i<nodes.length-1;i++){const len=dist(nodes[i].lat,nodes[i].lng,nodes[i+1].lat,nodes[i+1].lng);lens.push(len);total+=len}
+  let acc=0;
+  const originals=route.points.map((p,i)=>{
+    acc+=lens[i]||0;
+    return {...p,_routeProgress:total?acc/total:1,_originalOrder:i};
+  });
+  const detours=picks.map(p=>({...p,_routeProgress:Number.isFinite(p._routeProgress)?p._routeProgress:detourRouteProgress(route,p),_isDetour:true}));
+  return [...originals,...detours]
+    .sort((a,b)=>a._routeProgress-b._routeProgress||((a._isDetour?0:1)-(b._isDetour?0:1))||(a._originalOrder??0)-(b._originalOrder??0))
+    .map(({_routeProgress,_originalOrder,_isDetour,...p})=>p);
+}
+
 function detourInsertedPointsByAnchor(route,pick,anchor){
   const pts=route.points.map(p=>({...p}));
   const insertIndex=anchor==='destination'?Math.max(0,pts.length-1):0;
   pts.splice(insertIndex,0,pick);
   return pts;
 }
+function openDetourRegisteredDetail(index,genre,anchor){
+  const list=window._detourRegisteredPool||[];
+  const x=list[+index];if(!x||!detourRoute.origin||!detourRoute.points.length)return;
+  const inserted=detourInsertedPointsByAnchor(detourRoute,x,anchor);
+  const mins=detourStayMinutes(x,genre);
+  const details=[];
+  if(x.kind==='ライダーズカフェ'){
+    const sig=ridersCafeSignal(x);
+    details.push('<div class="detail-block"><b>営業状態</b><div>'+esc(sig.label)+'</div></div>');
+    if(x.foodTypes?.length)details.push('<div class="detail-block"><b>🍽 食事</b><div>'+esc(x.foodTypes.join(' / '))+'</div></div>');
+    if(x.regularHolidays?.length)details.push('<div class="detail-block"><b>休業日</b><div>'+esc(x.regularHolidays.join('・'))+'</div></div>');
+    if(x.irregularHoliday)details.push('<div class="detail-block"><b>⚠️ 臨時休業・不定休</b><div>設定される場合があります。最新情報は公式Instagram等をご確認ください。</div></div>');
+    if(x.address)details.push('<div class="detail-block"><b>📍 住所</b><div>'+esc(x.address)+'</div></div>');
+    if(x.permission?.label)details.push('<div class="detail-block"><b>掲載許諾</b><div>'+esc(x.permission.label)+(x.testOnly?'（DEV仮登録）':'')+'</div></div>');
+    details.push(ridersCafeOfficialLinks(x));
+  }else{
+    if(x.summary)details.push('<p>'+esc(x.summary)+'</p>');
+    if(x.access)details.push('<div class="detail-block"><b>🚗 アクセス</b><div>'+esc(x.access)+'</div></div>');
+  }
+  const d=Number.isFinite(x._detourDistance)?x._detourDistance:null;
+  modal('<h2 class="detail-title">'+esc(x.name)+'</h2>'+
+    '<div class="meta detail-meta">'+esc(spotMeta(x,x.kind,d))+'</div>'+
+    details.join('')+
+    '<div class="detour-stats"><span>'+esc(detourAnchorLabel(anchor))+'から約 '+(d===null?'--':d.toFixed(1))+'km</span><span>滞在目安 約'+mins+'分</span></div>'+
+    '<div class="route-buttons detail-route">'+mapBtn(x,'Googleマップで確認')+
+    '<a class="mapbtn bike250" href="'+googleRoute(detourRoute.origin,inserted,'250')+'" target="_blank" rel="noopener">🏍️ この登録候補に寄って走る</a></div>');
+}
+
 function runDetourGacha(){
   if(!detourRoute.origin||!detourRoute.points.length)return alert('出発地と最終目的地を設定するか、お気に入りのルートを選んでください。');
   const genre=$('detourGenre')?.value||'random';
   const level=$('detourLevel')?.value||'rest';
   const anchor=$('detourAnchor')?.value||'start';
+  const count=Math.max(1,Math.min(3,+( $('detourCount')?.value||1 )));
   const radius=numericValue('detourRadius','detourRadiusFree',1,200);
   const spec=detourLevelSpec(level);
   const route=detourRoute;
@@ -567,6 +654,7 @@ function runDetourGacha(){
   const routeNodes=[route.origin,...route.points];
   const all=detourAllSpots();
 
+  // Contextual pool: used for the "道草" suggestion under the selected radius/level.
   const pool=all.map(x=>{
     const d=dist(base.lat,base.lng,x.lat,x.lng);
     return {...x,_detourDistance:d};
@@ -579,40 +667,52 @@ function runDetourGacha(){
     return true;
   });
 
+  // Registered candidates:
+  // - specific genre: show all registered places in that genre within the selected radius
+  // - random: show all registered places across every genre within the selected radius
+  const registeredPool=all.map(x=>({
+    ...x,
+    _detourDistance:dist(base.lat,base.lng,x.lat,x.lng)
+  })).filter(x=>x._detourDistance<=radius&&(genre==='random'||detourGenreMatch(x,genre)));
+
   const host=$('detourResult');
   if(!host)return;
 
-  pool.sort((a,b)=>(a._detourDistance+Math.random()*radius*.35)-(b._detourDistance+Math.random()*radius*.35));
-  const pick=pool.length?rand(pool.slice(0,Math.min(25,pool.length))):null;
+  pool.sort((a,b)=>a._detourDistance-b._detourDistance||a.name.localeCompare(b.name,'ja'));
+  const picks=detourPickMultiple(route,pool,count);
+  registeredPool.sort((a,b)=>a._detourDistance-b._detourDistance||a.name.localeCompare(b.name,'ja'));
+  window._detourRegisteredPool=registeredPool;
+  const pick=picks[0]||null;
   const destination=route.points[route.points.length-1];
   const mapUrl=detourFoodSearchUrl(route,genre,base,radius);
   const mapLabel=genre==='random'?'Google Mapsでこの辺を探す':'Google Mapsで'+detourMapSearchWord(genre)+'を探す';
 
+  let pickedRouteHtml='';
+  if(picks.length){
+    const inserted=detourInsertedMultiple(route,picks);
+    pickedRouteHtml=`<div class="detour-picked-route">
+      <h4>🌿 今回の寄り道 ${picks.length}件</h4>
+      <div class="detour-picked-route-list">${picks.map((x,i)=>`<div class="route-line"><b>${i+1}. ${esc(x.name)}</b><div class="meta">進行順 / ${esc(detourAnchorLabel(anchor))}から約 ${x._detourDistance.toFixed(1)}km</div></div>`).join('')}</div>
+      <div class="detour-actions"><a class="mapbtn primary" href="${googleRoute(route.origin,inserted,'250')}" target="_blank" rel="noopener">🏍️ この順番で寄って走る</a></div>
+    </div>`;
+  }
   let registeredHtml='';
-  if(pick){
-    const meta=spotMeta(pick,pick.kind,null);
-    const inserted=detourInsertedPointsByAnchor(route,pick,anchor);
-    const mins=detourStayMinutes(pick,genre);
+  if(registeredPool.length){
     registeredHtml=`<div class="detour-registered">
-      <h4>📚 アプリ登録候補</h4>
-      <div class="detour-picked-head">${iconBadge(pick,pick.kind)}<div><h3>${esc(pick.name)}</h3><div class="meta">${esc(meta)}</div></div></div>
-      ${pick.summary?`<p>${esc(pick.summary)}</p>`:''}
-      <div class="detour-stats">
-        <span>${esc(detourAnchorLabel(anchor))}から約 ${pick._detourDistance.toFixed(1)}km</span>
-        <span>滞在目安 約${mins}分</span>
-      </div>
-      <a class="mapbtn" href="${googleRoute(route.origin,inserted,'250')}" target="_blank" rel="noopener">この登録候補に寄って走る</a>
+      <h4>📚 アプリ登録候補 <small>${registeredPool.length}件</small></h4>
+      <div class="detour-candidate-list">${registeredPool.map((x,i)=>`<button type="button" class="detour-candidate-row" onclick="openDetourRegisteredDetail(${i},'${escJs(genre)}','${escJs(anchor)}')">${iconBadge(x,x.kind)}<span>${esc(x.name)}</span></button>`).join('')}</div>
+      <p class="meta">${genre==='random'?'おまかせなので、指定半径内の全ジャンル登録地を表示しています。':'指定半径内にある、選んだジャンルの登録地をすべて表示しています。'} タップすると詳細と「この登録候補に寄って走る」を表示します。</p>
     </div>`;
   }else{
     registeredHtml=`<div class="detour-registered detour-registered-empty">
       <h4>📚 アプリ登録候補</h4>
-      <p class="meta">${esc(detourAnchorLabel(anchor))}から${radius}km以内には、このジャンルの登録候補がありません。</p>
+      <p class="meta">このジャンルには、まだアプリ登録候補がありません。</p>
     </div>`;
   }
 
   host.className='result';
   host.innerHTML=`<div class="detour-picked">
-    <div class="detour-mission-title">${pick?esc(detourExperienceTitle(pick,genre)):'🎲 この辺で道草'}</div>
+    <div class="detour-mission-title">${pick?(picks.length>1?'🌿 寄り道を'+picks.length+'件つなぐ':esc(detourExperienceTitle(pick,genre))):'🎲 この辺で道草'}</div>
     <div class="detour-stats">
       <span>${esc(spec.label)}</span>
       <span>${esc(detourAnchorLabel(anchor))} 基準</span>
@@ -622,6 +722,7 @@ function runDetourGacha(){
       <a class="mapbtn primary" href="${mapUrl}" target="_blank" rel="noopener">🗺 ${esc(mapLabel)}</a>
       <p class="meta">Google Mapsでは、選んだ基準地点を中心に検索します。指定kmは地図表示範囲の目安です。</p>
     </div>
+    ${pickedRouteHtml}
     ${registeredHtml}
     <p class="meta">最終目的地「${esc(destination.name||'目的地')}」はそのまま。</p>
     <div class="detour-actions">
@@ -688,14 +789,88 @@ function fillStationCities(k){const p=$('stPref').value,cs=[...new Set(JR.filter
 function fillStationModal(k){const p=$('stPref').value,c=$('stCity').value;const list=JR.filter(x=>(p==='すべて'||x.prefecture===p)&&(c==='すべて'||x.municipality===c)).sort((a,b)=>a.name.localeCompare(b.name,'ja')).slice(0,1000);$('stStation').innerHTML=list.map(x=>`<option value="${JR.indexOf(x)}">${esc(x.name)}駅</option>`).join('')}
 function applyStationModal(k){const idx=+$('stStation').value,st=JR[idx];if(!st)return alert('駅を選択してください。');if(k==='interestSave'){closeModal();setOrigin(k,st.lat,st.lng,st.name+'駅');return;}setOrigin(k,st.lat,st.lng,st.name+'駅');closeModal()}
 
+
+const RIDERS_CAFE_DAY_KEYS=['sun','mon','tue','wed','thu','fri','sat'];
+function hmToMinutes(v){const m=String(v||'').match(/^(\d{1,2}):(\d{2})$/);return m?(+m[1]*60+ +m[2]):null}
+function ridersCafeSignal(x,now=new Date()){
+  if(!x)return{code:'unknown',label:'❔ 情報不明'};
+  if(x.manualStatus){
+    const labels={open:'🟢 営業中',closed:'🔴 営業時間外',holiday:'⚫ 休店日',temporary_closed:'🟣 臨時休業',long_closed:'🟣 長期休業',permanently_closed:'⛔ 閉店'};
+    return{code:x.manualStatus,label:labels[x.manualStatus]||'❔ 状態不明'};
+  }
+  const key=RIDERS_CAFE_DAY_KEYS[now.getDay()],slots=x.businessHours?.[key]||[];
+  if(!slots.length)return{code:'holiday',label:'⚫ 本日定休日'};
+  const cur=now.getHours()*60+now.getMinutes();
+  for(const slot of slots){
+    const a=hmToMinutes(slot[0]),b=hmToMinutes(slot[1]);
+    if(a===null||b===null)continue;
+    if(cur>=a&&cur<b)return{code:'open',label:'🟢 営業中 '+slot[0]+'〜'+slot[1]};
+    if(cur<a)return{code:'before',label:'🟡 営業前 本日'+slot[0]+'〜'+slot[1]};
+  }
+  const last=slots[slots.length-1];
+  return{code:'closed',label:'🔴 本日の営業終了 '+last[0]+'〜'+last[1]};
+}
+function ridersCafeOfficialLinks(x){
+  if(!x||x.kind!=='ライダーズカフェ')return'';
+  const links=[];
+  if(x.instagram)links.push('<a class="mapbtn rider-official-link" href="'+esc(x.instagram)+'" target="_blank" rel="noopener">📷 公式Instagramを見る</a>');
+  if(x.website)links.push('<a class="mapbtn rider-official-link" href="'+esc(x.website)+'" target="_blank" rel="noopener">🌐 公式サイトを見る</a>');
+  if(x.facebook)links.push('<a class="mapbtn rider-official-link" href="'+esc(x.facebook)+'" target="_blank" rel="noopener">f Facebookを見る</a>');
+  if(!links.length)return'';
+  const notice=x.holidayNotice||(x.irregularHoliday?'臨時休業・営業時間変更の場合があります。最新情報は公式情報をご確認ください。':'');
+  return '<div class="rider-official-box">'+
+    (notice?'<div class="rider-official-notice">⚠️ '+esc(notice)+'</div>':'')+
+    '<div class="rider-official-actions">'+links.join('')+'</div>'+
+    '</div>';
+}
+
+function ridersCafeExtra(x){
+  if(x?.kind!=='ライダーズカフェ')return'';
+  const sig=ridersCafeSignal(x),foods=(x.foodTypes||[]).join(' / '),hol=(x.regularHolidays||[]).join('・');
+  return '<div class="rider-cafe-status '+esc(sig.code)+'">'+esc(sig.label)+'</div>'+
+    (foods?'<div class="meta">🍽 '+esc(foods)+'</div>':'')+
+    (hol?'<div class="meta">休業日：'+esc(hol)+'</div>':'')+
+    (x.irregularHoliday?'<div class="meta rider-cafe-holiday-note">※ 臨時休業・不定休あり。最新情報は公式Instagram等をご確認ください。</div>':'')+
+    (x.permission?.label?'<div class="meta">掲載許諾：'+esc(x.permission.label)+(x.testOnly?'（DEV仮登録）':'')+'</div>':'');
+}
+
 function requireOrigin(k){const o=origins[k];if(!o){alert('スタート地点を設定してください。');return null}return o}
 function runSugoroku(){const o=requireOrigin('sug');if(!o)return;const radius=numericValue('sugRadius','sugRadiusFree',1,2000),goal=numericValue('sugTravel','sugTravelFree',1,3000);let n=+$('sugCount').value;if(!n)n=1+Math.floor(Math.random()*5);const pool=D.roads.filter(x=>active(x.gacha)).map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng)})).filter(x=>x.d<=radius).sort((a,b)=>a.d-b.d);if(pool.length<n)return $('sugResult').innerHTML='<p>条件内の道の駅が不足しています。最大直線距離を広げてください。</p>';const targetStep=Math.max(15,goal/n),route=[];let prev=o,remaining=[...pool];for(let i=0;i<n;i++){let choices=remaining.map(x=>({...x,sd:dist(prev.lat,prev.lng,x.lat,x.lng)})).sort((a,b)=>Math.abs(a.sd-targetStep)-Math.abs(b.sd-targetStep)).slice(0,Math.min(30,remaining.length));const p=rand(choices);route.push(p);remaining=remaining.filter(x=>x.id!==p.id);prev=p}const final=route[route.length-1];const mission=$('sugMission').checked?rand(MISSIONS):'ミッションなし';$('sugResult').classList.remove('empty');$('sugResult').innerHTML=`<div class="goal"><small>GOAL</small><br><b>${esc(final.name)}</b></div><div class="mission">${esc(mission)}</div><div>${route.map((x,i)=>`<div class="route-line"><b>${i+1}. ${esc(x.name)}</b><div class="meta">${esc(x.prefecture)} ${esc(x.municipality||'')} / 直線距離 約${dist(o.lat,o.lng,x.lat,x.lng).toFixed(1)}km</div></div>`).join('')}</div><div class="actions">${routeButtons(o,route)}<button class="soft" onclick='saveFavorite(${JSON.stringify({mode:'道の駅すごろく',title:final.name,startLabel:o.label,origin:o,points:route.map(x=>({name:x.name,lat:x.lat,lng:x.lng,latRaw:x.latRaw||String(x.lat),lngRaw:x.lngRaw||String(x.lng),kind:'道の駅',prefecture:x.prefecture,featureCategory:'road_station',navMode:'name',navQuery:x.navQuery||navSearchQuery(x)})),routeSummary:route.map((x,i)=>`${i+1}. ${x.name}`).join(' → ')}).replaceAll("'","&#39;")})'>お気に入りに保存</button><button class="soft" onclick="resetResult('sug')">結果をリセット</button></div>`}
 function resetResult(k){$(k+'Result').classList.add('empty');$(k+'Result').innerHTML='条件を設定してください。'}
-function runDestination(){const o=requireOrigin('dest');if(!o)return;const target=numericValue('destDist','destDistFree',1,2000),tol=numericValue('destTol','destTolFree',1,500),mood=$('destMood').value;let pool=[];pool.push(...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})));pool.push(...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)})));pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng)})).filter(x=>Math.abs(x.d-target)<=tol);if(mood!=='なんでも'&&mood!=='ランドマーク'){const re={海:/海|岬|島|港|海岸/,山:/山|高原|峠|渓谷|滝/,田舎:/田園|棚田|農|里|高原/,市街地:/街|駅|市場|公園|城/}[mood];const q=pool.filter(x=>re&&re.test(`${x.name} ${x.category||''} ${x.summary||''}`));if(q.length)pool=q}if(mood==='ランドマーク')pool=pool.filter(x=>x.kind!=='道の駅');if(!pool.length)return $('destResult').innerHTML='<p>この距離帯に候補がありません。距離か許容幅を変更してください。</p>';const x=rand(pool);$('destResult').classList.remove('empty');$('destResult').innerHTML=`${spotCard(x,x.kind,x.d,false,null,0,o)}<div class="actions"><button class="soft" onclick='saveFavorite(${JSON.stringify({mode:'行先ガチャ',title:x.name,startLabel:o.label,origin:o,points:[{name:x.name,lat:x.lat,lng:x.lng,latRaw:x.latRaw||String(x.lat),lngRaw:x.lngRaw||String(x.lng),kind:x.kind,prefecture:x.prefecture,featureCategory:x.featureCategory,navMode:useNameNavigation(x)?'name':'coord',navQuery:useNameNavigation(x)?navSearchQuery(x):''}],routeSummary:''}).replaceAll("'","&#39;")})'>お気に入りに保存</button></div>`}
-function runRelay(){const o=requireOrigin('relay');if(!o)return;const t=numericValue('relayDist','relayDistFree',1,500),dir=$('relayDir').value;const options={北:[337.5,0,22.5],東:[67.5,90,112.5],南:[157.5,180,202.5],西:[247.5,270,292.5]};const targetBearing=rand(options[dir]||options.北);let pool=RELAY.map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng),br:bearing(o.lat,o.lng,x.lat,x.lng)})).filter(x=>Math.abs(x.d-t)<=Math.max(3,t*.75)&&Math.abs(((x.br-targetBearing+540)%360)-180)<=32);if(!pool.length)pool=RELAY.map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng),br:bearing(o.lat,o.lng,x.lat,x.lng)})).sort((a,b)=>(Math.abs(a.d-t)+Math.abs(((a.br-targetBearing+540)%360)-180)/8)-(Math.abs(b.d-t)+Math.abs(((b.br-targetBearing+540)%360)-180)/8)).slice(0,10);if(!pool.length)return alert('候補がありません。');const x=rand(pool);relayTrail.push(x);$('relayResult').classList.remove('empty');$('relayResult').innerHTML=`<h3>${esc(x.name)}</h3><div class="meta">距離：約${x.d.toFixed(1)}km / 選択：${esc(dir)} → ガチャ：${dirText16(targetBearing)} / 実際：${dirText16(x.br)}</div><div class="actions">${routeButtons(o,[x])}<button class="soft" onclick='saveFavorite(${JSON.stringify({mode:'乗り継ぎガチャ',title:x.name,startLabel:o.label,origin:o,points:[{name:x.name,lat:x.lat,lng:x.lng,latRaw:x.latRaw||String(x.lat),lngRaw:x.lngRaw||String(x.lng),kind:'目的地'}],routeSummary:''}).replaceAll("'","&#39;")})'>お気に入りに保存</button></div>`;setOrigin('relay',x.lat,x.lng,x.name);$('relayHistory').innerHTML=relayTrail.length?`<div class="panel"><b>今回の乗り継ぎ</b><div class="meta">${relayTrail.map((x,i)=>`${i+1}. ${esc(x.name)}`).join(' → ')}</div></div>`:''}
+function runDestination(){const o=requireOrigin('dest');if(!o)return;const target=numericValue('destDist','destDistFree',1,2000),tol=numericValue('destTol','destTolFree',1,500),mood=$('destMood').value;let pool=[];pool.push(...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})));pool.push(...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)})));pool.push(...RIDERS_CAFES.filter(x=>active(x.gacha)&&(x.publish!==false||x.testOnly)).map(x=>({...x,kind:'ライダーズカフェ'})));pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng)})).filter(x=>Math.abs(x.d-target)<=tol);if(mood==='ライダーズカフェ')pool=pool.filter(x=>x.kind==='ライダーズカフェ');else if(mood!=='なんでも'&&mood!=='ランドマーク'){const re={海:/海|岬|島|港|海岸/,山:/山|高原|峠|渓谷|滝/,田舎:/田園|棚田|農|里|高原/,市街地:/街|駅|市場|公園|城/}[mood];const q=pool.filter(x=>re&&re.test(`${x.name} ${x.category||''} ${x.summary||''}`));if(q.length)pool=q}if(mood==='ランドマーク')pool=pool.filter(x=>x.kind!=='道の駅'&&x.kind!=='ライダーズカフェ');if(!pool.length)return $('destResult').innerHTML='<p>この距離帯に候補がありません。距離か許容幅を変更してください。</p>';const x=rand(pool);$('destResult').classList.remove('empty');$('destResult').innerHTML=`${spotCard(x,x.kind,x.d,false,null,0,o)}<div class="actions"><button class="soft" onclick='saveFavorite(${JSON.stringify({mode:'行先ガチャ',title:x.name,startLabel:o.label,origin:o,points:[{name:x.name,lat:x.lat,lng:x.lng,latRaw:x.latRaw||String(x.lat),lngRaw:x.lngRaw||String(x.lng),kind:x.kind,prefecture:x.prefecture,featureCategory:x.featureCategory,navMode:useNameNavigation(x)?'name':'coord',navQuery:useNameNavigation(x)?navSearchQuery(x):''}],routeSummary:''}).replaceAll("'","&#39;")})'>お気に入りに保存</button></div>`}
+function runRelay(){
+  const o=requireOrigin('relay');if(!o)return;
+  const t=numericValue('relayDist','relayDistFree',1,500),dir=$('relayDir').value;
+  const baseBearing={北:0,東:90,南:180,西:270}[dir]??0;
+  const targetBearing=(baseBearing+(Math.random()*70-35)+360)%360;
+  const targetDistance=t*(0.9+Math.random()*0.2);
+  const p=pointAtDistance(o,targetDistance,targetBearing);
+  const x={
+    id:'relay_'+Date.now(),
+    name:'ランダム地点',
+    lat:p.lat,lng:p.lng,
+    latRaw:String(p.lat),lngRaw:String(p.lng),
+    kind:'ランダム地点',
+    featureCategory:'generic',
+    navMode:'coord',
+    d:targetDistance,
+    br:targetBearing
+  };
+  relayTrail.push({...x,from:o.label||'スタート',dir});
+  $('relayResult').classList.remove('empty');
+  $('relayResult').innerHTML=`<h3>🎲 次の地点</h3>
+    <div class="meta">直線距離：約${targetDistance.toFixed(1)}km / 選択：${esc(dir)} / ガチャ方角：${dirText16(targetBearing)}</div>
+    <p class="meta">登録スポットではありません。指定方向・距離の先に作ったランダム地点です。実際の道路はナビ側で確認してください。</p>
+    <div class="actions">${routeButtons(o,[x])}
+      <button class="soft" onclick='saveFavorite(${JSON.stringify({mode:'乗り継ぎガチャ',title:'ランダム地点',startLabel:o.label,origin:o,points:[{name:'ランダム地点',lat:x.lat,lng:x.lng,latRaw:String(x.lat),lngRaw:String(x.lng),kind:'ランダム地点',navMode:'coord'}],routeSummary:''}).replaceAll("'","&#39;")})'>お気に入りに保存</button>
+    </div>`;
+  setOrigin('relay',x.lat,x.lng,'前回のランダム地点');
+  const total=relayTrail.reduce((a,v)=>a+(+v.d||0),0);
+  $('relayHistory').innerHTML=`<div class="panel"><b>今回の乗り継ぎ</b><div class="meta">${relayTrail.length}区間 / 直線距離合計 約${total.toFixed(1)}km</div><div class="meta">${relayTrail.map((v,i)=>`${i+1}. ${esc(v.dir)}へ約${(+v.d).toFixed(1)}km`).join(' → ')}</div></div>`;
+}
 const RIDE_STYLE_KEY='michinotochu_ride_style_v1';
 const RIDE_DISTANCE_LABELS={'10':'🛵 ちょい乗り','20':'🌿 ひとっ走り','40':'🏍️ ぶらっと行こう','70':'🌤️ いい感じに走る','100':'🔥 今日は走るぞ','300':'🚀 遠くまで行こう'};
-const RIDE_MOOD_LABELS={random:'🎲 おまかせ',road:'🏠 道の駅へ',classic:'⭐ いいとこ行きたい',detour:'🌿 ちょっと寄りたい',scenery:'🌊 景色が見たい',food:'☕ なんか食べたい',heal:'♨️ 癒されたい'};
+const RIDE_MOOD_LABELS={random:'🎲 おまかせ',road:'🏠 道の駅へ',classic:'⭐ いいとこ行きたい',detour:'🌿 ちょっと寄りたい',scenery:'🌊 景色が見たい',food:'☕ なんか食べたい',heal:'♨️ 癒されたい',riders_cafe:'🏍️ ライダーズカフェ'};
 
 const RIDE_FOOD_GENRES={
   random:{label:'🎲 おまかせ'},
@@ -779,6 +954,7 @@ function rideMoodMatch(x,mood){
   if(mood==='road')return x.kind==='道の駅';
   if(mood==='classic')return x.level==='A';
   if(mood==='detour')return x.level==='B';
+  if(mood==='riders_cafe')return x.kind==='ライダーズカフェ';
   const t=rideStyleText(x),tags=uiCategoryTags(x);
   if(mood==='scenery')return ['view','sea','nature','park','construction','road_drive'].some(v=>tags.has(v))||/海|海岸|岬|湖|池|沼|展望|眺望|景色|高原|山|峠|滝|渓谷|峡谷|棚田|夕日|夜景|橋/.test(t);
   if(mood==='food')return /カフェ|喫茶|珈琲|コーヒー|ハンバーガー|バーガー|甘味|スイーツ|団子|饅頭|まんじゅう|ソフト|ジェラート|アイス|菓子|ケーキ|プリン|食堂|レストラン|ラーメン|うどん|そば|丼|定食|グルメ|食事/.test(t);
@@ -795,7 +971,8 @@ function rideMapQuery(mood,subgenre=null){
     detour:['穴場スポット','小さな観光スポット','展望スポット'],
     scenery:['展望台','海岸','岬','湖','滝'],
     food:['カフェ','ハンバーガー','スイーツ','ごはん'],
-    heal:['癒しスポット','神社','温泉','森林浴']
+    heal:['癒しスポット','神社','温泉','森林浴'],
+    riders_cafe:['ライダーズカフェ']
   }[mood]||['観光スポット'];
   return rand(pool)
 }
@@ -846,6 +1023,7 @@ function runRideStyle(preserveArea=false){
   let pool=[];
   pool.push(...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})));
   pool.push(...D.landmarks.filter(x=>active(x.gacha)).map(x=>({...x,kind:pointKind(x)})));
+  pool.push(...RIDERS_CAFES.filter(x=>active(x.gacha)&&(x.publish!==false||x.testOnly)).map(x=>({...x,kind:'ライダーズカフェ'})));
   pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,+x.lat,+x.lng),br:bearing(o.lat,o.lng,+x.lat,+x.lng)}))
     .filter(x=>x.d>=band.min&&x.d<=band.max&&rideDirectionDelta(x.br,targetBearing)<=RIDE_DIRECTION_HALF_WIDTH&&rideMoodMatch(x,mood));
 
@@ -887,13 +1065,13 @@ function runRideStyle(preserveArea=false){
 function currentSeason(){const m=new Date().getMonth()+1;return m>=3&&m<=5?'春':m>=6&&m<=8?'夏':m>=9&&m<=11?'秋':'冬'}
 function seasonMatch(x,s){const t=`${x.name} ${x.category||''} ${x.summary||''} ${x.featureLabel||''}`;const map={春:/桜|梅|菜の花|芝桜|花畑|チューリップ|藤|新緑|公園/,夏:/海|海岸|岬|湖|滝|高原|ひまわり|渓谷|湿原|島|展望/,秋:/紅葉|銀杏|すすき|棚田|田園|山|峠|高原|渓谷|峡谷/,冬:/雪|氷|樹氷|冬|温泉|流氷|霧氷|雪景色|合掌/};return map[s].test(t)}
 function runSeason(){const o=requireOrigin('season');if(!o)return;let s=$('seasonSelect').value;if(s==='auto')s=currentSeason();const r=numericValue('seasonRadius','seasonRadiusFree',1,2000);let all=D.landmarks.filter(x=>active(x.gacha)&&seasonMatch(x,s)).map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng),kind:pointKind(x)})).sort((a,b)=>a.d-b.d),list=all.filter(x=>x.d<=r),fallback=false;if(!list.length){list=all.slice(0,12);fallback=true}else list=list.slice(0,12);$('seasonResult').innerHTML=(fallback?`<div class="panel full">圏内に候補がないため、近い${s}の候補を表示します。</div>`:'')+list.map(x=>spotCard(x,x.kind,x.d,false,`saveSingle('${escJs('季節を走る')}','${escJs(x.name)}',${x.lat},${x.lng},'${escJs(x.kind)}','${escJs(o.label)}',${o.lat},${o.lng})`,0,o)).join('')}
-function runNearby(){const o=requireOrigin('nearby');if(!o)return;const t=numericValue('nearbyDist','nearbyDistFree',1,2000),type=$('nearbyType').value,min=Math.max(0,t-10),max=t+10;let pool=[];if(type==='all'||type==='road')pool.push(...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})));if(type==='all'||type==='A')pool.push(...D.landmarks.filter(x=>active(x.gacha)&&x.level==='A').map(x=>({...x,kind:'定番スポット'})));if(type==='all'||type==='B')pool.push(...D.landmarks.filter(x=>active(x.gacha)&&x.level==='B').map(x=>({...x,kind:'寄り道スポット'})));pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng)})).filter(x=>x.d>=min&&x.d<=max).sort((a,b)=>a.d-b.d);window._nearby={origin:o,list:pool.slice(0,80)};$('nearbyResult').innerHTML=`<div class="panel full">${t}±10km / ${pool.length}件${pool.length>80?'（近い80件を表示）':''}</div>`+window._nearby.list.map((x,i)=>spotCard(x,x.kind,x.d,false,`saveSingle('ここからどこ行く？','${escJs(x.name)}',${x.lat},${x.lng},'${escJs(x.kind)}','${escJs(o.label)}',${o.lat},${o.lng})`,i,o)).join('')}
+function runNearby(){const o=requireOrigin('nearby');if(!o)return;const t=numericValue('nearbyDist','nearbyDistFree',1,2000),type=$('nearbyType').value,min=Math.max(0,t-10),max=t+10;let pool=[];if(type==='all'||type==='road')pool.push(...D.roads.filter(x=>active(x.gacha)).map(x=>({...x,kind:'道の駅'})));if(type==='all'||type==='A')pool.push(...D.landmarks.filter(x=>active(x.gacha)&&x.level==='A').map(x=>({...x,kind:'定番スポット'})));if(type==='all'||type==='B')pool.push(...D.landmarks.filter(x=>active(x.gacha)&&x.level==='B').map(x=>({...x,kind:'寄り道スポット'})));if(type==='cafe')pool.push(...RIDERS_CAFES.filter(x=>active(x.gacha)&&(x.publish!==false||x.testOnly)).map(x=>({...x,kind:'ライダーズカフェ'})));pool=pool.map(x=>({...x,d:dist(o.lat,o.lng,x.lat,x.lng)})).filter(x=>x.d>=min&&x.d<=max).sort((a,b)=>a.d-b.d);window._nearby={origin:o,list:pool.slice(0,80)};$('nearbyResult').innerHTML=`<div class="panel full">${t}±10km / ${pool.length}件${pool.length>80?'（近い80件を表示）':''}</div>`+window._nearby.list.map((x,i)=>spotCard(x,x.kind,x.d,false,`saveSingle('ここからどこ行く？','${escJs(x.name)}',${x.lat},${x.lng},'${escJs(x.kind)}','${escJs(o.label)}',${o.lat},${o.lng})`,i,o)).join('')}
 function selectedNearby(){return [...document.querySelectorAll('.near-check:checked')].map(x=>window._nearby.list[+x.dataset.i]).slice(0,8)}
 function openNearbyRoute(){const pts=selectedNearby();if(!pts.length)return alert('場所を選択してください。');window.open(googleRoute(window._nearby.origin,pts),'_blank','noopener')}
 function saveNearbySelected(){const pts=selectedNearby();if(!pts.length)return alert('保存する場所を選択してください。');const o=window._nearby.origin;saveFavorite({mode:'ここからどこ行く？',title:pts[pts.length-1].name,startLabel:o.label,origin:o,points:pts.map(x=>({name:x.name,lat:x.lat,lng:x.lng,latRaw:x.latRaw||String(x.lat),lngRaw:x.lngRaw||String(x.lng),kind:x.kind,prefecture:x.prefecture,featureCategory:x.featureCategory,navMode:useNameNavigation(x)?'name':'coord',navQuery:useNameNavigation(x)?navSearchQuery(x):''})),routeSummary:''})}
 function escJs(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
 function saveSingle(mode,name,lat,lng,kind,label,ola,oln){
-  const x=[...D.roads,...D.landmarks].find(v=>v.name===name&&Math.abs((+v.lat)-(+lat))<1e-7&&Math.abs((+v.lng)-(+lng))<1e-7);
+  const x=[...D.roads,...D.landmarks,...RIDERS_CAFES].find(v=>v.name===name&&Math.abs((+v.lat)-(+lat))<1e-7&&Math.abs((+v.lng)-(+lng))<1e-7);
   const navMode=x?(useNameNavigation(x)?'name':'coord'):'coord';
   const navQuery=x&&navMode==='name'?navSearchQuery(x):'';
   saveFavorite({mode,title:name,startLabel:label,origin:{lat:ola,lng:oln,label},points:[{name,lat,lng,latRaw:x?.latRaw||String(lat),lngRaw:x?.lngRaw||String(lng),kind,prefecture:x?.prefecture||'',featureCategory:x?.featureCategory||'',navMode,navQuery}],routeSummary:''})
@@ -925,8 +1103,8 @@ function commitInterestSave(){
   saveSingle('気になる場所',x.name,x.lat,x.lng,x.kind,o.label,o.lat,o.lng);
   pendingInterestSave=null;origins.interestSave=null;closeModal();
 }
-function fillSelectors(){const prefs=sortPrefectures(new Set([...D.roads,...D.landmarks].map(x=>x.prefecture).filter(Boolean)));for(const id of ['interestPref','browsePref'])$(id).innerHTML=prefs.map(p=>`<option>${esc(p)}</option>`).join('');for(const id of ['interestFeature','browseFeature'])$(id).innerHTML=FEATURES.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}
-function runInterest(){const p=$('interestPref').value,t=$('interestType').value,f=$('interestFeature').value;let pool=[];if((t==='all'||t==='road')&&!f)pool.push(...D.roads.filter(x=>x.prefecture===p).map(x=>({...x,kind:'道の駅'})));if(t==='all'||t==='A')pool.push(...D.landmarks.filter(x=>x.prefecture===p&&x.level==='A'&&featureMatch(x,f)).map(x=>({...x,kind:'定番スポット'})));if(t==='all'||t==='B')pool.push(...D.landmarks.filter(x=>x.prefecture===p&&x.level==='B'&&featureMatch(x,f)).map(x=>({...x,kind:'寄り道スポット'})));pool.sort((a,b)=>a.name.localeCompare(b.name,'ja'));$('interestResult').innerHTML=`<div class="panel full">${esc(p)} / ${pool.length}件</div>`+pool.map(x=>spotCard(x,x.kind,null,false,`beginInterestSave('${escJs(x.name)}',${x.lat},${x.lng},'${escJs(x.kind)}')`,0,null,`showInterestDetailById('${escJs(x.id)}','${escJs(x.kind)}')`)).join('')}
+function fillSelectors(){const prefs=sortPrefectures(new Set([...D.roads,...D.landmarks,...RIDERS_CAFES].map(x=>x.prefecture).filter(Boolean)));for(const id of ['interestPref','browsePref'])$(id).innerHTML=prefs.map(p=>`<option>${esc(p)}</option>`).join('');for(const id of ['interestFeature','browseFeature'])$(id).innerHTML=FEATURES.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}
+function runInterest(){const p=$('interestPref').value,t=$('interestType').value,f=$('interestFeature').value;let pool=[];if((t==='all'||t==='road')&&!f)pool.push(...D.roads.filter(x=>x.prefecture===p).map(x=>({...x,kind:'道の駅'})));if(t==='all'||t==='A')pool.push(...D.landmarks.filter(x=>x.prefecture===p&&x.level==='A'&&featureMatch(x,f)).map(x=>({...x,kind:'定番スポット'})));if(t==='all'||t==='B')pool.push(...D.landmarks.filter(x=>x.prefecture===p&&x.level==='B'&&featureMatch(x,f)).map(x=>({...x,kind:'寄り道スポット'})));if(t==='cafe')pool.push(...RIDERS_CAFES.filter(x=>x.prefecture===p&&(x.publish!==false||x.testOnly)).map(x=>({...x,kind:'ライダーズカフェ'})));pool.sort((a,b)=>a.name.localeCompare(b.name,'ja'));$('interestResult').innerHTML=`<div class="panel full">${esc(p)} / ${pool.length}件</div>`+pool.map(x=>spotCard(x,x.kind,null,false,`beginInterestSave('${escJs(x.name)}',${x.lat},${x.lng},'${escJs(x.kind)}')`,0,null,`showInterestDetailById('${escJs(x.id)}','${escJs(x.kind)}')`)).join('')}
 function uiCategoryTags(x){
   const tags=new Set(),fc=x.featureCategory||'',text=`${x.name||''} ${x.featureLabel||''}`;
   const add=(tag,re)=>{if(re.test(text))tags.add(tag)};
@@ -964,9 +1142,9 @@ function spotMeta(x,kind,d){
   if(Number.isFinite(d))parts.push('約'+d.toFixed(1)+'km');
   return parts.join(' / ');
 }
-function spotCard(x,kind,d,selectable=false,saveAction=null,index=0,routeOrigin=null,detailAction=null){const navActions=routeOrigin?routeButtons(routeOrigin,[x]):mapBtn(x);const tripActions=routeOrigin?'':tripSpotActions(x,kind);return `<div class="spot-card"><div class="spot-main${detailAction?' detail-clickable':''}"${detailAction?` onclick="${detailAction}" role="button" tabindex="0"`:''}>${selectable?`<input class="spot-select near-check" type="checkbox" data-i="${index}">`:''}${iconBadge(x,kind)}<div class="spot-info"><h3>${esc(x.name)}</h3><div class="meta">${esc(spotMeta(x,kind,d))}</div>${x.summary?`<div class="meta">${esc(x.summary)}</div>`:''}</div></div><div class="actions">${navActions}${saveAction?`<button class="soft" onclick="${saveAction}">保存</button>`:''}${tripActions}</div></div>`}
-function interestItemById(id,kind){const src=kind==='道の駅'?D.roads:D.landmarks;const x=src.find(v=>String(v.id)===String(id));return x?{...x,kind}:null}
-function showInterestDetailById(id,kind){const x=interestItemById(id,kind);if(!x)return;const details=[];if(x.summary)details.push(`<p>${esc(x.summary)}</p>`);if(x.access)details.push(`<div class="detail-block"><b>🚗 アクセス</b><div>${esc(x.access)}</div></div>`);if(x.arrivalPointType)details.push(`<div class="detail-block"><b>📍 到着目安</b><div>${esc(x.arrivalPointType)}</div></div>`);modal(`<h2 class="detail-title">${esc(x.name)}</h2><div class="meta detail-meta">${esc(spotMeta(x,kind,null))}</div>${details.join('')||'<p class="meta">この地点の追加説明は登録されていません。</p>'}<div class="route-buttons detail-route">${mapBtn(x,'Googleマップで確認')}</div><div class="actions trip-detail-actions">${tripSpotActions(x,kind)}</div>`)}
+function spotCard(x,kind,d,selectable=false,saveAction=null,index=0,routeOrigin=null,detailAction=null){const navActions=routeOrigin?routeButtons(routeOrigin,[x]):mapBtn(x);const tripActions=routeOrigin?'':tripSpotActions(x,kind);return `<div class="spot-card"><div class="spot-main${detailAction?' detail-clickable':''}"${detailAction?` onclick="${detailAction}" role="button" tabindex="0"`:''}>${selectable?`<input class="spot-select near-check" type="checkbox" data-i="${index}">`:''}${iconBadge(x,kind)}<div class="spot-info"><h3>${esc(x.name)}</h3><div class="meta">${esc(spotMeta(x,kind,d))}</div>${ridersCafeExtra(x)}${x.summary?`<div class="meta">${esc(x.summary)}</div>`:''}</div></div><div class="actions">${navActions}${saveAction?`<button class="soft" onclick="${saveAction}">保存</button>`:''}${tripActions}</div></div>`}
+function interestItemById(id,kind){const src=kind==='道の駅'?D.roads:(kind==='ライダーズカフェ'?RIDERS_CAFES:D.landmarks);const x=src.find(v=>String(v.id)===String(id));return x?{...x,kind}:null}
+function showInterestDetailById(id,kind){const x=interestItemById(id,kind);if(!x)return;const details=[];if(x.summary)details.push(`<p>${esc(x.summary)}</p>`);if(kind==='ライダーズカフェ'){const sig=ridersCafeSignal(x);details.push(`<div class="detail-block"><b>営業状態</b><div>${esc(sig.label)}</div></div>`);if(x.foodTypes?.length)details.push(`<div class="detail-block"><b>🍽 食事</b><div>${esc(x.foodTypes.join(' / '))}</div></div>`);if(x.regularHolidays?.length)details.push(`<div class="detail-block"><b>休業日</b><div>${esc(x.regularHolidays.join('・'))}</div></div>`);if(x.irregularHoliday)details.push(`<div class="detail-block"><b>⚠️ 臨時休業・不定休</b><div>設定される場合があります。最新情報は公式Instagram等をご確認ください。</div></div>`);if(x.address)details.push(`<div class="detail-block"><b>📍 住所</b><div>${esc(x.address)}</div></div>`);if(x.permission?.label)details.push(`<div class="detail-block"><b>掲載許諾</b><div>${esc(x.permission.label)}${x.testOnly?'（DEV仮登録）':''}</div></div>`);details.push(ridersCafeOfficialLinks(x));}if(x.access)details.push(`<div class="detail-block"><b>🚗 アクセス</b><div>${esc(x.access)}</div></div>`);if(x.arrivalPointType)details.push(`<div class="detail-block"><b>📍 到着目安</b><div>${esc(x.arrivalPointType)}</div></div>`);modal(`<h2 class="detail-title">${esc(x.name)}</h2><div class="meta detail-meta">${esc(spotMeta(x,kind,null))}</div>${details.join('')||'<p class="meta">この地点の追加説明は登録されていません。</p>'}<div class="route-buttons detail-route">${mapBtn(x,'Googleマップで確認')}</div><div class="actions trip-detail-actions">${tripSpotActions(x,kind)}</div>`)}
 
 
 const TRIP_HISTORY_KEY='michinotochu_trip_history_v1';
@@ -981,15 +1159,15 @@ function loadTripStore(){
 }
 function saveTripStore(store){localStorage.setItem(TRIP_HISTORY_KEY,JSON.stringify(store))}
 function tripRegisteredKey(x,kind){
-  const prefix=kind==='道の駅'?'road':'spot';
+  const prefix=kind==='道の駅'?'road':(kind==='ライダーズカフェ'?'cafe':'spot');
   const id=(x&&x.id!==undefined&&x.id!==null&&String(x.id)!=='')?String(x.id):'';
   if(id)return prefix+':id:'+id;
   return prefix+':geo:'+Number(x.lat).toFixed(6)+','+Number(x.lng).toFixed(6);
 }
 function findRegisteredSpotByTripKey(key){
-  const isRoad=String(key).startsWith('road:');
-  const src=isRoad?D.roads:D.landmarks;
-  const body=String(key).replace(/^(road|spot):/,'');
+  const isRoad=String(key).startsWith('road:'),isCafe=String(key).startsWith('cafe:');
+  const src=isRoad?D.roads:(isCafe?RIDERS_CAFES:D.landmarks);
+  const body=String(key).replace(/^(road|spot|cafe):/,'');
   let x=null;
   if(body.startsWith('id:')){
     const id=body.slice(3);
@@ -999,7 +1177,7 @@ function findRegisteredSpotByTripKey(key){
     x=src.find(v=>Math.abs((+v.lat)-la)<1e-5&&Math.abs((+v.lng)-ln)<1e-5)||null;
   }
   if(!x)return null;
-  return{...x,kind:isRoad?'道の駅':pointKind(x)};
+  return{...x,kind:isRoad?'道の駅':(isCafe?'ライダーズカフェ':pointKind(x))};
 }
 function makeRegisteredTripRecord(key){
   const x=findRegisteredSpotByTripKey(key); if(!x)return null;
@@ -1216,5 +1394,5 @@ document.addEventListener('click',e=>{
   const a=e.target.closest&&e.target.closest('a.mapbtn');
   if(a&&String(a.href||'').includes('google.com/maps/'))saveReturnState();
 });
-function init(){if(window.HOME_SPRITE_B64)document.documentElement.style.setProperty('--home-sprite-image',`url("data:image/webp;base64,${window.HOME_SPRITE_B64}")`);renderStartPanels();fillSelectors();rideRestoreSelection();initChoiceUI();initRideStyleUI();const fv=$('footerVersion');if(fv)fv.textContent=APP_VERSION+' / DB Ver'+(localStorage.getItem('michino_db_version')||'2.8.20');restoreReturnState();}
+function init(){if(window.HOME_SPRITE_B64)document.documentElement.style.setProperty('--home-sprite-image',`url("data:image/webp;base64,${window.HOME_SPRITE_B64}")`);renderStartPanels();fillSelectors();rideRestoreSelection();initChoiceUI();initRideStyleUI();const fv=$('footerVersion');if(fv)fv.textContent=APP_VERSION+' / DB Ver'+(localStorage.getItem('michino_dev_db_version')||'2.8.20');restoreReturnState();}
 init();
