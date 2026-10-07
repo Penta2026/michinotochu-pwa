@@ -1,10 +1,11 @@
 Production release approval
 
-Release: PWA 1.5.20 / DB 2.8.20
-Approved scope: diagnostic hotfix for Google Maps shared-link coordinate reflection on production.
+Release: PWA 1.5.21 / DB 2.8.20
+Approved scope: clipboard-first Google Maps shared-link flow on production.
 Approved by user in chat: 2026-10-07
 Notes:
-- preserve all current detour behavior
-- on Maps link resolution failure, expose diagnostic stage
-- include raw input, extracted URL, HTTP status, Worker response, and exception text
-- use diagnostic output only to identify the remaining production-device failure
+- preserve all current detour behavior and Maps resolver fixes
+- when link input is empty, read Google Maps shared link from clipboard
+- when link input has a value, prefer that pasted value
+- keep manual paste as fallback for PWA clipboard restrictions
+- destination and external detour buttons use the same clipboard-first behavior
