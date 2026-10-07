@@ -526,3 +526,35 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   .ride-mood-change-button span{align-self:flex-start}
   .ride-mood-change-grid{grid-template-columns:1fr}
 }
+
+/* DEV environment marker */
+.topbar{position:relative}
+.dev-banner{position:absolute;right:18px;top:10px;z-index:20;background:#fff3a8;color:#5b4800;border:2px solid #e3b600;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;letter-spacing:.03em;box-shadow:0 2px 8px #0002}
+@media(max-width:760px){.topbar{padding-top:46px}.dev-banner{left:50%;right:auto;transform:translateX(-50%);top:8px;white-space:nowrap}}
+  
+/* Riders cafe status */
+.rider-cafe-status{display:inline-block;margin-top:6px;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:900;background:#eef3f7;color:#334}
+.rider-cafe-status.open{background:#dcf7df;color:#166327}
+.rider-cafe-status.before{background:#fff4c7;color:#7b5b00}
+.rider-cafe-status.closed{background:#ffe0e0;color:#8c2020}
+.rider-cafe-status.holiday{background:#e7e7e7;color:#444}
+.rider-cafe-status.temporary_closed,.rider-cafe-status.long_closed{background:#efe2ff;color:#60318f}
+.rider-cafe-status.permanently_closed{background:#2f2f2f;color:#fff}
+
+/* Detour candidate list */
+.detour-registered h4 small{font-size:12px;font-weight:800;opacity:.65;margin-left:4px}
+.detour-candidate-list{display:grid;gap:8px;margin:10px 0}
+.detour-candidate-row{width:100%;display:flex;align-items:center;gap:10px;text-align:left;border:1px solid #d8e1e8;background:#fff;border-radius:12px;padding:9px 11px;color:inherit;cursor:pointer}
+.detour-candidate-row:hover{background:#f7fbff}
+.detour-candidate-row .icon-badge{flex:0 0 auto;margin:0}
+.detour-candidate-row>span{font-weight:800;line-height:1.35}
+
+.usage-purpose{margin:6px 0 14px;line-height:1.7}
+.usage-riders-cafe{margin-top:14px}
+
+.rider-official-box{margin:12px 0;padding:12px;border:1px solid #e2d7b8;border-radius:12px;background:#fffaf0}
+.rider-official-notice{font-size:13px;line-height:1.6;font-weight:700;margin-bottom:10px}
+.rider-official-actions{display:flex;flex-wrap:wrap;gap:8px}
+.rider-official-link{display:inline-flex;align-items:center;justify-content:center}
+
+.rider-cafe-holiday-note{margin-top:2px;line-height:1.45;font-weight:700}
