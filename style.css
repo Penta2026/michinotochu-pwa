@@ -325,22 +325,22 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 .detour-registered-empty{background:#f8fafb}
 .detour-registered .mapbtn{margin-top:10px;width:100%;text-align:center}
 
-/* PWA Ver1.3.11 home button artwork refresh */
+/* PWA Ver1.5.32 home button artwork refresh */
 .home-sprite{
+  background-image:url('assets/home/home_buttons_sprite.webp?v=1.5.32')!important;
   background-repeat:no-repeat!important;
-  background-size:cover!important;
-  background-position:center!important;
+  background-size:200% 500%!important;
 }
-.home-sprite-sug{background-image:url('assets/home/home_btn_sugoroku.webp?v=1.4.3')!important;}
-.home-sprite-dest{background-image:url('assets/home/home_btn_destination.webp?v=1.4.3')!important;}
-.home-sprite-relay{background-image:url('assets/home/home_btn_relay.webp?v=1.4.3')!important;}
-.home-sprite-detour{background-image:url('assets/home/home_btn_detour.webp?v=1.4.3')!important;}
-.home-sprite-nearby{background-image:url('assets/home/home_btn_nearby.webp?v=1.4.3')!important;}
-.home-sprite-ride{background-image:url('assets/home/home_btn_ride_style.webp?v=1.4.3')!important;}
-.home-sprite-season{background-image:url('assets/home/home_btn_season.webp?v=1.4.3')!important;}
-.home-sprite-interest{background-image:url('assets/home/home_btn_interest.webp?v=1.4.3')!important;}
-.home-sprite-saved{background-image:url('assets/home/home_btn_saved.webp?v=1.4.3')!important;}
-.home-sprite-history{background-image:url('assets/home/home_btn_history.webp?v=1.4.3')!important;}
+.home-sprite-sug{background-position:0% 0%!important}
+.home-sprite-dest{background-position:100% 0%!important}
+.home-sprite-relay{background-position:0% 25%!important}
+.home-sprite-detour{background-position:100% 25%!important}
+.home-sprite-nearby{background-position:0% 50%!important}
+.home-sprite-ride{background-position:100% 50%!important}
+.home-sprite-season{background-position:0% 75%!important}
+.home-sprite-interest{background-position:100% 75%!important}
+.home-sprite-saved{background-position:0% 100%!important}
+.home-sprite-history{background-position:100% 100%!important}
 
 
 /* PWA Ver1.4.0 ride style */
