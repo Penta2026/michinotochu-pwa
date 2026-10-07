@@ -1,11 +1,10 @@
 Production release approval
 
-Release: PWA 1.5.19 / DB 2.8.20
-Approved scope: hotfix for Google Maps shared-link coordinate reflection on production.
+Release: PWA 1.5.20 / DB 2.8.20
+Approved scope: diagnostic hotfix for Google Maps shared-link coordinate reflection on production.
 Approved by user in chat: 2026-10-07
 Notes:
-- preserve all current detour workflow behavior
-- add explicit Google Maps shared-link input for detour destination
-- add explicit Google Maps shared-link input for external detour points
-- prefer pasted input; clipboard remains fallback
-- keep Worker resolver and hardened coordinate parser
+- preserve all current detour behavior
+- on Maps link resolution failure, expose diagnostic stage
+- include raw input, extracted URL, HTTP status, Worker response, and exception text
+- use diagnostic output only to identify the remaining production-device failure
