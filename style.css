@@ -558,3 +558,31 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 .rider-official-link{display:inline-flex;align-items:center;justify-content:center}
 
 .rider-cafe-holiday-note{margin-top:2px;line-height:1.45;font-weight:700}
+
+
+/* PWA Ver1.5.16-dev20 detour selectable candidates */
+.detour-selection-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 10px}
+.detour-selection-bar span{font-weight:800;color:#274e69}
+.detour-selection-bar button{margin-left:auto}
+.detour-candidate-select{display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:center}
+.detour-order-badge{min-width:24px;font-weight:900;color:#274e69;text-align:center}
+.detour-candidate-check{width:20px;height:20px;accent-color:currentColor}
+.detour-candidate-row small{margin-left:auto;font-weight:700;color:#667883}
+@media(max-width:620px){
+  .detour-selection-bar{align-items:stretch}
+  .detour-selection-bar button{width:100%;margin-left:0}
+}
+
+
+/* PWA Ver1.5.16-dev21 external Google Maps detours */
+.detour-copy-add{width:100%;margin-top:8px}
+.detour-external-list{display:grid;gap:8px;margin-top:10px}
+.detour-external-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px;border:1px dashed #c9d8e2;border-radius:12px;background:#fff}
+.detour-external-row>div{min-width:0}
+.detour-external-row button{flex:0 0 auto}
+
+
+/* PWA Ver1.5.16-dev25 detour final route action */
+.detour-route-final{margin-top:16px;padding-top:12px;border-top:1px solid #dfe8ee}
+.detour-route-final-status{font-weight:800;color:#274e69;margin-bottom:8px}
+.detour-route-final .action-main{width:100%}
