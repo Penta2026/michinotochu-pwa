@@ -1,5 +1,5 @@
 道の途中。 public build
-Public version: 1.5.17
-Built: 2026-10-07T04:22:01.414Z
+Public version: 1.5.18
+Built: 2026-10-07T04:47:00.092Z
 Editable source: private repository
 Unpublished rider-cafe master records: excluded

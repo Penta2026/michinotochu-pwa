@@ -1,12 +1,10 @@
 Production release approval
 
-Release: PWA 1.5.17 / DB 2.8.20
-Approved scope: functionality verified through DEV 1.5.16-dev25, version-only promotion to 1.5.17-dev1 source baseline.
+Release: PWA 1.5.18 / DB 2.8.20
+Approved scope: hotfix for Google Maps shared-link coordinate resolution on production.
 Approved by user in chat: 2026-10-07
 Notes:
-- detour count selector removed
-- registered and Google Maps detours can be mixed
-- detours preserve selection/addition order
-- genre search theme is list-selectable
-- final action is "ルートを決定してGoogleマップへ"
-- final waypoint/order adjustments may be done in Google Maps
+- preserve all 1.5.17 detour workflow behavior
+- parse /maps/search/lat,+lng directly in app
+- parse coordinates nested in Google sorry?continue=... URLs
+- keep Worker resolver fallback
