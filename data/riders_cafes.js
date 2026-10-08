@@ -40,30 +40,30 @@ window.RIDERS_CAFES = [
     helmetPlace: "",
     riderFacilities: [],
     gacha: "候補",
-    publish: true,
-    testOnly: false,
-    listingType: "partner",
+    publish: false,
+    testOnly: true,
+    listingType: "unapproved",
     permission: {
-      status: "approved",
-      label: "🤝 掲載協力店"
+      status: "unapproved",
+      label: "未承諾"
     },
-    sourceStatus: "shop_approved",
+    sourceStatus: "unverified",
     sourceUrls: [
       "https://www.instagram.com/golden_valley1777/",
       "https://www.facebook.com/profile.php?id=100063564693497"
     ],
     lastChecked: "2026-10-08",
-    iconType: "custom",
-    iconImage: "",
-    iconApproved: true,
+    iconType: "default",
+    iconImage: "icons/riders-cafe-unapproved.png",
+    iconApproved: false,
     summary: "広島市安佐北区白木町のライダーズカフェ。ハンバーガーやカレー、コーヒーなどを楽しめる。",
-    notes: "「道の途中。」ライダーズカフェ掲載協力店 第1号。"
+    notes: "掲載未承諾。公開前に店舗確認・許諾確認が必要。"
   }
 ];
 
 window.RIDERS_CAFE_DB_META = {
   schemaVersion: "1.0",
-  dbVersion: "1.0.1",
+  dbVersion: "1.0.2",
   updated: "2026-10-08",
   count: 1
 };
