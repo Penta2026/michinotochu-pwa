@@ -65,7 +65,8 @@ def extract_from_card(card):
     loc = text.split("場",1)
     if len(loc)<2 or "所" not in loc[1][:15]:
         return None
-    venue = clean(loc[1].split("所",1)[1].split("\n",2)[0])
+    venue_lines = [clean(v) for v in loc[1].split("所",1)[1].splitlines() if clean(v)]
+    venue = venue_lines[0] if venue_lines else ""
     venue = ALIASES.get(venue,venue)
     if venue not in PREFS:
         return None
