@@ -33,7 +33,7 @@ const sameRoad=(x,e)=>{const norm=v=>String(v||"").replace(/^道の駅[\s　]*/,
 const activeRoadEvents=x=>roadEvents.filter(e=>e&&e.roadName&&/^\d{4}-\d{2}-\d{2}$/.test(e.endDate||"")&&e.endDate>=jpToday()&&(!e.publishedAt||e.publishedAt<=jpToday())&&e.status!=="cancelled"&&sameRoad(x,e));
 const EVENT_CACHE_KEY="michino_road_events_cache_v1";
 const EVENT_CHECK_KEY="michino_road_events_checked_v1";
-function eventDate(v){return /^\\d{4}-\\d{2}-\\d{2}$/.test(v||"")}
+function eventDate(v){return /^\d{4}-\d{2}-\d{2}$/.test(v||"")}
 function sanitizeEvent(e){if(!e||typeof e!=="object")return null;const allowedUrl=typeof e.url==="string"&&/^https:\/\//i.test(e.url)?e.url:"";if(!e.roadName||!e.title||!eventDate(e.startDate)||!eventDate(e.endDate)||e.endDate<e.startDate)return null;return {roadName:String(e.roadName).slice(0,120),prefecture:String(e.prefecture||"").slice(0,30),title:String(e.title).slice(0,160),startDate:e.startDate,endDate:e.endDate,publishedAt:eventDate(e.publishedAt)?e.publishedAt:"",url:allowedUrl,status:e.status==="cancelled"?"cancelled":"scheduled"}}
 function renderEventStatus(message){const e=el("tourEventStatus");if(!e)return;const checked=localStorage.getItem(EVENT_CHECK_KEY),active=roadEvents.filter(x=>x.endDate>=jpToday()&&x.status!=="cancelled").length;e.textContent=(message?message+" / ":"")+(checked?"最終取得："+new Date(checked).toLocaleString("ja-JP"):"未取得")+" / 登録 "+roadEvents.length+"件（終了前 "+active+"件）"}
 function loadLocalRoadEvents(){try{const payload=JSON.parse(localStorage.getItem(EVENT_CACHE_KEY)||"null");roadEvents=Array.isArray(payload?.events)?payload.events.map(sanitizeEvent).filter(Boolean):[];eventsReady=!!payload}catch(e){roadEvents=[];eventsReady=false}renderEventStatus()}
