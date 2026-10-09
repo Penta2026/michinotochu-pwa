@@ -294,8 +294,8 @@ def main():
         nationwide=[]
     try:
         tohoku=collect_tohoku(today=NOW)
-    except (requests.RequestException, ValueError) as exc:
-        print(f"東北・各駅公式の取得失敗。既存データを維持: {exc}", file=sys.stderr)
+    except Exception as exc:
+        print(f"東北・各駅公式の取得失敗。既存データを維持: {type(exc).__name__}: {exc}", file=sys.stderr)
         tohoku=[]
     # Merge verified local notices with national and Chugoku/Shikoku feeds.
     collected=shikoku+chugoku+nationwide+tohoku
