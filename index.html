@@ -243,7 +243,7 @@
 <section id="interest" class="view"><div class="screen-card menu-interest">
   <div class="screen-title-card"><h2>🗾  気になる場所</h2><button class="screen-close" onclick="showView('home')">×</button></div>
   <div class="screen-body"><p class="lead">県やカテゴリから、ふらっと行ってみたい場所を眺めます。</p><div class="panel form-grid">
-    <label>都道府県<select id="interestPref"></select></label><button type="button" id="interestCurrentPrefBtn" class="soft" onclick="selectInterestCurrentPref()">📍 現在地の県を選択</button><label>スポット区分<select id="interestType"><option value="all">なんでも</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="cafe">ライダーズカフェ</option></select></label><label>カテゴリ<select id="interestFeature"></select></label><button class="primary full" onclick="runInterest()">候補を見る</button>
+    <label>都道府県<select id="interestPref"></select></label><button type="button" id="interestCurrentPrefBtn" class="soft" onclick="selectInterestCurrentPref()">📍 現在地の県を選択</button><label>スポット区分<select id="interestType" onchange="syncInterestFeature()"><option value="all">なんでも</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="cafe">ライダーズカフェ</option></select></label><label id="interestFeatureLabel">カテゴリ<select id="interestFeature"></select></label><button class="primary full" onclick="runInterest()">候補を見る</button>
   </div><div id="interestResult" class="spot-grid"></div></div></div></section>
 
 <section id="trip" class="view"><div class="screen-card menu-trip">
