@@ -27,6 +27,8 @@ jobs:
           cache-dependency-path: scripts/requirements-road-events.txt
       - name: Install parser dependencies
         run: python -m pip install -r scripts/requirements-road-events.txt
+      - name: Check Python syntax
+        run: python -m compileall -q scripts
       - name: Retrieve official event listings
         run: python scripts/collect_road_events.py
       - name: Commit only if event data changed
