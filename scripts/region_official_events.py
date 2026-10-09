@@ -50,8 +50,8 @@ def _apple_hill_period(text):
 
 MURATA_NEWS = "https://muratamachi.info/category/news"
 OYU_FES = "https://yunoeki-oyu.jp/information/kuromanta-rock-fes/"
-DATE_RANGE = re.compile(r"(20\\d{2})年\\s*(\\d{1,2})月\\s*(\\d{1,2})日.{0,25}?[～〜~\\-].{0,12}?(?:(\\d{1,2})月)?\\s*(\\d{1,2})日")
-DATE_START = re.compile(r"(20\\d{2})年\\s*(\\d{1,2})月\\s*(\\d{1,2})日")
+DATE_RANGE = re.compile(r"(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日.{0,25}?[～〜~\-].{0,12}?(?:(\d{1,2})月)?\s*(\d{1,2})日")
+DATE_START = re.compile(r"(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日")
 
 def _explicit_period(content):
     m = DATE_RANGE.search(content)
@@ -88,7 +88,7 @@ def collect_oyu(today):
     if "クロマンタ" not in body or "道の駅おおゆ" not in body:
         print("東北・おおゆ: 公式記事の会場・イベント名を確認できず")
         return []
-    match=re.search(r"(20\\d{2})年\\s*(\\d{1,2})月\\s*(\\d{1,2})日",body)
+    match=re.search(r"(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日",body)
     if not match:
         return []
     try:
