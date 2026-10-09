@@ -649,3 +649,8 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   color:#455d6b;font-size:13px;font-weight:700;line-height:1.6;
 }
 #detour .detour-locked-note[hidden]{display:none!important}
+
+/* Detour: clearly visible full-width search genre switch */
+#detour .detour-map-search .detour-genre-change-btn{display:flex;width:100%;box-sizing:border-box;min-height:52px;padding:12px 16px;margin:0 0 12px;align-items:center;justify-content:center;text-align:center;font-size:15px;font-weight:800;border-radius:14px;background:#edf5ff;color:#28669e;border:1px solid #a6c9ee;box-shadow:0 3px 8px #173a4f0c;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
+#detour .detour-map-search .detour-genre-change-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px #173a4f18}
+#detour .detour-map-search .detour-genre-change-btn:focus-visible{outline:3px solid #a6c9ee;outline-offset:2px}
