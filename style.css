@@ -599,3 +599,9 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
   font:inherit;
   color:inherit;
 }
+
+/* Touring plan return-location controls */
+.tour-return-same{display:flex!important;align-items:center;gap:10px;justify-content:flex-start;padding:10px 4px}
+.tour-return-same input[type="checkbox"]{width:18px!important;height:18px!important;min-width:18px;margin:0;accent-color:#1f997d}
+#tourReturnExtra[hidden]{display:none!important}
+#tourReturnExtra .start-panel{margin-top:10px!important}
