@@ -127,9 +127,13 @@ def collect_murata(today):
 
 def collect_tohoku(today=None):
     today = today or date.today()
-    home = requests.get(APPLE_HILL, timeout=18, headers=USER_AGENT)
-    home.raise_for_status()
-    soup = BeautifulSoup(home.text, "html.parser")
+    try:
+        home = requests.get(APPLE_HILL, timeout=18, headers=USER_AGENT)
+        home.raise_for_status()
+        soup = BeautifulSoup(home.text, "html.parser")
+    except requests.RequestException as exc:
+        print(f"東北・なみおかのトップページ取得失敗: {exc}")
+        soup = BeautifulSoup("", "html.parser")
     candidates = []
     for link in soup.select('a[href*="infodetail"]'):
         # Detail links often have generic text such as 「詳細はこちら」.
