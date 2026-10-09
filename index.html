@@ -170,59 +170,37 @@
   </div>
 </div></section>
 
-<section id="ride" class="view"><div class="screen-card menu-ride">
-  <div class="screen-title-card"><h2>🌤️  今日の走り方</h2><button class="screen-close" onclick="showView('home')">×</button></div>
-  <div class="screen-body">
-    <p class="lead"><b>今日は、どんな感じで走る？</b><br>距離と気分だけ決めたら、あとは「道の途中。」におまかせ。</p>
-    <div id="rideStart"><div class="panel start-panel"><h3>📍 スタート地点</h3><div class="origin-status" id="rideOrigin">現在：未設定</div><div class="start-simple"><button class="soft start-current" onclick="useCurrent('ride')">◎ 現在地を使う</button><button class="soft start-station" onclick="stationPicker('ride')">🚉 駅を選ぶ</button><div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('ride')">🗺 Googleマップでスタート地点を選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div><button class="soft reflect-btn start-reflect" onclick="reflectMapLink('ride')">🔗 コピーしたリンクを反映</button></div></div></div>
+<section id="ride" class="view"><div class="screen-card menu-ride"><div class="screen-title-card"><h2>🏍️ 今日の走り方・ツーリング計画</h2><button class="screen-close" onclick="showView('home')">×</button></div><div class="screen-body">
+<p class="lead">行きたい方向と直線距離から目標を探して、寄り道を足して帰ろう。</p>
+<div id="rideStart"><div class="panel start-panel"><h3>📍 スタート地点</h3><div class="origin-status" id="rideOrigin">現在：未設定</div><div class="start-simple"><button class="soft start-current" onclick="useCurrent('ride')">◎ 現在地を使う</button><button class="soft start-station" onclick="stationPicker('ride')">🚉 駅を選ぶ</button><div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('ride')">🗺 Googleマップでスタート地点を選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div><button class="soft reflect-btn start-reflect" onclick="reflectMapLink('ride')">🔗 コピーしたリンクを反映</button></div></div></div>
 
-    <div class="choice-section">
-      <h3>🏍️ 今日はどのくらい走る？</h3>
-      <select id="rideDistance" class="logic-control">
-        <option value="10">🛵 ちょい乗り（10km前後）</option>
-        <option value="20">🌿 ひとっ走り（20km前後）</option>
-        <option value="40" selected>🏍️ ぶらっと行こう（40km前後）</option>
-        <option value="70">🌤️ いい感じに走る（70km前後）</option>
-        <option value="100">🔥 今日は走るぞ（100km前後）</option>
-        <option value="300">🚀 遠くまで行こう（300km前後）</option>
-      </select>
-      <div class="choice-grid ride-distance-grid" data-target="rideDistance" data-values="10,20,40,70,100,300" data-labels="🛵 ちょい乗り,🌿 ひとっ走り,🏍️ ぶらっと行こう,🌤️ いい感じに走る,🔥 今日は走るぞ,🚀 遠くまで行こう"></div>
-      <div class="ride-distance-note" id="rideDistanceNote">目安：スタート地点から32〜48km</div>
-    </div>
-
-    <div class="choice-section">
-      <h3>✨ 今日はどんな所へ行きたい？</h3>
-      <select id="rideMood" class="logic-control">
-        <option value="random" selected>🎲 おまかせ</option>
-        <option value="road">🏠 道の駅へ</option>
-        <option value="classic">⭐ いいとこ行きたい</option>
-        <option value="detour">🌿 ちょっと寄りたい</option>
-        <option value="scenery">🌊 景色が見たい</option>
-        <option value="food">☕ なんか食べたい</option>
-        <option value="heal">♨️ 癒されたい</option>
-        <option value="riders_cafe">🏍️ ライダーズスポット</option>
-      </select>
-      <div class="choice-grid ride-mood-grid" data-target="rideMood" data-values="random,road,classic,detour,scenery,food,heal,riders_cafe" data-labels="🎲 おまかせ,🏠 道の駅へ,⭐ いいとこ行きたい,🌿 ちょっと寄りたい,🌊 景色が見たい,☕ なんか食べたい,♨️ 癒されたい,🏍️ ライダーズスポット"></div>
-    </div>
-
-    <div class="choice-section">
-      <h3>🧭 どっち方面へ走る？</h3>
-      <select id="rideDirection" class="logic-control">
-        <option value="random" selected>🎲 おまかせ</option>
-        <option value="north">⬆️ 北</option>
-        <option value="east">➡️ 東</option>
-        <option value="south">⬇️ 南</option>
-        <option value="west">⬅️ 西</option>
-      </select>
-      <div class="choice-grid ride-direction-grid" data-target="rideDirection" data-values="random,north,east,south,west" data-labels="🎲 おまかせ,⬆️ 北,➡️ 東,⬇️ 南,⬅️ 西"></div>
-      <div class="ride-direction-note">方角はだいたい±30°。おまかせは毎回ランダムな方向を選びます。</div>
-    </div>
-
-    <div class="note">※ 距離は候補抽出用の直線距離帯です。実際の走行距離は道路状況やルートによって長くなります。距離・気分・方角は次回も保持されます。</div>
-    <button class="primary action-main" type="button" onclick="runRideStyle()">✨ この感じで探す！</button>
-    <div id="rideResult" class="result empty">スタート地点と今日の気分を選んでください。</div>
-  </div>
-</div></section>
+    
+<div class="panel form-grid">
+<label>目標直線距離（km）<input id="tourDistance" type="number" min="1" max="1000" value="100"></label>
+<label>許容距離 ±（km）<input id="tourTolerance" type="number" min="0" max="300" value="20"></label>
+<label>方角<select id="tourDirection"><option value="all">🎲 全方角</option><option value="north">⬆️ 北（北北西〜北北東）</option><option value="east">➡️ 東（東北東〜東南東）</option><option value="south">⬇️ 南（南南東〜南南西）</option><option value="west">⬅️ 西（西南西〜西北西）</option></select></label>
+<label>スポット区分<select id="tourGroup" onchange="tourGroupChanged()"><option value="all">すべて</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="riders">ライダーズスポット</option></select></label>
+<label>スポットカテゴリ<select id="tourCategory"><option value="">すべて</option></select></label>
+<button class="primary full" type="button" onclick="tourSearch()">🎯 目標地点の候補を見る</button></div>
+<div id="tourCandidates" class="spot-grid"></div>
+<div class="panel form-grid"><h3 class="full">☕ 目標地点周辺の寄り道</h3>
+<label>検索半径（直線km）<input id="tourRadius" type="number" value="20" min="0" max="300"></label>
+<button type="button" class="soft" onclick="tourSearchNearby()">周辺スポットを探す</button>
+<label class="full">自由に寄り道追加（場所名・住所）<input id="tourFreeName" placeholder="例：〇〇展望台"></label>
+<button type="button" class="soft full" onclick="tourAddFree()">＋ 登録地点以外を追加</button>
+<div class="note full">目標地点1件＋寄り道2件まで。登録順でGoogleマップへ送るよ。</div></div>
+<div id="tourNearby" class="spot-grid"></div>
+<div class="panel form-grid"><h3 class="full">🏠 帰着地点</h3>
+<label class="full"><input id="tourReturnSame" type="checkbox" checked onchange="tourReturnChanged()"> 出発地点と同じ</label>
+<div class="full" id="tourReturnExtra" hidden><div class="origin-status" id="tourReturnOrigin">別の帰着地点：未設定</div>
+<button type="button" class="soft" onclick="useCurrent('tourReturn')">◎ 現在地</button>
+<button type="button" class="soft" onclick="stationPicker('tourReturn')">🚉 駅から選択</button>
+<label>または場所名・住所を指定<input id="tourReturnName" placeholder="例：広島駅"></label></div>
+<label>車両区分<select id="tourVehicle"><option value="125">125cc以下（高速・有料を回避）</option><option value="250" selected>250cc以上（高速・有料も可）</option></select></label></div>
+<div class="panel"><h3>🧭 計画した地点</h3><div id="tourPlanState"></div></div>
+<button class="primary action-main" onclick="tourOpenMaps()">🗺️ Googleマップでルートを確認</button>
+<div class="note">距離は候補を探す直線距離。実走行距離・フェリー・通行規制・経由地の順序はGoogleマップで確認・調整してね。125cc以下の回避指定は通行可能性を保証しないよ。</div>
+</div></div></section>
 
 <section id="season" class="view"><div class="screen-card menu-season">
   <div class="screen-title-card"><h2>🌸  季節を走る</h2><button class="screen-close" onclick="showView('home')">×</button></div>
@@ -292,6 +270,7 @@
 <script src="assets/home/home_sprite_2.js?v=1.6.2"></script>
 <script src="assets/home/home_sprite_3.js?v=1.6.2"></script>
 <script src="app.js?v=1.6.2"></script>
+<script src="tour-plan.js?v=1.6.3"></script>
 <script src="pwa.js?v=1.6.2"></script>
 </body>
 </html>
