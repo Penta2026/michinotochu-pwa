@@ -182,6 +182,88 @@ def collect_chugoku():
     print(f"中国地方: 日付明記の単日イベント {len(found)} 件")
     return found
 
+
+# Nationwide official association: conservative single-day or explicitly ranged events.
+NATIONAL_SOURCE = "https://www.michi-no-eki.jp/notices"
+PREFECTURES = (
+    "北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 茨城県 栃木県 群馬県 "
+    "埼玉県 千葉県 東京都 神奈川県 新潟県 富山県 石川県 福井県 山梨県 長野県 "
+    "岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 奈良県 和歌山県 "
+    "鳥取県 島根県 岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 "
+    "福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県"
+).split()
+NATIONAL_ITEM = re.compile(r"^(20\d{2})年(\d{1,2})月(\d{1,2})日\s+(" + "|".join(PREFECTURES) + r")\s+[〖【]道の駅\s*(.+?)[〗】](.+)$")
+NATIONAL_DATE = re.compile(r"(?<!\d)(?:(20\d{2})年)?\s*(\d{1,2})月\s*(\d{1,2})日|(?<!\d)(\d{1,2})\s*/\s*(\d{1,2})(?!\d)")
+NATIONAL_SKIP = BLOCKED_WORDS + ("お知らせ","募集","出店者","交通規制","定休日","休止","会場変更","営業日","売上","記念品")
+NATIONAL_EVENTS = EVENT_WORDS + ("収穫","体験会","フリーマーケット","イルミネーション","夜市","花火","音楽会","文化祭","スタンプラリー")
+
+def national_event_date(title, published):
+    # Announcement date is not an event date; only parse the event-specific title.
+    dates = []
+    for m in NATIONAL_DATE.finditer(title):
+        y = int(m.group(1)) if m.group(1) else published.year
+        mo = int(m.group(2) or m.group(4))
+        day = int(m.group(3) or m.group(5))
+        if not m.group(1) and published.month >= 11 and mo <= 2:
+            y += 1
+        try:
+            dates.append(datetime(y, mo, day).date())
+        except ValueError:
+            continue
+    if not dates:
+        return None
+    first, last = dates[0], dates[-1]
+    if first > last or last < NOW or first < published:
+        return None
+    # Reject unrelated dates or implausibly broad ranges.
+    if (last - first).days > 100:
+        return None
+    return first.isoformat(), last.isoformat()
+
+def collect_nationwide():
+    collected = []
+    seen = set()
+    for page in range(0, 6):
+        url = NATIONAL_SOURCE if page == 0 else NATIONAL_SOURCE + "?page=" + str(page)
+        response = requests.get(url, timeout=18, headers=HEADERS)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "html.parser")
+        found_page = 0
+        for a in soup.select("a[href]"):
+            txt = clean(a.get_text(" ", strip=True))
+            match = NATIONAL_ITEM.match(txt)
+            if not match:
+                continue
+            found_page += 1
+            try:
+                published = datetime(int(match.group(1)), int(match.group(2)), int(match.group(3))).date()
+            except ValueError:
+                continue
+            prefecture = match.group(4)
+            road = clean(match.group(5)).strip("「」『』 ")
+            title = clean(match.group(6))
+            if not road or not title or any(w in title for w in NATIONAL_SKIP):
+                continue
+            if not any(w in title for w in NATIONAL_EVENTS):
+                continue
+            period = national_event_date(title, published)
+            if not period:
+                continue
+            href = urljoin(NATIONAL_SOURCE, a["href"])
+            if urlparse(href).hostname not in ("www.michi-no-eki.jp", "michi-no-eki.jp"):
+                continue
+            key = (href, road)
+            if key in seen:
+                continue
+            seen.add(key)
+            collected.append({"roadName":road,"prefecture":prefecture,"title":title,
+                              "startDate":period[0],"endDate":period[1],
+                              "publishedAt":published.isoformat(),"url":href,"status":"scheduled"})
+        if not found_page:
+            break
+    print(f"全国公式: 厳格な開催日判定を通過 {len(collected)} 件")
+    return collected
+
 def main():
     previous=json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
     old=previous.get("events",[])
@@ -195,15 +277,21 @@ def main():
     except (requests.RequestException, ValueError) as exc:
         print(f"中国地方の取得失敗。既存データを維持: {exc}", file=sys.stderr)
         chugoku=[]
-    # If page design changed or content unexpectedly empty, preserve previous records.
-    collected=shikoku+chugoku
+    try:
+        nationwide=collect_nationwide()
+    except (requests.RequestException, ValueError) as exc:
+        print(f"全国公式の取得失敗。既存データを維持: {exc}", file=sys.stderr)
+        nationwide=[]
+    # Keep the existing collectors, and add validated national official announcements.
+    collected=shikoku+chugoku+nationwide
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
     # Keep unexpired records from sources not currently collected (e.g. 中国地方).
     preserved=[x for x in old if x.get("endDate","")>=NOW.isoformat() and
                not (("sk-michinoeki.jp" in x.get("url","") and shikoku) or
-                    ("chugoku-michinoeki.jp" in x.get("url","") and chugoku))]
+                    ("chugoku-michinoeki.jp" in x.get("url","") and chugoku) or
+                    ("michi-no-eki.jp" in x.get("url","") and nationwide))]
     combined={ (x["url"],x["roadName"]):x for x in preserved+collected}
     final=sorted(combined.values(),key=lambda x:(x["startDate"],x["roadName"],x["title"]))
     # Avoid needless file changes when only collection date differs.
@@ -211,7 +299,7 @@ def main():
         print(f"イベント情報は変更なし（{len(final)}件）")
         return 0
     result={"schemaVersion":1,"updatedAt":NOW.isoformat(),"events":final,
-            "notes":"公式情報に基づき収集。中四国公式ポータルから、日付と会場を確認できた告知のみ収集。"}
+            "notes":"公式情報に基づき収集。全国および中四国公式サイトの告知から、駅名とイベント開催日を確認できた情報を収集。"}
     OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(f"イベント更新: {len(final)}件")
     return 0
