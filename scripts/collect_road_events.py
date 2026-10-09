@@ -194,8 +194,8 @@ PREFECTURES = (
 ).split()
 NATIONAL_ITEM = re.compile(r"^(20\d{2})年(\d{1,2})月(\d{1,2})日\s+(" + "|".join(PREFECTURES) + r")\s+[〖【]道の駅\s*(.+?)[〗】](.+)$")
 NATIONAL_DATE = re.compile(r"(?<!\d)(?:(20\d{2})年)?\s*(\d{1,2})月\s*(\d{1,2})日|(?<!\d)(\d{1,2})\s*/\s*(\d{1,2})(?!\d)")
-NATIONAL_SKIP = BLOCKED_WORDS + ("お知らせ","募集","出店者","交通規制","定休日","休止","会場変更","営業日","売上","記念品")
-NATIONAL_EVENTS = EVENT_WORDS + ("収穫","体験会","フリーマーケット","イルミネーション","夜市","花火","音楽会","文化祭","スタンプラリー")
+NATIONAL_SKIP = ("中止","延期","休館","休業","通行規制","交通規制","定休日","休止","売上","営業時間")
+NATIONAL_EVENTS = EVENT_WORDS + ("収穫","体験会","フリーマーケット","イルミネーション","夜市","花火","音楽会","文化祭","スタンプラリー","まつり","フェスタ","開催","ワークショップ","特別企画")
 
 def national_event_date(title, published):
     # Announcement date is not an event date; only parse the event-specific title.
@@ -223,18 +223,24 @@ def national_event_date(title, published):
 def collect_nationwide():
     collected = []
     seen = set()
-    for page in range(0, 6):
+    counted = {"posts":0,"event_words":0,"dated":0}
+    for page in range(0, 9):
         url = NATIONAL_SOURCE if page == 0 else NATIONAL_SOURCE + "?page=" + str(page)
         response = requests.get(url, timeout=18, headers=HEADERS)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
-        found_page = 0
+        page_posts = 0
         for a in soup.select("a[href]"):
-            txt = clean(a.get_text(" ", strip=True))
-            match = NATIONAL_ITEM.match(txt)
+            titletext = clean(a.get_text(" ", strip=True))
+            # Date/prefecture are displayed outside the clickable event title on
+            # some pages. Read the enclosing list item as well.
+            parent = a.find_parent(["li", "article", "tr"])
+            context = clean(parent.get_text(" ", strip=True)) if parent else titletext
+            match = NATIONAL_ITEM.match(context) or NATIONAL_ITEM.match(titletext)
             if not match:
                 continue
-            found_page += 1
+            page_posts += 1
+            counted["posts"] += 1
             try:
                 published = datetime(int(match.group(1)), int(match.group(2)), int(match.group(3))).date()
             except ValueError:
@@ -246,9 +252,11 @@ def collect_nationwide():
                 continue
             if not any(w in title for w in NATIONAL_EVENTS):
                 continue
+            counted["event_words"] += 1
             period = national_event_date(title, published)
             if not period:
                 continue
+            counted["dated"] += 1
             href = urljoin(NATIONAL_SOURCE, a["href"])
             if urlparse(href).hostname not in ("www.michi-no-eki.jp", "michi-no-eki.jp"):
                 continue
@@ -259,9 +267,10 @@ def collect_nationwide():
             collected.append({"roadName":road,"prefecture":prefecture,"title":title,
                               "startDate":period[0],"endDate":period[1],
                               "publishedAt":published.isoformat(),"url":href,"status":"scheduled"})
-        if not found_page:
+        print(f"全国 page={page} 投稿一致={page_posts}")
+        if page_posts == 0:
             break
-    print(f"全国公式: 厳格な開催日判定を通過 {len(collected)} 件")
+    print(f"全国公式: 投稿 {counted['posts']} / イベント語句 {counted['event_words']} / 日付あり {counted['dated']} / 採用 {len(collected)}")
     return collected
 
 def main():
