@@ -111,7 +111,27 @@
       "publishedAt": "2026-10-09",
       "url": "https://www.silkway.jp/Ivent",
       "status": "scheduled"
+    },
+    {
+      "roadName": "神鍋高原",
+      "prefecture": "兵庫県",
+      "title": "第35回マロニエまつり／JAたじま日高ふれあいまつり｜2026年10月25日（日）10:00〜14:00",
+      "startDate": "2026-10-25",
+      "endDate": "2026-10-25",
+      "publishedAt": "2026-09-28",
+      "url": "https://www.michi-no-eki.jp/notices/views/23233",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "神鍋高原",
+      "prefecture": "兵庫県",
+      "title": "開催決定 神鍋高原イチョウまつり｜イチョウ並木の季節に、道の駅「神鍋高原」で10月25日（日）〜11月29日（日）の土日祝13日間",
+      "startDate": "2026-10-25",
+      "endDate": "2026-11-29",
+      "publishedAt": "2026-09-28",
+      "url": "https://www.michi-no-eki.jp/notices/views/23234",
+      "status": "scheduled"
     }
   ],
-  "notes": "公式情報に基づき収集。中四国公式ポータルから、日付と会場を確認できた告知のみ収集。"
+  "notes": "公式情報に基づき収集。全国および中四国公式サイトの告知から、駅名とイベント開催日を確認できた情報を収集。"
 }
