@@ -193,8 +193,8 @@ def main():
     try:
         chugoku=collect_chugoku()
     except (requests.RequestException, ValueError) as exc:
-        print(f"公式サイト取得失敗。以前の情報を維持: {exc}", file=sys.stderr)
-        return 0
+        print(f"中国地方の取得失敗。既存データを維持: {exc}", file=sys.stderr)
+        chugoku=[]
     # If page design changed or content unexpectedly empty, preserve previous records.
     collected=shikoku+chugoku
     if not collected:
