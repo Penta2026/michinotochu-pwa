@@ -187,11 +187,18 @@
 <label>検索半径（直線km）<input id="tourRadius" type="number" value="20" min="0" max="300"></label>
 <label>スポット区分<select id="tourNearGroup" onchange="tourNearGroupChanged()"><option value="all">すべて</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="riders">ライダーズスポット</option></select></label><label>スポットカテゴリ<select id="tourNearCategory"><option value="">すべて</option></select></label><div class="full"><button type="button" class="soft full" onclick="tourSearchNearby()">🔎 この条件で周辺スポットを更新</button></div><label class="full">追加登録地点の候補<select id="tourNearSelect"><option value="">目標地点を設定すると候補が表示されます</option></select></label><button type="button" class="soft full" onclick="tourAddNearbySelected()">＋ 選択した地点を追加</button><div id="tourNearCount" class="note full" role="status" aria-live="polite"></div><div class="note full">目標地点1件＋追加地点2件まで。登録順でGoogleマップへ送るよ。</div></div>
 <div class="panel form-grid"><h3 class="full">🏠 帰着地点</h3>
-<label class="full"><input id="tourReturnSame" type="checkbox" checked onchange="tourReturnChanged()"> 出発地点と同じ</label>
-<div class="full" id="tourReturnExtra" hidden><div class="origin-status" id="tourReturnOrigin">別の帰着地点：未設定</div>
-<button type="button" class="soft" onclick="useCurrent('tourReturn')">◎ 現在地</button>
-<button type="button" class="soft" onclick="stationPicker('tourReturn')">🚉 駅から選択</button><button type="button" class="soft" onclick="openStartMap('tourReturn')">🗺 Googleマップで選ぶ</button><input id="tourReturnMapLinkInput" class="map-link-input" type="url" inputmode="url" placeholder="Googleマップの共有リンクを貼り付け"><button type="button" class="soft" onclick="reflectMapLink('tourReturn')">🔗 Googleマップのリンクを反映</button>
-<label>または場所名・住所を指定<input id="tourReturnName" placeholder="例：広島駅"></label></div>
+<label class="full tour-return-same"><input id="tourReturnSame" type="checkbox" checked onchange="tourReturnChanged()"> 出発地点と同じ</label>
+<div class="full" id="tourReturnExtra" hidden>
+<div class="panel start-panel"><h3>📍 帰着地点を指定</h3><div class="origin-status" id="tourReturnOrigin">現在：未設定</div>
+<div class="start-simple">
+<button type="button" class="soft start-current" onclick="useCurrent('tourReturn')">◎ 現在地を使う</button>
+<button type="button" class="soft start-station" onclick="stationPicker('tourReturn')">🚉 駅を選ぶ</button>
+<div class="map-pick-row"><button type="button" class="soft start-map" onclick="openStartMap('tourReturn')">🗺 Googleマップで帰着地点を選ぶ</button><button type="button" class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div>
+<input id="tourReturnMapLinkInput" class="map-link-input" type="url" inputmode="url" autocomplete="off" placeholder="PC：Google Mapsの共有URLを貼り付け">
+<button type="button" class="soft reflect-btn start-reflect" onclick="reflectMapLink('tourReturn')">🔗 URLから帰着地点に反映</button>
+</div></div>
+<label class="full">または場所名・住所を指定<input id="tourReturnName" placeholder="例：広島駅"></label>
+</div>
 <label>車両区分<select id="tourVehicle"><option value="125">125cc以下（高速・有料を回避）</option><option value="250" selected>250cc以上（高速・有料も可）</option></select></label></div>
 <div class="panel"><h3>🧭 計画した地点</h3><div id="tourPlanState"></div></div><div class="panel form-grid"><h3 class="full">💾 ツーリング計画を保存</h3><label class="full">計画名<input id="tourPlanName" placeholder="例：週末の山方面ツーリング"></label><button class="soft" type="button" onclick="tourSavePlan()">💾 保存・上書き</button><button class="soft" type="button" onclick="tourSavePlanAs()">📑 別名で保存</button><label class="full">保存した計画<select id="tourSavedPlans"><option value="">保存した計画を選択</option></select></label><button class="soft" type="button" onclick="tourLoadSelected()">📂 読み込む</button><button class="soft" type="button" onclick="tourDeleteSelected()">🗑 削除</button><button class="primary full" type="button" onclick="tourSendToDetour()">🛣️ この計画で「寄り道しよう」へ</button></div>
 <button class="primary action-main" onclick="tourOpenMaps()">🗺️ Googleマップでルートを確認</button>
