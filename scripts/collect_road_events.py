@@ -236,7 +236,7 @@ def collect_nationwide():
             # some pages. Read the enclosing list item as well.
             parent = a.find_parent(["li", "article", "tr"])
             context = clean(parent.get_text(" ", strip=True)) if parent else titletext
-            match = NATIONAL_ITEM.match(context) or NATIONAL_ITEM.match(titletext)
+            match = NATIONAL_ITEM.search(context) or NATIONAL_ITEM.search(titletext)
             if not match:
                 continue
             page_posts += 1
