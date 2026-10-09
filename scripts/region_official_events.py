@@ -54,26 +54,16 @@ def collect_tohoku(today=None):
     soup = BeautifulSoup(home.text, "html.parser")
     candidates = []
     for link in soup.select('a[href*="infodetail"]'):
-        # Get title from link itself, heading or nearby text.
-        card = link.find_parent(["article", "li", "div"]) or link.parent
-        context = _clean(card.get_text(" ", strip=True)) if card else ""
-        title = _clean(link.get_text(" ", strip=True))
-        if not title or title == "詳細はこちら！":
-            title = context
-        if not any(word in title for word in ("祭", "イベント", "フェスタ", "マルシェ")):
-            continue
-        href = urljoin(APPLE_HILL, link.get("href", ""))
+        # Inspect detail pages regardless of their link text: many sites use\n        # generic buttons such as 「詳細はこちら」.\n        href = urljoin(APPLE_HILL, link.get("href", ""))
         if urlparse(href).hostname != "www.applehill.co.jp":
             continue
         if href not in candidates:
             candidates.append(href)
     events = []
-    for href in candidates[:12]:
+    for href in candidates[:20]:
         page = requests.get(href, timeout=18, headers=USER_AGENT)
         page.raise_for_status()
         detail = BeautifulSoup(page.text, "html.parser")
-        heading = detail.find(["h1","h2","h3"])
-        heading_text = _clean(heading.get_text(" ",strip=True)) if heading else ""
         content = _clean(detail.get_text(" ",strip=True))
         if "アップルヒル秋の大収穫祭" not in content and "アップルヒル 秋の大収穫祭" not in content:
             continue
