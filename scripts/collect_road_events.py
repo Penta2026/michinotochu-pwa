@@ -112,21 +112,98 @@ def collect_shikoku():
             break
     return result
 
+
+CHUGOKU_SOURCE = "https://chugoku-michinoeki.jp/news/index.php"
+CHUGOKU_PREFS = {
+    "びんご府中":"広島県","笠岡ベイファーム":"岡山県","みやま公園":"岡山県",
+    "ごいせ仁摩":"島根県","あらエッサ":"島根県","サンピコごうつ":"島根県",
+    "シルクウェイにちはら":"島根県","キララ多伎":"島根県",
+    "西いなば気楽里":"鳥取県","世羅":"広島県",
+    "上関海峡":"山口県","おふく":"山口県","北浦街道豊北":"山口県",
+    "がいせん桜新庄宿":"岡山県","秋鹿なぎさ公園":"島根県",
+    "奥出雲おろちループ":"島根県","三矢の里あきたかた":"広島県",
+    "遊YOUさろん東城":"広島県","きららあじす":"山口県"
+}
+CHUGOKU_DATE_RE = re.compile(r"(\d{1,2})\s*月\s*(\d{1,2})\s*日|(?<!\d)(\d{1,2})\s*/\s*(\d{1,2})(?!\d)")
+BLOCKED_WORDS = ("中止","延期","休館","休業","営業時間","通行規制","臨時駐車場")
+EVENT_WORDS = ("祭","マルシェ","フェア","イベント","抽選","試食","周年","コンサート","公演","販売会")
+def chugoku_date(title, announced):
+    match=CHUGOKU_DATE_RE.search(title)
+    if not match:
+        return None
+    month=int(match.group(1) or match.group(3))
+    day=int(match.group(2) or match.group(4))
+    year=announced.year
+    # December announcements may refer to next January.
+    if announced.month>=11 and month<=2:
+        year+=1
+    try:
+        d=datetime(year,month,day).date()
+    except ValueError:
+        return None
+    if d < NOW or d < announced:
+        return None
+    return d.isoformat()
+
+def collect_chugoku():
+    response=requests.get(CHUGOKU_SOURCE,timeout=18,headers=HEADERS)
+    response.raise_for_status()
+    soup=BeautifulSoup(response.text,"html.parser")
+    found=[]
+    for anchor in soup.find_all("a",href=True):
+        title=clean(anchor.get_text(" ",strip=True))
+        match=re.match(r"^[〖【]([^〗】]+)[〗】]\s*(.+)",title)
+        if not match:
+            continue
+        road=match.group(1).strip()
+        if road not in CHUGOKU_PREFS:
+            continue
+        if any(word in title for word in BLOCKED_WORDS) or not any(word in title for word in EVENT_WORDS):
+            continue
+        container=anchor.find_parent(["li","tr","article"]) or anchor.parent
+        surrounding=clean(container.get_text(" ",strip=True))
+        published=re.search(r"(20\d{2})[-/.](\d{1,2})[-/.](\d{1,2})",surrounding)
+        if not published:
+            continue
+        try:
+            announced=datetime(int(published.group(1)),int(published.group(2)),int(published.group(3))).date()
+        except ValueError:
+            continue
+        start=chugoku_date(match.group(2),announced)
+        if not start:
+            continue
+        href=urljoin(CHUGOKU_SOURCE,anchor["href"])
+        if not href.startswith("https://"):
+            continue
+        # Only one-day events with explicit dates are automatically accepted.
+        found.append({"roadName":road,"prefecture":CHUGOKU_PREFS[road],
+                      "title":title,"startDate":start,"endDate":start,
+                      "publishedAt":announced.isoformat(),"url":href,"status":"scheduled"})
+    print(f"中国地方: 日付明記の単日イベント {len(found)} 件")
+    return found
+
 def main():
     previous=json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
     old=previous.get("events",[])
     try:
-        collected=collect_shikoku()
+        shikoku=collect_shikoku()
+    except (requests.RequestException, ValueError) as exc:
+        print(f"四国の取得失敗。既存データを維持: {exc}", file=sys.stderr)
+        shikoku=[]
+    try:
+        chugoku=collect_chugoku()
     except (requests.RequestException, ValueError) as exc:
         print(f"公式サイト取得失敗。以前の情報を維持: {exc}", file=sys.stderr)
         return 0
     # If page design changed or content unexpectedly empty, preserve previous records.
+    collected=shikoku+chugoku
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
     # Keep unexpired records from sources not currently collected (e.g. 中国地方).
     preserved=[x for x in old if x.get("endDate","")>=NOW.isoformat() and
-               "sk-michinoeki.jp" not in x.get("url","")]
+               not (("sk-michinoeki.jp" in x.get("url","") and shikoku) or
+                    ("chugoku-michinoeki.jp" in x.get("url","") and chugoku))]
     combined={ (x["url"],x["roadName"]):x for x in preserved+collected}
     final=sorted(combined.values(),key=lambda x:(x["startDate"],x["roadName"],x["title"]))
     # Avoid needless file changes when only collection date differs.
@@ -134,7 +211,7 @@ def main():
         print(f"イベント情報は変更なし（{len(final)}件）")
         return 0
     result={"schemaVersion":1,"updatedAt":NOW.isoformat(),"events":final,
-            "notes":"公式情報に基づき収集。中国地方は対応する公式収集元を追加中。"}
+            "notes":"公式情報に基づき収集。中四国公式ポータルから、日付と会場を確認できた告知のみ収集。"}
     OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(f"イベント更新: {len(final)}件")
     return 0
