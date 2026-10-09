@@ -605,3 +605,30 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 .tour-return-same input[type="checkbox"]{width:18px!important;height:18px!important;min-width:18px;margin:0;accent-color:#1f997d}
 #tourReturnExtra[hidden]{display:none!important}
 #tourReturnExtra .start-panel{margin-top:10px!important}
+
+/* Touring plan controls: consistent with the other main menus */
+#ride .form-grid>label{min-width:0;font-weight:750;color:var(--text)}
+#ride .form-grid input:not([type="checkbox"]),#ride .form-grid select{
+  display:block;width:100%;box-sizing:border-box;min-height:48px;margin-top:7px;
+  padding:10px 13px;border:1px solid #cbdce6;border-radius:12px;background:#fff;
+  color:var(--text);font:inherit;font-weight:600;box-shadow:0 2px 5px #173a4f08;
+}
+#ride .form-grid input:not([type="checkbox"]):focus-visible,#ride .form-grid select:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 34%,transparent);outline-offset:1px;border-color:var(--accent)
+}
+#ride .tour-action{width:100%;min-height:50px;border-radius:14px;font-size:14px;font-weight:800;
+  display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:12px 14px;
+  box-shadow:0 3px 8px #173a4f0c;transition:transform .12s ease,box-shadow .12s ease,filter .12s ease}
+#ride .tour-action-main{background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 80%,#183a59));color:#fff}
+#ride .tour-action-select{background:#edf5ff;border:1px solid #a6c9ee;color:#28669e}
+#ride .tour-action-filter{background:#eef8f0;border:1px solid #b7dec4;color:#2d7750}
+#ride .tour-action-map{background:#fff5e9;border:1px solid #f4bc79;color:#bd620e}
+#ride .tour-action-save{background:#eff8f2;border:1px solid #b3dbc4;color:#246f4f}
+#ride .tour-action-danger{background:#fff2f0;border:1px solid #edc7c1;color:#a4463b}
+#ride .tour-action:hover{transform:translateY(-1px);box-shadow:0 6px 16px #173a4f18}
+#ride .tour-action:active{transform:translateY(1px)}
+#ride .tour-action:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
+#ride .tour-action[hidden],#ride [hidden]{display:none!important}
+#ride #tourPlanState>div{margin:7px 0;line-height:1.55}
+#ride #tourPlanState .tour-action{margin-top:9px}
+@media(max-width:620px){#ride .form-grid{grid-template-columns:1fr}#ride .tour-action{min-height:52px}}
