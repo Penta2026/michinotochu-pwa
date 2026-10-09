@@ -632,3 +632,20 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 #ride #tourPlanState>div{margin:7px 0;line-height:1.55}
 #ride #tourPlanState .tour-action{margin-top:9px}
 @media(max-width:620px){#ride .form-grid{grid-template-columns:1fr}#ride .tour-action{min-height:52px}}
+
+/* Linked-route protection in Detour: existing destinations are read-only */
+#detour #detourStart button:disabled,
+#detour #detourStart input:disabled,
+#detour .detour-destination-actions button:disabled,
+#detour .detour-destination-actions input:disabled {
+  opacity:.48!important;filter:grayscale(.75);
+  background:#e8ebed!important;color:#79838c!important;
+  border-color:#cbd2d6!important;cursor:not-allowed!important;
+  box-shadow:none!important;transform:none!important;
+}
+#detour .detour-locked-note {
+  background:#f1f5f7;border:1px solid #d7e0e6;
+  border-radius:11px;padding:10px 12px;margin:10px 0;
+  color:#455d6b;font-size:13px;font-weight:700;line-height:1.6;
+}
+#detour .detour-locked-note[hidden]{display:none!important}
