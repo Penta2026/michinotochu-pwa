@@ -54,7 +54,8 @@ def collect_tohoku(today=None):
     soup = BeautifulSoup(home.text, "html.parser")
     candidates = []
     for link in soup.select('a[href*="infodetail"]'):
-        # Inspect detail pages regardless of their link text: many sites use\n        # generic buttons such as 「詳細はこちら」.\n        href = urljoin(APPLE_HILL, link.get("href", ""))
+        # Detail links often have generic text such as 「詳細はこちら」.
+        href = urljoin(APPLE_HILL, link.get("href", ""))
         if urlparse(href).hostname != "www.applehill.co.jp":
             continue
         if href not in candidates:
