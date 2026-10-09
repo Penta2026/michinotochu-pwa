@@ -83,6 +83,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "なみおか",
+      "prefecture": "青森県",
+      "title": "アップルヒル秋の大収穫祭",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "publishedAt": "",
+      "url": "https://www.applehill.co.jp/contents/infodetail?post=478",
+      "status": "scheduled"
+    },
+    {
       "roadName": "笠岡ベイファーム",
       "prefecture": "岡山県",
       "title": "【笠岡ベイファーム】道の駅 笠岡ベイファーム 15周年感謝祭！10月18日（日）9:30～15:00",
@@ -133,5 +143,5 @@
       "status": "scheduled"
     }
   ],
-  "notes": "公式情報に基づき収集。全国および中四国公式サイトの告知から、駅名とイベント開催日を確認できた情報を収集。"
+  "notes": "公式情報に基づき収集。全国・中四国の公式告知と東北の各駅公式サイトから、開催日を確認できた情報を収集。"
 }
