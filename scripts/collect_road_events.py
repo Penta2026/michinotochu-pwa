@@ -62,7 +62,7 @@ def extract_from_card(card):
     start, end = dates[0], dates[-1]
     if end < NOW.isoformat() or end < start:
         return None
-    loc = text.split("場",1)
+    loc = time[1].split("場",1)
     if len(loc)<2 or "所" not in loc[1][:15]:
         return None
     venue_lines = [clean(v) for v in loc[1].split("所",1)[1].splitlines() if clean(v)]
