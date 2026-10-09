@@ -12,6 +12,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 from urllib.parse import urljoin, urlparse
 import requests
+from region_official_events import collect_tohoku
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -291,8 +292,13 @@ def main():
     except (requests.RequestException, ValueError) as exc:
         print(f"全国公式の取得失敗。既存データを維持: {exc}", file=sys.stderr)
         nationwide=[]
-    # Keep the existing collectors, and add validated national official announcements.
-    collected=shikoku+chugoku+nationwide
+    try:
+        tohoku=collect_tohoku(today=NOW)
+    except (requests.RequestException, ValueError) as exc:
+        print(f"東北・各駅公式の取得失敗。既存データを維持: {exc}", file=sys.stderr)
+        tohoku=[]
+    # Merge verified local notices with national and Chugoku/Shikoku feeds.
+    collected=shikoku+chugoku+nationwide+tohoku
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
@@ -300,7 +306,8 @@ def main():
     preserved=[x for x in old if x.get("endDate","")>=NOW.isoformat() and
                not (("sk-michinoeki.jp" in x.get("url","") and shikoku) or
                     ("chugoku-michinoeki.jp" in x.get("url","") and chugoku) or
-                    ("michi-no-eki.jp" in x.get("url","") and nationwide))]
+                    ("michi-no-eki.jp" in x.get("url","") and nationwide) or
+                    ("applehill.co.jp" in x.get("url","") and tohoku))]
     combined={ (x["url"],x["roadName"]):x for x in preserved+collected}
     final=sorted(combined.values(),key=lambda x:(x["startDate"],x["roadName"],x["title"]))
     # Avoid needless file changes when only collection date differs.
@@ -308,7 +315,7 @@ def main():
         print(f"イベント情報は変更なし（{len(final)}件）")
         return 0
     result={"schemaVersion":1,"updatedAt":NOW.isoformat(),"events":final,
-            "notes":"公式情報に基づき収集。全国および中四国公式サイトの告知から、駅名とイベント開催日を確認できた情報を収集。"}
+            "notes":"公式情報に基づき収集。全国・中四国の公式告知と東北の各駅公式サイトから、開催日を確認できた情報を収集。"}
     OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(f"イベント更新: {len(final)}件")
     return 0
