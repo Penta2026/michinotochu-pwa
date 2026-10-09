@@ -1,6 +1,117 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-10-10",
-  "events": [],
-  "notes": "公式情報を確認したイベントのみ登録。roadName、prefecture、title、startDate、endDate、publishedAt、url、status（scheduled/cancelled）を使用。掲載は公表日から終了日まで。未確認イベントは登録しない。"
+  "events": [
+    {
+      "roadName": "まきのさんの道の駅・佐川",
+      "prefecture": "高知県",
+      "title": "【まきのさんの道の駅・佐川】佐川おもちゃ美術館☆2026年10月イベントカレンダー",
+      "startDate": "2026-10-01",
+      "endDate": "2026-10-31",
+      "publishedAt": "",
+      "url": "https://www.sk-michinoeki.jp/events/4217",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "滝宮",
+      "prefecture": "香川県",
+      "title": "【道の駅「滝宮」・綾川町うどん会館】讃さん広場滝宮店10月イベントのお知らせ",
+      "startDate": "2026-10-01",
+      "endDate": "2026-10-31",
+      "publishedAt": "",
+      "url": "https://www.sk-michinoeki.jp/events/4219",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "滝宮",
+      "prefecture": "香川県",
+      "title": "【道の駅「滝宮」・綾川町うどん会館】日本伝統芸能「猿まわし」の公演を開催いたします。",
+      "startDate": "2026-10-04",
+      "endDate": "2026-10-21",
+      "publishedAt": "",
+      "url": "https://www.sk-michinoeki.jp/events/4212",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "いたの",
+      "prefecture": "徳島県",
+      "title": "阿波藍ものがたり〜歴史を学び、藍にふれ、未来へつなぐ〜",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "publishedAt": "",
+      "url": "https://www.sk-michinoeki.jp/events/4210",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "ごいせ仁摩",
+      "prefecture": "島根県",
+      "title": "【ごいせ仁摩】朝ごはん新米祭り 10月10日・11日10時～",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "publishedAt": "2026-10-09",
+      "url": "https://www.goisenima.com/schedule/570/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "キララ多伎",
+      "prefecture": "島根県",
+      "title": "【キララ多伎】グリーンライトアップイベントを開催 10月10日（土）17:00〜",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "publishedAt": "2026-10-09",
+      "url": "https://www.kirara-taki.co.jp/wordpress/news0/topic0/2026/10/01/1457/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "西いなば気楽里",
+      "prefecture": "鳥取県",
+      "title": "【西いなば気楽里】ミルクフェアを開催いたします！ １０月１０日(土)１１時～、１４時～",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "publishedAt": "2026-10-09",
+      "url": "https://nishiinaba.jp/pages/47?detail=1&b_id=157&r_id=545#block157-545",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "西いなば気楽里",
+      "prefecture": "鳥取県",
+      "title": "【西いなば気楽里】鳥取県産秋メロン「プリモレッド」実演試食販売を開催 １０月１０日(土) 11時～12時",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "publishedAt": "2026-09-10",
+      "url": "https://nishiinaba.jp/pages/47/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "笠岡ベイファーム",
+      "prefecture": "岡山県",
+      "title": "【笠岡ベイファーム】道の駅 笠岡ベイファーム 15周年感謝祭！10月18日（日）9:30～15:00",
+      "startDate": "2026-10-18",
+      "endDate": "2026-10-18",
+      "publishedAt": "2026-10-09",
+      "url": "https://k-bay.jp/events/20261018",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "びんご府中",
+      "prefecture": "広島県",
+      "title": "【びんご府中】道の駅びんご府中開業10周年記念イベント開催！ 10月24日（土）",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-24",
+      "publishedAt": "2026-10-09",
+      "url": "https://eki.bingofuchu.jp/information/20261002",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "シルクウェイにちはら",
+      "prefecture": "島根県",
+      "title": "【シルクウェイにちはら】JAまつり収穫祭 10月25日（日）9：30～",
+      "startDate": "2026-10-25",
+      "endDate": "2026-10-25",
+      "publishedAt": "2026-10-09",
+      "url": "https://www.silkway.jp/Ivent",
+      "status": "scheduled"
+    }
+  ],
+  "notes": "公式情報に基づき収集。中四国公式ポータルから、日付と会場を確認できた告知のみ収集。"
 }
