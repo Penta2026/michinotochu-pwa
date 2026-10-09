@@ -1,10 +1,13 @@
-// Riders Cafe DB - Production
+// Riders Spots DB - Production (legacy variable retained for compatibility)
 // Public records only. Partner shops can use custom icons after image assets are added.
 window.RIDERS_CAFES = [
   {
     id: "RC-34-001",
     name: "GOLDEN VALLEY",
     nameKana: "ゴールデン バレー",
+    spotType: "riders_spot",
+    spotCategory: "cafe",
+    spotTags: [],
     prefecture: "広島県",
     municipality: "広島市安佐北区",
     address: "広島県広島市安佐北区白木町市川141-8",
