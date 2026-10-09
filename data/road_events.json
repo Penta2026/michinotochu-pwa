@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-10",
+  "events": [],
+  "notes": "公式情報を確認したイベントのみ登録。roadName、prefecture、title、startDate、endDate、publishedAt、url、status（scheduled/cancelled）を使用。掲載は公表日から終了日まで。未確認イベントは登録しない。"
+}
