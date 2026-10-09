@@ -182,14 +182,10 @@
 <label>スポット区分<select id="tourGroup" onchange="tourGroupChanged()"><option value="all">すべて</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="riders">ライダーズスポット</option></select></label>
 <label>スポットカテゴリ<select id="tourCategory"><option value="">すべて</option></select></label>
 <button class="primary full" type="button" onclick="tourSearch()">🎯 目標地点の候補を見る</button></div>
-<div id="tourCandidates" class="panel form-grid"><label class="full">目標地点の候補<select id="tourTargetSelect"><option value="">検索すると候補が表示されます</option></select></label><button type="button" class="soft full" onclick="tourChooseSelected()">🎯 選択した地点を目標に登録</button><div id="tourCandidateCount" class="note full"></div></div>
-<div class="panel form-grid"><h3 class="full">☕ 目標地点周辺の寄り道</h3>
+<div id="tourCandidates" class="panel form-grid"><div id="tourTargetNotice" class="note full" role="status" aria-live="polite">目標地点はまだ設定されていません。</div><label class="full">目標地点の候補<select id="tourTargetSelect"><option value="">検索すると候補が表示されます</option></select></label><button type="button" class="soft full" onclick="tourChooseSelected()">🎯 選択した地点を目標に登録</button><div id="tourCandidateCount" class="note full"></div></div>
+<div class="panel form-grid"><h3 class="full">📍 目標地点周辺のスポット追加</h3>
 <label>検索半径（直線km）<input id="tourRadius" type="number" value="20" min="0" max="300"></label>
-<label>スポット区分<select id="tourNearGroup" onchange="tourNearGroupChanged()"><option value="all">すべて</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="riders">ライダーズスポット</option></select></label><label>スポットカテゴリ<select id="tourNearCategory"><option value="">すべて</option></select></label><button type="button" class="soft full" onclick="tourSearchNearby()">周辺スポットを探す</button>
-<label class="full">自由に寄り道追加（場所名・住所）<input id="tourFreeName" placeholder="例：〇〇展望台"></label>
-<button type="button" class="soft full" onclick="tourAddFree()">＋ 登録地点以外を追加</button>
-<div class="note full">目標地点1件＋寄り道2件まで。登録順でGoogleマップへ送るよ。</div></div>
-<div id="tourNearby" class="panel form-grid"><label class="full">追加登録地点の候補<select id="tourNearSelect"><option value="">検索すると候補が表示されます</option></select></label><button type="button" class="soft full" onclick="tourAddNearbySelected()">＋ 選択した地点を寄り道に追加</button><div id="tourNearCount" class="note full"></div></div>
+<label>スポット区分<select id="tourNearGroup" onchange="tourNearGroupChanged()"><option value="all">すべて</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="riders">ライダーズスポット</option></select></label><label>スポットカテゴリ<select id="tourNearCategory"><option value="">すべて</option></select></label><div class="full"><button type="button" class="soft full" onclick="tourSearchNearby()">🔎 この条件で周辺スポットを更新</button></div><label class="full">追加登録地点の候補<select id="tourNearSelect"><option value="">目標地点を設定すると候補が表示されます</option></select></label><button type="button" class="soft full" onclick="tourAddNearbySelected()">＋ 選択した地点を追加</button><div id="tourNearCount" class="note full" role="status" aria-live="polite"></div><div class="note full">目標地点1件＋追加地点2件まで。登録順でGoogleマップへ送るよ。</div></div>
 <div class="panel form-grid"><h3 class="full">🏠 帰着地点</h3>
 <label class="full"><input id="tourReturnSame" type="checkbox" checked onchange="tourReturnChanged()"> 出発地点と同じ</label>
 <div class="full" id="tourReturnExtra" hidden><div class="origin-status" id="tourReturnOrigin">別の帰着地点：未設定</div>
