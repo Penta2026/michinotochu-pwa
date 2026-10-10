@@ -365,7 +365,7 @@ def main():
     # pagination, a transient layout change, or an incomplete regional feed.
     # Never delete future verified events merely because another event was found.
     preserved=[x for x in old if x.get("endDate","")>=NOW.isoformat()]
-    combined={ (x["url"],x["roadName"]):x for x in preserved+collected}
+    combined={ (x["url"],x["roadName"],x["title"],x["startDate"]):x for x in preserved+collected}
     final=sorted(combined.values(),key=lambda x:(x["startDate"],x["roadName"],x["title"]))
     # Avoid needless file changes when only collection date differs.
     if final==old:
