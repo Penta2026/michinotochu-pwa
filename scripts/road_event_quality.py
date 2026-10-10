@@ -45,17 +45,29 @@ def reconcile(old, new, today):
             report["expiredOrInvalid"].append({"roadName": event.get("roadName"), "title": event.get("title"), "reason": "unknown_start"})
             continue
         preserved.append(event)
-    by_id = {identity(e): e for e in preserved}
+    # Keep same-title events on different dates separate unless their periods
+    # overlap: this prevents recurring events being mistaken for corrections.
+    by_id = {(identity(e), e["startDate"]): e for e in preserved}
     for event in new:
         if not plausible(event, today):
             report["expiredOrInvalid"].append({"roadName": event.get("roadName"), "title": event.get("title"), "reason": "invalid_new"})
             continue
-        key = identity(event)
+        key = (identity(event), event["startDate"])
         prev = by_id.get(key)
-        if prev is not None and (prev["startDate"], prev["endDate"]) != (event["startDate"], event["endDate"]):
-            report["corrected"].append({"roadName": event["roadName"], "title": event["title"],
-                "oldDates": [prev["startDate"], prev["endDate"]],
-                "newDates": [event["startDate"], event["endDate"]]})
+        if prev is None:
+            overlap = [k for k, e in by_id.items()
+                       if identity(e) == identity(event) and
+                       e["startDate"] <= event["endDate"] and event["startDate"] <= e["endDate"]]
+            if len(overlap) == 1:
+                old_key = overlap[0]
+                prev = by_id.pop(old_key)
+        if prev is not None:
+            if (prev["startDate"], prev["endDate"]) != (event["startDate"], event["endDate"]):
+                report["corrected"].append({"roadName": event["roadName"], "title": event["title"],
+                    "oldDates": [prev["startDate"], prev["endDate"]],
+                    "newDates": [event["startDate"], event["endDate"]]})
+            else:
+                report["exactDuplicates"].append({"roadName": event["roadName"], "title": event["title"]})
         by_id[key] = event
     # Cross-source possible duplicates: advisory only; never remove different
     # event names or records without a proven shared identifier.
