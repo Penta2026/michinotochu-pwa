@@ -78,12 +78,12 @@ def publication_date(soup, article_title=None):
     # matching article heading. Do not take unrelated dates from the page body.
     if article_title:
         title = clean(article_title)
-        lines = [clean(line) for line in soup.get_text("\\n", strip=True).splitlines()]
+        lines = [clean(line) for line in soup.get_text("\n", strip=True).splitlines()]
         for i, line in enumerate(lines):
             if len(title) < 7 or line != title:
                 continue
             for nearby in lines[max(0, i-2):min(len(lines), i+5)]:
-                label = re.sub(r"^(?:掲載日|投稿日|公開日|更新日)[：:]?\\s*", "", nearby)
+                label = re.sub(r"^(?:掲載日|投稿日|公開日|更新日)[：:]?\s*", "", nearby)
                 match = POST_DATE.fullmatch(label)
                 if match:
                     return date_from_parts(match.groups())
