@@ -1064,5 +1064,64 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(summary["fetchErrors"][0]["type"],"HTTPError")
         self.assertIn("403",summary["fetchErrors"][0]["detail"])
 
+    def test_kanagawa_creative_week_roadstation_exhibition_verified(self):
+        import json
+        from station_discovery_engine import RULES
+        reg=json.loads(RULES.read_text(encoding="utf-8"))
+        spec=next(x for x in reg["sources"] if x["id"] ==
+                  "kanagawa_creativeweek_official_roadstation_art")
+        html="""<main><p>2026.10.10 SAT — 11.23 MON</p>
+          <h1>かとうくみプレンティーズ原画展</h1>
+          <p>水彩画家かとうくみによる原画展</p>
+          <div>2026 10.10 SAT 11.23 MON</div>
+          <dl><dt>会場</dt><dd>道の駅　湘南ちがさき</dd>
+          <dt>入場料・参加費</dt><dd>無料</dd></dl>
+        </main>"""
+        # The actual official organizer's page uses the posted event period,
+        # exact event title and a venue-labelled on-premises description.
+        new,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda _:soup(html),report_path=None)
+        self.assertEqual(audit["newEvents"],1)
+        self.assertEqual(new[0]["startDate"],"2026-10-10")
+        self.assertEqual(new[0]["endDate"],"2026-11-23")
+        self.assertEqual(new[0]["prefecture"],"神奈川県")
+        self.assertEqual(new[0]["url"],spec["listingUrl"])
+
+    def test_kanagawa_official_detail_refuses_offsite_and_missing_year(self):
+        from station_discovery_engine import _verified_official_event_detail_records
+        spec={**TOKYO,"allowedHosts":["creativeweek.net"],
+              "articlePathPattern":r"^/event-detail\.php$",
+              "requiredEventTitle":"かとうくみプレンティーズ原画展",
+              "venueProofPattern":r"会場\s*道の駅\s*湘南ちがさき"}
+        u="https://creativeweek.net/event-detail.php?no=37"
+        html="""<main><h1>かとうくみプレンティーズ原画展</h1>
+          <p>2026.10.10 SAT — 11.23 MON</p>
+          <p>会場 茅ヶ崎市民ホール</p>
+          <footer>道の駅 湘南ちがさき にお越しください</footer></main>"""
+        events,why=_verified_official_event_detail_records(
+            spec,soup(html),TODAY,u)
+        self.assertEqual((events,why),([],"event_venue_missing"))
+        html=html.replace("2026.10.10","10.10").replace(
+            "会場 茅ヶ崎市民ホール","会場 道の駅 湘南ちがさき")
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,u)[1],"event_year_missing")
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,"https://example.net/event-detail.php?no=37")[1],
+            "unofficial_detail")
+
+    def test_kanagawa_official_detail_does_not_infer_arbitrary_date(self):
+        from station_discovery_engine import _verified_official_event_detail_records
+        spec={**TOKYO,"allowedHosts":["creativeweek.net"],
+              "articlePathPattern":r"^/event-detail\.php$",
+              "requiredEventTitle":"かとうくみプレンティーズ原画展",
+              "venueProofPattern":r"会場\s*道の駅\s*湘南ちがさき"}
+        u="https://creativeweek.net/event-detail.php?no=37"
+        html="""<main><h1>かとうくみプレンティーズ原画展</h1>
+          <p>2026.10.10 SAT — 2027.11.23 MON</p>
+          <p>会場 道の駅 湘南ちがさき</p></main>"""
+        got,why=_verified_official_event_detail_records(spec,soup(html),TODAY,u)
+        self.assertEqual(got,[])
+        self.assertIn(why,("event_invalid_or_past","event_invalid_date"))
+
 if __name__ == "__main__":
     unittest.main()
