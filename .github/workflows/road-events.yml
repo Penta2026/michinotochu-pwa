@@ -37,7 +37,7 @@ jobs:
         run: python scripts/collect_road_events.py
       - name: Commit only if event data changed
         run: |
-          git add data/road_events.json data/road_event_sources_report.json data/chubu_event_layout_report.json
+          git add data/road_events.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json
           if git diff --cached --quiet; then
             echo "イベントデータに変更なし"
             exit 0
