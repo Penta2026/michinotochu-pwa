@@ -13,11 +13,18 @@
     "zeroRegisteredPrefectures": 15,
     "registeredEvents": 68,
     "targetedStationFeedPrefectures": 19,
-    "notReconfirmedEvents": 0,
+    "notReconfirmedEvents": 11,
     "unknownPrefectures": []
   },
   "priorities": {
-    "reconfirm": [],
+    "reconfirm": [
+      "茨城県",
+      "栃木県",
+      "千葉県",
+      "滋賀県",
+      "奈良県",
+      "佐賀県"
+    ],
     "noEventsButTargetedFeed": [
       "東京都",
       "神奈川県",
@@ -103,8 +110,8 @@
         "和歌山県"
       ],
       "registeredEventCount": 10,
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0
     },
     {
       "region": "中国",
@@ -265,9 +272,9 @@
         "かさま",
         "ひたちおおた"
       ],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 4,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -283,9 +290,9 @@
       "targetedStationFeeds": [
         "ましこ"
       ],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -337,9 +344,9 @@
         "しょうなん",
         "保田小学校"
       ],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 2,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -533,8 +540,8 @@
       "notReconfirmedCount": 0,
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -546,11 +553,11 @@
       ],
       "observedStationCount": 1,
       "targetedStationFeeds": [],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -569,8 +576,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -585,8 +592,8 @@
       "notReconfirmedCount": 0,
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -601,8 +608,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -616,11 +623,11 @@
       "targetedStationFeeds": [
         "クロスウェイなかまち"
       ],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "notReconfirmedCount": 2,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -630,13 +637,15 @@
       "observedStations": [],
       "observedStationCount": 0,
       "targetedStationFeeds": [
-        "ねごろ歴史の丘"
+        "ねごろ歴史の丘",
+        "四季の郷公園",
+        "海南サクアス"
       ],
       "notReconfirmedCount": 0,
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -811,9 +820,9 @@
       "targetedStationFeeds": [
         "しろいし"
       ],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"

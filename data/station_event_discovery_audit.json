@@ -24,16 +24,13 @@
       "prefecture": "神奈川県",
       "roadName": "湘南ちがさき",
       "listingUrl": "https://m-shonanchigasaki.com/topics/",
-      "listingError": "",
-      "candidates": 9,
-      "checked": 6,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='m-shonanchigasaki.com', port=443): Max retries exceeded with url: /topics/ (Caused by ConnectTimeoutError(<HTTPSCo",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {
-        "past": 1,
-        "not_event": 5
-      },
+      "reasons": {},
       "examples": []
     },
     {
@@ -41,14 +38,77 @@
       "prefecture": "奈良県",
       "roadName": "クロスウェイなかまち",
       "listingUrl": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
-      "listingError": "",
-      "candidates": 4,
-      "checked": 2,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='michi-no-eki-crosswaynakamachi.pref.nara.jp', port=443): Max retries exceeded with url: /newslist (Caused by Conne",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
-      "knownSkipped": 2,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {},
+      "examples": []
+    },
+    {
+      "id": "fukui_hamabiyori",
+      "prefecture": "福井県",
+      "roadName": "若狭美浜はまびより",
+      "listingUrl": "https://hamabiyori.com/events/",
+      "listingError": "",
+      "candidates": 11,
+      "checked": 8,
+      "accepted": 0,
+      "knownSkipped": 0,
       "fetchFailed": 0,
       "reasons": {
-        "undated": 2
+        "not_event": 7,
+        "undated": 1
+      },
+      "examples": []
+    },
+    {
+      "id": "osaka_izumi_regional_center",
+      "prefecture": "大阪府",
+      "roadName": "いずみ山愛の里",
+      "listingUrl": "https://izuminambu-rc.jp/nb_event/",
+      "listingError": "",
+      "candidates": 11,
+      "checked": 8,
+      "accepted": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {
+        "undated": 1,
+        "venue_missing": 2,
+        "not_event": 5
+      },
+      "examples": []
+    },
+    {
+      "id": "wakayama_sakuas",
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "listingUrl": "https://sakuas.com/event/",
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='sakuas.com', port=443): Max retries exceeded with url: /event/ (Caused by ConnectTimeoutError(<HTTPSConnection(hos",
+      "candidates": 0,
+      "checked": 0,
+      "accepted": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {},
+      "examples": []
+    },
+    {
+      "id": "wakayama_shikinosato",
+      "prefecture": "和歌山県",
+      "roadName": "四季の郷公園",
+      "listingUrl": "https://fh-park.jp/events/",
+      "listingError": "",
+      "candidates": 9,
+      "checked": 6,
+      "accepted": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {
+        "not_event": 6
       },
       "examples": []
     }
