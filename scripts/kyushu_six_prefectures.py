@@ -45,7 +45,8 @@ DATE = re.compile(
 )
 WEEKDAY = "月火水木金土日"
 SHORT_END = re.compile(
-    r"^\s*(?:[～〜~\-－–]|から|より)\s*(?:(\d{1,2})月)?\s*(\d{1,2})日"
+    r"^\s*(?:月曜日|火曜日|水曜日|木曜日|金曜日|土曜日|日曜日)?\s*"
+    r"(?:[～〜~\-－–]|から|より)\s*(?:(\d{1,2})月)?\s*(\d{1,2})日"
 )
 LABEL = re.compile(r"(?:開催日時|開催期間|開催日|開催予定日|実施期間|イベント日時|日時|日程|期間)\s*[:：]?\s*")
 TITLE_EVENT_DATE = re.compile(r"\d{1,2}月\d{1,2}日")
@@ -232,6 +233,18 @@ def collect_six_kyushu_prefectures(today):
               f"記事候補={stats['candidates']} 採用={stats['accepted']} "
               f"終了済={stats['past']} 日付不明={stats['noEventDate']} "
               f"取得失敗={stats['detailErrors']}")
+    # The Nakatsu municipal notice and Oita tourism listing can describe the
+    # same single festival. Keep the city source rather than double publishing.
+    oita_city = [x for x in records if x["prefecture"] == "大分県"
+                 and "city-nakatsu.jp" in x["url"]
+                 and "竹の千灯籠夜" in x["title"]]
+    if oita_city:
+        city_dates = {(x["startDate"], x["endDate"]) for x in oita_city}
+        records = [x for x in records if not (
+            x["prefecture"] == "大分県"
+            and "visit-oita.jp" in x["url"]
+            and "竹の千灯籠夜" in x["title"]
+            and (x["startDate"], x["endDate"]) in city_dates)]
     unique = {(x["prefecture"], x["roadName"], x["url"], x["startDate"]): x for x in records}
     audit = {"schemaVersion": 1, "sources": audits, "accepted": len(unique)}
     content = json.dumps(audit, ensure_ascii=False, indent=2) + "\n"
