@@ -83,6 +83,20 @@ class DateParsingTests(unittest.TestCase):
         self.assertIsNone(bulletin_date("●~11月30日(月) NWR166スタンプラリー", 2026))
         self.assertIsNone(bulletin_date("●～11月17日(火) 【展示】", 2026))
 
+    def test_chubu_weekday_mismatch(self):
+        self.assertIsNone(bulletin_date("●10月24日(日) 感謝祭", 2026))
+        self.assertIsNone(bulletin_date("●10月24日(土)・25日(土) 感謝祭", 2026))
+
+    def test_chubu_station_boundary(self):
+        report={"source":"https://www.chubu-michinoeki.org/pdf/test.pdf",
+                "pages":[{"rows":[
+                    {"x":44,"y":10,"text":"〈2 0 26 年〉10月","section":"left_station"},
+                    {"x":41,"y":300,"text":"㉕馬瀬 美輝の里","section":"left_station"},
+                    {"x":162,"y":342,"text":"●10月24日(土) 催し","section":"left_station_event"},
+                    {"x":41,"y":350,"text":"⤥織部の里もとす","section":"left_station"}
+                ]}]}
+        self.assertEqual(verified_pdf_events(report,date(2026,10,10)),[])
+
     def test_chubu_verified_station(self):
         report={"source":"https://www.chubu-michinoeki.org/pdf/test.pdf",
                 "pages":[{"rows":[
