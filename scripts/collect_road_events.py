@@ -355,9 +355,9 @@ def main():
     except requests.RequestException as exc:
         print(f"関東の取得失敗。既存データを維持: {exc}", file=sys.stderr)
         kanto=[]
-    audit_chubu_bulletin()
+    chubu=audit_chubu_bulletin(NOW)
     generic=collect_generic_regions(NOW)
-    collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido+kanto
+    collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido+kanto+chubu
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
