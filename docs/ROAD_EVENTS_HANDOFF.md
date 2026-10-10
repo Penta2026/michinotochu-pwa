@@ -1,10 +1,20 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-11 Actions #68 成功＋重複修正待ち**（236テスト全件OK、累計47/47県・現行44県/78イベント、巡回9ルート17枠。品質重複修正と241テストは次回未検証）  
+更新基準: **2026-10-11 Actions #69 1テスト赤→修正済・再検証待ち**（旧公開78件、累計47/47県、243テスト予定。別PDF催事を保護するイベント識別修正）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-11 Actions #69 赤（241テスト中1件失敗）→ 同一PDFの別催しを保護する修正
+
+- [Actions #69](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38096074814) **Test event date extraction で241テスト中1件だけ失敗**（成功240件）。収集処理はスキップされたため**公開イベント78件・累計47/47県は変化なし**。
+- 失敗テスト：`test_pdf_multiple_bracketed_events_do_not_collapse`（`scripts/test_regional_association_events.py:535`）。同一PDF・同駅・同じ開催期間に載る `【物産展】秋の催し` と `【体験会】秋の催し` の**別イベント2件**を、内部の`identity()`が1件に潰していた。
+- **原因の特定**：#68後に導入した`coalesce_status_badge_records`は題名の括弧部分を消さず2件を区別できたが、元からある`canonical_title()`は任意の`【...】`プレフィックスを取り去り、`reconcile()`の辞書キーで`秋の催し`が衝突した。これがテストで発覚。**テストの期待件数は正しく、緩めてはいけない**。
+- **修正（#69後、新規Actions未検証）**：`scripts/road_event_quality.py`に`identity_title(record)`を新設。**同じ道の駅名を示す`【飯高駅】`／`【道の駅飯高駅】`等の前置きだけを除外し、`【物産展】`／`【体験会】`など異なるイベント種別は識別子に保持**する。`identity()`と異URL間の重複疑い判定をこの処理に切り替えた。`NEW`末尾装飾による同一催事重複統合は維持し、別イベントの自動削除を抑制する。
+- `scripts/test_regional_association_events.py`に**追加2テスト**：「駅名タグつきとタグなしの同一イベントは1件」「異なるPDFにまたがる`【物産展】`と`【体験会】`を重複候補と誤認しない」。既存の失敗テストもそのまま残す。**次回243テスト予定**（#69の241＋2）。
+- **確認事項**：新版`main`から**新規Run workflow**を開始し、243テスト全件OKを確認する。その後の収集で、北海道・樹海ロード日高の「NEW」付き重複が本当に1件へ整理されることを`road_events.json`と`road_event_quality_report.json`で検証。**#69のRe-runは古いコミットに基づくので使わない**。
+- 現時点でのコード修正はGitHub commit`23fb8873`、追加テストは`705eb2cc`。改修コードのActions実行結果はまだ未確定。
 
 ## 2026-10-11 Actions #68 Phase 4 本番成功（236テスト）、新たな重複修正は次回待ち
 
