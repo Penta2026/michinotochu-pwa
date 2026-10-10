@@ -116,9 +116,10 @@ def collect_tohoku_association(today):
     return results
 
 
-def _kinki_article_period(title, detail):
+def _kinki_article_period(title, detail, published=None):
     """Use labelled event dates, never article publication dates."""
-    period = _period(title, _publication_date(detail))
+    published = _publication_date(detail) or published
+    period = _period(title, published)
     if period:
         return period
     # Article body: inspect labelled date snippets rather than the complete
@@ -130,7 +131,7 @@ def _kinki_article_period(title, detail):
         m = re.search(r"(?:開催日時|開催期間|開催日|日時|日程|イベント日)[：:\\s]*(.{4,130})", value)
         if not m:
             continue
-        period = _period(m.group(1), _publication_date(detail))
+        period = _period(m.group(1), published)
         if period:
             return period
     return None
@@ -154,7 +155,11 @@ def collect_kinki_association(today):
     results, seen, checked = [], set(), 0
     for page_number in range(1, 4):
         url = KINKI if page_number == 1 else KINKI.rstrip("/") + f"/page/{page_number}/"
-        listing = _get(url)
+        try:
+            listing = _get(url)
+        except requests.RequestException as exc:
+            print(f'近畿連絡会一覧 page={page_number} 取得失敗: {exc}')
+            break
         page_candidates = 0
         for anchor in listing.select("a[href]"):
             title = _clean(anchor.get_text(" ", strip=True))
@@ -180,7 +185,9 @@ def collect_kinki_association(today):
             if not pref:
                 detail_text = _clean(detail.get_text(" ", strip=True))[:2500]
                 pref = next((p for p in ("滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県") if p in detail_text), None)
-            period = _kinki_article_period(title, detail)
+            published_match = re.search(r"(20\\d{2})[./-](\\d{1,2})[./-](\\d{1,2})", context)
+            published = _date(*published_match.groups()) if published_match else None
+            period = _kinki_article_period(title, detail, published)
             if not pref or not period or period[1] < today.isoformat():
                 continue
             road = _clean(match.group(1))
