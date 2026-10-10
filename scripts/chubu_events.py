@@ -4,7 +4,9 @@ A bulletin has two parallel columns: station-hosted events and nearby events.
 Until layout-based venue attribution is verified, never publish its entries.
 """
 import io
+import json
 import re
+from pathlib import Path
 from urllib.parse import urljoin, urlparse
 import requests
 import fitz
@@ -45,6 +47,37 @@ def inspect_pdf(content):
             "contains_station_events_heading": "道の駅のイベント" in blob,
             "contains_nearby_events_heading": "周辺地域のイベント" in blob}
 
+
+REPORT = Path(__file__).resolve().parents[1] / "data" / "chubu_event_layout_report.json"
+
+def layout_report(content, url):
+    """Capture text lines WITH their actual PDF positions, not text flow order."""
+    pages = []
+    with fitz.open(stream=content, filetype="pdf") as doc:
+        for page_no, page in enumerate(doc):
+            rows = []
+            for block in page.get_text("dict").get("blocks", []):
+                if "lines" not in block:
+                    continue
+                for line in block["lines"]:
+                    spans = line.get("spans", [])
+                    value = "".join(span.get("text", "") for span in spans).strip()
+                    if not value:
+                        continue
+                    box = line.get("bbox", (0, 0, 0, 0))
+                    rows.append({"x": round(box[0], 1), "y": round(box[1], 1),
+                                 "x2": round(box[2], 1), "text": value[:180]})
+            rows.sort(key=lambda row: (round(row["y"] / 6), row["x"]))
+            headings = [row for row in rows if "道の駅のイベント" in row["text"] or "周辺地域のイベント" in row["text"]]
+            dated = [row for row in rows if DATE_PATTERN.search(row["text"])]
+            pages.append({"page": page_no + 1, "width": round(page.rect.width, 1),
+                          "height": round(page.rect.height, 1),
+                          "headings": headings[:15],
+                          "dated_rows": dated[:180],
+                          "sample_rows": rows[:36],
+                          "total_rows": len(rows)})
+    return {"schemaVersion": 1, "source": url, "pages": pages}
+
 def audit_chubu_bulletin():
     try:
         homepage = requests.get(SOURCE, headers=HEADERS, timeout=15)
@@ -60,6 +93,11 @@ def audit_chubu_bulletin():
         if len(pdf.content) > MAX_PDF_BYTES or not pdf.content.startswith(b"%PDF"):
             raise ValueError("unexpected bulletin payload")
         metrics = inspect_pdf(pdf.content)
+        report = layout_report(pdf.content, url)
+        previous = json.loads(REPORT.read_text(encoding="utf-8")) if REPORT.exists() else None
+        if previous != report:
+            REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"中部PDF列診断: ページ {len(report[\'pages\'])} / 見出し {sum(len(p[\'headings\']) for p in report[\'pages\'])} / 日付行 {sum(len(p[\'dated_rows\']) for p in report[\'pages\'])}")
         print(f"中部PDF: 発見 {len(links)} / 最新 {url} / "
               f"ページ {metrics['pages']} / 日付入り行 {metrics['dated_lines']} / "
               f"駅内見出し {metrics['contains_station_events_heading']} / "
