@@ -106,8 +106,17 @@ def _links(soup, source):
     return dict(chosen)
 
 def _pick_article(soup, spec):
-    node = soup.select_one(spec["articleSelector"])
-    return node or soup.select_one("article") or soup.select_one("main")
+    # CSS "article, main, body" in select_one() would choose <body> first
+    # because it appears earlier in document order. Selector *priority* is
+    # deliberate: inspect the article before any whole-page fallback.
+    for selector in spec["articleSelector"].split(","):
+        selector = selector.strip()
+        if not selector:
+            continue
+        node = soup.select_one(selector)
+        if node is not None:
+            return node
+    return soup.select_one("article") or soup.select_one("main")
 
 def _headline(soup, spec, listing_title):
     container = _pick_article(soup, spec)
