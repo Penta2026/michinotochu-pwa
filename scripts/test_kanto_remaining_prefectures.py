@@ -103,10 +103,19 @@ class KantoRemainingTests(unittest.TestCase):
 
     def test_year_and_weekday_must_be_grounded(self):
         self.assertIsNone(event_period("10月17日（土）"))
-        self.assertIsNone(event_period("2025.10.17～18",None) if False else
-                          event_period("2026年10月17日（日）"))
+        self.assertIsNone(event_period("2026年10月17日（日）"))
         self.assertEqual(event_period("10月17日(土)",date(2026,10,8)),
                          ("2026-10-17","2026-10-17"))
+
+    def test_dated_article_split_across_html_elements(self):
+        title="秋の地域マルシェ開催"
+        soup=BeautifulSoup("""<article><h1>秋の地域マルシェ開催</h1>
+            <p>開催日時</p><p>2026年10月17日（土）</p>
+            </article>""","html.parser")
+        record,status=parse_one(SOURCES[3],title,soup,date(2026,10,8),TODAY,
+                     "https://m-shonanchigasaki.com/topics/detail.php?id=1000")
+        self.assertEqual(status,"accepted")
+        self.assertEqual(record["startDate"],"2026-10-17")
 
     def test_official_link_hosts_only(self):
         html="""<a href="https://evil.example/news/99/">10月24日 まつり</a>
