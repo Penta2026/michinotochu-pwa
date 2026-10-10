@@ -525,7 +525,9 @@ def _dated_news_listing_records(spec, soup, today, url):
     lines = []
     heading_positions = set()
     last_heading = None
-    for node in container.stripped_strings:
+    for node in container.find_all(string=True):
+        if not str(node).strip():
+            continue
         heading = node.find_parent(["h1", "h2", "h3", "h4"])
         if heading is not None:
             if heading is last_heading:
