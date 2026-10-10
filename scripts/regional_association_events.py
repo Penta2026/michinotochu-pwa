@@ -179,7 +179,11 @@ def collect_kinki_association(today):
         for anchor in listing.select("a[href]"):
             title = _clean(anchor.get_text(" ", strip=True))
             road = _kinki_station_title(title)
-            if not road or any(w in title for w in SKIP):
+            # Anniversary festivals say 開駅N周年, but are genuine events.
+            skip_terms = tuple(w for w in SKIP if w != "開駅")
+            if not road or any(w in title for w in skip_terms):
+                continue
+            if "開駅" in title and not any(w in title for w in ("周年", "記念祭", "感謝祭", "フェス", "祭")):
                 continue
             href = urljoin(url, anchor["href"])
             if urlparse(href).hostname not in ("www.kinki-michinoeki.com", "kinki-michinoeki.com"):
