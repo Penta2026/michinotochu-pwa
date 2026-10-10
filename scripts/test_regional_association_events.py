@@ -90,6 +90,34 @@ class DateParsingTests(unittest.TestCase):
             soup, "【イベント情報】新米フェアのお知らせ", published),
             ("2026-10-17", "2026-11-03"))
 
+    def test_kyushu_publication_date_next_to_article_title(self):
+        soup = BeautifulSoup("""<div class="article-main">
+           <h1>【イベント情報】新米フェアのお知らせ</h1>
+           <div>2026年10月9日</div>
+           <section class="entry-content">
+             <p>場所：農産物直売館内</p>
+             <p>期間：１０月１７日（土）▶１１月３日（火）</p>
+           </section>
+         </div>""", "html.parser")
+        published = kyushu_publication_date(soup, "【イベント情報】新米フェアのお知らせ")
+        self.assertEqual(published, date(2026, 10, 9))
+        self.assertEqual(kyushu_article_event_period(
+            soup, "【イベント情報】新米フェアのお知らせ", published),
+            ("2026-10-17", "2026-11-03"))
+
+    def test_okinawa_publication_date_next_to_article_title(self):
+        title = "9月27日(日) チャレンジステーション@道の駅かでな開催"
+        soup = BeautifulSoup("<main><h1>" + title + "</h1><div>2026年09月22日</div>"
+                             "<p>9月27日(日) 道の駅かでなにて開催</p></main>",
+                             "html.parser")
+        self.assertEqual(kyushu_publication_date(soup, title), date(2026, 9, 22))
+
+    def test_kyushu_publication_not_taken_from_unrelated_page(self):
+        soup = BeautifulSoup("""<h1>新米フェアのお知らせ</h1><p>期間：10月17日(土)</p>
+          <footer><h2>その他のお知らせ</h2><time>2026年10月9日</time></footer>""",
+          "html.parser")
+        self.assertIsNone(kyushu_publication_date(soup, "新米フェアのお知らせ"))
+
     def test_kyushu_reject_end_only_and_publication_date(self):
         posted = date(2026, 10, 8)
         self.assertIsNone(kyushu_event_period("期間：～１０月３１日(土)まで", posted))
