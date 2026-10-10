@@ -1341,5 +1341,89 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
             spec,soup(html),TODAY,"https://malicious.example/quiz/")[1],
                          "unofficial_checkpoint")
 
+    def test_event_listing_schedules_future_headline_before_undated_and_old(self):
+        from station_discovery_engine import _plan_article_inspection, _listing_date_priority
+        self.assertEqual(
+            _listing_date_priority("2026年11月22日開催 産業まつり", TODAY), 0)
+        self.assertEqual(
+            _listing_date_priority("2026年10月9日開催 先週の祭り", TODAY), 2)
+        self.assertEqual(
+            _listing_date_priority("2026.10.08 投稿 EVENT お知らせ", TODAY), 1)
+        links={f"https://www.michinoeki-hachioji.net/news/{i}":
+               f"公式イベント {i}" for i in range(100, 109)}
+        newest="https://www.michinoeki-hachioji.net/news/109"
+        links[newest]="2026年11月22日開催 秋のマルシェ"
+        picked, stats = _plan_article_inspection(
+            links, {**TOKYO, "maxArticles": 4}, TODAY)
+        self.assertEqual(list(picked)[0], newest)
+        self.assertEqual(len(picked), 4)
+        self.assertEqual(stats["uninspectedCandidates"], 6)
+        self.assertEqual(stats["explorationSlots"], 1)
+
+    def test_daily_exploration_rotates_uninspected_official_articles(self):
+        import tempfile
+        from pathlib import Path
+        articles={f"https://www.michinoeki-hachioji.net/news/{i}":
+                  """<article><h1>秋のマルシェ開催</h1>
+                     <p>会場：道の駅八王子滝山</p></article>"""
+                  for i in range(100, 110)}
+        listing="<main>"+"".join(
+            f'<a href="/news/{i}">秋のイベント・マルシェ {i}</a>'
+            for i in range(100, 110))+"</main>"
+        spec={**TOKYO, "id": "daily-rotation", "maxArticles": 4}
+        def fetch(url):
+            called.append(url)
+            return soup(listing if url == spec["listingUrl"] else articles[url])
+        with tempfile.TemporaryDirectory() as folder:
+            audit_path=Path(folder)/"audit.json"
+            called=[]
+            _, first=collect_configured_station_events(
+                TODAY, [], [spec], fetch=fetch, report_path=audit_path)
+            checked1=[x for x in called if x != spec["listingUrl"]]
+            self.assertEqual(len(checked1), 4)
+            self.assertEqual(first["sources"][0]["explorationSlots"], 1)
+            self.assertEqual(first["sources"][0]["uninspectedCandidates"], 6)
+            called=[]
+            _, same_day=collect_configured_station_events(
+                TODAY, [], [spec], fetch=fetch, report_path=audit_path)
+            checked_same=[x for x in called if x != spec["listingUrl"]]
+            self.assertEqual(checked_same, checked1)
+            self.assertEqual(same_day["sources"][0]["explorationStart"], 0)
+            called=[]
+            tomorrow=date(2026, 10, 11)
+            _, second=collect_configured_station_events(
+                tomorrow, [], [spec], fetch=fetch, report_path=audit_path)
+            checked2=[x for x in called if x != spec["listingUrl"]]
+            self.assertEqual(checked2[:3], checked1[:3])
+            self.assertNotEqual(checked2[-1], checked1[-1])
+            self.assertEqual(second["sources"][0]["explorationStart"], 1)
+
+    def test_daily_exploration_still_enforces_venue_and_date(self):
+        from station_discovery_engine import _plan_article_inspection
+        spec={**TOKYO, "maxArticles": 3}
+        links={f"https://www.michinoeki-hachioji.net/news/{i}":
+               f"2026年11月{i}日開催 秋の祭り" for i in (10,11,12,13,14,15)}
+        selected,_ = _plan_article_inspection(links,spec,TODAY)
+        self.assertEqual(len(selected),3)
+        articles="""<article><h1>秋の祭り</h1>
+          <p>2026年11月10日開催</p><p>会場：八王子市民会館</p>
+          <footer>道の駅八王子滝山</footer></article>"""
+        for url,text in selected.items():
+            record,why=_article_record(spec,soup(articles),text,TODAY,url)
+            self.assertIsNone(record)
+            self.assertIn(why,("venue_missing","offsite"))
+
+    def test_prior_known_articles_do_not_use_exploration_budget(self):
+        from station_discovery_engine import _plan_article_inspection
+        links={f"https://www.michinoeki-hachioji.net/news/{i}":
+               f"新着イベント {i}" for i in range(100, 110)}
+        previous=set(list(links)[:6])
+        chosen,info=_plan_article_inspection(
+            links,{**TOKYO,"maxArticles":4},TODAY,known_urls=previous)
+        self.assertEqual(len(chosen),4)
+        self.assertTrue(previous.isdisjoint(chosen))
+        self.assertEqual(info["eligibleCandidates"],4)
+        self.assertEqual(info["uninspectedCandidates"],0)
+
 if __name__ == "__main__":
     unittest.main()
