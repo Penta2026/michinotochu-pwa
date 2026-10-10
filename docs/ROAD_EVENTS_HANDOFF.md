@@ -1,10 +1,22 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-11 Actions #63 実測**（現在73件・現在39県・累計42県・累計未達5都県・未再確認3件。累計実績の表示機能は次回Actions検証待ち）  
+更新基準: **2026-10-11 Actions #64 実測**（204テスト全件OK・現在73件/39県・累計42/47県・累計未攻略5都県・未再確認3件）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-11 06:36〜06:43 JST Actions #64 本番成功（累計県数の保存を実測確認）
+
+- [Actions #64](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38088287538) は **全ステップ成功**。`Test event date extraction`は **204/204件OK**。Pages公開 `#1306` も成功。
+- `data/prefecture_event_coverage.json`の新しい累計フィールドを本番確認：**累計42/47都道府県**、そのうち**現在もイベントを掲載39/47県**。現在登録イベント **73件**。現在0件でも過去登録実績あり：滋賀・鳥取・徳島3県。累計未攻略は **東京・神奈川・和歌山・愛媛・鹿児島の5都県**で変化なし。
+- `summary.historicalObservedPrefectures=42`／`summary.historicalNeverObservedPrefectures=5`／`summary.observedPrefectures=39` の3つを分離して保存できた。次回以降も現在の催事終了だけでは歴史的実績は減らない仕様。
+- `station_event_discovery_audit.json`: **新規0、同一記事再確認7**。品質監査は最終73件・重複候補0・無効0・未再確認3件（北海道「樹海ロード日高」、島根「ごいせ仁摩」、山口「阿武町」）。山口記事は`verified_station_reconfirmation_audit.json`でも`no_article_content`（保留）を継続。
+- 愛媛公式PDFは `fetchFailed=1`、**HTTP 404**が続く。`ehime_city_official_festival_pdf` の設定を再実行しただけでは登録されないので、別の利用可能な**八幡浜市公式HTML**導線を検証するべき。
+- 公開Web上で確認した追加候補：八幡浜市公式 `https://www.city.yawatahama.ehime.jp/event-search/` に「**2026年11月22日・第13回やわたはま産業まつり**」を掲載。既存市公式記事 `https://www.city.yawatahama.ehime.jp/doc/2026081300028/` は前回「venue_missing」だった。両URLから**同一イベントの会場「八幡浜みなっと」**を実行時に確認できる導線を探す（非公式紹介サイトでの会場記述だけでは登録しない）。
+- 和歌山は`https://sakuas.com/event/`に「10月イベント情報」の公式告知（2026-09-28掲載）があるが、Phase 2は`no_individually_dated_sections`で除外中。年・個別催事名・日付・道の駅会場の組を**同一告知区画**から復元できた場合のみ採用。古い2025年の同名・類似催事を2026年として扱わない。
+- 東京の道の駅八王子滝山に「10月分イベントスケジュールです」（2026-10-09更新）の公式案内あり。ただし月間告知画像などに個別日時・駅構内会場が示されるかは未確認。神奈川・鹿児島も不十分な年月日からの推測登録は継続して禁止。
+- **次の開発優先順位**：1) 愛媛HTMLで日時+駅会場の独立証拠、2) 和歌山の10月文章区画解析、3) 東京・神奈川の月間告知の公式テキスト版探索、4) 鹿児島の日時未確定記事、5) 山口・北海道・島根の既存イベント再確認。現在の42/47累計を基準に新規実測のみ計上。
 
 ## 2026-10-11 04:04〜04:12 JST Actions #63 成功・経過日付による集計変動と累計実績維持
 
