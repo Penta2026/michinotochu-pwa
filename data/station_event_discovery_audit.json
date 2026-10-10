@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "checkedOn": "2026-10-11",
   "sources": [
     {
       "id": "tokyo_hachioji",
@@ -815,20 +816,13 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 1,
-      "reconfirmed": 0,
+      "accepted": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
-      "examples": [
-        {
-          "title": "かとうくみプレンティーズ原画展",
-          "start": "2026-10-10",
-          "end": "2026-11-23",
-          "url": "https://creativeweek.net/event-detail.php?no=37"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": []
     },
     {
@@ -839,20 +833,13 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 1,
-      "reconfirmed": 0,
+      "accepted": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
-      "examples": [
-        {
-          "title": "10月の九州の催事⑪",
-          "start": "2026-10-25",
-          "end": "2026-10-25",
-          "url": "https://shokupan-sakimoto.com/news/kyusyusaiji_oct/"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": []
     },
     {
@@ -863,20 +850,13 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 1,
-      "reconfirmed": 0,
+      "accepted": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
-      "examples": [
-        {
-          "title": "青洲まつり2026",
-          "start": "2026-10-25",
-          "end": "2026-10-25",
-          "url": "https://www.wakayama-kanko.or.jp/events/detail_3879.html"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": []
     },
     {
@@ -887,20 +867,13 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 1,
-      "reconfirmed": 0,
+      "accepted": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
-      "examples": [
-        {
-          "title": "NPOのための広報セミナー",
-          "start": "2026-11-11",
-          "end": "2026-11-11",
-          "url": "https://note.com/y_hitonari/n/n92ade5cdf7bd"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": []
     },
     {
@@ -911,23 +884,16 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 1,
-      "reconfirmed": 0,
+      "accepted": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
-      "examples": [
-        {
-          "title": "「桑都物語」デジタルクイズスタンプラリー",
-          "start": "2026-10-03",
-          "end": "2026-11-05",
-          "url": "https://japan-heritage-soto.jp/%E3%80%8C%E6%A1%91%E9%83%BD%E7%89%A9%E8%AA%9E%E3%80%8D%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%AF%E3%82%A4%E3%82%BA%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%97%E3%83%A9%E3%83%AA%E3%83%BC/"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": []
     }
   ],
-  "newEvents": 5,
-  "reconfirmedEvents": 7
+  "newEvents": 0,
+  "reconfirmedEvents": 12
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 73,
+  "inputPrevious": 78,
   "inputCollected": 75,
   "expiredOrInvalid": [],
   "corrected": [],
@@ -264,6 +264,26 @@
     {
       "roadName": "ひまわり",
       "title": "バイクイベント開催 10月18日(日)"
+    },
+    {
+      "roadName": "湘南ちがさき",
+      "title": "かとうくみプレンティーズ原画展"
+    },
+    {
+      "roadName": "たるみずはまびら",
+      "title": "10月の九州の催事⑪"
+    },
+    {
+      "roadName": "青洲の里",
+      "title": "青洲まつり2026"
+    },
+    {
+      "roadName": "八幡浜みなっと",
+      "title": "NPOのための広報セミナー"
+    },
+    {
+      "roadName": "八王子滝山",
+      "title": "「桑都物語」デジタルクイズスタンプラリー"
     },
     {
       "roadName": "ふくしま",
