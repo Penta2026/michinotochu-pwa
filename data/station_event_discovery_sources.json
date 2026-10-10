@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "mode": "new_official_article_discovery",
-  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp. Expanded with verified Fukui, Osaka and two Wakayama official station/onsite feeds. Multi-event Wakayama notices require section-specific date plus venue and are not whole-month events. Gap-prefecture-first expansion: six previously unconfigured prefectures (Iwate, Yamagata, Fukushima, Shizuoka, Yamaguchi, Ehime). Specialty article modes require article-local dates; no calendar month guessing. Verified additional official sources for Yamaguchi, Fukui, Osaka and Miyazaki; Kumamoto tourism listing is acceptable ONLY with explicit station venue; Osaka dated venue table is strict and cannot include unrelated listings. Municipal Ehime event-listing source for the officially documented Nov 22 Yawatahama industry festival at Michi-no-Eki Minatto, accept only explicit venue and event date.",
+  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp. Expanded with verified Fukui, Osaka and two Wakayama official station/onsite feeds. Multi-event Wakayama notices require section-specific date plus venue and are not whole-month events. Gap-prefecture-first expansion: six previously unconfigured prefectures (Iwate, Yamagata, Fukushima, Shizuoka, Yamaguchi, Ehime). Specialty article modes require article-local dates; no calendar month guessing. Verified additional official sources for Yamaguchi, Fukui, Osaka and Miyazaki; Kumamoto tourism listing is acceptable ONLY with explicit station venue; Osaka dated venue table is strict and cannot include unrelated listings. Municipal Ehime event-listing source for the officially documented Nov 22 Yawatahama industry festival at Michi-no-Eki Minatto, accept only explicit venue and event date. New Nagasaki Himawari official biker event October 18, 2026 is explicitly station-hosted; date must be grounded in the October 7, 2026 official notice.",
   "sources": [
     {
       "id": "tokyo_hachioji",
@@ -623,6 +623,43 @@
       "maxArticles": 8,
       "requireVenueLabel": true,
       "allowExplicitDatedParagraph": true
+    },
+    {
+      "id": "nagasaki_himawari",
+      "enabled": true,
+      "prefecture": "長崎県",
+      "roadName": "ひまわり",
+      "listingUrl": "https://michinoeki-himawari.com/news/",
+      "allowedHosts": [
+        "michinoeki-himawari.com"
+      ],
+      "articlePathPattern": "^/post-[0-9]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article,main,.entry-content,.post-content,body",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1",
+        "h2"
+      ],
+      "publicationSelector": "time[datetime],.post-date,.entry-date,.date",
+      "requiredVenueTokens": [
+        "道の駅ひまわり"
+      ],
+      "allowedEventWords": [
+        "バイクイベント",
+        "バイク",
+        "イベント",
+        "祭",
+        "まつり",
+        "フェア",
+        "マルシェ",
+        "体験"
+      ],
+      "maxArticles": 8,
+      "useListingPublicationDate": true,
+      "allowExplicitDatedParagraph": true,
+      "venueProofPattern": "(?:場所|会場)\\s*[:：]?\\s*道の駅ひまわり"
     }
   ]
 }
