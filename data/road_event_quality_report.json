@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 41,
-  "inputCollected": 51,
+  "inputPrevious": 51,
+  "inputCollected": 46,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -110,6 +110,26 @@
       "title": "道の駅「羊のまち 侍・しべつ」秋まつり開催!!"
     },
     {
+      "roadName": "親不知ピアパーク",
+      "title": "BikeJINツーリングトロフィー 今年もツーリングシーズンはじまりました！道の駅「親不…"
+    },
+    {
+      "roadName": "うみてらす名立",
+      "title": "「今、復興のとき 能登にあいにいこう」道の駅リレーイベント 北陸管内の道の駅で「能登半島絶景海道」などイベントを…"
+    },
+    {
+      "roadName": "氷見",
+      "title": "ひみ番屋街創業14周年感謝祭 能越コラボ和太鼓＆働くクルマ！！能登と富山の和太鼓1…"
+    },
+    {
+      "roadName": "めぐみ白山",
+      "title": "白山「道の駅」フェア 個性豊かな4つの道の駅「道の駅一向一揆の里」「道の駅…"
+    },
+    {
+      "roadName": "しらやまさん",
+      "title": "第6回道の駅しらやまさん軽トラ市 道の駅百姓連「しらやまさん’ｓ」による季節の野菜販売…"
+    },
+    {
       "roadName": "こすげ",
       "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)"
     },
@@ -172,5 +192,9 @@
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [],
-  "finalCount": 51
+  "finalCount": 46,
+  "collapsedHokurikuDuplicates": {
+    "previous": 5,
+    "collected": 0
+  }
 }
