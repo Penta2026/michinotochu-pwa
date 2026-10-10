@@ -73,14 +73,15 @@
     "historicalNeverObservedPrefectures": 0,
     "registeredEvents": 78,
     "targetedStationFeedPrefectures": 25,
-    "notReconfirmedEvents": 3,
+    "notReconfirmedEvents": 4,
     "unknownPrefectures": []
   },
   "priorities": {
     "reconfirm": [
       "北海道",
       "島根県",
-      "山口県"
+      "山口県",
+      "熊本県"
     ],
     "historicalNeverObserved": [],
     "previouslyObservedWithoutCurrentEvents": [
@@ -121,7 +122,7 @@
       "zeroRegisteredPrefectures": [],
       "registeredEventCount": 13,
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5
+      "regionalHomepageListingCandidates": 6
     },
     {
       "region": "北陸",
@@ -329,7 +330,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -348,7 +349,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -367,7 +368,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -384,7 +385,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -404,7 +405,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -423,7 +424,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -442,7 +443,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -459,7 +460,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -476,7 +477,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -964,9 +965,9 @@
         "あそ望の郷くぎの",
         "すいかの里植木"
       ],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"

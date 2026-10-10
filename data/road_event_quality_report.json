@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 78,
-  "inputCollected": 75,
+  "inputCollected": 74,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -258,10 +258,6 @@
       "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025"
     },
     {
-      "roadName": "あそ望の郷くぎの",
-      "title": "第11回 南阿蘇の青空レストラン"
-    },
-    {
       "roadName": "ひまわり",
       "title": "バイクイベント開催 10月18日(日)"
     },
@@ -322,6 +318,14 @@
       "startDate": "2026-10-11",
       "endDate": "2026-10-11",
       "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "あそ望の郷くぎの",
+      "title": "第11回 南阿蘇の青空レストラン",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-12",
+      "url": "https://minamiaso.info/event/?cm=10&cy=2026",
       "reason": "not_found_in_current_collection"
     },
     {
