@@ -722,5 +722,17 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(one["rejectedExamples"][0]["reason"],"undated")
         self.assertIn("/news/1001",one["rejectedExamples"][0]["url"])
 
+    def test_article_css_priority_never_selects_body_first(self):
+        from station_discovery_engine import _pick_article
+        spec={**TOKYO,"articleSelector":"article, main, .detail, body"}
+        detail=soup("""<html><body>
+            <h2>サイト共通のイベント情報</h2>
+            <article><h1>猿まわし開催</h1><p>記事固有の開催日</p></article>
+            <footer>旧イベント 2025年11月11日</footer>
+            </body></html>""")
+        selected=_pick_article(detail,spec)
+        self.assertEqual(selected.name,"article")
+        self.assertNotIn("旧イベント",selected.get_text(" ",strip=True))
+
 if __name__ == "__main__":
     unittest.main()
