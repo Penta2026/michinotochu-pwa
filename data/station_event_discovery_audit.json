@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "tokyo_hachioji",
+      "prefecture": "東京都",
+      "roadName": "八王子滝山",
+      "listingUrl": "https://www.michinoeki-hachioji.net/",
+      "listingError": "",
+      "candidates": 6,
+      "checked": 6,
+      "accepted": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {
+        "past": 2,
+        "venue_missing": 1,
+        "not_event": 3
+      },
+      "examples": []
+    },
+    {
+      "id": "kanagawa_chigasaki",
+      "prefecture": "神奈川県",
+      "roadName": "湘南ちがさき",
+      "listingUrl": "https://m-shonanchigasaki.com/topics/",
+      "listingError": "",
+      "candidates": 9,
+      "checked": 6,
+      "accepted": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {
+        "past": 1,
+        "not_event": 5
+      },
+      "examples": []
+    },
+    {
+      "id": "nara_nakamachi",
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "listingUrl": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
+      "listingError": "",
+      "candidates": 4,
+      "checked": 2,
+      "accepted": 0,
+      "knownSkipped": 2,
+      "fetchFailed": 0,
+      "reasons": {
+        "undated": 2
+      },
+      "examples": []
+    }
+  ],
+  "newEvents": 0
+}
