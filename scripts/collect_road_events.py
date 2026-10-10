@@ -14,6 +14,7 @@ from urllib.parse import urljoin, urlparse
 import requests
 from region_official_events import collect_tohoku
 from regional_association_events import collect_regional_associations
+from generic_region_events import collect_generic_regions
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -301,7 +302,8 @@ def main():
     # Regional association sites are primary broad-coverage feeds; individual
     # station sites remain a supplement for notices missing from associations.
     regional=collect_regional_associations(NOW)
-    collected=shikoku+chugoku+nationwide+regional+tohoku
+    generic=collect_generic_regions(NOW)
+    collected=shikoku+chugoku+nationwide+regional+tohoku+generic
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
