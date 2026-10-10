@@ -26,6 +26,7 @@ from kinki_five_prefectures import collect_kinki_five
 from chubu_events import audit_chubu_bulletin
 from road_event_quality import reconcile, write_report
 from verified_station_engine import reconfirm_known_articles
+from station_discovery_engine import collect_configured_station_events
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -416,6 +417,14 @@ def main():
     chubu=audit_chubu_bulletin(NOW)
     generic=collect_generic_regions(NOW)
     collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido+hokuriku+kyushu_okinawa+kyushu_six+kanto+kanto_three+kanto_remaining+kinki_five+chubu
+    # Phase 2: new official article discovery through declarative station rules.
+    # Pass old and all current results to skip already verified article URLs.
+    try:
+        discovered, discovery_audit = collect_configured_station_events(
+            NOW, old + collected)
+        collected += discovered
+    except Exception as exc:
+        print(f"設定型新着記事収集失敗。既存イベントを維持: {type(exc).__name__}: {exc}", file=sys.stderr)
     # Config-driven, conservative fallback for previously verified events
     # missing from listing collectors this time. No invented events/dates.
     try:
