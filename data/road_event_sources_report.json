@@ -165,10 +165,55 @@
       "region": "近畿",
       "url": "https://www.kinki-michinoeki.com/news-tag/event/",
       "status": "adapter",
-      "reachable": false,
-      "candidates": [],
-      "candidateCount": 0,
-      "error": "ConnectTimeout: HTTPSConnectionPool(host='www.kinki-michinoeki.com', port=443): Max retries exceeded with url: /news-tag/event/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.kinki-mich"
+      "reachable": true,
+      "candidates": [
+        {
+          "title": "イベント情報",
+          "url": "https://www.kinki-michinoeki.com/news-tag/event/"
+        },
+        {
+          "title": "「道の駅 奥永源寺渓流の里」開駅１１周年記念祭を開催します。",
+          "url": "https://www.kinki-michinoeki.com/news/%e9%96%8b%e9%a7%85%ef%bc%91%ef%bc%91%e5%91%a8%e5%b9%b4%e8%a8%98%e5%bf%b5%e7%a5%ad%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82/"
+        },
+        {
+          "title": "【道の駅クロスウェイなかまち】2026年シルバーウィーク特別企画「グラウンド・ランタン祭り＆夜市」",
+          "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0828_2/"
+        },
+        {
+          "title": "第14回全国「道の駅」シンポジウムin留萌 開催について",
+          "url": "https://www.kinki-michinoeki.com/news/%e7%ac%ac14%e5%9b%9e%e5%85%a8%e5%9b%bd%e3%80%8c%e9%81%93%e3%81%ae%e9%a7%85%e3%80%8d%e3%82%b7%e3%83%b3%e3%83%9d%e3%82%b8%e3%82%a6%e3%83%a0in%e7%95%99%e8%90%8c%e3%80%80%e9%96%8b%e5%82%ac%e3%81%ab/"
+        },
+        {
+          "title": "【道の駅クロスウェイなかまち】8/8（土）～16（日）「納涼フェア2026」開催！",
+          "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0730/"
+        },
+        {
+          "title": "【道の駅クロスウェイなかまち】5/16（土）「防災フェス2026 ～新緑の候～」開催！",
+          "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0504/"
+        },
+        {
+          "title": "【道の駅クロスウェイなかまち】3/14（土）～3/22（日）開催「奈良のいちごフェア２０２６」大好評につき【第２弾】！",
+          "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0303/"
+        },
+        {
+          "title": "【道の駅クロスウェイなかまち】2/21（土）～3/1（日）「奈良のいちごフェア」開催中！",
+          "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0222/"
+        },
+        {
+          "title": "【道の駅 みき】1/10(土)～12(月・祝) 産地直送！相生産牡蠣祭り",
+          "url": "https://www.kinki-michinoeki.com/news/%e3%80%90%e9%81%93%e3%81%ae%e9%a7%85-%e3%81%bf%e3%81%8d%e3%80%911-10%e5%9c%9f%ef%bd%9e12%e6%9c%88%e3%83%bb%e7%a5%9d%e3%80%80%e7%94%a3%e5%9c%b0%e7%9b%b4%e9%80%81%ef%bc%81%e7%9b%b8%e7%94%9f%e7%94%a3/"
+        },
+        {
+          "title": "【道の駅 みき】12/6(土)～7(日) ながさわ道の駅みき店 冬の大感謝祭",
+          "url": "https://www.kinki-michinoeki.com/news/%e3%80%90%e9%81%93%e3%81%ae%e9%a7%85-%e3%81%bf%e3%81%8d%e3%80%9112-6%e5%9c%9f%ef%bd%9e7%e6%97%a5-%e3%81%aa%e3%81%8c%e3%81%95%e3%82%8f%e9%81%93%e3%81%ae%e9%a7%85%e3%81%bf%e3%81%8d%e5%ba%97/"
+        },
+        {
+          "title": "【道の駅なら歴史芸術文化村】12/20（土）開催『Christmas Concert 2025: Gospel and Others』",
+          "url": "https://www.kinki-michinoeki.com/news/nrg-bunkamura_2025-1128/"
+        }
+      ],
+      "candidateCount": 11,
+      "error": ""
     },
     {
       "region": "中国",
