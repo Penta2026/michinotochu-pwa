@@ -70,13 +70,16 @@ def coalesce_status_badge_records(records):
     clean_records, seen = [], set()
     for record in records:
         item = dict(record)
-        title = item.get("title", "")
+        title = item.get("title") or ""
         without_badge = re.sub(r"\s+NEW[!！]?\s*$", "", title, flags=re.I)
         if without_badge != title:
             item["title"] = without_badge
+        # Do not apply the broader canonical_title() here: two distinct
+        # bracket-prefixed PDF event titles may share a common remainder.
+        normalized = re.sub(r"\s+", "",
+                            unicodedata.normalize("NFKC", without_badge).casefold())
         key = (item.get("prefecture"), item.get("roadName"), item.get("url"),
-               item.get("startDate"), item.get("endDate"),
-               canonical_title(item.get("title", "")))
+               item.get("startDate"), item.get("endDate"), normalized)
         if key in seen:
             continue
         seen.add(key)
