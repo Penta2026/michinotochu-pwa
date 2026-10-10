@@ -705,6 +705,28 @@
       ],
       "maxArticles": 10,
       "allowExplicitDatedParagraph": true
+    },
+    {
+      "id": "ehime_city_official_festival_pdf",
+      "enabled": true,
+      "prefecture": "愛媛県",
+      "roadName": "八幡浜みなっと",
+      "listingUrl": "https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf",
+      "allowedHosts": [
+        "www.city.yawatahama.ehime.jp"
+      ],
+      "articlePathPattern": "^/doc/2026041700097/file_contents/file_20264175162551_1\\.pdf$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main",
+      "titleSelectors": [
+        "h1"
+      ],
+      "requiredVenueTokens": [
+        "八幡浜みなっと"
+      ],
+      "requiredEventTitle": "第13回やわたはま産業まつり",
+      "articleMode": "verified_official_pdf",
+      "maxArticles": 1
     }
   ]
 }
