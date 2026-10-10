@@ -522,15 +522,26 @@ def _dated_news_listing_records(spec, soup, today, url):
         node.decompose()
     lines = [clean(x) for x in container.get_text("\n", strip=True).splitlines()
              if clean(x)]
+    # A news card may repeat its headline in its body. Only the actual
+    # heading starts a distinct notice; never treat paragraph text as another
+    # event headline or borrow a later notice's posting year/venue.
+    headline_texts = {clean(h.get_text(" ", strip=True))
+                      for h in container.select("h1, h2, h3, h4")}
+    heading_positions = {i for i, line in enumerate(lines)
+                         if line in headline_texts}
     results = []
     for i, title in enumerate(lines):
+        if i not in heading_positions:
+            continue
+        next_heading = min((pos for pos in heading_positions if pos > i),
+                           default=len(lines))
         if not (5 <= len(title) <= 110
                 and any(w in title for w in spec.get("allowedEventWords", EVENT_WORDS))
                 and not any(w in title for w in BLOCK)
                 and re.search(r"[0-9]{1,2}月[0-9]{1,2}日", title)):
             continue
         # The posting year must be immediately next to this announcement.
-        local = lines[i+1:i+4]
+        local = lines[i+1:min(next_heading, i+4)]
         pub = next((re.fullmatch(r"(20[0-9]{2})[./年-]([0-9]{1,2})[./月-]([0-9]{1,2})日?", x)
                     for x in local if re.fullmatch(
                         r"20[0-9]{2}[./年-][0-9]{1,2}[./月-][0-9]{1,2}日?", x)), None)
@@ -547,7 +558,7 @@ def _dated_news_listing_records(spec, soup, today, url):
             continue
         # A single notice may span multiple paragraphs, but never rely on
         # the site-wide address or another news item's venue.
-        local_body = lines[i+1:i+18]
+        local_body = lines[i+1:min(next_heading, i+18)]
         venue = next((j for j, x in enumerate(local_body) if
                       re.match(r"^(?:場所|会場)\s*[:：]?\s*", x) and
                       any(t in x for t in spec["requiredVenueTokens"])), None)
