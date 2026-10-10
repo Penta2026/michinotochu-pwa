@@ -6,7 +6,7 @@ from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period, EVENT_WORDS
 from hokkaido_events import parse_dates
-from hokuriku_events import extract_hokuriku, extract_hokuriku_cards
+from hokuriku_events import extract_hokuriku, extract_hokuriku_cards, decode_official_response
 from bs4 import BeautifulSoup
 from kanto_events import event_period
 from chubu_events import bulletin_links, bulletin_date, verified_pdf_events
@@ -104,6 +104,22 @@ class DateParsingTests(unittest.TestCase):
           <a href="/contents/event/?dc=2026-10-17">翌週へ</a></div>'''
         records, _ = extract_hokuriku_cards(
             BeautifulSoup(html, "html.parser"), date(2026,10,10),
+            "https://www.hokuriku-michinoeki.jp/contents/event/")
+        self.assertEqual(records, [])
+
+    def test_hokuriku_decoding_without_charset(self):
+        class FakeResponse:
+            content = "氷見2026年10月3日2026年10月12日感謝祭".encode("utf-8")
+            encoding = "ISO-8859-1"
+            apparent_encoding = "utf-8"
+        self.assertIn("氷見", decode_official_response(FakeResponse()))
+
+    def test_hokuriku_prevent_cross_card(self):
+        html = """<div><span>氷見2026年10月3日2026年10月12日感謝祭</span>
+          <span>めぐみ白山2026年10月25日2026年10月25日フェア</span>
+          <a href="/contents/event/?article=000900&dc=2026-10-10">詳細</a></div>"""
+        records, _ = extract_hokuriku_cards(
+            BeautifulSoup(html,"html.parser"),date(2026,10,10),
             "https://www.hokuriku-michinoeki.jp/contents/event/")
         self.assertEqual(records, [])
 
