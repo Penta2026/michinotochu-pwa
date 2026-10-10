@@ -156,6 +156,11 @@ def _headline(soup, spec, listing_title):
 
 def _article_lines(container, spec):
     selectors = spec.get("dateSelectors") or DEFAULT_DATE_SELECTORS
+    # A site rule may declare CSS selectors as either a comma-delimited
+    # string ("p,tr,td") or a list. Never join individual characters.
+    if isinstance(selectors, str):
+        selectors = selectors.split(",")
+    selectors = [selector.strip() for selector in selectors if selector.strip()]
     nodes = container.select(",".join(selectors))
     lines = []
     for node in nodes:
@@ -265,11 +270,27 @@ def _article_record(source, soup, listing_title, today, url):
                 continue
             # Publishing metadata (not the event date) must never enter here.
             # A full explicit event year in an event paragraph is admissible.
-            if not (any(w in line for w in terms) or
-                    re.search(r"(?:開催|日時|日程|実施日|イベント)", line)):
+            event_context = (any(w in line for w in terms) or
+                             bool(re.search(r"(?:開催|日時|日程|実施日|イベント)", line)))
+            # Some official notices put a full date and time on a bare
+            # paragraph, next to a confirmed on-site venue. This is not
+            # interchangeable with a bare publication date: require a
+            # stated time, a date starting the paragraph, and site proof.
+            unlabelled_schedule = (
+                bool(re.match(r"^20[0-9]{2}年[0-9]{1,2}月[0-9]{1,2}日", dated))
+                and bool(re.search(r"[0-9]{1,2}:[0-9]{2}", dated))
+                and (has_venue_label or bool(venue_proof and re.search(venue_proof, body)))
+            )
+            if not (event_context or unlabelled_schedule):
                 continue
-            period = _period(dated, posted)
-            if period:
+            candidate = _period(dated, posted)
+            # An article's known publication timestamp must never become
+            # the event date just because it appears inside a paragraph.
+            if candidate and unlabelled_schedule and not event_context and posted:
+                if candidate[0] == posted.isoformat():
+                    continue
+            if candidate:
+                period = candidate
                 break
     if period is None:
         return None, "undated"
