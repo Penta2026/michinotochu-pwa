@@ -699,10 +699,13 @@ def _fetch_official_pdf_text(url):
         raise requests.RequestException("Not a direct official PDF response")
     if len(data) > 8_000_000:
         raise ValueError("Official PDF exceeds size limit")
-    with fitz.open(stream=data, filetype="pdf") as document:
-        if len(document) > 12:
-            raise ValueError("Official PDF has too many pages")
-        return "\n".join(page.get_text("text") for page in document)
+    try:
+        with fitz.open(stream=data, filetype="pdf") as document:
+            if len(document) > 12:
+                raise ValueError("Official PDF has too many pages")
+            return "\n".join(page.get_text("text") for page in document)
+    except RuntimeError as exc:
+        raise ValueError("Official PDF could not be decoded") from exc
 
 
 def _fetch(url):
