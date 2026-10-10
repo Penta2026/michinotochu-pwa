@@ -128,7 +128,7 @@ def _kinki_article_period(title, detail, published=None):
         value = _clean(node.get_text(" ", strip=True))
         if len(value) > 350 or not re.search(r"開催日|開催期間|日時|日程|イベント日|開催日時", value):
             continue
-        m = re.search(r"(?:開催日時|開催期間|開催日|日時|日程|イベント日)[：:\\s]*(.{4,130})", value)
+        m = re.search(r"(?:開催日時|開催期間|開催日|日時|日程|イベント日)[：:\s]*(.{4,130})", value)
         if not m:
             continue
         period = _period(m.group(1), published)
@@ -140,11 +140,11 @@ def _kinki_article_period(title, detail, published=None):
 def _publication_date(soup):
     node = soup.find("time", datetime=True)
     if node:
-        m = re.search(r"(20\\d{2})[-/.](\\d{1,2})[-/.](\\d{1,2})", node["datetime"])
+        m = re.search(r"(20\d{2})[-/.](\d{1,2})[-/.](\d{1,2})", node["datetime"])
         if m:
             return _date(*m.groups())
     for tag in soup.find_all("meta", attrs={"property": "article:published_time"}):
-        m = re.search(r"(20\\d{2})-(\\d{2})-(\\d{2})", tag.get("content", ""))
+        m = re.search(r"(20\d{2})-(\d{2})-(\d{2})", tag.get("content", ""))
         if m:
             return _date(*m.groups())
     return None
@@ -163,7 +163,7 @@ def collect_kinki_association(today):
         page_candidates = 0
         for anchor in listing.select("a[href]"):
             title = _clean(anchor.get_text(" ", strip=True))
-            match = re.search(r"[【〖][「\\s]*道の駅\\s*([^】〗」]+)[」]?([】〗])", title)
+            match = re.search(r"[【〖][「\s]*道の駅\s*([^】〗」]+)[」]?([】〗])", title)
             if not match or any(w in title for w in SKIP):
                 continue
             href = urljoin(url, anchor["href"])
@@ -185,7 +185,7 @@ def collect_kinki_association(today):
             if not pref:
                 detail_text = _clean(detail.get_text(" ", strip=True))[:2500]
                 pref = next((p for p in ("滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県") if p in detail_text), None)
-            published_match = re.search(r"(20\\d{2})[./-](\\d{1,2})[./-](\\d{1,2})", context)
+            published_match = re.search(r"(20\d{2})[./-](\d{1,2})[./-](\d{1,2})", context)
             published = _date(*published_match.groups()) if published_match else None
             period = _kinki_article_period(title, detail, published)
             if not pref or not period or period[1] < today.isoformat():
