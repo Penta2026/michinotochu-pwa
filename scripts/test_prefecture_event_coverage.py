@@ -95,6 +95,8 @@ class PrefectureCoverageTests(unittest.TestCase):
         self.assertIn("あそ望の郷くぎの", sources["熊本県"])
         self.assertIn("都城NiQLL", sources["宮崎県"])
         self.assertEqual(sources["愛媛県"], ["八幡浜みなっと"])
+        self.assertIn("奥河内くろまろの郷", sources["大阪府"])
+        self.assertIn("南えちぜん山海里", sources["福井県"])
 
     def test_unknown_prefecture_is_detected(self):
         report = make_report(
