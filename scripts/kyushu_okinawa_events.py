@@ -215,6 +215,46 @@ def article_event_period(soup, title, published):
             return period
     return None
 
+def kadena_explicit_venue_period(soup, title, published):
+    """Kadena's article prose can give an event date without a date label.
+
+    Require an event-specific sentence with a valid weekday, the confirmed
+    venue, and the title's unique event name. Exclude related-news lists.
+    """
+    if not published or not title:
+        return None
+    full = clean(soup.get_text(" ", strip=True))
+    # Anything following "その他お知らせ" belongs to different news posts.
+    article = re.split(r"その他\s*お知らせ", full, maxsplit=1)[0]
+    pos = article.rfind(clean(title))
+    if pos < 0:
+        return None
+    body = article[pos + len(clean(title)):pos + len(clean(title)) + 850]
+    event_name = re.sub(r"(?:開催のお知らせ|開催します[!！]?|開催[!！]?|のお知らせ)$",
+                        "", clean(title)).strip()
+    if len(event_name) < 4:
+        return None
+    for sentence in re.split(r"[。！？!]", body):
+        sentence = clean(sentence)
+        if len(sentence) > 230 or "道の駅かでな" not in sentence:
+            continue
+        if event_name not in sentence or "開催" not in sentence:
+            continue
+        dates = list(DATE_TOKEN.finditer(sentence))
+        if len(dates) != 1:
+            continue
+        # The date must precede the named venue and the event's announcement.
+        m = dates[0]
+        if sentence.find("道の駅かでな") < m.end():
+            continue
+        if not m.group(4):
+            continue
+        p = event_period(m.group(0), published)
+        if p:
+            return p
+    return None
+
+
 def _article_candidates(soup, spec):
     found = {}
     for anchor in soup.select("a[href]"):
@@ -288,6 +328,8 @@ def collect_kyushu_okinawa(today):
                         })
                     continue
                 p = article_event_period(detail, title, published)
+                if not p and spec["name"] == "かでな":
+                    p = kadena_explicit_venue_period(detail, title, published)
                 if not p:
                     stats["noDate"] += 1
                     stats["missingEventDate"] += 1
