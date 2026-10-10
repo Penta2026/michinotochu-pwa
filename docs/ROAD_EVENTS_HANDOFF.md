@@ -1,6 +1,6 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-11 Actions #68 成功＋重複修正待ち**（236テスト全件OK、累計47/47県・現行44県/78イベント、巡回9ルート17枠。品質重複修正と240テストは次回未検証）  
+更新基準: **2026-10-11 Actions #68 成功＋重複修正待ち**（236テスト全件OK、累計47/47県・現行44県/78イベント、巡回9ルート17枠。品質重複修正と241テストは次回未検証）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
@@ -14,9 +14,9 @@
 - **要確認記事サンプル51件**（旧43件）：拒否例保存の上限5→16により追加。うち開催予定日ヒント明示4件、過去日ヒント2件。見出しからのヒントは**監査の並び順のみ**であり、新規登録の根拠ではない。和歌山「海南サクアス」、大阪「いずみ山愛の里」など詳細調査対象が見えている。
 - **取得異常2ソース**：愛媛・旧PDF 404が継続。**熊本`kumamoto_minamiaso_official_tourism`の公式イベント一覧で`ConnectTimeout`**（`minamiaso.info/event/?cm=10&cy=2026`）。熊本の既存イベントは削除せず保留、そのため未再確認が1件増えた。タイムアウトは情報の中止の根拠にはならない。
 - **監査で新たな品質上の問題を発見**：北海道・樹海ロード日高の同一公式URL、同日、同駅の`日高町道の駅フェスト開催のお知らせ`と末尾`NEW`付きタイトルが**2件登録**されていた。既存の`possibleDuplicates`はURLが異なる場合のみ注意喚起したため、同一URLの表示用`NEW`バッジを見落としていた。
-- **#68後に追加した修正（未実行）**：`scripts/road_event_quality.py`に`coalesce_status_badge_records`を追加。同一の県/駅/公式URL/開始日/終了日で、末尾`NEW`装飾除去後の題名が完全一致するイベントだけを1件にする。同一URLの**異なる催し**（PDF内の別行など）や**別開催日**、**別URL**は統合しない。修正統合数は`collapsedStatusBadgeDuplicates`で監査可能。
-- `scripts/test_regional_association_events.py`に回帰テスト**4件**を追加。前回236件＋4件＝**次回240件予定**。重複が解消すれば現行は78→77件になる見込みだが、**次回Run workflow成功と公開JSON確認前には確定しない**。タイムアウトや終了日経過でイベント件数が別に変化する可能性もある。
-- **次の操作**：最新版`main`から新規`Run workflow`。①240件テスト、②`data/road_events.json`の日高同一イベント件数、③`road_event_quality_report.json`の`collapsedStatusBadgeDuplicates`、④熊本タイムアウトが解消したか、⑤巡回監査で翌日には前回の次の候補が選ばれるかを確認する。
+- **#68後に追加した修正（未実行）**：`scripts/road_event_quality.py`に`coalesce_status_badge_records`を追加。同一の県/駅/公式URL/開始日/終了日で、末尾`NEW`装飾除去後の題名が完全一致するイベントだけを1件にする。同一URLの**異なる催し**（PDF内の別行など）や**別開催日**、**別URL**は統合しない。括弧付きイベント題名（例：`【物産展】秋の催し`と`【体験会】秋の催し`）も別イベントとして維持する5件目の回帰テストを追加。修正統合数は`collapsedStatusBadgeDuplicates`で監査可能。
+- `scripts/test_regional_association_events.py`に回帰テスト**5件**を追加。前回236件＋5件＝**次回241件予定**。重複が解消すれば現行は78→77件になる見込みだが、**次回Run workflow成功と公開JSON確認前には確定しない**。タイムアウトや終了日経過でイベント件数が別に変化する可能性もある。
+- **次の操作**：最新版`main`から新規`Run workflow`。①241件テスト、②`data/road_events.json`の日高同一イベント件数、③`road_event_quality_report.json`の`collapsedStatusBadgeDuplicates`、④熊本タイムアウトが解消したか、⑤巡回監査で翌日には前回の次の候補が選ばれるかを確認する。
 
 ## 2026-10-11 Phase 4・収集精度向上（新着優先＋日替わり巡回、**次回Actions検証待ち**）
 
