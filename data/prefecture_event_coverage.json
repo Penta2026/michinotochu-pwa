@@ -9,9 +9,9 @@
   },
   "summary": {
     "prefectureCount": 47,
-    "observedPrefectures": 28,
-    "zeroRegisteredPrefectures": 19,
-    "registeredEvents": 56,
+    "observedPrefectures": 29,
+    "zeroRegisteredPrefectures": 18,
+    "registeredEvents": 57,
     "targetedStationFeedPrefectures": 11,
     "notReconfirmedEvents": 0,
     "unknownPrefectures": []
@@ -19,7 +19,6 @@
   "priorities": {
     "reconfirm": [],
     "noEventsButTargetedFeed": [
-      "栃木県",
       "長崎県",
       "熊本県",
       "宮崎県",
@@ -68,16 +67,15 @@
     {
       "region": "関東",
       "prefectureCount": 9,
-      "observedPrefectures": 5,
+      "observedPrefectures": 6,
       "zeroRegisteredPrefectures": [
-        "栃木県",
         "千葉県",
         "東京都",
         "神奈川県"
       ],
-      "registeredEventCount": 9,
+      "registeredEventCount": 10,
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5
+      "regionalHomepageListingCandidates": 6
     },
     {
       "region": "北陸",
@@ -277,23 +275,25 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
       "prefecture": "栃木県",
       "reportingRegion": "関東",
-      "eventCount": 0,
-      "observedStations": [],
-      "observedStationCount": 0,
+      "eventCount": 1,
+      "observedStations": [
+        "ましこ"
+      ],
+      "observedStationCount": 1,
       "targetedStationFeeds": [
         "ましこ"
       ],
       "notReconfirmedCount": 0,
-      "state": "targeted_feed_no_registered_events",
-      "nextAction": "inspect_official_article_dates",
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -311,7 +311,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -327,7 +327,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -341,7 +341,7 @@
       "state": "no_registered_events",
       "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -355,7 +355,7 @@
       "state": "no_registered_events",
       "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -369,7 +369,7 @@
       "state": "no_registered_events",
       "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -385,7 +385,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -401,7 +401,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {

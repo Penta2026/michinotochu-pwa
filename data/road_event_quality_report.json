@@ -1,19 +1,8 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 50,
-  "inputCollected": 58,
-  "expiredOrInvalid": [
-    {
-      "roadName": "ましこ",
-      "title": "",
-      "reason": "invalid_new"
-    },
-    {
-      "roadName": "ましこ",
-      "title": "",
-      "reason": "invalid_new"
-    }
-  ],
+  "inputPrevious": 56,
+  "inputCollected": 57,
+  "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
     {
@@ -165,6 +154,30 @@
       "title": "【道の駅庄和】わくわく体験イベント"
     },
     {
+      "roadName": "かさま",
+      "title": "2026.09.28 イベント お知らせ 10/24・25リフティングパフォーマンス公演"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.23 イベント お知らせ 【イベント】10/24~25『ハロウィンマーケット』を開催します"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.23 イベント お知らせ 【イベント】10/17~18『モンブランフェア』を開催します"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します"
+    },
+    {
+      "roadName": "あぐりーむ昭和",
+      "title": "しょうわむらマルシェ"
+    },
+    {
+      "roadName": "あぐりーむ昭和",
+      "title": "りんご足湯"
+    },
+    {
       "roadName": "信州新野千石平",
       "title": "●10月10日(土)〜12日(月・祝) 信州新野千石平 道の駅【収穫祭】"
     },
@@ -219,7 +232,7 @@
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [],
-  "finalCount": 56,
+  "finalCount": 57,
   "collapsedHokurikuDuplicates": {
     "previous": 0,
     "collected": 0

@@ -49,17 +49,11 @@
       "source": "https://m-mashiko.com/event/",
       "status": "checked",
       "candidates": 40,
-      "accepted": 2,
+      "accepted": 1,
       "examples": [
         {
           "roadName": "ましこ",
-          "title": "",
-          "startDate": "2026-10-11",
-          "endDate": "2026-10-11"
-        },
-        {
-          "roadName": "ましこ",
-          "title": "",
+          "title": "道の駅ましこ10周年祭",
           "startDate": "2026-10-11",
           "endDate": "2026-10-11"
         }
@@ -89,5 +83,5 @@
       "error": ""
     }
   ],
-  "accepted": 8
+  "accepted": 7
 }
