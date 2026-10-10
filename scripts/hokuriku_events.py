@@ -136,6 +136,15 @@ def collect_hokuriku(today):
         event_links = [href for href in links if "/contents/event" in urlparse(href).path]
         page_text = soup.get_text(" ", strip=True)
         event_specific = [href for href in event_links if parse_qs(urlparse(href).query).get("article")]
+        # The calendar HTML currently has no station names or article links.
+        # Record referenced scripts and form endpoints to determine whether
+        # the event list is populated asynchronously by JavaScript.
+        scripts = [urljoin(response.url, node.get("src", "")) for node in soup.select("script[src]")]
+        inline_scripts = [node.get_text(" ", strip=True) for node in soup.select("script:not([src])")]
+        scripts_relevant = [body[:700] for body in inline_scripts
+                            if any(token in body.lower() for token in ("ajax", "fetch(", "event", "calendar", "api"))]
+        forms = [{"action": urljoin(response.url, form.get("action", "")),
+                  "method": form.get("method", "get")} for form in soup.select("form")]
         audits.append({
             "date": day.isoformat(), "url": response.url,
             "htmlSize": len(response.content), "links": len(links),
@@ -145,6 +154,11 @@ def collect_hokuriku(today):
             "eventLinks": len(event_links),
             "specificArticleLinks": len(event_specific),
             "sampleAllLinks": links[:12],
+            "scriptSources": scripts[:20],
+            "inlineScriptCount": len(inline_scripts),
+            "relevantInlineScripts": scripts_relevant[:4],
+            "formTargets": forms[:8],
+            "emptyEventMarkup": not event_specific and not any(station in page_text for station in STATIONS),
             "sampleEventLinks": event_links[:5],
             "stationsInPage": [station for station in STATIONS if station in page_text],
             "articleLinks": stats["articleLinks"],
