@@ -28,7 +28,7 @@ BLOCK = ("イベントカレンダー", "イベントスケジュール", "月�
          "応募", "中止", "延期", "休館", "休業", "定休日", "締め切り",
          "締切", "開催しました", "終了しました", "レポート", "振り返り")
 DATE_LABEL = re.compile(r"(?:[〖【]?(?:開催日(?:時|程)?|開催期間|イベント日時|日程|日時|開催予定|実施日|日にち)[〗】]?)\s*[:：]?\s*")
-VENUE_LABEL = re.compile(r"^[〖【]?(?:場所|開催場所|会場|開催地|会場名|開催会場)[〗】]?\s*[:：]?\s*")
+VENUE_LABEL = re.compile(r"^(?:[■●◆]\s*)?[〖【]?(?:開催場所|開催会場|会場名|開催地|場所|会場)[〗】]?\s*[:：]?\s*")
 ERA = re.compile(r"令和\s*(元|[0-9]{1,2})\s*年")
 PUBLICATION_PREFIX = re.compile(r"^(?:20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}日?\s*)+")
 DEFAULT_DATE_SELECTORS = ("p", "li", "h2", "h3", "td", "dd")
@@ -79,7 +79,7 @@ def _validate_sources(sources):
 
 def _links(soup, source):
     """Prefer event-looking links but preserve the listing order within tier."""
-    if source.get("articleMode") in ("official_station_program", "dated_station_table"):
+    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing"):
         # The official event schedule IS the article; it need not hyperlink
         # back to itself. The parser must still validate each stated date.
         return {source["listingUrl"]: "公式開催案内"}
@@ -99,8 +99,10 @@ def _links(soup, source):
             continue
         if url not in found:
             found[url] = headline
+    preferred = source.get("preferredTitles", [])
     chosen = sorted(found.items(), key=lambda item: (
-        not any(w in item[1] for w in EVENT_WORDS),
+        not any(w in item[1] for w in preferred) if preferred else False,
+        not any(w in item[1] for w in source.get("allowedEventWords", EVENT_WORDS)),
         bool(any(w in item[1] for w in BLOCK)),
     ))
     return dict(chosen)
@@ -162,6 +164,11 @@ def _article_lines(container, spec):
         selectors = selectors.split(",")
     selectors = [selector.strip() for selector in selectors if selector.strip()]
     nodes = container.select(",".join(selectors))
+    if spec.get("splitArticleTextLines"):
+        # Labels such as "■開催場所" and their venue can be separate
+        # text nodes, rather than paragraph-level HTML elements.
+        return [clean(t) for t in container.get_text("\n", strip=True).splitlines()
+                if clean(t) and len(clean(t)) <= 250][:200]
     lines = []
     for node in nodes:
         if node.find_parent(["aside", "nav", "footer"]):
@@ -465,6 +472,58 @@ def _monthly_calendar_records(spec, soup, today, url):
     return list(unique.values()), "accepted" if unique else "no_individually_dated_monthly_events"
 
 
+def _dated_news_listing_records(spec, soup, today, url):
+    """Official station news where complete notices live on the listing.
+
+    A named event, its immediately following published year, a weekday-
+    checked event date, and a nearby explicit station venue are all needed.
+    Never take a generic site footer as a venue or the post date as an event.
+    """
+    container = soup.select_one("main") or soup.select_one("body")
+    if container is None:
+        return [], "no_article"
+    for node in container.select("nav, footer, aside, script, style"):
+        node.decompose()
+    lines = [clean(x) for x in container.get_text("\n", strip=True).splitlines()
+             if clean(x)]
+    results = []
+    for i, title in enumerate(lines):
+        if not (5 <= len(title) <= 110
+                and any(w in title for w in spec.get("allowedEventWords", EVENT_WORDS))
+                and not any(w in title for w in BLOCK)
+                and re.search(r"[0-9]{1,2}月[0-9]{1,2}日", title)):
+            continue
+        # The posting year must be immediately next to this announcement.
+        local = lines[i+1:i+4]
+        pub = next((re.fullmatch(r"(20[0-9]{2})[./年-]([0-9]{1,2})[./月-]([0-9]{1,2})日?", x)
+                    for x in local if re.fullmatch(
+                        r"20[0-9]{2}[./年-][0-9]{1,2}[./月-][0-9]{1,2}日?", x)), None)
+        if pub is None:
+            continue
+        try:
+            posted = date(*(int(x) for x in pub.groups()))
+        except ValueError:
+            continue
+        if posted > today:
+            continue
+        period = _period(title, posted)
+        if period is None or period[1] < today.isoformat() or period[0] == posted.isoformat():
+            continue
+        # A single notice may span multiple paragraphs, but never rely on
+        # the site-wide address or another news item's venue.
+        local_body = lines[i+1:i+18]
+        venue = next((j for j, x in enumerate(local_body) if
+                      re.match(r"^(?:場所|会場)\s*[:：]?\s*", x) and
+                      any(t in x for t in spec["requiredVenueTokens"])), None)
+        if venue is None:
+            continue
+        results.append({"roadName":spec["roadName"],"prefecture":spec["prefecture"],
+                        "title":title,"startDate":period[0],"endDate":period[1],
+                        "publishedAt":posted.isoformat(),"url":url,"status":"scheduled"})
+    unique = {(x["title"], x["startDate"], x["endDate"]): x for x in results}
+    return list(unique.values()), "accepted" if unique else "no_strictly_dated_news_notice"
+
+
 def _dated_station_table_records(spec, soup, today, url):
     """Station-owned event-table rows with per-row year, dates and on-site category.
 
@@ -500,6 +559,31 @@ def _dated_station_table_records(spec, soup, today, url):
         events.append({"roadName":spec["roadName"],"prefecture":spec["prefecture"],
                        "title":title,"startDate":period[0],"endDate":period[1],
                        "publishedAt":"","url":page,"status":"scheduled"})
+    # Some official event lists render three columns as styled divs rather
+    # than <tr>. Accept only adjacent date/category/title text rows.
+    # The event itself still needs to be named in the source's allow-list.
+    if not events:
+        lines = [clean(x) for x in soup.get_text("\n", strip=True).splitlines()
+                 if clean(x)]
+        for i, dated in enumerate(lines):
+            if not re.fullmatch(
+                    r"20[0-9]{2}年[0-9]{1,2}月[0-9]{1,2}日[～〜~－-]"
+                    r"(?:20[0-9]{2}年)?(?:[0-9]{1,2}月)?[0-9]{1,2}日", dated):
+                continue
+            if i+2 >= len(lines):
+                continue
+            venue, title = lines[i+1:i+3]
+            if (not any(t in venue for t in spec.get("requireCategoryTokens", []))
+                    or not any(w in title for w in spec.get("allowedEventWords", EVENT_WORDS))
+                    or any(w in title for w in BLOCK)):
+                continue
+            period = _period(dated)
+            if period is None or period[1] < today.isoformat():
+                continue
+            # Do not invent a detail URL from a listing's surrounding links.
+            events.append({"roadName":spec["roadName"],"prefecture":spec["prefecture"],
+                           "title":title,"startDate":period[0],"endDate":period[1],
+                           "publishedAt":"","url":url,"status":"scheduled"})
     seen={}
     for e in events:
         seen[(e["url"],e["title"],e["startDate"],e["endDate"])]=e
@@ -552,14 +636,15 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
         for url, text in links.items():
             mode = spec.get("articleMode")
             multi = mode in ("dated_sections", "official_station_program",
-                             "monthly_calendar_article", "dated_station_table")
+                             "monthly_calendar_article", "dated_station_table",
+                             "dated_news_listing")
             if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
             if summary["checked"] >= int(spec.get("maxArticles", 6)):
                 break
             try:
-                detail = listing if (mode in ("official_station_program", "dated_station_table") and
+                detail = listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing") and
                                      url == spec["listingUrl"]) else fetch(url)
             except (requests.RequestException, ValueError, AttributeError):
                 summary["fetchFailed"] += 1
@@ -570,6 +655,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                     found, why = _official_program_records(spec, detail, today, url)
                 elif mode == "dated_station_table":
                     found, why = _dated_station_table_records(spec, detail, today, url)
+                elif mode == "dated_news_listing":
+                    found, why = _dated_news_listing_records(spec, detail, today, url)
                 elif mode == "monthly_calendar_article":
                     found, why = _monthly_calendar_records(spec, detail, today, url)
                 else:
