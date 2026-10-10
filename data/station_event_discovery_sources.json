@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "mode": "new_official_article_discovery",
-  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp.",
+  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp. Expanded with verified Fukui, Osaka and two Wakayama official station/onsite feeds. Multi-event Wakayama notices require section-specific date plus venue and are not whole-month events.",
   "sources": [
     {
       "id": "tokyo_hachioji",
@@ -77,6 +77,128 @@
         "クロスウェイなかまち"
       ],
       "maxArticles": 8
+    },
+    {
+      "id": "fukui_hamabiyori",
+      "enabled": true,
+      "prefecture": "福井県",
+      "roadName": "若狭美浜はまびより",
+      "listingUrl": "https://hamabiyori.com/events/",
+      "allowedHosts": [
+        "hamabiyori.com"
+      ],
+      "articlePathPattern": "^/(?!events/?$|concept/?$|guidance/?$|shop/?$)[^/]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article, main",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1"
+      ],
+      "publicationSelector": "time[datetime],meta[property='article:published_time']",
+      "requiredVenueTokens": [
+        "はまびより",
+        "若狭美浜"
+      ],
+      "maxArticles": 8,
+      "allowExplicitDatedParagraph": true
+    },
+    {
+      "id": "osaka_izumi_regional_center",
+      "enabled": true,
+      "prefecture": "大阪府",
+      "roadName": "いずみ山愛の里",
+      "listingUrl": "https://izuminambu-rc.jp/nb_event/",
+      "allowedHosts": [
+        "izuminambu-rc.jp"
+      ],
+      "articlePathPattern": "^/nb_event/[^/]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article, main",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1",
+        "article h3",
+        "main h3"
+      ],
+      "publicationSelector": "time[datetime],meta[property='article:published_time']",
+      "requiredVenueTokens": [
+        "南部リージョンセンター",
+        "道の駅いずみ山愛の里"
+      ],
+      "allowedEventWords": [
+        "マルシェ",
+        "祭",
+        "フェア",
+        "イベント",
+        "コンサート",
+        "感謝祭"
+      ],
+      "maxArticles": 8,
+      "allowExplicitDatedParagraph": true,
+      "requireVenueLabel": true
+    },
+    {
+      "id": "wakayama_sakuas",
+      "enabled": true,
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "listingUrl": "https://sakuas.com/event/",
+      "allowedHosts": [
+        "sakuas.com"
+      ],
+      "articlePathPattern": "^/event/[0-9]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main, article",
+      "titleSelectors": [
+        "main h1",
+        "main h2",
+        "article h1",
+        "h1",
+        "h2"
+      ],
+      "publicationSelector": "time[datetime],meta[property='article:published_time']",
+      "requiredVenueTokens": [
+        "海南サクアス"
+      ],
+      "maxArticles": 8,
+      "articleMode": "dated_sections",
+      "approvedVenueTokens": [
+        "催事スペース",
+        "エントランス広場",
+        "産直売場",
+        "直売所",
+        "芝生広場",
+        "試食コーナー",
+        "海の広場",
+        "店内",
+        "マルシェ"
+      ]
+    },
+    {
+      "id": "wakayama_shikinosato",
+      "enabled": true,
+      "prefecture": "和歌山県",
+      "roadName": "四季の郷公園",
+      "listingUrl": "https://fh-park.jp/events/",
+      "allowedHosts": [
+        "fh-park.jp"
+      ],
+      "articlePathPattern": "^/(?:news|event|events)/[^/]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main, article",
+      "titleSelectors": [
+        "main h1",
+        "article h1",
+        "h1"
+      ],
+      "publicationSelector": "time[datetime],meta[property='article:published_time']",
+      "requiredVenueTokens": [
+        "四季の郷公園",
+        "FOOD HUNTER PARK"
+      ],
+      "maxArticles": 6
     }
   ]
 }
