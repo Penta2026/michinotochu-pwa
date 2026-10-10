@@ -194,13 +194,25 @@ def article_event_period(soup, title, published):
             or soup.select_one("main"))
     if not main:
         return None
-    for node in main.select("p, li, dd, td, h2, h3"):
+    for node in main.select("p, li, dd, td, h2, h3, div, section"):
         line = clean(node.get_text(" ", strip=True))
         if len(line) > 250 or not re.search(r"^(?:【?期間】?|開催期間|開催日時|開催日|日程|日時)\s*[:：]?", line):
             continue
         p = event_period(line, published)
         if p:
             return p
+    # Some official posts put their dates in loose text or <span>/<br>
+    # nodes, rather than in an individual <p>. Extract ONLY the explicitly
+    # labelled period from the actual article body; never inspect page-wide
+    # publication dates or unlabelled mentions of dates.
+    body = clean(main.get_text(" ", strip=True))
+    for match in re.finditer(
+        r"(?:開催期間|開催日時|開催日|日程|日時|期間)\s*[:：]?\s*(.{6,105})",
+        body
+    ):
+        period = event_period(match.group(0), published)
+        if period:
+            return period
     return None
 
 def _article_candidates(soup, spec):
