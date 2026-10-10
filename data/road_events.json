@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-10",
+  "updatedAt": "2026-10-11",
   "events": [
     {
       "roadName": "親不知ピアパーク",
@@ -103,16 +103,6 @@
       "status": "scheduled"
     },
     {
-      "roadName": "いたの",
-      "prefecture": "徳島県",
-      "title": "阿波藍ものがたり〜歴史を学び、藍にふれ、未来へつなぐ〜",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "publishedAt": "",
-      "url": "https://www.sk-michinoeki.jp/events/4210",
-      "status": "scheduled"
-    },
-    {
       "roadName": "かさま",
       "prefecture": "茨城県",
       "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します",
@@ -133,26 +123,6 @@
       "status": "scheduled"
     },
     {
-      "roadName": "しょうなん",
-      "prefecture": "千葉県",
-      "title": "10月10日 「鷹匠体験」開催",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "publishedAt": "2026-09-26",
-      "url": "https://www.michinoeki-shonan.jp/news/3174/",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "しょうなん",
-      "prefecture": "千葉県",
-      "title": "10月10日 道の駅しょうなん「手賀沼フォトDAY」開催",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "publishedAt": "2026-10-01",
-      "url": "https://www.michinoeki-shonan.jp/news/3181/",
-      "status": "scheduled"
-    },
-    {
       "roadName": "ふくしま",
       "prefecture": "福島県",
       "title": "【10/10(土)・11日(日)ガーデンプレイスフェスタ】",
@@ -163,16 +133,6 @@
       "status": "scheduled"
     },
     {
-      "roadName": "キララ多伎",
-      "prefecture": "島根県",
-      "title": "【キララ多伎】グリーンライトアップイベントを開催 10月10日（土）17:00〜",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "publishedAt": "2026-10-09",
-      "url": "https://www.kirara-taki.co.jp/wordpress/news0/topic0/2026/10/01/1457/",
-      "status": "scheduled"
-    },
-    {
       "roadName": "保田小学校",
       "prefecture": "千葉県",
       "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)",
@@ -180,16 +140,6 @@
       "endDate": "2026-10-12",
       "publishedAt": "2026-10-10",
       "url": "https://hotasho.jp/news/%e4%bf%9d%e7%94%b0%e5%b0%8f%e9%99%84%e5%b1%9e%e3%82%88%e3%81%86%e3%81%a1%e3%81%88%e3%82%933%e5%91%a8%e5%b9%b4%e9%96%8b%e5%9c%92%e7%a5%ad%ef%bc%882026-10-10%ef%bd%9e12%ef%bc%89/",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "保田小学校",
-      "prefecture": "千葉県",
-      "title": "鋸山ガイドツアーに参加しませんか",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "publishedAt": "2026-09-16",
-      "url": "https://hotasho.jp/news/%e9%8b%b8%e5%b1%b1%e3%82%ac%e3%82%a4%e3%83%89%e3%83%84%e3%82%a2%e3%83%bc%e3%81%ab%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%be%e3%81%9b%e3%82%93%e3%81%8b/",
       "status": "scheduled"
     },
     {
@@ -233,26 +183,6 @@
       "status": "scheduled"
     },
     {
-      "roadName": "奥永源寺渓流の里",
-      "prefecture": "滋賀県",
-      "title": "「道の駅 奥永源寺渓流の里」開駅１１周年記念祭を開催します。",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "publishedAt": "",
-      "url": "https://www.kinki-michinoeki.com/news/%e9%96%8b%e9%a7%85%ef%bc%91%ef%bc%91%e5%91%a8%e5%b9%b4%e8%a8%98%e5%bf%b5%e7%a5%ad%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82/",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "羊のまち 侍・しべつ",
-      "prefecture": "北海道",
-      "title": "道の駅「羊のまち 侍・しべつ」秋まつり開催!!",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "publishedAt": "",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shibetsuinfo/69720/",
-      "status": "scheduled"
-    },
-    {
       "roadName": "耶馬トピア",
       "prefecture": "大分県",
       "title": "竹の千灯籠夜",
@@ -260,26 +190,6 @@
       "endDate": "2026-10-12",
       "publishedAt": "2026-10-08",
       "url": "https://www.city-nakatsu.jp/doc/2026100500057/",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "西いなば気楽里",
-      "prefecture": "鳥取県",
-      "title": "【西いなば気楽里】ミルクフェアを開催いたします！ １０月１０日(土)１１時～、１４時～",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "publishedAt": "2026-10-09",
-      "url": "https://nishiinaba.jp/pages/47?detail=1&b_id=157&r_id=545#block157-545",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "西いなば気楽里",
-      "prefecture": "鳥取県",
-      "title": "【西いなば気楽里】鳥取県産秋メロン「プリモレッド」実演試食販売を開催 １０月１０日(土) 11時～12時",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "publishedAt": "2026-09-10",
-      "url": "https://nishiinaba.jp/pages/47/",
       "status": "scheduled"
     },
     {

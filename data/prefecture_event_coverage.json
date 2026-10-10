@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "basisUpdatedAt": "2026-10-10",
+  "basisUpdatedAt": "2026-10-11",
   "definitions": {
     "observed": "Only the dated events currently present in data/road_events.json.",
     "targetedFeed": "An explicitly configured station source, not proof of parsing or future-event availability.",
@@ -9,16 +9,17 @@
   },
   "summary": {
     "prefectureCount": 47,
-    "observedPrefectures": 42,
-    "zeroRegisteredPrefectures": 5,
-    "registeredEvents": 82,
+    "observedPrefectures": 39,
+    "zeroRegisteredPrefectures": 8,
+    "registeredEvents": 73,
     "targetedStationFeedPrefectures": 25,
-    "notReconfirmedEvents": 2,
+    "notReconfirmedEvents": 3,
     "unknownPrefectures": []
   },
   "priorities": {
     "reconfirm": [
       "北海道",
+      "島根県",
       "山口県"
     ],
     "noEventsButTargetedFeed": [
@@ -28,7 +29,11 @@
       "愛媛県",
       "鹿児島県"
     ],
-    "noEventsNoTargetedFeed": []
+    "noEventsNoTargetedFeed": [
+      "滋賀県",
+      "鳥取県",
+      "徳島県"
+    ]
   },
   "regions": [
     {
@@ -36,7 +41,7 @@
       "prefectureCount": 1,
       "observedPrefectures": 1,
       "zeroRegisteredPrefectures": [],
-      "registeredEventCount": 5,
+      "registeredEventCount": 4,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 12
     },
@@ -57,7 +62,7 @@
         "東京都",
         "神奈川県"
       ],
-      "registeredEventCount": 14,
+      "registeredEventCount": 11,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5
     },
@@ -82,31 +87,35 @@
     {
       "region": "近畿",
       "prefectureCount": 7,
-      "observedPrefectures": 6,
+      "observedPrefectures": 5,
       "zeroRegisteredPrefectures": [
+        "滋賀県",
         "和歌山県"
       ],
-      "registeredEventCount": 12,
+      "registeredEventCount": 11,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11
     },
     {
       "region": "中国",
       "prefectureCount": 5,
-      "observedPrefectures": 5,
-      "zeroRegisteredPrefectures": [],
-      "registeredEventCount": 9,
+      "observedPrefectures": 4,
+      "zeroRegisteredPrefectures": [
+        "鳥取県"
+      ],
+      "registeredEventCount": 6,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35
     },
     {
       "region": "四国",
       "prefectureCount": 4,
-      "observedPrefectures": 3,
+      "observedPrefectures": 2,
       "zeroRegisteredPrefectures": [
+        "徳島県",
         "愛媛県"
       ],
-      "registeredEventCount": 4,
+      "registeredEventCount": 3,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5
     },
@@ -126,14 +135,13 @@
     {
       "prefecture": "北海道",
       "reportingRegion": "北海道",
-      "eventCount": 5,
+      "eventCount": 4,
       "observedStations": [
         "たきかわ",
         "樹海ロード日高",
-        "真狩フラワーセンター",
-        "羊のまち 侍・しべつ"
+        "真狩フラワーセンター"
       ],
-      "observedStationCount": 4,
+      "observedStationCount": 3,
       "targetedStationFeeds": [],
       "notReconfirmedCount": 2,
       "state": "needs_reconfirmation",
@@ -318,12 +326,11 @@
     {
       "prefecture": "千葉県",
       "reportingRegion": "関東",
-      "eventCount": 4,
+      "eventCount": 1,
       "observedStations": [
-        "しょうなん",
         "保田小学校"
       ],
-      "observedStationCount": 2,
+      "observedStationCount": 1,
       "targetedStationFeeds": [
         "しょうなん",
         "保田小学校"
@@ -538,15 +545,13 @@
     {
       "prefecture": "滋賀県",
       "reportingRegion": "近畿",
-      "eventCount": 1,
-      "observedStations": [
-        "奥永源寺渓流の里"
-      ],
-      "observedStationCount": 1,
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
       "targetedStationFeeds": [],
       "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
@@ -645,15 +650,13 @@
     {
       "prefecture": "鳥取県",
       "reportingRegion": "中国",
-      "eventCount": 2,
-      "observedStations": [
-        "西いなば気楽里"
-      ],
-      "observedStationCount": 1,
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
       "targetedStationFeeds": [],
       "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35,
       "regionalAuditMode": "adapter"
@@ -661,18 +664,17 @@
     {
       "prefecture": "島根県",
       "reportingRegion": "中国",
-      "eventCount": 4,
+      "eventCount": 3,
       "observedStations": [
         "ごいせ仁摩",
-        "キララ多伎",
         "シルクウェイにちはら",
         "頓原"
       ],
-      "observedStationCount": 4,
+      "observedStationCount": 3,
       "targetedStationFeeds": [],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35,
       "regionalAuditMode": "adapter"
@@ -731,15 +733,13 @@
     {
       "prefecture": "徳島県",
       "reportingRegion": "四国",
-      "eventCount": 1,
-      "observedStations": [
-        "いたの"
-      ],
-      "observedStationCount": 1,
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
       "targetedStationFeeds": [],
       "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "adapter"
