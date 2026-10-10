@@ -37,12 +37,12 @@ jobs:
         run: python scripts/collect_road_events.py
       - name: Commit only if event data changed
         run: |
-          if git diff --quiet -- data/road_events.json data/road_event_sources_report.json; then
+          git add data/road_events.json data/road_event_sources_report.json
+          if git diff --cached --quiet; then
             echo "イベントデータに変更なし"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/road_events.json data/road_event_sources_report.json
           git commit -m "data: refresh official roadside station events"
           git push
