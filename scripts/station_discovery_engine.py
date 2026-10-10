@@ -79,7 +79,7 @@ def _validate_sources(sources):
 
 def _links(soup, source):
     """Prefer event-looking links but preserve the listing order within tier."""
-    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing"):
+    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar"):
         # The official event schedule IS the article; it need not hyperlink
         # back to itself. The parser must still validate each stated date.
         return {source["listingUrl"]: "公式開催案内"}
@@ -472,6 +472,42 @@ def _monthly_calendar_records(spec, soup, today, url):
     return list(unique.values()), "accepted" if unique else "no_individually_dated_monthly_events"
 
 
+def _dated_station_calendar_records(spec, soup, today, url):
+    """Official event calendar: a tightly grouped full-date/title/venue card.
+
+    Unlike article search, this reads only the three *adjacent* fields of an
+    individually dated listing. Year, station and event name may not be
+    inherited from unrelated cards or site headers.
+    """
+    container = soup.select_one("main") or soup.select_one("body")
+    if container is None:
+        return [], "no_article"
+    for node in container.select("nav, footer, aside, script, style"):
+        node.decompose()
+    lines = [clean(x) for x in container.get_text("\n", strip=True).splitlines()
+             if clean(x)]
+    events = []
+    for i, line in enumerate(lines):
+        if not re.match(r"^20[0-9]{2}年[0-9]{1,2}月[0-9]{1,2}日", line):
+            continue
+        if len(line) > 95 or i+2 >= len(lines):
+            continue
+        title, venue = lines[i+1:i+3]
+        if not (5 <= len(title) <= 95
+                and any(w in title for w in spec.get("allowedEventWords", EVENT_WORDS))
+                and not any(w in title for w in BLOCK)
+                and any(t in venue for t in spec["requiredVenueTokens"])):
+            continue
+        period = _period(line)
+        if not period or period[1] < today.isoformat():
+            continue
+        events.append({"roadName":spec["roadName"],"prefecture":spec["prefecture"],
+                       "title":title,"startDate":period[0],"endDate":period[1],
+                       "publishedAt":"","url":url,"status":"scheduled"})
+    unique={(x["title"],x["startDate"],x["endDate"]):x for x in events}
+    return list(unique.values()), "accepted" if unique else "no_strict_official_calendar_cards"
+
+
 def _dated_news_listing_records(spec, soup, today, url):
     """Official station news where complete notices live on the listing.
 
@@ -637,14 +673,14 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             mode = spec.get("articleMode")
             multi = mode in ("dated_sections", "official_station_program",
                              "monthly_calendar_article", "dated_station_table",
-                             "dated_news_listing")
+                             "dated_news_listing", "dated_station_calendar")
             if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
             if summary["checked"] >= int(spec.get("maxArticles", 6)):
                 break
             try:
-                detail = listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing") and
+                detail = listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar") and
                                      url == spec["listingUrl"]) else fetch(url)
             except (requests.RequestException, ValueError, AttributeError):
                 summary["fetchFailed"] += 1
@@ -657,6 +693,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                     found, why = _dated_station_table_records(spec, detail, today, url)
                 elif mode == "dated_news_listing":
                     found, why = _dated_news_listing_records(spec, detail, today, url)
+                elif mode == "dated_station_calendar":
+                    found, why = _dated_station_calendar_records(spec, detail, today, url)
                 elif mode == "monthly_calendar_article":
                     found, why = _monthly_calendar_records(spec, detail, today, url)
                 else:
