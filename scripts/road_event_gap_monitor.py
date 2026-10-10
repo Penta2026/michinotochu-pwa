@@ -330,6 +330,8 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
             "sourcesWithFetchProblems": sum(s["status"] == "source_error" for s in checked_sources),
             "sourcesWithZeroCandidates": sum(s["status"] == "no_candidates" for s in checked_sources),
             "sourcesAtCheckLimit": sum(s["mayHaveUnreviewedCandidates"] for s in checked_sources),
+            "sourcesUsingRotatingInspection": sum(s["explorationSlots"] > 0 for s in checked_sources),
+            "rotatingInspectionSlots": sum(s["explorationSlots"] for s in checked_sources),
             "uninspectedCandidateSlots": sum(s["uninspectedCandidateCount"] for s in checked_sources),
             "reviewWithExplicitFutureHint": sum(x["headlineScheduleHint"] == "future_schedule_hint" for x in queue),
             "reviewWithExplicitPastHint": sum(x["headlineScheduleHint"] == "past_schedule_hint" for x in queue),
@@ -392,6 +394,10 @@ def render_dashboard(report):
             summary["sourcesAtCheckLimit"]),
         "| 未調査の候補記事枠（重複記事を含む可能性あり） | {} |".format(
             summary["uninspectedCandidateSlots"]),
+        "| 日替わり巡回を実施する収集先 | {} |".format(
+            summary["sourcesUsingRotatingInspection"]),
+        "| 日替わり巡回に割り当てた記事枠 | {} |".format(
+            summary["rotatingInspectionSlots"]),
         "| 要確認候補のうち将来開催日の明記あり | {} |".format(
             summary["reviewWithExplicitFutureHint"]),
         "| 記事の要確認サンプル | {} |".format(summary["potentialReviewSamples"]),
