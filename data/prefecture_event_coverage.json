@@ -5,7 +5,8 @@
     "observed": "Only the dated events currently present in data/road_events.json.",
     "targetedFeed": "An explicitly configured station source, not proof of parsing or future-event availability.",
     "regionalHomepageReachable": "Region homepage HTTP success only; does not prove event coverage for its prefectures.",
-    "zeroRegistered": "No current published event; not evidence that no events take place."
+    "zeroRegistered": "No current published event; not evidence that no events take place.",
+    "historicalObserved": "At least one dated event was previously published; not proof of current upcoming events or full station coverage."
   },
   "summary": {
     "prefectureCount": 47,
@@ -14,7 +15,9 @@
     "registeredEvents": 73,
     "targetedStationFeedPrefectures": 25,
     "notReconfirmedEvents": 3,
-    "unknownPrefectures": []
+    "unknownPrefectures": [],
+    "historicalObservedPrefectures": 42,
+    "historicalNeverObservedPrefectures": 5
   },
   "priorities": {
     "reconfirm": [
@@ -30,6 +33,18 @@
       "鹿児島県"
     ],
     "noEventsNoTargetedFeed": [
+      "滋賀県",
+      "鳥取県",
+      "徳島県"
+    ],
+    "historicalNeverObserved": [
+      "東京都",
+      "神奈川県",
+      "和歌山県",
+      "愛媛県",
+      "鹿児島県"
+    ],
+    "previouslyObservedWithoutCurrentEvents": [
       "滋賀県",
       "鳥取県",
       "徳島県"
@@ -148,7 +163,8 @@
       "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 12,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "青森県",
@@ -164,7 +180,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "岩手県",
@@ -182,7 +199,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "宮城県",
@@ -198,7 +216,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "秋田県",
@@ -214,7 +233,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "山形県",
@@ -232,7 +252,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "福島県",
@@ -250,7 +271,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "茨城県",
@@ -269,7 +291,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "栃木県",
@@ -287,7 +310,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "群馬県",
@@ -305,7 +329,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "埼玉県",
@@ -321,7 +346,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "千葉県",
@@ -340,7 +366,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "東京都",
@@ -356,7 +383,8 @@
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": false
     },
     {
       "prefecture": "神奈川県",
@@ -372,7 +400,8 @@
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": false
     },
     {
       "prefecture": "山梨県",
@@ -388,7 +417,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "長野県",
@@ -404,7 +434,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "新潟県",
@@ -421,7 +452,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "富山県",
@@ -437,7 +469,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "石川県",
@@ -454,7 +487,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "岐阜県",
@@ -471,7 +505,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "静岡県",
@@ -489,7 +524,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "愛知県",
@@ -505,7 +541,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "三重県",
@@ -521,7 +558,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "福井県",
@@ -540,7 +578,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "滋賀県",
@@ -554,7 +593,8 @@
       "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "京都府",
@@ -574,7 +614,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "大阪府",
@@ -593,7 +634,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "兵庫県",
@@ -609,7 +651,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "奈良県",
@@ -627,7 +670,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "和歌山県",
@@ -645,7 +689,8 @@
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": false
     },
     {
       "prefecture": "鳥取県",
@@ -659,7 +704,8 @@
       "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "島根県",
@@ -677,7 +723,8 @@
       "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "岡山県",
@@ -693,7 +740,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "広島県",
@@ -709,7 +757,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "山口県",
@@ -728,7 +777,8 @@
       "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "徳島県",
@@ -742,7 +792,8 @@
       "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "香川県",
@@ -758,7 +809,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "愛媛県",
@@ -774,7 +826,8 @@
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": false
     },
     {
       "prefecture": "高知県",
@@ -790,7 +843,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
-      "regionalAuditMode": "adapter"
+      "regionalAuditMode": "adapter",
+      "historicallyObserved": true
     },
     {
       "prefecture": "福岡県",
@@ -808,7 +862,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "佐賀県",
@@ -826,7 +881,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "長崎県",
@@ -845,7 +901,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "熊本県",
@@ -864,7 +921,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "大分県",
@@ -882,7 +940,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "宮崎県",
@@ -900,7 +959,8 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     },
     {
       "prefecture": "鹿児島県",
@@ -916,7 +976,8 @@
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": false
     },
     {
       "prefecture": "沖縄県",
@@ -934,7 +995,66 @@
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
-      "regionalAuditMode": "discovery"
+      "regionalAuditMode": "discovery",
+      "historicallyObserved": true
     }
-  ]
+  ],
+  "historical": {
+    "observedPrefectures": [
+      "北海道",
+      "青森県",
+      "岩手県",
+      "宮城県",
+      "秋田県",
+      "山形県",
+      "福島県",
+      "茨城県",
+      "栃木県",
+      "群馬県",
+      "埼玉県",
+      "千葉県",
+      "山梨県",
+      "長野県",
+      "新潟県",
+      "富山県",
+      "石川県",
+      "岐阜県",
+      "静岡県",
+      "愛知県",
+      "三重県",
+      "福井県",
+      "滋賀県",
+      "京都府",
+      "大阪府",
+      "兵庫県",
+      "奈良県",
+      "鳥取県",
+      "島根県",
+      "岡山県",
+      "広島県",
+      "山口県",
+      "徳島県",
+      "香川県",
+      "高知県",
+      "福岡県",
+      "佐賀県",
+      "長崎県",
+      "熊本県",
+      "大分県",
+      "宮崎県",
+      "沖縄県"
+    ],
+    "neverObservedPrefectures": [
+      "東京都",
+      "神奈川県",
+      "和歌山県",
+      "愛媛県",
+      "鹿児島県"
+    ],
+    "previouslyObservedWithoutCurrentEvents": [
+      "滋賀県",
+      "鳥取県",
+      "徳島県"
+    ]
+  }
 }
