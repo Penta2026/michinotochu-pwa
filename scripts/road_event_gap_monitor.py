@@ -6,6 +6,8 @@ interpret image text, or estimate nationwide event recall. This is a
 triage/health report, not a list of verified upcoming events.
 """
 import json
+import re
+import unicodedata
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -46,8 +48,47 @@ def _day_streak(previous, key, active, today):
     return before + 1
 
 
+def _station_key(prefecture, name):
+    """Join by prefecture and a *conservative* normalized station name."""
+    value = unicodedata.normalize("NFKC", name or "")
+    value = re.sub(r"^道の駅\s*", "", value)
+    value = re.sub(r"[\s・･_‐‑–—－-]+", "", value)
+    return (prefecture or "", value)
+
+
+def parse_app_station_master(source):
+    """Read the app's existing JSON assignment without executing JavaScript.
+
+    This is the APP snapshot, not a verified live MLIT station registry.
+    """
+    marker = "window.APP_DATA="
+    i = source.find(marker)
+    if i < 0:
+        raise ValueError("APP_DATA JSON assignment not found")
+    data, _ = json.JSONDecoder().raw_decode(source[i + len(marker):].lstrip())
+    roads = data.get("roads")
+    if not isinstance(roads, list) or not roads:
+        raise ValueError("APP_DATA roads are missing")
+    meta = data.get("meta", {})
+    declared = meta.get("roadStations")
+    if declared is not None and declared != len(roads):
+        raise ValueError("APP_DATA station-count mismatch")
+    seen_ids = set()
+    stations = []
+    for item in roads:
+        code = item.get("id", "")
+        name, pref = item.get("name", ""), item.get("prefecture", "")
+        if not code or not name or not pref or code in seen_ids:
+            raise ValueError("APP_DATA station identity missing or duplicated")
+        seen_ids.add(code)
+        stations.append({"id": code, "prefecture": pref, "roadName": name})
+    return {"generated": meta.get("generated", ""),
+            "version": meta.get("appVersion", ""),
+            "stations": stations}
+
+
 def make_report(discovery, registry, coverage, quality, regional, previous=None,
-                today=None):
+                today=None, station_master=None):
     today = today or datetime.now(JST).date().isoformat()
     previous = previous or {}
     fresh_discovery = discovery.get("checkedOn") == today
@@ -166,6 +207,39 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
                          for x in coverage.get("prefectures", [])
                          for station in x.get("targetedStationFeeds", [])}
     published_without_target = sorted(current_stations - targeted_stations)
+    inventory_rows, inventory_prefectures = [], []
+    unmatched_target_names = []
+    if station_master is not None:
+        master_keys = {_station_key(x["prefecture"], x["roadName"])
+                       for x in station_master["stations"]}
+        normalized_targets = {_station_key(p, n) for p, n in targeted_stations}
+        normalized_published = {_station_key(p, n) for p, n in current_stations}
+        unmatched_target_names = [
+            {"prefecture": p, "roadName": n}
+            for p, n in sorted(targeted_stations)
+            if _station_key(p, n) not in master_keys
+        ]
+        for station in station_master["stations"]:
+            key = _station_key(station["prefecture"], station["roadName"])
+            has_target = key in normalized_targets
+            has_event = key in normalized_published
+            inventory_rows.append({
+                **station,
+                "dedicatedSourceConfigured": has_target,
+                "currentlyPublishedEvent": has_event,
+                "status": ("dedicated_source_configured" if has_target else
+                           "published_by_other_collectors" if has_event else
+                           "no_dedicated_source"),
+            })
+        all_prefs = sorted(set(x["prefecture"] for x in inventory_rows))
+        for pref in all_prefs:
+            rows = [x for x in inventory_rows if x["prefecture"] == pref]
+            inventory_prefectures.append({
+                "prefecture": pref, "masterStations": len(rows),
+                "dedicatedSources": sum(x["dedicatedSourceConfigured"] for x in rows),
+                "publishedStations": sum(x["currentlyPublishedEvent"] for x in rows),
+                "noDedicatedSource": sum(not x["dedicatedSourceConfigured"] for x in rows),
+            })
     queue.sort(key=lambda x: (x["priority"] != "high",
                               x["prefecture"], x["sourceId"], x["url"]))
     uncovered = list(coverage.get("historical", {}).get(
@@ -183,7 +257,9 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
         "schemaVersion": 1,
         "checkedOn": today,
         "limitations": {
-            "stationCoverage": "No complete nationwide station master is connected. Only configured feeds and already published stations are counted.",
+            "stationCoverage": ("Station counts use the app's dated APP_DATA snapshot, not a certified up-to-date official registry. No dedicated station source does not mean no regional coverage."
+                                if station_master is not None else
+                                "No complete nationwide station master is connected. Only configured feeds and already published stations are counted."),
             "eventRecall": "Actual event recall or missed-event percentage is unknown without an independently audited ground-truth sample.",
             "reviewQueue": "Samples of rejected articles only (source audit caps examples); not all rejected articles are real events.",
             "homepage": "Successful regional homepage access does not prove all regional station events were inspected.",
@@ -199,6 +275,14 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
             "targetedStationPrefectures": coverage.get("summary", {}).get("targetedStationFeedPrefectures", 0),
             "publishedStations": len(current_stations),
             "publishedStationsWithoutDirectTarget": len(published_without_target),
+            "appMasterStations": len(inventory_rows) if station_master is not None else None,
+            "appMasterWithDedicatedSource": sum(x["dedicatedSourceConfigured"]
+                                                for x in inventory_rows) if station_master is not None else None,
+            "appMasterWithoutDedicatedSource": sum(not x["dedicatedSourceConfigured"]
+                                                   for x in inventory_rows) if station_master is not None else None,
+            "appMasterCurrentlyPublishedStations": sum(x["currentlyPublishedEvent"]
+                                                        for x in inventory_rows) if station_master is not None else None,
+            "configuredTargetNamesNotMatchedToAppMaster": len(unmatched_target_names),
             "potentialReviewSamples": len(queue),
             "rejectedReasonCounts": dict(sorted(reason_totals.items())),
             "sourcesWithFetchProblems": sum(s["status"] == "source_error" for s in checked_sources),
@@ -213,6 +297,14 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
              "status": "published_through_other_collector_not_unmonitored"}
             for pref, station in published_without_target
         ],
+        "appStationMaster": ({
+            "version": station_master.get("version", ""),
+            "generated": station_master.get("generated", ""),
+            "source": "data/app_data.js",
+        } if station_master is not None else None),
+        "appMasterStations": inventory_rows,
+        "appMasterPrefectures": inventory_prefectures,
+        "configuredTargetsNotMatchedToAppMaster": unmatched_target_names,
         "historicallyReachedWithNoCurrentEvents": uncovered,
         "reviewCandidates": queue[:120],
         "unreconfirmedEvents": unconfirmed,
@@ -309,6 +401,10 @@ def _load(name):
     return json.loads((DATA / name).read_text(encoding="utf-8"))
 
 
+def _load_master():
+    return parse_app_station_master((DATA / "app_data.js").read_text(encoding="utf-8"))
+
+
 def main():
     old = _load(OUTPUT.name) if OUTPUT.exists() else {}
     report = make_report(
@@ -317,7 +413,7 @@ def main():
         _load("prefecture_event_coverage.json"),
         _load("road_event_quality_report.json"),
         _load("road_event_sources_report.json"),
-        previous=old)
+        previous=old, station_master=_load_master())
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != rendered:
         OUTPUT.write_text(rendered, encoding="utf-8")
