@@ -804,6 +804,31 @@
       "venueProofPattern": "開催場所\\s*道の駅\\s*[「『]?青洲の里",
       "articleMode": "verified_official_event_detail",
       "maxArticles": 1
+    },
+    {
+      "id": "ehime_minatto_official_hall_npo_seminar",
+      "enabled": true,
+      "prefecture": "愛媛県",
+      "roadName": "八幡浜みなっと",
+      "listingUrl": "https://note.com/y_hitonari/n/n92ade5cdf7bd",
+      "allowedHosts": [
+        "note.com"
+      ],
+      "articlePathPattern": "^/y_hitonari/n/n92ade5cdf7bd$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article,main,body",
+      "titleSelectors": [
+        "h1",
+        "h2"
+      ],
+      "requiredVenueTokens": [
+        "八幡浜みなっと"
+      ],
+      "requiredEventTitle": "NPOのための広報セミナー",
+      "eventDateMode": "labeled_full_year_single",
+      "venueProofPattern": "場所\\s*八幡浜みなっと\\s*みなと交流館",
+      "articleMode": "verified_official_event_detail",
+      "maxArticles": 1
     }
   ]
 }
