@@ -386,7 +386,17 @@ def render_dashboard(report):
         "- **個別対象駅として設定されていない登録済み駅:** {}駅".format(
             summary["publishedStationsWithoutDirectTarget"]),
         "  - 地域サイト等で登録されている場合があるため、「未監視駅」とは断定できません。",
-        "- **全国すべての道の駅との照合:** 未実施（完全な駅マスタ未接続）。",
+        ("- **アプリ内の道の駅マスタ:** {}駅（{}時点）".format(
+            summary["appMasterStations"],
+            report["appStationMaster"]["generated"] or "生成日不明")
+         if report["appStationMaster"] else
+         "- **全国すべての道の駅との照合:** 未実施（完全な駅マスタ未接続）。"),
+        ("- **個別の公式収集先が設定されたマスタ駅:** {}駅".format(
+            summary["appMasterWithDedicatedSource"])
+         if report["appStationMaster"] else ""),
+        ("- **個別の公式収集先がないマスタ駅:** {}駅（地域収集で取得可能な駅も含みます）".format(
+            summary["appMasterWithoutDedicatedSource"])
+         if report["appStationMaster"] else ""),
         "- **現行イベント0件だが過去の登録実績がある県:** " +
         ("、".join(report["historicallyReachedWithNoCurrentEvents"]) or "なし"),
         "",
@@ -394,6 +404,28 @@ def render_dashboard(report):
         "[県別収集監査JSON](../data/prefecture_event_coverage.json)",
         "",
     ]
+    if report["appMasterPrefectures"]:
+        lines += [
+            "## アプリ内駅マスタと個別公式収集先の照合",
+            "",
+            "**個別収集先がない駅も、地域連絡会などから拾える場合があります。**",
+            "「未監視駅」「イベントなし」とは断定しません。",
+            "",
+            "| 都道府県 | マスタ駅数 | 個別収集先あり | 個別収集先なし | 現行イベントのある駅 |",
+            "|---|---:|---:|---:|---:|",
+        ]
+        for item in report["appMasterPrefectures"]:
+            lines.append("| {} | {} | {} | {} | {} |".format(
+                _md(item["prefecture"]), item["masterStations"],
+                item["dedicatedSources"], item["noDedicatedSource"],
+                item["publishedStations"]))
+        lines += [
+            "",
+            "収集対象名と駅マスタ名の表記が一致しない設定: {}件。"
+            "別名の確認が必要です。".format(
+                summary["configuredTargetNamesNotMatchedToAppMaster"]),
+            "",
+        ]
     return "\n".join(lines)
 
 
