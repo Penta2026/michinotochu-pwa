@@ -718,7 +718,8 @@ def _fetch(url):
     return BeautifulSoup(r.text, "html.parser")
 
 def collect_configured_station_events(today, prior=None, sources=None, fetch=None,
-                                      report_path=REPORT, pdf_fetch=None):
+                                      report_path=REPORT, pdf_fetch=None,
+                                      reconfirm_previous=None):
     """Discover only URLs absent from all current and prior verified records.
 
     Keeping an already published URL with its known event collector prevents
@@ -733,12 +734,21 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
     fetch = fetch or _fetch
     pdf_fetch = pdf_fetch or _fetch_official_pdf_text
     known_urls = {e["url"] for e in (prior or ()) if e.get("url")}
+    previous_verified = {(e.get("url"), clean(e.get("title")),
+                          e.get("startDate"), e.get("endDate")): e
+                         for e in (reconfirm_previous or ())}
+    previous_keys = {(e.get("url"), clean(e.get("title")),
+                      e.get("startDate"), e.get("endDate"))
+                     for e in (prior or ())}
     newly_seen, records, summaries = set(), [], []
+    new_count, reconfirmed_count = 0, 0
+    reconfirmed_keys = set()
     for spec in sources:
         summary = {"id": spec["id"], "prefecture": spec["prefecture"],
                    "roadName": spec["roadName"], "listingUrl": spec["listingUrl"],
                    "listingError": "", "candidates": 0, "checked": 0,
-                   "accepted": 0, "knownSkipped": 0, "fetchFailed": 0,
+                   "accepted": 0, "reconfirmed": 0, "knownSkipped": 0,
+                   "fetchFailed": 0, "fetchErrors": [],
                    "reasons": {}, "examples": [], "rejectedExamples": []}
         if not spec.get("enabled", False):
             summary["status"] = "disabled"
@@ -767,10 +777,15 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                 detail = (pdf_fetch(url) if mode == "verified_official_pdf" else
                           listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar") and
                                       url == spec["listingUrl"]) else fetch(url))
-            except (requests.RequestException, ValueError, AttributeError):
+            except (requests.RequestException, ValueError, AttributeError) as exc:
                 summary["fetchFailed"] += 1
+                if len(summary["fetchErrors"]) < 3:
+                    summary["fetchErrors"].append({
+                        "url": url, "type": type(exc).__name__,
+                        "detail": str(exc)[:180]})
                 continue
             summary["checked"] += 1
+            reconfirmed_this_url = 0
             if multi:
                 if mode == "official_station_program":
                     found, why = _official_program_records(spec, detail, today, url)
@@ -788,11 +803,21 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                     found, why = _section_records(spec, detail, today, url)
                 # With several events per article, URL-level dedup is unsafe:
                 # skip only the exact event instance already in old/current.
-                known_keys = {(e.get("url"), clean(e.get("title")),
-                               e.get("startDate"), e.get("endDate"))
-                              for e in (prior or ())}
-                found = [e for e in found if (e["url"], clean(e["title"]),
-                         e["startDate"], e["endDate"]) not in known_keys]
+                novel = []
+                for e in found:
+                    key = (e["url"], clean(e["title"]), e["startDate"], e["endDate"])
+                    if key in previous_verified:
+                        if key not in reconfirmed_keys:
+                            # Fresh official evidence matches an existing
+                            # event's precise identity and period.
+                            records.append(dict(previous_verified[key]))
+                            reconfirmed_keys.add(key)
+                            summary["reconfirmed"] += 1
+                            reconfirmed_this_url += 1
+                            reconfirmed_count += 1
+                    elif key not in previous_keys:
+                        novel.append(e)
+                found = novel
             else:
                 record, why = _article_record(spec, detail, text, today, url)
                 found = [record] if record else []
@@ -800,13 +825,14 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                 for record in found:
                     records.append(record)
                     summary["accepted"] += 1
+                    new_count += 1
                     if len(summary["examples"]) < 5:
                         summary["examples"].append({"title": record["title"],
                                                     "start": record["startDate"],
                                                     "end": record["endDate"],
                                                     "url": record["url"]})
                 newly_seen.add(url)
-            else:
+            elif reconfirmed_this_url == 0:
                 summary["reasons"][why] = summary["reasons"].get(why, 0) + 1
                 if len(summary["rejectedExamples"]) < 5:
                     summary["rejectedExamples"].append({
@@ -815,7 +841,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
         print(f"設定型新規収集 {spec['prefecture']} {spec['roadName']}: "
               f"候補={summary['candidates']} 新規採用={summary['accepted']} "
               f"既存URL={summary['knownSkipped']} 取得失敗={summary['fetchFailed']}")
-    audit = {"schemaVersion": 1, "sources": summaries, "newEvents": len(records)}
+    audit = {"schemaVersion": 1, "sources": summaries,
+             "newEvents": new_count, "reconfirmedEvents": reconfirmed_count}
     if report_path is not None:
         payload = json.dumps(audit, ensure_ascii=False, indent=2) + "\n"
         if not report_path.exists() or report_path.read_text(encoding="utf-8") != payload:
