@@ -1,0 +1,895 @@
+{
+  "schemaVersion": 1,
+  "basisUpdatedAt": "2026-10-10",
+  "definitions": {
+    "observed": "Only the dated events currently present in data/road_events.json.",
+    "targetedFeed": "An explicitly configured station source, not proof of parsing or future-event availability.",
+    "regionalHomepageReachable": "Region homepage HTTP success only; does not prove event coverage for its prefectures.",
+    "zeroRegistered": "No current published event; not evidence that no events take place."
+  },
+  "summary": {
+    "prefectureCount": 47,
+    "observedPrefectures": 26,
+    "zeroRegisteredPrefectures": 21,
+    "registeredEvents": 50,
+    "targetedStationFeedPrefectures": 8,
+    "notReconfirmedEvents": 0,
+    "unknownPrefectures": []
+  },
+  "priorities": {
+    "reconfirm": [],
+    "noEventsButTargetedFeed": [
+      "長崎県",
+      "熊本県",
+      "宮崎県",
+      "鹿児島県"
+    ],
+    "noEventsNoTargetedFeed": [
+      "岩手県",
+      "山形県",
+      "福島県",
+      "茨城県",
+      "栃木県",
+      "群馬県",
+      "千葉県",
+      "東京都",
+      "神奈川県",
+      "静岡県",
+      "福井県",
+      "京都府",
+      "大阪府",
+      "奈良県",
+      "和歌山県",
+      "山口県",
+      "愛媛県"
+    ]
+  },
+  "regions": [
+    {
+      "region": "北海道",
+      "prefectureCount": 1,
+      "observedPrefectures": 1,
+      "zeroRegisteredPrefectures": [],
+      "registeredEventCount": 4,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 12
+    },
+    {
+      "region": "東北",
+      "prefectureCount": 6,
+      "observedPrefectures": 3,
+      "zeroRegisteredPrefectures": [
+        "岩手県",
+        "山形県",
+        "福島県"
+      ],
+      "registeredEventCount": 7,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11
+    },
+    {
+      "region": "関東",
+      "prefectureCount": 9,
+      "observedPrefectures": 3,
+      "zeroRegisteredPrefectures": [
+        "茨城県",
+        "栃木県",
+        "群馬県",
+        "千葉県",
+        "東京都",
+        "神奈川県"
+      ],
+      "registeredEventCount": 3,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5
+    },
+    {
+      "region": "北陸",
+      "prefectureCount": 3,
+      "observedPrefectures": 3,
+      "zeroRegisteredPrefectures": [],
+      "registeredEventCount": 5,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0
+    },
+    {
+      "region": "中部",
+      "prefectureCount": 4,
+      "observedPrefectures": 3,
+      "zeroRegisteredPrefectures": [
+        "静岡県"
+      ],
+      "registeredEventCount": 12,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0
+    },
+    {
+      "region": "近畿",
+      "prefectureCount": 7,
+      "observedPrefectures": 2,
+      "zeroRegisteredPrefectures": [
+        "福井県",
+        "京都府",
+        "大阪府",
+        "奈良県",
+        "和歌山県"
+      ],
+      "registeredEventCount": 3,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11
+    },
+    {
+      "region": "中国",
+      "prefectureCount": 5,
+      "observedPrefectures": 4,
+      "zeroRegisteredPrefectures": [
+        "山口県"
+      ],
+      "registeredEventCount": 8,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 35
+    },
+    {
+      "region": "四国",
+      "prefectureCount": 4,
+      "observedPrefectures": 3,
+      "zeroRegisteredPrefectures": [
+        "愛媛県"
+      ],
+      "registeredEventCount": 4,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5
+    },
+    {
+      "region": "九州・沖縄",
+      "prefectureCount": 8,
+      "observedPrefectures": 4,
+      "zeroRegisteredPrefectures": [
+        "長崎県",
+        "熊本県",
+        "宮崎県",
+        "鹿児島県"
+      ],
+      "registeredEventCount": 4,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0
+    }
+  ],
+  "prefectures": [
+    {
+      "prefecture": "北海道",
+      "reportingRegion": "北海道",
+      "eventCount": 4,
+      "observedStations": [
+        "たきかわ",
+        "樹海ロード日高",
+        "真狩フラワーセンター",
+        "羊のまち 侍・しべつ"
+      ],
+      "observedStationCount": 4,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 12,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "青森県",
+      "reportingRegion": "東北",
+      "eventCount": 1,
+      "observedStations": [
+        "なみおか"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "岩手県",
+      "reportingRegion": "東北",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "宮城県",
+      "reportingRegion": "東北",
+      "eventCount": 5,
+      "observedStations": [
+        "村田"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "秋田県",
+      "reportingRegion": "東北",
+      "eventCount": 1,
+      "observedStations": [
+        "おおゆ"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "山形県",
+      "reportingRegion": "東北",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "福島県",
+      "reportingRegion": "東北",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "茨城県",
+      "reportingRegion": "関東",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "栃木県",
+      "reportingRegion": "関東",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "群馬県",
+      "reportingRegion": "関東",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "埼玉県",
+      "reportingRegion": "関東",
+      "eventCount": 1,
+      "observedStations": [
+        "庄和"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "千葉県",
+      "reportingRegion": "関東",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "東京都",
+      "reportingRegion": "関東",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "神奈川県",
+      "reportingRegion": "関東",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "山梨県",
+      "reportingRegion": "関東",
+      "eventCount": 1,
+      "observedStations": [
+        "こすげ"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "長野県",
+      "reportingRegion": "関東",
+      "eventCount": 1,
+      "observedStations": [
+        "信州新野千石平"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "新潟県",
+      "reportingRegion": "北陸",
+      "eventCount": 2,
+      "observedStations": [
+        "うみてらす名立",
+        "親不知ピアパーク"
+      ],
+      "observedStationCount": 2,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "富山県",
+      "reportingRegion": "北陸",
+      "eventCount": 1,
+      "observedStations": [
+        "氷見"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "石川県",
+      "reportingRegion": "北陸",
+      "eventCount": 2,
+      "observedStations": [
+        "しらやまさん",
+        "めぐみ白山"
+      ],
+      "observedStationCount": 2,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "岐阜県",
+      "reportingRegion": "中部",
+      "eventCount": 6,
+      "observedStations": [
+        "古今伝授の里やまと",
+        "柳津"
+      ],
+      "observedStationCount": 2,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "静岡県",
+      "reportingRegion": "中部",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "愛知県",
+      "reportingRegion": "中部",
+      "eventCount": 2,
+      "observedStations": [
+        "マチテラス日進"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "三重県",
+      "reportingRegion": "中部",
+      "eventCount": 4,
+      "observedStations": [
+        "飯高駅"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "福井県",
+      "reportingRegion": "近畿",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "滋賀県",
+      "reportingRegion": "近畿",
+      "eventCount": 1,
+      "observedStations": [
+        "奥永源寺渓流の里"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "京都府",
+      "reportingRegion": "近畿",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "大阪府",
+      "reportingRegion": "近畿",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "兵庫県",
+      "reportingRegion": "近畿",
+      "eventCount": 2,
+      "observedStations": [
+        "神鍋高原"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "奈良県",
+      "reportingRegion": "近畿",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "和歌山県",
+      "reportingRegion": "近畿",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "鳥取県",
+      "reportingRegion": "中国",
+      "eventCount": 2,
+      "observedStations": [
+        "西いなば気楽里"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 35,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "島根県",
+      "reportingRegion": "中国",
+      "eventCount": 4,
+      "observedStations": [
+        "ごいせ仁摩",
+        "キララ多伎",
+        "シルクウェイにちはら",
+        "頓原"
+      ],
+      "observedStationCount": 4,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 35,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "岡山県",
+      "reportingRegion": "中国",
+      "eventCount": 1,
+      "observedStations": [
+        "笠岡ベイファーム"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 35,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "広島県",
+      "reportingRegion": "中国",
+      "eventCount": 1,
+      "observedStations": [
+        "びんご府中"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 35,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "山口県",
+      "reportingRegion": "中国",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 35,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "徳島県",
+      "reportingRegion": "四国",
+      "eventCount": 1,
+      "observedStations": [
+        "いたの"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "香川県",
+      "reportingRegion": "四国",
+      "eventCount": 2,
+      "observedStations": [
+        "滝宮"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "愛媛県",
+      "reportingRegion": "四国",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "no_registered_events",
+      "nextAction": "discover_prefecture_station_feeds",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "高知県",
+      "reportingRegion": "四国",
+      "eventCount": 1,
+      "observedStations": [
+        "まきのさんの道の駅・佐川"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 5,
+      "regionalAuditMode": "adapter"
+    },
+    {
+      "prefecture": "福岡県",
+      "reportingRegion": "九州・沖縄",
+      "eventCount": 1,
+      "observedStations": [
+        "くるめ"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [
+        "くるめ"
+      ],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "佐賀県",
+      "reportingRegion": "九州・沖縄",
+      "eventCount": 1,
+      "observedStations": [
+        "しろいし"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [
+        "しろいし"
+      ],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "長崎県",
+      "reportingRegion": "九州・沖縄",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [
+        "させぼっくす９９"
+      ],
+      "notReconfirmedCount": 0,
+      "state": "targeted_feed_no_registered_events",
+      "nextAction": "inspect_official_article_dates",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "熊本県",
+      "reportingRegion": "九州・沖縄",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [
+        "すいかの里植木"
+      ],
+      "notReconfirmedCount": 0,
+      "state": "targeted_feed_no_registered_events",
+      "nextAction": "inspect_official_article_dates",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "大分県",
+      "reportingRegion": "九州・沖縄",
+      "eventCount": 1,
+      "observedStations": [
+        "耶馬トピア"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [
+        "耶馬トピア"
+      ],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "宮崎県",
+      "reportingRegion": "九州・沖縄",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [
+        "都城NiQLL"
+      ],
+      "notReconfirmedCount": 0,
+      "state": "targeted_feed_no_registered_events",
+      "nextAction": "inspect_official_article_dates",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "鹿児島県",
+      "reportingRegion": "九州・沖縄",
+      "eventCount": 0,
+      "observedStations": [],
+      "observedStationCount": 0,
+      "targetedStationFeeds": [
+        "たるみずはまびら"
+      ],
+      "notReconfirmedCount": 0,
+      "state": "targeted_feed_no_registered_events",
+      "nextAction": "inspect_official_article_dates",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    },
+    {
+      "prefecture": "沖縄県",
+      "reportingRegion": "九州・沖縄",
+      "eventCount": 1,
+      "observedStations": [
+        "かでな"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [
+        "かでな"
+      ],
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 0,
+      "regionalAuditMode": "discovery"
+    }
+  ]
+}
