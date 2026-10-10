@@ -494,14 +494,21 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertIsNone(_listing_posted("EVENT 2026.10.20 秋のフェスタ",TODAY))
         self.assertIsNone(_listing_posted("EVENT 10.08 秋のフェスタ",TODAY))
 
-    def test_eleven_zero_event_prefectures_have_new_official_choices(self):
+    def test_expanded_official_choices_remain_valid_when_routes_are_added(self):
         import json
         from station_discovery_engine import RULES
         sources=json.loads(RULES.read_text(encoding="utf-8"))["sources"]
-        self.assertEqual(len(sources),21)
-        expected={"山口県","福井県","大阪府","熊本県","宮崎県"}
+        # Routes grow as official sites are confirmed; an exact count is
+        # not an invariant. Keep all previously covered prefectures and
+        # explicitly verify the new, official Ehime PDF rule.
+        self.assertGreaterEqual(len(sources),22)
+        expected={"山口県","福井県","大阪府","熊本県","宮崎県","愛媛県"}
         self.assertTrue(expected.issubset({r["prefecture"] for r in sources}))
         self.assertTrue(all(r["enabled"] for r in sources))
+        ehime=[r for r in sources if r["id"]=="ehime_city_official_festival_pdf"]
+        self.assertEqual(len(ehime),1)
+        self.assertEqual(ehime[0]["articleMode"],"verified_official_pdf")
+        self.assertEqual(ehime[0]["prefecture"],"愛媛県")
         _validate_sources(sources)
 
     def test_osaka_station_official_dated_table_extracts_marché(self):
