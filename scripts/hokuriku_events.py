@@ -106,6 +106,85 @@ def extract_hokuriku_cards(soup, today, page_url):
     return list(records.values()), diagnostics
 
 
+def extract_rendered_events(soup, today, page_url):
+    """Extract one event at a time from JS-rendered official event cards.
+
+    Require the same small DOM card to contain exactly one known station,
+    exactly two explicit dates, and an event title. Never join separate cards.
+    """
+    candidates = {}
+    for node in soup.select("li, article, tr, section, div"):
+        value = " ".join(node.stripped_strings)
+        if len(value) < 25 or len(value) > 650:
+            continue
+        stations = [name for name in STATIONS if name in value]
+        if len(stations) != 1 or len(re.findall(DATES, value)) != 2:
+            continue
+        item = extract_hokuriku(value, today, page_url)
+        if not item or item["roadName"] != stations[0]:
+            continue
+        # A link to the specific event is preferred. When the event card is
+        # JS-driven without a detail URL, use a date-pinned official calendar.
+        source = CALENDAR + "?dc=" + item["startDate"]
+        link_title = None
+        for a in node.select("a[href]"):
+            href = urljoin(page_url, a["href"])
+            parsed = urlparse(href)
+            if parsed.hostname not in ("www.hokuriku-michinoeki.jp", "hokuriku-michinoeki.jp"):
+                continue
+            if "/contents/event/" not in parsed.path:
+                continue
+            qs = parse_qs(parsed.query)
+            is_detail = bool(set(qs) - {"dc"}) or parsed.path.rstrip("/") not in (
+                "/contents/event", "/contents/event/index.html")
+            if not is_detail:
+                continue
+            source = href
+            candidate_title = " ".join(a.stripped_strings)
+            if 6 <= len(candidate_title) <= 100 and not re.search(DATES, candidate_title):
+                link_title = candidate_title
+            break
+        item["url"] = source
+        if link_title and not any(x in link_title for x in ("戻る", "詳細を見る", "もっと見る")):
+            item["title"] = link_title
+        else:
+            item["title"] = item["title"][:110].strip()
+        key = (item["roadName"], item["startDate"], item["endDate"], source)
+        # Prefer the smallest unambiguous DOM card instead of an outer wrapper.
+        previous = candidates.get(key)
+        if previous is None or len(value) < previous[0]:
+            candidates[key] = (len(value), item)
+    return [pair[1] for pair in candidates.values()]
+
+
+def create_hokuriku_browser():
+    """Chromium on the GitHub Ubuntu runner executes the official CMS scripts."""
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    options = Options()
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.page_load_strategy = "eager"
+    browser = webdriver.Chrome(options=options)
+    browser.set_page_load_timeout(30)
+    return browser
+
+
+def render_hokuriku(browser, url):
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.common.exceptions import TimeoutException
+    browser.get(url)
+    try:
+        WebDriverWait(browser, 12, poll_frequency=0.8).until(
+            lambda b: any(station in b.find_element("tag name", "body").text
+                          for station in STATIONS))
+    except TimeoutException:
+        pass
+    return BeautifulSoup(browser.page_source, "html.parser")
+
+
 AUDIT_FILE = Path(__file__).resolve().parents[1] / "data" / "hokuriku_event_audit.json"
 
 def save_hokuriku_audit(pages, total):
@@ -115,62 +194,57 @@ def save_hokuriku_audit(pages, total):
         AUDIT_FILE.write_text(content, encoding="utf-8")
 
 def collect_hokuriku(today):
-    # A week-based official calendar; request overlapping weeks to capture
-    # ongoing and upcoming events, with a bounded number of network calls.
-    found = {}
-    audits = []
-    for offset in (0, 7, 14, 21, 28, 35, None):
-        day = today + timedelta(days=offset or 0)
-        url = CALENDAR + "?dc=" + day.isoformat() if offset is not None else BASE + "/"
-        try:
-            response = requests.get(url, headers=HEADERS, timeout=15)
-            response.raise_for_status()
-        except requests.RequestException as exc:
-            print(f"北陸カレンダー取得失敗 {url}: {exc}")
-            audits.append({"date": day.isoformat(), "url": url, "error": str(exc)[:180]})
-            continue
-        decoded = decode_official_response(response)
-        soup = BeautifulSoup(decoded, "html.parser")
-        records, stats = extract_hokuriku_cards(soup, today, response.url)
-        links = [urljoin(response.url, a.get("href", "")) for a in soup.select("a[href]")]
-        event_links = [href for href in links if "/contents/event" in urlparse(href).path]
-        page_text = soup.get_text(" ", strip=True)
-        event_specific = [href for href in event_links if parse_qs(urlparse(href).query).get("article")]
-        # The calendar HTML currently has no station names or article links.
-        # Record referenced scripts and form endpoints to determine whether
-        # the event list is populated asynchronously by JavaScript.
-        scripts = [urljoin(response.url, node.get("src", "")) for node in soup.select("script[src]")]
-        inline_scripts = [node.get_text(" ", strip=True) for node in soup.select("script:not([src])")]
-        scripts_relevant = [body[:700] for body in inline_scripts
-                            if any(token in body.lower() for token in ("ajax", "fetch(", "event", "calendar", "api"))]
-        forms = [{"action": urljoin(response.url, form.get("action", "")),
-                  "method": form.get("method", "get")} for form in soup.select("form")]
-        audits.append({
-            "date": day.isoformat(), "url": response.url,
-            "htmlSize": len(response.content), "links": len(links),
-            "httpEncoding": response.encoding,
-            "apparentEncoding": response.apparent_encoding,
-            "utf8Decode": "\ufffd" not in decoded,
-            "eventLinks": len(event_links),
-            "specificArticleLinks": len(event_specific),
-            "sampleAllLinks": links[:12],
-            "scriptSources": scripts[:20],
-            "inlineScriptCount": len(inline_scripts),
-            "relevantInlineScripts": scripts_relevant[:4],
-            "formTargets": forms[:8],
-            "emptyEventMarkup": not event_specific and not any(station in page_text for station in STATIONS),
-            "sampleEventLinks": event_links[:5],
-            "stationsInPage": [station for station in STATIONS if station in page_text],
-            "articleLinks": stats["articleLinks"],
-            "matchedCards": stats["matchedCards"],
-            "unmatchedArticleLinks": stats["unmatchedArticleLinks"],
-            "sampleText": page_text[:950]
-        })
-        for item in records:
-            found[(item["roadName"], item["url"], item["startDate"])] = item
-        print(f"北陸公式 {day.isoformat()}: 詳細リンク {stats['articleLinks']} / "
-              f"駅・期間照合 {len(records)} / 未照合 {stats['unmatchedArticleLinks']}")
-        if not records:
-            print(f"北陸公式・サンプル: {page_text[:220]}")
-    save_hokuriku_audit(audits, len(found))
+    found, audits = {}, []
+    browser, browser_error = None, None
+    # The official homepage typically previews near-future events. The weekly
+    # calendar expands coverage after that. Static requests remain diagnostic.
+    try:
+        for offset in (None, 0, 7, 14, 21, 28, 35):
+            day = today + timedelta(days=offset or 0)
+            url = CALENDAR + "?dc=" + day.isoformat() if offset is not None else BASE + "/"
+            try:
+                response = requests.get(url, headers=HEADERS, timeout=15)
+                response.raise_for_status()
+            except requests.RequestException as exc:
+                print(f"北陸公式ページ取得失敗 {url}: {exc}")
+                audits.append({"date": day.isoformat(), "url": url, "error": str(exc)[:180]})
+                continue
+            soup = BeautifulSoup(decode_official_response(response), "html.parser")
+            static_records, static_stats = extract_hokuriku_cards(soup, today, response.url)
+            rendered_records, browser_html_size, rendered_sample = [], 0, ""
+            if not static_records and browser_error is None:
+                try:
+                    if browser is None:
+                        browser = create_hokuriku_browser()
+                    rendered = render_hokuriku(browser, url)
+                    rendered_sample = rendered.get_text(" ", strip=True)[:450]
+                    browser_html_size = len(str(rendered))
+                    rendered_records = extract_rendered_events(rendered, today, url)
+                except Exception as exc:
+                    browser_error = type(exc).__name__ + ": " + str(exc)[:250]
+                    print(f"北陸ブラウザ収集失敗: {browser_error}")
+            items = static_records + rendered_records
+            for item in items:
+                key = (item["roadName"], item["startDate"], item["endDate"], item["title"])
+                found[key] = item
+            page_text = soup.get_text(" ", strip=True)
+            scripts = [urljoin(response.url, tag.get("src", "")) for tag in soup.select("script[src]")]
+            audits.append({
+                "date": day.isoformat(), "url": response.url,
+                "htmlSize": len(response.content),
+                "stationsInStaticPage": [n for n in STATIONS if n in page_text],
+                "staticArticleLinks": static_stats["articleLinks"],
+                "staticMatched": len(static_records),
+                "browserHtmlSize": browser_html_size,
+                "browserMatched": len(rendered_records),
+                "browserTextSample": rendered_sample,
+                "browserError": browser_error or "",
+                "scriptSources": scripts[:15],
+            })
+            print(f"北陸公式 {day.isoformat()}: HTML={len(static_records)} / "
+                  f"ブラウザ表示={len(rendered_records)}")
+    finally:
+        if browser is not None:
+            browser.quit()
+        save_hokuriku_audit(audits, len(found))
     return list(found.values())
