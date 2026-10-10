@@ -319,5 +319,139 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
                                      "https://sakuas.com/event/100/")
         self.assertEqual(records,[])
 
+
+    def test_gap_prefecture_registry_has_all_six(self):
+        import json
+        from station_discovery_engine import RULES
+        config=json.loads(RULES.read_text(encoding="utf-8"))
+        specs=config["sources"]
+        self.assertEqual(len(specs),13)
+        self.assertTrue({"岩手県","山形県","福島県","静岡県","山口県","愛媛県"}.issubset(
+            {x["prefecture"] for x in specs}))
+        _validate_sources(specs)
+
+    def test_official_yamagata_program_explicit_2026_dates(self):
+        from station_discovery_engine import _official_program_records
+        spec={**TOKYO,"id":"yamagata","prefecture":"山形県",
+              "roadName":"たかはた","requiredVenueTokens":["道の駅たかはた"],
+              "articleSelector":"body","articleMode":"official_station_program",
+              "sectionEventNames":["秋の収穫祭"]}
+        html="""<body><div>道の駅たかはた</div>
+          <div>令和8年度・2026年度開催イベント</div>
+          <p>秋の収穫祭</p>
+          <p>2026年10月11日(日)・12日(月祝)</p>
+          <p>新米や地元農産物の販売</p></body>"""
+        events,why=_official_program_records(spec,soup(html),TODAY,
+                          "https://www.rstakahata.com/rst/event.html")
+        self.assertEqual(why,"accepted")
+        self.assertEqual(len(events),1)
+        self.assertEqual((events[0]["startDate"],events[0]["endDate"]),
+                         ("2026-10-11","2026-10-12"))
+        self.assertEqual(events[0]["prefecture"],"山形県")
+
+    def test_yamagata_2025_program_does_not_become_2026(self):
+        from station_discovery_engine import _official_program_records
+        spec={**TOKYO,"id":"yamagata","prefecture":"山形県",
+              "roadName":"たかはた","requiredVenueTokens":["道の駅たかはた"],
+              "articleSelector":"body","sectionEventNames":["秋の収穫祭"]}
+        html="""<body><h1>道の駅たかはた</h1>
+          <p>令和8年度・2026年度イベント</p>
+          <p>秋の収穫祭</p><p>2025年10月11日(土)・12日(日)</p>
+          </body>"""
+        events,why=_official_program_records(spec,soup(html),TODAY,
+                          "https://www.rstakahata.com/rst/event.html")
+        self.assertEqual(events,[])
+        self.assertEqual(why,"no_grounded_program_event")
+
+    def test_yamagata_program_self_listing_requires_no_article_link(self):
+        from station_discovery_engine import _links
+        spec={**TOKYO,"listingUrl":"https://www.rstakahata.com/rst/event.html",
+              "articlePathPattern":r"^/rst/event\.html$",
+              "allowedHosts":["www.rstakahata.com"],
+              "articleMode":"official_station_program"}
+        self.assertEqual(_links(soup("<body><p>道の駅たかはた</p></body>"),spec),
+                         {spec["listingUrl"]:"公式開催案内"})
+
+    def test_fukushima_short_date_grounded_by_official_listing_posted(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"id":"fukushima","roadName":"ふくしま",
+              "prefecture":"福島県","requiredVenueTokens":["多目的広場"],
+              "allowedEventWords":["フェスタ"],"useListingPublicationDate":True}
+        html="""<main><h3>〖10/10(土)・11日(日)ガーデンプレイスフェスタ〗</h3>
+            <p>〖日時〗10月10日(土)・11日(日)10:00～16:00</p>
+            <p>〖場所〗多目的広場</p></main>"""
+        listing="EVENT 2026.10.08 〖10/10(土)・11日(日)ガーデンプレイスフェスタ〗"
+        rec,why=_article_record(spec,soup(html),listing,TODAY,
+                                "https://m-fukushima.com/info/700")
+        self.assertEqual(why,"accepted")
+        self.assertEqual((rec["startDate"],rec["endDate"]),
+                         ("2026-10-10","2026-10-11"))
+        self.assertEqual(rec["prefecture"],"福島県")
+
+    def test_fukushima_does_not_guess_year_if_listing_undated(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"requiredVenueTokens":["多目的広場"],
+              "allowedEventWords":["フェスタ"],"useListingPublicationDate":True}
+        html="""<main><h3>10/10(土) ガーデンプレイスフェスタ</h3>
+                 <p>〖日時〗10月10日(土)</p><p>〖場所〗多目的広場</p></main>"""
+        rec,why=_article_record(spec,soup(html),"イベント",TODAY,URL)
+        self.assertEqual((rec,why),(None,"undated"))
+
+    def test_shizuoka_monthly_program_extracts_separately(self):
+        from station_discovery_engine import _monthly_calendar_records
+        spec={**TOKYO,"id":"shizuoka","prefecture":"静岡県",
+              "roadName":"伊豆ゲートウェイ函南",
+              "articleSelector":"article",
+              "monthlyEventWords":["ピスタチオ","食市","干し柿","フェス"]}
+        html="""<article><h1>2026年11月 道の駅イベントのご案内</h1>
+           <time datetime="2026-10-03">2026.10.03</time>
+           <h3>翠のピスタチオ</h3><p>11月8日(日)10:00～15:00</p>
+           <p>道の駅で静岡茶も楽しめます</p>
+           <h3>ゲートウェイ食市 干し柿づくり</h3>
+           <p>11月21日(土)10:00～15:00</p>
+           <p>道の駅でのワークショップです</p></article>"""
+        rec,why=_monthly_calendar_records(spec,soup(html),TODAY,
+                   "https://www.izugateway.com/event/6779/")
+        self.assertEqual(why,"accepted")
+        self.assertEqual(len(rec),2)
+        self.assertEqual([x["startDate"] for x in rec],
+                         ["2026-11-08","2026-11-21"])
+        self.assertEqual([x["prefecture"] for x in rec],["静岡県","静岡県"])
+
+    def test_shizuoka_monthly_rejects_wrong_weekday(self):
+        from station_discovery_engine import _monthly_calendar_records
+        spec={**TOKYO,"articleSelector":"article","monthlyEventWords":["フェス"]}
+        html="""<article><h1>2026年11月 道の駅イベントのご案内</h1>
+          <h3>芋フェス</h3><p>11月22日(土)10:00</p></article>"""
+        rec,why=_monthly_calendar_records(spec,soup(html),TODAY,URL)
+        self.assertEqual(rec,[])
+        self.assertEqual(why,"no_individually_dated_monthly_events")
+
+    def test_shizuoka_monthly_never_infers_year_from_current_date(self):
+        from station_discovery_engine import _monthly_calendar_records
+        spec={**TOKYO,"articleSelector":"article","monthlyEventWords":["フェス"]}
+        html="""<article><h1>11月のイベントカレンダー</h1>
+          <h3>芋フェス</h3><p>11月21日(土)10:00</p></article>"""
+        rec,why=_monthly_calendar_records(spec,soup(html),TODAY,URL)
+        self.assertEqual(rec,[])
+        self.assertEqual(why,"no_grounded_program_year")
+
+    def test_shizuoka_monthly_refuses_offsite_event(self):
+        from station_discovery_engine import _monthly_calendar_records
+        spec={**TOKYO,"articleSelector":"article","monthlyEventWords":["フェス"]}
+        html="""<article><h1>2026年11月 道の駅イベントのご案内</h1>
+          <h3>川の駅フェス</h3><p>11月21日(土)10:00</p>
+          <p>川の駅で開催予定です</p></article>"""
+        rec,why=_monthly_calendar_records(spec,soup(html),TODAY,URL)
+        self.assertEqual(rec,[])
+        self.assertEqual(why,"no_individually_dated_monthly_events")
+
+    def test_official_listing_posted_never_uses_future_timestamp(self):
+        from station_discovery_engine import _listing_posted
+        self.assertEqual(_listing_posted("EVENT 2026.10.08 秋のフェスタ",TODAY),
+                         date(2026,10,8))
+        self.assertIsNone(_listing_posted("EVENT 2026.10.20 秋のフェスタ",TODAY))
+        self.assertIsNone(_listing_posted("EVENT 10.08 秋のフェスタ",TODAY))
+
 if __name__ == "__main__":
     unittest.main()
