@@ -44,6 +44,29 @@ class KantoThreeTests(unittest.TestCase):
         self.assertEqual((got[0]["roadName"], got[0]["startDate"], got[0]["endDate"]),
                          ("ましこ", "2026-10-11", "2026-10-11"))
 
+    def test_mashiko_empty_h1_title_is_restored(self):
+        listing = BeautifulSoup("""<li><a href="/event/4457/">
+          〖event〗道の駅ましこ 10周年祭</a></li>""", "html.parser")
+        detail = BeautifulSoup("""<main><h1></h1>
+          <h2>〖開催日〗</h2><p>2026年10月11日（日）</p>
+          <p>道の駅ましこで10周年祭を開催します。</p></main>""", "html.parser")
+        got, _ = parse_mashiko_list(listing, TODAY, fetch=lambda url: detail)
+        self.assertEqual(len(got), 1)
+        self.assertEqual(got[0]["title"], "道の駅ましこ10周年祭")
+        self.assertEqual(got[0]["url"], "https://m-mashiko.com/event/4457/")
+
+    def test_mashiko_duplicate_anniversary_announcements_are_one(self):
+        listing = BeautifulSoup("""<ul>
+          <li><a href="/event/4457/">道の駅ましこ10周年祭</a></li>
+          <li><a href="/event/9999/">〖event〗道の駅ましこ 10周年祭</a></li>
+          </ul>""", "html.parser")
+        detail = BeautifulSoup("""<main><h1></h1>
+          <h2>〖開催日〗</h2><p>2026年10月11日（日）</p>
+          <p>道の駅ましこ10周年祭のご案内。</p></main>""", "html.parser")
+        got, _ = parse_mashiko_list(listing, TODAY, fetch=lambda url: detail)
+        self.assertEqual(len(got), 1)
+        self.assertEqual(got[0]["url"], "https://m-mashiko.com/event/4457/")
+
     def test_mashiko_related_dates_without_event_label_rejected(self):
         listing = BeautifulSoup("<li><a href='/event/4457/'>道の駅ましこ祭り</a></li>",
                                 "html.parser")
