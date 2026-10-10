@@ -52,6 +52,9 @@ def targeted_station_sources():
         "茨城県": ("かさま", "ひたちおおた"),
         "栃木県": ("ましこ",),
         "群馬県": ("あぐりーむ昭和",),
+        "千葉県": ("しょうなん", "保田小学校"),
+        "東京都": ("八王子滝山",),
+        "神奈川県": ("湘南ちがさき",),
     }
     for pref, names in kanto_targets.items():
         for name in names:
