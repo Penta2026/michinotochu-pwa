@@ -163,6 +163,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "耶馬トピア",
+      "prefecture": "大分県",
+      "title": "竹の千灯籠夜",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-12",
+      "publishedAt": "2026-10-08",
+      "url": "https://www.city-nakatsu.jp/doc/2026100500057/",
+      "status": "scheduled"
+    },
+    {
       "roadName": "西いなば気楽里",
       "prefecture": "鳥取県",
       "title": "【西いなば気楽里】ミルクフェアを開催いたします！ １０月１０日(土)１１時～、１４時～",
@@ -470,6 +480,16 @@
       "endDate": "2026-11-01",
       "publishedAt": "",
       "url": "https://yunoeki-oyu.jp/information/kuromanta-rock-fes/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "しろいし",
+      "prefecture": "佐賀県",
+      "title": "秋の収穫祭",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-01",
+      "publishedAt": "",
+      "url": "https://www.michinoeki-shiroishi.jp/news/%e7%a7%8b%e3%81%ae%e5%8f%8e%e7%a9%ab%e7%a5%ad-2/",
       "status": "scheduled"
     },
     {

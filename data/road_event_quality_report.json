@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 46,
-  "inputCollected": 48,
+  "inputPrevious": 48,
+  "inputCollected": 49,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -102,10 +102,6 @@
       "title": "日高町道の駅フェスト開催のお知らせ NEW"
     },
     {
-      "roadName": "たきかわ",
-      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!"
-    },
-    {
       "roadName": "羊のまち 侍・しべつ",
       "title": "道の駅「羊のまち 侍・しべつ」秋まつり開催!!"
     },
@@ -128,6 +124,14 @@
     {
       "roadName": "しらやまさん",
       "title": "第6回道の駅しらやまさん軽トラ市 道の駅百姓連「しらやまさん’ｓ」による季節の野菜販売…"
+    },
+    {
+      "roadName": "くるめ",
+      "title": "【イベント情報】新米フェアのお知らせ"
+    },
+    {
+      "roadName": "かでな",
+      "title": "月眺みぬ会開催のお知らせ"
     },
     {
       "roadName": "こすげ",
@@ -191,8 +195,17 @@
     }
   ],
   "possibleDuplicates": [],
-  "notReconfirmed": [],
-  "finalCount": 48,
+  "notReconfirmed": [
+    {
+      "roadName": "たきかわ",
+      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/",
+      "reason": "not_found_in_current_collection"
+    }
+  ],
+  "finalCount": 50,
   "collapsedHokurikuDuplicates": {
     "previous": 0,
     "collected": 0
