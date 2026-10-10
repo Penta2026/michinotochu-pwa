@@ -212,6 +212,52 @@ class GapMonitorTests(unittest.TestCase):
         self.assertIn("地域連絡会などから拾える場合", dashboard)
         self.assertIn("東京もう一つの駅", str(report["appMasterStations"]))
 
+    def test_review_candidates_prioritize_confirmable_future_headlines(self):
+        entry = source(
+            reasons={"undated": 3},
+            rejectedExamples=[
+                {"title": "2026年9月15日開催 秋のマルシェ",
+                 "url": "https://official.example/old", "reason": "undated"},
+                {"title": "10月マルシェ 最新のご案内",
+                 "url": "https://official.example/unknown", "reason": "undated"},
+                {"title": "2026年10月18日開催 秋のマルシェ",
+                 "url": "https://official.example/future", "reason": "undated"},
+            ])
+        report = self.report(entry)
+        queue = report["reviewCandidates"]
+        self.assertEqual([x["headlineScheduleHint"] for x in queue], [
+            "future_schedule_hint", "unknown_date", "past_schedule_hint"])
+        self.assertEqual(queue[0]["priority"], "high")
+        self.assertEqual(queue[-1]["priority"], "low")
+        self.assertEqual(report["summary"]["reviewWithExplicitFutureHint"], 1)
+        self.assertEqual(report["summary"]["reviewWithExplicitPastHint"], 1)
+        self.assertIn("future_schedule_hint", render_dashboard(report))
+
+    def test_publication_timestamp_without_event_date_is_not_future_hint(self):
+        from road_event_gap_monitor import _dated_headline_hint
+        self.assertEqual(_dated_headline_hint(
+            "2026.10.21 新着情報 EVENT 雑貨のお知らせ", TODAY),
+            "unknown_date")
+        self.assertEqual(_dated_headline_hint(
+            "令和8年10月18日開催 農産物マルシェ", TODAY),
+            "future_schedule_hint")
+        self.assertEqual(_dated_headline_hint(
+            "令和7年10月18日開催 農産物マルシェ", TODAY),
+            "past_schedule_hint")
+
+    def test_monitor_reads_exact_uninspected_count_from_new_engine(self):
+        entry=source(candidates=152, checked=8, knownSkipped=1,
+                     eligibleCandidates=151, uninspectedCandidates=143,
+                     explorationSlots=2, explorationPool=145)
+        report=self.report(entry)
+        self.assertEqual(report["summary"]["sourcesAtCheckLimit"], 1)
+        self.assertEqual(report["summary"]["uninspectedCandidateSlots"], 143)
+        self.assertEqual(report["sources"][0]["explorationSlots"], 2)
+        self.assertEqual(report["sources"][0]["uninspectedCandidateCount"], 143)
+        warning=next(x for x in report["warnings"]
+                     if x["kind"]=="article_check_limit")
+        self.assertEqual(warning["uninspectedCandidateCount"], 143)
+
     def test_unconfirmed_items_are_retained_as_review_only(self):
         record = {"roadName": "阿武町", "title": "森里海の市",
                   "url": "https://official.example/abu",
