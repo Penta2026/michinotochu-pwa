@@ -320,7 +320,7 @@ def _article_record(source, soup, listing_title, today, url):
             "status": "scheduled"}, "accepted"
 
 SECTION_TITLE = re.compile(r"^[〖【]([^〗】]{3,85})[〗】]$")
-SECTION_DATE = re.compile(r"^[🗓📅]?\s*(?:(?:開催日|日時)\s*[:：]?\s*)?")
+SECTION_DATE = re.compile(r"^[🗓📅]?\s*(?:(?:開催日(?:時|程)?|開催期間|日程|日時)\s*[:：]?\s*)?")
 SECTION_VENUE = re.compile(r"^[📍]?\s*(?:会場|開催場所)?\s*[:：]?\s*")
 
 def _section_records(spec, soup, today, url):
@@ -370,9 +370,9 @@ def _section_records(spec, soup, today, url):
             # Official station articles may replace the calendar/pin emoji
             # with explicit labels. Labels are per section, never site-wide.
             explicit_date = (line.startswith(("🗓", "📅")) or
-                             bool(re.match(r"^(?:開催日(?:時|程)?|開催期間|日程|日時)\\s*[:：]", line)))
+                             bool(re.match(r"^(?:開催日(?:時|程)?|開催期間|日程|日時)\s*[:：]", line)))
             explicit_venue = (line.startswith("📍") or
-                              bool(re.match(r"^(?:会場|開催場所|場所)\\s*[:：]", line)))
+                              bool(re.match(r"^(?:会場|開催場所|場所)\s*[:：]", line)))
             if explicit_date:
                 candidate = _period(SECTION_DATE.sub("", line), posted)
                 if candidate:
