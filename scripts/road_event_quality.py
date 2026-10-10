@@ -4,6 +4,7 @@ import re
 import unicodedata
 from datetime import date
 from pathlib import Path
+from urllib.parse import urlparse, parse_qs
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "data" / "road_event_quality_report.json"
@@ -15,8 +16,55 @@ def canonical_title(value):
     s = re.sub(r"\s+", "", s)
     return s
 
+def hokuriku_article_id(record):
+    """Unique official article ID, invariant across calendar display dates."""
+    parsed = urlparse(record.get("url", ""))
+    if (parsed.hostname not in ("www.hokuriku-michinoeki.jp", "hokuriku-michinoeki.jp")
+            or parsed.path.rstrip("/") != "/contents/event"):
+        return None
+    article = parse_qs(parsed.query).get("article", [])
+    return article[0] if len(article) == 1 and article[0] else None
+
+
+def normalize_hokuriku_record(record):
+    """Pin the official article URL to the event start date, not view date."""
+    article = hokuriku_article_id(record)
+    if not article:
+        return record
+    normalized = dict(record)
+    from urllib.parse import urlencode
+    normalized["url"] = ("https://www.hokuriku-michinoeki.jp/contents/event/?"
+                         + urlencode({"dc": record["startDate"], "article": article}))
+    return normalized
+
+
+def coalesce_hokuriku_records(records):
+    """Collapse only proven same-article, same-station, same-period records.
+
+    Different official articles remain distinct even on the same day.
+    """
+    result, positions = [], {}
+    for record in records:
+        item = normalize_hokuriku_record(record)
+        article = hokuriku_article_id(item)
+        if not article:
+            result.append(item)
+            continue
+        key = (article, item.get("roadName"), item.get("startDate"), item.get("endDate"))
+        previous_index = positions.get(key)
+        if previous_index is None:
+            positions[key] = len(result)
+            result.append(item)
+        elif len(item.get("title", "")) < len(result[previous_index].get("title", "")):
+            result[previous_index] = item
+    return result
+
+
 def identity(record):
     # Distinguish simultaneous events, including several entries in one PDF.
+    article = hokuriku_article_id(record)
+    if article:
+        return ("hokuriku-article:" + article, record.get("roadName", ""), "")
     return (record.get("url", ""), record.get("roadName", ""),
             canonical_title(record.get("title", "")))
 
@@ -36,8 +84,13 @@ def reconcile(old, new, today):
     report = {"schemaVersion": 1, "inputPrevious": len(old), "inputCollected": len(new),
               "expiredOrInvalid": [], "corrected": [], "exactDuplicates": [],
               "possibleDuplicates": [], "notReconfirmed": [], "finalCount": 0}
+    old_clean = coalesce_hokuriku_records(old)
+    new_clean = coalesce_hokuriku_records(new)
+    report["collapsedHokurikuDuplicates"] = {
+        "previous": len(old) - len(old_clean),
+        "collected": len(new) - len(new_clean)}
     preserved = []
-    for event in old:
+    for event in old_clean:
         if not plausible(event, today):
             report["expiredOrInvalid"].append({"roadName": event.get("roadName"), "title": event.get("title")})
             continue
@@ -48,7 +101,7 @@ def reconcile(old, new, today):
     # Keep same-title events on different dates separate unless their periods
     # overlap: this prevents recurring events being mistaken for corrections.
     by_id = {(identity(e), e["startDate"]): e for e in preserved}
-    for event in new:
+    for event in new_clean:
         if not plausible(event, today):
             report["expiredOrInvalid"].append({"roadName": event.get("roadName"), "title": event.get("title"), "reason": "invalid_new"})
             continue
@@ -71,7 +124,7 @@ def reconcile(old, new, today):
         by_id[key] = event
     # Previously published events absent from the current collection are kept
     # but explicitly flagged for investigation (not assumed cancelled).
-    collected_ids = {identity(e) for e in new if plausible(e, today)}
+    collected_ids = {identity(e) for e in new_clean if plausible(e, today)}
     for event in preserved:
         if identity(event) not in collected_ids:
             report["notReconfirmed"].append({
