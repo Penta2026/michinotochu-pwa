@@ -1,10 +1,23 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-11 Actions #66 本番達成**（217テスト全件OK、**累計47/47県＝100%達成**、現行44/47県・78イベント、未再確認3件）  
+更新基準: **2026-10-11 Actions #66 確定＋Phase 3実装待ち**（累計47/47県・現行44県/78イベント。1,234駅マスタ照合と監視ダッシュボード、228テストは次回Actions未検証）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-11 Phase 3・収集漏れ自動監視の実装（**次のActions検証待ち**）
+
+- #66の**確定実績は累計47/47県、現行44/47県・78イベント・未再確認3件**のまま。ここからの変更は新規イベント収集ではなく、**取りこぼしや監視の空白を見つけるためのコードと自動監査**。
+- **アプリ内の駅マスタを発見**：`data/app_data.js` の `window.APP_DATA.roads` に**1,234駅**（`meta.roadStations=1234`、生成日時2026-10-04 21:45:00）。`scripts/road_event_gap_monitor.py`でJSを実行せずJSONデコーダで読取り、駅ID/都道府県/駅名を自動照合。`data/prefecture_event_coverage.json`の個別収集先（設定のある県は25）と現行イベントに現れた駅名と比較し、**47県ごとの駅マスタ数／個別収集先あり／なし／現行イベントあり**を表示する。ただしアプリマスタは最新の公的登録全駅を保証しない。また**個別収集先なし≠完全未監視**（地域・全国公式から取得できる場合あり）。
+- **設定型27ルートの漏れ候補検知**：`station_event_discovery_audit.json`の`rejectedExamples`から`undated`・`venue_missing`・複数催事区画未解析・月間カレンダー未解析等を**人が確認する候補**として抽出。チラシ/イベントカレンダーの見出しも要確認へ。`past`や`offsite`を誤って「本物の未収集イベント」と数えない。各ソースの拒否例は最大5件の**サンプル**のため、網羅的な未採用件数ではない。
+- **日次障害の検知**：個別公式ソースの`listingError`・`fetchFailed`と例外詳細、地域公式のホームページ到達不可、監査されていない設定済みソース、ソース監査日`checkedOn`の不一致を集計。Actions上のwarningとしても表示。さらに候補0が**異なるJST日付で3日続く**と確認対象に追加。同日に再実行しても3日分にはしない。候補数が`maxArticles`の検査上限を上回るケースも警告。
+- **未再確認3件**（北海道・島根・山口）は別枠で表示し、既存イベントを勝手に取り消さない。
+- **生成ファイル**：`data/road_event_gap_monitor.json`（JSON監査＋駅マスタ1,234行）、`docs/ROAD_EVENT_GAP_DASHBOARD.md`（人が見る県別集計、警告、記事へのリンク）。`ROAD_EVENT_GAP_DASHBOARD.md`は初回実行待ちの案内ページを作成済み。初回本番後に自動置換。
+- **ワークフロー反映**：`.github/workflows/road-events.yml`に`Monitor collection gaps and source health`を追加し、両レポートをcommit対象に追加。標準の毎日09:00 JSTのActionsで自動実行。個別の注意は監査ファイルに出すが、警告のみで本来の収集ジョブは失敗扱いにしない（ただしパーサ自体の実行エラーやテスト失敗は検出）。
+- **新規テスト**：`scripts/test_road_event_gap_monitor.py`に**11件**（採用不適格な候補の分別、重複・警告継続日数、候補0の誤検知防止、対象件数上限、地域失敗、監査の鮮度、1,234駅マスタのJSON読込と個別監視範囲の区別、可読ダッシュボード等）。従来217件＋11＝**228テストを次回Actionsで実測確認**。構文の実行確認はまだ。
+- **注意**：現在の「全国イベントの発見率」は未測定。正解イベント一覧を別途サンプリングしない限り、監視ダッシュボードの数値を「イベント網羅率」に換算しない。Phase 3の実測値は次回Run workflow成功後に確定する。
+- 次に必要な操作：最新版`main`から新しく **Run workflow**。204→217テスト拡張時と同様、古いworkflowのRe-runでは最新コードにならない。緑になったら監視JSONの`summary`、`warnings`、`reviewCandidates`、`appMasterPrefectures`、およびダッシュボードの内容・GitHub Actions warningsを確認する。
 
 ## 2026-10-11 Actions #66 全県累計達成！217テスト成功・本番で公式イベント5件追加
 
