@@ -1,10 +1,22 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-11 Actions #64 実測**（204テスト全件OK・現在73件/39県・累計42/47県・累計未攻略5都県・未再確認3件）  
+更新基準: **2026-10-11 Actions #64 確定＋残り5都県ルート追加**（累計42/47県・現行39県/73件。新27ルート/217テストは次回Actions未検証）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-11 残り5都県の公式情報ルートを新設（**次回Actions実行待ち**）
+
+- **変更前の確定実績**：Actions #64 は 204/204 tests 全件OK、歴代42/47県、現行39県・73イベント、累計未達5都県（東京・神奈川・和歌山・愛媛・鹿児島）。**以下の5県分はGitHubへコード・設定・オフライン合成HTMLのテストを反映しただけで、まだ本番新規登録は0件未検証**。すべての収集候補は開催日/現地活動/施設名を主催側の公式資料で調べて設定した。
+- **東京**：日本遺産「桑都物語」推進協議会公式の「桑都物語」デジタルクイズスタンプラリー（2026-10-03～11-05）。 **道の駅八王子滝山** は参加者が現地でクイズ/スタンプを獲得する8ヶ所の正式チェックポイントであり、道の駅自体が単独主催ではないことに注意。公式 `https://japan-heritage-soto.jp/` 配下の個別記事（source ID `tokyo_soto_heritage_official_station_checkpoint`）。`verified_official_checkpoint_program`はイベント題名、令和8年付き開催期間、`スポット：`一覧の駅名＋地点所在地、`各スポットで`実施するクイズ/スタンプの活動証拠を同一ページで照合。別会場を道の駅イベントと誤認しない。
+- **神奈川**：イベント主催側サイトの「かとうくみプレンティーズ原画展」 **2026-10-10〜11-23**、会場「道の駅 湘南ちがさき」`https://creativeweek.net/event-detail.php?no=37`。source ID `kanagawa_creativeweek_official_roadstation_art`。専用`verified_official_event_detail`は題名＋明示開始年＋同じ段落の終了日＋`会場：道の駅 湘南ちがさき`を要求する。
+- **和歌山**：和歌山県公式観光情報「～ようおこしなして～ 青洲まつり2026」、**2026-10-25**、`道の駅「青洲の里」`。公式 `https://www.wakayama-kanko.or.jp/events/detail_3879.html`（source ID `wakayama_prefecture_seishumatsuri_official`）。固有題名に記載された年と同一告知の`開催期間：10月25日`、`開催場所：道の駅「青洲の里」`がそろうことを要求。併せて海南サクアスの複数催し本文`_section_records`に「開催日時：」「開催場所：」などのラベル形式を追加、既存の区画別会場/日付チェックを維持。
+- **愛媛**：八幡浜みなっと構内のみなと交流館との共同運営メディア `Hitonari Magazine`（`note.com/y_hitonari`）。2026-09-22公開の「**NPOのための広報セミナー**」、**令和8年11月11日（水）**、会場「八幡浜みなっと みなと交流館」。一次掲載`https://note.com/y_hitonari/n/n92ade5cdf7bd`（source ID `ehime_minatto_official_hall_npo_seminar`）。`verified_official_event_detail`の`labeled_full_year_single`モードで「イベント開催日時」ラベル直後の年付き日付・「場所」ラベル直後の構内施設を別々に検証。失敗している市の産業まつりPDF URL (HTTP 404) は**そのまま監査対象として維持するが、新規イベント登録の根拠として再利用しない**。
+- **鹿児島**：道の駅への出店者・嵜本ベーカリー公式 `https://shokupan-sakimoto.com/news/kyusyusaiji_oct/`。「10月の九州の催事⑪」 **2026-10-25** 「催事先：道の駅 たるみず はまびら」「催事場所：施設内」。source ID `kagoshima_sakimoto_official_station_popup_oct`。`verified_official_vendor_schedule`で「⑪」だけの出店先・年付き開催日・施設内会場を採用。他の「⑩」や主催者サイトの住所は借りない。催事名は暫定的に公式の「10月の九州の催事⑪」を使用。
+- **設定型ルート：22 → 27**（新規5）。追加した**13件の回帰テスト**を含め、次回`Test event date extraction` は**217件予定**（旧204）。対象コード `scripts/station_discovery_engine.py`、設定 `data/station_event_discovery_sources.json`、試験 `scripts/test_station_discovery_engine.py`。最新 source IDs/URL はJSONそのものを正本とする。
+- **新規 Actions の `Run workflow` が必要**。#64の成功は上記新機能の合格を意味しない。緑になったら `data/station_event_discovery_audit.json` で5 source IDの `accepted`・`fetchErrors`・`reasons` を確認して、`data/prefecture_event_coverage.json` の`summary.historicalObservedPrefectures`が42→何県になったかを実測確定する。**47/47達成は5イベントの本番採用を確認するまで宣言禁止**。品質・未再確認監査も継続する。
+- Sources: 神奈川 Creative Week 公式個別記事、和歌山県観光公式告知と紀の川市公式案内、愛媛みなと交流館共同運営サイト告知、鹿児島出店者公式告知、東京日本遺産推進協議会公式記事。**周辺施設、里山保全地域、買物だけの立寄り等は対象外**。
 
 ## 2026-10-11 06:36〜06:43 JST Actions #64 本番成功（累計県数の保存を実測確認）
 
