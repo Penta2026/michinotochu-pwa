@@ -189,7 +189,9 @@ def _article_record(source, soup, listing_title, today, url):
             if not any(w in value for w in source["requiredVenueTokens"]):
                 return None, "offsite"
     if source.get("requireVenueLabel") and not has_venue_label:
-        return None, "venue_missing"
+        proof = source.get("venueProofPattern", "")
+        if not proof or not re.search(proof, body):
+            return None, "venue_missing"
     posted = _publication(soup, source, title, today)
     period = _article_period(title, lines, posted)
     if period is None and source.get("allowExplicitDatedParagraph"):
