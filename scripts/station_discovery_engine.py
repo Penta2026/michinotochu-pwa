@@ -23,7 +23,7 @@ HEADERS = {"User-Agent": "MichinotochuRoadEventBot/2.2 (official station article
 EVENT_WORDS = ("イベント", "祭", "まつり", "フェア", "マルシェ", "収穫", "公演",
                "コンサート", "まわし", "宴", "物産展", "体験", "市", "朝市",
                "販売会", "周年", "文化祭", "ツアー", "音楽", "フリマ",
-               "マーケット", "花火", "感謝祭", "ライブ")
+               "マーケット", "花火", "感謝祭", "ライブ", "試食販売", "実演販売", "ワークショップ", "販売")
 BLOCK = ("イベントカレンダー", "イベントスケジュール", "月間予定", "募集",
          "応募", "中止", "延期", "休館", "休業", "定休日", "締め切り",
          "締切", "開催しました", "終了しました", "レポート", "振り返り")
@@ -285,7 +285,11 @@ def _section_records(spec, soup, today, url):
     if article is None:
         return [], "no_article"
     body = clean(article.get_text(" ", strip=True))
-    if not any(w in body for w in spec["requiredVenueTokens"]):
+    # Some official station event roundups never repeat the station name
+    # inside the article. In this mode EVERY individual event still needs
+    # its own explicitly named, approved on-premises venue (see below).
+    if (not spec.get("trustArticleSectionsWithStationVenue") and
+            not any(w in body for w in spec["requiredVenueTokens"])):
         return [], "venue_missing"
     heading = _headline(soup, spec, "イベント案内")
     # Some site-specific title selectors are narrower than the article
