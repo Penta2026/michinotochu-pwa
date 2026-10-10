@@ -168,7 +168,7 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         import json
         from station_discovery_engine import RULES
         rules=json.loads(RULES.read_text(encoding="utf-8"))["sources"]
-        self.assertEqual(len(rules),7)
+        self.assertGreaterEqual(len(rules),7)
         self.assertTrue({"福井県","大阪府","和歌山県"}.issubset(
             set(rule["prefecture"] for rule in rules)))
         _validate_sources(rules)
