@@ -8,6 +8,7 @@ from collect_road_events import chugoku_period
 from hokkaido_events import parse_dates
 from kanto_events import event_period
 from chubu_events import bulletin_links, bulletin_date, verified_pdf_events
+from road_event_quality import reconcile
 
 class DateParsingTests(unittest.TestCase):
     def test_explicit_two_day(self):
@@ -122,6 +123,33 @@ class DateParsingTests(unittest.TestCase):
         got=verified_pdf_events(report,date(2026,10,10))
         self.assertEqual([(x["roadName"],x["endDate"]) for x in got],
                          [("古今伝授の里やまと","2026-10-18"),("柳津","2026-10-25")])
+
+    def test_reconcile_date_correction_without_duplicate(self):
+        base={"url":"https://official.example/events/1","roadName":"飯高駅",
+              "prefecture":"三重県","title":"感謝祭","startDate":"2026-10-24",
+              "endDate":"2026-10-24","status":"scheduled"}
+        newer=dict(base,endDate="2026-10-25")
+        records, audit=reconcile([base],[newer],date(2026,10,10))
+        self.assertEqual(len(records),1)
+        self.assertEqual(records[0]["endDate"],"2026-10-25")
+        self.assertEqual(len(audit["corrected"]),1)
+
+    def test_reconcile_distinct_same_day_events(self):
+        base={"url":"https://official.example/bulletin.pdf","roadName":"飯高駅",
+              "prefecture":"三重県","startDate":"2026-10-24",
+              "endDate":"2026-10-25","status":"scheduled"}
+        events=[dict(base,title="感謝祭"),dict(base,title="展示会")]
+        result,_=reconcile([],events,date(2026,10,10))
+        self.assertEqual(len(result),2)
+
+    def test_reconcile_cross_source_kept_for_review(self):
+        base={"url":"https://official.example/a","roadName":"飯高駅",
+              "prefecture":"三重県","title":"感謝祭",
+              "startDate":"2026-10-24","endDate":"2026-10-25"}
+        others=[base,dict(base,url="https://official.example/b")]
+        result,audit=reconcile([],others,date(2026,10,10))
+        self.assertEqual(len(result),2)
+        self.assertEqual(len(audit["possibleDuplicates"]),1)
 
     def test_no_dates(self):
         self.assertIsNone(_period("秋のイベント開催"))
