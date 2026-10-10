@@ -1,10 +1,25 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-11 Actions #64 確定＋残り5都県ルート追加**（累計42/47県・現行39県/73件。新27ルート/217テストは次回Actions未検証）  
+更新基準: **2026-10-11 Actions #66 本番達成**（217テスト全件OK、**累計47/47県＝100%達成**、現行44/47県・78イベント、未再確認3件）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-11 Actions #66 全県累計達成！217テスト成功・本番で公式イベント5件追加
+
+- [Actions #66](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38091011162) **全ステップ成功**（2026-10-11 07:19～07:26 JST）。`Test event date extraction` **217件全件OK**、収集監査・品質監査・47都道府県集計・Pages公開まで成功。#65で失敗した和歌山駅一覧の検証も解消。
+- **達成確定：`summary.historicalObservedPrefectures=47`、`summary.historicalNeverObservedPrefectures=0`。47/47都道府県すべてに一度以上、日付と駅内の場所/現地参加活動が公式一次情報から確認されたイベントを公開登録できた。**「47県の全道の駅を網羅した」ではない**。累計県数は歴史的実績で、現行の催事登録県数とは区別する。
+- **現行公開フィード：78イベント、44/47県**。現在0件の3県は終了イベントを除いた**滋賀・鳥取・徳島**（3県とも過去の累計登録済み）。直前#64の73件・現行39県から、今回**+5件・+5県**。
+- **5県で各1件の公式新規採用が本番監査JSONで確認された**（`station_event_discovery_audit.json`の各`accepted=1`,`checked=1`,`fetchFailed=0`）。
+  1. 東京 `tokyo_soto_heritage_official_station_checkpoint`：道の駅八王子滝山／**「桑都物語」デジタルクイズスタンプラリー**、2026-10-03〜11-05。主催側公式の**現地クイズ/スタンプ地点**。道の駅単独主催ではない。
+  2. 神奈川 `kanagawa_creativeweek_official_roadstation_art`：道の駅湘南ちがさき／**かとうくみプレンティーズ原画展**、2026-10-10〜11-23。
+  3. 和歌山 `wakayama_prefecture_seishumatsuri_official`：道の駅青洲の里／**青洲まつり2026**、2026-10-25。
+  4. 愛媛 `ehime_minatto_official_hall_npo_seminar`：八幡浜みなっと／**NPOのための広報セミナー**、2026-11-11。八幡浜市公式の産業まつりPDFは依然404。今回の達成は施設内セミナーの公式情報による。
+  5. 鹿児島 `kagoshima_sakimoto_official_station_popup_oct`：たるみずはまびら／**10月の九州の催事⑪（嵜本ベーカリー出張販売）**、2026-10-25。
+- 共通収集監査：`newEvents=5`／`reconfirmedEvents=7`。品質監査：`finalCount=78`, `possibleDuplicates=[]`, `expiredOrInvalid=[]`, `corrected=[]`, **`notReconfirmed`は3件**。現時点の未再確認は北海道「樹海ロード日高」、島根「ごいせ仁摩」、山口「阿武町」。残したイベントは自動削除せず、継続検証する。山口の記事は`no_article_content`で再確認保留。
+- **次の開発フェーズ**：47県累計達成を維持したうえで、(a) 現在0件の滋賀・鳥取・徳島に次の開催予定を見つける、(b) 未再確認3件の一次情報を厳密に再確認、(c) イベント数/駅数や新規取得先を拡充、(d) 現地参加ポイント・出張販売・単独主催などのイベント分類を必要に応じて設計する。
+- **次の Run workflow は不要**。この記録の変更は文書のみであり、#66の本番収集と217テストはすでに完了している。
 
 ## 2026-10-11 Actions #65 217テスト中1件失敗 → 和歌山の固定駅リスト修正（次回検証待ち）
 
