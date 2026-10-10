@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "mode": "new_official_article_discovery",
-  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp. Expanded with verified Fukui, Osaka and two Wakayama official station/onsite feeds. Multi-event Wakayama notices require section-specific date plus venue and are not whole-month events. Gap-prefecture-first expansion: six previously unconfigured prefectures (Iwate, Yamagata, Fukushima, Shizuoka, Yamaguchi, Ehime). Specialty article modes require article-local dates; no calendar month guessing. Verified additional official sources for Yamaguchi, Fukui, Osaka and Miyazaki; Kumamoto tourism listing is acceptable ONLY with explicit station venue; Osaka dated venue table is strict and cannot include unrelated listings.",
+  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp. Expanded with verified Fukui, Osaka and two Wakayama official station/onsite feeds. Multi-event Wakayama notices require section-specific date plus venue and are not whole-month events. Gap-prefecture-first expansion: six previously unconfigured prefectures (Iwate, Yamagata, Fukushima, Shizuoka, Yamaguchi, Ehime). Specialty article modes require article-local dates; no calendar month guessing. Verified additional official sources for Yamaguchi, Fukui, Osaka and Miyazaki; Kumamoto tourism listing is acceptable ONLY with explicit station venue; Osaka dated venue table is strict and cannot include unrelated listings. Municipal Ehime event-listing source for the officially documented Nov 22 Yawatahama industry festival at Michi-no-Eki Minatto, accept only explicit venue and event date.",
   "sources": [
     {
       "id": "tokyo_hachioji",
@@ -593,6 +593,35 @@
       "maxArticles": 10,
       "allowExplicitDatedParagraph": true,
       "allowEraDate": true
+    },
+    {
+      "id": "ehime_yawatahama_city_events",
+      "enabled": true,
+      "prefecture": "愛媛県",
+      "roadName": "八幡浜みなっと",
+      "listingUrl": "https://www.city.yawatahama.ehime.jp/event/2026/",
+      "allowedHosts": [
+        "www.city.yawatahama.ehime.jp"
+      ],
+      "articlePathPattern": "^/doc/[0-9]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article, main, .entry-content, .document-content, body",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1",
+        "h2"
+      ],
+      "publicationSelector": "time[datetime], .publish-date",
+      "requiredVenueTokens": [
+        "八幡浜みなっと"
+      ],
+      "allowedEventWords": [
+        "産業まつり"
+      ],
+      "maxArticles": 8,
+      "requireVenueLabel": true,
+      "allowExplicitDatedParagraph": true
     }
   ]
 }
