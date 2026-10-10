@@ -397,6 +397,28 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         rec,why=_article_record(spec,soup(html),"イベント",TODAY,URL)
         self.assertEqual((rec,why),(None,"undated"))
 
+    def test_fukushima_h3_detail_takes_priority_over_listing_post_date(self):
+        from station_discovery_engine import _headline
+        spec={**TOKYO,"requiredVenueTokens":["多目的広場"],
+              "allowedEventWords":["フェスタ"],"useListingPublicationDate":True}
+        listing="EVENT 2026.10.08 〖10/10(土)・11日(日)ガーデンプレイスフェスタ〗"
+        detail=soup("""<main><h3>〖10/10(土)・11日(日)ガーデンプレイスフェスタ〗</h3>
+                   <p>〖日時〗10月10日(土)・11日(日)</p>
+                   <p>〖場所〗多目的広場</p></main>""")
+        self.assertEqual(_headline(detail,spec,listing),
+                         "〖10/10(土)・11日(日)ガーデンプレイスフェスタ〗")
+
+    def test_fukushima_listing_posting_date_alone_never_becomes_event(self):
+        from station_discovery_engine import _article_record, _headline
+        spec={**TOKYO,"requiredVenueTokens":["多目的広場"],
+              "allowedEventWords":["フェスタ"],"useListingPublicationDate":True}
+        listing="EVENT 2026.10.08 ガーデンプレイスフェスタ"
+        detail=soup("""<main><p>日時は後日発表いたします</p>
+                   <p>〖場所〗多目的広場</p></main>""")
+        self.assertEqual(_headline(detail,spec,listing),"ガーデンプレイスフェスタ")
+        rec,why=_article_record(spec,detail,listing,TODAY,URL)
+        self.assertEqual((rec,why),(None,"undated"))
+
     def test_shizuoka_monthly_program_extracts_separately(self):
         from station_discovery_engine import _monthly_calendar_records
         spec={**TOKYO,"id":"shizuoka","prefecture":"静岡県",
