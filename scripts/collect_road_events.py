@@ -25,6 +25,7 @@ from kanto_remaining_prefectures import collect_kanto_remaining
 from kinki_five_prefectures import collect_kinki_five
 from chubu_events import audit_chubu_bulletin
 from road_event_quality import reconcile, write_report
+from verified_station_engine import reconfirm_known_articles
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -415,6 +416,14 @@ def main():
     chubu=audit_chubu_bulletin(NOW)
     generic=collect_generic_regions(NOW)
     collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido+hokuriku+kyushu_okinawa+kyushu_six+kanto+kanto_three+kanto_remaining+kinki_five+chubu
+    # Config-driven, conservative fallback for previously verified events
+    # missing from listing collectors this time. No invented events/dates.
+    try:
+        reconfirmed, fallback_audit = reconfirm_known_articles(NOW, old, collected)
+        collected += reconfirmed
+    except Exception as exc:
+        print(f"共通再確認の実行失敗。既存イベントを保持: {type(exc).__name__}: {exc}", file=sys.stderr)
+
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
