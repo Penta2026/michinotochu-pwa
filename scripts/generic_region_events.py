@@ -20,7 +20,7 @@ DATE = re.compile(r"(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日")
 END = re.compile(r"^[\s（()）月火水木金土日祝・]*[～〜~－–-]\s*(?:(\d{1,2})月\s*)?(\d{1,2})日")
 STATION = re.compile(r"道の駅\s*[「『]?([^」』\s（(、,。]{2,35})")
 LABEL = re.compile(r"(?:開催期間|開催日時|開催日|イベント日時|日時|日程)\s*[：:]?\s*(.{0,95})")
-LIMIT = 45
+LIMIT = 8
 
 def clean(value):
     return " ".join((value or "").split())
@@ -67,7 +67,7 @@ def collect_generic_regions(today):
             continue
         stats = {"candidate": 0, "parsed": 0, "missing_date": 0, "missing_station": 0, "missing_pref": 0, "error": 0}
         try:
-            response = requests.get(source["url"], headers=HEADERS, timeout=12)
+            response = requests.get(source["url"], headers=HEADERS, timeout=8)
             response.raise_for_status()
             soup = BeautifulSoup(response.text, "html.parser")
         except requests.RequestException as exc:
@@ -93,7 +93,7 @@ def collect_generic_regions(today):
         stats["candidate"] = len(candidates)
         for url, (title, context) in candidates.items():
             try:
-                res = requests.get(url, headers=HEADERS, timeout=12)
+                res = requests.get(url, headers=HEADERS, timeout=8)
                 res.raise_for_status()
                 detail = BeautifulSoup(res.text, "html.parser")
             except requests.RequestException:
