@@ -49,7 +49,7 @@ def date_from_parts(groups):
     except (ValueError, TypeError):
         return None
 
-def publication_date(soup):
+def publication_date(soup, article_title=None):
     """Publication date only establishes the year of abbreviated event dates."""
     for meta in soup.select('meta[property="article:published_time"], meta[name="date"], meta[itemprop="datePublished"]'):
         match = POST_DATE.search(clean(meta.get("content", "")))
@@ -59,11 +59,34 @@ def publication_date(soup):
         match = POST_DATE.search(clean(node.get("datetime", "") or node.get_text(" ", strip=True)))
         if match:
             return date_from_parts(match.groups())
+    # Date-stamped nodes are frequently plain spans/divs with site-specific
+    # classes, rather than <time> or the standard WordPress .entry-date class.
+    for node in soup.select('[class*="date"], [class*="Date"], [class*="publish"], [class*="Publish"], [itemprop="datePublished"]'):
+        value = clean(node.get("datetime", "") or node.get("content", "") or
+                      node.get_text(" ", strip=True))
+        if len(value) > 48:
+            continue
+        match = POST_DATE.search(value)
+        if match:
+            return date_from_parts(match.groups())
     # Article heading area only: never the full page, which contains other posts.
     for node in soup.select("article header, .entry-header"):
         match = POST_DATE.search(clean(node.get_text(" ", strip=True))[:200])
         if match:
             return date_from_parts(match.groups())
+    # Final fallback: a *standalone full-year date line* immediately beside a
+    # matching article heading. Do not take unrelated dates from the page body.
+    if article_title:
+        title = clean(article_title)
+        lines = [clean(line) for line in soup.get_text("\\n", strip=True).splitlines()]
+        for i, line in enumerate(lines):
+            if len(title) < 7 or line != title:
+                continue
+            for nearby in lines[max(0, i-2):min(len(lines), i+5)]:
+                label = re.sub(r"^(?:掲載日|投稿日|公開日|更新日)[：:]?\\s*", "", nearby)
+                match = POST_DATE.fullmatch(label)
+                if match:
+                    return date_from_parts(match.groups())
     return None
 
 def event_period(fragment, published):
@@ -151,7 +174,9 @@ def collect_kyushu_okinawa(today):
     for spec in SOURCES:
         stats = {"station": spec["name"], "prefecture": spec["prefecture"],
                  "listUrl": spec["list"], "candidates": 0, "checked": 0,
-                 "accepted": 0, "noDate": 0, "past": 0, "failed": 0,
+                 "accepted": 0, "noDate": 0, "missingPublication": 0,
+                 "missingEventDate": 0, "past": 0, "failed": 0,
+                 "sampleMissingPublication": [], "sampleMissingEventDate": [],
                  "sampleAccepted": [], "error": ""}
         try:
             res = requests.get(spec["list"], headers=HEADERS, timeout=18)
@@ -177,13 +202,30 @@ def collect_kyushu_okinawa(today):
                     stats["failed"] += 1
                     continue
                 stats["checked"] += 1
-                published = publication_date(detail)
+                published = publication_date(detail, title)
                 if not published:
                     stats["noDate"] += 1
+                    stats["missingPublication"] += 1
+                    if len(stats["sampleMissingPublication"]) < 4:
+                        stats["sampleMissingPublication"].append({
+                            "title": title, "url": url,
+                            "headingText": clean(detail.select_one("h1").get_text(" ", strip=True))
+                            if detail.select_one("h1") else "",
+                            "dateClassNames": [str(node.get("class")) for node in detail.select(
+                                '[class*="date"], [class*="Date"]')[:6]],
+                        })
                     continue
                 p = article_event_period(detail, title, published)
                 if not p:
                     stats["noDate"] += 1
+                    stats["missingEventDate"] += 1
+                    if len(stats["sampleMissingEventDate"]) < 4:
+                        stats["sampleMissingEventDate"].append({
+                            "title": title, "url": url, "published": published.isoformat(),
+                            "articleSample": clean((detail.select_one(".entry-content") or
+                                detail.select_one("article") or detail.select_one("main") or
+                                detail).get_text(" ", strip=True))[:270]
+                        })
                     continue
                 if p[1] < today.isoformat():
                     stats["past"] += 1
