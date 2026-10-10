@@ -151,7 +151,7 @@
       ],
       "articlePathPattern": "^/event/[0-9]+/?$",
       "listingLinkSelector": "a[href]",
-      "articleSelector": "article, main, .entry-content, .single, .detail, body",
+      "articleSelector": ".entry-content, main, article, .single, .detail, body",
       "titleSelectors": [
         "main h1",
         "main h2",
