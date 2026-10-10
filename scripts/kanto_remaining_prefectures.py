@@ -93,7 +93,7 @@ def event_period(value, published=None):
     return start.isoformat(),end.isoformat()
 
 def _get(url):
-    r=requests.get(url,headers=HEADERS,timeout=13)
+    r=requests.get(url,headers=HEADERS,timeout=11)
     r.raise_for_status()
     if not r.encoding or r.encoding.lower()=="iso-8859-1":
         r.encoding=r.apparent_encoding
@@ -169,13 +169,18 @@ def article_event_period(spec,title,body,published):
             return p
     # Body needs an explicit event-date LABEL. Do not take unrelated opening
     # dates, application deadlines, last year's schedule or footer timestamps.
-    for line in re.split(r"[\n。]|(?=【[^】]{1,16}】)", body):
+    lines=re.split(r"[\n。]|(?=【[^】]{1,16}】)", body)
+    for idx,line in enumerate(lines):
         value=clean(line)
         match=LABEL.search(value[:65])
-        if match:
-            p=event_period(value[match.end():match.end()+90],published)
-            if p:
-                return p
+        if not match:
+            continue
+        snippet=value[match.end():match.end()+90]
+        if not snippet and idx+1<len(lines):
+            snippet=clean(lines[idx+1])[:90]
+        p=event_period(snippet,published)
+        if p:
+            return p
     return None
 
 def parse_one(spec,title,soup,published,today,url):
@@ -211,7 +216,7 @@ def collect_kanto_remaining(today):
             a["listingError"]=f"{type(exc).__name__}: {str(exc)[:135]}"
             links={url:{"headline":"","context":""} for url in spec.get("seed",())}
         a["candidates"]=len(links)
-        for url,data in list(links.items())[:24]:
+        for url,data in list(links.items())[:10]:
             try:
                 detail=_get(url)
             except requests.RequestException:
