@@ -16,6 +16,7 @@ from region_official_events import collect_tohoku
 from regional_association_events import collect_regional_associations
 from generic_region_events import collect_generic_regions
 from hokkaido_events import collect_hokkaido
+from kanto_events import collect_kanto
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -348,8 +349,13 @@ def main():
     except requests.RequestException as exc:
         print(f"北海道の取得失敗。既存データを維持: {exc}", file=sys.stderr)
         hokkaido=[]
+    try:
+        kanto=collect_kanto(NOW)
+    except requests.RequestException as exc:
+        print(f"関東の取得失敗。既存データを維持: {exc}", file=sys.stderr)
+        kanto=[]
     generic=collect_generic_regions(NOW)
-    collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido
+    collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido+kanto
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
