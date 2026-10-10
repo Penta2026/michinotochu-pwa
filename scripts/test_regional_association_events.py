@@ -49,6 +49,11 @@ class DateParsingTests(unittest.TestCase):
         self.assertEqual(parse_dates("2026年10月17日、18日", date(2026, 10, 10)),
                          ("2026-10-17", "2026-10-18"))
 
+    def test_hokkaido_short_date_requires_context(self):
+        self.assertEqual(parse_dates("10月11日(日) 道の駅フェスト",date(2026,10,10),allow_short=True),
+                         ("2026-10-11","2026-10-11"))
+        self.assertIsNone(parse_dates("10月11日(日) 道の駅フェスト",date(2026,10,10)))
+
     def test_hokkaido_invalid(self):
         self.assertIsNone(parse_dates("2026年2月31日", date(2026, 1, 1)))
 
