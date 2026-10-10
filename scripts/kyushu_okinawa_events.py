@@ -240,7 +240,15 @@ def kadena_explicit_venue_period(soup, title, published):
             continue
         if event_name not in sentence or "開催" not in sentence:
             continue
-        dates = list(DATE_TOKEN.finditer(sentence))
+        dates = []
+        for match in DATE_TOKEN.finditer(sentence):
+            # Kadena places its article publication date immediately before
+            # its event sentence; that date is metadata, not a second event.
+            if match.group(1):
+                parsed = date_from_parts(match.groups()[:3])
+                if parsed == published:
+                    continue
+            dates.append(match)
         if len(dates) != 1:
             continue
         # The date must precede the named venue and the event's announcement.
