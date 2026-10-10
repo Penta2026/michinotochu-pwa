@@ -14,7 +14,6 @@ from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 from kyushu_okinawa_events import publication_date
-from kanto_three_prefectures import parse_period as kanto_period
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "data" / "kanto_remaining_prefectures_audit.json"
@@ -45,7 +44,7 @@ SKIP=("募集","応募","締切","休館","定休日","臨時休業","営業の�
       "延期","終了しました","参加者募集","年間スケジュール")
 DATE_TOKEN=re.compile(r"(?:(20\d{2})[年./-]\s*)?(\d{1,2})[月./-]\s*(\d{1,2})日?(?:\s*\(([月火水木金土日])(?:[^)]{0,6})\))?")
 DATE_POST=re.compile(r"(20\d{2})[年./-](\d{1,2})[月./-](\d{1,2})日?")
-RANGE_END=re.compile(r"^\s*[～〜~▶▷\-－–・、]\s*(?:(\d{1,2})[月./-])?\s*(\d{1,2})日?(?:\s*\(([月火水木金土日])(?:[^)]{0,6})\))?")
+RANGE_END=re.compile(r"^\s*[～〜~▶▷\-－–・、]\s*(?:(\d{1,2})[月./-])?\s*(\d{1,2})(?:日(?!\d)|(?![\d年月]))(?:\s*\(([月火水木金土日])(?:[^)]{0,6})\))?")
 LABEL=re.compile(r"(?:開催日時|開催期間|開催日|イベント日時|日程|日にち|日時)\s*[:：]?\s*")
 WEEKDAYS="月火水木金土日"
 
@@ -162,11 +161,6 @@ def article_event_period(spec,title,body,published):
     p=event_period(title,published)
     if p:
         return p
-    # Event-specific title may have only month/day (year is publishedAt).
-    if published:
-        p=event_period(title,published)
-        if p:
-            return p
     # Body needs an explicit event-date LABEL. Do not take unrelated opening
     # dates, application deadlines, last year's schedule or footer timestamps.
     lines=re.split(r"[\n。]|(?=【[^】]{1,16}】)", body)
