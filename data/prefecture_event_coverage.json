@@ -11,13 +11,14 @@
     "prefectureCount": 47,
     "observedPrefectures": 42,
     "zeroRegisteredPrefectures": 5,
-    "registeredEvents": 81,
+    "registeredEvents": 82,
     "targetedStationFeedPrefectures": 25,
-    "notReconfirmedEvents": 1,
+    "notReconfirmedEvents": 2,
     "unknownPrefectures": []
   },
   "priorities": {
     "reconfirm": [
+      "北海道",
       "山口県"
     ],
     "noEventsButTargetedFeed": [
@@ -35,7 +36,7 @@
       "prefectureCount": 1,
       "observedPrefectures": 1,
       "zeroRegisteredPrefectures": [],
-      "registeredEventCount": 4,
+      "registeredEventCount": 5,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 12
     },
@@ -125,7 +126,7 @@
     {
       "prefecture": "北海道",
       "reportingRegion": "北海道",
-      "eventCount": 4,
+      "eventCount": 5,
       "observedStations": [
         "たきかわ",
         "樹海ロード日高",
@@ -134,9 +135,9 @@
       ],
       "observedStationCount": 4,
       "targetedStationFeeds": [],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 2,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 12,
       "regionalAuditMode": "discovery"

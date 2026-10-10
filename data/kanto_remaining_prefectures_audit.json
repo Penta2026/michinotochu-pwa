@@ -8,12 +8,12 @@
       "source": "https://www.michinoeki-shonan.jp/",
       "listingError": "",
       "candidates": 7,
-      "checked": 7,
+      "checked": 6,
       "accepted": 2,
       "past": 0,
-      "undated": 5,
+      "undated": 4,
       "skipped": 0,
-      "errors": 0,
+      "errors": 1,
       "examples": [
         {
           "title": "10月10日 道の駅しょうなん「手賀沼フォトDAY」開催",
@@ -34,16 +34,16 @@
           "url": "https://www.michinoeki-shonan.jp/news/2953/"
         },
         {
-          "title": "学校等による施設見学のお申込みについて 詳細",
-          "url": "https://www.michinoeki-shonan.jp/news/1680/"
-        },
-        {
           "title": "道の駅しょうなんお客様アンケート 詳細",
           "url": "https://www.michinoeki-shonan.jp/news/1682/"
         },
         {
           "title": "知産知消マルシェ「熊本の道の駅応援フェア」を開催します",
           "url": "https://www.michinoeki-shonan.jp/news/3187/"
+        },
+        {
+          "title": "2026年10月08日(木) イベント 大屋根ひろば 10月17日 「全国造園フェスティバル」開催",
+          "url": "https://www.michinoeki-shonan.jp/news/3170/"
         }
       ]
     },

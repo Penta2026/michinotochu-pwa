@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "checked": 5,
+  "checked": 6,
   "reconfirmed": 5,
-  "alreadyCollected": 75,
+  "alreadyCollected": 74,
   "outsideRegistry": 1,
   "failed": 0,
-  "inconclusive": 0,
+  "inconclusive": 1,
   "sources": {
     "fukushima_michinoeki": {
       "checked": 1,
@@ -30,6 +30,12 @@
       "reconfirmed": 1,
       "failed": 0,
       "inconclusive": 0
+    },
+    "yamaguchi_abu": {
+      "checked": 1,
+      "reconfirmed": 0,
+      "failed": 0,
+      "inconclusive": 1
     }
   },
   "checks": [
@@ -67,6 +73,13 @@
       "title": "【NiQLL`sキッチン】11月 秋の蕎麦打ち体験 午前・午後の部",
       "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%9111%e6%9c%88%e3%80%80%e7%a7%8b%e3%81%ae%e8%95%8e%e9%ba%a6%e6%89%93%e3%81%a1%e4%bd%93%e9%a8%93/",
       "result": "reconfirmed"
+    },
+    {
+      "station": "阿武町",
+      "prefecture": "山口県",
+      "title": "令和8年11月29日(日)第49回森里海の市を開催します。",
+      "url": "https://www.abucreation.com/topics/%e4%bb%a4%e5%92%8c6%e5%b9%b410%e6%9c%8813%e6%97%a5%ef%bc%88%e6%97%a5%ef%bc%89%e7%ac%ac30%e5%9b%9e%e6%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99/",
+      "result": "no_article_content"
     }
   ]
 }

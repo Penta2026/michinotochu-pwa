@@ -98,10 +98,6 @@
       "title": "泊村×真狩村 観光物産展 開催!! NEW"
     },
     {
-      "roadName": "樹海ロード日高",
-      "title": "日高町道の駅フェスト開催のお知らせ NEW"
-    },
-    {
       "roadName": "たきかわ",
       "title": "10月17日、18日は道の駅たきかわ大収穫祭です!"
     },
@@ -329,6 +325,14 @@
   "possibleDuplicates": [],
   "notReconfirmed": [
     {
+      "roadName": "樹海ロード日高",
+      "title": "日高町道の駅フェスト開催のお知らせ NEW",
+      "startDate": "2026-10-11",
+      "endDate": "2026-10-11",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
       "roadName": "阿武町",
       "title": "令和8年11月29日(日)第49回森里海の市を開催します。",
       "startDate": "2026-11-29",
@@ -337,7 +341,7 @@
       "reason": "not_found_in_current_collection"
     }
   ],
-  "finalCount": 81,
+  "finalCount": 82,
   "futurePublicationDatesCleared": [
     {
       "url": "https://wachi-nagomi.com/topics/post-10529/",

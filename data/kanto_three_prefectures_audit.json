@@ -4,11 +4,11 @@
     {
       "prefecture": "茨城県",
       "source": "https://www.pref.ibaraki.jp/hokenfukushi/shofuku/kikaku/noufuku/documents/r7_nouhukumarusye2.html",
-      "status": "fetch_failed",
+      "status": "checked",
       "candidates": 0,
       "accepted": 0,
       "examples": [],
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://www.pref.ibaraki.jp/hokenfukushi/shofuku/kikaku/noufuku/documents/r7_nouhukumarusye2.html"
+      "error": ""
     },
     {
       "prefecture": "茨城県",
