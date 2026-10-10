@@ -421,7 +421,7 @@ def main():
     # Pass old and all current results to skip already verified article URLs.
     try:
         discovered, discovery_audit = collect_configured_station_events(
-            NOW, old + collected)
+            NOW, old + collected, reconfirm_previous=old)
         collected += discovered
     except Exception as exc:
         print(f"設定型新着記事収集失敗。既存イベントを維持: {type(exc).__name__}: {exc}", file=sys.stderr)
