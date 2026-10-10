@@ -1,5 +1,7 @@
 """Hokuriku official event-calendar collector: station + explicit date range."""
 import re
+import json
+from pathlib import Path
 from datetime import date, timedelta
 from urllib.parse import urljoin, urlparse, parse_qs
 import requests
@@ -91,10 +93,19 @@ def extract_hokuriku_cards(soup, today, page_url):
     return list(records.values()), diagnostics
 
 
+AUDIT_FILE = Path(__file__).resolve().parents[1] / "data" / "hokuriku_event_audit.json"
+
+def save_hokuriku_audit(pages, total):
+    audit = {"schemaVersion": 1, "pages": pages, "accepted": total}
+    content = json.dumps(audit, ensure_ascii=False, indent=2) + "\n"
+    if not AUDIT_FILE.exists() or AUDIT_FILE.read_text(encoding="utf-8") != content:
+        AUDIT_FILE.write_text(content, encoding="utf-8")
+
 def collect_hokuriku(today):
     # A week-based official calendar; request overlapping weeks to capture
     # ongoing and upcoming events, with a bounded number of network calls.
     found = {}
+    audits = []
     for offset in (0, 7, 14, 21, 28, 35):
         day = today + timedelta(days=offset)
         url = CALENDAR + "?dc=" + day.isoformat()
@@ -103,13 +114,29 @@ def collect_hokuriku(today):
             response.raise_for_status()
         except requests.RequestException as exc:
             print(f"北陸カレンダー取得失敗 {url}: {exc}")
+            audits.append({"date": day.isoformat(), "url": url, "error": str(exc)[:180]})
             continue
         soup = BeautifulSoup(response.text, "html.parser")
         records, stats = extract_hokuriku_cards(soup, today, response.url)
+        links = [urljoin(response.url, a.get("href", "")) for a in soup.select("a[href]")]
+        event_links = [href for href in links if "/contents/event" in urlparse(href).path]
+        page_text = soup.get_text(" ", strip=True)
+        audits.append({
+            "date": day.isoformat(), "url": response.url,
+            "htmlSize": len(response.content), "links": len(links),
+            "eventLinks": len(event_links),
+            "sampleEventLinks": event_links[:5],
+            "stationsInPage": [station for station in STATIONS if station in page_text],
+            "articleLinks": stats["articleLinks"],
+            "matchedCards": stats["matchedCards"],
+            "unmatchedArticleLinks": stats["unmatchedArticleLinks"],
+            "sampleText": page_text[:220]
+        })
         for item in records:
             found[(item["roadName"], item["url"], item["startDate"])] = item
         print(f"北陸公式 {day.isoformat()}: 詳細リンク {stats['articleLinks']} / "
               f"駅・期間照合 {len(records)} / 未照合 {stats['unmatchedArticleLinks']}")
         if not records:
             print(f"北陸公式・サンプル: {soup.get_text(' ', strip=True)[:220]}")
+    save_hokuriku_audit(audits, len(found))
     return list(found.values())
