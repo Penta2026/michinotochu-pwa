@@ -151,7 +151,7 @@
       ],
       "articlePathPattern": "^/event/[0-9]+/?$",
       "listingLinkSelector": "a[href]",
-      "articleSelector": "main, article",
+      "articleSelector": "article, main, .entry-content, .single, .detail, body",
       "titleSelectors": [
         "main h1",
         "main h2",
@@ -159,7 +159,7 @@
         "h1",
         "h2"
       ],
-      "publicationSelector": "time[datetime],meta[property='article:published_time']",
+      "publicationSelector": "time[datetime],meta[property='article:published_time'], .date, .day",
       "requiredVenueTokens": [
         "海南サクアス"
       ],
@@ -175,6 +175,19 @@
         "海の広場",
         "店内",
         "マルシェ"
+      ],
+      "allowedEventWords": [
+        "猿まわし",
+        "マルシェ",
+        "ワークショップ",
+        "物産展",
+        "試食販売",
+        "販売",
+        "体験",
+        "催し",
+        "LIVE",
+        "音楽",
+        "フェア"
       ]
     },
     {
@@ -499,12 +512,16 @@
         "奥河内くろまろの郷"
       ],
       "allowedEventWords": [
-        "くろまろマルシェ",
+        "奥河内くろまろマルシェ",
         "くろまろの郷イベント",
         "手作りバザール"
       ],
       "maxArticles": 10,
-      "articleMode": "dated_station_table"
+      "articleMode": "dated_station_table",
+      "requireCategoryTokens": [
+        "バザール広場イベント",
+        "空きスペースイベント"
+      ]
     },
     {
       "id": "kumamoto_minamiaso_official_tourism",
@@ -560,8 +577,7 @@
       "publicationSelector": "time[datetime],.entry-date",
       "requiredVenueTokens": [
         "NiQLL",
-        "ニクル",
-        "道の駅"
+        "ニクル"
       ],
       "allowedEventWords": [
         "蕎麦打ち",
