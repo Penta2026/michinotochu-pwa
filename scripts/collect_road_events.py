@@ -365,6 +365,11 @@ def main():
     # pagination, a transient layout change, or an incomplete regional feed.
     # Never delete future verified events merely because another event was found.
     preserved=[x for x in old if x.get("endDate","")>=NOW.isoformat()]
+    # Remove erroneous Chubu PDF records produced by the old parser that
+    # interpreted a leading end-date marker as a single-day event.
+    preserved=[x for x in preserved if not (
+        "chubu-michinoeki.org/pdf/" in x.get("url","") and
+        re.match(r"^\\s*●\\s*[～〜~]", x.get("title","")))]
     combined={ (x["url"],x["roadName"],x["title"],x["startDate"]):x for x in preserved+collected}
     final=sorted(combined.values(),key=lambda x:(x["startDate"],x["roadName"],x["title"]))
     # Avoid needless file changes when only collection date differs.
