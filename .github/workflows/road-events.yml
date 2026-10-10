@@ -30,7 +30,7 @@ jobs:
       - name: Check Python syntax
         run: python -m compileall -q scripts
       - name: Test event date extraction
-        run: PYTHONPATH=scripts python -m unittest scripts/test_regional_association_events.py scripts/test_prefecture_event_coverage.py scripts/test_kanto_three_prefectures.py scripts/test_kanto_remaining_prefectures.py scripts/test_kinki_five_prefectures.py
+        run: PYTHONPATH=scripts python -m unittest scripts/test_regional_association_events.py scripts/test_prefecture_event_coverage.py scripts/test_kanto_three_prefectures.py scripts/test_kanto_remaining_prefectures.py scripts/test_kinki_five_prefectures.py scripts/test_verified_station_engine.py
       - name: Audit nine official regional sources
         run: python scripts/nationwide_source_audit.py
       - name: Retrieve official event listings
@@ -39,7 +39,7 @@ jobs:
         run: python scripts/prefecture_event_coverage.py
       - name: Commit only if event data changed
         run: |
-          git add data/road_events.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json data/hokuriku_event_audit.json data/kyushu_okinawa_event_audit.json data/kyushu_six_prefectures_audit.json data/prefecture_event_coverage.json data/kanto_three_prefectures_audit.json data/kanto_remaining_prefectures_audit.json data/kinki_five_prefectures_audit.json
+          git add data/road_events.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json data/hokuriku_event_audit.json data/kyushu_okinawa_event_audit.json data/kyushu_six_prefectures_audit.json data/prefecture_event_coverage.json data/kanto_three_prefectures_audit.json data/kanto_remaining_prefectures_audit.json data/kinki_five_prefectures_audit.json data/verified_station_reconfirmation_audit.json
           if git diff --cached --quiet; then
             echo "イベントデータに変更なし"
             exit 0
