@@ -195,7 +195,7 @@ Phase 2の宣言的設定ファイル`data/station_event_discovery_sources.json`
 - 年根拠は明示された`令和8年`／`R8`／西暦、または信頼できる記事の公開年月日から得る。ページに年月が無い場合に2026年を推測しない。
 - 公式の「記事を見つけたが日付なし」と「一覧に候補なし」を区別するため、監査の`rejectedExamples`に**最大5件の拒否理由・記事見出し・URL**を記録。
 - 和歌山の月間告知のうち、掲載先公式ドメインと個別セクションの**明示された駅内会場**が一致するときに限り、記事本文に駅名が繰り返されなくても個別開催日を採用。曜日不一致・年根拠不明は従来どおり除外。
-- テストは`scripts/test_station_discovery_engine.py`に大阪・山口・愛媛・長崎・熊本・宮崎・鹿児島・和歌山の監査・安全性例を追加。**GitHub Actionsでの成功・実際の11都府県の増減は未確認**。
+- テストは`scripts/test_station_discovery_engine.py`に大阪・山口・愛媛・長崎・熊本・宮崎・鹿児島・和歌山の監査・安全性例を追加。**57件**のPhase 2単体テストで検証。記事本文のCSS選択は`article`→`main`→`body`の設定順を優先して、ページ全体の見出しや過年度開催日を記事として拾わない。**GitHub Actionsでの成功・実際の11都府県の増減は未確認**。
 - 進捗検証は`data/station_event_discovery_audit.json`の各県の`candidates`、`checked`、`accepted`、`fetchFailed`、`reasons`、`rejectedExamples`と、実データ`road_events.json`／品質レポートを照合する。緑だけでは11都府県の収集完了を宣言しない。
 
 ## 次回GitHub Actions確認
