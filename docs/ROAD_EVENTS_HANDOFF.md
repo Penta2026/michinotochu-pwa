@@ -6,6 +6,12 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-10 Actions #58 失敗・公式収集ルート数のテスト修正済み（再検証待ち）
+
+- [Actions #58](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38036930198) は **198テスト中1件失敗（197成功）**で停止。失敗箇所は `test_eleven_zero_event_prefectures_have_new_official_choices` の厳密な `len(sources) == 21` 判定。愛媛のPDFルート追加で設定ファイルは**22ルート**となったため期待値が陳腐化した。
+- 修正：`scripts/test_station_discovery_engine.py` の該当テストを `test_expanded_official_choices_remain_valid_when_routes_are_added` に変更。`len(sources) >= 22`、従来の都府県を含む設定、追加した愛媛公式PDFルートの固有ID・モード・県名、全件enabled、および設定検証 `_validate_sources` を確認。今後ルートを増やしても単なる件数増では失敗しない。
+- 修正コミット：`0fbcb6eb`。**新規のRun workflowで198テストと愛媛PDF本番収集を検証する必要あり**。今回の#58は本番収集・県別集計に進んでいないため、確定実績は#57の**全国81件・42/47県・未登録5都県・未再確認3件**のまま。
+
 ## 2026-10-10 16:54〜17:00 JST Actions #57 本番検証成功／次の5都県へ
 
 - [Actions #57](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38036020381) **成功**。**193テスト全件OK**、全国収集と47県監査も実行完了。
