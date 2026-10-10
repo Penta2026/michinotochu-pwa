@@ -78,6 +78,58 @@ def parse_dates(text, today, *, allow_short=False):
         return None
     return first.isoformat(), last.isoformat()
 
+def _posted_year_for_notice(detail, title):
+    """Ground abbreviated dates in the official article's publication year."""
+    from kyushu_okinawa_events import publication_date
+    posted = publication_date(detail, title)
+    if posted:
+        return posted
+    # Some Hokkaido station pages display the posting day as a plain text
+    # immediately after the post heading, without <time datetime>.
+    needle = normalize(title).replace(" NEW", "").strip()
+    for header in detail.select("article h1, article h2, main h1, main h2, h1, h2"):
+        heading = normalize(header.get_text(" ", strip=True))
+        if not needle or len(needle) < 7 or (needle not in heading and heading not in needle):
+            continue
+        for sib in header.find_next_siblings(limit=4):
+            line = normalize(sib.get_text(" ", strip=True))
+            if len(line) > 70:
+                continue
+            m = DATE.fullmatch(line)
+            if m:
+                try:
+                    return date(*(int(x) for x in m.groups()))
+                except ValueError:
+                    pass
+    return None
+
+
+def _station_sentence_period(detail, title, road, today):
+    """Recover a date from an official event announcement paragraph only."""
+    posted = _posted_year_for_notice(detail, title)
+    if not posted or posted > today:
+        return None
+    article = detail.select_one("article") or detail.select_one("main")
+    if article is None:
+        return None
+    for node in article.select("p, li"):
+        line = normalize(node.get_text(" ", strip=True))
+        if not 12 <= len(line) <= 230 or not SHORT.search(line):
+            continue
+        # Avoid unrelated dates, related-news widgets and notices.
+        if node.find_parent(["footer", "aside", "nav"]):
+            continue
+        if not any(w in line for w in EVENT_TERMS) or any(
+            w in line for w in ("募集", "締切", "過去", "終了", "中止", "延期", "投稿日")):
+            continue
+        if road not in line and ("道の駅" + road) not in line:
+            continue
+        period = parse_dates(line, posted, allow_short=True)
+        if period and period[1] >= today.isoformat():
+            return period
+    return None
+
+
 def collect_hokkaido(today):
     session = requests.Session()
     response = session.get(HOME, headers=HEADERS, timeout=15)
@@ -160,6 +212,10 @@ def collect_hokkaido(today):
                     if dates:
                         print(f"北海道・本文から日付確定: {road} / {value[:75]}")
                         break
+        if dates is None:
+            dates = _station_sentence_period(detail, title, road, today)
+            if dates:
+                print(f"北海道・記事本文と掲載日から再確認: {road} / {dates[0]}")
         if dates is None:
             stats["no_date"] += 1
             print(f"北海道・日付未確定: {road} / {title}")
