@@ -103,6 +103,16 @@ BULLETIN_DAY = re.compile(r"([0-9]{1,2})月\s*([0-9]{1,2})日")
 BULLETIN_END = re.compile(r"^[\s㈪㈫㈬㈭㈮㈯㈰（）()月火水木金土日祝・]*[～〜~－–・-]\s*(?:([0-9]{1,2})月\s*)?([0-9]{1,2})日")
 STATION_MARKERS = "❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴㉑㉒㉓㉔㉕㊺"
 
+WEEKDAY_MARK = {"月": 0, "火": 1, "水": 2, "木": 3, "金": 4, "土": 5, "日": 6}
+WEEKDAY_CIRCLED = {"㈪": 0, "㈫": 1, "㈬": 2, "㈭": 3, "㈮": 4, "㈯": 5, "㈰": 6}
+
+def printed_weekday_matches(date_value, following):
+    m = re.match(r"\s*(?:[（(]\s*)?([月火水木金土日]|[㈪㈫㈬㈭㈮㈯㈰])", following)
+    if not m:
+        return True
+    expected = WEEKDAY_MARK.get(m.group(1), WEEKDAY_CIRCLED.get(m.group(1)))
+    return expected == date_value.weekday()
+
 def bulletin_date(text, year):
     value = unicodedata.normalize("NFKC", text)
     # A leading range marker means the start date is unknown. Its end date
@@ -119,6 +129,8 @@ def bulletin_date(text, year):
         return None
     last = first
     tail = value[start_match.end():start_match.end()+25]
+    if not printed_weekday_matches(first, tail):
+        return None
     end_match = BULLETIN_END.match(tail)
     if end_match:
         em = int(end_match.group(1) or month)
@@ -126,6 +138,8 @@ def bulletin_date(text, year):
             last = date(year + (1 if em < month else 0), em, int(end_match.group(2)))
         except ValueError:
             return None
+    if end_match and not printed_weekday_matches(last, tail[end_match.end():]):
+        return None
     if not 0 <= (last - first).days <= 31:
         return None
     return first.isoformat(), last.isoformat()
@@ -162,6 +176,10 @@ def verified_pdf_events(report, today):
                          if 0 <= row["y"] - station["y"] <= 65]
             if preceding:
                 closest, road = max(preceding, key=lambda item: item[0]["y"])
+                upcoming = [(station, name) for station, name in same_side
+                            if 0 < station["y"] - row["y"] < row["y"] - closest["y"]]
+                if upcoming and road not in title:
+                    continue
             else:
                 # Legacy safe case: station name explicitly repeated in the
                 # event title, with a nearby label that may be printed later.
