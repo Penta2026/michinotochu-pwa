@@ -124,6 +124,27 @@ def collect_hokkaido(today):
             if year_match and int(year_match.group(1)) == today.year:
                 dates = parse_dates(title, today, allow_short=True)
         if dates is None:
+            # Some station notices put a short date next to the event name
+            # without a "開催日" label. Require explicit publication year and
+            # a short, event-specific text node; never scan the entire page.
+            date_meta = detail.select_one('meta[property="article:published_time"], time[datetime]')
+            stamp = (date_meta.get("content") or date_meta.get("datetime") or "") if date_meta else ""
+            valid_year = re.match(r"(20[0-9]{2})", stamp)
+            article = detail.select_one("article") or detail.select_one("main")
+            if valid_year and int(valid_year.group(1)) == today.year and article:
+                for node in article.select("p, li, h2, h3"):
+                    value = normalize(node.get_text(" ", strip=True))
+                    if len(value) > 180 or not any(w in value for w in EVENT_TERMS):
+                        continue
+                    if any(w in value for w in ("投稿日", "更新日", "過去", "終了", "中止")):
+                        continue
+                    if not SHORT.search(value):
+                        continue
+                    dates = parse_dates(value, today, allow_short=True)
+                    if dates:
+                        print(f"北海道・本文から日付確定: {road} / {value[:75]}")
+                        break
+        if dates is None:
             stats["no_date"] += 1
             print(f"北海道・日付未確定: {road} / {title}")
             continue
