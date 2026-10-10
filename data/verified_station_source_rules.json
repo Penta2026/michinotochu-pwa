@@ -52,6 +52,45 @@
         "michinoeki-shiroishi.jp"
       ],
       "pathPattern": "^/news/.+"
+    },
+    {
+      "id": "tono_kazenooka",
+      "prefecture": "岩手県",
+      "roadName": "遠野風の丘",
+      "allowedHosts": [
+        "kazenooka.tonofurusato.jp"
+      ],
+      "pathPattern": "^/news/[^/]+/?$"
+    },
+    {
+      "id": "takahata",
+      "prefecture": "山形県",
+      "roadName": "たかはた",
+      "allowedHosts": [
+        "www.rstakahata.com",
+        "rstakahata.com"
+      ],
+      "pathPattern": "^/rst/event\\.html$"
+    },
+    {
+      "id": "fukushima_michinoeki",
+      "prefecture": "福島県",
+      "roadName": "ふくしま",
+      "allowedHosts": [
+        "m-fukushima.com",
+        "www.m-fukushima.com"
+      ],
+      "pathPattern": "^/info/[0-9]+/?$"
+    },
+    {
+      "id": "izu_gateway",
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南",
+      "allowedHosts": [
+        "www.izugateway.com",
+        "izugateway.com"
+      ],
+      "pathPattern": "^/event/[0-9]+/?$"
     }
   ]
 }
