@@ -10,8 +10,10 @@
       "candidates": 6,
       "checked": 6,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "past": 2,
         "venue_missing": 1,
@@ -55,8 +57,10 @@
       "candidates": 9,
       "checked": 9,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "past": 1,
         "not_event": 8
@@ -99,8 +103,10 @@
       "candidates": 4,
       "checked": 2,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 2,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "undated": 2
       },
@@ -127,8 +133,10 @@
       "candidates": 11,
       "checked": 8,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "not_event": 7,
         "undated": 1
@@ -171,8 +179,10 @@
       "candidates": 11,
       "checked": 8,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "undated": 1,
         "venue_missing": 2,
@@ -216,8 +226,10 @@
       "candidates": 12,
       "checked": 8,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "no_individually_dated_sections": 8
       },
@@ -259,8 +271,10 @@
       "candidates": 9,
       "checked": 6,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "undated": 2,
         "not_event": 4
@@ -303,8 +317,10 @@
       "candidates": 11,
       "checked": 8,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 2,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "undated": 4,
         "offsite": 1,
@@ -349,19 +365,13 @@
       "candidates": 1,
       "checked": 1,
       "accepted": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {
-        "accepted": 1
-      },
+      "fetchErrors": [],
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "公式開催案内",
-          "url": "https://www.rstakahata.com/rst/event.html",
-          "reason": "accepted"
-        }
-      ]
+      "rejectedExamples": []
     },
     {
       "id": "fukushima_michinoeki",
@@ -372,8 +382,10 @@
       "candidates": 12,
       "checked": 10,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 1,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "venue_missing": 2,
         "past": 4,
@@ -417,25 +429,16 @@
       "candidates": 10,
       "checked": 8,
       "accepted": 0,
+      "reconfirmed": 3,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
-        "accepted": 2,
         "no_grounded_program_year": 2,
         "no_individually_dated_monthly_events": 4
       },
       "examples": [],
       "rejectedExamples": [
-        {
-          "title": "2026年11月 道の駅イベントのご案内 翠のピスタチオ 11月8日(日)10:00~15:00 ピスタチオをテーマにしたイベント「翠のピスタチオ」。 ピスタチオを使った焼き菓子やドーナツ、ドリンクを",
-          "url": "https://www.izugateway.com/event/6779/",
-          "reason": "accepted"
-        },
-        {
-          "title": "2026年10月 道の駅イベントのご案内 ネコとエプロンの集い 8 10月3日(土)10:00~15:00 かんなみ猫おどりの開催に合わせて「ネコ」と「エプロン」がテーマのマルシェを開催!お菓子やパン",
-          "url": "https://www.izugateway.com/event/6723/",
-          "reason": "accepted"
-        },
         {
           "title": "【タリーズコーヒー伊豆ゲートウェイ函南店】夏のキッズワークショップ🌻 【Tully's キッズ★夏のワークショップ開催!!】 8月18日(火)・19日(水)にTully'sCOFFEEゲートウェイ函南",
           "url": "https://www.izugateway.com/event/6694/",
@@ -450,6 +453,16 @@
           "title": "2026年8月 道の駅イベントのご案内 『函南ランド 重ね捺し夏休みスタンプラリー』 8月1日(土)~8月31日(月) 道の駅伊豆ゲートウェイ函南、川の駅伊豆ゲートウェイ函南、 かねふくめんたいパーク",
           "url": "https://www.izugateway.com/event/6623/",
           "reason": "no_individually_dated_monthly_events"
+        },
+        {
+          "title": "2026年6月 道の駅イベントのご案内 『ゲートウェイ食市 函南すいかまつり』 今年も函南すいかの販売・試食提供等を予定!ぜひ旬の味覚をお楽しみください♪スイカの甲羅のマモリくんも登場。マモリくんにじ",
+          "url": "https://www.izugateway.com/event/6501/",
+          "reason": "no_individually_dated_monthly_events"
+        },
+        {
+          "title": "【数量限定】✨『思い出召喚キーホルダー』✨GW特別販売! 2026年4月25日(土)~5月10日(日)@観光情報案内所 ゴールデンウィーク期間に合わせ、“大切な思い出を、いつでも呼び出せる”『思い出召",
+          "url": "https://www.izugateway.com/event/6436/",
+          "reason": "no_grounded_program_year"
         }
       ]
     },
@@ -462,8 +475,10 @@
       "candidates": 0,
       "checked": 0,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {},
       "examples": [],
       "rejectedExamples": []
@@ -477,8 +492,10 @@
       "candidates": 0,
       "checked": 0,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {},
       "examples": [],
       "rejectedExamples": []
@@ -492,8 +509,10 @@
       "candidates": 10,
       "checked": 8,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 1,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "venue_missing": 3,
         "not_event": 5
@@ -536,8 +555,10 @@
       "candidates": 152,
       "checked": 8,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 1,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "undated": 3,
         "venue_missing": 1,
@@ -582,19 +603,13 @@
       "candidates": 1,
       "checked": 1,
       "accepted": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {
-        "accepted": 1
-      },
+      "fetchErrors": [],
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "公式開催案内",
-          "url": "https://kuromaro.com/event/list/page/4/",
-          "reason": "accepted"
-        }
-      ]
+      "rejectedExamples": []
     },
     {
       "id": "kumamoto_minamiaso_official_tourism",
@@ -605,19 +620,13 @@
       "candidates": 1,
       "checked": 1,
       "accepted": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {
-        "accepted": 1
-      },
+      "fetchErrors": [],
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "公式開催案内",
-          "url": "https://minamiaso.info/event/?cm=10&cy=2026",
-          "reason": "accepted"
-        }
-      ]
+      "rejectedExamples": []
     },
     {
       "id": "miyazaki_niqll",
@@ -628,8 +637,10 @@
       "candidates": 13,
       "checked": 10,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 1,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "undated": 3,
         "past": 1,
@@ -673,8 +684,10 @@
       "candidates": 20,
       "checked": 12,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "venue_missing": 1,
         "not_event": 11
@@ -717,19 +730,13 @@
       "candidates": 1,
       "checked": 1,
       "accepted": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {
-        "accepted": 1
-      },
+      "fetchErrors": [],
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "公式開催案内",
-          "url": "https://michinoeki-himawari.com/news/",
-          "reason": "accepted"
-        }
-      ]
+      "rejectedExamples": []
     },
     {
       "id": "kagoshima_tarumizu_official",
@@ -740,8 +747,10 @@
       "candidates": 10,
       "checked": 10,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "past": 3,
         "undated": 7
@@ -784,12 +793,21 @@
       "candidates": 1,
       "checked": 0,
       "accepted": 0,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 1,
+      "fetchErrors": [
+        {
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf",
+          "type": "HTTPError",
+          "detail": "404 Client Error: Not Found for url: https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf"
+        }
+      ],
       "reasons": {},
       "examples": [],
       "rejectedExamples": []
     }
   ],
-  "newEvents": 0
+  "newEvents": 0,
+  "reconfirmedEvents": 7
 }

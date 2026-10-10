@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 81,
-  "inputCollected": 76,
+  "inputCollected": 80,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -278,6 +278,34 @@
       "title": "●10月17日(土)~25日(日) 『滝原宮グッズフェア』"
     },
     {
+      "roadName": "たかはた",
+      "title": "秋の収穫祭"
+    },
+    {
+      "roadName": "伊豆ゲートウェイ函南",
+      "title": "翠のピスタチオ"
+    },
+    {
+      "roadName": "伊豆ゲートウェイ函南",
+      "title": "ゲートウェイ食市 干し柿づくり"
+    },
+    {
+      "roadName": "伊豆ゲートウェイ函南",
+      "title": "ゲートウェイ食市 新米すくい"
+    },
+    {
+      "roadName": "奥河内くろまろの郷",
+      "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025"
+    },
+    {
+      "roadName": "あそ望の郷くぎの",
+      "title": "第11回 南阿蘇の青空レストラン"
+    },
+    {
+      "roadName": "ひまわり",
+      "title": "バイクイベント開催 10月18日(日)"
+    },
+    {
       "roadName": "ふくしま",
       "title": "【10/10(土)・11日(日)ガーデンプレイスフェスタ】"
     },
@@ -286,16 +314,8 @@
       "title": "5周年記念感謝祭"
     },
     {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "ゲートウェイ食市 新米すくい"
-    },
-    {
       "roadName": "遠野風の丘",
       "title": "珈琲とおやつ展開催します【10月17日(土)~10月18日(日)】"
-    },
-    {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "翠のピスタチオ"
     },
     {
       "roadName": "遠野風の丘",
@@ -304,46 +324,10 @@
     {
       "roadName": "都城NiQLL",
       "title": "【NiQLL`sキッチン】11月 秋の蕎麦打ち体験 午前・午後の部"
-    },
-    {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "ゲートウェイ食市 干し柿づくり"
     }
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [
-    {
-      "roadName": "たかはた",
-      "title": "秋の収穫祭",
-      "startDate": "2026-10-11",
-      "endDate": "2026-10-12",
-      "url": "https://www.rstakahata.com/rst/event.html",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "あそ望の郷くぎの",
-      "title": "第11回 南阿蘇の青空レストラン",
-      "startDate": "2026-10-12",
-      "endDate": "2026-10-12",
-      "url": "https://minamiaso.info/event/?cm=10&cy=2026",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "ひまわり",
-      "title": "バイクイベント開催 10月18日(日)",
-      "startDate": "2026-10-18",
-      "endDate": "2026-10-18",
-      "url": "https://michinoeki-himawari.com/news/",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "奥河内くろまろの郷",
-      "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "url": "https://kuromaro.com/event/list/page/4/",
-      "reason": "not_found_in_current_collection"
-    },
     {
       "roadName": "阿武町",
       "title": "令和8年11月29日(日)第49回森里海の市を開催します。",
