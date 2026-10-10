@@ -6,7 +6,8 @@ from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period, EVENT_WORDS
 from hokkaido_events import parse_dates
-from hokuriku_events import extract_hokuriku
+from hokuriku_events import extract_hokuriku, extract_hokuriku_cards
+from bs4 import BeautifulSoup
 from kanto_events import event_period
 from chubu_events import bulletin_links, bulletin_date, verified_pdf_events
 from road_event_quality import reconcile
@@ -82,6 +83,29 @@ class DateParsingTests(unittest.TestCase):
         event=extract_hokuriku(text,date(2026,10,10),"https://www.hokuriku-michinoeki.jp/contents/event/")
         self.assertEqual((event["roadName"],event["startDate"],event["endDate"]),
                          ("氷見","2026-10-03","2026-10-12"))
+
+    def test_hokuriku_dates_in_card_siblings(self):
+        html = '''<div class="event-card"><span>氷見</span>
+          <span>2026年10月3日</span><span>2026年10月12日</span>
+          <a href="/contents/event/?article=000900&dc=2026-10-10">ひみ番屋街創業14周年感謝祭</a>
+          </div>'''
+        soup = BeautifulSoup(html, "html.parser")
+        records, stats = extract_hokuriku_cards(
+            soup, date(2026, 10, 10),
+            "https://www.hokuriku-michinoeki.jp/contents/event/?dc=2026-10-10")
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]["roadName"], "氷見")
+        self.assertEqual(records[0]["title"], "ひみ番屋街創業14周年感謝祭")
+        self.assertEqual(records[0]["endDate"], "2026-10-12")
+        self.assertEqual(stats["articleLinks"], 1)
+
+    def test_hokuriku_reject_nav_near_event(self):
+        html = '''<div><span>氷見 2026年10月3日 2026年10月12日 感謝祭</span>
+          <a href="/contents/event/?dc=2026-10-17">翌週へ</a></div>'''
+        records, _ = extract_hokuriku_cards(
+            BeautifulSoup(html, "html.parser"), date(2026,10,10),
+            "https://www.hokuriku-michinoeki.jp/contents/event/")
+        self.assertEqual(records, [])
 
     def test_hokuriku_reject_past(self):
         text="氷見2026年9月3日2026年9月12日過去の感謝祭"
