@@ -10,7 +10,7 @@ from hokuriku_events import extract_hokuriku, extract_hokuriku_cards, decode_off
 from bs4 import BeautifulSoup
 from kanto_events import event_period
 from chubu_events import bulletin_links, bulletin_date, verified_pdf_events
-from road_event_quality import reconcile
+from road_event_quality import reconcile, coalesce_hokuriku_records
 
 class DateParsingTests(unittest.TestCase):
     def test_explicit_two_day(self):
@@ -236,6 +236,34 @@ class DateParsingTests(unittest.TestCase):
         got=verified_pdf_events(report,date(2026,10,10))
         self.assertEqual([(x["roadName"],x["endDate"]) for x in got],
                          [("古今伝授の里やまと","2026-10-18"),("柳津","2026-10-25")])
+
+    def test_hokuriku_same_article_on_different_calendar_days(self):
+        base = {"roadName":"氷見", "prefecture":"富山県",
+                "startDate":"2026-10-03", "endDate":"2026-10-12",
+                "status":"scheduled"}
+        a = dict(base, title="ひみ番屋街創業14周年感謝祭",
+                 url="https://www.hokuriku-michinoeki.jp/contents/event/?dc=2026-10-10&article=000960")
+        b = dict(base, title="ひみ番屋街創業14周年感謝祭 長い記事紹介文",
+                 url="https://www.hokuriku-michinoeki.jp/contents/event/?dc=2026-10-03&article=000960")
+        collected = coalesce_hokuriku_records([a, b])
+        self.assertEqual(len(collected), 1)
+        self.assertEqual(collected[0]["title"], a["title"])
+        self.assertEqual(collected[0]["url"],
+                         "https://www.hokuriku-michinoeki.jp/contents/event/?dc=2026-10-03&article=000960")
+        records, audit = reconcile([a, b], [b, a], date(2026,10,10))
+        self.assertEqual(len(records), 1)
+        self.assertEqual(audit["collapsedHokurikuDuplicates"], {"previous":1,"collected":1})
+        self.assertEqual(audit["notReconfirmed"], [])
+
+    def test_hokuriku_different_article_same_day_kept(self):
+        base = {"roadName":"氷見", "prefecture":"富山県",
+                "startDate":"2026-10-25", "endDate":"2026-10-25",
+                "title":"秋の催し", "status":"scheduled"}
+        a = dict(base, url="https://www.hokuriku-michinoeki.jp/contents/event/?dc=2026-10-25&article=000961")
+        b = dict(base, url="https://www.hokuriku-michinoeki.jp/contents/event/?dc=2026-10-25&article=000962")
+        records, audit = reconcile([], [a,b], date(2026,10,10))
+        self.assertEqual(len(records), 2)
+        self.assertEqual(audit["collapsedHokurikuDuplicates"]["collected"], 0)
 
     def test_reconcile_date_correction_without_duplicate(self):
         base={"url":"https://official.example/events/1","roadName":"飯高駅",
