@@ -125,34 +125,68 @@ CHUGOKU_PREFS = {
     "上関海峡":"山口県","おふく":"山口県","北浦街道豊北":"山口県",
     "がいせん桜新庄宿":"岡山県","秋鹿なぎさ公園":"島根県",
     "奥出雲おろちループ":"島根県","三矢の里あきたかた":"広島県",
-    "遊YOUさろん東城":"広島県","きららあじす":"山口県"
+    "遊YOUさろん東城":"広島県","きららあじす":"山口県",
+    "頓原":"島根県","ゆうひパーク浜田":"島根県","アリストぬまくま":"広島県",
+    "ソレーネ周南":"山口県","阿武町":"山口県","はっとう":"鳥取県",
+    "本庄":"島根県","久米の里":"岡山県","蛍街道西ノ市":"山口県",
+    "きくがわ":"山口県","むいかいち温泉":"島根県","津和野温泉なごみの里":"島根県",
+    "仁保の郷":"山口県","さんわ182ステーション":"広島県",
+    "よがんす白竜":"広島県"
 }
-CHUGOKU_DATE_RE = re.compile(r"(\d{1,2})\s*月\s*(\d{1,2})\s*日|(?<!\d)(\d{1,2})\s*/\s*(\d{1,2})(?!\d)")
+CHUGOKU_DATE_RE = re.compile(r"(\\d{1,2})\\s*月\\s*(\\d{1,2})\\s*日|(?<!\\d)(\\d{1,2})\\s*/\\s*(\\d{1,2})(?!\\d)")
+CHUGOKU_YEAR_RE = re.compile(r"(?<!\\d)(20\\d{2})\\s*年|令和\\s*(\\d{1,2})\\s*年")
+CHUGOKU_SECOND_RE = re.compile(r"^[\\s（(）)月火水木金土日祝・]*[～〜~\\-－–ー]|^[\\s（(）)月火水木金土日祝・]*[・、]")
 BLOCKED_WORDS = ("中止","延期","休館","休業","営業時間","通行規制","臨時駐車場")
 EVENT_WORDS = ("祭","マルシェ","フェア","イベント","抽選","試食","周年","コンサート","公演","販売会")
-def chugoku_date(title, announced):
-    match=CHUGOKU_DATE_RE.search(title)
-    if not match:
+def chugoku_period(title, announced):
+    """Parse title dates and reject a year inconsistent with publication."""
+    import unicodedata
+    title = unicodedata.normalize("NFKC",title)
+    year_match=CHUGOKU_YEAR_RE.search(title)
+    year=(int(year_match.group(1)) if year_match.group(1) else 2018+int(year_match.group(2))) if year_match else announced.year
+    matches=list(CHUGOKU_DATE_RE.finditer(title))
+    if not matches:
         return None
-    month=int(match.group(1) or match.group(3))
-    day=int(match.group(2) or match.group(4))
-    year=announced.year
-    # December announcements may refer to next January.
-    if announced.month>=11 and month<=2:
+    first=matches[0]
+    month=int(first.group(1) or first.group(3))
+    day=int(first.group(2) or first.group(4))
+    if not year_match and announced.month>=11 and month<=2:
         year+=1
     try:
-        d=datetime(year,month,day).date()
+        start=datetime(year,month,day).date()
     except ValueError:
         return None
-    if d < NOW or d < announced:
+    if start < announced or start < NOW and not (len(matches)>1):
         return None
-    return d.isoformat()
+    end=start
+    if len(matches)>1:
+        next_date=matches[1]
+        between=title[first.end():next_date.start()]
+        if CHUGOKU_SECOND_RE.match(between):
+            end_month=int(next_date.group(1) or next_date.group(3))
+            end_day=int(next_date.group(2) or next_date.group(4))
+            try:
+                end=datetime(year+(1 if end_month<month else 0),end_month,end_day).date()
+            except ValueError:
+                return None
+    elif first.end()<len(title):
+        tail=title[first.end():first.end()+34]
+        day2=re.search(r"^[\\s（(）)月火水木金土日祝・]*[～〜~\\-－–ー・、]\\s*(\\d{1,2})\\s*日",tail)
+        if day2:
+            try:
+                end=datetime(year,month,int(day2.group(1))).date()
+            except ValueError:
+                return None
+    if not 0<=(end-start).days<=90 or end<NOW:
+        return None
+    return start.isoformat(),end.isoformat()
 
 def collect_chugoku():
     response=requests.get(CHUGOKU_SOURCE,timeout=18,headers=HEADERS)
     response.raise_for_status()
     soup=BeautifulSoup(response.text,"html.parser")
     found=[]
+    diag={"unmatched":0,"unknown_station":0,"not_event":0,"missing_publication":0,"invalid_date":0}
     for anchor in soup.find_all("a",href=True):
         title=clean(anchor.get_text(" ",strip=True))
         match=re.match(r"^[〖【]([^〗】]+)[〗】]\s*(.+)",title)
@@ -160,29 +194,35 @@ def collect_chugoku():
             continue
         road=match.group(1).strip()
         if road not in CHUGOKU_PREFS:
+            diag["unknown_station"]+=1
             continue
         if any(word in title for word in BLOCKED_WORDS) or not any(word in title for word in EVENT_WORDS):
+            diag["not_event"]+=1
             continue
         container=anchor.find_parent(["li","tr","article"]) or anchor.parent
         surrounding=clean(container.get_text(" ",strip=True))
         published=re.search(r"(20\d{2})[-/.](\d{1,2})[-/.](\d{1,2})",surrounding)
         if not published:
+            diag["missing_publication"]+=1
             continue
         try:
             announced=datetime(int(published.group(1)),int(published.group(2)),int(published.group(3))).date()
         except ValueError:
             continue
-        start=chugoku_date(match.group(2),announced)
-        if not start:
+        period=chugoku_period(match.group(2),announced)
+        if not period:
+            diag["invalid_date"]+=1
             continue
         href=urljoin(CHUGOKU_SOURCE,anchor["href"])
         if not href.startswith("https://"):
             continue
         # Only one-day events with explicit dates are automatically accepted.
         found.append({"roadName":road,"prefecture":CHUGOKU_PREFS[road],
-                      "title":title,"startDate":start,"endDate":start,
+                      "title":title,"startDate":period[0],"endDate":period[1],
                       "publishedAt":announced.isoformat(),"url":href,"status":"scheduled"})
-    print(f"中国地方: 日付明記の単日イベント {len(found)} 件")
+    print(f"中国地方: 採用 {len(found)} 件 / 未登録駅名 {diag[\'unknown_station\']} / "
+          f"イベント対象外 {diag[\'not_event\']} / 告知日不明 {diag[\'missing_publication\']} / "
+          f"開催日不適合 {diag[\'invalid_date\']}")
     return found
 
 
