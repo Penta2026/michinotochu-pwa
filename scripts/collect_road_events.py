@@ -305,13 +305,10 @@ def main():
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
-    # Keep unexpired records from sources not currently collected (e.g. 中国地方).
-    preserved=[x for x in old if x.get("endDate","")>=NOW.isoformat() and
-               not (("sk-michinoeki.jp" in x.get("url","") and shikoku) or
-                    ("chugoku-michinoeki.jp" in x.get("url","") and chugoku) or
-                    ("michi-no-eki.jp" in x.get("url","") and nationwide) or
-                    ("applehill.co.jp" in x.get("url","") and tohoku))]
-    # Prefer freshly verified records where the same source record recurs.
+    # Incremental merge: a source listing may omit a still-valid event due to
+    # pagination, a transient layout change, or an incomplete regional feed.
+    # Never delete future verified events merely because another event was found.
+    preserved=[x for x in old if x.get("endDate","")>=NOW.isoformat()]
     combined={ (x["url"],x["roadName"]):x for x in preserved+collected}
     final=sorted(combined.values(),key=lambda x:(x["startDate"],x["roadName"],x["title"]))
     # Avoid needless file changes when only collection date differs.
