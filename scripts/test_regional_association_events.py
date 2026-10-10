@@ -151,6 +151,14 @@ class DateParsingTests(unittest.TestCase):
         self.assertEqual(len(result),2)
         self.assertEqual(len(audit["possibleDuplicates"]),1)
 
+    def test_reconcile_same_title_different_days(self):
+        base={"url":"https://official.example/a","roadName":"飯高駅",
+              "title":"朝市","startDate":"2026-10-11","endDate":"2026-10-11"}
+        later=dict(base,startDate="2026-10-18",endDate="2026-10-18")
+        records,audit=reconcile([base],[later],date(2026,10,10))
+        self.assertEqual(len(records),2)
+        self.assertEqual(len(audit["corrected"]),0)
+
     def test_no_dates(self):
         self.assertIsNone(_period("秋のイベント開催"))
 
