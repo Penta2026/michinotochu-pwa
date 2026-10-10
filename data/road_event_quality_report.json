@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 37,
-  "inputCollected": 39,
+  "inputPrevious": 39,
+  "inputCollected": 35,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -86,14 +86,6 @@
       "title": "仙南ものづくり展"
     },
     {
-      "roadName": "真狩フラワーセンター",
-      "title": "泊村×真狩村 観光物産展 開催!! NEW"
-    },
-    {
-      "roadName": "たきかわ",
-      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!"
-    },
-    {
       "roadName": "こすげ",
       "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)"
     },
@@ -155,6 +147,39 @@
     }
   ],
   "possibleDuplicates": [],
-  "notReconfirmed": [],
+  "notReconfirmed": [
+    {
+      "roadName": "羊のまち 侍・しべつ",
+      "title": "道の駅「羊のまち 侍・しべつ」秋まつり開催!!",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shibetsuinfo/69720/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "樹海ロード日高",
+      "title": "日高町道の駅フェスト開催のお知らせ NEW",
+      "startDate": "2026-10-11",
+      "endDate": "2026-10-11",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "真狩フラワーセンター",
+      "title": "泊村×真狩村 観光物産展 開催!! NEW",
+      "startDate": "2026-10-13",
+      "endDate": "2026-10-13",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "たきかわ",
+      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/",
+      "reason": "not_found_in_current_collection"
+    }
+  ],
   "finalCount": 39
 }
