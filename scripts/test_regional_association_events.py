@@ -484,6 +484,55 @@ class DateParsingTests(unittest.TestCase):
         self.assertEqual(len(records), 2)
         self.assertEqual(audit["collapsedHokurikuDuplicates"]["collected"], 0)
 
+    def test_official_new_badge_is_not_a_separate_event(self):
+        base = {"prefecture":"北海道","roadName":"樹海ロード日高",
+                "title":"日高町道の駅フェスト開催のお知らせ",
+                "url":"https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
+                "startDate":"2026-10-11","endDate":"2026-10-11",
+                "status":"scheduled"}
+        badged = dict(base,title=base["title"]+" NEW")
+        merged,audit=reconcile([base,badged],[],date(2026,10,11))
+        self.assertEqual(len(merged),1)
+        self.assertEqual(merged[0]["title"],base["title"])
+        self.assertEqual(audit["collapsedStatusBadgeDuplicates"],
+                         {"previous":1,"collected":0})
+        self.assertEqual(len(audit["notReconfirmed"]),1)
+
+    def test_new_badge_does_not_duplicate_an_already_published_article(self):
+        base = {"prefecture":"北海道","roadName":"樹海ロード日高",
+                "title":"日高町道の駅フェスト開催のお知らせ",
+                "url":"https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
+                "startDate":"2026-10-11","endDate":"2026-10-11",
+                "status":"scheduled"}
+        badged = dict(base,title=base["title"]+" NEW")
+        records,audit=reconcile([badged],[base],date(2026,10,11))
+        self.assertEqual(len(records),1)
+        self.assertEqual(records[0]["title"],base["title"])
+        self.assertEqual(audit["notReconfirmed"],[])
+
+    def test_distinct_same_article_event_titles_and_date_remain_distinct(self):
+        base={"prefecture":"三重県","roadName":"飯高駅",
+              "title":"感謝祭","url":"https://official.example/event.pdf",
+              "startDate":"2026-10-24","endDate":"2026-10-25"}
+        notices=[
+            base,
+            dict(base,title="展示会 NEW"),
+            dict(base,startDate="2026-10-31",endDate="2026-10-31",
+                 title="感謝祭 NEW"),
+            dict(base,url="https://official.example/other.pdf",title="感謝祭 NEW"),
+        ]
+        records,audit=reconcile([],notices,date(2026,10,11))
+        self.assertEqual(len(records),4)
+        self.assertEqual(audit["collapsedStatusBadgeDuplicates"]["collected"],0)
+
+    def test_new_is_preserved_inside_actual_event_name(self):
+        base={"prefecture":"北海道","roadName":"樹海ロード日高",
+              "title":"NEW YEAR マルシェ",
+              "url":"https://official.example/events/2026",
+              "startDate":"2026-12-30","endDate":"2026-12-30"}
+        records,_=reconcile([],[base],date(2026,10,11))
+        self.assertEqual(records[0]["title"],"NEW YEAR マルシェ")
+
     def test_reconcile_date_correction_without_duplicate(self):
         base={"url":"https://official.example/events/1","roadName":"飯高駅",
               "prefecture":"三重県","title":"感謝祭","startDate":"2026-10-24",
