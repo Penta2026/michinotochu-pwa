@@ -6,6 +6,7 @@ from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period, EVENT_WORDS
 from hokkaido_events import parse_dates
+from hokuriku_events import extract_hokuriku
 from kanto_events import event_period
 from chubu_events import bulletin_links, bulletin_date, verified_pdf_events
 from road_event_quality import reconcile
@@ -75,6 +76,16 @@ class DateParsingTests(unittest.TestCase):
 
     def test_hokkaido_older_year(self):
         self.assertIsNone(parse_dates("2025年10月17日", date(2026, 10, 10)))
+
+    def test_hokuriku_calendar_entry(self):
+        text="2026年10月10土 氷見2026年10月3日2026年10月12日ひみ番屋街創業14周年感謝祭"
+        event=extract_hokuriku(text,date(2026,10,10),"https://www.hokuriku-michinoeki.jp/contents/event/")
+        self.assertEqual((event["roadName"],event["startDate"],event["endDate"]),
+                         ("氷見","2026-10-03","2026-10-12"))
+
+    def test_hokuriku_reject_past(self):
+        text="氷見2026年9月3日2026年9月12日過去の感謝祭"
+        self.assertIsNone(extract_hokuriku(text,date(2026,10,10),"https://www.hokuriku-michinoeki.jp/"))
 
     def test_kanto_date_from_published(self):
         self.assertEqual(event_period("日時：10月31日(土)～11月1日(日)", date(2026,9,30)),
