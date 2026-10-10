@@ -6,6 +6,15 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-10 16:15 JST Phase 2・21ルート拡張の初回Actions失敗（修正反映済み／再実行待ち）
+
+- GitHub Actions **#54**（run ID `38033794433`）は`Test event date extraction`で終了。**182テスト中、失敗2・例外2**。以降の地域監査・全国収集・県別更新は**未実行**。新規イベント増分・11都府県の登録状況は未確定であり、前回確定値75件・36/47県を維持する。
+- **熊本の2例外**：`dateSelectors: "p,tr,td"`（文字列設定）を各文字ごとにカンマ結合して無効CSS `p,,,t,r,,,t,d` としていた。`scripts/station_discovery_engine.py`の`_article_lines()`を修正し、CSV文字列とセレクタ配列の両方を正規化する。
+- **大阪の2失敗**：独立した段落の年付き開催日＋時刻（例：`2026年10月18日（日）10:00～16:00`）を、行内に「開催」の語がないため`undated`と誤判定。`allowExplicitDatedParagraph`に、具体的な記事タイトル・日付始まり・時刻・道の駅構内の会場根拠を必要とするフォールバックを追加。投稿日時との同日誤認を拒否する。
+- `scripts/test_station_discovery_engine.py`へ**投稿日との混同防止／曖昧な日付の不採用**の回帰2件を追加。次のテスト予定総数は**184件**（テスト差し替えや他の変更がなければ）。
+- 修正コミット: `df372fd9`（エンジン）、`929a16f6`（テスト）。**新しい「Run workflow」実行が必要**。失敗した#54の再実行は古いコミットのコードを検証するため、新しいワークフロー実行を使用する。
+- 次回実行が緑になった後、`data/station_event_discovery_audit.json`と`data/prefecture_event_coverage.json`と`data/road_event_quality_report.json`を突き合わせ、**11都府県のうち新規登録された県・依然0件の県・保留理由**を確定する。
+
 ## 直近の状態（2026-10-10 最新Actionsの実測）
 
 - **公開イベント75件／登録実績36都道県／実績なし11都府県**。今回の新規7件は**岩手2・山形1・福島1・静岡3件**。それぞれ初めて登録実績ありになった。
