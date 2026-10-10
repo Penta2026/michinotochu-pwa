@@ -273,6 +273,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "クロスウェイなかまち",
+      "prefecture": "奈良県",
+      "title": "10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪",
+      "startDate": "2026-10-11",
+      "endDate": "2026-10-11",
+      "publishedAt": "2026-10-01",
+      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261011",
+      "status": "scheduled"
+    },
+    {
       "roadName": "和",
       "prefecture": "京都府",
       "title": "10/11『いととめのぼたもち』実演販売",
@@ -328,7 +338,7 @@
       "title": "<坂原アグリ主催>黒大豆枝豆もぎとり収穫体験のご案内(2026年10/16〜11/3)",
       "startDate": "2026-10-16",
       "endDate": "2026-11-03",
-      "publishedAt": "2026-10-16",
+      "publishedAt": "",
       "url": "https://wachi-nagomi.com/topics/post-10529/",
       "status": "scheduled"
     },
@@ -580,6 +590,16 @@
       "endDate": "2026-11-03",
       "publishedAt": "",
       "url": "https://muratamachi.info/%e7%a7%8b%e3%81%ae%e6%b4%8b%e3%82%89%e3%82%93%e5%b1%95-%ef%bd%89%ef%bd%8e%e6%9d%91%e7%94%b0.htm",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "クロスウェイなかまち",
+      "prefecture": "奈良県",
+      "title": "10/31(土)あの「まほろばの宴」が再びやって来る!",
+      "startDate": "2026-10-31",
+      "endDate": "2026-10-31",
+      "publishedAt": "2026-10-06",
+      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261031",
       "status": "scheduled"
     },
     {

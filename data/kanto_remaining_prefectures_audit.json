@@ -52,15 +52,28 @@
       "prefecture": "千葉県",
       "station": "保田小学校",
       "source": "https://hotasho.jp/news-list/",
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='hotasho.jp', port=443): Max retries exceeded with url: /news-list/ (Caused by ConnectTimeoutError(<HTTPSConne",
-      "candidates": 0,
-      "checked": 0,
-      "accepted": 0,
+      "listingError": "",
+      "candidates": 2,
+      "checked": 2,
+      "accepted": 2,
       "past": 0,
       "undated": 0,
       "skipped": 0,
       "errors": 0,
-      "examples": [],
+      "examples": [
+        {
+          "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)",
+          "start": "2026-10-10",
+          "end": "2026-10-12",
+          "url": "https://hotasho.jp/news/%e4%bf%9d%e7%94%b0%e5%b0%8f%e9%99%84%e5%b1%9e%e3%82%88%e3%81%86%e3%81%a1%e3%81%88%e3%82%933%e5%91%a8%e5%b9%b4%e9%96%8b%e5%9c%92%e7%a5%ad%ef%bc%882026-10-10%ef%bd%9e12%ef%bc%89/"
+        },
+        {
+          "title": "鋸山ガイドツアーに参加しませんか",
+          "start": "2026-10-10",
+          "end": "2026-10-10",
+          "url": "https://hotasho.jp/news/%e9%8b%b8%e5%b1%b1%e3%82%ac%e3%82%a4%e3%83%89%e3%83%84%e3%82%a2%e3%83%bc%e3%81%ab%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%be%e3%81%9b%e3%82%93%e3%81%8b/"
+        }
+      ],
       "undatedExamples": []
     },
     {
@@ -84,17 +97,26 @@
       "prefecture": "神奈川県",
       "station": "湘南ちがさき",
       "source": "https://m-shonanchigasaki.com/topics/",
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='m-shonanchigasaki.com', port=443): Max retries exceeded with url: /topics/ (Caused by ConnectTimeoutError(<HT",
-      "candidates": 0,
-      "checked": 0,
+      "listingError": "",
+      "candidates": 3,
+      "checked": 3,
       "accepted": 0,
-      "past": 0,
-      "undated": 0,
+      "past": 1,
+      "undated": 2,
       "skipped": 0,
       "errors": 0,
       "examples": [],
-      "undatedExamples": []
+      "undatedExamples": [
+        {
+          "title": "10月イベントカレンダー",
+          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=122"
+        },
+        {
+          "title": "9月イベントカレンダー",
+          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=117"
+        }
+      ]
     }
   ],
-  "accepted": 2
+  "accepted": 4
 }

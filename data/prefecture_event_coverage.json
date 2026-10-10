@@ -9,27 +9,20 @@
   },
   "summary": {
     "prefectureCount": 47,
-    "observedPrefectures": 31,
-    "zeroRegisteredPrefectures": 16,
-    "registeredEvents": 66,
+    "observedPrefectures": 32,
+    "zeroRegisteredPrefectures": 15,
+    "registeredEvents": 68,
     "targetedStationFeedPrefectures": 19,
-    "notReconfirmedEvents": 9,
+    "notReconfirmedEvents": 0,
     "unknownPrefectures": []
   },
   "priorities": {
-    "reconfirm": [
-      "茨城県",
-      "栃木県",
-      "千葉県",
-      "滋賀県",
-      "佐賀県"
-    ],
+    "reconfirm": [],
     "noEventsButTargetedFeed": [
       "東京都",
       "神奈川県",
       "福井県",
       "大阪府",
-      "奈良県",
       "和歌山県",
       "長崎県",
       "熊本県",
@@ -103,16 +96,15 @@
     {
       "region": "近畿",
       "prefectureCount": 7,
-      "observedPrefectures": 3,
+      "observedPrefectures": 4,
       "zeroRegisteredPrefectures": [
         "福井県",
         "大阪府",
-        "奈良県",
         "和歌山県"
       ],
-      "registeredEventCount": 8,
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0
+      "registeredEventCount": 10,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11
     },
     {
       "region": "中国",
@@ -273,9 +265,9 @@
         "かさま",
         "ひたちおおた"
       ],
-      "notReconfirmedCount": 4,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -291,9 +283,9 @@
       "targetedStationFeeds": [
         "ましこ"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -345,9 +337,9 @@
         "しょうなん",
         "保田小学校"
       ],
-      "notReconfirmedCount": 2,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -541,8 +533,8 @@
       "notReconfirmedCount": 0,
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -554,11 +546,11 @@
       ],
       "observedStationCount": 1,
       "targetedStationFeeds": [],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -577,8 +569,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -593,8 +585,8 @@
       "notReconfirmedCount": 0,
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -609,24 +601,26 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
       "prefecture": "奈良県",
       "reportingRegion": "近畿",
-      "eventCount": 0,
-      "observedStations": [],
-      "observedStationCount": 0,
+      "eventCount": 2,
+      "observedStations": [
+        "クロスウェイなかまち"
+      ],
+      "observedStationCount": 1,
       "targetedStationFeeds": [
         "クロスウェイなかまち"
       ],
       "notReconfirmedCount": 0,
-      "state": "targeted_feed_no_registered_events",
-      "nextAction": "inspect_official_article_dates",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -641,8 +635,8 @@
       "notReconfirmedCount": 0,
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -817,9 +811,9 @@
       "targetedStationFeeds": [
         "しろいし"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"
