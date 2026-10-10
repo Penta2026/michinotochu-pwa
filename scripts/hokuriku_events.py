@@ -1,7 +1,7 @@
 """Hokuriku official event-calendar collector: station + explicit date range."""
 import re
 from datetime import date, timedelta
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, parse_qs
 import requests
 from bs4 import BeautifulSoup
 
@@ -38,6 +38,59 @@ def extract_hokuriku(text, today, source):
             "startDate": first.isoformat(), "endDate": last.isoformat(),
             "publishedAt": "", "url": source, "status": "scheduled"}
 
+def extract_hokuriku_cards(soup, today, page_url):
+    """Read event-specific links and their surrounding card, not only link text.
+
+    On the official calendar, station name and two dates can be sibling
+    elements beside the article link. A full-page scan would mix events.
+    """
+    records = {}
+    diagnostics = {"articleLinks": 0, "matchedCards": 0, "unmatchedArticleLinks": 0}
+    for anchor in soup.select("a[href]"):
+        href = urljoin(page_url, anchor.get("href", ""))
+        parsed = urlparse(href)
+        if parsed.hostname not in ("www.hokuriku-michinoeki.jp", "hokuriku-michinoeki.jp"):
+            continue
+        article_link = parsed.path.rstrip("/") == "/contents/event" and bool(parse_qs(parsed.query).get("article"))
+        # Calendar cards sometimes link a different official detail URL.
+        link_text = anchor.get_text(" ", strip=True)
+        views = [anchor]
+        parent = anchor.parent
+        for _ in range(4):
+            if parent is None or parent.name in ("body", "html"):
+                break
+            views.append(parent)
+            parent = parent.parent
+        item = None
+        for node in views:
+            node_text = node.get_text(" ", strip=True)
+            if not 10 <= len(node_text) <= 650:
+                continue
+            # Require an exact station plus two explicit dates in the same
+            # limited card. Never use a date found in a different event card.
+            entry = extract_hokuriku(node_text, today, href)
+            if entry:
+                item = entry
+                break
+        if article_link:
+            diagnostics["articleLinks"] += 1
+        if not item:
+            if article_link:
+                diagnostics["unmatchedArticleLinks"] += 1
+            continue
+        # Only publish a linked official detail page, not calendar-navigation
+        # links that happen to be inside an event-card container.
+        if not article_link:
+            continue
+        if link_text and 4 <= len(link_text) <= 100 and not re.search(DATES, link_text):
+            if not any(skip in link_text for skip in ("前月", "翌月", "前週", "翌週", "詳細", "もっと見る")):
+                item["title"] = link_text
+        key = (item["roadName"], item["url"], item["startDate"])
+        records[key] = item
+        diagnostics["matchedCards"] += 1
+    return list(records.values()), diagnostics
+
+
 def collect_hokuriku(today):
     # A week-based official calendar; request overlapping weeks to capture
     # ongoing and upcoming events, with a bounded number of network calls.
@@ -52,16 +105,11 @@ def collect_hokuriku(today):
             print(f"北陸カレンダー取得失敗 {url}: {exc}")
             continue
         soup = BeautifulSoup(response.text, "html.parser")
-        candidates = 0
-        for anchor in soup.select("a[href]"):
-            href = urljoin(response.url, anchor["href"])
-            host = urlparse(href).hostname or ""
-            if host not in ("www.hokuriku-michinoeki.jp", "hokuriku-michinoeki.jp"):
-                continue
-            text = anchor.get_text(" ", strip=True)
-            item = extract_hokuriku(text, today, href)
-            if item:
-                found[(item["roadName"],item["title"],item["startDate"])] = item
-                candidates += 1
-        print(f"北陸公式 {day.isoformat()}: 駅と期間を確認={candidates}")
+        records, stats = extract_hokuriku_cards(soup, today, response.url)
+        for item in records:
+            found[(item["roadName"], item["url"], item["startDate"])] = item
+        print(f"北陸公式 {day.isoformat()}: 詳細リンク {stats['articleLinks']} / "
+              f"駅・期間照合 {len(records)} / 未照合 {stats['unmatchedArticleLinks']}")
+        if not records:
+            print(f"北陸公式・サンプル: {soup.get_text(' ', strip=True)[:220]}")
     return list(found.values())
