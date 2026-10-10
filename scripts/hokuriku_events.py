@@ -141,7 +141,7 @@ def collect_hokuriku(today):
             "htmlSize": len(response.content), "links": len(links),
             "httpEncoding": response.encoding,
             "apparentEncoding": response.apparent_encoding,
-            "utf8Decode": not "\\ufffd" in decoded,
+            "utf8Decode": "\ufffd" not in decoded,
             "eventLinks": len(event_links),
             "specificArticleLinks": len(event_specific),
             "sampleAllLinks": links[:12],
