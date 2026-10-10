@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "mode": "new_official_article_discovery",
-  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp. Expanded with verified Fukui, Osaka and two Wakayama official station/onsite feeds. Multi-event Wakayama notices require section-specific date plus venue and are not whole-month events. Gap-prefecture-first expansion: six previously unconfigured prefectures (Iwate, Yamagata, Fukushima, Shizuoka, Yamaguchi, Ehime). Specialty article modes require article-local dates; no calendar month guessing.",
+  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp. Expanded with verified Fukui, Osaka and two Wakayama official station/onsite feeds. Multi-event Wakayama notices require section-specific date plus venue and are not whole-month events. Gap-prefecture-first expansion: six previously unconfigured prefectures (Iwate, Yamagata, Fukushima, Shizuoka, Yamaguchi, Ehime). Specialty article modes require article-local dates; no calendar month guessing. Verified additional official sources for Yamaguchi, Fukui, Osaka and Miyazaki; Kumamoto tourism listing is acceptable ONLY with explicit station venue; Osaka dated venue table is strict and cannot include unrelated listings.",
   "sources": [
     {
       "id": "tokyo_hachioji",
@@ -407,6 +407,175 @@
         "みなっと"
       ],
       "maxArticles": 7
+    },
+    {
+      "id": "yamaguchi_abu_roadstation",
+      "enabled": true,
+      "prefecture": "山口県",
+      "roadName": "阿武町",
+      "listingUrl": "https://www.abucreation.com/topics/",
+      "allowedHosts": [
+        "www.abucreation.com",
+        "abucreation.com"
+      ],
+      "articlePathPattern": "^/topics/[^/?#]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article,main,.topic-detail,.topics-detail,body",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1",
+        "h2"
+      ],
+      "publicationSelector": "time[datetime],.date,.posted",
+      "requiredVenueTokens": [
+        "道の駅阿武町"
+      ],
+      "allowedEventWords": [
+        "森里海の市",
+        "創業祭",
+        "感謝祭",
+        "物産展"
+      ],
+      "maxArticles": 8,
+      "requireVenueLabel": true
+    },
+    {
+      "id": "fukui_nanjezen_sankairi",
+      "enabled": true,
+      "prefecture": "福井県",
+      "roadName": "南えちぜん山海里",
+      "listingUrl": "https://kineno-nanjo.com/news/",
+      "allowedHosts": [
+        "kineno-nanjo.com",
+        "www.kineno-nanjo.com"
+      ],
+      "articlePathPattern": "^/info/(?:news|event)/post-[0-9]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article,main,.entry-content",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "publicationSelector": "time[datetime],.date,.entry-date",
+      "requiredVenueTokens": [
+        "南えちぜん山海里",
+        "道の駅"
+      ],
+      "allowedEventWords": [
+        "周年",
+        "感謝祭",
+        "マルシェ",
+        "イベント",
+        "フェア",
+        "祭",
+        "まつり"
+      ],
+      "maxArticles": 8,
+      "allowExplicitDatedParagraph": true,
+      "useListingPublicationDate": true
+    },
+    {
+      "id": "osaka_kuromaro_official_schedule",
+      "enabled": true,
+      "prefecture": "大阪府",
+      "roadName": "奥河内くろまろの郷",
+      "listingUrl": "https://kuromaro.com/event/list/page/4/",
+      "allowedHosts": [
+        "kuromaro.com",
+        "www.kuromaro.com"
+      ],
+      "articlePathPattern": "^/event/[^?#]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "body",
+      "titleSelectors": [
+        "h1"
+      ],
+      "publicationSelector": "time[datetime]",
+      "requiredVenueTokens": [
+        "奥河内くろまろの郷"
+      ],
+      "allowedEventWords": [
+        "くろまろマルシェ",
+        "くろまろの郷イベント",
+        "手作りバザール"
+      ],
+      "maxArticles": 10,
+      "articleMode": "dated_station_table"
+    },
+    {
+      "id": "kumamoto_minamiaso_official_tourism",
+      "enabled": true,
+      "prefecture": "熊本県",
+      "roadName": "あそ望の郷くぎの",
+      "listingUrl": "https://minamiaso.info/event/?cm=10&cy=2026",
+      "allowedHosts": [
+        "minamiaso.info"
+      ],
+      "articlePathPattern": "^/event/[0-9]{8}[a-z0-9_-]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article,main,.entry-content,.single-content,body",
+      "titleSelectors": [
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "publicationSelector": "time[datetime]",
+      "requiredVenueTokens": [
+        "道の駅あそ望の郷くぎの"
+      ],
+      "allowedEventWords": [
+        "青空レストラン",
+        "マルシェ",
+        "祭",
+        "フェスタ",
+        "イベント"
+      ],
+      "maxArticles": 8,
+      "requireVenueLabel": true
+    },
+    {
+      "id": "miyazaki_niqll",
+      "enabled": true,
+      "prefecture": "宮崎県",
+      "roadName": "都城NiQLL",
+      "listingUrl": "https://coconiqll.co.jp/info/",
+      "allowedHosts": [
+        "coconiqll.co.jp",
+        "www.coconiqll.co.jp"
+      ],
+      "articlePathPattern": "^/(?!category/|info/?$|page/|tag/)[^/]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article,main,.entry-content,.post-content",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "publicationSelector": "time[datetime],.entry-date",
+      "requiredVenueTokens": [
+        "NiQLL",
+        "ニクル",
+        "道の駅"
+      ],
+      "allowedEventWords": [
+        "蕎麦打ち",
+        "朝市",
+        "キッチン",
+        "スクール",
+        "教室",
+        "体験",
+        "祭",
+        "まつり"
+      ],
+      "maxArticles": 10,
+      "allowExplicitDatedParagraph": true,
+      "allowEraDate": true
     }
   ]
 }
