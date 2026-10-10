@@ -6,7 +6,7 @@ from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period, EVENT_WORDS
 from hokkaido_events import parse_dates
-from kyushu_okinawa_events import event_period as kyushu_event_period, publication_date as kyushu_publication_date, article_event_period as kyushu_article_event_period, _article_candidates as kyushu_article_candidates, SOURCES as KYUSHU_SOURCES
+from kyushu_okinawa_events import event_period as kyushu_event_period, publication_date as kyushu_publication_date, article_event_period as kyushu_article_event_period, _article_candidates as kyushu_article_candidates, SOURCES as KYUSHU_SOURCES, kadena_explicit_venue_period
 from hokuriku_events import extract_hokuriku, extract_hokuriku_cards, decode_official_response, extract_rendered_events
 from bs4 import BeautifulSoup
 from kanto_events import event_period
@@ -159,6 +159,36 @@ class DateParsingTests(unittest.TestCase):
           <aside><div class="post-date">2026年10月9日</div></aside>
           </main>""", "html.parser")
         self.assertIsNone(kyushu_publication_date(soup, title))
+
+    def test_kadena_unlabelled_event_sentence(self):
+        title = "月眺みぬ会開催のお知らせ"
+        html = """<html><body><h1>""" + title + """</h1>
+          <div>2026年09月06日</div>
+          <div>10月17日 (土) は道の駅かでなにて 月眺みぬ会が開催されます。</div>
+          <h2>その他お知らせ</h2><div>2026年10月23日 新しいお知らせ</div>
+          </body></html>"""
+        soup = BeautifulSoup(html, "html.parser")
+        self.assertEqual(
+            kadena_explicit_venue_period(soup, title, date(2026, 9, 6)),
+            ("2026-10-17", "2026-10-17"))
+
+    def test_kadena_related_notice_must_not_be_event(self):
+        title = "月眺みぬ会開催のお知らせ"
+        html = """<html><body><h1>""" + title + """</h1>
+          <div>2026年09月06日</div><p>開催についてのお知らせです。</p>
+          <h2>その他お知らせ</h2>
+          <p>10月17日(土)は道の駅かでなにて 月眺みぬ会が開催されます。</p>
+          </body></html>"""
+        self.assertIsNone(kadena_explicit_venue_period(
+            BeautifulSoup(html, "html.parser"), title, date(2026, 9, 6)))
+
+    def test_kadena_invalid_weekday_rejected(self):
+        title = "月眺みぬ会開催のお知らせ"
+        html = """<h1>""" + title + """</h1>
+        <div>2026年09月06日</div><p>10月17日 (日) は道の駅かでなにて
+        月眺みぬ会が開催されます。</p>"""
+        self.assertIsNone(kadena_explicit_venue_period(
+            BeautifulSoup(html, "html.parser"), title, date(2026, 9, 6)))
 
     def test_kyushu_reject_end_only_and_publication_date(self):
         posted = date(2026, 10, 8)
