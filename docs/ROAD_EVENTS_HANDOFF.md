@@ -6,6 +6,14 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-11 Actions #65 217テスト中1件失敗 → 和歌山の固定駅リスト修正（次回検証待ち）
+
+- [Actions #65](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38090713099) は `Test event date extraction`で **217テスト中1件失敗、0エラー**。今回追加した5都県公式ソース・共通解析について、失敗したテストはこの一覧照合のみ（本番の新規収集は未実行）。
+- 失敗した `test_configured_station_feeds_include_three_kanto_prefectures` が、和歌山の設定済み駅名を **「ねごろ歴史の丘・海南サクアス・四季の郷公園」の厳密な3件だけ**と断定していた。5県攻略用の公式情報源「青洲の里」を新設したため実際は4駅になり、リスト一致が失敗した。
+- `scripts/test_prefecture_event_coverage.py` を修正済み（コミット `cb46495c`）。元の3駅が維持されること、新駅「青洲の里」が含まれること、重複登録されないことを検証。今後、新駅を追加しても既存3駅を失わず、同じ理由でテストが停止しない。
+- **解析エンジン、5都県の公式収集設定、累計実績は変更なし**。次回も **217テスト予定**。必ず更新後の`main`で **新規Run workflow**（失敗した#65のRe-runは古いコミットを使う）を実行し、緑になったら`data/station_event_discovery_audit.json`の5 source IDと`data/prefecture_event_coverage.json`の累計42県からの増分を検証する。
+- #65はテスト段階で停止したため、今回の5都県が追加されたとはまだ宣言しない。前回#64の実測 **73イベント、現在39県、累計42/47県、未再確認3件**を維持。
+
 ## 2026-10-11 残り5都県の公式情報ルートを新設（**次回Actions実行待ち**）
 
 - **変更前の確定実績**：Actions #64 は 204/204 tests 全件OK、歴代42/47県、現行39県・73イベント、累計未達5都県（東京・神奈川・和歌山・愛媛・鹿児島）。**以下の5県分はGitHubへコード・設定・オフライン合成HTMLのテストを反映しただけで、まだ本番新規登録は0件未検証**。すべての収集候補は開催日/現地活動/施設名を主催側の公式資料で調べて設定した。
