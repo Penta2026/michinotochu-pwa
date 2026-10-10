@@ -13,6 +13,7 @@ from zoneinfo import ZoneInfo
 from urllib.parse import urljoin, urlparse
 import requests
 from region_official_events import collect_tohoku
+from regional_association_events import collect_regional_associations
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -297,8 +298,10 @@ def main():
     except Exception as exc:
         print(f"東北・各駅公式の取得失敗。既存データを維持: {type(exc).__name__}: {exc}", file=sys.stderr)
         tohoku=[]
-    # Merge verified local notices with national and Chugoku/Shikoku feeds.
-    collected=shikoku+chugoku+nationwide+tohoku
+    # Regional association sites are primary broad-coverage feeds; individual
+    # station sites remain a supplement for notices missing from associations.
+    regional=collect_regional_associations(NOW)
+    collected=shikoku+chugoku+nationwide+regional+tohoku
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
@@ -308,6 +311,7 @@ def main():
                     ("chugoku-michinoeki.jp" in x.get("url","") and chugoku) or
                     ("michi-no-eki.jp" in x.get("url","") and nationwide) or
                     ("applehill.co.jp" in x.get("url","") and tohoku))]
+    # Prefer freshly verified records where the same source record recurs.
     combined={ (x["url"],x["roadName"]):x for x in preserved+collected}
     final=sorted(combined.values(),key=lambda x:(x["startDate"],x["roadName"],x["title"]))
     # Avoid needless file changes when only collection date differs.
@@ -315,7 +319,7 @@ def main():
         print(f"イベント情報は変更なし（{len(final)}件）")
         return 0
     result={"schemaVersion":1,"updatedAt":NOW.isoformat(),"events":final,
-            "notes":"公式情報に基づき収集。全国・中四国の公式告知と東北の各駅公式サイトから、開催日を確認できた情報を収集。"}
+            "notes":"公式情報に基づき収集。全国・地域連絡会および各駅の公式サイトから、開催日を確認できた情報を収集。"}
     OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(f"イベント更新: {len(final)}件")
     return 0
