@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
 import requests
+import fitz
 from bs4 import BeautifulSoup
 from kyushu_okinawa_events import publication_date
 from kanto_remaining_prefectures import event_period as parse_period
@@ -76,10 +77,15 @@ def _validate_sources(sources):
             int(spec.get("maxArticles", 6)) not in range(1, 13)):
             raise ValueError(f"Unsafe discovery source: {spec['id']}")
         re.compile(spec["articlePathPattern"])
+        if spec.get("articleMode") == "verified_official_pdf":
+            if (not spec["listingUrl"].lower().endswith(".pdf")
+                    or not _official_url(spec["listingUrl"], spec, article=True)
+                    or not spec.get("requiredEventTitle")):
+                raise ValueError(f"Unsafe official PDF source: {spec['id']}")
 
 def _links(soup, source):
     """Prefer event-looking links but preserve the listing order within tier."""
-    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar"):
+    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_pdf"):
         # The official event schedule IS the article; it need not hyperlink
         # back to itself. The parser must still validate each stated date.
         return {source["listingUrl"]: "公式開催案内"}
@@ -649,6 +655,56 @@ def _dated_station_table_records(spec, soup, today, url):
     return list(seen.values()), "accepted" if seen else "no_official_dated_station_rows"
 
 
+def _verified_official_pdf_records(spec, pdf_text, today, url):
+    """Verify one specifically titled station event in an official PDF.
+
+    Do not use a publication date, filename or neighbouring year's headings
+    to infer the event year. Each of the official tender document's labelled
+    sections must independently support name, calendar date and venue.
+    """
+    if not _official_url(url, spec, article=True):
+        return [], "unofficial_pdf"
+    body = clean(pdf_text)
+    sections = {}
+    for no, label in ((1, "イベント名称"), (2, "開催日時"), (3, "開催場所")):
+        pattern = rf"第\s*{no}\s*{label}\s*(.{{0,350}}?)(?=第\s*{no+1}\s*|$)"
+        match = re.search(pattern, body)
+        if not match:
+            return [], f"missing_pdf_section_{no}"
+        sections[no] = match.group(1)
+    title = clean(spec["requiredEventTitle"])
+    if title not in sections[1] or any(w in sections[1] for w in ("中止", "延期")):
+        return [], "pdf_event_title_missing"
+    venue = sections[3]
+    if not any(v in venue for v in spec["requiredVenueTokens"]):
+        return [], "pdf_venue_missing"
+    if not re.search(r"(?:20[0-9]{2}|令和\s*[0-9]{1,2})\s*年", sections[2]):
+        return [], "pdf_explicit_year_missing"
+    period = _period(sections[2])
+    if not period or period[1] < today.isoformat():
+        return [], "pdf_date_invalid_or_past"
+    record = {"roadName":spec["roadName"],"prefecture":spec["prefecture"],
+              "title":title,"startDate":period[0],"endDate":period[1],
+              "publishedAt":"","url":url,"status":"scheduled"}
+    return [record], "accepted"
+
+
+def _fetch_official_pdf_text(url):
+    """Download a small, nonredirecting official PDF, then extract embedded text."""
+    response = requests.get(url, headers=HEADERS, timeout=(4, 12),
+                            allow_redirects=False)
+    response.raise_for_status()
+    data = response.content
+    if response.status_code != 200 or not data.startswith(b"%PDF"):
+        raise requests.RequestException("Not a direct official PDF response")
+    if len(data) > 8_000_000:
+        raise ValueError("Official PDF exceeds size limit")
+    with fitz.open(stream=data, filetype="pdf") as document:
+        if len(document) > 12:
+            raise ValueError("Official PDF has too many pages")
+        return "\n".join(page.get_text("text") for page in document)
+
+
 def _fetch(url):
     r = requests.get(url, headers=HEADERS, timeout=(4, 9), allow_redirects=False)
     r.raise_for_status()
@@ -659,7 +715,7 @@ def _fetch(url):
     return BeautifulSoup(r.text, "html.parser")
 
 def collect_configured_station_events(today, prior=None, sources=None, fetch=None,
-                                      report_path=REPORT):
+                                      report_path=REPORT, pdf_fetch=None):
     """Discover only URLs absent from all current and prior verified records.
 
     Keeping an already published URL with its known event collector prevents
@@ -672,6 +728,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
         sources = registry["sources"]
     _validate_sources(sources)
     fetch = fetch or _fetch
+    pdf_fetch = pdf_fetch or _fetch_official_pdf_text
     known_urls = {e["url"] for e in (prior or ()) if e.get("url")}
     newly_seen, records, summaries = set(), [], []
     for spec in sources:
@@ -685,7 +742,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             summaries.append(summary)
             continue
         try:
-            listing = fetch(spec["listingUrl"])
+            listing = None if spec.get("articleMode") == "verified_official_pdf" else fetch(spec["listingUrl"])
             links = _links(listing, spec)
         except (requests.RequestException, ValueError, AttributeError) as exc:
             summary["listingError"] = f"{type(exc).__name__}: {str(exc)[:140]}"
@@ -696,15 +753,17 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             mode = spec.get("articleMode")
             multi = mode in ("dated_sections", "official_station_program",
                              "monthly_calendar_article", "dated_station_table",
-                             "dated_news_listing", "dated_station_calendar")
+                             "dated_news_listing", "dated_station_calendar",
+                             "verified_official_pdf")
             if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
             if summary["checked"] >= int(spec.get("maxArticles", 6)):
                 break
             try:
-                detail = listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar") and
-                                     url == spec["listingUrl"]) else fetch(url)
+                detail = (pdf_fetch(url) if mode == "verified_official_pdf" else
+                          listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar") and
+                                      url == spec["listingUrl"]) else fetch(url))
             except (requests.RequestException, ValueError, AttributeError):
                 summary["fetchFailed"] += 1
                 continue
@@ -718,6 +777,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                     found, why = _dated_news_listing_records(spec, detail, today, url)
                 elif mode == "dated_station_calendar":
                     found, why = _dated_station_calendar_records(spec, detail, today, url)
+                elif mode == "verified_official_pdf":
+                    found, why = _verified_official_pdf_records(spec, detail, today, url)
                 elif mode == "monthly_calendar_article":
                     found, why = _monthly_calendar_records(spec, detail, today, url)
                 else:
