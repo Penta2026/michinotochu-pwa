@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "mode": "new_official_article_discovery",
+  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp.",
+  "sources": [
+    {
+      "id": "tokyo_hachioji",
+      "enabled": true,
+      "prefecture": "東京都",
+      "roadName": "八王子滝山",
+      "listingUrl": "https://www.michinoeki-hachioji.net/",
+      "allowedHosts": [
+        "www.michinoeki-hachioji.net",
+        "michinoeki-hachioji.net"
+      ],
+      "articlePathPattern": "^/news/[0-9]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main, article, .entry-content",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1",
+        "h2"
+      ],
+      "publicationSelector": "time[datetime], meta[property='article:published_time']",
+      "requiredVenueTokens": [
+        "道の駅八王子滝山"
+      ],
+      "maxArticles": 6
+    },
+    {
+      "id": "kanagawa_chigasaki",
+      "enabled": true,
+      "prefecture": "神奈川県",
+      "roadName": "湘南ちがさき",
+      "listingUrl": "https://m-shonanchigasaki.com/topics/",
+      "allowedHosts": [
+        "m-shonanchigasaki.com",
+        "www.m-shonanchigasaki.com"
+      ],
+      "articlePathPattern": "^/topics/detail\\.php$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main, article, .topic-detail, .detail",
+      "titleSelectors": [
+        "main h1",
+        "article h1",
+        "h1",
+        "main h2"
+      ],
+      "publicationSelector": "time[datetime], meta[property='article:published_time']",
+      "requiredVenueTokens": [
+        "道の駅湘南ちがさき",
+        "湘南ちがさき"
+      ],
+      "maxArticles": 6
+    },
+    {
+      "id": "nara_nakamachi",
+      "enabled": true,
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "listingUrl": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
+      "allowedHosts": [
+        "michi-no-eki-crosswaynakamachi.pref.nara.jp"
+      ],
+      "articlePathPattern": "^/events/[0-9]{8}/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main, article, .tribe-events-single",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1",
+        "h2"
+      ],
+      "publicationSelector": "time[datetime], meta[property='article:published_time']",
+      "requiredVenueTokens": [
+        "クロスウェイなかまち"
+      ],
+      "maxArticles": 8
+    }
+  ]
+}
