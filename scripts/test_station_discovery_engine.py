@@ -1051,7 +1051,7 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         spec={**TOKYO,"id":"ehime_pdf_audit",
               "listingUrl":"https://www.city.yawatahama.ehime.jp/doc/test.pdf",
               "allowedHosts":["www.city.yawatahama.ehime.jp"],
-              "articlePathPattern":r"^/doc/test\\.pdf$",
+              "articlePathPattern":r"^/doc/test\.pdf$",
               "articleMode":"verified_official_pdf",
               "requiredEventTitle":"第13回やわたはま産業まつり"}
         def fail_pdf(_):
