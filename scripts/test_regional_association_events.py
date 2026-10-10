@@ -91,9 +91,9 @@ class DateParsingTests(unittest.TestCase):
         report={"source":"https://www.chubu-michinoeki.org/pdf/test.pdf",
                 "pages":[{"rows":[
                     {"x":44,"y":10,"text":"〈2 0 26 年〉10月","section":"left_station"},
-                    {"x":41,"y":300,"text":"㉕馬瀬 美輝の里","section":"left_station"},
+                    {"x":41,"y":300,"text":"⤪古今伝授の里やまと","section":"left_station"},
                     {"x":162,"y":342,"text":"●10月24日(土) 催し","section":"left_station_event"},
-                    {"x":41,"y":350,"text":"⤥織部の里もとす","section":"left_station"}
+                    {"x":41,"y":350,"text":"㊺柳津","section":"left_station"}
                 ]}]}
         self.assertEqual(verified_pdf_events(report,date(2026,10,10)),[])
 
