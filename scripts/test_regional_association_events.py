@@ -6,6 +6,7 @@ from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period, EVENT_WORDS
 from hokkaido_events import parse_dates
+from kyushu_six_prefectures import explicit_event_period as six_period, event_date_from_official_article as six_article_period, _candidate_links as six_candidate_links, SOURCES as SIX_PREFECTURE_SOURCES
 from kyushu_okinawa_events import event_period as kyushu_event_period, publication_date as kyushu_publication_date, article_event_period as kyushu_article_event_period, _article_candidates as kyushu_article_candidates, SOURCES as KYUSHU_SOURCES, kadena_explicit_venue_period
 from hokuriku_events import extract_hokuriku, extract_hokuriku_cards, decode_official_response, extract_rendered_events
 from bs4 import BeautifulSoup
@@ -78,6 +79,55 @@ class DateParsingTests(unittest.TestCase):
 
     def test_hokkaido_older_year(self):
         self.assertIsNone(parse_dates("2025年10月17日", date(2026, 10, 10)))
+
+    def test_six_kumamoto_2026_night_market(self):
+        self.assertEqual(six_period("2026年10月24日(土)第8回ハッピー夜市"),
+                         ("2026-10-24", "2026-10-24"))
+
+    def test_six_oita_reiwa_lantern_dates(self):
+        self.assertEqual(six_period("令和8年10月10日土曜日〜12日月曜日 17時～20時"),
+                         ("2026-10-10", "2026-10-12"))
+
+    def test_six_oita_full_year_with_parenthetical_weekday(self):
+        self.assertEqual(six_period("2026年10月10日(土)～12日(月・祝)"),
+                         ("2026-10-10", "2026-10-12"))
+
+    def test_six_miyazaki_r8_kitchen_class(self):
+        self.assertEqual(six_period("R8 11月10日(火) 秋の蕎麦打ち体験"),
+                         ("2026-11-10", "2026-11-10"))
+
+    def test_six_unknown_start_rejected(self):
+        self.assertIsNone(six_period("期間:～10月31日(土)", date(2026,10,9)))
+        self.assertIsNone(six_period("秋の収穫祭"))
+        self.assertIsNone(six_period("2026年10月24日(日) 夜市"))
+
+    def test_six_saga_article_date_not_post_date(self):
+        html = """<article><h1>秋の収穫祭</h1>
+          <div class="post-date">2026年10月8日</div>
+          <div class="entry-content"><p>開催日：2026年10月18日（日）</p>
+          <p>会場：道の駅しろいし</p></div></article>"""
+        soup = BeautifulSoup(html, "html.parser")
+        self.assertEqual(six_article_period("秋の収穫祭", soup, date(2026,10,8)),
+                         ("2026-10-18", "2026-10-18"))
+
+    def test_six_oita_avoids_nonstation_festival(self):
+        spec = SIX_PREFECTURE_SOURCES[3]
+        html = """<a href="/events/detail/100">吉野ヶ里ふるさと炎まつり</a>
+          <a href="/events/detail/13635">道の駅耶馬トピア 竹の千灯籠夜</a>"""
+        candidates = six_candidate_links( spec,
+            BeautifulSoup(html, "html.parser"), spec["list"])
+        self.assertEqual(len(candidates), 2)
+        self.assertEqual(candidates[0][1], "道の駅耶馬トピア 竹の千灯籠夜")
+        self.assertEqual(candidates[1][0], "https://www.city-nakatsu.jp/doc/2026100500057/")
+
+    def test_six_skip_recruitment(self):
+        spec = SIX_PREFECTURE_SOURCES[4]
+        html = """<a href="/recruit/">令和8年12月ニクルの朝市 出店募集！！</a>
+          <a href="/class/">11月 秋の蕎麦打ち体験 開催</a>"""
+        candidates = six_candidate_links(
+            spec, BeautifulSoup(html, "html.parser"), spec["list"])
+        self.assertEqual(len(candidates), 1)
+        self.assertIn("/class/", candidates[0][0])
 
     def test_kyushu_kurume_new_rice_fair(self):
         soup = BeautifulSoup('''<html><article><header><time datetime="2026-10-09">2026年10月9日</time></header>
