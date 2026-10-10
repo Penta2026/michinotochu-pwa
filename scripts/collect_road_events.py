@@ -18,6 +18,7 @@ from generic_region_events import collect_generic_regions
 from hokkaido_events import collect_hokkaido
 from hokuriku_events import collect_hokuriku
 from kyushu_okinawa_events import collect_kyushu_okinawa
+from kyushu_six_prefectures import collect_six_kyushu_prefectures
 from kanto_events import collect_kanto
 from chubu_events import audit_chubu_bulletin
 from road_event_quality import reconcile, write_report
@@ -388,9 +389,14 @@ def main():
     except requests.RequestException as exc:
         print(f"九州・沖縄の収集失敗。既存データを維持: {exc}", file=sys.stderr)
         kyushu_okinawa=[]
+    try:
+        kyushu_six=collect_six_kyushu_prefectures(NOW)
+    except Exception as exc:
+        print(f"九州6県の収集失敗。既存データを維持: {type(exc).__name__}: {exc}", file=sys.stderr)
+        kyushu_six=[]
     chubu=audit_chubu_bulletin(NOW)
     generic=collect_generic_regions(NOW)
-    collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido+hokuriku+kyushu_okinawa+kanto+chubu
+    collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido+hokuriku+kyushu_okinawa+kyushu_six+kanto+chubu
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
