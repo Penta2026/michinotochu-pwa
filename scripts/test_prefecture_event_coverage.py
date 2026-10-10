@@ -101,6 +101,33 @@ class PrefectureCoverageTests(unittest.TestCase):
         self.assertIn("奥河内くろまろの郷", sources["大阪府"])
         self.assertIn("南えちぜん山海里", sources["福井県"])
 
+    def test_historical_achievement_persists_after_event_expires(self):
+        report=make_report(
+            {"updatedAt":"2026-10-11","events":[
+                {"prefecture":"大分県","roadName":"耶馬トピア",
+                 "title":"竹の千灯籠夜","url":"https://example.org/event",
+                 "startDate":"2026-10-11","endDate":"2026-10-12"}]},
+            {"sources":[]}, {"notReconfirmed":[]}, direct={},
+            historically_observed=["滋賀県","北海道"])
+        summary=report["summary"]
+        self.assertEqual(summary["observedPrefectures"],1)
+        self.assertEqual(summary["historicalObservedPrefectures"],3)
+        self.assertEqual(summary["historicalNeverObservedPrefectures"],44)
+        self.assertEqual(report["historical"]["previouslyObservedWithoutCurrentEvents"],
+                         ["北海道","滋賀県"])
+        self.assertTrue(next(x for x in report["prefectures"]
+                             if x["prefecture"]=="滋賀県")["historicallyObserved"])
+        self.assertEqual(summary["zeroRegisteredPrefectures"],46)
+
+    def test_historical_registry_never_accepts_unknown_prefectures(self):
+        with self.assertRaisesRegex(ValueError,"Invalid historical prefecture"):
+            make_report({"events":[]},{"sources":[]},{"notReconfirmed":[]},
+                        direct={},historically_observed=["架空県"])
+        self.assertEqual(make_report(
+            {"events":[]},{"sources":[]},{"notReconfirmed":[]},direct={},
+            historically_observed=["北海道","北海道"]
+        )["summary"]["historicalObservedPrefectures"],1)
+
     def test_unknown_prefecture_is_detected(self):
         report = make_report(
             {"updatedAt": "2026-10-10", "events": [
