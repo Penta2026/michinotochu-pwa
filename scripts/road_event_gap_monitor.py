@@ -31,6 +31,29 @@ REVIEW_REASONS = {
 CALENDAR_TERMS = ("イベントカレンダー", "イベントスケジュール", "月間予定", "イベント情報")
 
 
+def _dated_headline_hint(title, today):
+    """Prefer reviewing notices with a complete, explicit schedule date.
+
+    The headline is untrusted as event evidence, so hints *only* affect the
+    manual-review order.  Publication dates without schedule words get no hint.
+    """
+    value = unicodedata.normalize("NFKC", title or "")
+    value = re.sub(r"令和\s*([0-9]{1,2})\s*年",
+                   lambda m: str(2018 + int(m.group(1))) + "年", value)
+    for m in re.finditer(
+            r"(20[0-9]{2})[年./-]([0-9]{1,2})[月./-]([0-9]{1,2})日?", value):
+        context = value[max(0,m.start()-24):m.end()+24]
+        if not re.search(r"開催|実施|開演|日時|日程|から.{0,8}まで", context):
+            continue
+        try:
+            when = datetime(*map(int,m.groups())).date()
+            current = datetime.fromisoformat(today).date()
+        except ValueError:
+            continue
+        return "future_schedule_hint" if when >= current else "past_schedule_hint"
+    return "unknown_date"
+
+
 def _positive_int(value):
     try:
         return max(0, int(value))
@@ -118,7 +141,11 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
         failure_streak = _day_streak(former, "failureDayStreak", error_now, today)
         empty_streak = _day_streak(former, "emptyCandidateDayStreak", zero_now, today)
         limit = _positive_int(cfg.get("maxArticles", 6))
-        capped = (candidate_count > examined + known and examined >= limit)
+        uninspected = (_positive_int(source["uninspectedCandidates"])
+                       if "uninspectedCandidates" in source else
+                       max(0, candidate_count - examined - known)
+                       if examined >= limit else 0)
+        capped = uninspected > 0
         condition = ("source_error" if error_now else
                      "no_candidates" if zero_now else
                      "review_candidates" if source.get("reasons") else "active")
@@ -136,6 +163,9 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
             "failureDayStreak": failure_streak,
             "emptyCandidateDayStreak": empty_streak,
             "mayHaveUnreviewedCandidates": bool(capped),
+            "uninspectedCandidateCount": uninspected,
+            "explorationSlots": _positive_int(source.get("explorationSlots")),
+            "explorationPool": _positive_int(source.get("explorationPool")),
         }
         checked_sources.append(item)
         if error_now:
@@ -149,7 +179,9 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
         if capped:
             warnings.append({"kind": "article_check_limit", "sourceId": sid,
                              "prefecture": cfg["prefecture"], "severity": "notice",
-                             "candidateCount": candidate_count, "checkedCount": examined})
+                             "candidateCount": candidate_count,
+                             "checkedCount": examined,
+                             "uninspectedCandidateCount": uninspected})
         for name, count in (source.get("reasons") or {}).items():
             reason_totals[name] += _positive_int(count)
         for example in source.get("rejectedExamples") or []:
@@ -168,12 +200,18 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
             if key in seen_candidates:
                 continue
             seen_candidates.add(key)
+            headline_hint = _dated_headline_hint(example.get("title"), today)
+            if headline_hint == "past_schedule_hint":
+                # Archived event titles are still reviewable; they must not
+                # crowd out plausible upcoming notices.
+                level = "low"
             queue.append({
                 "sourceId": sid, "prefecture": cfg["prefecture"],
                 "roadName": cfg["roadName"], "url": url,
                 "title": (example.get("title") or "")[:190],
                 "sourceReason": reason, "reviewReason": kind,
-                "priority": level, "status": "unverified_candidate",
+                "priority": level, "headlineScheduleHint": headline_hint,
+                "status": "unverified_candidate",
             })
 
     if not fresh_discovery:
@@ -240,7 +278,11 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
                 "publishedStations": sum(x["currentlyPublishedEvent"] for x in rows),
                 "noDedicatedSource": sum(not x["dedicatedSourceConfigured"] for x in rows),
             })
-    queue.sort(key=lambda x: (x["priority"] != "high",
+    ranks = {"high": 0, "medium": 1, "low": 2}
+    hints = {"future_schedule_hint": 0, "unknown_date": 1,
+             "past_schedule_hint": 2}
+    queue.sort(key=lambda x: (ranks.get(x["priority"], 3),
+                              hints.get(x["headlineScheduleHint"], 3),
                               x["prefecture"], x["sourceId"], x["url"]))
     uncovered = list(coverage.get("historical", {}).get(
         "previouslyObservedWithoutCurrentEvents", []))
@@ -288,6 +330,9 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
             "sourcesWithFetchProblems": sum(s["status"] == "source_error" for s in checked_sources),
             "sourcesWithZeroCandidates": sum(s["status"] == "no_candidates" for s in checked_sources),
             "sourcesAtCheckLimit": sum(s["mayHaveUnreviewedCandidates"] for s in checked_sources),
+            "uninspectedCandidateSlots": sum(s["uninspectedCandidateCount"] for s in checked_sources),
+            "reviewWithExplicitFutureHint": sum(x["headlineScheduleHint"] == "future_schedule_hint" for x in queue),
+            "reviewWithExplicitPastHint": sum(x["headlineScheduleHint"] == "past_schedule_hint" for x in queue),
             "warnings": len(warnings),
             "warningKinds": dict(sorted(alert_kinds.items())),
             "unreconfirmedEvents": len(unconfirmed),
@@ -345,6 +390,10 @@ def render_dashboard(report):
         "| 候補が0件の収集先 | {} |".format(summary["sourcesWithZeroCandidates"]),
         "| 記事チェック上限に達した収集先 | {} |".format(
             summary["sourcesAtCheckLimit"]),
+        "| 未調査の候補記事枠（重複記事を含む可能性あり） | {} |".format(
+            summary["uninspectedCandidateSlots"]),
+        "| 要確認候補のうち将来開催日の明記あり | {} |".format(
+            summary["reviewWithExplicitFutureHint"]),
         "| 記事の要確認サンプル | {} |".format(summary["potentialReviewSamples"]),
         "| 既存イベントの未再確認 | {} |".format(summary["unreconfirmedEvents"]),
         "",
@@ -369,18 +418,19 @@ def render_dashboard(report):
         "",
         "以下は**不採用記事のサンプル**です。実際にイベントかどうかは未確認。",
         "",
-        "| 県 | 駅 | 見出し | 保留理由 | 公式記事 |",
-        "|---|---|---|---|---|",
+        "| 県 | 駅 | 見出し | 日付ヒント | 保留理由 | 公式記事 |",
+        "|---|---|---|---|---|---|",
     ]
     for entry in report["reviewCandidates"][:25]:
         # Quote parentheses so a source URL cannot break Markdown links.
         url = entry["url"].replace("(", "%28").replace(")", "%29").replace(" ", "%20")
         link = "[記事を確認]({})".format(url)
-        lines.append("| {} | {} | {} | {} | {} |".format(
+        lines.append("| {} | {} | {} | {} | {} | {} |".format(
             _md(entry["prefecture"]), _md(entry["roadName"]),
-            _md(entry["title"]), _md(entry["reviewReason"]), link))
+            _md(entry["title"]), _md(entry["headlineScheduleHint"]),
+            _md(entry["reviewReason"]), link))
     if not report["reviewCandidates"]:
-        lines.append("| ― | ― | 現在のサンプルなし | ― | ― |")
+        lines.append("| ― | ― | 現在のサンプルなし | ― | ― | ― |")
     lines += [
         "",
         "## 収集先について",
