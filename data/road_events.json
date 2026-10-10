@@ -141,7 +141,17 @@
       "publishedAt": "2026-09-28",
       "url": "https://www.michi-no-eki.jp/notices/views/23234",
       "status": "scheduled"
+    },
+    {
+      "roadName": "おおゆ",
+      "prefecture": "秋田県",
+      "title": "クロマンタROCK-FES",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-01",
+      "publishedAt": "",
+      "url": "https://yunoeki-oyu.jp/information/kuromanta-rock-fes/",
+      "status": "scheduled"
     }
   ],
-  "notes": "公式情報に基づき収集。全国・中四国の公式告知と東北の各駅公式サイトから、開催日を確認できた情報を収集。"
+  "notes": "公式情報に基づき収集。全国・地域連絡会および各駅の公式サイトから、開催日を確認できた情報を収集。"
 }
