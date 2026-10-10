@@ -18,6 +18,7 @@ from generic_region_events import collect_generic_regions
 from hokkaido_events import collect_hokkaido
 from kanto_events import collect_kanto
 from chubu_events import audit_chubu_bulletin
+from road_event_quality import reconcile, write_report
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -364,14 +365,11 @@ def main():
     # Incremental merge: a source listing may omit a still-valid event due to
     # pagination, a transient layout change, or an incomplete regional feed.
     # Never delete future verified events merely because another event was found.
-    preserved=[x for x in old if x.get("endDate","")>=NOW.isoformat()]
-    # Remove erroneous Chubu PDF records produced by the old parser that
-    # interpreted a leading end-date marker as a single-day event.
-    preserved=[x for x in preserved if not (
-        "chubu-michinoeki.org/pdf/" in x.get("url","") and
-        re.match(r"^\s*●\s*[～〜~]", x.get("title","")))]
-    combined={ (x["url"],x["roadName"],x["title"],x["startDate"]):x for x in preserved+collected}
-    final=sorted(combined.values(),key=lambda x:(x["startDate"],x["roadName"],x["title"]))
+    final, quality_report = reconcile(old, collected, NOW)
+    write_report(quality_report)
+    print(f"品質監査: 件数 {len(final)} / 開催日訂正 {len(quality_report['corrected'])} / "
+          f"重複候補 {len(quality_report['possibleDuplicates'])} / "
+          f"除外 {len(quality_report['expiredOrInvalid'])}")
     # Avoid needless file changes when only collection date differs.
     if final==old:
         print(f"イベント情報は変更なし（{len(final)}件）")
