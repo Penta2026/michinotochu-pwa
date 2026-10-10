@@ -80,12 +80,43 @@ def plausible(record, today):
         return False
     return first <= last and last >= today and bool(record.get("url") and record.get("roadName") and record.get("title"))
 
+def _sanitize_future_publication(records, today, warnings):
+    """A post cannot have been published after the date we collected it.
+
+    Do not alter the verified event period; publication metadata is optional.
+    Report once even when the same record occurs in old and new collections.
+    """
+    result = []
+    warned = {(w["url"], w["publishedAt"]) for w in warnings}
+    for record in records:
+        item = dict(record)
+        published = item.get("publishedAt", "")
+        if published:
+            try:
+                stamp = date.fromisoformat(published)
+            except (ValueError, TypeError):
+                stamp = None
+            if stamp is not None and stamp > today:
+                key = (item.get("url", ""), published)
+                if key not in warned:
+                    warnings.append({"url": key[0], "roadName": item.get("roadName", ""),
+                                     "publishedAt": published,
+                                     "reason": "publication_date_in_future"})
+                    warned.add(key)
+                item["publishedAt"] = ""
+        result.append(item)
+    return result
+
+
 def reconcile(old, new, today):
     report = {"schemaVersion": 1, "inputPrevious": len(old), "inputCollected": len(new),
               "expiredOrInvalid": [], "corrected": [], "exactDuplicates": [],
-              "possibleDuplicates": [], "notReconfirmed": [], "finalCount": 0}
-    old_clean = coalesce_hokuriku_records(old)
-    new_clean = coalesce_hokuriku_records(new)
+              "possibleDuplicates": [], "notReconfirmed": [], "finalCount": 0,
+              "futurePublicationDatesCleared": []}
+    old_clean = coalesce_hokuriku_records(_sanitize_future_publication(
+        old, today, report["futurePublicationDatesCleared"]))
+    new_clean = coalesce_hokuriku_records(_sanitize_future_publication(
+        new, today, report["futurePublicationDatesCleared"]))
     report["collapsedHokurikuDuplicates"] = {
         "previous": len(old) - len(old_clean),
         "collected": len(new) - len(new_clean)}
