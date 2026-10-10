@@ -97,32 +97,86 @@ def collect_oyu(today):
         return []
     return [_record("おおゆ","秋田県","クロマンタROCK-FES",(d,d),OYU_FES)] if d>=today.isoformat() else []
 
+def _murata_period(text):
+    """Find an event date range, supporting Japanese weekdays and full-width digits."""
+    import unicodedata
+    text = unicodedata.normalize("NFKC", text)
+    pattern = re.compile(
+        r"(20\\d{2})年\\s*(\\d{1,2})月\\s*(\\d{1,2})日"
+        r"(?:\\s*[（(][月火水木金土日祝・]+[）)])?"
+        r"\\s*(?:[～〜~\\-ー−－]\\s*(?:(\\d{1,2})月)?\\s*(\\d{1,2})日)?"
+    )
+    m = pattern.search(text)
+    if not m:
+        return None
+    try:
+        y, mo, da = (int(x) for x in m.group(1, 2, 3))
+        start = date(y, mo, da)
+        end_month = int(m.group(4)) if m.group(4) else mo
+        end_day = int(m.group(5)) if m.group(5) else da
+        end = date(y + (1 if end_month < mo else 0), end_month, end_day)
+        if not 0 <= (end - start).days <= 100:
+            return None
+        return start.isoformat(), end.isoformat()
+    except (ValueError, TypeError):
+        return None
+
+
 def collect_murata(today):
-    r=requests.get(MURATA_NEWS,timeout=18,headers=USER_AGENT)
+    """Read individual news entries; never treat their publication date as event date."""
+    session = requests.Session()
+    r = session.get(MURATA_NEWS, timeout=18, headers=USER_AGENT)
     r.raise_for_status()
-    soup=BeautifulSoup(r.text,"html.parser")
-    events=[]
-    # WordPress news usually groups each notice inside an article; keep the
-    # text local to one article to avoid borrowing dates from other posts.
-    for article in soup.select("article"):
-        heading=article.find(["h1","h2","h3","h4"])
-        if not heading:
+    soup = BeautifulSoup(r.text, "html.parser")
+    keys = ("祭り", "まつり", "展", "マルシェ", "フェア", "イベント", "大会", "品評", "即売")
+    blocked = ("中止", "延期", "休業", "休館")
+    candidates = {}
+    # Do not depend on a WordPress theme having <article> wrappers.
+    for a in soup.select("a[href]"):
+        title = _clean(a.get_text(" ", strip=True))
+        if not 2 <= len(title) <= 90 or not any(x in title for x in keys):
             continue
-        title=_clean(heading.get_text(" ",strip=True))
-        if not title or not any(w in title for w in ("祭り","まつり","展","マルシェ","フェア","イベント","大会")):
+        if any(x in title for x in blocked):
             continue
-        body=_clean(article.get_text(" ",strip=True))
+        url = urljoin(MURATA_NEWS, a["href"])
+        if urlparse(url).hostname not in ("muratamachi.info", "www.muratamachi.info"):
+            continue
+        if url.rstrip("/") == MURATA_NEWS.rstrip("/") or "/category/" in url:
+            continue
+        candidates.setdefault(url, title)
+    events = []
+    counts = {"checked": 0, "date_missing": 0, "past": 0, "venue_missing": 0, "fetch_failed": 0}
+    for url, title in list(candidates.items())[:65]:
+        counts["checked"] += 1
+        try:
+            detail_res = session.get(url, timeout=18, headers=USER_AGENT)
+            detail_res.raise_for_status()
+        except requests.RequestException as exc:
+            counts["fetch_failed"] += 1
+            print(f"東北・村田 詳細取得失敗: {url}: {exc}")
+            continue
+        detail = BeautifulSoup(detail_res.text, "html.parser")
+        article = detail.select_one("article") or detail.select_one("main") or detail.body
+        if article is None:
+            counts["venue_missing"] += 1
+            continue
+        body = _clean(article.get_text(" ", strip=True))
         if "道の駅" not in body or "村田" not in body:
+            counts["venue_missing"] += 1
             continue
-        period=_explicit_period(body)
-        if not period or period[1] < today.isoformat():
+        period = _murata_period(body)
+        if not period:
+            counts["date_missing"] += 1
+            print(f"東北・村田 日付未判定: {title} {url}")
             continue
-        anchor=heading.find("a",href=True)
-        url=urljoin(MURATA_NEWS,anchor["href"]) if anchor else MURATA_NEWS
-        if urlparse(url).hostname not in ("muratamachi.info","www.muratamachi.info"):
+        if period[1] < today.isoformat():
+            counts["past"] += 1
             continue
-        events.append(_record("村田","宮城県",title,period,url))
-    print(f"東北・道の駅村田: 採用 {len(events)} 件")
+        events.append(_record("村田", "宮城県", title, period, url))
+    print(f"東北・道の駅村田: 告知候補 {len(candidates)} / 詳細確認 {counts['checked']} / "
+          f"採用 {len(events)} / 日付なし {counts['date_missing']} / "
+          f"過去 {counts['past']} / 会場不明 {counts['venue_missing']} / "
+          f"取得失敗 {counts['fetch_failed']}")
     return events
 
 def collect_tohoku(today=None):
