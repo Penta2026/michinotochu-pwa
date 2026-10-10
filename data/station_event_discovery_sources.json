@@ -226,7 +226,21 @@
       ],
       "allowExplicitDatedParagraph": true,
       "maxArticles": 8,
-      "useListingPublicationDate": true
+      "useListingPublicationDate": true,
+      "allowedEventWords": [
+        "珈琲",
+        "おやつ",
+        "一升餅",
+        "マルシェ",
+        "祭",
+        "フェア",
+        "イベント",
+        "感謝祭",
+        "収穫",
+        "音楽",
+        "体験",
+        "市"
+      ]
     },
     {
       "id": "yamagata_takahata",
@@ -287,6 +301,19 @@
       "allowExplicitDatedParagraph": true,
       "allowVenueLabelStyles": [
         "bracketed"
+      ],
+      "allowedEventWords": [
+        "フェスタ",
+        "祭",
+        "まつり",
+        "フェア",
+        "マルシェ",
+        "マーケット",
+        "イベント",
+        "見学会",
+        "体験",
+        "音楽",
+        "コンサート"
       ]
     },
     {
@@ -294,12 +321,12 @@
       "enabled": true,
       "prefecture": "静岡県",
       "roadName": "伊豆ゲートウェイ函南",
-      "listingUrl": "https://www.izugateway.com/news/",
+      "listingUrl": "https://www.izugateway.com/category/event/",
       "allowedHosts": [
         "www.izugateway.com",
         "izugateway.com"
       ],
-      "articlePathPattern": "^/(?:event|news)/[0-9]+/?$",
+      "articlePathPattern": "^/event/[0-9]+/?$",
       "listingLinkSelector": "a[href]",
       "articleSelector": "main,article,.entry-content",
       "titleSelectors": [
@@ -314,7 +341,23 @@
         "道の駅"
       ],
       "maxArticles": 8,
-      "articleMode": "monthly_calendar_article"
+      "articleMode": "monthly_calendar_article",
+      "monthlyEventWords": [
+        "フェス",
+        "祭",
+        "マルシェ",
+        "食市",
+        "ピスタチオ",
+        "干し柿",
+        "ワークショップ",
+        "コンサート",
+        "音楽",
+        "LIVE",
+        "収穫",
+        "体験",
+        "朝市",
+        "イベント"
+      ]
     },
     {
       "id": "yamaguchi_aio",
