@@ -6,6 +6,7 @@ from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period, EVENT_WORDS
 from hokkaido_events import parse_dates
+from kyushu_okinawa_events import event_period as kyushu_event_period, publication_date as kyushu_publication_date, article_event_period as kyushu_article_event_period, _article_candidates as kyushu_article_candidates, SOURCES as KYUSHU_SOURCES
 from hokuriku_events import extract_hokuriku, extract_hokuriku_cards, decode_official_response, extract_rendered_events
 from bs4 import BeautifulSoup
 from kanto_events import event_period
@@ -77,6 +78,41 @@ class DateParsingTests(unittest.TestCase):
 
     def test_hokkaido_older_year(self):
         self.assertIsNone(parse_dates("2025年10月17日", date(2026, 10, 10)))
+
+    def test_kyushu_kurume_new_rice_fair(self):
+        soup = BeautifulSoup('''<html><article><header><time datetime="2026-10-09">2026年10月9日</time></header>
+            <div class="entry-content"><p>【新米フェア開催のお知らせ】</p>
+            <p>場所：農産物直売館内</p><p>期間：１０月１７日（土）▶１１月３日（火）</p>
+            </div></article></html>''', "html.parser")
+        published = kyushu_publication_date(soup)
+        self.assertEqual(published, date(2026, 10, 9))
+        self.assertEqual(kyushu_article_event_period(
+            soup, "【イベント情報】新米フェアのお知らせ", published),
+            ("2026-10-17", "2026-11-03"))
+
+    def test_kyushu_reject_end_only_and_publication_date(self):
+        posted = date(2026, 10, 8)
+        self.assertIsNone(kyushu_event_period("期間：～１０月３１日(土)まで", posted))
+        self.assertIsNone(kyushu_event_period("食欲の秋！きのこフェアのお知らせ", posted))
+
+    def test_okinawa_kadena_published_date_is_not_event(self):
+        posted = date(2026, 9, 22)
+        self.assertEqual(kyushu_event_period(
+            "9月27日（日） チャレンジステーション@道の駅かでな開催", posted),
+            ("2026-09-27", "2026-09-27"))
+        self.assertIsNone(kyushu_event_period("10月26日（日）チャレンジステーション", posted))
+
+    def test_kyushu_listing_ignores_monthly_multi_event_and_external(self):
+        html = '''<article><h2><a href="/shinmaifair/">【イベント情報】新米フェアのお知らせ</a></h2></article>
+            <article><h2><a href="/10gatuno-event/">10月のイベント情報［2026］</a></h2></article>
+            <article><h2><a href="https://example.com/other">イベント開催</a></h2></article>'''
+        got = kyushu_article_candidates(BeautifulSoup(html, "html.parser"), KYUSHU_SOURCES[0])
+        self.assertEqual(got, [("https://www.michinoeki-kurume.com/shinmaifair/",
+                                "【イベント情報】新米フェアのお知らせ")])
+
+    def test_kyushu_2025_kadena_past_notice(self):
+        self.assertEqual(kyushu_event_period("10月26日（日）イベント",date(2025, 10,21)),
+                         ("2025-10-26","2025-10-26"))
 
     def test_hokuriku_calendar_entry(self):
         text="2026年10月10土 氷見2026年10月3日2026年10月12日ひみ番屋街創業14周年感謝祭"
