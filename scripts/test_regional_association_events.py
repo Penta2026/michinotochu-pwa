@@ -90,6 +90,31 @@ class DateParsingTests(unittest.TestCase):
             soup, "【イベント情報】新米フェアのお知らせ", published),
             ("2026-10-17", "2026-11-03"))
 
+    def test_kyushu_kurume_span_only_article_period(self):
+        # On the live station page the labelled period can be text split
+        # across span/br elements rather than a <p> line.
+        soup = BeautifulSoup("""<article><header><time datetime="2026-10-09">
+          2026年10月9日</time></header>
+          <div class="entry-content">
+            <strong>【新米フェア開催のお知らせ】</strong>
+            <span>場所：農産物直売館内</span><br>
+            <span>期間：</span><span>10月17日( 土 )</span><span>▶</span>
+            <span>11月3日(火)</span>
+            <div>新米はもちろん、新米と一緒におすすめの加工品を集めたコーナーを設置します!</div>
+          </div></article>""", "html.parser")
+        published = kyushu_publication_date(soup)
+        self.assertEqual(kyushu_article_event_period(
+            soup, "【イベント情報】新米フェアのお知らせ", published),
+            ("2026-10-17", "2026-11-03"))
+
+    def test_kyushu_end_only_span_not_inferred(self):
+        soup = BeautifulSoup("""<article><div class="entry-content">
+          <span>場所：農産物直売館内</span><span>期間：</span>
+          <span>～10月31日(土)まで</span>
+          </div></article>""", "html.parser")
+        self.assertIsNone(kyushu_article_event_period(
+            soup, "【イベント情報】きのこフェアのお知らせ", date(2026, 10, 8)))
+
     def test_kyushu_publication_date_next_to_article_title(self):
         soup = BeautifulSoup("""<div class="article-main">
            <h1>【イベント情報】新米フェアのお知らせ</h1>
