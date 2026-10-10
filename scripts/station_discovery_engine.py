@@ -178,7 +178,11 @@ def _article_record(source, soup, listing_title, today, url):
         return None, "multi_event_overview"
     lines = _article_lines(article, source)
     body = clean(article.get_text(" ", strip=True))
-    if not any(w in body for w in source["requiredVenueTokens"]):
+    venue_proof = source.get("venueProofPattern", "")
+    def on_site(value):
+        return (any(w in value for w in source["requiredVenueTokens"]) or
+                bool(venue_proof and re.search(venue_proof, value)))
+    if not on_site(body):
         return None, "venue_missing"
     has_venue_label = False
     for i, line in enumerate(lines):
@@ -186,7 +190,7 @@ def _article_record(source, soup, listing_title, today, url):
         if label:
             has_venue_label = True
             value = line[label.end():] or (lines[i + 1] if i + 1 < len(lines) else "")
-            if not any(w in value for w in source["requiredVenueTokens"]):
+            if not on_site(value):
                 return None, "offsite"
     if source.get("requireVenueLabel") and not has_venue_label:
         proof = source.get("venueProofPattern", "")
