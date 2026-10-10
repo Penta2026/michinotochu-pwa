@@ -51,7 +51,7 @@
 
 ## 実行手順・引継ぎの約束
 
-1. GitHubの [Actions — 道の駅イベント情報（全国・地域別）](../actions/workflows/road-events.yml) から **Run workflow**。
+1. GitHubの [Actions — 道の駅イベント情報（全国・地域別）](https://github.com/Penta2026/michinotochu-pwa/actions/workflows/road-events.yml) から **Run workflow**。
 2. **緑＝ジョブ成功**であり、新規取得成功や県別網羅を意味しない。緑になったら以下を検査:
    - `data/road_events.json`: 全国登録件数と追加県。
    - `data/road_event_quality_report.json`: `notReconfirmed`、`possibleDuplicates`、`corrected`。
