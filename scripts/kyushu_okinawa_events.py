@@ -49,45 +49,105 @@ def date_from_parts(groups):
     except (ValueError, TypeError):
         return None
 
+def _is_article_metadata(node):
+    """Never accept dates from site footers, nav, sidebars or other notices."""
+    if node.find_parent(["footer", "aside", "nav"]):
+        return False
+    # A generic date-looking class in a related-news widget is insufficient.
+    if node.find_parent(class_=re.compile(r"related|recommend|sidebar|widget|ranking", re.I)):
+        return False
+    return True
+
+
+def _parse_post_date(value):
+    match = POST_DATE.search(clean(value))
+    return date_from_parts(match.groups()) if match else None
+
+
 def publication_date(soup, article_title=None):
-    """Publication date only establishes the year of abbreviated event dates."""
-    for meta in soup.select('meta[property="article:published_time"], meta[name="date"], meta[itemprop="datePublished"]'):
-        match = POST_DATE.search(clean(meta.get("content", "")))
-        if match:
-            return date_from_parts(match.groups())
-    for node in soup.select("time[datetime], article time, .post-date, .entry-date, .post-meta, .entry-meta, .date"):
-        match = POST_DATE.search(clean(node.get("datetime", "") or node.get_text(" ", strip=True)))
-        if match:
-            return date_from_parts(match.groups())
-    # Date-stamped nodes are frequently plain spans/divs with site-specific
-    # classes, rather than <time> or the standard WordPress .entry-date class.
-    for node in soup.select('[class*="date"], [class*="Date"], [class*="publish"], [class*="Publish"], [itemprop="datePublished"]'):
-        value = clean(node.get("datetime", "") or node.get("content", "") or
-                      node.get_text(" ", strip=True))
-        if len(value) > 48:
-            continue
-        match = POST_DATE.search(value)
-        if match:
-            return date_from_parts(match.groups())
-    # Article heading area only: never the full page, which contains other posts.
-    for node in soup.select("article header, .entry-header"):
-        match = POST_DATE.search(clean(node.get_text(" ", strip=True))[:200])
-        if match:
-            return date_from_parts(match.groups())
-    # Final fallback: a *standalone full-year date line* immediately beside a
-    # matching article heading. Do not take unrelated dates from the page body.
-    if article_title:
-        title = clean(article_title)
-        lines = [clean(line) for line in soup.get_text("\n", strip=True).splitlines()]
-        for i, line in enumerate(lines):
-            if len(title) < 7 or line != title:
+    """Read article publication metadata, not unrelated page-wide dates."""
+    for meta in soup.select(
+        'meta[property="article:published_time"], meta[name="date"], '
+        'meta[itemprop="datePublished"]'
+    ):
+        d = _parse_post_date(meta.get("content", ""))
+        if d:
+            return d
+
+    title = clean(article_title) if article_title else ""
+    headings = soup.select("article h1, main h1, h1, article h2, .entry-title, .news-title")
+    heading = None
+    if title:
+        for candidate in headings:
+            value = clean(candidate.get_text(" ", strip=True))
+            if value == title:
+                heading = candidate
+                break
+        if heading is None:
+            for candidate in headings:
+                value = clean(candidate.get_text(" ", strip=True))
+                # The listing can prepend an "event information" label to
+                # the real article heading.
+                if len(value) >= 7 and (value in title or title in value):
+                    heading = candidate
+                    break
+
+    # Work with the single article when it can be distinguished from
+    # unrelated notices. Do not inspect all <time> nodes on the page.
+    scopes = []
+    if heading:
+        for parent in heading.parents:
+            if parent.name in ("article", "main"):
+                scopes.append(parent)
+                break
+            if parent.name in ("body", "html", "[document]"):
+                break
+    if not scopes:
+        articles = soup.select("article")
+        if len(articles) == 1:
+            scopes = articles
+
+    for scope in scopes:
+        for node in scope.select(
+            'time[datetime], time, .post-date, .entry-date, .post-meta, '
+            '.entry-meta, [class*="date"], [class*="Date"], '
+            '[class*="publish"], [class*="Publish"], [itemprop="datePublished"]'
+        ):
+            if not _is_article_metadata(node):
                 continue
-            for nearby in lines[max(0, i-2):min(len(lines), i+5)]:
-                label = re.sub(r"^(?:掲載日|投稿日|公開日|更新日)[：:]?\s*", "", nearby)
-                match = POST_DATE.fullmatch(label)
-                if match:
-                    return date_from_parts(match.groups())
+            value = clean(node.get("datetime", "") or node.get("content", "")
+                          or node.get_text(" ", strip=True))
+            if len(value) > 90:
+                continue
+            d = _parse_post_date(value)
+            if d:
+                return d
+
+    # Some station articles have no standard metadata class. Accept only
+    # standalone full-year date lines immediately adjacent to the matched
+    # article heading. Never traverse the page text or a second heading.
+    if heading is not None:
+        neighbors = []
+        for neighbor in heading.find_previous_siblings(limit=2):
+            neighbors.append(neighbor)
+        for neighbor in heading.find_next_siblings(limit=3):
+            if neighbor.name in ("footer", "aside", "nav", "h1", "h2", "h3"):
+                break
+            neighbors.append(neighbor)
+        for node in neighbors:
+            if not _is_article_metadata(node):
+                continue
+            value = clean(node.get_text(" ", strip=True))
+            if len(value) > 50:
+                continue
+            label = re.sub(r"^(?:掲載日|投稿日|公開日|更新日)[：:]?\s*", "", value)
+            m = POST_DATE.fullmatch(label)
+            if m:
+                d = date_from_parts(m.groups())
+                if d:
+                    return d
     return None
+
 
 def event_period(fragment, published):
     """Require one event-specific start; reject open-ended end-only periods."""
