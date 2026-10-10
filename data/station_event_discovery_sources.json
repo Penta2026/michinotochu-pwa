@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "mode": "new_official_article_discovery",
-  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp. Expanded with verified Fukui, Osaka and two Wakayama official station/onsite feeds. Multi-event Wakayama notices require section-specific date plus venue and are not whole-month events.",
+  "notes": "Phase 2 pilot: configured station-specific HTML feeds, event date and venue must be grounded in article. Never infer whole-month calendar or date from publication timestamp. Expanded with verified Fukui, Osaka and two Wakayama official station/onsite feeds. Multi-event Wakayama notices require section-specific date plus venue and are not whole-month events. Gap-prefecture-first expansion: six previously unconfigured prefectures (Iwate, Yamagata, Fukushima, Shizuoka, Yamaguchi, Ehime). Specialty article modes require article-local dates; no calendar month guessing.",
   "sources": [
     {
       "id": "tokyo_hachioji",
@@ -200,6 +200,170 @@
         "FOOD HUNTER PARK"
       ],
       "maxArticles": 6
+    },
+    {
+      "id": "iwate_tono_kazenooka",
+      "enabled": true,
+      "prefecture": "岩手県",
+      "roadName": "遠野風の丘",
+      "listingUrl": "https://kazenooka.tonofurusato.jp/",
+      "allowedHosts": [
+        "kazenooka.tonofurusato.jp"
+      ],
+      "articlePathPattern": "^/news/[^/?#]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main,article,.news-detail,.news__detail",
+      "titleSelectors": [
+        "h1",
+        "h2",
+        "h3",
+        "h4"
+      ],
+      "publicationSelector": "time[datetime],.post-date,.date",
+      "requiredVenueTokens": [
+        "遠野風の丘",
+        "風の丘"
+      ],
+      "allowExplicitDatedParagraph": true,
+      "maxArticles": 8,
+      "useListingPublicationDate": true
+    },
+    {
+      "id": "yamagata_takahata",
+      "enabled": true,
+      "prefecture": "山形県",
+      "roadName": "たかはた",
+      "listingUrl": "https://www.rstakahata.com/rst/event.html",
+      "allowedHosts": [
+        "www.rstakahata.com",
+        "rstakahata.com"
+      ],
+      "articlePathPattern": "^/rst/event\\.html$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "body",
+      "titleSelectors": [
+        "h1",
+        "h2"
+      ],
+      "publicationSelector": "time[datetime]",
+      "requiredVenueTokens": [
+        "道の駅たかはた",
+        "たかはた"
+      ],
+      "maxArticles": 1,
+      "articleMode": "official_station_program",
+      "sectionEventNames": [
+        "秋の収穫祭"
+      ],
+      "requireExplicitYear": true
+    },
+    {
+      "id": "fukushima_michinoeki",
+      "enabled": true,
+      "prefecture": "福島県",
+      "roadName": "ふくしま",
+      "listingUrl": "https://m-fukushima.com/info/?category=2",
+      "allowedHosts": [
+        "m-fukushima.com"
+      ],
+      "articlePathPattern": "^/info/[0-9]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main,article,.info-detail,.post-detail",
+      "titleSelectors": [
+        "h1",
+        "h2",
+        "h3",
+        "h4"
+      ],
+      "publicationSelector": "time[datetime],.date,.info-date",
+      "requiredVenueTokens": [
+        "道の駅ふくしま",
+        "多目的広場",
+        "屋内催事場",
+        "ガーデンプレイス"
+      ],
+      "maxArticles": 10,
+      "useListingPublicationDate": true,
+      "allowExplicitDatedParagraph": true,
+      "allowVenueLabelStyles": [
+        "bracketed"
+      ]
+    },
+    {
+      "id": "shizuoka_izugateway",
+      "enabled": true,
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南",
+      "listingUrl": "https://www.izugateway.com/news/",
+      "allowedHosts": [
+        "www.izugateway.com",
+        "izugateway.com"
+      ],
+      "articlePathPattern": "^/(?:event|news)/[0-9]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main,article,.entry-content",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1",
+        "h2"
+      ],
+      "publicationSelector": "time[datetime],.post-date,.entry-date",
+      "requiredVenueTokens": [
+        "伊豆ゲートウェイ函南",
+        "道の駅"
+      ],
+      "maxArticles": 8,
+      "articleMode": "monthly_calendar_article"
+    },
+    {
+      "id": "yamaguchi_aio",
+      "enabled": true,
+      "prefecture": "山口県",
+      "roadName": "あいお",
+      "listingUrl": "https://michinoeki-aio.com/news/",
+      "allowedHosts": [
+        "michinoeki-aio.com"
+      ],
+      "articlePathPattern": "^/(?:news|aio/event|event)/[^?#]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article,main",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1"
+      ],
+      "publicationSelector": "time[datetime],.post-date",
+      "requiredVenueTokens": [
+        "道の駅あいお",
+        "あいお"
+      ],
+      "maxArticles": 7
+    },
+    {
+      "id": "ehime_minatto",
+      "enabled": true,
+      "prefecture": "愛媛県",
+      "roadName": "八幡浜みなっと",
+      "listingUrl": "https://www.minatto.net/",
+      "allowedHosts": [
+        "www.minatto.net",
+        "minatto.net"
+      ],
+      "articlePathPattern": "^/(?:event|events|news|information)/[^?#]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "article,main",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1"
+      ],
+      "publicationSelector": "time[datetime],.post-date",
+      "requiredVenueTokens": [
+        "八幡浜みなっと",
+        "みなっと"
+      ],
+      "maxArticles": 7
     }
   ]
 }
