@@ -69,6 +69,21 @@ def targeted_station_sources():
             raise ValueError(f"Unknown Kinki prefecture: {pref}")
         if name not in stations[pref]:
             stations[pref].append(name)
+    # Phase 2 config-only HTML sources; including an official listing URL
+    # records a targeted source, not successful extraction/coverage.
+    phase2_path = DATA / "station_event_discovery_sources.json"
+    if phase2_path.exists():
+        phase2 = json.loads(phase2_path.read_text(encoding="utf-8"))
+        if phase2.get("schemaVersion") != 1:
+            raise ValueError("Unknown Phase 2 discovery registry schema")
+        for item in phase2.get("sources", []):
+            if not item.get("enabled"):
+                continue
+            pref, name = item["prefecture"], item["roadName"]
+            if pref not in PREFECTURES:
+                raise ValueError(f"Unknown discovery prefecture: {pref}")
+            if name not in stations[pref]:
+                stations[pref].append(name)
     return dict(stations)
 
 def make_report(event_data, source_report, quality_report, direct=None):
