@@ -4,7 +4,7 @@ from datetime import date
 from regional_association_events import _period
 from region_official_events import _murata_period
 from generic_region_events import period as generic_period
-from collect_road_events import chugoku_period
+from collect_road_events import chugoku_period, EVENT_WORDS
 from hokkaido_events import parse_dates
 from kanto_events import event_period
 from chubu_events import bulletin_links, bulletin_date, verified_pdf_events
@@ -37,6 +37,9 @@ class DateParsingTests(unittest.TestCase):
     def test_chugoku_explicit_period(self):
         self.assertEqual(chugoku_period("第6回 秋フェスタ 10月24日(土)10時から", date(2026, 10, 1)),
                          ("2026-10-24", "2026-10-24"))
+
+    def test_chugoku_festa_is_event_word(self):
+        self.assertTrue(any(word in "第６回 秋わくわくフェスタ" for word in EVENT_WORDS))
 
     def test_chugoku_tonbara_festival(self):
         self.assertEqual(
