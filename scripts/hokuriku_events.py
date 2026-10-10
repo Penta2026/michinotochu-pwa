@@ -40,6 +40,14 @@ def extract_hokuriku(text, today, source):
             "startDate": first.isoformat(), "endDate": last.isoformat(),
             "publishedAt": "", "url": source, "status": "scheduled"}
 
+def decode_official_response(response):
+    """This site can omit HTTP charset, causing requests to treat UTF-8 as Latin-1."""
+    try:
+        return response.content.decode("utf-8")
+    except UnicodeDecodeError:
+        return response.content.decode(response.apparent_encoding or "utf-8", errors="replace")
+
+
 def extract_hokuriku_cards(soup, today, page_url):
     """Read event-specific links and their surrounding card, not only link text.
 
@@ -67,6 +75,11 @@ def extract_hokuriku_cards(soup, today, page_url):
         for node in views:
             node_text = node.get_text(" ", strip=True)
             if not 10 <= len(node_text) <= 650:
+                continue
+            # Exclude shared containers spanning multiple independent events.
+            if sum(name in node_text for name in STATIONS) > 1:
+                continue
+            if len(re.findall(DATES, node_text)) > 3:
                 continue
             # Require an exact station plus two explicit dates in the same
             # limited card. Never use a date found in a different event card.
@@ -106,9 +119,9 @@ def collect_hokuriku(today):
     # ongoing and upcoming events, with a bounded number of network calls.
     found = {}
     audits = []
-    for offset in (0, 7, 14, 21, 28, 35):
-        day = today + timedelta(days=offset)
-        url = CALENDAR + "?dc=" + day.isoformat()
+    for offset in (0, 7, 14, 21, 28, 35, None):
+        day = today + timedelta(days=offset or 0)
+        url = CALENDAR + "?dc=" + day.isoformat() if offset is not None else BASE + "/"
         try:
             response = requests.get(url, headers=HEADERS, timeout=15)
             response.raise_for_status()
@@ -116,27 +129,34 @@ def collect_hokuriku(today):
             print(f"北陸カレンダー取得失敗 {url}: {exc}")
             audits.append({"date": day.isoformat(), "url": url, "error": str(exc)[:180]})
             continue
-        soup = BeautifulSoup(response.text, "html.parser")
+        decoded = decode_official_response(response)
+        soup = BeautifulSoup(decoded, "html.parser")
         records, stats = extract_hokuriku_cards(soup, today, response.url)
         links = [urljoin(response.url, a.get("href", "")) for a in soup.select("a[href]")]
         event_links = [href for href in links if "/contents/event" in urlparse(href).path]
         page_text = soup.get_text(" ", strip=True)
+        event_specific = [href for href in event_links if parse_qs(urlparse(href).query).get("article")]
         audits.append({
             "date": day.isoformat(), "url": response.url,
             "htmlSize": len(response.content), "links": len(links),
+            "httpEncoding": response.encoding,
+            "apparentEncoding": response.apparent_encoding,
+            "utf8Decode": not "\\ufffd" in decoded,
             "eventLinks": len(event_links),
+            "specificArticleLinks": len(event_specific),
+            "sampleAllLinks": links[:12],
             "sampleEventLinks": event_links[:5],
             "stationsInPage": [station for station in STATIONS if station in page_text],
             "articleLinks": stats["articleLinks"],
             "matchedCards": stats["matchedCards"],
             "unmatchedArticleLinks": stats["unmatchedArticleLinks"],
-            "sampleText": page_text[:220]
+            "sampleText": page_text[:950]
         })
         for item in records:
             found[(item["roadName"], item["url"], item["startDate"])] = item
         print(f"北陸公式 {day.isoformat()}: 詳細リンク {stats['articleLinks']} / "
               f"駅・期間照合 {len(records)} / 未照合 {stats['unmatchedArticleLinks']}")
         if not records:
-            print(f"北陸公式・サンプル: {soup.get_text(' ', strip=True)[:220]}")
+            print(f"北陸公式・サンプル: {page_text[:220]}")
     save_hokuriku_audit(audits, len(found))
     return list(found.values())
