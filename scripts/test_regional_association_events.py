@@ -519,6 +519,32 @@ class DateParsingTests(unittest.TestCase):
         self.assertEqual(len(records),2)
         self.assertEqual(len(audit["corrected"]),0)
 
+    def test_future_published_at_is_cleared_but_event_date_preserved(self):
+        event={"roadName":"和","prefecture":"京都府",
+               "title":"黒大豆枝豆もぎとり収穫体験",
+               "startDate":"2026-10-16","endDate":"2026-11-03",
+               "publishedAt":"2026-10-16",
+               "url":"https://wachi-nagomi.com/topics/post-10529/",
+               "status":"scheduled"}
+        result,audit=reconcile([event],[event],date(2026,10,10))
+        self.assertEqual(len(result),1)
+        self.assertEqual(result[0]["startDate"],"2026-10-16")
+        self.assertEqual(result[0]["endDate"],"2026-11-03")
+        self.assertEqual(result[0]["publishedAt"],"")
+        self.assertEqual(len(audit["futurePublicationDatesCleared"]),1)
+        self.assertEqual(audit["futurePublicationDatesCleared"][0]["reason"],
+                         "publication_date_in_future")
+
+    def test_publication_date_today_is_not_removed(self):
+        event={"roadName":"和","prefecture":"京都府","title":"イベント",
+               "startDate":"2026-10-11","endDate":"2026-10-11",
+               "publishedAt":"2026-10-10",
+               "url":"https://wachi-nagomi.com/topics/valid/",
+               "status":"scheduled"}
+        result,audit=reconcile([], [event], date(2026,10,10))
+        self.assertEqual(result[0]["publishedAt"],"2026-10-10")
+        self.assertEqual(audit["futurePublicationDatesCleared"],[])
+
     def test_reconcile_reports_unconfirmed(self):
         base={"url":"https://official.example/a","roadName":"飯高駅",
               "title":"感謝祭","startDate":"2026-10-24","endDate":"2026-10-25"}
