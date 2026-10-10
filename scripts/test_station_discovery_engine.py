@@ -163,5 +163,126 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(why,"accepted")
         self.assertEqual(rec["startDate"],"2026-10-31")
 
+
+    def test_expanded_registry_config_has_three_new_prefectures(self):
+        import json
+        from station_discovery_engine import RULES
+        rules=json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+        self.assertEqual(len(rules),7)
+        self.assertTrue({"福井県","大阪府","和歌山県"}.issubset(
+            set(rule["prefecture"] for rule in rules)))
+        _validate_sources(rules)
+
+    def test_fukui_official_root_level_article_slug(self):
+        src={**TOKYO,"id":"fukui","listingUrl":"https://hamabiyori.com/events/",
+             "allowedHosts":["hamabiyori.com"],
+             "articlePathPattern":r"^/(?!events/?$)[^/]+/?$"}
+        self.assertTrue(_official_url(
+            "https://hamabiyori.com/%F0%9F%8E%AAexample/",src,article=True))
+        self.assertFalse(_official_url(src["listingUrl"],src,article=True))
+
+    def test_osaka_explicit_on_site_venue_and_unlabelled_yearly_date(self):
+        spec={**TOKYO,"id":"osaka","roadName":"いずみ山愛の里",
+            "prefecture":"大阪府","requiredVenueTokens":["南部リージョンセンター"],
+            "allowExplicitDatedParagraph":True,"requireVenueLabel":True}
+        html="""<article><h1>いずみの山の小さなマルシェ10月</h1>
+           <p>月イチマルシェを開催しています。</p>
+           <p>2026年10月18日（日）10:00～16:00頃</p>
+           <p>会場：南部リージョンセンター1階ロビー</p>
+           </article>"""
+        rec,why=_article_record(spec,soup(html),"マルシェ10月",TODAY,URL)
+        self.assertEqual(why,"accepted")
+        self.assertEqual(rec["startDate"],"2026-10-18")
+        self.assertEqual(rec["prefecture"],"大阪府")
+
+    def test_osaka_related_publicity_without_venue_label_is_not_station_event(self):
+        spec={**TOKYO,"requiredVenueTokens":["南部リージョンセンター"],
+              "requireVenueLabel":True,"allowExplicitDatedParagraph":True}
+        html="""<article><h1>秋のマルシェ</h1>
+           <p>主催：南部リージョンセンター</p>
+           <p>2026年10月18日（日）開催</p></article>"""
+        self.assertEqual(_article_record(spec,soup(html),"秋のマルシェ",TODAY,URL),
+                         (None,"venue_missing"))
+
+    def test_wakayama_multi_notice_extracts_two_independently_dated_events(self):
+        from station_discovery_engine import _section_records
+        spec={**TOKYO,"id":"sakuas","prefecture":"和歌山県",
+              "roadName":"海南サクアス",
+              "requiredVenueTokens":["海南サクアス"],
+              "approvedVenueTokens":["催事スペース","エントランス広場"]}
+        html="""<main><h1>10月イベント情報</h1>
+           <time datetime="2026-09-28">2026.9.28</time>
+           <p>道の駅『海南サクアス』では催し物をご用意しました。</p>
+           <p>〖北海道うまいっしょ市〗</p>
+           <p>🗓10月17日(土)～10月18日(日)</p>
+           <p>📍催事スペース</p>
+           <p>〖音楽LIVE♬〗</p>
+           <p>🗓10月24日(土) 11:00～</p>
+           <p>📍エントランス広場</p>
+           </main>"""
+        actual,why=_section_records(spec,soup(html),TODAY,
+                                    "https://sakuas.com/event/9999/")
+        self.assertEqual(why,"accepted")
+        self.assertEqual(len(actual),2)
+        self.assertEqual([x["startDate"] for x in actual],
+                         ["2026-10-17","2026-10-24"])
+        self.assertEqual(actual[0]["endDate"],"2026-10-18")
+        self.assertNotEqual(actual[0]["title"],actual[1]["title"])
+
+    def test_wakayama_multi_requires_onsite_venue_and_grounded_year(self):
+        from station_discovery_engine import _section_records
+        spec={**TOKYO,"id":"sakuas","roadName":"海南サクアス",
+              "requiredVenueTokens":["海南サクアス"],
+              "approvedVenueTokens":["催事スペース"]}
+        html="""<main><h1>10月イベント情報</h1>
+          <p>道の駅海南サクアスからのお知らせ</p>
+          <p>〖マルシェ〗</p><p>🗓10月24日(土)</p><p>📍市役所広場</p>
+          <p>〖秋のフェア〗</p><p>🗓10月31日(土)</p><p>📍催事スペース</p>
+          </main>"""
+        result,why=_section_records(spec,soup(html),TODAY,
+                                    "https://sakuas.com/event/9999/")
+        self.assertEqual(result,[])
+        self.assertEqual(why,"no_individually_dated_sections")
+
+    def test_wakayama_multi_does_not_block_same_article_later_events(self):
+        spec={**TOKYO,"id":"sakuas","roadName":"海南サクアス",
+              "prefecture":"和歌山県",
+              "listingUrl":"https://sakuas.com/event/",
+              "allowedHosts":["sakuas.com"],
+              "articlePathPattern":r"^/event/[0-9]+/?$",
+              "articleMode":"dated_sections","maxArticles":3,
+              "requiredVenueTokens":["海南サクアス"],
+              "approvedVenueTokens":["催事スペース"]}
+        url="https://sakuas.com/event/1234/"
+        html="""<main><h1>10月イベント情報</h1>
+           <time datetime="2026-09-28"></time>
+           <p>道の駅 海南サクアスの催しです</p>
+           <p>〖北海道うまいっしょ市〗</p>
+           <p>🗓10月17日(土)</p><p>📍催事スペース</p>
+           <p>〖秋の音楽LIVE〗</p>
+           <p>🗓10月24日(土)</p><p>📍催事スペース</p></main>"""
+        prior=[{"url":url,"roadName":"海南サクアス","prefecture":"和歌山県",
+                "title":"北海道うまいっしょ市","startDate":"2026-10-17",
+                "endDate":"2026-10-17"}]
+        fetch=lambda u:soup({spec["listingUrl"]:
+            '<a href="/event/1234/">10月イベント情報</a>',url:html}[u])
+        result,audit=collect_configured_station_events(
+            TODAY,prior,[spec],fetch=fetch,report_path=None)
+        self.assertEqual(len(result),1)
+        self.assertEqual(result[0]["title"],"秋の音楽LIVE")
+        self.assertEqual(audit["sources"][0]["accepted"],1)
+
+    def test_wakayama_multi_never_registers_image_only_calendar(self):
+        from station_discovery_engine import _section_records
+        spec={**TOKYO,"id":"sakuas","roadName":"海南サクアス",
+              "requiredVenueTokens":["海南サクアス"],
+              "approvedVenueTokens":["催事スペース"]}
+        html="""<main><h1>10月イベントカレンダー</h1>
+            <p>道の駅海南サクアスのお知らせ</p>
+            <img src="october.png"/></main>"""
+        records,why=_section_records(spec,soup(html),TODAY,
+                                     "https://sakuas.com/event/100/")
+        self.assertEqual(records,[])
+
 if __name__ == "__main__":
     unittest.main()
