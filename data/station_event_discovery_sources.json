@@ -452,7 +452,8 @@
         "物産展"
       ],
       "maxArticles": 8,
-      "requireVenueLabel": true
+      "requireVenueLabel": true,
+      "splitArticleTextLines": true
     },
     {
       "id": "fukui_nanjezen_sankairi",
@@ -620,9 +621,12 @@
       "allowedEventWords": [
         "産業まつり"
       ],
-      "maxArticles": 8,
+      "maxArticles": 12,
       "requireVenueLabel": true,
-      "allowExplicitDatedParagraph": true
+      "allowExplicitDatedParagraph": true,
+      "preferredTitles": [
+        "やわたはま産業まつり"
+      ]
     },
     {
       "id": "nagasaki_himawari",
@@ -659,7 +663,8 @@
       "maxArticles": 8,
       "useListingPublicationDate": true,
       "allowExplicitDatedParagraph": true,
-      "venueProofPattern": "(?:場所|会場)\\s*[:：]?\\s*道の駅ひまわり"
+      "venueProofPattern": "(?:場所|会場)\\s*[:：]?\\s*道の駅ひまわり",
+      "articleMode": "dated_news_listing"
     },
     {
       "id": "kagoshima_tarumizu_official",
