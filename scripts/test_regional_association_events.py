@@ -6,7 +6,7 @@ from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period, EVENT_WORDS
 from hokkaido_events import parse_dates
-from hokuriku_events import extract_hokuriku, extract_hokuriku_cards, decode_official_response
+from hokuriku_events import extract_hokuriku, extract_hokuriku_cards, decode_official_response, extract_rendered_events
 from bs4 import BeautifulSoup
 from kanto_events import event_period
 from chubu_events import bulletin_links, bulletin_date, verified_pdf_events
@@ -122,6 +122,32 @@ class DateParsingTests(unittest.TestCase):
             BeautifulSoup(html,"html.parser"),date(2026,10,10),
             "https://www.hokuriku-michinoeki.jp/contents/event/")
         self.assertEqual(records, [])
+
+    def test_hokuriku_browser_rendered_card(self):
+        html = """<div><div class="event">
+          <span>氷見</span><span>2026年10月3日</span>
+          <span>2026年10月12日</span>
+          <a href="/contents/event/?article=9001">ひみ番屋街創業14周年感謝祭</a>
+          </div></div>"""
+        events = extract_rendered_events(
+            BeautifulSoup(html, "html.parser"), date(2026, 10, 10),
+            "https://www.hokuriku-michinoeki.jp/contents/event/")
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["roadName"], "氷見")
+        self.assertEqual(events[0]["startDate"], "2026-10-03")
+        self.assertEqual(events[0]["endDate"], "2026-10-12")
+        self.assertIn("article=9001", events[0]["url"])
+
+    def test_hokuriku_browser_does_not_cross_event_cards(self):
+        html = """<div><div class="event">
+            氷見 2026年10月3日
+          </div><div class="event">
+            めぐみ白山 2026年10月25日 白山道の駅フェア
+          </div></div>"""
+        events = extract_rendered_events(
+            BeautifulSoup(html, "html.parser"), date(2026, 10, 10),
+            "https://www.hokuriku-michinoeki.jp/contents/event/")
+        self.assertEqual(events, [])
 
     def test_hokuriku_reject_past(self):
         text="氷見2026年9月3日2026年9月12日過去の感謝祭"
