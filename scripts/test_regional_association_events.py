@@ -118,6 +118,23 @@ class DateParsingTests(unittest.TestCase):
           "html.parser")
         self.assertIsNone(kyushu_publication_date(soup, "新米フェアのお知らせ"))
 
+    def test_kyushu_publication_ignores_footer_inside_article(self):
+        title = "新米フェアのお知らせ"
+        soup = BeautifulSoup("""<article><h1>新米フェアのお知らせ</h1>
+          <p>開催期間：10月17日（土）～11月3日（火）</p>
+          <footer><time datetime="2026-10-09">2026年10月9日</time></footer>
+          </article>""", "html.parser")
+        self.assertIsNone(kyushu_publication_date(soup, title))
+
+    def test_kyushu_publication_ignores_unrelated_news_widget(self):
+        title = "新米フェアのお知らせ"
+        soup = BeautifulSoup("""<main><article>
+          <h1>新米フェアのお知らせ</h1>
+          <p>開催期間：10月17日（土）～11月3日（火）</p></article>
+          <aside><div class="post-date">2026年10月9日</div></aside>
+          </main>""", "html.parser")
+        self.assertIsNone(kyushu_publication_date(soup, title))
+
     def test_kyushu_reject_end_only_and_publication_date(self):
         posted = date(2026, 10, 8)
         self.assertIsNone(kyushu_event_period("期間：～１０月３１日(土)まで", posted))
