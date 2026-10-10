@@ -777,6 +777,33 @@
       "venueProofPattern": "催事先\\s*道の駅\\s*たるみず\\s*はまびら",
       "articleMode": "verified_official_vendor_schedule",
       "maxArticles": 1
+    },
+    {
+      "id": "wakayama_prefecture_seishumatsuri_official",
+      "enabled": true,
+      "prefecture": "和歌山県",
+      "roadName": "青洲の里",
+      "listingUrl": "https://www.wakayama-kanko.or.jp/events/detail_3879.html",
+      "allowedHosts": [
+        "www.wakayama-kanko.or.jp",
+        "wakayama-kanko.or.jp"
+      ],
+      "articlePathPattern": "^/events/detail_3879\\.html$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main,article,body",
+      "titleSelectors": [
+        "h1",
+        "h2"
+      ],
+      "requiredVenueTokens": [
+        "青洲の里"
+      ],
+      "requiredEventTitle": "青洲まつり2026",
+      "titleMatchContains": true,
+      "eventDateMode": "heading_year_labeled_day",
+      "venueProofPattern": "開催場所\\s*道の駅\\s*[「『]?青洲の里",
+      "articleMode": "verified_official_event_detail",
+      "maxArticles": 1
     }
   ]
 }
