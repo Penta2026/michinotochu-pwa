@@ -66,11 +66,15 @@ class PrefectureCoverageTests(unittest.TestCase):
         self.assertIn("does not prove event coverage", report["definitions"]["regionalHomepageReachable"])
         self.assertEqual(report["basisUpdatedAt"], "2026-10-10")
 
-    def test_configured_direct_sources_are_eight_prefectures(self):
+    def test_configured_station_feeds_include_three_kanto_prefectures(self):
         sources = targeted_station_sources()
         self.assertEqual(set(sources), {
+            "茨城県", "栃木県", "群馬県",
             "福岡県", "佐賀県", "長崎県", "熊本県",
             "大分県", "宮崎県", "鹿児島県", "沖縄県"})
+        self.assertEqual(sources["茨城県"], ["かさま", "ひたちおおた"])
+        self.assertEqual(sources["栃木県"], ["ましこ"])
+        self.assertEqual(sources["群馬県"], ["あぐりーむ昭和"])
 
     def test_unknown_prefecture_is_detected(self):
         report = make_report(
