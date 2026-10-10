@@ -737,7 +737,23 @@ def _verified_official_event_detail_records(spec, soup, today, url):
     # Event-site programme notation: "2026.10.10 SAT — 11.23 MON"
     # or "2026 10.10 SAT 11.23 MON". The end month/day must be
     # adjacent to the explicitly dated start, not a global page date.
-    if spec.get("eventDateMode") == "heading_year_labeled_day":
+    if spec.get("eventDateMode") == "labeled_full_year_single":
+        # Only a named event's 'イベント開催日時' field can ground a date.
+        # A note article's publication stamp or application deadline
+        # must never be treated as the event's date.
+        rawdate = re.search(
+            r"イベント開催日時\s*((?:令和\s*[0-9]{1,2}|20[0-9]{2})\s*年\s*[0-9]{1,2}月\s*[0-9]{1,2}日)",
+            _date_text(body))
+        if rawdate is None:
+            return [], "event_labeled_date_missing"
+        period = _period(rawdate.group(1))
+        if not period:
+            return [], "event_invalid_date"
+        try:
+            start, end = date.fromisoformat(period[0]), date.fromisoformat(period[1])
+        except ValueError:
+            return [], "event_invalid_date"
+    elif spec.get("eventDateMode") == "heading_year_labeled_day":
         # A prefecture tourism organizer's event page can print the year in
         # the event's own heading and only a month/day in its date field.
         # Never inherit the year from the current clock or unrelated metadata.
