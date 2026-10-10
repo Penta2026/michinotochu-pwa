@@ -15,6 +15,7 @@ import requests
 from region_official_events import collect_tohoku
 from regional_association_events import collect_regional_associations
 from generic_region_events import collect_generic_regions
+from hokkaido_events import collect_hokkaido
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -342,8 +343,13 @@ def main():
     # Regional association sites are primary broad-coverage feeds; individual
     # station sites remain a supplement for notices missing from associations.
     regional=collect_regional_associations(NOW)
+    try:
+        hokkaido=collect_hokkaido(NOW)
+    except requests.RequestException as exc:
+        print(f"北海道の取得失敗。既存データを維持: {exc}", file=sys.stderr)
+        hokkaido=[]
     generic=collect_generic_regions(NOW)
-    collected=shikoku+chugoku+nationwide+regional+tohoku+generic
+    collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
