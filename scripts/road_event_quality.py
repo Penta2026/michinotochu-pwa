@@ -60,6 +60,30 @@ def coalesce_hokuriku_records(records):
     return result
 
 
+def coalesce_status_badge_records(records):
+    """Ignore a trailing official-card 'NEW' badge only within the same event.
+
+    Identical venue/date/article title is strong evidence of a UI badge
+    duplicate. An entire PDF may contain many distinct events; don't
+    deduplicate them merely because they share a URL or date.
+    """
+    clean_records, seen = [], set()
+    for record in records:
+        item = dict(record)
+        title = item.get("title", "")
+        without_badge = re.sub(r"\s+NEW[!！]?\s*$", "", title, flags=re.I)
+        if without_badge != title:
+            item["title"] = without_badge
+        key = (item.get("prefecture"), item.get("roadName"), item.get("url"),
+               item.get("startDate"), item.get("endDate"),
+               canonical_title(item.get("title", "")))
+        if key in seen:
+            continue
+        seen.add(key)
+        clean_records.append(item)
+    return clean_records
+
+
 def identity(record):
     # Distinguish simultaneous events, including several entries in one PDF.
     article = hokuriku_article_id(record)
@@ -113,13 +137,18 @@ def reconcile(old, new, today):
               "expiredOrInvalid": [], "corrected": [], "exactDuplicates": [],
               "possibleDuplicates": [], "notReconfirmed": [], "finalCount": 0,
               "futurePublicationDatesCleared": []}
-    old_clean = coalesce_hokuriku_records(_sanitize_future_publication(
+    old_hok = coalesce_hokuriku_records(_sanitize_future_publication(
         old, today, report["futurePublicationDatesCleared"]))
-    new_clean = coalesce_hokuriku_records(_sanitize_future_publication(
+    new_hok = coalesce_hokuriku_records(_sanitize_future_publication(
         new, today, report["futurePublicationDatesCleared"]))
+    old_clean = coalesce_status_badge_records(old_hok)
+    new_clean = coalesce_status_badge_records(new_hok)
     report["collapsedHokurikuDuplicates"] = {
-        "previous": len(old) - len(old_clean),
-        "collected": len(new) - len(new_clean)}
+        "previous": len(old) - len(old_hok),
+        "collected": len(new) - len(new_hok)}
+    report["collapsedStatusBadgeDuplicates"] = {
+        "previous": len(old_hok) - len(old_clean),
+        "collected": len(new_hok) - len(new_clean)}
     preserved = []
     for event in old_clean:
         if not plausible(event, today):
