@@ -35,7 +35,7 @@ def plausible(record, today):
 def reconcile(old, new, today):
     report = {"schemaVersion": 1, "inputPrevious": len(old), "inputCollected": len(new),
               "expiredOrInvalid": [], "corrected": [], "exactDuplicates": [],
-              "possibleDuplicates": [], "finalCount": 0}
+              "possibleDuplicates": [], "notReconfirmed": [], "finalCount": 0}
     preserved = []
     for event in old:
         if not plausible(event, today):
@@ -69,6 +69,15 @@ def reconcile(old, new, today):
             else:
                 report["exactDuplicates"].append({"roadName": event["roadName"], "title": event["title"]})
         by_id[key] = event
+    # Previously published events absent from the current collection are kept
+    # but explicitly flagged for investigation (not assumed cancelled).
+    collected_ids = {identity(e) for e in new if plausible(e, today)}
+    for event in preserved:
+        if identity(event) not in collected_ids:
+            report["notReconfirmed"].append({
+                "roadName": event["roadName"], "title": event["title"],
+                "startDate": event["startDate"], "endDate": event["endDate"],
+                "url": event["url"], "reason": "not_found_in_current_collection"})
     # Cross-source possible duplicates: advisory only; never remove different
     # event names or records without a proven shared identifier.
     items = list(by_id.values())
