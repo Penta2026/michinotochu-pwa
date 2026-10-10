@@ -1,10 +1,20 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-10 Actions #57 実測**（全国81件・登録実績42県・未登録5都県・未再確認3件。PDFルート等の次回変更は未検証）  
+更新基準: **2026-10-10 Actions #60 実測**（全国81件・登録実績42県・未登録5都県・未再確認1件。山口再確認ルールは次回検証待ち）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-10 17:32〜17:38 JST Actions #60 成功・未再確認1件へ縮小
+
+- [Actions #60](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38038219750) **成功**。`Test event date extraction`は **201テスト全件OK**。収集・県別監査・Pages配信まで完了。
+- **本番確定値**：全国 **81件**／登録実績 **42/47県**／未登録 **5都県**（東京・神奈川・和歌山・愛媛・鹿児島）／未再確認 **1件**／重複候補0／無効0。前回#59の81件・42県・未再確認5件から、未再確認が**4件改善**した。
+- 共通設定エンジン：`newEvents=0`、`reconfirmedEvents=7`。地域内の再確認（山形たかはた1、静岡伊豆ゲートウェイ函南3、大阪くろまろの郷1、熊本あそ望の郷くぎの1、長崎ひまわり1）。別系統の`verified_station_engine`で**5件再確認成功**（福島・福井・岩手2・宮崎）。集計を単純合算すると12件だが別ルートで確認したイベントの件数であり、新規採用件数ではない。
+- **残る未再確認**：山口県「阿武町」**第49回 森里海の市 2026-11-29**。公式記事を単一記事モードの既存URLスキップで再確認していなかった。公式記事のURLスラッグに過年度記載があり得るので、現行記事の**イベント固有名と開催日**を直接照合する方針。
+- **愛媛の阻害原因が確定**：`ehime_city_official_festival_pdf`は`checked=0, accepted=0, fetchFailed=1`。今回から`fetchErrors`に例外が残り、**`HTTPError: 404 Client Error: Not Found`** と判明。URL `https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf` は市公式HTML `https://www.city.yawatahama.ehime.jp/doc/2026041700097/` の「仕様書」から参照されているが、Actionsから直接のPDF取得が404。検索結果で全文を参照できることと、Actionsから実際にPDFを取得できることは別。**現時点では愛媛の追加採用は不可**。市の公式別ページ（2026年11月22日の第13回産業まつりなど）から**日時・道の駅会場をともに検証できる代替導線**を引き続き探索。古いPDFテキストをキャッシュして自動登録する実装は行わない。
+- **#60の後の追加設定（Actions未検証）**：`data/verified_station_source_rules.json`に山口「阿武町」の公式ホスト`abucreation.com`・`/topics/`個別記事パスを追加。 `scripts/test_verified_station_engine.py`に不正ホスト・異なる道の駅名・無関係URLを拒否する1件の回帰テストを追加。**次回テスト予定202件**。当該記事の内容が既存タイトル・開催期間と一致してはじめて再確認済みとして集計される。
+- **次回の実測確認**：`verified_station_reconfirmation_audit.json`（阿武町のresult）、`station_event_discovery_audit.json`（愛媛のfetchErrors）、`road_event_quality_report.json`（notReconfirmed）、`prefecture_event_coverage.json`（42/47から変化したか）を確認。未登録県については実際の公式日付・駅構内開催根拠がある場合のみ増やす。
 
 ## 2026-10-10 17:13〜17:19 JST Actions #59 成功・PDF通信失敗／再確認監査の改善待ち
 
