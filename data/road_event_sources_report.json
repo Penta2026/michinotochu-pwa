@@ -63,10 +63,55 @@
       "region": "東北",
       "url": "https://www.michinoeki-tohoku.com/event",
       "status": "adapter",
-      "reachable": false,
-      "candidates": [],
-      "candidateCount": 0,
-      "error": "ReadTimeout: HTTPSConnectionPool(host='www.michinoeki-tohoku.com', port=443): Read timed out. (read timeout=12)"
+      "reachable": true,
+      "candidates": [
+        {
+          "title": "イベント情報",
+          "url": "https://www.michinoeki-tohoku.com/event"
+        },
+        {
+          "title": "福島県 道の駅・石川(福島県石川町)オープン！ 開催期間 2026年9月18日～",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2026/09/18/3014"
+        },
+        {
+          "title": "青森県 岩手県 宮城県 秋田県 山形県 福島県 第8回東北「道の駅」まるごとフェスタ開催！ 開催期間 2025年10月15日(水)～2025年10月16日(木)",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2025/09/11/2795"
+        },
+        {
+          "title": "岩手県 道の駅・もりおか渋民(岩手県盛岡市)オープン！ 開催期間 2025年4月26日",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2025/04/26/2705"
+        },
+        {
+          "title": "岩手県 道の駅・だいとう(岩手県一関市)オープン！ 開催期間 2025年4月17日",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2025/04/17/2701"
+        },
+        {
+          "title": "宮城県 道の駅・東松島(宮城県東松島市)オープン！ 開催期間 2024年11月27日",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2024/11/27/2533"
+        },
+        {
+          "title": "秋田県 道の駅・十和田湖(秋田県小坂町)オープン！ 開催期間 2024年10月12日",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2024/10/12/2530"
+        },
+        {
+          "title": "山形県 道の駅・やまがた蔵王(山形県山形市)オープン！ 開催期間 2023年12月3日",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2023/12/03/2260"
+        },
+        {
+          "title": "山形県 道の駅・もがみ（山形県最上町）オープン！ 開催期間 2023年11月26日",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2023/11/26/2257"
+        },
+        {
+          "title": "岩手県 道の駅・いわて北三陸（岩手県久慈市）オープン！ 開催期間 2023年4月19日",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2023/04/19/2250"
+        },
+        {
+          "title": "宮城県 道の駅・さんさん南三陸（宮城県南三陸町）オープン！ 開催期間 2022年10月1日",
+          "url": "https://www.michinoeki-tohoku.com/event/liaison/2022/10/01/2240"
+        }
+      ],
+      "candidateCount": 11,
+      "error": ""
     },
     {
       "region": "関東",
@@ -74,6 +119,14 @@
       "status": "discovery",
       "reachable": true,
       "candidates": [
+        {
+          "title": "子ども広場にあるぶどうの実ドームと小坂田マルシェ７９０内のDELI＆BREAD",
+          "url": "https://www.kanto-michinoeki.jp/map_single.php?id_name=8&single_name=3"
+        },
+        {
+          "title": "マルシェ黒耀",
+          "url": "https://www.kanto-michinoeki.jp/map_single.php?id_name=8&single_name=9"
+        },
         {
           "title": "【道の駅こすげ】ミニイベント 秋まつり 2026･･･ 秋の訪れを感じるようになってきました。 道の駅こすげでは、ミニイベント「秋祭り」を開催いたします。 秋の小菅村へ、是非、遊びに来ませんか？地元のきのこや野菜など、小菅村ならでは味覚をご用意してお待ちし…",
           "url": "https://www.kanto-michinoeki.jp/archives/18244.html"
@@ -95,7 +148,7 @@
           "url": "https://www.kanto-michinoeki.jp/archives/18167.html"
         }
       ],
-      "candidateCount": 5,
+      "candidateCount": 7,
       "error": ""
     },
     {
