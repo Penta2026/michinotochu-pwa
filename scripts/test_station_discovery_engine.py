@@ -999,5 +999,70 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
             TODAY,records,[spec],pdf_fetch=lambda url:text,report_path=None)
         self.assertEqual((len(records),audit["newEvents"]),(0,0))
 
+    def test_official_calendar_reconfirms_matching_previous_without_new_event(self):
+        from road_event_quality import reconcile
+        spec={**TOKYO,"id":"reconfirm_calendar",
+              "listingUrl":"https://www.michinoeki-hachioji.net/calendar/",
+              "articleMode":"dated_station_calendar",
+              "allowedEventWords":["秋のマルシェ"]}
+        source="""<main><p>2026年10月24日</p>
+          <h3>秋のマルシェ</h3><p>道の駅八王子滝山</p></main>"""
+        old={"roadName":"八王子滝山","prefecture":"東京都",
+             "title":"秋のマルシェ","startDate":"2026-10-24",
+             "endDate":"2026-10-24","publishedAt":"",
+             "url":spec["listingUrl"],"status":"scheduled"}
+        records,audit=collect_configured_station_events(
+            TODAY,[old],[spec],fetch=lambda _:soup(source),report_path=None,
+            reconfirm_previous=[old])
+        self.assertEqual(records,[old])
+        self.assertEqual(audit["newEvents"],0)
+        self.assertEqual(audit["reconfirmedEvents"],1)
+        self.assertEqual(audit["sources"][0]["reconfirmed"],1)
+        final,quality=reconcile([old],records,TODAY)
+        self.assertEqual(len(final),1)
+        self.assertEqual(quality["notReconfirmed"],[])
+
+    def test_official_calendar_reconfirmation_requires_same_date_title_and_venue(self):
+        spec={**TOKYO,"id":"reconfirm_calendar",
+              "listingUrl":"https://www.michinoeki-hachioji.net/calendar/",
+              "articleMode":"dated_station_calendar",
+              "allowedEventWords":["秋のマルシェ"]}
+        old={"roadName":"八王子滝山","prefecture":"東京都",
+             "title":"秋のマルシェ","startDate":"2026-10-24",
+             "endDate":"2026-10-24","url":spec["listingUrl"]}
+        wrong="""<main><p>2026年10月24日</p>
+           <h3>秋のマルシェ</h3><p>市役所ホール</p></main>"""
+        records,audit=collect_configured_station_events(
+            TODAY,[old],[spec],fetch=lambda _:soup(wrong),report_path=None,
+            reconfirm_previous=[old])
+        self.assertEqual(records,[])
+        self.assertEqual(audit["reconfirmedEvents"],0)
+        # The same URL on a different event day is not confirmation.
+        changed="""<main><p>2026年10月25日</p>
+           <h3>秋のマルシェ</h3><p>道の駅八王子滝山</p></main>"""
+        records,audit=collect_configured_station_events(
+            TODAY,[old],[spec],fetch=lambda _:soup(changed),report_path=None,
+            reconfirm_previous=[old])
+        self.assertEqual(audit["reconfirmedEvents"],0)
+        self.assertEqual(records[0]["startDate"],"2026-10-25")
+
+    def test_official_pdf_fetch_failure_has_auditable_exception(self):
+        import requests
+        spec={**TOKYO,"id":"ehime_pdf_audit",
+              "listingUrl":"https://www.city.yawatahama.ehime.jp/doc/test.pdf",
+              "allowedHosts":["www.city.yawatahama.ehime.jp"],
+              "articlePathPattern":r"^/doc/test\\.pdf$",
+              "articleMode":"verified_official_pdf",
+              "requiredEventTitle":"第13回やわたはま産業まつり"}
+        def fail_pdf(_):
+            raise requests.HTTPError("403 Forbidden")
+        found,audit=collect_configured_station_events(
+            TODAY,[],[spec],pdf_fetch=fail_pdf,report_path=None)
+        self.assertEqual(found,[])
+        summary=audit["sources"][0]
+        self.assertEqual(summary["fetchFailed"],1)
+        self.assertEqual(summary["fetchErrors"][0]["type"],"HTTPError")
+        self.assertIn("403",summary["fetchErrors"][0]["detail"])
+
 if __name__ == "__main__":
     unittest.main()
