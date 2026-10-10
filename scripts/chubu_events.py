@@ -70,11 +70,22 @@ def layout_report(content, url):
             rows.sort(key=lambda row: (round(row["y"] / 6), row["x"]))
             headings = [row for row in rows if "道の駅のイベント" in row["text"] or "周辺地域のイベント" in row["text"]]
             dated = [row for row in rows if DATE_PATTERN.search(row["text"])]
-            # The paper has two mirrored tables. Preserve all rows so station\n            # labels can be paired with events inside each table, not across them.\n            for row in rows:\n                x = row["x"]\n                row["section"] = ("left_station" if x < 160 else\n                                  "left_station_event" if x < 400 else\n                                  "left_nearby" if x < 600 else\n                                  "right_station" if x < 755 else\n                                  "right_station_event" if x < 1000 else\n                                  "right_nearby")\n            pages.append({"page": page_no + 1, "width": round(page.rect.width, 1),
+            # The paper has two mirrored tables. Preserve all rows so station
+            # labels can be paired with events inside each table, not across them.
+            for row in rows:
+                x = row["x"]
+                row["section"] = ("left_station" if x < 160 else
+                                  "left_station_event" if x < 400 else
+                                  "left_nearby" if x < 600 else
+                                  "right_station" if x < 755 else
+                                  "right_station_event" if x < 1000 else
+                                  "right_nearby")
+            pages.append({"page": page_no + 1, "width": round(page.rect.width, 1),
                           "height": round(page.rect.height, 1),
                           "headings": headings[:15],
                           "dated_rows": dated[:180],
-                          "sample_rows": rows[:36],\n                          "rows": rows,
+                          "sample_rows": rows[:36],
+                          "rows": rows,
                           "total_rows": len(rows)})
     return {"schemaVersion": 1, "source": url, "pages": pages}
 
