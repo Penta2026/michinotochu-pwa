@@ -228,3 +228,28 @@ Phase 2の宣言的設定ファイル`data/station_event_discovery_sources.json`
 - 設定：`data/station_event_discovery_sources.json`に22番目の`ehime_city_official_festival_pdf`を追加。PDFの本文が変わって条件が崩れた時には不採用とし、手動のイベント追加はしない。
 - 再確認：福井県南えちぜん山海里と宮崎県都城NiQLLをPhase 1の厳密なホスト・記事パス一致表に追加。山形県たかはたは`no_article_content`のまま残るので、別の根拠が得られるまで再確認と断定しない。
 - 回帰テスト：PDFルート4件＋再確認ルール1件を追加、合計198件を予定。新規Run workflowの本番成功をもって確定とする。
+
+## 2026-10-11 残り5都県の個別公式イベント収集（27ルート・Actions検証待ち）
+
+### 共通の登録安全条件
+
+- イベントの開催年月日・題名・**道の駅敷地内でのイベントまたは現地参加アクティビティ**が、主催・自治体・施設運営/共同運営・出店元などの一次情報に含まれる場合に限定。
+- 開催地の市区町村が同じだけ、駅の住所がフッターにあるだけ、駅を通る観光ツアー、駅とは別の商業施設/保全地域での催しは採用不可。
+- 既存の`road_events.json`の保全・終了日による期限切れ除外・正規化の安全条件は従来どおり。
+- **累計42県・現在39県・73件は前回Actions #64の確定値**。今回の新5ルート（計27ルート）、新13テスト（計217予定）は**未実行**。
+
+### モードと公式ページ
+
+- `verified_official_event_detail`：固定された主催者側公式ページに記された題名・開催日または開催期間・会場ラベルの三条件が揃うことを要求。
+  - 神奈川／`kanagawa_creativeweek_official_roadstation_art`：CREATIVE WEEK公式・かとうくみプレンティーズ原画展（2026-10-10～11-23／湘南ちがさき）。範囲開始に西暦、終了に月日を要求。
+  - 和歌山／`wakayama_prefecture_seishumatsuri_official`：和歌山県公式観光記事・青洲まつり2026（10-25／青洲の里）。題名にある明示西暦のみを同じ記事の`開催期間`月日に対応づけ、当年を勝手に補わない。
+  - 愛媛／`ehime_minatto_official_hall_npo_seminar`：八幡浜みなっと内「みなと交流館」共同運営のHitonari Magazine・NPOのための広報セミナー（2026-11-11）。`イベント開催日時`ラベルと`場所 八幡浜みなっと みなと交流館`を照合。本文の投稿年月や申込期限をイベント開催日として流用しない。
+- `verified_official_vendor_schedule`：鹿児島／`kagoshima_sakimoto_official_station_popup_oct`。嵜本ベーカリー公式・10月の九州の催事⑪（2026-10-25／たるみずはまびら施設内）。`⑪`で囲った出店名・年付き日付・施設内位置を取得。他の区画`⑩`等の情報を混同しない。
+- `verified_official_checkpoint_program`：東京／`tokyo_soto_heritage_official_station_checkpoint`。日本遺産「桑都物語」推進協議会公式のデジタルクイズスタンプラリー（2026-10-03～11-05）。八王子滝山は**正式な現地クイズ/スタンプ地点**であり、道の駅単独主催イベントとは区別。主催者公式のイベント題名、年付き期間、`スポット：`の駅名、各スポットで行うクイズとスタンプの活動根拠をすべて要求。
+- 和歌山・海南サクアスの既存`dated_sections`も、`🗓/📍`のみでなく`開催日時/開催日/開催場所/会場`ラベルを同一催事区画に限って許可する。別区画/別会場を混合しない。
+
+### 次回チェック
+
+- `python -m unittest`相当のActionsテストは **217件予定**。公式サイトへの実接続・クローリング結果はまだ未検証。5つのsource IDの`accepted`・`reasons`・`fetchErrors`を確認する。
+- `data/prefecture_event_coverage.json`の`summary.historicalObservedPrefectures`および`historical.neverObservedPrefectures`、`road_event_quality_report.json`の重複・無効・未再確認を合わせて確認する。
+- 失敗した場合は保存済みイベントの保持を優先し、公式根拠のない日付/場所を補って47県達成に見せかけない。
