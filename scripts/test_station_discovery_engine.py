@@ -219,6 +219,25 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(why,"accepted")
         self.assertEqual(result["startDate"],"2026-10-18")
 
+    def test_osaka_unlabelled_publication_timestamp_not_event_date(self):
+        spec={**TOKYO,"requiredVenueTokens":["南部リージョンセンター"],
+              "allowExplicitDatedParagraph":True,"requireVenueLabel":True}
+        html="""<article><h1>秋のマルシェ</h1>
+          <time datetime="2026-10-05">2026年10月5日</time>
+          <p>2026年10月5日 10:00</p>
+          <p>会場：南部リージョンセンター1階ロビー</p></article>"""
+        rec,why=_article_record(spec,soup(html),"秋のマルシェ",TODAY,URL)
+        self.assertEqual((rec,why),(None,"undated"))
+
+    def test_osaka_unlabelled_year_without_time_requires_event_context(self):
+        spec={**TOKYO,"requiredVenueTokens":["南部リージョンセンター"],
+              "allowExplicitDatedParagraph":True,"requireVenueLabel":True}
+        html="""<article><h1>秋のマルシェ</h1>
+          <p>2026年10月18日（日）</p>
+          <p>会場：南部リージョンセンター1階ロビー</p></article>"""
+        rec,why=_article_record(spec,soup(html),"秋のマルシェ",TODAY,URL)
+        self.assertEqual((rec,why),(None,"undated"))
+
     def test_wakayama_multi_notice_extracts_two_independently_dated_events(self):
         from station_discovery_engine import _section_records
         spec={**TOKYO,"id":"sakuas","prefecture":"和歌山県",
