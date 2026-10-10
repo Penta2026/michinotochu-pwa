@@ -86,13 +86,22 @@ def targeted_station_sources():
                 stations[pref].append(name)
     return dict(stations)
 
-def make_report(event_data, source_report, quality_report, direct=None):
+def make_report(event_data, source_report, quality_report, direct=None,
+                historically_observed=None):
     direct = targeted_station_sources() if direct is None else direct
     events = event_data.get("events", [])
     by_pref = defaultdict(list)
     for item in events:
         by_pref[item.get("prefecture", "")].append(item)
     unknown_prefs = sorted(set(by_pref) - set(PREFECTURES))
+    # Historical success is not the same as a currently published future event.
+    # This set only grows when actual dated events reached road_events.json.
+    previous_history = set(historically_observed or ())
+    invalid_history = previous_history - set(PREFECTURES)
+    if invalid_history:
+        raise ValueError("Invalid historical prefecture(s): " +
+                         ", ".join(sorted(invalid_history)))
+    historical = previous_history | (set(by_pref) & set(PREFECTURES))
     by_region = {entry["region"]: entry for entry in source_report.get("sources", [])}
     unconfirmed_by_pref = Counter(
         item.get("prefecture") for item in quality_report.get("notReconfirmed", [])
@@ -126,6 +135,7 @@ def make_report(event_data, source_report, quality_report, direct=None):
             report = {
                 "prefecture": pref, "reportingRegion": region,
                 "eventCount": len(items), "observedStations": names,
+                "historicallyObserved": pref in historical,
                 "observedStationCount": len(names),
                 "targetedStationFeeds": configured,
                 "notReconfirmedCount": current_unconfirmed,
@@ -148,6 +158,9 @@ def make_report(event_data, source_report, quality_report, direct=None):
             "regionalHomepageListingCandidates": home.get("candidateCount"),
         })
     zero = [x["prefecture"] for x in prefectures if x["eventCount"] == 0]
+    historical_names = [p for p in PREFECTURES if p in historical]
+    never_names = [p for p in PREFECTURES if p not in historical]
+    history_only = [p for p in PREFECTURES if p in historical and p in zero]
     urgent = [x["prefecture"] for x in prefectures if x["notReconfirmedCount"]]
     return {
         "schemaVersion": 1,
@@ -157,11 +170,19 @@ def make_report(event_data, source_report, quality_report, direct=None):
             "targetedFeed": "An explicitly configured station source, not proof of parsing or future-event availability.",
             "regionalHomepageReachable": "Region homepage HTTP success only; does not prove event coverage for its prefectures.",
             "zeroRegistered": "No current published event; not evidence that no events take place.",
+            "historicalObserved": "At least one dated event was previously published; not proof of current upcoming events or full station coverage.",
+        },
+        "historical": {
+            "observedPrefectures": historical_names,
+            "neverObservedPrefectures": never_names,
+            "previouslyObservedWithoutCurrentEvents": history_only,
         },
         "summary": {
             "prefectureCount": 47,
             "observedPrefectures": 47 - len(zero),
             "zeroRegisteredPrefectures": len(zero),
+            "historicalObservedPrefectures": len(historical_names),
+            "historicalNeverObservedPrefectures": len(never_names),
             "registeredEvents": len(events),
             "targetedStationFeedPrefectures": sum(bool(x["targetedStationFeeds"]) for x in prefectures),
             "notReconfirmedEvents": len(quality_report.get("notReconfirmed", [])),
@@ -169,6 +190,8 @@ def make_report(event_data, source_report, quality_report, direct=None):
         },
         "priorities": {
             "reconfirm": urgent,
+            "historicalNeverObserved": never_names,
+            "previouslyObservedWithoutCurrentEvents": history_only,
             "noEventsButTargetedFeed": [x["prefecture"] for x in prefectures
                                         if not x["eventCount"] and x["targetedStationFeeds"]],
             "noEventsNoTargetedFeed": [x["prefecture"] for x in prefectures
@@ -182,16 +205,22 @@ def _read_json(name):
     return json.loads((DATA / name).read_text(encoding="utf-8"))
 
 def main():
+    # Keep the history previously published in this exact report. Do not
+    # reconstruct event history from old HTTP listings or expired dates.
+    previous = _read_json("prefecture_event_coverage.json") if REPORT.exists() else {}
+    history = previous.get("historical", {}).get("observedPrefectures", [])
     report = make_report(
         _read_json("road_events.json"),
         _read_json("road_event_sources_report.json"),
         _read_json("road_event_quality_report.json"),
+        historically_observed=history,
     )
     payload = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if not REPORT.exists() or REPORT.read_text(encoding="utf-8") != payload:
         REPORT.write_text(payload, encoding="utf-8")
     s = report["summary"]
-    print(f"都道府県監査: {s['observedPrefectures']}/47で登録実績, "
+    print(f"都道府県監査: 現在 {s['observedPrefectures']}/47県, "
+          f"累計実績 {s['historicalObservedPrefectures']}/47県, "
           f"未登録 {s['zeroRegisteredPrefectures']}県, "
           f"全国イベント {s['registeredEvents']}件, "
           f"未再確認 {s['notReconfirmedEvents']}件")
