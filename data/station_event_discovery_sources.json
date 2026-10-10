@@ -555,7 +555,8 @@
       ],
       "maxArticles": 8,
       "requireVenueLabel": true,
-      "dateSelectors": "p,li,h2,h3,td,dd,tr"
+      "dateSelectors": "p,li,h2,h3,td,dd,tr",
+      "articleMode": "dated_station_calendar"
     },
     {
       "id": "miyazaki_niqll",
