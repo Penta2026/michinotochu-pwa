@@ -1,6 +1,6 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-10**（共通エンジン導入後のGitHub Actions成功を確認。新規2件追加・未再確認0件）  
+更新基準: **2026-10-10**（Phase 2の設定型新規イベント収集をGitHubへ実装。**Phase 2は次回Actions検証待ち**。確定値68件・32県）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
@@ -163,9 +163,22 @@
 - **最新監査**: `targetedStationFeedPrefectures=19`、異常な県名0件、地域の近畿公式トップも今回は接続成功。
 - **次の工程**: 共通エンジンPhase 2（新着記事発見の設定型アダプタ）を、既存収集器は残したまま実装。開催日・掲載日・道の駅会場の確認、偽イベント除外、重複対策をテストする。東京・神奈川、近畿の福井・大阪・和歌山、他地域未登録の15都府県を対象に収集形式を広げる。初回実装後は次のActionsと引継ぎで結果を確定。
 
+## 2026-10-10 共通収集エンジン Phase 2 — 設定型の新規記事発見を実装（Actions検証待ち）
+
+- **本番で最後に確認した基準値は全国68件・イベント登録実績32/47県・実績なし15都府県・未再確認0件**。このPhase 2のコードによる新規取得結果は、まだ確定していない。
+- **新規ファイル**: `data/station_event_discovery_sources.json`（駅別の一覧URL、公式ホスト、記事URL正規表現、CSSタイトル・本文・投稿日セレクタ、会場要件、上限記事数）、`scripts/station_discovery_engine.py`（共通HTML記事収集・新着日付判定）、`scripts/test_station_discovery_engine.py`（合成HTMLによる**16件**の安全性テスト）。
+- **第1弾の対象3駅**: 東京都「八王子滝山」（公式ホーム。従来の一覧で候補0だった記事リンクを再調査）、神奈川県「湘南ちがさき」（EVENT一覧。画像だけの月間カレンダーは除外）、奈良県「クロスウェイなかまち」（既存のイベント登録実績があり、共通収集との比較・重複防止確認に使う）。
+- **安全条件**: HTTPS・公式ホスト・記事URLパターン、駅ごとに設定した会場名が**公式記事本文**に含まれること、別会場と明記された記事は除外、開催日をタイトルまたはラベル付き本文で確定、開催年は公式の年記載か公開日時が必須。画像カレンダー／募集／中止／過去イベントを無条件に採用しない。リダイレクト先は自動追跡しない。
+- **重複対策**: 通常収集済み＋既存の公開イベントのURLを`known`として渡し、同じ公式URLは新規収集器で生成しない。異なるURLでもイベント内容重複がないか、従来の`road_event_quality.reconcile`で監査する。
+- **全国処理への接続**: `scripts/collect_road_events.py`の従来収集器の**後・共通Phase 1再確認の前**に`collect_configured_station_events`を呼び出す。個別収集器を削除・置換しないため、本番の既存68件への影響を最小化。
+- **ワークフロー対応**: `.github/workflows/road-events.yml`にテスト16件と、新監査`data/station_event_discovery_audit.json`を追加。初回Actions実行で3駅ごとの`candidates`、`checked`、`knownSkipped`、`accepted`、`reasons`、`fetchFailed`、新規イベント例が記録される。
+- **設計・運用説明**: `docs/STATION_COLLECTOR_ENGINE.md`に設定追加例・条件・Phase 1との違いを記載。駅の公式サイトが通常のHTML記事型なら、**次回から専用PythonではなくJSON設定だけで拡張**できる部分が増えた。PDF・画像・JavaScriptは現時点では個別解析器が必要。
+- **次回実測時の手順**: GitHub Actions`Run workflow` → 16件の回帰テストとPython構文の合否 → `data/station_event_discovery_audit.json`の3駅 → `data/road_events.json`全国68件からの増減・東京／神奈川のイベント登録 → 47県・品質監査（未再確認0件、重複候補0件が維持されるか） → 引継ぎ更新。**新規登録の成功は実測でのみ宣言**。
+- **次の拡張**: 実際に登録0件の福井・大阪・和歌山などを、駅ごとの公式HTML構造と開催日が確認できた順に設定追加する。現在は3駅のパイロットのみで、47県すべてがこのPhase 2で自動発見されるという意味ではない。
+
 ## 未解決・優先順位
 
-1. **共通エンジンPhase 2（公式一覧からの新規イベント発見）の設定型アダプタへ進む**。Phase 1はGitHub Actionsで正常起動したが、通常収集が66件を再確認しており本番フォールバック発動0件。東京・神奈川、近畿の福井・大阪・和歌山等の未登録15都府県が優先。
+1. **共通エンジンPhase 2の初回GitHub Actions実行検証**。東京・神奈川・奈良の3設定源の候補数と採用件数を確認。次に福井・大阪・和歌山等、HTMLで将来の催しを掲載する未登録15都府県の駅を設定追加。Phase 1フォールバック実績も継続監査。
 2. **九州未登録4県（長崎・熊本・宮崎・鹿児島）**。公式記事取得は成功したが開催日等を確定できていない。県別診断は `data/kyushu_six_prefectures_audit.json` にあり、熊本「すいかの里植木」は実際の本文と公開日、記事候補選別の照合を優先。
 3. 東北の岩手・山形・福島、中部の静岡、中国の山口、四国の愛媛を順次調査。
 4. 都道府県別の**収集実績なし**を**イベントなし**と誤認しないため、駅ごとの公式収集先・取得成功・開催日確定・イベント登録の4段階を分けて管理する。
@@ -195,8 +208,10 @@
 - `scripts/kanto_remaining_prefectures.py`（千葉・東京・神奈川4公式ソース）
 - `scripts/kinki_five_prefectures.py`（近畿5府県6収集先）
 - `scripts/verified_station_engine.py`（共通エンジンPhase 1：既存記事の公式再確認）
+- `scripts/station_discovery_engine.py`（共通エンジンPhase 2：新規公式HTML記事の発見）
+- `data/station_event_discovery_sources.json`（公式駅別3設定）
 - `data/verified_station_source_rules.json`（共通再確認の5駅公式ホスト設定）
 - `scripts/road_event_quality.py`（品質監査／既存データ保護）
 - `scripts/prefecture_event_coverage.py`（新規・47県状態管理）
 
-次回の最初の確認事項: **Phase 2の新着記事収集設定と回帰テスト、全国68件・登録実績32県からの変化、未再確認0件の維持、京都・和の公開日が未来値へ戻らないこと、公式収集源19県の拡張、重複候補・無効データ**。
+次回の最初の確認事項: **Phase 2の3駅設定の実行結果`data/station_event_discovery_audit.json`、新規採用イベント、全国68件・32県・15都府県からの変化、未再確認／重複候補／無効データ、東京・神奈川の初登録の有無と画像カレンダー誤認防止**。
