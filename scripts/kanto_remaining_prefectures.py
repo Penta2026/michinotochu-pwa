@@ -132,14 +132,20 @@ def candidates(spec,soup):
     return links
 
 def _first_title(spec,soup,fallback):
+    fallback=re.sub(r"^(?:EVENT\s*)?(?:20\d{2}[./-]\d{2}[./-]\d{2}\s*)?",
+                    "",clean(fallback),flags=re.I)
     for selector in ("article h1","main h1","h1","article h2","main h2","h2"):
         node=soup.select_one(selector)
         value=clean(node.get_text(" ",strip=True)) if node else ""
         if value and value not in ("お知らせ","TOPICS","最新情報","イベント情報"):
-            return value
-    # Preserve real listing headline when article header is templated/empty.
-    return re.sub(r"^(?:EVENT\s*)?(?:20\d{2}[./-]\d{2}[./-]\d{2}\s*)?",
-                  "",clean(fallback),flags=re.I)
+            if any(term in value for term in EVENT_WORDS):
+                return value
+            # Generic site headlines ("道の駅しょうなん" or "新着情報")
+            # are not a substitute for the event title from the listing.
+            if not fallback and len(value)>=6:
+                return value
+    return fallback
+
 
 def article_event_period(spec,title,body,published):
     if not any(word in title for word in EVENT_WORDS) or any(w in title for w in SKIP):
@@ -177,7 +183,7 @@ def parse_one(spec,title,soup,published,today,url):
     if not head or any(w in head for w in SKIP):
         return None,"skipped"
     article=soup.select_one("article") or soup.select_one("main") or soup
-    body=clean(article.get_text(" ",strip=True))
+    body=article.get_text("\n",strip=True)
     # Keep only actual road-station news articles, not external event pages
     # mirroring other venues. The station is established by source domain.
     period=article_event_period(spec,head,body,published)
