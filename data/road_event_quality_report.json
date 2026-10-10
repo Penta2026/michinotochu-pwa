@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 68,
-  "inputCollected": 57,
+  "inputCollected": 75,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -60,6 +60,10 @@
     {
       "roadName": "神鍋高原",
       "title": "第35回マロニエまつり／JAたじま日高ふれあいまつり｜2026年10月25日（日）10:00〜14:00"
+    },
+    {
+      "roadName": "奥永源寺渓流の里",
+      "title": "「道の駅 奥永源寺渓流の里」開駅１１周年記念祭を開催します。"
     },
     {
       "roadName": "なみおか",
@@ -134,6 +138,10 @@
       "title": "月眺みぬ会開催のお知らせ"
     },
     {
+      "roadName": "しろいし",
+      "title": "秋の収穫祭"
+    },
+    {
       "roadName": "耶馬トピア",
       "title": "竹の千灯籠夜"
     },
@@ -144,6 +152,26 @@
     {
       "roadName": "庄和",
       "title": "【道の駅庄和】わくわく体験イベント"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.28 イベント お知らせ 10/24・25リフティングパフォーマンス公演"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.23 イベント お知らせ 【イベント】10/24~25『ハロウィンマーケット』を開催します"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.23 イベント お知らせ 【イベント】10/17~18『モンブランフェア』を開催します"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します"
+    },
+    {
+      "roadName": "ましこ",
+      "title": "道の駅ましこ10周年祭"
     },
     {
       "roadName": "あぐりーむ昭和",
@@ -160,6 +188,14 @@
     {
       "roadName": "しょうなん",
       "title": "10月10日 「鷹匠体験」開催"
+    },
+    {
+      "roadName": "保田小学校",
+      "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)"
+    },
+    {
+      "roadName": "保田小学校",
+      "title": "鋸山ガイドツアーに参加しませんか"
     },
     {
       "roadName": "和",
@@ -180,6 +216,14 @@
     {
       "roadName": "京丹波 味夢の里",
       "title": "11月15日(日)『あんマルシェ2026&譲渡会』を開催します!"
+    },
+    {
+      "roadName": "クロスウェイなかまち",
+      "title": "10/31(土)あの「まほろばの宴」が再びやって来る!"
+    },
+    {
+      "roadName": "クロスウェイなかまち",
+      "title": "10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪"
     },
     {
       "roadName": "信州新野千石平",
@@ -235,97 +279,8 @@
     }
   ],
   "possibleDuplicates": [],
-  "notReconfirmed": [
-    {
-      "roadName": "かさま",
-      "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "url": "https://m-kasama.com/topics/p-06497",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "保田小学校",
-      "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "url": "https://hotasho.jp/news/%e4%bf%9d%e7%94%b0%e5%b0%8f%e9%99%84%e5%b1%9e%e3%82%88%e3%81%86%e3%81%a1%e3%81%88%e3%82%933%e5%91%a8%e5%b9%b4%e9%96%8b%e5%9c%92%e7%a5%ad%ef%bc%882026-10-10%ef%bd%9e12%ef%bc%89/",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "保田小学校",
-      "title": "鋸山ガイドツアーに参加しませんか",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "url": "https://hotasho.jp/news/%e9%8b%b8%e5%b1%b1%e3%82%ac%e3%82%a4%e3%83%89%e3%83%84%e3%82%a2%e3%83%bc%e3%81%ab%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%be%e3%81%9b%e3%82%93%e3%81%8b/",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "奥永源寺渓流の里",
-      "title": "「道の駅 奥永源寺渓流の里」開駅１１周年記念祭を開催します。",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-10",
-      "url": "https://www.kinki-michinoeki.com/news/%e9%96%8b%e9%a7%85%ef%bc%91%ef%bc%91%e5%91%a8%e5%b9%b4%e8%a8%98%e5%bf%b5%e7%a5%ad%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82/",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "ましこ",
-      "title": "道の駅ましこ10周年祭",
-      "startDate": "2026-10-11",
-      "endDate": "2026-10-11",
-      "url": "https://m-mashiko.com/event/4457/",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "クロスウェイなかまち",
-      "title": "10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪",
-      "startDate": "2026-10-11",
-      "endDate": "2026-10-11",
-      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261011",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "かさま",
-      "title": "2026.09.23 イベント お知らせ 【イベント】10/17~18『モンブランフェア』を開催します",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "url": "https://m-kasama.com/topics/p-06506",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "かさま",
-      "title": "2026.09.23 イベント お知らせ 【イベント】10/24~25『ハロウィンマーケット』を開催します",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "url": "https://m-kasama.com/topics/p-06502",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "かさま",
-      "title": "2026.09.28 イベント お知らせ 10/24・25リフティングパフォーマンス公演",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "url": "https://m-kasama.com/topics/p-06438",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "クロスウェイなかまち",
-      "title": "10/31(土)あの「まほろばの宴」が再びやって来る!",
-      "startDate": "2026-10-31",
-      "endDate": "2026-10-31",
-      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261031",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "しろいし",
-      "title": "秋の収穫祭",
-      "startDate": "2026-11-01",
-      "endDate": "2026-11-01",
-      "url": "https://www.michinoeki-shiroishi.jp/news/%e7%a7%8b%e3%81%ae%e5%8f%8e%e7%a9%ab%e7%a5%ad-2/",
-      "reason": "not_found_in_current_collection"
-    }
-  ],
-  "finalCount": 68,
+  "notReconfirmed": [],
+  "finalCount": 75,
   "futurePublicationDatesCleared": [
     {
       "url": "https://wachi-nagomi.com/topics/post-10529/",

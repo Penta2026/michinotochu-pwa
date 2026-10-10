@@ -1,106 +1,11 @@
 {
   "schemaVersion": 1,
-  "checked": 9,
+  "checked": 0,
   "reconfirmed": 0,
-  "alreadyCollected": 57,
-  "outsideRegistry": 2,
-  "failed": 9,
+  "alreadyCollected": 68,
+  "outsideRegistry": 0,
+  "failed": 0,
   "inconclusive": 0,
-  "sources": {
-    "kasama": {
-      "checked": 4,
-      "reconfirmed": 0,
-      "failed": 4,
-      "inconclusive": 0
-    },
-    "hotasho": {
-      "checked": 2,
-      "reconfirmed": 0,
-      "failed": 2,
-      "inconclusive": 0
-    },
-    "okueigenji": {
-      "checked": 1,
-      "reconfirmed": 0,
-      "failed": 1,
-      "inconclusive": 0
-    },
-    "mashiko": {
-      "checked": 1,
-      "reconfirmed": 0,
-      "failed": 1,
-      "inconclusive": 0
-    },
-    "shiroishi": {
-      "checked": 1,
-      "reconfirmed": 0,
-      "failed": 1,
-      "inconclusive": 0
-    }
-  },
-  "checks": [
-    {
-      "station": "かさま",
-      "prefecture": "茨城県",
-      "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します",
-      "url": "https://m-kasama.com/topics/p-06497",
-      "result": "fetch_failed:ConnectTimeout"
-    },
-    {
-      "station": "保田小学校",
-      "prefecture": "千葉県",
-      "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)",
-      "url": "https://hotasho.jp/news/%e4%bf%9d%e7%94%b0%e5%b0%8f%e9%99%84%e5%b1%9e%e3%82%88%e3%81%86%e3%81%a1%e3%81%88%e3%82%933%e5%91%a8%e5%b9%b4%e9%96%8b%e5%9c%92%e7%a5%ad%ef%bc%882026-10-10%ef%bd%9e12%ef%bc%89/",
-      "result": "fetch_failed:ConnectTimeout"
-    },
-    {
-      "station": "保田小学校",
-      "prefecture": "千葉県",
-      "title": "鋸山ガイドツアーに参加しませんか",
-      "url": "https://hotasho.jp/news/%e9%8b%b8%e5%b1%b1%e3%82%ac%e3%82%a4%e3%83%89%e3%83%84%e3%82%a2%e3%83%bc%e3%81%ab%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%be%e3%81%9b%e3%82%93%e3%81%8b/",
-      "result": "fetch_failed:ConnectTimeout"
-    },
-    {
-      "station": "奥永源寺渓流の里",
-      "prefecture": "滋賀県",
-      "title": "「道の駅 奥永源寺渓流の里」開駅１１周年記念祭を開催します。",
-      "url": "https://www.kinki-michinoeki.com/news/%e9%96%8b%e9%a7%85%ef%bc%91%ef%bc%91%e5%91%a8%e5%b9%b4%e8%a8%98%e5%bf%b5%e7%a5%ad%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82/",
-      "result": "fetch_failed:ConnectTimeout"
-    },
-    {
-      "station": "ましこ",
-      "prefecture": "栃木県",
-      "title": "道の駅ましこ10周年祭",
-      "url": "https://m-mashiko.com/event/4457/",
-      "result": "fetch_failed:ConnectTimeout"
-    },
-    {
-      "station": "かさま",
-      "prefecture": "茨城県",
-      "title": "2026.09.23 イベント お知らせ 【イベント】10/17~18『モンブランフェア』を開催します",
-      "url": "https://m-kasama.com/topics/p-06506",
-      "result": "fetch_failed:ConnectTimeout"
-    },
-    {
-      "station": "かさま",
-      "prefecture": "茨城県",
-      "title": "2026.09.23 イベント お知らせ 【イベント】10/24~25『ハロウィンマーケット』を開催します",
-      "url": "https://m-kasama.com/topics/p-06502",
-      "result": "fetch_failed:ConnectTimeout"
-    },
-    {
-      "station": "かさま",
-      "prefecture": "茨城県",
-      "title": "2026.09.28 イベント お知らせ 10/24・25リフティングパフォーマンス公演",
-      "url": "https://m-kasama.com/topics/p-06438",
-      "result": "fetch_failed:ConnectTimeout"
-    },
-    {
-      "station": "しろいし",
-      "prefecture": "佐賀県",
-      "title": "秋の収穫祭",
-      "url": "https://www.michinoeki-shiroishi.jp/news/%e7%a7%8b%e3%81%ae%e5%8f%8e%e7%a9%ab%e7%a5%ad-2/",
-      "result": "fetch_failed:ConnectTimeout"
-    }
-  ]
+  "sources": {},
+  "checks": []
 }

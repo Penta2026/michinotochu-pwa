@@ -5,15 +5,26 @@
       "prefecture": "佐賀県",
       "roadName": "しろいし",
       "source": "https://www.michinoeki-shiroishi.jp/news/",
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='www.michinoeki-shiroishi.jp', port=443): Max retries exceeded with url: /news/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='w",
-      "candidates": 0,
-      "checked": 0,
-      "accepted": 0,
+      "listingError": "",
+      "candidates": 2,
+      "checked": 2,
+      "accepted": 1,
       "past": 0,
-      "noEventDate": 0,
+      "noEventDate": 1,
       "detailErrors": 0,
-      "examples": [],
-      "undatedSamples": []
+      "examples": [
+        {
+          "title": "秋の収穫祭",
+          "date": "2026-11-01",
+          "url": "https://www.michinoeki-shiroishi.jp/news/%e7%a7%8b%e3%81%ae%e5%8f%8e%e7%a9%ab%e7%a5%ad-2/"
+        }
+      ],
+      "undatedSamples": [
+        {
+          "title": "7周年 誕生祭",
+          "url": "https://www.michinoeki-shiroishi.jp/news/%ef%bc%97%e5%91%a8%e5%b9%b4%e3%80%80%e8%aa%95%e7%94%9f%e7%a5%ad/"
+        }
+      ]
     },
     {
       "prefecture": "長崎県",
@@ -38,15 +49,28 @@
       "prefecture": "熊本県",
       "roadName": "すいかの里植木",
       "source": "https://suikanosato-ueki.com/category/event_info/",
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='suikanosato-ueki.com', port=443): Max retries exceeded with url: /category/event_info/ (Caused by ConnectTimeoutError(<HTTPSConnection",
-      "candidates": 0,
-      "checked": 0,
+      "listingError": "",
+      "candidates": 3,
+      "checked": 3,
       "accepted": 0,
       "past": 0,
-      "noEventDate": 0,
+      "noEventDate": 3,
       "detailErrors": 0,
       "examples": [],
-      "undatedSamples": []
+      "undatedSamples": [
+        {
+          "title": "",
+          "url": "https://suikanosato-ueki.com/shipment/4765/"
+        },
+        {
+          "title": "",
+          "url": "https://suikanosato-ueki.com/shipment/4761/"
+        },
+        {
+          "title": "",
+          "url": "https://suikanosato-ueki.com/shipment/4757/"
+        }
+      ]
     },
     {
       "prefecture": "大分県",
@@ -72,15 +96,28 @@
       "prefecture": "宮崎県",
       "roadName": "都城NiQLL",
       "source": "https://coconiqll.co.jp/info/",
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='coconiqll.co.jp', port=443): Max retries exceeded with url: /info/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='coconiqll.co.",
-      "candidates": 0,
-      "checked": 0,
+      "listingError": "",
+      "candidates": 5,
+      "checked": 5,
       "accepted": 0,
       "past": 0,
-      "noEventDate": 0,
+      "noEventDate": 5,
       "detailErrors": 0,
       "examples": [],
-      "undatedSamples": []
+      "undatedSamples": [
+        {
+          "title": "【NiQLL’sスクール】2026年11月の講座のご案内",
+          "url": "https://coconiqll.co.jp/3768-2/"
+        },
+        {
+          "title": "宮崎ブランドポークフェスタin都城のご案内【主催:宮崎ブランドポーク普及推進協議会】",
+          "url": "https://coconiqll.co.jp/%e5%ae%ae%e5%b4%8e%e3%83%96%e3%83%a9%e3%83%b3%e3%83%89%e3%83%9d%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b9%e3%82%bfin%e9%83%bd%e5%9f%8e%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85%e3%80%90%e4%b8%bb%e5%82%ac/"
+        },
+        {
+          "title": "【NiQLL’sスクール】2026年10月の講座のご案内",
+          "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b410%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/"
+        }
+      ]
     },
     {
       "prefecture": "鹿児島県",
@@ -110,5 +147,5 @@
       ]
     }
   ],
-  "accepted": 1
+  "accepted": 2
 }

@@ -24,13 +24,16 @@
       "prefecture": "神奈川県",
       "roadName": "湘南ちがさき",
       "listingUrl": "https://m-shonanchigasaki.com/topics/",
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='m-shonanchigasaki.com', port=443): Max retries exceeded with url: /topics/ (Caused by ConnectTimeoutError(<HTTPSCo",
-      "candidates": 0,
-      "checked": 0,
+      "listingError": "",
+      "candidates": 9,
+      "checked": 6,
       "accepted": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {},
+      "reasons": {
+        "past": 1,
+        "not_event": 5
+      },
       "examples": []
     },
     {
@@ -38,13 +41,15 @@
       "prefecture": "奈良県",
       "roadName": "クロスウェイなかまち",
       "listingUrl": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='michi-no-eki-crosswaynakamachi.pref.nara.jp', port=443): Max retries exceeded with url: /newslist (Caused by Conne",
-      "candidates": 0,
-      "checked": 0,
+      "listingError": "",
+      "candidates": 4,
+      "checked": 2,
       "accepted": 0,
-      "knownSkipped": 0,
+      "knownSkipped": 2,
       "fetchFailed": 0,
-      "reasons": {},
+      "reasons": {
+        "undated": 2
+      },
       "examples": []
     },
     {
@@ -87,13 +92,15 @@
       "prefecture": "和歌山県",
       "roadName": "海南サクアス",
       "listingUrl": "https://sakuas.com/event/",
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='sakuas.com', port=443): Max retries exceeded with url: /event/ (Caused by ConnectTimeoutError(<HTTPSConnection(hos",
-      "candidates": 0,
-      "checked": 0,
+      "listingError": "",
+      "candidates": 12,
+      "checked": 8,
       "accepted": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {},
+      "reasons": {
+        "no_article": 8
+      },
       "examples": []
     },
     {
@@ -108,10 +115,152 @@
       "knownSkipped": 0,
       "fetchFailed": 0,
       "reasons": {
-        "not_event": 6
+        "undated": 2,
+        "not_event": 4
       },
+      "examples": []
+    },
+    {
+      "id": "iwate_tono_kazenooka",
+      "prefecture": "岩手県",
+      "roadName": "遠野風の丘",
+      "listingUrl": "https://kazenooka.tonofurusato.jp/",
+      "listingError": "",
+      "candidates": 11,
+      "checked": 8,
+      "accepted": 2,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {
+        "past": 4,
+        "not_event": 1,
+        "offsite": 1
+      },
+      "examples": [
+        {
+          "title": "第19回遠野風の丘一升餅行事を行います。【11月8日(日)・予約制】",
+          "start": "2026-11-08",
+          "end": "2026-11-08",
+          "url": "https://kazenooka.tonofurusato.jp/news/%e7%ac%ac19%e5%9b%9e%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e4%b8%80%e5%8d%87%e9%a4%85%e8%a1%8c%e4%ba%8b%e3%82%92%e8%a1%8c%e3%81%84%e3%81%be%e3%81%99%e3%80%82%e3%80%9011%e6%9c%888%e6%97%a5/"
+        },
+        {
+          "title": "珈琲とおやつ展開催します【10月17日(土)~10月18日(日)】",
+          "start": "2026-10-17",
+          "end": "2026-10-18",
+          "url": "https://kazenooka.tonofurusato.jp/news/%e7%8f%88%e7%90%b2%e3%81%a8%e3%81%8a%e3%82%84%e3%81%a4%e5%b1%95%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%9010%e6%9c%8817%e6%97%a5%e5%9c%9f%ef%bd%9e10%e6%9c%8818%e6%97%a5%e6%97%a5%e3%80%91/"
+        }
+      ]
+    },
+    {
+      "id": "yamagata_takahata",
+      "prefecture": "山形県",
+      "roadName": "たかはた",
+      "listingUrl": "https://www.rstakahata.com/rst/event.html",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 1,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {},
+      "examples": [
+        {
+          "title": "秋の収穫祭",
+          "start": "2026-10-11",
+          "end": "2026-10-12",
+          "url": "https://www.rstakahata.com/rst/event.html"
+        }
+      ]
+    },
+    {
+      "id": "fukushima_michinoeki",
+      "prefecture": "福島県",
+      "roadName": "ふくしま",
+      "listingUrl": "https://m-fukushima.com/info/?category=2",
+      "listingError": "",
+      "candidates": 12,
+      "checked": 10,
+      "accepted": 1,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {
+        "venue_missing": 2,
+        "not_event": 4,
+        "past": 3
+      },
+      "examples": [
+        {
+          "title": "【10/10(土)・11日(日)ガーデンプレイスフェスタ】",
+          "start": "2026-10-10",
+          "end": "2026-10-11",
+          "url": "https://m-fukushima.com/info/700"
+        }
+      ]
+    },
+    {
+      "id": "shizuoka_izugateway",
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南",
+      "listingUrl": "https://www.izugateway.com/category/event/",
+      "listingError": "",
+      "candidates": 10,
+      "checked": 8,
+      "accepted": 3,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {
+        "no_grounded_program_year": 2,
+        "no_individually_dated_monthly_events": 4
+      },
+      "examples": [
+        {
+          "title": "翠のピスタチオ",
+          "start": "2026-11-08",
+          "end": "2026-11-08",
+          "url": "https://www.izugateway.com/event/6779/"
+        },
+        {
+          "title": "ゲートウェイ食市 干し柿づくり",
+          "start": "2026-11-21",
+          "end": "2026-11-21",
+          "url": "https://www.izugateway.com/event/6779/"
+        },
+        {
+          "title": "ゲートウェイ食市 新米すくい",
+          "start": "2026-10-17",
+          "end": "2026-10-17",
+          "url": "https://www.izugateway.com/event/6723/"
+        }
+      ]
+    },
+    {
+      "id": "yamaguchi_aio",
+      "prefecture": "山口県",
+      "roadName": "あいお",
+      "listingUrl": "https://michinoeki-aio.com/news/",
+      "listingError": "",
+      "candidates": 0,
+      "checked": 0,
+      "accepted": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {},
+      "examples": []
+    },
+    {
+      "id": "ehime_minatto",
+      "prefecture": "愛媛県",
+      "roadName": "八幡浜みなっと",
+      "listingUrl": "https://www.minatto.net/",
+      "listingError": "",
+      "candidates": 0,
+      "checked": 0,
+      "accepted": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "reasons": {},
       "examples": []
     }
   ],
-  "newEvents": 0
+  "newEvents": 7
 }
