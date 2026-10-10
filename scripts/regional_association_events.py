@@ -116,40 +116,79 @@ def collect_tohoku_association(today):
     return results
 
 
+def _kinki_article_period(title, detail):
+    """Use labelled event dates, never article publication dates."""
+    period = _period(title, _publication_date(detail))
+    if period:
+        return period
+    # Article body: inspect labelled date snippets rather than the complete
+    # page (whose header/footer may contain unrelated dates).
+    for node in detail.find_all(["p", "li", "td", "dd", "tr", "h2", "h3"]):
+        value = _clean(node.get_text(" ", strip=True))
+        if len(value) > 350 or not re.search(r"開催日|開催期間|日時|日程|イベント日|開催日時", value):
+            continue
+        m = re.search(r"(?:開催日時|開催期間|開催日|日時|日程|イベント日)[：:\\s]*(.{4,130})", value)
+        if not m:
+            continue
+        period = _period(m.group(1), _publication_date(detail))
+        if period:
+            return period
+    return None
+
+
+def _publication_date(soup):
+    node = soup.find("time", datetime=True)
+    if node:
+        m = re.search(r"(20\\d{2})[-/.](\\d{1,2})[-/.](\\d{1,2})", node["datetime"])
+        if m:
+            return _date(*m.groups())
+    for tag in soup.find_all("meta", attrs={"property": "article:published_time"}):
+        m = re.search(r"(20\\d{2})-(\\d{2})-(\\d{2})", tag.get("content", ""))
+        if m:
+            return _date(*m.groups())
+    return None
+
+
 def collect_kinki_association(today):
-    """Kinki association event-tag notices; read article titles + nearby date."""
-    soup = _get(KINKI)
-    results = []
-    seen = set()
-    for anchor in soup.select("a[href]"):
-        title = _clean(anchor.get_text(" ", strip=True))
-        match = re.search(r"[【〖]道の駅\s*([^】〗]+)[】〗]", title)
-        if not match or not any(w in title for w in EVENT_WORDS):
-            continue
-        if any(w in title for w in SKIP):
-            continue
-        href = urljoin(KINKI, anchor["href"])
-        if urlparse(href).hostname not in ("www.kinki-michinoeki.com", "kinki-michinoeki.com"):
-            continue
-        container = anchor.find_parent(["article", "li"]) or anchor.parent
-        surrounding = _clean(container.get_text(" ", strip=True))
-        published_match = re.search(r"(20\d{2})[./-](\d{1,2})[./-](\d{1,2})", surrounding)
-        published = _date(*published_match.groups()) if published_match else None
-        period = _period(title, published)
-        if not period or period[1] < today.isoformat():
-            continue
-        pref = next((p for p in PREFS if p in surrounding and p in
-                     ("滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県")), None)
-        if not pref:
-            continue
-        road = _clean(match.group(1))
-        key = (href, road)
-        if key in seen:
-            continue
-        seen.add(key)
-        results.append(_record(road, pref, title, period, href,
-                               published.isoformat() if published else ""))
-    print(f"近畿連絡会: 採用 {len(results)} 件")
+    """Read linked articles and their event date fields, with page-local prefectures."""
+    results, seen, checked = [], set(), 0
+    for page_number in range(1, 4):
+        url = KINKI if page_number == 1 else KINKI.rstrip("/") + f"/page/{page_number}/"
+        listing = _get(url)
+        page_candidates = 0
+        for anchor in listing.select("a[href]"):
+            title = _clean(anchor.get_text(" ", strip=True))
+            match = re.search(r"[【〖][「\\s]*道の駅\\s*([^】〗」]+)[」]?([】〗])", title)
+            if not match or any(w in title for w in SKIP):
+                continue
+            href = urljoin(url, anchor["href"])
+            if urlparse(href).hostname not in ("www.kinki-michinoeki.com", "kinki-michinoeki.com"):
+                continue
+            if href in seen:
+                continue
+            seen.add(href)
+            page_candidates += 1
+            checked += 1
+            container = anchor.find_parent(["article", "li", "div"]) or anchor.parent
+            context = _clean(container.get_text(" ", strip=True))
+            pref = next((p for p in ("滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県") if p in context), None)
+            try:
+                detail = _get(href)
+            except requests.RequestException as exc:
+                print(f"近畿詳細取得失敗: {href} ({exc})")
+                continue
+            if not pref:
+                detail_text = _clean(detail.get_text(" ", strip=True))[:2500]
+                pref = next((p for p in ("滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県") if p in detail_text), None)
+            period = _kinki_article_period(title, detail)
+            if not pref or not period or period[1] < today.isoformat():
+                continue
+            road = _clean(match.group(1))
+            if road and any(w in title + " " + _clean(detail.title.get_text(" ", strip=True) if detail.title else "") for w in EVENT_WORDS):
+                results.append(_record(road, pref, title, period, href))
+        if page_candidates == 0:
+            break
+    print(f"近畿連絡会: 詳細候補 {checked} / 採用 {len(results)} 件")
     return results
 
 
