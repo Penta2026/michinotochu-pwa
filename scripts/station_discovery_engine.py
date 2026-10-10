@@ -169,20 +169,40 @@ def _article_record(source, soup, listing_title, today, url):
     title = _headline(soup, source, listing_title)
     if not title or any(w in title for w in BLOCK):
         return None, "not_event"
-    if not any(w in title for w in EVENT_WORDS):
+    terms = source.get("allowedEventWords") or EVENT_WORDS
+    if not any(w in title for w in terms):
         return None, "not_event"
+    # One monthly overview commonly contains dozens of independently dated
+    # events; never treat its first date as one month-long event.
+    if re.search(r"^[0-9]{1,2}月(?:前半|後半)?(?:最新)?イベント情報", clean(title)):
+        return None, "multi_event_overview"
     lines = _article_lines(article, source)
     body = clean(article.get_text(" ", strip=True))
     if not any(w in body for w in source["requiredVenueTokens"]):
         return None, "venue_missing"
+    has_venue_label = False
     for i, line in enumerate(lines):
         label = VENUE_LABEL.search(line)
         if label:
+            has_venue_label = True
             value = line[label.end():] or (lines[i + 1] if i + 1 < len(lines) else "")
             if not any(w in value for w in source["requiredVenueTokens"]):
                 return None, "offsite"
+    if source.get("requireVenueLabel") and not has_venue_label:
+        return None, "venue_missing"
     posted = _publication(soup, source, title, today)
     period = _article_period(title, lines, posted)
+    if period is None and source.get("allowExplicitDatedParagraph"):
+        # An individually titled official event notice may put the date in
+        # an unlabeled <p>; do not interpret the posting timestamp as event.
+        for line in lines:
+            if re.search(r"(?:投稿日|更新日|公開日|掲載日|受付期間|申込期限)", line):
+                continue
+            if not re.search(r"20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}", line):
+                continue
+            period = _period(line, posted)
+            if period:
+                break
     if period is None:
         return None, "undated"
     if period[1] < today.isoformat():
@@ -191,6 +211,64 @@ def _article_record(source, soup, listing_title, today, url):
             "title": title, "startDate": period[0], "endDate": period[1],
             "publishedAt": posted.isoformat() if posted else "", "url": url,
             "status": "scheduled"}, "accepted"
+
+SECTION_TITLE = re.compile(r"^[〖【]([^〗】]{3,85})[〗】]$")
+SECTION_DATE = re.compile(r"^[🗓📅]?\s*(?:(?:開催日|日時)\s*[:：]?\s*)?")
+SECTION_VENUE = re.compile(r"^[📍]?\s*(?:会場|開催場所)?\s*[:：]?\s*")
+
+def _section_records(spec, soup, today, url):
+    """Extract separate titled events from a station's multi-event HTML notice.
+
+    A section needs its own distinctive heading, explicit event date,
+    and an on-premises venue line. No global date or whole-month inference.
+    """
+    article = _pick_article(soup, spec)
+    if article is None:
+        return [], "no_article"
+    body = clean(article.get_text(" ", strip=True))
+    if not any(w in body for w in spec["requiredVenueTokens"]):
+        return [], "venue_missing"
+    heading = _headline(soup, spec, "イベント案内")
+    posted = _publication(soup, spec, heading, today)
+    lines = [clean(v) for v in article.get_text("\n", strip=True).splitlines()]
+    out = []
+    for i, raw in enumerate(lines):
+        match = SECTION_TITLE.fullmatch(raw)
+        if not match:
+            continue
+        title = match.group(1).strip()
+        if not any(w in title for w in EVENT_WORDS) or any(w in title for w in BLOCK):
+            continue
+        # The date and location must be part of this one notice section,
+        # not the next event or previous station-wide calendar.
+        snippet = []
+        for line in lines[i + 1:i + 10]:
+            if SECTION_TITLE.fullmatch(line):
+                break
+            snippet.append(line)
+        date_found = None
+        venue_found = False
+        for line in snippet:
+            if line.startswith(("🗓", "📅")):
+                date_found = _period(SECTION_DATE.sub("", line), posted)
+            if line.startswith("📍"):
+                venue = SECTION_VENUE.sub("", line).strip()
+                venue_found = any(token in venue for token in spec["approvedVenueTokens"])
+        if not date_found or not venue_found or date_found[1] < today.isoformat():
+            continue
+        out.append({"roadName": spec["roadName"], "prefecture": spec["prefecture"],
+                    "title": title, "startDate": date_found[0], "endDate": date_found[1],
+                    "publishedAt": posted.isoformat() if posted else "",
+                    "url": url, "status": "scheduled"})
+    seen = set()
+    unique = []
+    for rec in out:
+        key = (rec["url"], rec["title"], rec["startDate"], rec["endDate"])
+        if key not in seen:
+            seen.add(key)
+            unique.append(rec)
+    return unique, "accepted" if unique else "no_individually_dated_sections"
+
 
 def _fetch(url):
     r = requests.get(url, headers=HEADERS, timeout=(4, 9), allow_redirects=False)
@@ -236,7 +314,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             continue
         summary["candidates"] = len(links)
         for url, text in links.items():
-            if url in known_urls or url in newly_seen:
+            multi = spec.get("articleMode") == "dated_sections"
+            if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
             if summary["checked"] >= int(spec.get("maxArticles", 6)):
@@ -247,16 +326,28 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                 summary["fetchFailed"] += 1
                 continue
             summary["checked"] += 1
-            record, why = _article_record(spec, detail, text, today, url)
-            if record:
-                records.append(record)
+            if multi:
+                found, why = _section_records(spec, detail, today, url)
+                # With several events per article, URL-level dedup is unsafe:
+                # skip only the exact event instance already in old/current.
+                known_keys = {(e.get("url"), clean(e.get("title")),
+                               e.get("startDate"), e.get("endDate"))
+                              for e in (prior or ())}
+                found = [e for e in found if (e["url"], clean(e["title"]),
+                         e["startDate"], e["endDate"]) not in known_keys]
+            else:
+                record, why = _article_record(spec, detail, text, today, url)
+                found = [record] if record else []
+            if found:
+                for record in found:
+                    records.append(record)
+                    summary["accepted"] += 1
+                    if len(summary["examples"]) < 5:
+                        summary["examples"].append({"title": record["title"],
+                                                    "start": record["startDate"],
+                                                    "end": record["endDate"],
+                                                    "url": record["url"]})
                 newly_seen.add(url)
-                summary["accepted"] += 1
-                if len(summary["examples"]) < 5:
-                    summary["examples"].append({"title": record["title"],
-                                                "start": record["startDate"],
-                                                "end": record["endDate"],
-                                                "url": record["url"]})
             else:
                 summary["reasons"][why] = summary["reasons"].get(why, 0) + 1
         summaries.append(summary)
