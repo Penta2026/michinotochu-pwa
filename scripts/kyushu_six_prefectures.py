@@ -36,7 +36,7 @@ SOURCES = (
 REPORT = Path(__file__).resolve().parents[1] / "data" / "kyushu_six_prefectures_audit.json"
 HEADERS = {"User-Agent": "MichinotochuRoadEventBot/1.7 (six station official notices; daily)"}
 EVENT_WORDS = ("祭", "まつり", "感謝", "フェス", "フェア", "イベント",
-               "マルシェ", "夜市", "コンサート", "体験", "朝市", "開催", "講座")
+               "マルシェ", "夜市", "灯籠", "コンサート", "体験", "朝市", "開催", "講座")
 EXCLUDE = ("中止", "延期", "求人", "定休日", "休業", "営業時間", "休館",
            "出店募集", "参加者募集", "申込締切", "公募", "通行止め", "お詫び")
 DATE = re.compile(
