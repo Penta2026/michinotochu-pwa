@@ -91,6 +91,20 @@ class DateParsingTests(unittest.TestCase):
         self.assertEqual(len(records),1)
         self.assertEqual(records[0]["roadName"],"信州新野千石平")
 
+    def test_chubu_station_position(self):
+        report={"source":"https://www.chubu-michinoeki.org/pdf/test.pdf",
+                "pages":[{"rows":[
+                    {"x":44,"y":10,"text":"〈2 0 26 年〉10月","section":"left_station"},
+                    {"x":41,"y":425,"text":"⤪古今伝授の里やまと","section":"left_station"},
+                    {"x":162,"y":435,"text":"●10月17日㈯・18日㈰ とんぼ玉販売","section":"left_station_event"},
+                    {"x":41,"y":485,"text":"㊺柳津","section":"left_station"},
+                    {"x":162,"y":496,"text":"●10月25日㈰ Yanaizuマルシェ","section":"left_station_event"},
+                    {"x":414,"y":496,"text":"▼10月25日㈰ 周辺イベント","section":"left_nearby"}
+                ]}]}
+        got=verified_pdf_events(report,date(2026,10,10))
+        self.assertEqual([(x["roadName"],x["endDate"]) for x in got],
+                         [("古今伝授の里やまと","2026-10-18"),("柳津","2026-10-25")])
+
     def test_no_dates(self):
         self.assertIsNone(_period("秋のイベント開催"))
 
