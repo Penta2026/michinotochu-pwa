@@ -7,7 +7,7 @@ from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period
 from hokkaido_events import parse_dates
 from kanto_events import event_period
-from chubu_events import bulletin_links
+from chubu_events import bulletin_links, bulletin_date, verified_pdf_events
 
 class DateParsingTests(unittest.TestCase):
     def test_explicit_two_day(self):
@@ -70,6 +70,22 @@ class DateParsingTests(unittest.TestCase):
     def test_chubu_ignore_external_bulletin(self):
         html = '<a href="https://example.com/event.pdf">中部イベント情報</a>'
         self.assertEqual(bulletin_links(html, "https://www.chubu-michinoeki.org/"), [])
+
+    def test_chubu_bulletin_date_range(self):
+        self.assertEqual(bulletin_date("●10月10日㈯〜12日（月・祝） 収穫祭", 2026),
+                         ("2026-10-10", "2026-10-12"))
+
+    def test_chubu_verified_station(self):
+        report={"source":"https://www.chubu-michinoeki.org/pdf/test.pdf",
+                "pages":[{"rows":[
+                    {"x":44,"y":10,"text":"〈2 0 26 年〉10月","section":"left_station"},
+                    {"x":41,"y":72,"text":"❾信州新野千石平","section":"left_station"},
+                    {"x":162,"y":74,"text":"●10月10日㈯〜12日（月・祝） 信州新野千石平 道の駅【収穫祭】","section":"left_station_event"},
+                    {"x":414,"y":74,"text":"▼10月10日㈯ 周辺地域イベント","section":"left_nearby"}
+                ]}]}
+        records=verified_pdf_events(report,date(2026,10,10))
+        self.assertEqual(len(records),1)
+        self.assertEqual(records[0]["roadName"],"信州新野千石平")
 
     def test_no_dates(self):
         self.assertIsNone(_period("秋のイベント開催"))
