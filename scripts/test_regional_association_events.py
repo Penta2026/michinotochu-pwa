@@ -5,6 +5,7 @@ from regional_association_events import _period
 from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period
+from hokkaido_events import parse_dates
 
 class DateParsingTests(unittest.TestCase):
     def test_explicit_two_day(self):
@@ -40,6 +41,16 @@ class DateParsingTests(unittest.TestCase):
 
     def test_chugoku_old_year(self):
         self.assertIsNone(chugoku_period("秋祭り 2025年10月24日", date(2025, 10, 1)))
+
+    def test_hokkaido_takikawa_two_days(self):
+        self.assertEqual(parse_dates("2026年10月17日、18日", date(2026, 10, 10)),
+                         ("2026-10-17", "2026-10-18"))
+
+    def test_hokkaido_invalid(self):
+        self.assertIsNone(parse_dates("2026年2月31日", date(2026, 1, 1)))
+
+    def test_hokkaido_older_year(self):
+        self.assertIsNone(parse_dates("2025年10月17日", date(2026, 10, 10)))
 
     def test_no_dates(self):
         self.assertIsNone(_period("秋のイベント開催"))
