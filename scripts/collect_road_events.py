@@ -216,13 +216,13 @@ def collect_chugoku():
         href=urljoin(CHUGOKU_SOURCE,anchor["href"])
         if not href.startswith("https://"):
             continue
-        # Only one-day events with explicit dates are automatically accepted.
+        # Publish verified single-day or date-range events.
         found.append({"roadName":road,"prefecture":CHUGOKU_PREFS[road],
                       "title":title,"startDate":period[0],"endDate":period[1],
                       "publishedAt":announced.isoformat(),"url":href,"status":"scheduled"})
-    print(f"中国地方: 採用 {len(found)} 件 / 未登録駅名 {diag[\'unknown_station\']} / "
-          f"イベント対象外 {diag[\'not_event\']} / 告知日不明 {diag[\'missing_publication\']} / "
-          f"開催日不適合 {diag[\'invalid_date\']}")
+    print(f"中国地方: 採用 {len(found)} 件 / 未登録駅名 {diag['unknown_station']} / "
+          f"イベント対象外 {diag['not_event']} / 告知日不明 {diag['missing_publication']} / "
+          f"開催日不適合 {diag['invalid_date']}")
     return found
 
 
