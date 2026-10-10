@@ -863,18 +863,18 @@
       "prefecture": "熊本県",
       "roadName": "あそ望の郷くぎの",
       "listingUrl": "https://minamiaso.info/event/?cm=10&cy=2026",
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='minamiaso.info', port=443): Max retries exceeded with url: /event/?cm=10&cy=2026 (Caused by ConnectTimeoutError(<H",
-      "candidates": 0,
-      "checked": 0,
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
       "accepted": 0,
-      "reconfirmed": 0,
+      "reconfirmed": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
       "examples": [],
       "rejectedExamples": [],
-      "eligibleCandidates": 0,
+      "eligibleCandidates": 1,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -1292,5 +1292,5 @@
     }
   ],
   "newEvents": 0,
-  "reconfirmedEvents": 11
+  "reconfirmedEvents": 12
 }

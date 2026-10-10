@@ -71,15 +71,11 @@
     },
     {
       "roadName": "真狩フラワーセンター",
-      "title": "泊村×真狩村 観光物産展 開催!! NEW"
+      "title": "泊村×真狩村 観光物産展 開催!!"
     },
     {
       "roadName": "樹海ロード日高",
       "title": "日高町道の駅フェスト開催のお知らせ"
-    },
-    {
-      "roadName": "たきかわ",
-      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!"
     },
     {
       "roadName": "親不知ピアパーク",
@@ -258,6 +254,10 @@
       "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025"
     },
     {
+      "roadName": "あそ望の郷くぎの",
+      "title": "第11回 南阿蘇の青空レストラン"
+    },
+    {
       "roadName": "ひまわり",
       "title": "バイクイベント開催 10月18日(日)"
     },
@@ -313,19 +313,11 @@
       "reason": "not_found_in_current_collection"
     },
     {
-      "roadName": "樹海ロード日高",
-      "title": "日高町道の駅フェスト開催のお知らせ NEW",
-      "startDate": "2026-10-11",
-      "endDate": "2026-10-11",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
-      "reason": "not_found_in_current_collection"
-    },
-    {
-      "roadName": "あそ望の郷くぎの",
-      "title": "第11回 南阿蘇の青空レストラン",
-      "startDate": "2026-10-12",
-      "endDate": "2026-10-12",
-      "url": "https://minamiaso.info/event/?cm=10&cy=2026",
+      "roadName": "たきかわ",
+      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/",
       "reason": "not_found_in_current_collection"
     },
     {
@@ -337,7 +329,7 @@
       "reason": "not_found_in_current_collection"
     }
   ],
-  "finalCount": 78,
+  "finalCount": 77,
   "futurePublicationDatesCleared": [
     {
       "url": "https://wachi-nagomi.com/topics/post-10529/",
@@ -348,6 +340,10 @@
   ],
   "collapsedHokurikuDuplicates": {
     "previous": 0,
+    "collected": 0
+  },
+  "collapsedStatusBadgeDuplicates": {
+    "previous": 1,
     "collected": 0
   }
 }

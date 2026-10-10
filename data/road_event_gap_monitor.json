@@ -10,7 +10,7 @@
   "summary": {
     "historicalPrefecturesReached": 47,
     "prefecturesWithCurrentEvents": 44,
-    "currentEvents": 78,
+    "currentEvents": 77,
     "phase2SourcesConfigured": 27,
     "phase2SourcesAudited": 27,
     "phase2AuditFresh": true,
@@ -34,7 +34,7 @@
       "undated": 23,
       "venue_missing": 9
     },
-    "sourcesWithFetchProblems": 2,
+    "sourcesWithFetchProblems": 1,
     "sourcesWithZeroCandidates": 2,
     "sourcesAtCheckLimit": 9,
     "sourcesUsingRotatingInspection": 9,
@@ -45,9 +45,10 @@
     "warnings": 11,
     "warningKinds": {
       "article_check_limit": 9,
-      "source_fetch_error": 2
+      "regional_homepage_unreachable": 1,
+      "source_fetch_error": 1
     },
-    "unreconfirmedEvents": 4
+    "unreconfirmedEvents": 3
   },
   "publishedStationsWithoutDirectTarget": [
     {
@@ -11021,19 +11022,11 @@
       "status": "needs_reconfirmation"
     },
     {
-      "roadName": "樹海ロード日高",
-      "title": "日高町道の駅フェスト開催のお知らせ NEW",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
-      "startDate": "2026-10-11",
-      "endDate": "2026-10-11",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "あそ望の郷くぎの",
-      "title": "第11回 南阿蘇の青空レストラン",
-      "url": "https://minamiaso.info/event/?cm=10&cy=2026",
-      "startDate": "2026-10-12",
-      "endDate": "2026-10-12",
+      "roadName": "たきかわ",
+      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
       "status": "needs_reconfirmation"
     },
     {
@@ -11110,13 +11103,6 @@
       "uninspectedCandidateCount": 143
     },
     {
-      "kind": "source_fetch_error",
-      "sourceId": "kumamoto_minamiaso_official_tourism",
-      "prefecture": "熊本県",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
-    {
       "kind": "article_check_limit",
       "sourceId": "miyazaki_niqll",
       "prefecture": "宮崎県",
@@ -11140,6 +11126,11 @@
       "prefecture": "愛媛県",
       "severity": "warning",
       "failureDayStreak": 1
+    },
+    {
+      "kind": "regional_homepage_unreachable",
+      "region": "東北",
+      "severity": "warning"
     }
   ],
   "sources": [
@@ -11501,16 +11492,16 @@
       "roadName": "あそ望の郷くぎの",
       "url": "https://minamiaso.info/event/?cm=10&cy=2026",
       "checkedOn": "2026-10-11",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "active",
+      "candidateCount": 1,
+      "checkedCount": 1,
       "acceptedCount": 0,
-      "reconfirmedCount": 0,
+      "reconfirmedCount": 1,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='minamiaso.info', port=443): Max retries exceeded with url: /event/?cm=10&cy=2026 (Caused by ConnectTimeoutError(<H",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
@@ -11755,15 +11746,15 @@
     {
       "region": "東北",
       "mode": "adapter",
-      "homepageReachable": true,
-      "homepageCandidateCount": 11,
+      "homepageReachable": false,
+      "homepageCandidateCount": 0,
       "note": "Regional homepage status does NOT prove that its stations' events were parsed."
     },
     {
       "region": "関東",
       "mode": "discovery",
       "homepageReachable": true,
-      "homepageCandidateCount": 6,
+      "homepageCandidateCount": 5,
       "note": "Regional homepage status does NOT prove that its stations' events were parsed."
     },
     {

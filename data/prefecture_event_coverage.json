@@ -71,17 +71,16 @@
     "zeroRegisteredPrefectures": 3,
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
-    "registeredEvents": 78,
+    "registeredEvents": 77,
     "targetedStationFeedPrefectures": 25,
-    "notReconfirmedEvents": 4,
+    "notReconfirmedEvents": 3,
     "unknownPrefectures": []
   },
   "priorities": {
     "reconfirm": [
       "北海道",
       "島根県",
-      "山口県",
-      "熊本県"
+      "山口県"
     ],
     "historicalNeverObserved": [],
     "previouslyObservedWithoutCurrentEvents": [
@@ -102,7 +101,7 @@
       "prefectureCount": 1,
       "observedPrefectures": 1,
       "zeroRegisteredPrefectures": [],
-      "registeredEventCount": 4,
+      "registeredEventCount": 3,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 12
     },
@@ -112,8 +111,8 @@
       "observedPrefectures": 6,
       "zeroRegisteredPrefectures": [],
       "registeredEventCount": 11,
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0
     },
     {
       "region": "関東",
@@ -122,7 +121,7 @@
       "zeroRegisteredPrefectures": [],
       "registeredEventCount": 13,
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6
+      "regionalHomepageListingCandidates": 5
     },
     {
       "region": "北陸",
@@ -189,7 +188,7 @@
     {
       "prefecture": "北海道",
       "reportingRegion": "北海道",
-      "eventCount": 4,
+      "eventCount": 3,
       "observedStations": [
         "たきかわ",
         "樹海ロード日高",
@@ -198,7 +197,7 @@
       "historicallyObserved": true,
       "observedStationCount": 3,
       "targetedStationFeeds": [],
-      "notReconfirmedCount": 2,
+      "notReconfirmedCount": 1,
       "state": "needs_reconfirmation",
       "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
@@ -218,8 +217,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -237,8 +236,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -254,8 +253,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -271,8 +270,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -290,8 +289,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -309,8 +308,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 11,
+      "regionalHomepageReachable": false,
+      "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "adapter"
     },
     {
@@ -330,7 +329,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -349,7 +348,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -368,7 +367,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -385,7 +384,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -405,7 +404,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -424,7 +423,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -443,7 +442,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -460,7 +459,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -477,7 +476,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -965,9 +964,9 @@
         "あそ望の郷くぎの",
         "すいかの里植木"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"

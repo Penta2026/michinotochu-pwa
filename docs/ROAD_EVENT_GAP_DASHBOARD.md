@@ -12,9 +12,9 @@
 |---|---:|
 | 累計で収集実績のある都道府県 | 47/47 |
 | 現在イベントのある都道府県 | 44/47 |
-| 現在の公開イベント | 78 |
+| 現在の公開イベント | 77 |
 | 設定型の公式収集ルート（監査済/設定） | 27/27 |
-| 収集先の取得問題 | 2 |
+| 収集先の取得問題 | 1 |
 | 候補が0件の収集先 | 2 |
 | 記事チェック上限に達した収集先 | 9 |
 | 未調査の候補記事枠（重複記事を含む可能性あり） | 165 |
@@ -22,7 +22,7 @@
 | 日替わり巡回に割り当てた記事枠 | 17 |
 | 要確認候補のうち将来開催日の明記あり | 4 |
 | 記事の要確認サンプル | 51 |
-| 既存イベントの未再確認 | 4 |
+| 既存イベントの未再確認 | 3 |
 
 設定型監査データの鮮度: **当日分**
 
@@ -35,10 +35,10 @@
 - **article_check_limit** — fukushima_michinoeki （notice）
 - **article_check_limit** — yamaguchi_abu_roadstation （notice）
 - **article_check_limit** — fukui_nanjezen_sankairi （notice）
-- **source_fetch_error** — kumamoto_minamiaso_official_tourism （warning）
 - **article_check_limit** — miyazaki_niqll （notice）
 - **article_check_limit** — ehime_yawatahama_city_events （notice）
 - **source_fetch_error** — ehime_city_official_festival_pdf （warning）
+- **regional_homepage_unreachable** — 東北 （warning）
 
 ## 人が確認する候補（抜粋）
 
