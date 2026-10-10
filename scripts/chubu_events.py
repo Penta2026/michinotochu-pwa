@@ -142,7 +142,7 @@ def verified_pdf_events(report, today):
             if row.get("section") not in ("left_station", "right_station"):
                 continue
             road = next((name for name in VERIFIED_STATIONS if name in row["text"]), None)
-            if road and row["text"][0] in STATION_MARKERS:
+            if road and row["text"].strip().endswith(road) and len(row["text"]) <= len(road) + 3:
                 station_rows.append((row, road))
         for row in rows:
             if row.get("section") not in ("left_station_event", "right_station_event"):
