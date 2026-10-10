@@ -520,15 +520,25 @@ def _dated_news_listing_records(spec, soup, today, url):
         return [], "no_article"
     for node in container.select("nav, footer, aside, script, style"):
         node.decompose()
-    lines = [clean(x) for x in container.get_text("\n", strip=True).splitlines()
-             if clean(x)]
-    # A news card may repeat its headline in its body. Only the actual
-    # heading starts a distinct notice; never treat paragraph text as another
-    # event headline or borrow a later notice's posting year/venue.
-    headline_texts = {clean(h.get_text(" ", strip=True))
-                      for h in container.select("h1, h2, h3, h4")}
-    heading_positions = {i for i, line in enumerate(lines)
-                         if line in headline_texts}
+    # Track the actual DOM heading elements instead of comparing text:
+    # identical wording in a <p> must never become a second event heading.
+    lines = []
+    heading_positions = set()
+    last_heading = None
+    for node in container.stripped_strings:
+        heading = node.find_parent(["h1", "h2", "h3", "h4"])
+        if heading is not None:
+            if heading is last_heading:
+                continue
+            value = clean(heading.get_text(" ", strip=True))
+        else:
+            value = clean(str(node))
+        if not value:
+            continue
+        if heading is not None:
+            heading_positions.add(len(lines))
+        lines.append(value)
+        last_heading = heading
     results = []
     for i, title in enumerate(lines):
         if i not in heading_positions:
