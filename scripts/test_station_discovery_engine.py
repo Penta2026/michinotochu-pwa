@@ -753,5 +753,89 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(selected.name,"article")
         self.assertNotIn("旧イベント",selected.get_text(" ",strip=True))
 
+    def test_osaka_official_div_schedule_with_explicit_dated_row(self):
+        from station_discovery_engine import _dated_station_table_records
+        spec={**TOKYO, "id":"osaka_table", "prefecture":"大阪府",
+              "roadName":"奥河内くろまろの郷",
+              "listingUrl":"https://kuromaro.com/event/list/page/4/",
+              "allowedHosts":["kuromaro.com"],
+              "allowedEventWords":["奥河内くろまろマルシェ"],
+              "requireCategoryTokens":["バザール広場イベント"]}
+        html="""<main><h1>イベント一覧</h1>
+          <div>2026年10月24日～10月25日</div>
+          <div>バザール広場イベント</div>
+          <div>（全面）第25回　奥河内くろまろマルシェ　1024-1025</div>
+          <div>2026年10月31日～10月31日</div>
+          <div>周辺施設</div>
+          <div>奥河内くろまろマルシェ　別会場</div></main>"""
+        found,why=_dated_station_table_records(
+            spec,soup(html),TODAY,spec["listingUrl"])
+        self.assertEqual(why,"accepted")
+        self.assertEqual(len(found),1)
+        self.assertEqual((found[0]["startDate"],found[0]["endDate"]),
+                         ("2026-10-24","2026-10-25"))
+
+    def test_nagasaki_news_listing_requires_local_year_venue_and_future_date(self):
+        from station_discovery_engine import _dated_news_listing_records
+        spec={**TOKYO,"id":"himawari_news","prefecture":"長崎県",
+              "roadName":"ひまわり",
+              "listingUrl":"https://michinoeki-himawari.com/news/",
+              "allowedHosts":["michinoeki-himawari.com"],
+              "articleMode":"dated_news_listing",
+              "requiredVenueTokens":["道の駅ひまわり"],
+              "allowedEventWords":["バイクイベント"]}
+        html="""<main><h1>お知らせ</h1>
+          <h2>バイクイベント開催 １０月１８日(日)</h2>
+          <p>2026.10.07</p>
+          <p>バイクイベント開催 10月18日(日) 10:00～15:00</p>
+          <p>場所 道の駅ひまわり</p>
+          <h2>レストラン店休日のお知らせ</h2><p>2026.10.04</p>
+          <p>場所　道の駅ひまわり</p>
+          </main>"""
+        records,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda _:soup(html),report_path=None)
+        self.assertEqual((len(records),audit["newEvents"]),(1,1))
+        self.assertEqual(records[0]["startDate"],"2026-10-18")
+        self.assertEqual(records[0]["url"],spec["listingUrl"])
+
+    def test_nagasaki_news_footer_venue_and_unrelated_post_year_rejected(self):
+        from station_discovery_engine import _dated_news_listing_records
+        spec={**TOKYO,"requiredVenueTokens":["道の駅ひまわり"],
+              "allowedEventWords":["バイクイベント"]}
+        html="""<main><h2>バイクイベント開催 10月18日(日)</h2>
+           <p>出演者募集中</p><p>10:00～15:00</p>
+           <footer><p>場所 道の駅ひまわり</p></footer></main>"""
+        found,why=_dated_news_listing_records(spec,soup(html),TODAY,URL)
+        self.assertEqual((found,why),([],"no_strictly_dated_news_notice"))
+
+    def test_yamaguchi_separate_heading_for_official_venue(self):
+        spec={**TOKYO,"prefecture":"山口県","roadName":"阿武町",
+              "requiredVenueTokens":["道の駅阿武町"],
+              "allowedEventWords":["森里海の市"],
+              "splitArticleTextLines":True,"requireVenueLabel":True}
+        html="""<article><h1>令和8年10月11日(日)第48回森里海の市を開催します。</h1>
+           <p>■開催日</p><p>開催日:令和8年10月11日(日)</p>
+           <p>■開催場所</p><p>道の駅阿武町 〒759-3622</p>
+           </article>"""
+        rec,why=_article_record(spec,soup(html),"第48回 森里海の市",TODAY,URL)
+        self.assertEqual(why,"accepted")
+        self.assertEqual(rec["startDate"],"2026-10-11")
+        wrong=html.replace("道の駅阿武町 〒759-3622","阿武町役場ホール")
+        wrong=wrong.replace("<p>■開催場所</p>","<p>主催：道の駅阿武町</p><p>■開催場所</p>")
+        self.assertEqual(_article_record(spec,soup(wrong),"森里海の市",TODAY,URL),
+                         (None,"offsite"))
+
+    def test_prefers_specific_venue_event_in_large_city_archive(self):
+        spec={**TOKYO,"id":"ehime","listingUrl":"https://www.city.yawatahama.ehime.jp/event/2026/",
+              "allowedHosts":["www.city.yawatahama.ehime.jp"],
+              "articlePathPattern":r"^/doc/[0-9]+/?$",
+              "allowedEventWords":["産業まつり"],
+              "preferredTitles":["やわたはま産業まつり"]}
+        html="""<a href="/doc/100/">八幡浜市美術館のお知らせ</a>
+        <a href="/doc/102/">文化祭予定</a>
+        <a href="/doc/103/">第13回やわたはま産業まつりについて</a>"""
+        self.assertEqual(list(_links(soup(html),spec))[0],
+                         "https://www.city.yawatahama.ehime.jp/doc/103/")
+
 if __name__ == "__main__":
     unittest.main()
