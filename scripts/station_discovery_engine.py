@@ -1113,7 +1113,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                 newly_seen.add(url)
             elif reconfirmed_this_url == 0:
                 summary["reasons"][why] = summary["reasons"].get(why, 0) + 1
-                if len(summary["rejectedExamples"]) < 5:
+                if len(summary["rejectedExamples"]) < 16:
                     summary["rejectedExamples"].append({
                         "title": text[:100], "url": url, "reason": why})
         summaries.append(summary)
