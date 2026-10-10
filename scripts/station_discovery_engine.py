@@ -75,6 +75,10 @@ def _validate_sources(sources):
 
 def _links(soup, source):
     """Prefer event-looking links but preserve the listing order within tier."""
+    if source.get("articleMode") == "official_station_program":
+        # The official event schedule IS the article; it need not hyperlink
+        # back to itself. The parser must still validate each stated date.
+        return {source["listingUrl"]: "公式開催案内"}
     found = {}
     for a in soup.select(source["listingLinkSelector"]):
         href = a.get("href", "")
@@ -386,7 +390,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             if summary["checked"] >= int(spec.get("maxArticles", 6)):
                 break
             try:
-                detail = fetch(url)
+                detail = listing if (mode == "official_station_program" and
+                                     url == spec["listingUrl"]) else fetch(url)
             except (requests.RequestException, ValueError, AttributeError):
                 summary["fetchFailed"] += 1
                 continue
