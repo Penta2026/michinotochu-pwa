@@ -97,7 +97,7 @@ import unicodedata
 # bulletin; other stations are deliberately not inferred from nearby columns.
 VERIFIED_STATIONS = {"信州新野千石平": "長野県", "遠山郷": "長野県", "飯高駅": "三重県"}
 BULLETIN_DAY = re.compile(r"([0-9]{1,2})月\s*([0-9]{1,2})日")
-BULLETIN_END = re.compile(r"^[\s㈪㈫㈬㈭㈮㈯㈰（）()月火水木金土日祝・]*[～〜~－–-]\s*(?:([0-9]{1,2})月\s*)?([0-9]{1,2})日")
+BULLETIN_END = re.compile(r"^[\s㈪㈫㈬㈭㈮㈯㈰（）()月火水木金土日祝・]*[～〜~－–・-]\s*(?:([0-9]{1,2})月\s*)?([0-9]{1,2})日")
 STATION_MARKERS = "❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴㉑㉒㉓㉔㉕㊺"
 
 def bulletin_date(text, year):
@@ -112,8 +112,6 @@ def bulletin_date(text, year):
         return None
     last = first
     tail = value[start_match.end():start_match.end()+25]
-    # PDF uses both range marks and the Japanese middle dot for paired days.
-    tail = tail.replace("・", "～", 1) if tail.startswith("・") else tail
     end_match = BULLETIN_END.match(tail)
     if end_match:
         em = int(end_match.group(1) or month)
