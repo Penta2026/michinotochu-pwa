@@ -798,6 +798,43 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(records[0]["startDate"],"2026-10-18")
         self.assertEqual(records[0]["url"],spec["listingUrl"])
 
+    def test_nagasaki_news_body_repeats_headline_without_creating_two_events(self):
+        spec={**TOKYO, "roadName":"ひまわり","prefecture":"長崎県",
+              "requiredVenueTokens":["道の駅ひまわり"],
+              "allowedEventWords":["バイクイベント"]}
+        html="""<main>
+          <h2>バイクイベント開催 10月18日(日)</h2>
+          <p>2026.10.07</p>
+          <p>バイクイベント開催 10月18日(日) 10:00～15:00</p>
+          <p>場所 道の駅ひまわり</p>
+          <h2>レストラン店休日のお知らせ</h2>
+          <p>2026.10.04</p>
+          <p>場所 道の駅ひまわり</p>
+        </main>"""
+        from station_discovery_engine import _dated_news_listing_records
+        found,why=_dated_news_listing_records(spec,soup(html),TODAY,
+                                               "https://michinoeki-himawari.com/news/")
+        self.assertEqual(why,"accepted")
+        self.assertEqual(len(found),1)
+        self.assertEqual(found[0]["title"],"バイクイベント開催 10月18日(日)")
+
+    def test_nagasaki_news_cannot_borrow_venue_from_next_notice(self):
+        spec={**TOKYO, "roadName":"ひまわり","prefecture":"長崎県",
+              "requiredVenueTokens":["道の駅ひまわり"],
+              "allowedEventWords":["バイクイベント"]}
+        html="""<main>
+          <h2>バイクイベント開催 10月18日(日)</h2>
+          <p>2026.10.07</p>
+          <p>会場 熊本市民ホール</p>
+          <h2>その他のお知らせ</h2>
+          <p>2026.10.04</p>
+          <p>会場 道の駅ひまわり</p>
+        </main>"""
+        from station_discovery_engine import _dated_news_listing_records
+        records,reason=_dated_news_listing_records(
+            spec,soup(html),TODAY,"https://michinoeki-himawari.com/news/")
+        self.assertEqual((records,reason),([],"no_strictly_dated_news_notice"))
+
     def test_nagasaki_news_footer_venue_and_unrelated_post_year_rejected(self):
         from station_discovery_engine import _dated_news_listing_records
         spec={**TOKYO,"requiredVenueTokens":["道の駅ひまわり"],
