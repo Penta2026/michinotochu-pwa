@@ -211,6 +211,23 @@ def collect_chugoku():
             stamp=(time_tag.get("datetime") or time_tag.get_text(" ",strip=True)) if time_tag else ""
             published=re.search(r"(20\d{2})[-/.年](\d{1,2})[-/.月](\d{1,2})",stamp)
         if not published:
+            # The association list sometimes places the publication date in
+            # the surrounding card, rather than its link's immediate parent.
+            # Only inspect a small ancestor subtree and prefer dates nearest
+            # to the link; never use the event date as publication evidence.
+            for parent in list(anchor.parents)[:4]:
+                if parent.name in ("body", "html"):
+                    break
+                candidate = clean(parent.get_text(" ", strip=True))
+                if len(candidate) > 700:
+                    continue
+                date_candidates = re.findall(r"(20\\d{2})[-/.年](\\d{1,2})[-/.月](\\d{1,2})", candidate)
+                if date_candidates:
+                    match_text = "-".join(date_candidates[0])
+                    published = re.search(r"(20\\d{2})-(\\d{1,2})-(\\d{1,2})", match_text)
+                    if published:
+                        break
+        if not published:
             diag["missing_publication"]+=1
             print(f"中国地方・告知日不明: {road} / {title[:70]} / {urljoin(CHUGOKU_SOURCE,anchor['href'])}")
             continue
