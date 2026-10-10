@@ -7,20 +7,14 @@
       "listUrl": "https://www.michinoeki-kurume.com/category/event/",
       "candidates": 10,
       "checked": 10,
-      "accepted": 0,
-      "noDate": 8,
+      "accepted": 1,
+      "noDate": 4,
       "missingPublication": 0,
-      "missingEventDate": 8,
-      "past": 2,
+      "missingEventDate": 4,
+      "past": 5,
       "failed": 0,
       "sampleMissingPublication": [],
       "sampleMissingEventDate": [
-        {
-          "title": "【イベント情報】新米フェアのお知らせ",
-          "url": "https://www.michinoeki-kurume.com/shinmaifair/",
-          "published": "2026-10-09",
-          "articleSample": "【新米フェア開催のお知らせ】 場所:農産物直売館内 期間:10月17日( 土 )▶11月3日(火) 新米はもちろん、新米と一緒におすすめの加工品を集めたコーナーを設置します! 新米を使ったお弁当なども出荷されますので、お弁当コーナーもぜひ、チェックしてください! 皆様のご来館をお待ちしております! 道の駅くるめ第2駐車場 旬の農産物情報 イベント情報"
-        },
         {
           "title": "【イベント情報】食欲の秋!きのこフェアのお知らせ",
           "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e9%a3%9f%e6%ac%b2%e3%81%ae%e7%a7%8b%ef%bc%81%e3%81%8d%e3%81%ae%e3%81%93%e3%83%95%e3%82%a7%e3%82%a2%e3%81%ae%e3%81%8a%e7%9f%a5-2/",
@@ -38,9 +32,21 @@
           "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e3%83%a9%e3%83%bc%e3%83%a1%e3%83%b3%e7%89%b9%e9%9b%86%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
           "published": "2026-10-04",
           "articleSample": "涼しくなってラーメンが美味しい季節になりました! 当駅や交流のある直売所の人気ラーメンを集めたラーメン特集を実施中です! 場所:農産物直売館内 配送レジ前 期間:~10月31日( 土 )まで お家で店舗の味が楽しめる本格派から、手軽に食べられるインスタントまで集まりました! お土産や自宅用にいかがでしょうか? ぜひご来館ください! 道の駅くるめ第2駐車場 旬の農産物情報 イベント情報"
+        },
+        {
+          "title": "【イベント情報】明治安田生命主催 健活イベント&JAF共同企画イベントのお知らせ",
+          "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e6%98%8e%e6%b2%bb%e5%ae%89%e7%94%b0%e7%94%9f%e5%91%bd%e4%b8%bb%e5%82%ac-%e5%81%a5%e6%b4%bb%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88/",
+          "published": "2026-07-13",
+          "articleSample": "第2駐車場開設のご案内 【道の駅くるめ農産物情報】 【イベント広場 対面販売情報】 ★道の駅くるめ求人情報★ 7月25日(土)、下記のイベントが行われます。 ご家族やお友だちと、ぜひ道の駅くるめ イベント広場へお越しください! ■明治安田生命主催 健活イベント 日時:7月25日(土) 9:00~16:00 会場:イベント広場 内容:血管年齢測定、ベジチェック、肌年齢測定、ストレスチェックを実施します。 ■道の駅くるめ×JAF共同企画 日時:7月25日(土) 9:00~15:00 会場:イベント広場 ■ガチャガチャ チャレンジ 当日のお"
         }
       ],
-      "sampleAccepted": [],
+      "sampleAccepted": [
+        {
+          "title": "【イベント情報】新米フェアのお知らせ",
+          "start": "2026-10-17",
+          "end": "2026-11-03"
+        }
+      ],
       "error": "",
       "sampleCandidates": [
         {
@@ -83,20 +89,14 @@
       "listUrl": "https://michinoeki-kadena.jp/news/",
       "candidates": 18,
       "checked": 18,
-      "accepted": 0,
-      "noDate": 7,
+      "accepted": 1,
+      "noDate": 6,
       "missingPublication": 0,
-      "missingEventDate": 7,
+      "missingEventDate": 6,
       "past": 11,
       "failed": 0,
       "sampleMissingPublication": [],
       "sampleMissingEventDate": [
-        {
-          "title": "月眺みぬ会開催のお知らせ",
-          "url": "https://michinoeki-kadena.jp/news/n3328631.html",
-          "published": "2026-09-06",
-          "articleSample": "月眺みぬ会開催のお知らせ:お知らせ|道の駅かでな - 嘉手納基地を一望できる沖縄の観光スポット - 那覇から沖縄本島北部に向かう中間にあるドライブ休憩スポット English ホーム 学習展示室・展望所 テナント紹介 アクセス 団体バス駐車場 お知らせ お問い合わせ プライバシーポリシー English お知らせ ホーム お知らせ一覧 月眺みぬ会開催のお知らせ 月眺みぬ会開催のお知らせ 2026年09月06日 10月17日 (土) は道の駅かでなにて 月眺みぬ会が開催されます。 嘉手納町の水釜で眺める月を歌った名曲「月眺み」 とても素"
-        },
         {
           "title": "ビールイベント開催!",
           "url": "https://michinoeki-kadena.jp/news/n3292962.html",
@@ -114,9 +114,21 @@
           "url": "https://michinoeki-kadena.jp/news/n3276921.html",
           "published": "2026-06-21",
           "articleSample": "ビールイベント開催します!:お知らせ|道の駅かでな - 嘉手納基地を一望できる沖縄の観光スポット - 那覇から沖縄本島北部に向かう中間にあるドライブ休憩スポット English ホーム 学習展示室・展望所 テナント紹介 アクセス 団体バス駐車場 お知らせ お問い合わせ プライバシーポリシー English お知らせ ホーム お知らせ一覧 ビールイベント開催します! ビールイベント開催します! 2026年06月21日 6月28日(日)開催! ※悪天候の場合は中止となります。 ホームページ・インスタグラムで発信いたします。 シェアする ツ"
+        },
+        {
+          "title": "サボー・シルヴィア絵画展「空へ飛び立て」開催@道の駅かでな",
+          "url": "https://michinoeki-kadena.jp/news/n3260035.html",
+          "published": "2026-05-26",
+          "articleSample": "サボー・シルヴィア絵画展「空へ飛び立て」開催@道の駅かでな:お知らせ|道の駅かでな - 嘉手納基地を一望できる沖縄の観光スポット - 那覇から沖縄本島北部に向かう中間にあるドライブ休憩スポット English ホーム 学習展示室・展望所 テナント紹介 アクセス 団体バス駐車場 お知らせ お問い合わせ プライバシーポリシー English お知らせ ホーム お知らせ一覧 サボー・シルヴィア絵画展「空へ飛び立て」開催@道の駅かでな サボー・シルヴィア絵画展「空へ飛び立て」開催@道の駅かでな 2026年05月26日 県内で活動するハンガリー"
         }
       ],
-      "sampleAccepted": [],
+      "sampleAccepted": [
+        {
+          "title": "月眺みぬ会開催のお知らせ",
+          "start": "2026-10-17",
+          "end": "2026-10-17"
+        }
+      ],
       "error": "",
       "sampleCandidates": [
         {
@@ -154,5 +166,5 @@
       ]
     }
   ],
-  "accepted": 0
+  "accepted": 2
 }

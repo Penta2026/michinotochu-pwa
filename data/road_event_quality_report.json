@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 46,
-  "inputCollected": 46,
+  "inputCollected": 48,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -192,7 +192,7 @@
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [],
-  "finalCount": 46,
+  "finalCount": 48,
   "collapsedHokurikuDuplicates": {
     "previous": 0,
     "collected": 0

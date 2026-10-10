@@ -233,6 +233,26 @@
       "status": "scheduled"
     },
     {
+      "roadName": "かでな",
+      "prefecture": "沖縄県",
+      "title": "月眺みぬ会開催のお知らせ",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-17",
+      "publishedAt": "2026-09-06",
+      "url": "https://michinoeki-kadena.jp/news/n3328631.html",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "くるめ",
+      "prefecture": "福岡県",
+      "title": "【イベント情報】新米フェアのお知らせ",
+      "startDate": "2026-10-17",
+      "endDate": "2026-11-03",
+      "publishedAt": "2026-10-09",
+      "url": "https://www.michinoeki-kurume.com/shinmaifair/",
+      "status": "scheduled"
+    },
+    {
       "roadName": "たきかわ",
       "prefecture": "北海道",
       "title": "10月17日、18日は道の駅たきかわ大収穫祭です!",
