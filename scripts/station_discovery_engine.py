@@ -77,6 +77,11 @@ def _validate_sources(sources):
             int(spec.get("maxArticles", 6)) not in range(1, 13)):
             raise ValueError(f"Unsafe discovery source: {spec['id']}")
         re.compile(spec["articlePathPattern"])
+        if spec.get("articleMode") in ("verified_official_pdf", "verified_official_event_detail"):
+            if not _official_url(spec["listingUrl"], spec, article=True):
+                raise ValueError(f"Unsafe fixed official event source: {spec['id']}")
+            if not spec.get("requiredEventTitle"):
+                raise ValueError(f"Missing event title in fixed official source: {spec['id']}")
         if spec.get("articleMode") == "verified_official_pdf":
             if (not spec["listingUrl"].lower().endswith(".pdf")
                     or not _official_url(spec["listingUrl"], spec, article=True)
@@ -85,7 +90,7 @@ def _validate_sources(sources):
 
 def _links(soup, source):
     """Prefer event-looking links but preserve the listing order within tier."""
-    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_pdf"):
+    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_pdf", "verified_official_event_detail"):
         # The official event schedule IS the article; it need not hyperlink
         # back to itself. The parser must still validate each stated date.
         return {source["listingUrl"]: "公式開催案内"}
@@ -655,6 +660,57 @@ def _dated_station_table_records(spec, soup, today, url):
     return list(seen.values()), "accepted" if seen else "no_official_dated_station_rows"
 
 
+def _verified_official_event_detail_records(spec, soup, today, url):
+    """One named event on its own official organizer programme detail page.
+
+    Reject a calendar-wide period, date-free announcements and incidental
+    station name references: both a dated event period and an explicit
+    venue label must be inside the dedicated article.
+    """
+    if not _official_url(url, spec, article=True):
+        return [], "unofficial_detail"
+    article = _pick_article(soup, spec)
+    if article is None:
+        return [], "no_article"
+    for bad in article.select("nav, footer, aside, script, style"):
+        bad.decompose()
+    heading = clean(spec["requiredEventTitle"])
+    matches = [clean(n.get_text(" ", strip=True)) for n in
+               article.select("h1, h2, h3, h4")]
+    if heading not in matches:
+        return [], "event_title_missing"
+    body = clean(article.get_text(" ", strip=True))
+    # "会場 道の駅 湘南ちがさき" belongs to the named exhibition,
+    # unlike a generic website's contact/address footer.
+    venue_proof = spec.get("venueProofPattern", "")
+    if not venue_proof or not re.search(venue_proof, body):
+        return [], "event_venue_missing"
+    # Event-site programme notation: "2026.10.10 SAT — 11.23 MON"
+    # or "2026 10.10 SAT 11.23 MON". The end month/day must be
+    # adjacent to the explicitly dated start, not a global page date.
+    dated = re.search(r"(?<![0-9])(20[0-9]{2})[.\s/-]+([0-9]{1,2})[./]([0-9]{1,2})(?![0-9])", body)
+    if dated is None:
+        return [], "event_year_missing"
+    nearby = body[dated.end():dated.end()+36]
+    second = re.search(r"([0-9]{1,2})[./]([0-9]{1,2})(?![0-9])", nearby)
+    if second is None:
+        return [], "event_range_missing"
+    try:
+        yr, m, d = [int(x) for x in dated.groups()]
+        start = date(yr, m, d)
+        endm, endd = [int(x) for x in second.groups()]
+        end = date(yr + (1 if endm < m else 0), endm, endd)
+    except ValueError:
+        return [], "event_invalid_date"
+    if end < start or (end-start).days > 90 or end < today:
+        return [], "event_invalid_or_past"
+    record = {"roadName":spec["roadName"],"prefecture":spec["prefecture"],
+              "title":heading,"startDate":start.isoformat(),
+              "endDate":end.isoformat(),"publishedAt":"","url":url,
+              "status":"scheduled"}
+    return [record], "accepted"
+
+
 def _verified_official_pdf_records(spec, pdf_text, today, url):
     """Verify one specifically titled station event in an official PDF.
 
@@ -767,7 +823,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             multi = mode in ("dated_sections", "official_station_program",
                              "monthly_calendar_article", "dated_station_table",
                              "dated_news_listing", "dated_station_calendar",
-                             "verified_official_pdf")
+                             "verified_official_pdf", "verified_official_event_detail")
             if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
@@ -775,7 +831,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                 break
             try:
                 detail = (pdf_fetch(url) if mode == "verified_official_pdf" else
-                          listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar") and
+                          listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_event_detail") and
                                       url == spec["listingUrl"]) else fetch(url))
             except (requests.RequestException, ValueError, AttributeError) as exc:
                 summary["fetchFailed"] += 1
@@ -797,6 +853,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                     found, why = _dated_station_calendar_records(spec, detail, today, url)
                 elif mode == "verified_official_pdf":
                     found, why = _verified_official_pdf_records(spec, detail, today, url)
+                elif mode == "verified_official_event_detail":
+                    found, why = _verified_official_event_detail_records(spec, detail, today, url)
                 elif mode == "monthly_calendar_article":
                     found, why = _monthly_calendar_records(spec, detail, today, url)
                 else:
