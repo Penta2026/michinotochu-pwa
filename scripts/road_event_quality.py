@@ -29,7 +29,7 @@ def hokuriku_article_id(record):
 def normalize_hokuriku_record(record):
     """Pin the official article URL to the event start date, not view date."""
     article = hokuriku_article_id(record)
-    if not article:
+    if not article or not record.get("startDate"):
         return record
     normalized = dict(record)
     from urllib.parse import urlencode
