@@ -27,8 +27,8 @@ EVENT_WORDS = ("イベント", "祭", "まつり", "フェア", "マルシェ", 
 BLOCK = ("イベントカレンダー", "イベントスケジュール", "月間予定", "募集",
          "応募", "中止", "延期", "休館", "休業", "定休日", "締め切り",
          "締切", "開催しました", "終了しました", "レポート", "振り返り")
-DATE_LABEL = re.compile(r"(?:開催日(?:時|程)?|開催期間|イベント日時|日程|日時|開催予定|実施日|日にち)\s*[:：]?\s*")
-VENUE_LABEL = re.compile(r"^(?:開催場所|会場|開催地|会場名|開催会場)\s*[:：]?\s*")
+DATE_LABEL = re.compile(r"(?:[〖【]?(?:開催日(?:時|程)?|開催期間|イベント日時|日程|日時|開催予定|実施日|日にち)[〗】]?)\s*[:：]?\s*")
+VENUE_LABEL = re.compile(r"^[〖【]?(?:場所|開催場所|会場|開催地|会場名|開催会場)[〗】]?\s*[:：]?\s*")
 ERA = re.compile(r"令和\s*(元|[0-9]{1,2})\s*年")
 PUBLICATION_PREFIX = re.compile(r"^(?:20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}日?\s*)+")
 DEFAULT_DATE_SELECTORS = ("p", "li", "h2", "h3", "td", "dd")
@@ -103,16 +103,17 @@ def _pick_article(soup, spec):
 
 def _headline(soup, spec, listing_title):
     container = _pick_article(soup, spec)
+    terms = spec.get("allowedEventWords") or EVENT_WORDS
     if container is None:
         return ""
     for selector in spec["titleSelectors"]:
         node = soup.select_one(selector)
         if node and (node is container or node in container.descendants):
             txt = clean(node.get_text(" ", strip=True))
-            if any(w in txt for w in EVENT_WORDS) and not any(w in txt for w in BLOCK):
+            if any(w in txt for w in terms) and not any(w in txt for w in BLOCK):
                 return txt
     fallback = PUBLICATION_PREFIX.sub("", clean(listing_title))
-    return fallback if any(w in fallback for w in EVENT_WORDS) else ""
+    return fallback if any(w in fallback for w in terms) else ""
 
 def _article_lines(container, spec):
     selectors = spec.get("dateSelectors") or DEFAULT_DATE_SELECTORS
@@ -162,6 +163,20 @@ def _publication(soup, spec, title, today):
     return posted if posted is not None and posted <= today else None
 
 
+def _listing_posted(listing_title, today):
+    """Use only an explicit year/month/day printed beside the official listing."""
+    m = re.search(r"20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}", clean(listing_title))
+    if not m:
+        return None
+    raw = m.group(0)
+    parts = re.split(r"[年./-]|月", raw)
+    try:
+        d = date(*[int(x) for x in parts[:3]])
+    except (ValueError, TypeError):
+        return None
+    return d if d <= today else None
+
+
 def _article_record(source, soup, listing_title, today, url):
     article = _pick_article(soup, source)
     if article is None:
@@ -197,6 +212,8 @@ def _article_record(source, soup, listing_title, today, url):
         if not proof or not re.search(proof, body):
             return None, "venue_missing"
     posted = _publication(soup, source, title, today)
+    if posted is None and source.get("useListingPublicationDate"):
+        posted = _listing_posted(listing_title, today)
     period = _article_period(title, lines, posted)
     if period is None and source.get("allowExplicitDatedParagraph"):
         # An individually titled official event notice may put the date in
@@ -283,6 +300,40 @@ def _section_records(spec, soup, today, url):
     return unique, "accepted" if unique else "no_individually_dated_sections"
 
 
+def _official_program_records(spec, soup, today, url):
+    """One official station's program page with explicitly dated event headings.
+
+    A heading followed by its OWN dated line is accepted. The previous or next
+    year's page heading, other news, or a bare month may not ground a date.
+    """
+    container = _pick_article(soup, spec)
+    if container is None:
+        return [], "no_article"
+    text = clean(container.get_text(" ", strip=True))
+    if not any(v in text for v in spec["requiredVenueTokens"]):
+        return [], "venue_missing"
+    lines = [clean(x) for x in container.get_text("\n", strip=True).splitlines() if clean(x)]
+    results = []
+    for i, line in enumerate(lines):
+        for name in spec.get("sectionEventNames", []):
+            if name not in line or any(w in line for w in BLOCK):
+                continue
+            nearby = [line] + lines[i + 1:i + 3]
+            # Require the same event's line or immediately following line
+            # to carry an EXPLICIT 20xx year. No other publication-year proxy.
+            for snippet in nearby:
+                if not re.search(r"20[0-9]{2}年[0-9]{1,2}月", snippet):
+                    continue
+                days = _period(snippet)
+                if days and days[1] >= today.isoformat():
+                    results.append({"roadName": spec["roadName"], "prefecture": spec["prefecture"],
+                                    "title": name, "startDate": days[0], "endDate": days[1],
+                                    "publishedAt": "", "url": url, "status": "scheduled"})
+                    break
+    unique = {(r["title"], r["startDate"], r["endDate"]): r for r in results}
+    return list(unique.values()), "accepted" if unique else "no_grounded_program_event"
+
+
 def _fetch(url):
     r = requests.get(url, headers=HEADERS, timeout=(4, 9), allow_redirects=False)
     r.raise_for_status()
@@ -327,7 +378,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             continue
         summary["candidates"] = len(links)
         for url, text in links.items():
-            multi = spec.get("articleMode") == "dated_sections"
+            mode = spec.get("articleMode")
+            multi = mode in ("dated_sections", "official_station_program")
             if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
@@ -340,7 +392,10 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                 continue
             summary["checked"] += 1
             if multi:
-                found, why = _section_records(spec, detail, today, url)
+                if mode == "official_station_program":
+                    found, why = _official_program_records(spec, detail, today, url)
+                else:
+                    found, why = _section_records(spec, detail, today, url)
                 # With several events per article, URL-level dedup is unsafe:
                 # skip only the exact event instance already in old/current.
                 known_keys = {(e.get("url"), clean(e.get("title")),
