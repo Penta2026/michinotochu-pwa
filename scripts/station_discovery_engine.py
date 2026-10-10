@@ -77,7 +77,7 @@ def _validate_sources(sources):
             int(spec.get("maxArticles", 6)) not in range(1, 13)):
             raise ValueError(f"Unsafe discovery source: {spec['id']}")
         re.compile(spec["articlePathPattern"])
-        if spec.get("articleMode") in ("verified_official_pdf", "verified_official_event_detail"):
+        if spec.get("articleMode") in ("verified_official_pdf", "verified_official_event_detail", "verified_official_vendor_schedule"):
             if not _official_url(spec["listingUrl"], spec, article=True):
                 raise ValueError(f"Unsafe fixed official event source: {spec['id']}")
             if not spec.get("requiredEventTitle"):
@@ -90,7 +90,7 @@ def _validate_sources(sources):
 
 def _links(soup, source):
     """Prefer event-looking links but preserve the listing order within tier."""
-    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_pdf", "verified_official_event_detail"):
+    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_pdf", "verified_official_event_detail", "verified_official_vendor_schedule"):
         # The official event schedule IS the article; it need not hyperlink
         # back to itself. The parser must still validate each stated date.
         return {source["listingUrl"]: "公式開催案内"}
@@ -668,6 +668,46 @@ def _dated_station_table_records(spec, soup, today, url):
     return list(seen.values()), "accepted" if seen else "no_official_dated_station_rows"
 
 
+def _verified_official_vendor_schedule_records(spec, soup, today, url):
+    """A first-party vendor's dated POP-UP notice at a vetted road station.
+
+    Only the same short schedule section can prove vendor event, station,
+    year-specific date and on-site venue; neighbouring stores are off-limits.
+    """
+    if not _official_url(url, spec, article=True):
+        return [], "unofficial_vendor"
+    article = _pick_article(soup, spec)
+    if article is None:
+        return [], "no_article"
+    for node in article.select("nav, footer, aside, script, style"):
+        node.decompose()
+    body = clean(article.get_text(" ", strip=True))
+    # Circled sequence numbers become normal digits under NFKC.
+    sections = re.split(r"(?=10月の九州の催事[0-9]+)", body)
+    key = clean(spec["requiredEventTitle"])
+    section = next((part for part in sections if part.startswith(key)), "")
+    if not section:
+        return [], "vendor_section_missing"
+    if any(w in section for w in ("中止", "延期", "終了しました")):
+        return [], "vendor_event_cancelled"
+    proof = spec.get("venueProofPattern", "")
+    if not proof or not re.search(proof, section):
+        return [], "vendor_station_missing"
+    if not re.search(r"催事場所\s*施設内(?:\s|$)", section):
+        return [], "vendor_offsite"
+    day = re.search(r"催事日\s*(20[0-9]{2}年[0-9]{1,2}月[0-9]{1,2}日)", section)
+    if not day:
+        return [], "vendor_date_missing"
+    period = _period(day.group(1))
+    if not period or period[1] < today.isoformat():
+        return [], "vendor_invalid_or_past"
+    record = {"roadName":spec["roadName"],"prefecture":spec["prefecture"],
+              "title":spec["requiredEventTitle"],
+              "startDate":period[0],"endDate":period[1],
+              "publishedAt":"","url":url,"status":"scheduled"}
+    return [record], "accepted"
+
+
 def _verified_official_event_detail_records(spec, soup, today, url):
     """One named event on its own official organizer programme detail page.
 
@@ -831,7 +871,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             multi = mode in ("dated_sections", "official_station_program",
                              "monthly_calendar_article", "dated_station_table",
                              "dated_news_listing", "dated_station_calendar",
-                             "verified_official_pdf", "verified_official_event_detail")
+                             "verified_official_pdf", "verified_official_event_detail",
+                             "verified_official_vendor_schedule")
             if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
@@ -839,7 +880,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                 break
             try:
                 detail = (pdf_fetch(url) if mode == "verified_official_pdf" else
-                          listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_event_detail") and
+                          listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_event_detail", "verified_official_vendor_schedule") and
                                       url == spec["listingUrl"]) else fetch(url))
             except (requests.RequestException, ValueError, AttributeError) as exc:
                 summary["fetchFailed"] += 1
@@ -863,6 +904,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                     found, why = _verified_official_pdf_records(spec, detail, today, url)
                 elif mode == "verified_official_event_detail":
                     found, why = _verified_official_event_detail_records(spec, detail, today, url)
+                elif mode == "verified_official_vendor_schedule":
+                    found, why = _verified_official_vendor_schedule_records(spec, detail, today, url)
                 elif mode == "monthly_calendar_article":
                     found, why = _monthly_calendar_records(spec, detail, today, url)
                 else:
