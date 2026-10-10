@@ -1,7 +1,7 @@
 """Offline regression checks for association event date parsing."""
 import unittest
 from datetime import date
-from regional_association_events import _period
+from regional_association_events import _period, _kinki_station_title
 from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period, EVENT_WORDS
@@ -14,6 +14,13 @@ class DateParsingTests(unittest.TestCase):
     def test_explicit_two_day(self):
         self.assertEqual(_period("開催期間 2026年10月17日～10月18日"),
                          ("2026-10-17", "2026-10-18"))
+
+    def test_kinki_quoted_station_title(self):
+        self.assertEqual(_kinki_station_title("「道の駅 奥永源寺渓流の里」開駅１１周年記念祭を開催します。"),
+                         "奥永源寺渓流の里")
+        self.assertEqual(_kinki_station_title("【道の駅クロスウェイなかまち】夜市開催"),
+                         "クロスウェイなかまち")
+        self.assertIsNone(_kinki_station_title("道の駅まつり開催"))
 
     def test_month_boundary(self):
         self.assertEqual(_period("10/30～11月3日 秋の洋らん展", date(2026, 10, 1)),
