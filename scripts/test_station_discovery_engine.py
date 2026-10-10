@@ -1291,5 +1291,55 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
             spec,soup(html),TODAY,"https://example.org/y_hitonari/n/n92ade5cdf7bd")[1],
             "unofficial_detail")
 
+    def test_tokyo_official_heritage_quiz_roadstation_checkpoint(self):
+        import json
+        from station_discovery_engine import RULES
+        spec=next(x for x in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                  if x["id"]=="tokyo_soto_heritage_official_station_checkpoint")
+        html="""<main>
+          <h2>「桑都物語」デジタルクイズスタンプラリーを開催！</h2>
+          <p>各スポットで「桑都物語」に関するクイズに挑戦し、正解するとデジタルスタンプを獲得できます</p>
+          <p>開催期間：令和8年10月3日（土）～11月5日（木）</p>
+          <p>スポット：</p>
+          <p>・桑都の杜（子安町3-26-1）</p>
+          <p>・道の駅八王子滝山（滝山町1-592-2）</p>
+          <p>・絹の道資料館（鑓水989-2）</p>
+          <p>参加費：無料</p>
+          <p>景品引換会場:八王子歴史・郷土ミュージアム</p>
+          </main>"""
+        items,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda _:soup(html),report_path=None)
+        self.assertEqual(audit["newEvents"],1)
+        self.assertEqual(items[0]["roadName"],"八王子滝山")
+        self.assertEqual(items[0]["startDate"],"2026-10-03")
+        self.assertEqual(items[0]["endDate"],"2026-11-05")
+        self.assertEqual(items[0]["prefecture"],"東京都")
+
+    def test_tokyo_checkpoint_never_borrows_venue_from_site_footer(self):
+        from station_discovery_engine import _verified_official_checkpoint_records
+        spec={**TOKYO,"allowedHosts":["japan-heritage-soto.jp"],
+              "articlePathPattern":r"^/quiz/$",
+              "requiredEventTitle":"「桑都物語」デジタルクイズスタンプラリー",
+              "venueProofPattern":r"道の駅\s*八王子滝山\s*[（(]"}
+        url="https://japan-heritage-soto.jp/quiz/"
+        html="""<main>
+          <h2>「桑都物語」デジタルクイズスタンプラリー</h2>
+          <p>各スポットでクイズに挑戦し、スタンプを獲得</p>
+          <p>開催期間：令和8年10月3日（土）～11月5日（木）</p>
+          <p>スポット：・八王子城跡ガイダンス施設（住所）</p>
+          <p>参加費：無料</p>
+          <footer>道の駅八王子滝山（滝山町）</footer>
+        </main>"""
+        self.assertEqual(_verified_official_checkpoint_records(
+            spec,soup(html),TODAY,url)[1],"checkpoint_station_missing")
+        html=html.replace("スポット：・八王子城跡ガイダンス施設（住所）",
+                          "スポット：・道の駅八王子滝山（滝山町）")
+        html=html.replace("令和8年10月3日（土）","10月3日（土）")
+        self.assertEqual(_verified_official_checkpoint_records(
+            spec,soup(html),TODAY,url)[1],"checkpoint_year_or_range_missing")
+        self.assertEqual(_verified_official_checkpoint_records(
+            spec,soup(html),TODAY,"https://malicious.example/quiz/")[1],
+                         "unofficial_checkpoint")
+
 if __name__ == "__main__":
     unittest.main()
