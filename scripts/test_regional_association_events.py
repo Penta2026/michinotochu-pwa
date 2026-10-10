@@ -5,7 +5,7 @@ from regional_association_events import _period, _kinki_station_title
 from region_official_events import _murata_period
 from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period, EVENT_WORDS
-from hokkaido_events import parse_dates
+from hokkaido_events import parse_dates, _station_sentence_period, _posted_year_for_notice
 from kyushu_six_prefectures import explicit_event_period as six_period, event_date_from_official_article as six_article_period, _candidate_links as six_candidate_links, SOURCES as SIX_PREFECTURE_SOURCES
 from kyushu_okinawa_events import event_period as kyushu_event_period, publication_date as kyushu_publication_date, article_event_period as kyushu_article_event_period, _article_candidates as kyushu_article_candidates, SOURCES as KYUSHU_SOURCES, kadena_explicit_venue_period
 from hokuriku_events import extract_hokuriku, extract_hokuriku_cards, decode_official_response, extract_rendered_events
@@ -128,6 +128,39 @@ class DateParsingTests(unittest.TestCase):
             spec, BeautifulSoup(html, "html.parser"), spec["list"])
         self.assertEqual(len(candidates), 1)
         self.assertIn("/class/", candidates[0][0])
+
+    def test_hokkaido_hidaka_official_prose_2026(self):
+        soup = BeautifulSoup("""<article>
+        <h1>日高町道の駅フェスト開催のお知らせ</h1>
+        <div>2026年10月7日</div>
+        <p>10月11日（日）道の駅樹海ロード日高入り口前にて
+        「日高町道の駅フェスト」を開催します。</p>
+        </article>""", "html.parser")
+        title = "日高町道の駅フェスト開催のお知らせ"
+        self.assertEqual(_posted_year_for_notice(soup, title), date(2026, 10, 7))
+        self.assertEqual(_station_sentence_period(
+            soup, title, "樹海ロード日高", date(2026, 10, 10)),
+            ("2026-10-11", "2026-10-11"))
+
+    def test_hokkaido_does_not_reyear_old_event(self):
+        soup = BeautifulSoup("""<article>
+        <h1>日高町道の駅フェスト開催のお知らせ</h1>
+        <div>2025年10月7日</div>
+        <p>10月11日（土）道の駅樹海ロード日高で
+        「日高町道の駅フェスト」を開催します。</p>
+        </article>""", "html.parser")
+        self.assertIsNone(_station_sentence_period(
+            soup, "日高町道の駅フェスト開催のお知らせ",
+            "樹海ロード日高", date(2026, 10, 10)))
+
+    def test_hokkaido_no_standalone_year_rejected(self):
+        soup = BeautifulSoup("""<article>
+        <h1>日高町道の駅フェスト開催のお知らせ</h1>
+        <p>10月11日(日)道の駅樹海ロード日高で祭りを開催</p>
+        </article>""", "html.parser")
+        self.assertIsNone(_station_sentence_period(
+            soup, "日高町道の駅フェスト開催のお知らせ",
+            "樹海ロード日高", date(2026, 10, 10)))
 
     def test_kyushu_kurume_new_rice_fair(self):
         soup = BeautifulSoup('''<html><article><header><time datetime="2026-10-09">2026年10月9日</time></header>
