@@ -60,6 +60,15 @@ def targeted_station_sources():
         for name in names:
             if name not in stations[pref]:
                 stations[pref].append(name)
+    # Explicit station-by-station sources for the five previously empty
+    # Kinki prefectures (six feeds, not complete geographic coverage).
+    from kinki_five_prefectures import SOURCES as kinki_sources
+    for item in kinki_sources:
+        pref, name = item["prefecture"], item["road"]
+        if pref not in PREFECTURES:
+            raise ValueError(f"Unknown Kinki prefecture: {pref}")
+        if name not in stations[pref]:
+            stations[pref].append(name)
     return dict(stations)
 
 def make_report(event_data, source_report, quality_report, direct=None):
