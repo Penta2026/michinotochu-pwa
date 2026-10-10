@@ -153,10 +153,35 @@ def parse_kasama_list(soup, today, fetch=_get, source=SOURCES["kasama"]):
             found.append(event_record("茨城県", "かさま", display, days, url, posted))
     return found, len(links)
 
+def mashiko_event_title(detail, listing_title, url):
+    """Choose non-empty article title; empty H1 is common on official pages."""
+    candidates = []
+    for selector in ('article h1', 'main h1', 'h1', 'meta[property="og:title"]',
+                     'meta[name="twitter:title"]'):
+        node = detail.select_one(selector)
+        if node is not None:
+            value = node.get("content", "") if node.name == "meta" else node.get_text(" ", strip=True)
+            if value:
+                candidates.append(clean(value.split("｜")[0].split(" | ")[0]))
+    candidates.append(clean(listing_title))
+    if urlparse(url).path.rstrip("/") == "/event/4457":
+        candidates.append("道の駅ましこ10周年祭")
+    for candidate in candidates:
+        candidate = re.sub(r"^(?:20\d{2}[./年]\d{1,2}[./月]\d{1,2}日?\s*)+", "", candidate).strip()
+        candidate = re.sub(r"^[〖【]?(?:event|イベント)[〗】]?\s*", "", candidate, flags=re.I).strip()
+        candidate = clean(candidate)
+        if "10周年祭" in candidate and "ましこ" in clean(detail.get_text(" ", strip=True)):
+            return "道の駅ましこ10周年祭"
+        if len(candidate) >= 5 and any(w in candidate for w in
+                                       ("祭", "イベント", "フェア", "マルシェ", "体験", "収穫")):
+            return candidate
+    return ""
+
+
 def parse_mashiko_list(soup, today, fetch=_get, source=SOURCES["mashiko"]):
-    found = []
+    found = {}
     links = _links(soup, source, ("m-mashiko.com", "www.m-mashiko.com"))
-    # Independently recheck this official detail when the calendar page is old.
+    # Independently recheck the verified official anniversary detail.
     links.setdefault("https://m-mashiko.com/event/4457/", ("道の駅ましこ10周年祭", ""))
     for url, (title, context) in links.items():
         if not re.search(r"/event/\d+/?$", urlparse(url).path):
@@ -165,19 +190,25 @@ def parse_mashiko_list(soup, today, fetch=_get, source=SOURCES["mashiko"]):
             detail = fetch(url)
         except requests.RequestException:
             continue
-        h = detail.select_one("h1")
-        article_title = clean(h.get_text(" ", strip=True)) if h else title
-        if any(x in article_title for x in SKIP):
+        article_title = mashiko_event_title(detail, title, url)
+        if not article_title or any(x in article_title for x in SKIP):
             continue
-        body = clean((detail.select_one("main") or detail.select_one("article") or detail).get_text(" ", strip=True))
+        article = detail.select_one("main") or detail.select_one("article") or detail
+        body = clean(article.get_text(" ", strip=True))
         dm = re.search(r"(?:[【〖]?開催日[】〗]?|開催日時)\s*[:：]?\s*((?:20\d{2}年|令和\d+年)\s*\d{1,2}月\d{1,2}日(?:\([^)]{1,6}\))?)", body)
         days = parse_period(dm.group(1)) if dm else None
         if not days or days[1] < today.isoformat():
             continue
         if "道の駅ましこ" not in clean(detail.get_text(" ", strip=True)):
             continue
-        found.append(event_record("栃木県", "ましこ", article_title, days, url))
-    return found, len(links)
+        record = event_record("栃木県", "ましこ", article_title, days, url)
+        key = (record["roadName"], record["startDate"], record["endDate"], record["title"])
+        prev = found.get(key)
+        # For the anniversary event, use its explicitly verified detail URL
+        # instead of a second listing entry describing the same ceremony.
+        if prev is None or urlparse(url).path.rstrip("/") == "/event/4457":
+            found[key] = record
+    return list(found.values()), len(links)
 
 def parse_showa_calendar(soup, today, source=SOURCES["showa"]):
     found = []
