@@ -506,7 +506,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                    "roadName": spec["roadName"], "listingUrl": spec["listingUrl"],
                    "listingError": "", "candidates": 0, "checked": 0,
                    "accepted": 0, "knownSkipped": 0, "fetchFailed": 0,
-                   "reasons": {}, "examples": []}
+                   "reasons": {}, "examples": [], "rejectedExamples": []}
         if not spec.get("enabled", False):
             summary["status"] = "disabled"
             summaries.append(summary)
@@ -566,6 +566,9 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                 newly_seen.add(url)
             else:
                 summary["reasons"][why] = summary["reasons"].get(why, 0) + 1
+                if len(summary["rejectedExamples"]) < 5:
+                    summary["rejectedExamples"].append({
+                        "title": text[:100], "url": url, "reason": why})
         summaries.append(summary)
         print(f"設定型新規収集 {spec['prefecture']} {spec['roadName']}: "
               f"候補={summary['candidates']} 新規採用={summary['accepted']} "
