@@ -479,7 +479,7 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         import json
         from station_discovery_engine import RULES
         sources=json.loads(RULES.read_text(encoding="utf-8"))["sources"]
-        self.assertEqual(len(sources),18)
+        self.assertEqual(len(sources),19)
         expected={"山口県","福井県","大阪府","熊本県","宮崎県"}
         self.assertTrue(expected.issubset({r["prefecture"] for r in sources}))
         self.assertTrue(all(r["enabled"] for r in sources))
@@ -598,6 +598,66 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
           <p>日程詳細は後日ご案内いたします</p></article>"""
         rec,why=_article_record(spec,soup(html),"蕎麦打ち",TODAY,URL)
         self.assertEqual((rec,why),(None,"undated"))
+
+    def test_ehime_city_official_notice_with_station_venue(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"prefecture":"愛媛県","roadName":"八幡浜みなっと",
+              "allowedEventWords":["産業まつり"],"requiredVenueTokens":["八幡浜みなっと"],
+              "requireVenueLabel":True,"articleSelector":"article"}
+        html="""<article>
+           <h1>第１３回やわたはま産業まつりについて</h1>
+           <p>開催日時：令和８年１１月２２日（日）午前１０時～午後４時</p>
+           <p>開催場所：道の駅・みなとオアシス「八幡浜みなっと」</p>
+           </article>"""
+        rec,why=_article_record(spec,soup(html),"産業まつり",TODAY,
+                                "https://www.city.yawatahama.ehime.jp/doc/123456/")
+        self.assertEqual(why,"accepted")
+        self.assertEqual((rec["startDate"],rec["endDate"]),
+                         ("2026-11-22","2026-11-22"))
+
+    def test_ehime_city_festival_at_other_venue_rejected(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"roadName":"八幡浜みなっと",
+              "requiredVenueTokens":["八幡浜みなっと"],
+              "allowedEventWords":["産業まつり"],"requireVenueLabel":True}
+        html="""<article><h1>産業まつり</h1>
+            <p>主催：八幡浜みなっと運営委員会</p>
+            <p>開催日時：2026年11月22日（日）</p>
+            <p>開催場所：八幡浜市役所</p></article>"""
+        rec,why=_article_record(spec,soup(html),"産業まつり",TODAY,URL)
+        self.assertEqual((rec,why),(None,"offsite"))
+
+    def test_wakayama_station_article_without_station_name_but_with_venue(self):
+        from station_discovery_engine import _section_records
+        spec={**TOKYO,"roadName":"海南サクアス",
+              "requiredVenueTokens":["海南サクアス"],
+              "trustArticleSectionsWithStationVenue":True,
+              "approvedVenueTokens":["エントランス広場"]}
+        html="""<main><h1>10月イベント情報</h1>
+           <time datetime="2026-09-28"></time>
+           <p>〖猿まわし〗</p>
+           <p>🗓10月11日(日)～10月12日(月)</p>
+           <p>📍エントランス広場</p></main>"""
+        results,why=_section_records(spec,soup(html),TODAY,
+                                     "https://sakuas.com/event/9999/")
+        self.assertEqual(why,"accepted")
+        self.assertEqual(len(results),1)
+        self.assertEqual(results[0]["startDate"],"2026-10-11")
+
+    def test_wakayama_official_article_requires_each_own_venue(self):
+        from station_discovery_engine import _section_records
+        spec={**TOKYO,"roadName":"海南サクアス",
+              "requiredVenueTokens":["海南サクアス"],
+              "trustArticleSectionsWithStationVenue":True,
+              "approvedVenueTokens":["エントランス広場"]}
+        html="""<main><h1>10月イベント情報</h1>
+           <time datetime="2026-09-28"></time>
+           <p>〖猿まわし〗</p><p>🗓10月11日(日)</p>
+           <p>📍市役所ロビー</p></main>"""
+        result,why=_section_records(spec,soup(html),TODAY,
+                                    "https://sakuas.com/event/9999/")
+        self.assertEqual(result,[])
+        self.assertEqual(why,"no_individually_dated_sections")
 
 if __name__ == "__main__":
     unittest.main()
