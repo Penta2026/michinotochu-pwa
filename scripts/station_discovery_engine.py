@@ -88,6 +88,80 @@ def _validate_sources(sources):
                     or not spec.get("requiredEventTitle")):
                 raise ValueError(f"Unsafe official PDF source: {spec['id']}")
 
+def _listing_date_priority(title, today):
+    """A *ranking hint*, not evidence that an event should be published.
+
+    Only a full year/month/day beside an event-specific "開催" phrase counts;
+    posting dates alone must not qualify as event dates.
+    """
+    text = _date_text(title)
+    for match in re.finditer(
+            r"(?<![0-9])(20[0-9]{2})[年./-]([0-9]{1,2})[月./-]([0-9]{1,2})日?",
+            text):
+        around = text[max(0, match.start()-22):match.end()+22]
+        if not re.search(r"開催|実施|開演|日時|日程", around):
+            continue
+        try:
+            found = date(*map(int, match.groups()))
+        except ValueError:
+            continue
+        return 0 if found >= today else 2
+    return 1
+
+
+def _plan_article_inspection(links, source, today, known_urls=None,
+                             exploration_start=0):
+    """Reserve a couple of slots for rotating beyond recurring top headlines.
+
+    Return candidate URLs as a dict, plus auditable selection metadata.  A
+    fixed number of slots goes to timely headlines; the remaining slots
+    *rotate on successive dates*, so archived pages aren't starved forever.
+    Neither selection tier bypasses the article's date/venue verification.
+    """
+    known_urls = set(known_urls or ())
+    budget = int(source.get("maxArticles", 6))
+    eligible = [(url, title) for url, title in links.items()
+                if url not in known_urls]
+    eligible.sort(key=lambda item: _listing_date_priority(item[1], today))
+    if len(eligible) <= budget:
+        return dict(eligible), {
+            "eligibleCandidates": len(eligible),
+            "uninspectedCandidates": 0,
+            "explorationStart": 0, "explorationNext": 0,
+            "explorationSlots": 0, "explorationPool": 0,
+        }
+    exploration_slots = min(2, max(1, budget // 4))
+    primary_count = budget - exploration_slots
+    preferred = eligible[:primary_count]
+    remainder = eligible[primary_count:]
+    start = max(0, int(exploration_start)) % len(remainder)
+    rotated = [remainder[(start + j) % len(remainder)]
+               for j in range(exploration_slots)]
+    result = dict(preferred + rotated)
+    return result, {
+        "eligibleCandidates": len(eligible),
+        "uninspectedCandidates": len(eligible) - len(result),
+        "explorationStart": start,
+        "explorationNext": (start + exploration_slots) % len(remainder),
+        "explorationSlots": exploration_slots,
+        "explorationPool": len(remainder),
+    }
+
+
+def _previous_source_audits(report_path):
+    """Read persisted cursor only from a previously generated source audit."""
+    if report_path is None or not report_path.exists():
+        return {}
+    try:
+        payload = json.loads(report_path.read_text(encoding="utf-8"))
+        if payload.get("schemaVersion") != 1:
+            return {}
+        return {x["id"]: {**x, "_auditCheckedOn": payload.get("checkedOn")}
+                for x in payload.get("sources", []) if x.get("id")}
+    except (ValueError, OSError, TypeError):
+        return {}
+
+
 def _links(soup, source):
     """Prefer event-looking links but preserve the listing order within tier."""
     if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_pdf", "verified_official_event_detail", "verified_official_vendor_schedule", "verified_official_checkpoint_program"):
@@ -924,6 +998,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                       e.get("startDate"), e.get("endDate"))
                      for e in (prior or ())}
     newly_seen, records, summaries = set(), [], []
+    audit_history = _previous_source_audits(report_path)
     new_count, reconfirmed_count = 0, 0
     reconfirmed_keys = set()
     for spec in sources:
@@ -932,7 +1007,10 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                    "listingError": "", "candidates": 0, "checked": 0,
                    "accepted": 0, "reconfirmed": 0, "knownSkipped": 0,
                    "fetchFailed": 0, "fetchErrors": [],
-                   "reasons": {}, "examples": [], "rejectedExamples": []}
+                   "reasons": {}, "examples": [], "rejectedExamples": [],
+                   "eligibleCandidates": 0, "uninspectedCandidates": 0,
+                   "explorationStart": 0, "explorationNext": 0,
+                   "explorationSlots": 0, "explorationPool": 0}
         if not spec.get("enabled", False):
             summary["status"] = "disabled"
             summaries.append(summary)
@@ -945,17 +1023,27 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             summaries.append(summary)
             continue
         summary["candidates"] = len(links)
+        mode = spec.get("articleMode")
+        multi = mode in ("dated_sections", "official_station_program",
+                         "monthly_calendar_article", "dated_station_table",
+                         "dated_news_listing", "dated_station_calendar",
+                         "verified_official_pdf", "verified_official_event_detail",
+                         "verified_official_vendor_schedule",
+                         "verified_official_checkpoint_program")
+        if not multi:
+            excluded = known_urls | newly_seen
+            history = audit_history.get(spec["id"], {})
+            # Re-running on the same day preserves the same inspected set.
+            cursor = (history.get("explorationStart", 0)
+                      if history.get("_auditCheckedOn") == today.isoformat()
+                      else history.get("explorationNext", 0))
+            summary["knownSkipped"] = len(set(links) & excluded)
+            links, selection = _plan_article_inspection(
+                links, spec, today, excluded, cursor)
+            summary.update(selection)
+        else:
+            summary["eligibleCandidates"] = len(links)
         for url, text in links.items():
-            mode = spec.get("articleMode")
-            multi = mode in ("dated_sections", "official_station_program",
-                             "monthly_calendar_article", "dated_station_table",
-                             "dated_news_listing", "dated_station_calendar",
-                             "verified_official_pdf", "verified_official_event_detail",
-                             "verified_official_vendor_schedule",
-                             "verified_official_checkpoint_program")
-            if not multi and (url in known_urls or url in newly_seen):
-                summary["knownSkipped"] += 1
-                continue
             if summary["checked"] >= int(spec.get("maxArticles", 6)):
                 break
             try:
