@@ -203,6 +203,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "南えちぜん山海里",
+      "prefecture": "福井県",
+      "title": "5周年記念感謝祭",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-12",
+      "publishedAt": "2026-09-28",
+      "url": "https://kineno-nanjo.com/info/news/post-5318/",
+      "status": "scheduled"
+    },
+    {
       "roadName": "古今伝授の里やまと",
       "prefecture": "岐阜県",
       "title": "●10月10日(土)〜12日(月・祝) ラックモリヤマ商店自然食品販売",
@@ -730,6 +740,16 @@
       "endDate": "2026-11-08",
       "publishedAt": "2026-10-07",
       "url": "https://kazenooka.tonofurusato.jp/news/%e7%ac%ac19%e5%9b%9e%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e4%b8%80%e5%8d%87%e9%a4%85%e8%a1%8c%e4%ba%8b%e3%82%92%e8%a1%8c%e3%81%84%e3%81%be%e3%81%99%e3%80%82%e3%80%9011%e6%9c%888%e6%97%a5/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "都城NiQLL",
+      "prefecture": "宮崎県",
+      "title": "【NiQLL`sキッチン】11月 秋の蕎麦打ち体験 午前・午後の部",
+      "startDate": "2026-11-10",
+      "endDate": "2026-11-10",
+      "publishedAt": "2026-10-03",
+      "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%9111%e6%9c%88%e3%80%80%e7%a7%8b%e3%81%ae%e8%95%8e%e9%ba%a6%e6%89%93%e3%81%a1%e4%bd%93%e9%a8%93/",
       "status": "scheduled"
     },
     {
