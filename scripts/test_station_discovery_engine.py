@@ -244,6 +244,26 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(actual[0]["endDate"],"2026-10-18")
         self.assertNotEqual(actual[0]["title"],actual[1]["title"])
 
+    def test_wakayama_article_heading_supplies_publication_year_even_with_narrow_selector(self):
+        from station_discovery_engine import _section_records
+        # Configured "article h1" cannot match <main><h1>, but the parser
+        # should use the actual heading next to the official <time> value.
+        spec={**TOKYO,"id":"sakuas","roadName":"海南サクアス",
+              "requiredVenueTokens":["海南サクアス"],
+              "approvedVenueTokens":["催事スペース"]}
+        html="""<main><h1>10月イベント情報</h1>
+           <time datetime="2026-09-28"></time>
+           <p>道の駅海南サクアスの催し</p>
+           <p>〖秋のマルシェ〗</p>
+           <p>🗓10月24日(土)</p><p>📍催事スペース</p>
+           </main>"""
+        events,why=_section_records(spec,soup(html),TODAY,
+                                    "https://sakuas.com/event/1234/")
+        self.assertEqual(why,"accepted")
+        self.assertEqual(len(events),1)
+        self.assertEqual(events[0]["startDate"],"2026-10-24")
+        self.assertEqual(events[0]["publishedAt"],"2026-09-28")
+
     def test_wakayama_multi_requires_onsite_venue_and_grounded_year(self):
         from station_discovery_engine import _section_records
         spec={**TOKYO,"id":"sakuas","roadName":"海南サクアス",
