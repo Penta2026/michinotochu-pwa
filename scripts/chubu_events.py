@@ -173,13 +173,12 @@ def verified_pdf_events(report, today):
             # Find the preceding station name in the *same* PDF table.
             # Never jump between columns or adopt a nearby-events entry.
             preceding = [(station, road) for station, road in same_side
-                         if 0 <= row["y"] - station["y"] <= 65]
+                         if 0 <= row["y"] - station["y"] <= 90]
             if preceding:
                 closest, road = max(preceding, key=lambda item: item[0]["y"])
-                upcoming = [(station, name) for station, name in same_side
-                            if 0 < station["y"] - row["y"] < row["y"] - closest["y"]]
-                if upcoming and road not in title:
-                    continue
+                # Multi-line events can be closer to the NEXT station label;
+                # proximity alone cannot decide ownership. The next station
+                # only starts at its own printed y coordinate.
             else:
                 # Legacy safe case: station name explicitly repeated in the
                 # event title, with a nearby label that may be printed later.
