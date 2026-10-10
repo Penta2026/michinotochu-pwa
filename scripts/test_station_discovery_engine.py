@@ -1123,5 +1123,41 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(got,[])
         self.assertIn(why,("event_invalid_or_past","event_invalid_date"))
 
+    def test_wakayama_section_labels_keep_event_date_and_venue_local(self):
+        from station_discovery_engine import _section_records
+        spec={**TOKYO,"roadName":"海南サクアス","prefecture":"和歌山県",
+              "articleSelector":"main","approvedVenueTokens":["催事スペース"],
+              "trustArticleSectionsWithStationVenue":True}
+        u="https://sakuas.com/event/99999/"
+        html="""<main><h1>10月イベント情報</h1>
+          <p>〖秋の試食販売〗</p>
+          <p>開催日時：2026年10月18日（日） 10:00～16:00</p>
+          <p>開催場所：催事スペース</p>
+          <p>〖野外マルシェ〗</p>
+          <p>日時：2026年10月24日（土）</p>
+          <p>会場：海南市民ホール</p>
+          <p>〖果物の試食販売〗</p>
+          <p>開催日：2026年10月25日（日）</p>
+          <p>会場：催事スペース</p></main>"""
+        records,reason=_section_records(spec,soup(html),TODAY,u)
+        self.assertEqual(reason,"accepted")
+        self.assertEqual([(e["title"],e["startDate"]) for e in records],[
+            ("秋の試食販売","2026-10-18"),
+            ("果物の試食販売","2026-10-25")])
+
+    def test_wakayama_roundup_without_explicit_venue_keeps_empty(self):
+        from station_discovery_engine import _section_records
+        spec={**TOKYO,"roadName":"海南サクアス","prefecture":"和歌山県",
+              "articleSelector":"main","approvedVenueTokens":["催事スペース"],
+              "trustArticleSectionsWithStationVenue":True}
+        html="""<main><h1>10月イベント情報</h1>
+          <p>〖秋の試食販売〗</p>
+          <p>開催日：2026年10月18日（日）</p>
+          <p>会場：海南市役所ホール</p>
+          <p>〖次のイベント〗</p><p>会場：催事スペース</p></main>"""
+        result,reason=_section_records(spec,soup(html),TODAY,
+                    "https://sakuas.com/event/99999/")
+        self.assertEqual((result,reason),([],"no_individually_dated_sections"))
+
 if __name__ == "__main__":
     unittest.main()
