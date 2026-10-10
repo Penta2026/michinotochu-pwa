@@ -133,6 +133,26 @@
       "status": "scheduled"
     },
     {
+      "roadName": "しょうなん",
+      "prefecture": "千葉県",
+      "title": "10月10日 「鷹匠体験」開催",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "publishedAt": "2026-09-26",
+      "url": "https://www.michinoeki-shonan.jp/news/3174/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "しょうなん",
+      "prefecture": "千葉県",
+      "title": "10月10日 道の駅しょうなん「手賀沼フォトDAY」開催",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "publishedAt": "2026-10-01",
+      "url": "https://www.michinoeki-shonan.jp/news/3181/",
+      "status": "scheduled"
+    },
+    {
       "roadName": "キララ多伎",
       "prefecture": "島根県",
       "title": "【キララ多伎】グリーンライトアップイベントを開催 10月10日（土）17:00〜",
@@ -140,6 +160,26 @@
       "endDate": "2026-10-10",
       "publishedAt": "2026-10-09",
       "url": "https://www.kirara-taki.co.jp/wordpress/news0/topic0/2026/10/01/1457/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "保田小学校",
+      "prefecture": "千葉県",
+      "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-12",
+      "publishedAt": "2026-10-10",
+      "url": "https://hotasho.jp/news/%e4%bf%9d%e7%94%b0%e5%b0%8f%e9%99%84%e5%b1%9e%e3%82%88%e3%81%86%e3%81%a1%e3%81%88%e3%82%933%e5%91%a8%e5%b9%b4%e9%96%8b%e5%9c%92%e7%a5%ad%ef%bc%882026-10-10%ef%bd%9e12%ef%bc%89/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "保田小学校",
+      "prefecture": "千葉県",
+      "title": "鋸山ガイドツアーに参加しませんか",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "publishedAt": "2026-09-16",
+      "url": "https://hotasho.jp/news/%e9%8b%b8%e5%b1%b1%e3%82%ac%e3%82%a4%e3%83%89%e3%83%84%e3%82%a2%e3%83%bc%e3%81%ab%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%be%e3%81%9b%e3%82%93%e3%81%8b/",
       "status": "scheduled"
     },
     {

@@ -9,16 +9,20 @@
   },
   "summary": {
     "prefectureCount": 47,
-    "observedPrefectures": 29,
-    "zeroRegisteredPrefectures": 18,
-    "registeredEvents": 57,
-    "targetedStationFeedPrefectures": 11,
-    "notReconfirmedEvents": 0,
+    "observedPrefectures": 30,
+    "zeroRegisteredPrefectures": 17,
+    "registeredEvents": 61,
+    "targetedStationFeedPrefectures": 14,
+    "notReconfirmedEvents": 1,
     "unknownPrefectures": []
   },
   "priorities": {
-    "reconfirm": [],
+    "reconfirm": [
+      "北海道"
+    ],
     "noEventsButTargetedFeed": [
+      "東京都",
+      "神奈川県",
       "長崎県",
       "熊本県",
       "宮崎県",
@@ -28,9 +32,6 @@
       "岩手県",
       "山形県",
       "福島県",
-      "千葉県",
-      "東京都",
-      "神奈川県",
       "静岡県",
       "福井県",
       "京都府",
@@ -67,15 +68,14 @@
     {
       "region": "関東",
       "prefectureCount": 9,
-      "observedPrefectures": 6,
+      "observedPrefectures": 7,
       "zeroRegisteredPrefectures": [
-        "千葉県",
         "東京都",
         "神奈川県"
       ],
-      "registeredEventCount": 10,
+      "registeredEventCount": 14,
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6
+      "regionalHomepageListingCandidates": 5
     },
     {
       "region": "北陸",
@@ -162,9 +162,9 @@
       ],
       "observedStationCount": 4,
       "targetedStationFeeds": [],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 12,
       "regionalAuditMode": "discovery"
@@ -275,7 +275,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -293,7 +293,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -311,7 +311,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -327,21 +327,27 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
       "prefecture": "千葉県",
       "reportingRegion": "関東",
-      "eventCount": 0,
-      "observedStations": [],
-      "observedStationCount": 0,
-      "targetedStationFeeds": [],
+      "eventCount": 4,
+      "observedStations": [
+        "しょうなん",
+        "保田小学校"
+      ],
+      "observedStationCount": 2,
+      "targetedStationFeeds": [
+        "しょうなん",
+        "保田小学校"
+      ],
       "notReconfirmedCount": 0,
-      "state": "no_registered_events",
-      "nextAction": "discover_prefecture_station_feeds",
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -350,12 +356,14 @@
       "eventCount": 0,
       "observedStations": [],
       "observedStationCount": 0,
-      "targetedStationFeeds": [],
+      "targetedStationFeeds": [
+        "八王子滝山"
+      ],
       "notReconfirmedCount": 0,
-      "state": "no_registered_events",
-      "nextAction": "discover_prefecture_station_feeds",
+      "state": "targeted_feed_no_registered_events",
+      "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -364,12 +372,14 @@
       "eventCount": 0,
       "observedStations": [],
       "observedStationCount": 0,
-      "targetedStationFeeds": [],
+      "targetedStationFeeds": [
+        "湘南ちがさき"
+      ],
       "notReconfirmedCount": 0,
-      "state": "no_registered_events",
-      "nextAction": "discover_prefecture_station_feeds",
+      "state": "targeted_feed_no_registered_events",
+      "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -385,7 +395,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -401,7 +411,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 6,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {

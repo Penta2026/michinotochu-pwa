@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 56,
-  "inputCollected": 57,
+  "inputPrevious": 57,
+  "inputCollected": 60,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -98,10 +98,6 @@
       "title": "泊村×真狩村 観光物産展 開催!! NEW"
     },
     {
-      "roadName": "樹海ロード日高",
-      "title": "日高町道の駅フェスト開催のお知らせ NEW"
-    },
-    {
       "roadName": "たきかわ",
       "title": "10月17日、18日は道の駅たきかわ大収穫祭です!"
     },
@@ -170,6 +166,10 @@
       "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します"
     },
     {
+      "roadName": "ましこ",
+      "title": "道の駅ましこ10周年祭"
+    },
+    {
       "roadName": "あぐりーむ昭和",
       "title": "しょうわむらマルシェ"
     },
@@ -231,8 +231,17 @@
     }
   ],
   "possibleDuplicates": [],
-  "notReconfirmed": [],
-  "finalCount": 57,
+  "notReconfirmed": [
+    {
+      "roadName": "樹海ロード日高",
+      "title": "日高町道の駅フェスト開催のお知らせ NEW",
+      "startDate": "2026-10-11",
+      "endDate": "2026-10-11",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
+      "reason": "not_found_in_current_collection"
+    }
+  ],
+  "finalCount": 61,
   "collapsedHokurikuDuplicates": {
     "previous": 0,
     "collected": 0
