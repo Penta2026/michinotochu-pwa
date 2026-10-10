@@ -110,14 +110,36 @@ def _headline(soup, spec, listing_title):
     terms = spec.get("allowedEventWords") or EVENT_WORDS
     if container is None:
         return ""
-    for selector in spec["titleSelectors"]:
-        node = soup.select_one(selector)
-        if node and (node is container or node in container.descendants):
+    # Website templates sometimes change a post's heading from h1 to h3.
+    # Search the configured selectors first, then local headings within this
+    # very article. Never take unrelated navigation/other article headings.
+    selectors = list(dict.fromkeys([
+        *spec["titleSelectors"], "article h1", "main h1", "h1", "h2", "h3", "h4"
+    ]))
+    for selector in selectors:
+        for node in soup.select(selector):
+            if node is not container and node not in container.descendants:
+                continue
+            if node.find_parent(["nav", "aside", "footer"]):
+                continue
             txt = clean(node.get_text(" ", strip=True))
+            if txt in ("イベント", "イベント情報", "イベント一覧", "お知らせ", "NEWS"):
+                continue
             if any(w in txt for w in terms) and not any(w in txt for w in BLOCK):
                 return txt
-    fallback = PUBLICATION_PREFIX.sub("", clean(listing_title))
-    return fallback if any(w in fallback for w in terms) else ""
+    fallback = clean(listing_title)
+    if spec.get("useListingPublicationDate"):
+        # A listing card often says "EVENT 2026.10.08 <event name>".
+        # This is a *posting* timestamp, never the event date. Keep it
+        # available to _listing_posted(), but remove it from the title.
+        fallback = re.sub(
+            r"^(?:(?:EVENT|NEWS|お知らせ|新着情報)\s+)"
+            r"20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}日?\s*",
+            "", fallback, flags=re.I
+        )
+    fallback = PUBLICATION_PREFIX.sub("", fallback)
+    return fallback if any(w in fallback for w in terms) and not any(
+        w in fallback for w in BLOCK) else ""
 
 def _article_lines(container, spec):
     selectors = spec.get("dateSelectors") or DEFAULT_DATE_SELECTORS
