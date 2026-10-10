@@ -95,7 +95,10 @@ import unicodedata
 
 # These station names and prefectures have been verified from the association
 # bulletin; other stations are deliberately not inferred from nearby columns.
-VERIFIED_STATIONS = {"信州新野千石平": "長野県", "遠山郷": "長野県", "飯高駅": "三重県"}
+VERIFIED_STATIONS = {"信州新野千石平": "長野県", "遠山郷": "長野県", "飯高駅": "三重県",
+                     "古今伝授の里やまと": "岐阜県", "柳津": "岐阜県",
+                     "マチテラス日進": "愛知県", "にしお岡ノ山": "愛知県",
+                     "奥伊勢木つつ木館": "三重県"}
 BULLETIN_DAY = re.compile(r"([0-9]{1,2})月\s*([0-9]{1,2})日")
 BULLETIN_END = re.compile(r"^[\s㈪㈫㈬㈭㈮㈯㈰（）()月火水木金土日祝・]*[～〜~－–・-]\s*(?:([0-9]{1,2})月\s*)?([0-9]{1,2})日")
 STATION_MARKERS = "❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴㉑㉒㉓㉔㉕㊺"
@@ -147,15 +150,24 @@ def verified_pdf_events(report, today):
             title = unicodedata.normalize("NFKC", row["text"]).strip()
             if not title.startswith("●") or any(word in title for word in ("中止", "延期", "未定")):
                 continue
-            # The title itself must repeat the station identity. This
-            # prevents adopting nearby-event text when PDF columns overlap.
-            matching = [(station, road) for station, road in station_rows
-                        if road in title and
-                        (station["section"] == "left_station") == (row["section"] == "left_station_event")]
-            if not matching:
-                continue
-            closest, road = min(matching, key=lambda item: abs(item[0]["y"] - row["y"]))
-            if abs(closest["y"] - row["y"]) > 55:
+            side = "left_station" if row["section"] == "left_station_event" else "right_station"
+            same_side = [(station, road) for station, road in station_rows if station["section"] == side]
+            # Find the preceding station name in the *same* PDF table.
+            # Never jump between columns or adopt a nearby-events entry.
+            preceding = [(station, road) for station, road in same_side
+                         if 0 <= row["y"] - station["y"] <= 65]
+            if preceding:
+                closest, road = max(preceding, key=lambda item: item[0]["y"])
+            else:
+                # Legacy safe case: station name explicitly repeated in the
+                # event title, with a nearby label that may be printed later.
+                repeated = [(station, name) for station, name in same_side
+                            if name in title and abs(station["y"] - row["y"]) <= 55]
+                if not repeated:
+                    continue
+                closest, road = min(repeated, key=lambda item: abs(item[0]["y"] - row["y"]))
+            # A title naming a DIFFERENT known station is not this station's event.
+            if any(name in title and name != road for name in VERIFIED_STATIONS):
                 continue
             period = bulletin_date(title, year)
             if not period or period[1] < today.isoformat():
