@@ -137,7 +137,8 @@
       ],
       "maxArticles": 8,
       "allowExplicitDatedParagraph": true,
-      "requireVenueLabel": true
+      "requireVenueLabel": true,
+      "venueProofPattern": "(?:南部リージョンセンタ[ー－]|道の駅いずみ山愛の里).{0,35}(?:1階|2階|ロビ[ー－]|ホール|広場|催事)"
     },
     {
       "id": "wakayama_sakuas",
