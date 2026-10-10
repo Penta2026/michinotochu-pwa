@@ -93,6 +93,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "あぐりーむ昭和",
+      "prefecture": "群馬県",
+      "title": "りんご足湯",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-12",
+      "publishedAt": "",
+      "url": "https://www.vill.showa.gunma.jp/kurashi/kankou/kankou/event/2018-0718-1005-12.html",
+      "status": "scheduled"
+    },
+    {
       "roadName": "いたの",
       "prefecture": "徳島県",
       "title": "阿波藍ものがたり〜歴史を学び、藍にふれ、未来へつなぐ〜",
@@ -100,6 +110,16 @@
       "endDate": "2026-10-10",
       "publishedAt": "",
       "url": "https://www.sk-michinoeki.jp/events/4210",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "かさま",
+      "prefecture": "茨城県",
+      "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-12",
+      "publishedAt": "2026-09-22",
+      "url": "https://m-kasama.com/topics/p-06497",
       "status": "scheduled"
     },
     {
@@ -243,6 +263,26 @@
       "status": "scheduled"
     },
     {
+      "roadName": "あぐりーむ昭和",
+      "prefecture": "群馬県",
+      "title": "しょうわむらマルシェ",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "publishedAt": "",
+      "url": "https://www.vill.showa.gunma.jp/kurashi/kankou/kankou/event/2018-0718-1005-12.html",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "かさま",
+      "prefecture": "茨城県",
+      "title": "2026.09.23 イベント お知らせ 【イベント】10/17~18『モンブランフェア』を開催します",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "publishedAt": "2026-09-23",
+      "url": "https://m-kasama.com/topics/p-06506",
+      "status": "scheduled"
+    },
+    {
       "roadName": "かでな",
       "prefecture": "沖縄県",
       "title": "月眺みぬ会開催のお知らせ",
@@ -310,6 +350,26 @@
       "endDate": "2026-10-18",
       "publishedAt": "2026-10-09",
       "url": "https://k-bay.jp/events/20261018",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "かさま",
+      "prefecture": "茨城県",
+      "title": "2026.09.23 イベント お知らせ 【イベント】10/24~25『ハロウィンマーケット』を開催します",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "publishedAt": "2026-09-23",
+      "url": "https://m-kasama.com/topics/p-06502",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "かさま",
+      "prefecture": "茨城県",
+      "title": "2026.09.28 イベント お知らせ 10/24・25リフティングパフォーマンス公演",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "publishedAt": "2026-09-28",
+      "url": "https://m-kasama.com/topics/p-06438",
       "status": "scheduled"
     },
     {

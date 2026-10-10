@@ -1,8 +1,19 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 50,
-  "inputCollected": 50,
-  "expiredOrInvalid": [],
+  "inputCollected": 58,
+  "expiredOrInvalid": [
+    {
+      "roadName": "ましこ",
+      "title": "",
+      "reason": "invalid_new"
+    },
+    {
+      "roadName": "ましこ",
+      "title": "",
+      "reason": "invalid_new"
+    }
+  ],
   "corrected": [],
   "exactDuplicates": [
     {
@@ -208,7 +219,7 @@
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [],
-  "finalCount": 50,
+  "finalCount": 56,
   "collapsedHokurikuDuplicates": {
     "previous": 0,
     "collected": 0

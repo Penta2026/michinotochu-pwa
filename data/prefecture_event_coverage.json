@@ -9,16 +9,17 @@
   },
   "summary": {
     "prefectureCount": 47,
-    "observedPrefectures": 26,
-    "zeroRegisteredPrefectures": 21,
-    "registeredEvents": 50,
-    "targetedStationFeedPrefectures": 8,
+    "observedPrefectures": 28,
+    "zeroRegisteredPrefectures": 19,
+    "registeredEvents": 56,
+    "targetedStationFeedPrefectures": 11,
     "notReconfirmedEvents": 0,
     "unknownPrefectures": []
   },
   "priorities": {
     "reconfirm": [],
     "noEventsButTargetedFeed": [
+      "栃木県",
       "長崎県",
       "熊本県",
       "宮崎県",
@@ -28,9 +29,6 @@
       "岩手県",
       "山形県",
       "福島県",
-      "茨城県",
-      "栃木県",
-      "群馬県",
       "千葉県",
       "東京都",
       "神奈川県",
@@ -70,16 +68,14 @@
     {
       "region": "関東",
       "prefectureCount": 9,
-      "observedPrefectures": 3,
+      "observedPrefectures": 5,
       "zeroRegisteredPrefectures": [
-        "茨城県",
         "栃木県",
-        "群馬県",
         "千葉県",
         "東京都",
         "神奈川県"
       ],
-      "registeredEventCount": 3,
+      "registeredEventCount": 9,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5
     },
@@ -268,13 +264,18 @@
     {
       "prefecture": "茨城県",
       "reportingRegion": "関東",
-      "eventCount": 0,
-      "observedStations": [],
-      "observedStationCount": 0,
-      "targetedStationFeeds": [],
+      "eventCount": 4,
+      "observedStations": [
+        "かさま"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [
+        "かさま",
+        "ひたちおおた"
+      ],
       "notReconfirmedCount": 0,
-      "state": "no_registered_events",
-      "nextAction": "discover_prefecture_station_feeds",
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -285,10 +286,12 @@
       "eventCount": 0,
       "observedStations": [],
       "observedStationCount": 0,
-      "targetedStationFeeds": [],
+      "targetedStationFeeds": [
+        "ましこ"
+      ],
       "notReconfirmedCount": 0,
-      "state": "no_registered_events",
-      "nextAction": "discover_prefecture_station_feeds",
+      "state": "targeted_feed_no_registered_events",
+      "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -296,13 +299,17 @@
     {
       "prefecture": "群馬県",
       "reportingRegion": "関東",
-      "eventCount": 0,
-      "observedStations": [],
-      "observedStationCount": 0,
-      "targetedStationFeeds": [],
+      "eventCount": 2,
+      "observedStations": [
+        "あぐりーむ昭和"
+      ],
+      "observedStationCount": 1,
+      "targetedStationFeeds": [
+        "あぐりーむ昭和"
+      ],
       "notReconfirmedCount": 0,
-      "state": "no_registered_events",
-      "nextAction": "discover_prefecture_station_feeds",
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
