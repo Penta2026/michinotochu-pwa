@@ -133,9 +133,9 @@ CHUGOKU_PREFS = {
     "仁保の郷":"山口県","さんわ182ステーション":"広島県",
     "よがんす白竜":"広島県"
 }
-CHUGOKU_DATE_RE = re.compile(r"(\\d{1,2})\\s*月\\s*(\\d{1,2})\\s*日|(?<!\\d)(\\d{1,2})\\s*/\\s*(\\d{1,2})(?!\\d)")
-CHUGOKU_YEAR_RE = re.compile(r"(?<!\\d)(20\\d{2})\\s*年|令和\\s*(\\d{1,2})\\s*年")
-CHUGOKU_SECOND_RE = re.compile(r"^[\\s（(）)月火水木金土日祝・]*[～〜~\\-－–ー]|^[\\s（(）)月火水木金土日祝・]*[・、]")
+CHUGOKU_DATE_RE = re.compile(r"(\d{1,2})\s*月\s*(\d{1,2})\s*日|(?<!\d)(\d{1,2})\s*/\s*(\d{1,2})(?!\d)")
+CHUGOKU_YEAR_RE = re.compile(r"(?<!\d)(20\d{2})\s*年|令和\s*(\d{1,2})\s*年")
+CHUGOKU_SECOND_RE = re.compile(r"^[\s（(）)月火水木金土日祝・]*[～〜~\-－–ー]|^[\s（(）)月火水木金土日祝・]*[・、]")
 BLOCKED_WORDS = ("中止","延期","休館","休業","営業時間","通行規制","臨時駐車場")
 EVENT_WORDS = ("祭","マルシェ","フェア","イベント","抽選","試食","周年","コンサート","公演","販売会")
 def chugoku_period(title, announced):
@@ -171,7 +171,7 @@ def chugoku_period(title, announced):
                 return None
     elif first.end()<len(title):
         tail=title[first.end():first.end()+34]
-        day2=re.search(r"^[\\s（(）)月火水木金土日祝・]*[～〜~\\-－–ー・、]\\s*(\\d{1,2})\\s*日",tail)
+        day2=re.search(r"^[\s（(）)月火水木金土日祝・]*[～〜~\-－–ー・、]\s*(\d{1,2})\s*日",tail)
         if day2:
             try:
                 end=datetime(year,month,int(day2.group(1))).date()
