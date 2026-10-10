@@ -23,6 +23,14 @@ STATIONS = {
     "takikawainfo": "たきかわ",
     "shibetsuinfo": "羊のまち 侍・しべつ",
 }
+# Previously verified official notice URLs. Use these as fallback when homepage
+# pagination or listing order hides otherwise valid future events.
+KNOWN_NOTICES = {
+    "https://hokkaido-michinoeki.jp/michiekiinfo/shibetsuinfo/69720/": "羊のまち 侍・しべつ",
+    "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/": "樹海ロード日高",
+    "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823/": "真狩フラワーセンター",
+    "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/": "たきかわ",
+}
 EVENT_TERMS = ("祭", "まつり", "マルシェ", "フェス", "物産展", "イベント", "収穫", "フェア", "コンサート", "ライブ", "催し")
 BLOCK = ("中止", "延期", "休館", "休業", "営業時間", "募集")
 DATE = re.compile(r"(20[0-9]{2})年\s*([0-9]{1,2})月\s*([0-9]{1,2})日")
@@ -90,6 +98,8 @@ def collect_hokkaido(today):
         candidates.setdefault(url, (title, STATIONS[parts[1]]))
         if len(candidates) >= 35:
             break
+    for url, road in KNOWN_NOTICES.items():
+        candidates.setdefault(url, ("", road))
     stats = {"accepted": 0, "no_date": 0, "past": 0, "failed": 0}
     output = []
     for url, (title, road) in candidates.items():
@@ -101,6 +111,12 @@ def collect_hokkaido(today):
             stats["failed"] += 1
             print(f"北海道詳細取得失敗: {url} {exc}")
             continue
+        # Fallback notices must derive their actual title from the official page.
+        if not title:
+            heading = detail.select_one("article h1") or detail.select_one("h1")
+            title = normalize(heading.get_text(" ", strip=True)) if heading else ""
+            if not title or not any(w in title for w in EVENT_TERMS) or any(w in title for w in BLOCK):
+                continue
         # Prefer date in event title, then *labelled* date inside article.
         dates = parse_dates(title, today, allow_short=False)
         if dates is None:
