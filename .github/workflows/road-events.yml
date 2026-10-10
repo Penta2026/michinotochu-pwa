@@ -31,16 +31,18 @@ jobs:
         run: python -m compileall -q scripts
       - name: Test event date extraction
         run: PYTHONPATH=scripts python -m unittest scripts/test_regional_association_events.py
+      - name: Audit nine official regional sources
+        run: python scripts/nationwide_source_audit.py
       - name: Retrieve official event listings
         run: python scripts/collect_road_events.py
       - name: Commit only if event data changed
         run: |
-          if git diff --quiet -- data/road_events.json; then
+          if git diff --quiet -- data/road_events.json data/road_event_sources_report.json; then
             echo "イベントデータに変更なし"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/road_events.json
+          git add data/road_events.json data/road_event_sources_report.json
           git commit -m "data: refresh official roadside station events"
           git push
