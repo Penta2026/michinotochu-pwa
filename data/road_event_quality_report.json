@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 40,
+  "inputPrevious": 41,
   "inputCollected": 41,
   "expiredOrInvalid": [],
   "corrected": [],
@@ -60,6 +60,10 @@
     {
       "roadName": "神鍋高原",
       "title": "第35回マロニエまつり／JAたじま日高ふれあいまつり｜2026年10月25日（日）10:00〜14:00"
+    },
+    {
+      "roadName": "奥永源寺渓流の里",
+      "title": "「道の駅 奥永源寺渓流の里」開駅１１周年記念祭を開催します。"
     },
     {
       "roadName": "なみおか",
