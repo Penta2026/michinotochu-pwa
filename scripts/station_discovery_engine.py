@@ -77,7 +77,7 @@ def _validate_sources(sources):
             int(spec.get("maxArticles", 6)) not in range(1, 13)):
             raise ValueError(f"Unsafe discovery source: {spec['id']}")
         re.compile(spec["articlePathPattern"])
-        if spec.get("articleMode") in ("verified_official_pdf", "verified_official_event_detail", "verified_official_vendor_schedule"):
+        if spec.get("articleMode") in ("verified_official_pdf", "verified_official_event_detail", "verified_official_vendor_schedule", "verified_official_checkpoint_program"):
             if not _official_url(spec["listingUrl"], spec, article=True):
                 raise ValueError(f"Unsafe fixed official event source: {spec['id']}")
             if not spec.get("requiredEventTitle"):
@@ -90,7 +90,7 @@ def _validate_sources(sources):
 
 def _links(soup, source):
     """Prefer event-looking links but preserve the listing order within tier."""
-    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_pdf", "verified_official_event_detail", "verified_official_vendor_schedule"):
+    if source.get("articleMode") in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_pdf", "verified_official_event_detail", "verified_official_vendor_schedule", "verified_official_checkpoint_program"):
         # The official event schedule IS the article; it need not hyperlink
         # back to itself. The parser must still validate each stated date.
         return {source["listingUrl"]: "公式開催案内"}
@@ -668,6 +668,52 @@ def _dated_station_table_records(spec, soup, today, url):
     return list(seen.values()), "accepted" if seen else "no_official_dated_station_rows"
 
 
+def _verified_official_checkpoint_records(spec, soup, today, url):
+    """On-premises activity at a vetted station within an official stamp rally.
+
+    The station is a checkpoint, not the event organizer or award venue.
+    Reject incidental place mentions unconnected to the required activity.
+    """
+    if not _official_url(url, spec, article=True):
+        return [], "unofficial_checkpoint"
+    article = _pick_article(soup, spec)
+    if article is None:
+        return [], "no_article"
+    for bad in article.select("nav, footer, aside, script, style"):
+        bad.decompose()
+    title = clean(spec["requiredEventTitle"])
+    headings = [clean(n.get_text(" ", strip=True))
+                for n in article.select("h1, h2, h3, h4")]
+    if not any(title in h for h in headings):
+        return [], "checkpoint_event_title_missing"
+    body = clean(article.get_text(" ", strip=True))
+    if not all(w in body for w in ("各スポットで", "クイズ", "スタンプ")):
+        return [], "checkpoint_activity_missing"
+    spot_section = re.search(
+        r"スポット\s*[:：](.{0,1200}?)(?=参加費\s*[:：]|参加方法\s*[:：]|$)", body)
+    if (spot_section is None or not
+            re.search(spec["venueProofPattern"], spot_section.group(1))):
+        return [], "checkpoint_station_missing"
+    period = re.search(
+        r"開催期間\s*[:：]\s*令和\s*([0-9]{1,2})年\s*([0-9]{1,2})月\s*([0-9]{1,2})日"
+        r".{0,20}?[～〜~－-]\s*([0-9]{1,2})月\s*([0-9]{1,2})日", body)
+    if period is None:
+        return [], "checkpoint_year_or_range_missing"
+    try:
+        y, sm, sd, em, ed = map(int, period.groups())
+        start = date(2018+y, sm, sd)
+        end = date(2018+y+(1 if em < sm else 0), em, ed)
+    except ValueError:
+        return [], "checkpoint_invalid_dates"
+    if end < start or (end-start).days > 120 or end < today:
+        return [], "checkpoint_invalid_or_past"
+    event = {"roadName":spec["roadName"],"prefecture":spec["prefecture"],
+             "title":title,"startDate":start.isoformat(),
+             "endDate":end.isoformat(),"publishedAt":"","url":url,
+             "status":"scheduled"}
+    return [event], "accepted"
+
+
 def _verified_official_vendor_schedule_records(spec, soup, today, url):
     """A first-party vendor's dated POP-UP notice at a vetted road station.
 
@@ -905,7 +951,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                              "monthly_calendar_article", "dated_station_table",
                              "dated_news_listing", "dated_station_calendar",
                              "verified_official_pdf", "verified_official_event_detail",
-                             "verified_official_vendor_schedule")
+                             "verified_official_vendor_schedule",
+                             "verified_official_checkpoint_program")
             if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
@@ -913,7 +960,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                 break
             try:
                 detail = (pdf_fetch(url) if mode == "verified_official_pdf" else
-                          listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_event_detail", "verified_official_vendor_schedule") and
+                          listing if (mode in ("official_station_program", "dated_station_table", "dated_news_listing", "dated_station_calendar", "verified_official_event_detail", "verified_official_vendor_schedule", "verified_official_checkpoint_program") and
                                       url == spec["listingUrl"]) else fetch(url))
             except (requests.RequestException, ValueError, AttributeError) as exc:
                 summary["fetchFailed"] += 1
@@ -939,6 +986,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                     found, why = _verified_official_event_detail_records(spec, detail, today, url)
                 elif mode == "verified_official_vendor_schedule":
                     found, why = _verified_official_vendor_schedule_records(spec, detail, today, url)
+                elif mode == "verified_official_checkpoint_program":
+                    found, why = _verified_official_checkpoint_records(spec, detail, today, url)
                 elif mode == "monthly_calendar_article":
                     found, why = _monthly_calendar_records(spec, detail, today, url)
                 else:
