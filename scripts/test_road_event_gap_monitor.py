@@ -1,7 +1,7 @@
 """Offline regression tests for conservative collection-gap monitoring."""
 import unittest
 
-from road_event_gap_monitor import make_report
+from road_event_gap_monitor import make_report, render_dashboard
 
 TODAY = "2026-10-11"
 
@@ -154,6 +154,22 @@ class GapMonitorTests(unittest.TestCase):
                             for w in report["warnings"]))
         self.assertEqual(report["regionalHomepages"][0]["homepageReachable"], False)
         self.assertIn("does NOT prove", report["regionalHomepages"][0]["note"])
+
+    def test_markdown_dashboard_is_readable_and_does_not_overstate_coverage(self):
+        report = self.report(source(
+            candidates=1, checked=0, fetchFailed=1,
+            fetchErrors=[{"type": "HTTPError", "detail": "404"}],
+            reasons={"undated": 1},
+            rejectedExamples=[{"title": "開催日不明のマルシェ",
+                               "url": "https://official.example/a",
+                               "reason": "undated"}]))
+        text = render_dashboard(report)
+        self.assertIn("取りこぼし監視ダッシュボード", text)
+        self.assertIn("source_fetch_error", text)
+        self.assertIn("イベントかどうかは未確認", text)
+        self.assertIn("開催日不明のマルシェ", text)
+        self.assertIn("駅マスタ未接続", text)
+        self.assertIn("47", text)
 
     def test_unconfirmed_items_are_retained_as_review_only(self):
         record = {"roadName": "阿武町", "title": "森里海の市",
