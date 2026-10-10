@@ -193,16 +193,6 @@
       "status": "scheduled"
     },
     {
-      "roadName": "飯高駅",
-      "prefecture": "三重県",
-      "title": "●10月24日(土)・25日(日)※ガラガラ抽選券配布期間:10月10日(土)~25日(日)14:00まで 飯高駅 感謝祭",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "publishedAt": "",
-      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
-      "status": "scheduled"
-    },
-    {
       "roadName": "シルクウェイにちはら",
       "prefecture": "島根県",
       "title": "【シルクウェイにちはら】JAまつり収穫祭 10月25日（日）9：30～",
@@ -210,6 +200,16 @@
       "endDate": "2026-10-25",
       "publishedAt": "2026-10-09",
       "url": "https://www.silkway.jp/Ivent",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "柳津",
+      "prefecture": "岐阜県",
+      "title": "●10月25日(日) Yanaizuマルシェ",
+      "startDate": "2026-10-25",
+      "endDate": "2026-10-25",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
       "status": "scheduled"
     },
     {
@@ -233,6 +233,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "飯高駅",
+      "prefecture": "三重県",
+      "title": "●10月29日(木)~11月24日(火) 【展示】田中三津子 人形展",
+      "startDate": "2026-10-29",
+      "endDate": "2026-11-24",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
       "roadName": "村田",
       "prefecture": "宮城県",
       "title": "秋の洋らん展 ｉｎ村田",
@@ -240,6 +250,26 @@
       "endDate": "2026-11-03",
       "publishedAt": "",
       "url": "https://muratamachi.info/%e7%a7%8b%e3%81%ae%e6%b4%8b%e3%82%89%e3%82%93%e5%b1%95-%ef%bd%89%ef%bd%8e%e6%9d%91%e7%94%b0.htm",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "マチテラス日進",
+      "prefecture": "愛知県",
+      "title": "●10月31日(土) 【ミュージックテラスvol.2】マルシェあり、ライブありの文化祭をたのしもう!",
+      "startDate": "2026-10-31",
+      "endDate": "2026-10-31",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "古今伝授の里やまと",
+      "prefecture": "岐阜県",
+      "title": "●10月31日(土)〜11月3日(火・祝) 感謝祭",
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-03",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
       "status": "scheduled"
     },
     {
