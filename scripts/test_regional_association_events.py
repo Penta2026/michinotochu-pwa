@@ -96,7 +96,22 @@ class DateParsingTests(unittest.TestCase):
                     {"x":162,"y":342,"text":"●10月24日(土) 催し","section":"left_station_event"},
                     {"x":41,"y":350,"text":"㊺柳津","section":"left_station"}
                 ]}]}
-        self.assertEqual(verified_pdf_events(report,date(2026,10,10)),[])
+        self.assertEqual([e["roadName"] for e in verified_pdf_events(report,date(2026,10,10))],
+                         ["古今伝授の里やまと"])
+
+    def test_chubu_long_station_event_sections(self):
+        report={"source":"https://www.chubu-michinoeki.org/pdf/test.pdf",
+                "pages":[{"rows":[
+                    {"x":44,"y":10,"text":"〈2 0 26 年〉10月","section":"left_station"},
+                    {"x":41,"y":425,"text":"⤪古今伝授の里やまと","section":"left_station"},
+                    {"x":162,"y":463.2,"text":"●10月31日㈯〜11月3日（火・祝） 感謝祭","section":"left_station_event"},
+                    {"x":41,"y":485.5,"text":"㊺柳津","section":"left_station"},
+                    {"x":636,"y":516.8,"text":"❶飯高駅","section":"right_station"},
+                    {"x":757,"y":580.4,"text":"●10月29日㈭～11月24日㈫ 【展示】田中三津子 人形展","section":"right_station_event"},
+                    {"x":636,"y":618,"text":"❻奥伊勢木つつ木館","section":"right_station"}
+                ]}]}
+        got=verified_pdf_events(report,date(2026,10,10))
+        self.assertEqual({e["roadName"] for e in got},{"古今伝授の里やまと","飯高駅"})
 
     def test_chubu_verified_station(self):
         report={"source":"https://www.chubu-michinoeki.org/pdf/test.pdf",
