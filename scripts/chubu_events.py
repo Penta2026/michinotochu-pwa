@@ -107,7 +107,7 @@ def bulletin_date(text, year):
     value = unicodedata.normalize("NFKC", text)
     # A leading range marker means the start date is unknown. Its end date
     # must never be published as a one-day event.
-    if re.match(r"^\\s*●\\s*[～〜~]", value):
+    if re.match(r"^\s*●\s*[～〜~]", value):
         return None
     start_match = BULLETIN_DAY.search(value)
     if not start_match:
