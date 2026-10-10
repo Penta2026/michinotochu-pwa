@@ -84,7 +84,7 @@ class PrefectureCoverageTests(unittest.TestCase):
         self.assertEqual(sources["京都府"], ["和", "京丹波 味夢の里"])
         self.assertEqual(sources["大阪府"], ["いずみ山愛の里"])
         self.assertEqual(sources["奈良県"], ["クロスウェイなかまち"])
-        self.assertEqual(sources["和歌山県"], ["ねごろ歴史の丘"])
+        self.assertEqual(sources["和歌山県"], ["ねごろ歴史の丘", "海南サクアス", "四季の郷公園"])
 
     def test_unknown_prefecture_is_detected(self):
         report = make_report(
