@@ -207,7 +207,12 @@ def collect_chugoku():
         surrounding=clean(container.get_text(" ",strip=True))
         published=re.search(r"(20\d{2})[-/.](\d{1,2})[-/.](\d{1,2})",surrounding)
         if not published:
+            time_tag=container.find("time",datetime=True) or container.find("time")
+            stamp=(time_tag.get("datetime") or time_tag.get_text(" ",strip=True)) if time_tag else ""
+            published=re.search(r"(20\d{2})[-/.年](\d{1,2})[-/.月](\d{1,2})",stamp)
+        if not published:
             diag["missing_publication"]+=1
+            print(f"中国地方・告知日不明: {road} / {title[:70]} / {urljoin(CHUGOKU_SOURCE,anchor['href'])}")
             continue
         try:
             announced=datetime(int(published.group(1)),int(published.group(2)),int(published.group(3))).date()
@@ -216,6 +221,7 @@ def collect_chugoku():
         period=chugoku_period(match.group(2),announced)
         if not period:
             diag["invalid_date"]+=1
+            print(f"中国地方・日付不適合: {road} / 掲載={announced} / {title[:70]} / {urljoin(CHUGOKU_SOURCE,anchor['href'])}")
             continue
         href=urljoin(CHUGOKU_SOURCE,anchor["href"])
         if not href.startswith("https://"):
