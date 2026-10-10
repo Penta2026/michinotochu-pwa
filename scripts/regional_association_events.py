@@ -150,6 +150,17 @@ def _publication_date(soup):
     return None
 
 
+def _kinki_station_title(title):
+    """Recognize bracketed and quoted station names without guessing venue."""
+    bracket = re.search(r"[【〖]\s*道の駅\s*[「『]?\s*([^】〗」』]{2,45})[」』]?\s*[】〗]", title)
+    if bracket:
+        return _clean(bracket.group(1)).strip("」』 \u3000")
+    quoted = re.search(r"[「『]\s*道の駅\s+([^」』]{2,45})[」』]", title)
+    if quoted:
+        return _clean(quoted.group(1))
+    return None
+
+
 def collect_kinki_association(today):
     """Read linked articles and their event date fields, with page-local prefectures."""
     results, seen, checked = [], set(), 0
@@ -167,8 +178,8 @@ def collect_kinki_association(today):
         page_candidates = 0
         for anchor in listing.select("a[href]"):
             title = _clean(anchor.get_text(" ", strip=True))
-            match = re.search(r"[【〖][「\s]*道の駅\s*([^】〗」]+)[」]?([】〗])", title)
-            if not match or any(w in title for w in SKIP):
+            road = _kinki_station_title(title)
+            if not road or any(w in title for w in SKIP):
                 continue
             href = urljoin(url, anchor["href"])
             if urlparse(href).hostname not in ("www.kinki-michinoeki.com", "kinki-michinoeki.com"):
@@ -194,7 +205,6 @@ def collect_kinki_association(today):
             period = _kinki_article_period(title, detail, published)
             if not pref or not period or period[1] < today.isoformat():
                 continue
-            road = _clean(match.group(1))
             if road and any(w in title + " " + _clean(detail.title.get_text(" ", strip=True) if detail.title else "") for w in EVENT_WORDS):
                 results.append(_record(road, pref, title, period, href))
         next_link = listing.select_one('a[rel="next"], .next.page-numbers, a.next')
