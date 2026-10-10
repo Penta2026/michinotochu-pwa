@@ -829,6 +829,31 @@
       "venueProofPattern": "場所\\s*八幡浜みなっと\\s*みなと交流館",
       "articleMode": "verified_official_event_detail",
       "maxArticles": 1
+    },
+    {
+      "id": "tokyo_soto_heritage_official_station_checkpoint",
+      "enabled": true,
+      "prefecture": "東京都",
+      "roadName": "八王子滝山",
+      "listingUrl": "https://japan-heritage-soto.jp/%E3%80%8C%E6%A1%91%E9%83%BD%E7%89%A9%E8%AA%9E%E3%80%8D%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%AF%E3%82%A4%E3%82%BA%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%97%E3%83%A9%E3%83%AA%E3%83%BC/",
+      "allowedHosts": [
+        "japan-heritage-soto.jp",
+        "www.japan-heritage-soto.jp"
+      ],
+      "articlePathPattern": "^/%E3%80%8C%E6%A1%91%E9%83%BD%E7%89%A9%E8%AA%9E%E3%80%8D%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%AF%E3%82%A4%E3%82%BA%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%97%E3%83%A9%E3%83%AA%E3%83%BC/$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main,article,body",
+      "titleSelectors": [
+        "h1",
+        "h2"
+      ],
+      "requiredVenueTokens": [
+        "道の駅八王子滝山"
+      ],
+      "requiredEventTitle": "「桑都物語」デジタルクイズスタンプラリー",
+      "venueProofPattern": "道の駅\\s*八王子滝山\\s*[（(]",
+      "articleMode": "verified_official_checkpoint_program",
+      "maxArticles": 1
     }
   ]
 }
