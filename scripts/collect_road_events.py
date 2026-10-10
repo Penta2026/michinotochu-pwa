@@ -22,6 +22,7 @@ from kyushu_six_prefectures import collect_six_kyushu_prefectures
 from kanto_events import collect_kanto
 from kanto_three_prefectures import collect_three_kanto_prefectures
 from kanto_remaining_prefectures import collect_kanto_remaining
+from kinki_five_prefectures import collect_kinki_five
 from chubu_events import audit_chubu_bulletin
 from road_event_quality import reconcile, write_report
 from bs4 import BeautifulSoup
@@ -406,9 +407,14 @@ def main():
     except Exception as exc:
         print(f"九州6県の収集失敗。既存データを維持: {type(exc).__name__}: {exc}", file=sys.stderr)
         kyushu_six=[]
+    try:
+        kinki_five=collect_kinki_five(NOW)
+    except Exception as exc:
+        print(f"近畿5府県の収集失敗、既存イベント維持: {type(exc).__name__}: {exc}", file=sys.stderr)
+        kinki_five=[]
     chubu=audit_chubu_bulletin(NOW)
     generic=collect_generic_regions(NOW)
-    collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido+hokuriku+kyushu_okinawa+kyushu_six+kanto+kanto_three+kanto_remaining+chubu
+    collected=shikoku+chugoku+nationwide+regional+tohoku+generic+hokkaido+hokuriku+kyushu_okinawa+kyushu_six+kanto+kanto_three+kanto_remaining+kinki_five+chubu
     if not collected:
         print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
         return 0
