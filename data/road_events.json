@@ -163,6 +163,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "こすげ",
+      "prefecture": "山梨県",
+      "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-24",
+      "publishedAt": "2026-10-01",
+      "url": "https://www.kanto-michinoeki.jp/archives/18244.html",
+      "status": "scheduled"
+    },
+    {
       "roadName": "びんご府中",
       "prefecture": "広島県",
       "title": "【びんご府中】道の駅びんご府中開業10周年記念イベント開催！ 10月24日（土）",
@@ -210,6 +220,16 @@
       "endDate": "2026-11-03",
       "publishedAt": "",
       "url": "https://muratamachi.info/%e7%a7%8b%e3%81%ae%e6%b4%8b%e3%82%89%e3%82%93%e5%b1%95-%ef%bd%89%ef%bd%8e%e6%9d%91%e7%94%b0.htm",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "庄和",
+      "prefecture": "埼玉県",
+      "title": "【道の駅庄和】わくわく体験イベント",
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "publishedAt": "2026-09-30",
+      "url": "https://www.kanto-michinoeki.jp/archives/18237.html",
       "status": "scheduled"
     },
     {
