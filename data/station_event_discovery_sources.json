@@ -752,6 +752,31 @@
       "venueProofPattern": "会場\\s*道の駅\\s*湘南ちがさき",
       "articleMode": "verified_official_event_detail",
       "maxArticles": 1
+    },
+    {
+      "id": "kagoshima_sakimoto_official_station_popup_oct",
+      "enabled": true,
+      "prefecture": "鹿児島県",
+      "roadName": "たるみずはまびら",
+      "listingUrl": "https://shokupan-sakimoto.com/news/kyusyusaiji_oct/",
+      "allowedHosts": [
+        "shokupan-sakimoto.com",
+        "www.shokupan-sakimoto.com"
+      ],
+      "articlePathPattern": "^/news/kyusyusaiji_oct/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main,article,body",
+      "titleSelectors": [
+        "h1",
+        "h2"
+      ],
+      "requiredVenueTokens": [
+        "たるみずはまびら"
+      ],
+      "requiredEventTitle": "10月の九州の催事⑪",
+      "venueProofPattern": "催事先\\s*道の駅\\s*たるみず\\s*はまびら",
+      "articleMode": "verified_official_vendor_schedule",
+      "maxArticles": 1
     }
   ]
 }
