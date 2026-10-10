@@ -91,6 +91,26 @@
         "izugateway.com"
       ],
       "pathPattern": "^/event/[0-9]+/?$"
+    },
+    {
+      "id": "fukui_sankairi",
+      "prefecture": "福井県",
+      "roadName": "南えちぜん山海里",
+      "allowedHosts": [
+        "kineno-nanjo.com",
+        "www.kineno-nanjo.com"
+      ],
+      "pathPattern": "^/info/news/post-[0-9]+/?$"
+    },
+    {
+      "id": "miyazaki_niqll",
+      "prefecture": "宮崎県",
+      "roadName": "都城NiQLL",
+      "allowedHosts": [
+        "coconiqll.co.jp",
+        "www.coconiqll.co.jp"
+      ],
+      "pathPattern": "^/[^/]+/?$"
     }
   ]
 }
