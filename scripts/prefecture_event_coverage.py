@@ -34,7 +34,7 @@ PREFECTURES = tuple(p for names in BLOCKS.values() for p in names)
 assert len(PREFECTURES) == 47 and len(set(PREFECTURES)) == 47, "Prefecture mapping must cover all 47"
 
 def targeted_station_sources():
-    """Read only the explicitly configured eight Kyushu/Okinawa station feeds."""
+    """Explicitly configured station feeds; never infer coverage from a region homepage."""
     from kyushu_okinawa_events import SOURCES as southern_sources
     from kyushu_six_prefectures import SOURCES as six_sources
     stations = defaultdict(list)
@@ -45,6 +45,18 @@ def targeted_station_sources():
             raise ValueError(f"Unknown configured prefecture: {pref}")
         if name and name not in stations[pref]:
             stations[pref].append(name)
+    # Verified official station/municipal feeds for the initial three Kanto
+    # prefectures. Their presence does not imply that every station in each
+    # prefecture is covered or that a current event has been extracted.
+    kanto_targets = {
+        "茨城県": ("かさま", "ひたちおおた"),
+        "栃木県": ("ましこ",),
+        "群馬県": ("あぐりーむ昭和",),
+    }
+    for pref, names in kanto_targets.items():
+        for name in names:
+            if name not in stations[pref]:
+                stations[pref].append(name)
     return dict(stations)
 
 def make_report(event_data, source_report, quality_report, direct=None):
