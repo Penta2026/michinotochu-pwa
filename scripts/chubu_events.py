@@ -112,6 +112,8 @@ def bulletin_date(text, year):
         return None
     last = first
     tail = value[start_match.end():start_match.end()+25]
+    # PDF uses both range marks and the Japanese middle dot for paired days.
+    tail = tail.replace("・", "～", 1) if tail.startswith("・") else tail
     end_match = BULLETIN_END.match(tail)
     if end_match:
         em = int(end_match.group(1) or month)
