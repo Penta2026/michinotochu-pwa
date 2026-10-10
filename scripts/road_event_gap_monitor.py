@@ -369,15 +369,18 @@ def render_dashboard(report):
         "",
         "以下は**不採用記事のサンプル**です。実際にイベントかどうかは未確認。",
         "",
-        "| 県 | 駅 | 見出し | 保留理由 |",
-        "|---|---|---|---|",
+        "| 県 | 駅 | 見出し | 保留理由 | 公式記事 |",
+        "|---|---|---|---|---|",
     ]
     for entry in report["reviewCandidates"][:25]:
-        lines.append("| {} | {} | {} | {} |".format(
+        # Quote parentheses so a source URL cannot break Markdown links.
+        url = entry["url"].replace("(", "%28").replace(")", "%29").replace(" ", "%20")
+        link = "[記事を確認]({})".format(url)
+        lines.append("| {} | {} | {} | {} | {} |".format(
             _md(entry["prefecture"]), _md(entry["roadName"]),
-            _md(entry["title"]), _md(entry["reviewReason"])))
+            _md(entry["title"]), _md(entry["reviewReason"]), link))
     if not report["reviewCandidates"]:
-        lines.append("| ― | ― | 現在のサンプルなし | ― |")
+        lines.append("| ― | ― | 現在のサンプルなし | ― | ― |")
     lines += [
         "",
         "## 収集先について",
