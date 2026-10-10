@@ -806,8 +806,128 @@
       "reasons": {},
       "examples": [],
       "rejectedExamples": []
+    },
+    {
+      "id": "kanagawa_creativeweek_official_roadstation_art",
+      "prefecture": "神奈川県",
+      "roadName": "湘南ちがさき",
+      "listingUrl": "https://creativeweek.net/event-detail.php?no=37",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 1,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {},
+      "examples": [
+        {
+          "title": "かとうくみプレンティーズ原画展",
+          "start": "2026-10-10",
+          "end": "2026-11-23",
+          "url": "https://creativeweek.net/event-detail.php?no=37"
+        }
+      ],
+      "rejectedExamples": []
+    },
+    {
+      "id": "kagoshima_sakimoto_official_station_popup_oct",
+      "prefecture": "鹿児島県",
+      "roadName": "たるみずはまびら",
+      "listingUrl": "https://shokupan-sakimoto.com/news/kyusyusaiji_oct/",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 1,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {},
+      "examples": [
+        {
+          "title": "10月の九州の催事⑪",
+          "start": "2026-10-25",
+          "end": "2026-10-25",
+          "url": "https://shokupan-sakimoto.com/news/kyusyusaiji_oct/"
+        }
+      ],
+      "rejectedExamples": []
+    },
+    {
+      "id": "wakayama_prefecture_seishumatsuri_official",
+      "prefecture": "和歌山県",
+      "roadName": "青洲の里",
+      "listingUrl": "https://www.wakayama-kanko.or.jp/events/detail_3879.html",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 1,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {},
+      "examples": [
+        {
+          "title": "青洲まつり2026",
+          "start": "2026-10-25",
+          "end": "2026-10-25",
+          "url": "https://www.wakayama-kanko.or.jp/events/detail_3879.html"
+        }
+      ],
+      "rejectedExamples": []
+    },
+    {
+      "id": "ehime_minatto_official_hall_npo_seminar",
+      "prefecture": "愛媛県",
+      "roadName": "八幡浜みなっと",
+      "listingUrl": "https://note.com/y_hitonari/n/n92ade5cdf7bd",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 1,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {},
+      "examples": [
+        {
+          "title": "NPOのための広報セミナー",
+          "start": "2026-11-11",
+          "end": "2026-11-11",
+          "url": "https://note.com/y_hitonari/n/n92ade5cdf7bd"
+        }
+      ],
+      "rejectedExamples": []
+    },
+    {
+      "id": "tokyo_soto_heritage_official_station_checkpoint",
+      "prefecture": "東京都",
+      "roadName": "八王子滝山",
+      "listingUrl": "https://japan-heritage-soto.jp/%E3%80%8C%E6%A1%91%E9%83%BD%E7%89%A9%E8%AA%9E%E3%80%8D%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%AF%E3%82%A4%E3%82%BA%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%97%E3%83%A9%E3%83%AA%E3%83%BC/",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 1,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {},
+      "examples": [
+        {
+          "title": "「桑都物語」デジタルクイズスタンプラリー",
+          "start": "2026-10-03",
+          "end": "2026-11-05",
+          "url": "https://japan-heritage-soto.jp/%E3%80%8C%E6%A1%91%E9%83%BD%E7%89%A9%E8%AA%9E%E3%80%8D%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%AF%E3%82%A4%E3%82%BA%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%97%E3%83%A9%E3%83%AA%E3%83%BC/"
+        }
+      ],
+      "rejectedExamples": []
     }
   ],
-  "newEvents": 0,
+  "newEvents": 5,
   "reconfirmedEvents": 7
 }
