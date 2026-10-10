@@ -24,6 +24,21 @@
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/"
       ],
+      "scriptSources": [
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/loadGoogleAnalytics.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/webAppBase.2.0.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/app.init.min.js",
+        "https://code.jquery.com/jquery-1.11.3.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/moment.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/wAB.plugin.minimalCalendar.min.js",
+        "https://www.hokuriku-michinoeki.jp/cms/js/jbCMS.get.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/common.min.js",
+        "https://www.hokuriku-michinoeki.jp/contents/event/js/script.min.js"
+      ],
+      "inlineScriptCount": 4,
+      "relevantInlineScripts": [],
+      "formTargets": [],
+      "emptyEventMarkup": true,
       "sampleEventLinks": [
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/",
@@ -60,6 +75,21 @@
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/"
       ],
+      "scriptSources": [
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/loadGoogleAnalytics.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/webAppBase.2.0.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/app.init.min.js",
+        "https://code.jquery.com/jquery-1.11.3.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/moment.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/wAB.plugin.minimalCalendar.min.js",
+        "https://www.hokuriku-michinoeki.jp/cms/js/jbCMS.get.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/common.min.js",
+        "https://www.hokuriku-michinoeki.jp/contents/event/js/script.min.js"
+      ],
+      "inlineScriptCount": 4,
+      "relevantInlineScripts": [],
+      "formTargets": [],
+      "emptyEventMarkup": true,
       "sampleEventLinks": [
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/",
@@ -96,6 +126,21 @@
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/"
       ],
+      "scriptSources": [
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/loadGoogleAnalytics.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/webAppBase.2.0.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/app.init.min.js",
+        "https://code.jquery.com/jquery-1.11.3.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/moment.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/wAB.plugin.minimalCalendar.min.js",
+        "https://www.hokuriku-michinoeki.jp/cms/js/jbCMS.get.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/common.min.js",
+        "https://www.hokuriku-michinoeki.jp/contents/event/js/script.min.js"
+      ],
+      "inlineScriptCount": 4,
+      "relevantInlineScripts": [],
+      "formTargets": [],
+      "emptyEventMarkup": true,
       "sampleEventLinks": [
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/",
@@ -132,6 +177,21 @@
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/"
       ],
+      "scriptSources": [
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/loadGoogleAnalytics.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/webAppBase.2.0.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/app.init.min.js",
+        "https://code.jquery.com/jquery-1.11.3.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/moment.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/wAB.plugin.minimalCalendar.min.js",
+        "https://www.hokuriku-michinoeki.jp/cms/js/jbCMS.get.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/common.min.js",
+        "https://www.hokuriku-michinoeki.jp/contents/event/js/script.min.js"
+      ],
+      "inlineScriptCount": 4,
+      "relevantInlineScripts": [],
+      "formTargets": [],
+      "emptyEventMarkup": true,
       "sampleEventLinks": [
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/",
@@ -168,6 +228,21 @@
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/"
       ],
+      "scriptSources": [
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/loadGoogleAnalytics.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/webAppBase.2.0.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/app.init.min.js",
+        "https://code.jquery.com/jquery-1.11.3.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/moment.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/wAB.plugin.minimalCalendar.min.js",
+        "https://www.hokuriku-michinoeki.jp/cms/js/jbCMS.get.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/common.min.js",
+        "https://www.hokuriku-michinoeki.jp/contents/event/js/script.min.js"
+      ],
+      "inlineScriptCount": 4,
+      "relevantInlineScripts": [],
+      "formTargets": [],
+      "emptyEventMarkup": true,
       "sampleEventLinks": [
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/",
@@ -204,6 +279,21 @@
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/"
       ],
+      "scriptSources": [
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/loadGoogleAnalytics.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/webAppBase.2.0.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/app.init.min.js",
+        "https://code.jquery.com/jquery-1.11.3.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/moment.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/wAB.plugin.minimalCalendar.min.js",
+        "https://www.hokuriku-michinoeki.jp/cms/js/jbCMS.get.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/common.min.js",
+        "https://www.hokuriku-michinoeki.jp/contents/event/js/script.min.js"
+      ],
+      "inlineScriptCount": 4,
+      "relevantInlineScripts": [],
+      "formTargets": [],
+      "emptyEventMarkup": true,
       "sampleEventLinks": [
         "https://www.hokuriku-michinoeki.jp/contents/event/",
         "https://www.hokuriku-michinoeki.jp/contents/event/",
@@ -241,6 +331,30 @@
         "https://www.hokuriku-michinoeki.jp/contents/info/",
         "https://www.hokuriku-michinoeki.jp/contents/instagram/"
       ],
+      "scriptSources": [
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/loadGoogleAnalytics.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/webAppBase.2.0.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/app.init.min.js",
+        "https://code.jquery.com/jquery-1.11.3.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/moment.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/wAB.plugin.geo.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/wAB.plugin.minimalCalendar.min.js",
+        "https://www.hokuriku-michinoeki.jp/cms/js/jbCMS.get.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/common.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/lib/slick.min.js",
+        "https://www.hokuriku-michinoeki.jp/contents/station/js/app.initSearchStaForm.min.js",
+        "https://www.hokuriku-michinoeki.jp/contents/home/js/script.min.js",
+        "https://www.hokuriku-michinoeki.jp/common/js/instagram_top.js"
+      ],
+      "inlineScriptCount": 5,
+      "relevantInlineScripts": [],
+      "formTargets": [
+        {
+          "action": "https://www.hokuriku-michinoeki.jp/contents/station/",
+          "method": "get"
+        }
+      ],
+      "emptyEventMarkup": true,
       "sampleEventLinks": [
         "https://www.hokuriku-michinoeki.jp/contents/event/index.html",
         "https://www.hokuriku-michinoeki.jp/contents/event/"
