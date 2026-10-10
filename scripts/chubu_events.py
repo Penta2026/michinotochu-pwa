@@ -89,7 +89,83 @@ def layout_report(content, url):
                           "total_rows": len(rows)})
     return {"schemaVersion": 1, "source": url, "pages": pages}
 
-def audit_chubu_bulletin():
+
+from datetime import date
+import unicodedata
+
+# These station names and prefectures have been verified from the association
+# bulletin; other stations are deliberately not inferred from nearby columns.
+VERIFIED_STATIONS = {"信州新野千石平": "長野県", "遠山郷": "長野県", "飯高駅": "三重県"}
+BULLETIN_DAY = re.compile(r"([0-9]{1,2})月\s*([0-9]{1,2})日")
+BULLETIN_END = re.compile(r"^[\s㈪㈫㈬㈭㈮㈯㈰（）()月火水木金土日祝・]*[～〜~－–-]\s*(?:([0-9]{1,2})月\s*)?([0-9]{1,2})日")
+STATION_MARKERS = "❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴㉑㉒㉓㉔㉕㊺"
+
+def bulletin_date(text, year):
+    value = unicodedata.normalize("NFKC", text)
+    start_match = BULLETIN_DAY.search(value)
+    if not start_match:
+        return None
+    month, day = map(int, start_match.groups())
+    try:
+        first = date(year, month, day)
+    except ValueError:
+        return None
+    last = first
+    tail = value[start_match.end():start_match.end()+25]
+    end_match = BULLETIN_END.match(tail)
+    if end_match:
+        em = int(end_match.group(1) or month)
+        try:
+            last = date(year + (1 if em < month else 0), em, int(end_match.group(2)))
+        except ValueError:
+            return None
+    if not 0 <= (last - first).days <= 31:
+        return None
+    return first.isoformat(), last.isoformat()
+
+def verified_pdf_events(report, today):
+    records = []
+    for page in report.get("pages", []):
+        # Year must be printed in the same bulletin page, never inferred
+        # from the execution date or from an event URL.
+        header = " ".join(row["text"] for row in page.get("rows", []) if row["y"] < 40)
+        year_match = re.search(r"2\s*0\s*(2\s*[0-9])\s*年", header)
+        if not year_match:
+            continue
+        year = int("20" + re.sub(r"\s", "", year_match.group(1)))
+        rows = page["rows"]
+        station_rows = []
+        for row in rows:
+            if row.get("section") not in ("left_station", "right_station"):
+                continue
+            road = next((name for name in VERIFIED_STATIONS if name in row["text"]), None)
+            if road and row["text"][0] in STATION_MARKERS:
+                station_rows.append((row, road))
+        for row in rows:
+            if row.get("section") not in ("left_station_event", "right_station_event"):
+                continue
+            title = unicodedata.normalize("NFKC", row["text"]).strip()
+            if not title.startswith("●") or any(word in title for word in ("中止", "延期", "未定")):
+                continue
+            # The title itself must repeat the station identity. This
+            # prevents adopting nearby-event text when PDF columns overlap.
+            matching = [(station, road) for station, road in station_rows
+                        if road in title and
+                        (station["section"] == "left_station") == (row["section"] == "left_station_event")]
+            if not matching:
+                continue
+            closest, road = min(matching, key=lambda item: abs(item[0]["y"] - row["y"]))
+            if abs(closest["y"] - row["y"]) > 55:
+                continue
+            period = bulletin_date(title, year)
+            if not period or period[1] < today.isoformat():
+                continue
+            records.append({"roadName": road, "prefecture": VERIFIED_STATIONS[road],
+                            "title": title, "startDate": period[0], "endDate": period[1],
+                            "publishedAt": "", "url": report["source"], "status": "scheduled"})
+    return records
+
+def audit_chubu_bulletin(today=None):
     try:
         homepage = requests.get(SOURCE, headers=HEADERS, timeout=15)
         homepage.raise_for_status()
@@ -108,12 +184,15 @@ def audit_chubu_bulletin():
         previous = json.loads(REPORT.read_text(encoding="utf-8")) if REPORT.exists() else None
         if previous != report:
             REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        events = verified_pdf_events(report, today or date.today())
+        print(f"中部PDF: 駅名・開催期間の二重確認済み {len(events)} 件")
         print(f"中部PDF列診断: ページ {len(report['pages'])} / 見出し {sum(len(p['headings']) for p in report['pages'])} / 日付行 {sum(len(p['dated_rows']) for p in report['pages'])}")
         print(f"中部PDF: 発見 {len(links)} / 最新 {url} / "
               f"ページ {metrics['pages']} / 日付入り行 {metrics['dated_lines']} / "
               f"駅内見出し {metrics['contains_station_events_heading']} / "
               f"周辺イベント見出し {metrics['contains_nearby_events_heading']} / "
-              "自動登録は会場の列判定ができるまで保留")
+              "駅名を本文で確認できる催しのみ登録")
+        return events
     except (requests.RequestException, ValueError, RuntimeError) as exc:
         print(f"中部PDF: 調査失敗（既存データ維持）: {type(exc).__name__}: {exc}")
     return []
