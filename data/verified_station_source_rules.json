@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "mode": "previously_verified_article_reconfirmation",
+  "notes": "Only reconfirm events already published in road_events.json; source rule presence never authorizes creating a new event.",
+  "sources": [
+    {
+      "id": "kasama",
+      "prefecture": "茨城県",
+      "roadName": "かさま",
+      "allowedHosts": [
+        "m-kasama.com",
+        "www.m-kasama.com"
+      ],
+      "pathPattern": "^/topics/p-\\d+/?$"
+    },
+    {
+      "id": "mashiko",
+      "prefecture": "栃木県",
+      "roadName": "ましこ",
+      "allowedHosts": [
+        "m-mashiko.com",
+        "www.m-mashiko.com"
+      ],
+      "pathPattern": "^/event/\\d+/?$"
+    },
+    {
+      "id": "hotasho",
+      "prefecture": "千葉県",
+      "roadName": "保田小学校",
+      "allowedHosts": [
+        "hotasho.jp",
+        "www.hotasho.jp"
+      ],
+      "pathPattern": "^/news/.+"
+    },
+    {
+      "id": "okueigenji",
+      "prefecture": "滋賀県",
+      "roadName": "奥永源寺渓流の里",
+      "allowedHosts": [
+        "www.kinki-michinoeki.com",
+        "kinki-michinoeki.com"
+      ],
+      "pathPattern": "^/news/.+"
+    },
+    {
+      "id": "shiroishi",
+      "prefecture": "佐賀県",
+      "roadName": "しろいし",
+      "allowedHosts": [
+        "www.michinoeki-shiroishi.jp",
+        "michinoeki-shiroishi.jp"
+      ],
+      "pathPattern": "^/news/.+"
+    }
+  ]
+}
