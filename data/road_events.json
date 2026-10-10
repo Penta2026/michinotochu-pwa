@@ -33,6 +33,26 @@
       "status": "scheduled"
     },
     {
+      "roadName": "村田",
+      "prefecture": "宮城県",
+      "title": "仙南ものづくり展",
+      "startDate": "2026-10-09",
+      "endDate": "2026-10-11",
+      "publishedAt": "",
+      "url": "https://muratamachi.info/%e4%bb%99%e5%8d%97%e3%82%82%e3%81%ae%e3%81%a5%e3%81%8f%e3%82%8a%e5%b1%95-5.htm",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "村田",
+      "prefecture": "宮城県",
+      "title": "古民具・アート（工房四季庵）展",
+      "startDate": "2026-10-09",
+      "endDate": "2026-10-18",
+      "publishedAt": "",
+      "url": "https://muratamachi.info/%e5%8f%a4%e6%b0%91%e5%85%b7%e3%83%bb%e3%82%a2%e3%83%bc%e3%83%88%ef%bc%88%e5%b7%a5%e6%88%bf%e5%9b%9b%e5%ad%a3%e5%ba%b5%ef%bc%89%e5%b1%95-2.htm",
+      "status": "scheduled"
+    },
+    {
       "roadName": "いたの",
       "prefecture": "徳島県",
       "title": "阿波藍ものがたり〜歴史を学び、藍にふれ、未来へつなぐ〜",
@@ -80,6 +100,26 @@
       "endDate": "2026-10-10",
       "publishedAt": "2026-09-10",
       "url": "https://nishiinaba.jp/pages/47/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "村田",
+      "prefecture": "宮城県",
+      "title": "おもと美術品評大会",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-12",
+      "publishedAt": "",
+      "url": "https://muratamachi.info/%e3%81%8a%e3%82%82%e3%81%a8%e7%be%8e%e8%a1%93%e5%93%81%e8%a9%95%e5%a4%a7%e4%bc%9a-3.htm",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "村田",
+      "prefecture": "宮城県",
+      "title": "牛肉まつり",
+      "startDate": "2026-10-16",
+      "endDate": "2026-10-18",
+      "publishedAt": "",
+      "url": "https://muratamachi.info/%e7%89%9b%e8%82%89%e3%81%be%e3%81%a4%e3%82%8a-2.htm",
       "status": "scheduled"
     },
     {
@@ -140,6 +180,16 @@
       "endDate": "2026-11-29",
       "publishedAt": "2026-09-28",
       "url": "https://www.michi-no-eki.jp/notices/views/23234",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "村田",
+      "prefecture": "宮城県",
+      "title": "秋の洋らん展 ｉｎ村田",
+      "startDate": "2026-10-30",
+      "endDate": "2026-11-03",
+      "publishedAt": "",
+      "url": "https://muratamachi.info/%e7%a7%8b%e3%81%ae%e6%b4%8b%e3%82%89%e3%82%93%e5%b1%95-%ef%bd%89%ef%bd%8e%e6%9d%91%e7%94%b0.htm",
       "status": "scheduled"
     },
     {
