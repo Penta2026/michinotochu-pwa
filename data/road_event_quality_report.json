@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 77,
-  "inputCollected": 78,
+  "inputPrevious": 81,
+  "inputCollected": 76,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -282,6 +282,10 @@
       "title": "【10/10(土)・11日(日)ガーデンプレイスフェスタ】"
     },
     {
+      "roadName": "南えちぜん山海里",
+      "title": "5周年記念感謝祭"
+    },
+    {
       "roadName": "伊豆ゲートウェイ函南",
       "title": "ゲートウェイ食市 新米すくい"
     },
@@ -298,20 +302,16 @@
       "title": "第19回遠野風の丘一升餅行事を行います。【11月8日(日)・予約制】"
     },
     {
+      "roadName": "都城NiQLL",
+      "title": "【NiQLL`sキッチン】11月 秋の蕎麦打ち体験 午前・午後の部"
+    },
+    {
       "roadName": "伊豆ゲートウェイ函南",
       "title": "ゲートウェイ食市 干し柿づくり"
     }
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [
-    {
-      "roadName": "南えちぜん山海里",
-      "title": "5周年記念感謝祭",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "url": "https://kineno-nanjo.com/info/news/post-5318/",
-      "reason": "not_found_in_current_collection"
-    },
     {
       "roadName": "たかはた",
       "title": "秋の収穫祭",
@@ -321,11 +321,35 @@
       "reason": "not_found_in_current_collection"
     },
     {
-      "roadName": "都城NiQLL",
-      "title": "【NiQLL`sキッチン】11月 秋の蕎麦打ち体験 午前・午後の部",
-      "startDate": "2026-11-10",
-      "endDate": "2026-11-10",
-      "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%9111%e6%9c%88%e3%80%80%e7%a7%8b%e3%81%ae%e8%95%8e%e9%ba%a6%e6%89%93%e3%81%a1%e4%bd%93%e9%a8%93/",
+      "roadName": "あそ望の郷くぎの",
+      "title": "第11回 南阿蘇の青空レストラン",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-12",
+      "url": "https://minamiaso.info/event/?cm=10&cy=2026",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "ひまわり",
+      "title": "バイクイベント開催 10月18日(日)",
+      "startDate": "2026-10-18",
+      "endDate": "2026-10-18",
+      "url": "https://michinoeki-himawari.com/news/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "奥河内くろまろの郷",
+      "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "url": "https://kuromaro.com/event/list/page/4/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "阿武町",
+      "title": "令和8年11月29日(日)第49回森里海の市を開催します。",
+      "startDate": "2026-11-29",
+      "endDate": "2026-11-29",
+      "url": "https://www.abucreation.com/topics/%e4%bb%a4%e5%92%8c6%e5%b9%b410%e6%9c%8813%e6%97%a5%ef%bc%88%e6%97%a5%ef%bc%89%e7%ac%ac30%e5%9b%9e%e6%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99/",
       "reason": "not_found_in_current_collection"
     }
   ],

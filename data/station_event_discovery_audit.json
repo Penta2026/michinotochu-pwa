@@ -491,21 +491,14 @@
       "listingError": "",
       "candidates": 10,
       "checked": 8,
-      "accepted": 1,
-      "knownSkipped": 0,
+      "accepted": 0,
+      "knownSkipped": 1,
       "fetchFailed": 0,
       "reasons": {
         "venue_missing": 3,
-        "not_event": 4
+        "not_event": 5
       },
-      "examples": [
-        {
-          "title": "令和8年11月29日(日)第49回森里海の市を開催します。",
-          "start": "2026-11-29",
-          "end": "2026-11-29",
-          "url": "https://www.abucreation.com/topics/%e4%bb%a4%e5%92%8c6%e5%b9%b410%e6%9c%8813%e6%97%a5%ef%bc%88%e6%97%a5%ef%bc%89%e7%ac%ac30%e5%9b%9e%e6%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99/"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": [
         {
           "title": "2026/10/01 令和8年10月11日(日)第48回森里海の市を開催します!! 令和8年10月11日(日)第48回森里海の市を開催します。 当日は道の駅阿武町大創業祭も開催されます。 先着300名",
@@ -588,19 +581,20 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 1,
+      "accepted": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {},
-      "examples": [
+      "reasons": {
+        "accepted": 1
+      },
+      "examples": [],
+      "rejectedExamples": [
         {
-          "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025",
-          "start": "2026-10-24",
-          "end": "2026-10-25",
-          "url": "https://kuromaro.com/event/list/page/4/"
+          "title": "公式開催案内",
+          "url": "https://kuromaro.com/event/list/page/4/",
+          "reason": "accepted"
         }
-      ],
-      "rejectedExamples": []
+      ]
     },
     {
       "id": "kumamoto_minamiaso_official_tourism",
@@ -610,19 +604,20 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 1,
+      "accepted": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {},
-      "examples": [
+      "reasons": {
+        "accepted": 1
+      },
+      "examples": [],
+      "rejectedExamples": [
         {
-          "title": "第11回 南阿蘇の青空レストラン",
-          "start": "2026-10-12",
-          "end": "2026-10-12",
-          "url": "https://minamiaso.info/event/?cm=10&cy=2026"
+          "title": "公式開催案内",
+          "url": "https://minamiaso.info/event/?cm=10&cy=2026",
+          "reason": "accepted"
         }
-      ],
-      "rejectedExamples": []
+      ]
     },
     {
       "id": "miyazaki_niqll",
@@ -721,19 +716,20 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 1,
+      "accepted": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {},
-      "examples": [
+      "reasons": {
+        "accepted": 1
+      },
+      "examples": [],
+      "rejectedExamples": [
         {
-          "title": "バイクイベント開催 10月18日(日)",
-          "start": "2026-10-18",
-          "end": "2026-10-18",
-          "url": "https://michinoeki-himawari.com/news/"
+          "title": "公式開催案内",
+          "url": "https://michinoeki-himawari.com/news/",
+          "reason": "accepted"
         }
-      ],
-      "rejectedExamples": []
+      ]
     },
     {
       "id": "kagoshima_tarumizu_official",
@@ -778,7 +774,22 @@
           "reason": "undated"
         }
       ]
+    },
+    {
+      "id": "ehime_city_official_festival_pdf",
+      "prefecture": "愛媛県",
+      "roadName": "八幡浜みなっと",
+      "listingUrl": "https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 0,
+      "accepted": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 1,
+      "reasons": {},
+      "examples": [],
+      "rejectedExamples": []
     }
   ],
-  "newEvents": 4
+  "newEvents": 0
 }
