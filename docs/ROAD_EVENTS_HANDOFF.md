@@ -6,6 +6,15 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-10 Actions #56 テスト失敗・長崎重複防止修正（次回検証待ち）
+
+- [Actions #56](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38035354999) の `Test event date extraction` が **191テスト中1失敗・0エラー**で停止。その後の本番イベント収集と47県監査は**未実行**。確定実績は前回の77件・38県・未登録9都府県・未再確認7件のまま。
+- 原因：`test_nagasaki_news_listing_requires_local_year_venue_and_future_date` の期待新規1件に対して実測2件。ニュース記事の `h2` イベント見出しに加え、`p` 本文内で繰り返された同一イベント名を**もう1件の見出し**として扱い、別記事の投稿日を誤って借りてしまっていた。
+- 修正：`scripts/station_discovery_engine.py` の `_dated_news_listing_records` は**見出し要素（h1〜h4）と一致する位置だけ**からイベントを開始し、次の見出しより前にある記事固有の投稿日・明示会場だけを見る。隣のお知らせの投稿日・会場を流用しない。既存の年月日・曜日・開催日・公式会場の安全条件を維持する。
+- `scripts/test_station_discovery_engine.py` に「本文で同じ見出しを反復しても1件」「次のお知らせの会場を借りてはならない」の2件を追加。予定テスト総数 **193件**（旧191件+2）。**新規Actionsで合格するまでは未検証**。
+- 修正コミット：`c6154092` エンジン、`0504265c` テスト。古い#56の Re-run では修正コードを使わないため、最新版 main の新規 Run workflow を実行する。
+- 今回修正によっても9都府県が全て登録される保証はない。次回、県別・新着・再確認の監査JSONを実測して差分を確定する。
+
 ## 2026-10-10 残り9都府県の取りこぼし対策（コード反映済み・次回Actions未実行）
 
 **現在の確定実績はActions #55の全国77件・38/47県・未登録9都府県・未再確認7件のまま。以下は次回本番で検証が必要な変更。**
