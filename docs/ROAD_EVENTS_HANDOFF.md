@@ -1,10 +1,26 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-10 Actions #60 実測**（全国81件・登録実績42県・未登録5都県・未再確認1件。山口再確認ルールは次回検証待ち）  
+更新基準: **2026-10-11 Actions #63 実測**（現在73件・現在39県・累計42県・累計未達5都県・未再確認3件。累計実績の表示機能は次回Actions検証待ち）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-11 04:04〜04:12 JST Actions #63 成功・経過日付による集計変動と累計実績維持
+
+- [Actions #63](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38078334003) **全ステップ成功・202テスト全件OK**。#61・#62も成功（各202件全件OK）。最新#63ではイベント変更なし。
+- **最新の現在開催・予定登録**：**73件・39/47都道府県・現在0件8都県**。前々回#61は**82件・42/47県**、#62で**終了済み9件を正常に除外**したため73件・39県へ移行。#63も73件・39県を維持した。終了イベントはアプリの現行フィードから消えてよいが、**過去の収集実績から消えたわけではない**。
+- 従来から**一度でも公式イベントを登録できた累計の都道府県は42/47**。#61実測の`data/prefecture_event_coverage.json`（コミット`2d9b57ee`）を根拠に確認。**累計未達5都県：東京都・神奈川県・和歌山県・愛媛県・鹿児島県**。現在は0件だが過去登録済みの3県は**滋賀・鳥取・徳島**。この3県を「未攻略」に戻してしまう集計は誤解を招く。
+- 最新#63の品質監査：未再確認**3件**（島根「ごいせ仁摩」10/10-11、北海道「樹海ロード日高」10/11、山口「阿武町」11/29）。重複候補0、無効0。再確認できない≠中止/削除であり、現行73件に保持している。
+- 山口「阿武町」再確認ルールは#61以降実行されているが、`no_article_content`で保留。イベントの開催場所/日時/見出しと既存URLの結び付きが確認できるまでは「再確認済み」扱いにしない。
+- 愛媛 `ehime_city_official_festival_pdf` の404は#63でも継続。公式PDF URLが404のため`fetchFailed=1`、日付・会場を本番で照合できず採用0。市公式HTML等の別の根拠を要する。
+
+### #63後にGitHubへ追加した累計管理（**次回Actions未検証**）
+
+- `scripts/prefecture_event_coverage.py`を拡張。従来の`summary.observedPrefectures`（**現在のイベント登録のある県**）は意味を変えず維持し、`historical.observedPrefectures`（累計県名）、`summary.historicalObservedPrefectures`（累計件数）、`historical.neverObservedPrefectures`（未達5都県）、`historical.previouslyObservedWithoutCurrentEvents`（現在0件となった過去登録県）を新設。県ごとに`historicallyObserved`を追加する。
+- 毎回、同じ`data/prefecture_event_coverage.json`から以前の`historical.observedPrefectures`を読み、今回実際に公開されるイベントの県名との和集合を保存。**累計履歴はイベントの日付経過では減らない**。曖昧な地域公式ホームページの到達だけでは累計に追加しない。
+- `data/prefecture_event_coverage.json`の最初の累計集合は、**#61の公開済み実測レポートでイベント1件以上だった42県**でシード済み。現在39県＋過去に達成した滋賀・鳥取・徳島3県が累計42県。
+- `scripts/test_prefecture_event_coverage.py`に「過去イベントが消えても累計保持」「架空県の累計記録拒否」の2件を追加。次回期待テストは**204件**。新規Run workflowのグリーンを確認するまでは、この変更は本番検証済みと呼ばない。
 
 ## 2026-10-10 17:32〜17:38 JST Actions #60 成功・未再確認1件へ縮小
 
