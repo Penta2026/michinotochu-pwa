@@ -51,16 +51,16 @@ def date_from_parts(groups):
 
 def publication_date(soup):
     """Publication date only establishes the year of abbreviated event dates."""
-    for meta in soup.select('meta[property="article:published_time"], meta[name="date"]'):
+    for meta in soup.select('meta[property="article:published_time"], meta[name="date"], meta[itemprop="datePublished"]'):
         match = POST_DATE.search(clean(meta.get("content", "")))
         if match:
             return date_from_parts(match.groups())
-    for node in soup.select("time[datetime], article time, .post-date, .entry-date, .date"):
+    for node in soup.select("time[datetime], article time, .post-date, .entry-date, .post-meta, .entry-meta, .date"):
         match = POST_DATE.search(clean(node.get("datetime", "") or node.get_text(" ", strip=True)))
         if match:
             return date_from_parts(match.groups())
     # Article heading area only: never the full page, which contains other posts.
-    for node in soup.select("article header, .entry-header, main h1"):
+    for node in soup.select("article header, .entry-header"):
         match = POST_DATE.search(clean(node.get_text(" ", strip=True))[:200])
         if match:
             return date_from_parts(match.groups())
@@ -166,6 +166,7 @@ def collect_kyushu_okinawa(today):
                 if not any(href == url for href, _ in candidates):
                     candidates.append((url, "【イベント情報】新米フェアのお知らせ"))
             stats["candidates"] = len(candidates)
+            stats["sampleCandidates"] = [{"title": title, "url": url} for url, title in candidates[:8]]
             for url, title in candidates:
                 try:
                     r = requests.get(url, headers=HEADERS, timeout=12)
