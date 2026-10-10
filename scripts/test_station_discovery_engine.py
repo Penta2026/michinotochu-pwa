@@ -1249,5 +1249,47 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(_verified_official_event_detail_records(
             spec,soup(html),date(2026,10,26),url)[1],"event_invalid_or_past")
 
+    def test_ehime_official_minatto_hall_article_grounded_seminar(self):
+        import json
+        from station_discovery_engine import RULES
+        spec=next(x for x in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                  if x["id"]=="ehime_minatto_official_hall_npo_seminar")
+        html="""<article><h1>NPOのための広報セミナー</h1>
+          <p>2026年9月22日 09:30 公開</p>
+          <h2>イベント名</h2><p>NPOのための広報セミナー</p>
+          <h2>イベント開催日時</h2><p>令和８年１１月１１日（水） １４時～１７時</p>
+          <h2>場所</h2><p>八幡浜みなっと みなと交流館</p>
+          <h2>申し込み期限</h2><p>開催日の３日前まで</p>
+        </article>"""
+        events,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda _:soup(html),report_path=None)
+        self.assertEqual(audit["newEvents"],1)
+        self.assertEqual(events[0]["title"],"NPOのための広報セミナー")
+        self.assertEqual(events[0]["startDate"],"2026-11-11")
+        self.assertEqual(events[0]["prefecture"],"愛媛県")
+
+    def test_ehime_hall_article_rejects_wrong_venue_undated_notice(self):
+        from station_discovery_engine import _verified_official_event_detail_records
+        spec={**TOKYO,"allowedHosts":["note.com"],
+              "articlePathPattern":r"^/y_hitonari/n/n92ade5cdf7bd$",
+              "requiredEventTitle":"NPOのための広報セミナー",
+              "eventDateMode":"labeled_full_year_single",
+              "venueProofPattern":r"場所\s*八幡浜みなっと\s*みなと交流館"}
+        u="https://note.com/y_hitonari/n/n92ade5cdf7bd"
+        html="""<article><h1>NPOのための広報セミナー</h1>
+          <p>2026年9月22日 公開</p>
+          <h2>イベント開催日時</h2><p>11月11日（水）</p>
+          <h2>場所</h2><p>八幡浜みなっと みなと交流館</p>
+        </article>"""
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,u)[1],"event_labeled_date_missing")
+        html=html.replace("11月11日（水）","令和8年11月11日（水）")
+        html=html.replace("八幡浜みなっと みなと交流館","市民体育館")
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,u)[1],"event_venue_missing")
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,"https://example.org/y_hitonari/n/n92ade5cdf7bd")[1],
+            "unofficial_detail")
+
 if __name__ == "__main__":
     unittest.main()
