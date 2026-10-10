@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "station": "くるめ",
+      "prefecture": "福岡県",
+      "listUrl": "https://www.michinoeki-kurume.com/category/event/",
+      "candidates": 10,
+      "checked": 10,
+      "accepted": 0,
+      "noDate": 8,
+      "past": 2,
+      "failed": 0,
+      "sampleAccepted": [],
+      "error": "",
+      "sampleCandidates": [
+        {
+          "title": "【イベント情報】新米フェアのお知らせ",
+          "url": "https://www.michinoeki-kurume.com/shinmaifair/"
+        },
+        {
+          "title": "【イベント情報】食欲の秋!きのこフェアのお知らせ",
+          "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e9%a3%9f%e6%ac%b2%e3%81%ae%e7%a7%8b%ef%bc%81%e3%81%8d%e3%81%ae%e3%81%93%e3%83%95%e3%82%a7%e3%82%a2%e3%81%ae%e3%81%8a%e7%9f%a5-2/"
+        },
+        {
+          "title": "【イベント情報】コーヒーフェアのお知らせ",
+          "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e3%82%b3%e3%83%bc%e3%83%92%e3%83%bc%e3%83%95%e3%82%a7%e3%82%a2%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/"
+        },
+        {
+          "title": "【イベント情報】ラーメン特集のお知らせ",
+          "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e3%83%a9%e3%83%bc%e3%83%a1%e3%83%b3%e7%89%b9%e9%9b%86%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/"
+        },
+        {
+          "title": "まち旅フェスタ開催!",
+          "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e3%81%be%e3%81%a1%e6%97%85-%e7%ac%ac%ef%bc%92%ef%bc%90%e5%9b%9e%e8%a8%98%e5%bf%b5%e4%bc%81%e7%94%bb%e3%80%8c%e3%81%be%e3%81%a1/"
+        },
+        {
+          "title": "【イベント情報】秋のお彼岸コーナーのご案内",
+          "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e7%a7%8b%e3%81%ae%e3%81%8a%e5%bd%bc%e5%b2%b8%e3%82%b3%e3%83%bc%e3%83%8a%e3%83%bc%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/"
+        },
+        {
+          "title": "【イベント情報】耳納北麓ジェラート街道総選挙 対面販売実施中です!",
+          "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e8%80%b3%e7%b4%8d%e5%8c%97%e9%ba%93%e3%82%b8%e3%82%a7%e3%83%a9%e3%83%bc%e3%83%88%e8%a1%97%e9%81%93%e7%b7%8f%e9%81%b8%e6%8c%99/"
+        },
+        {
+          "title": "【イベント情報】野菜の日!アンケート&クイズキャンペーン",
+          "url": "https://www.michinoeki-kurume.com/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1%e3%80%91%e9%87%8e%e8%8f%9c%e3%81%ae%e6%97%a5%ef%bc%81%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%ef%bc%86%e3%82%af%e3%82%a4%e3%82%ba-2/"
+        }
+      ]
+    },
+    {
+      "station": "かでな",
+      "prefecture": "沖縄県",
+      "listUrl": "https://michinoeki-kadena.jp/news/",
+      "candidates": 18,
+      "checked": 18,
+      "accepted": 0,
+      "noDate": 18,
+      "past": 0,
+      "failed": 0,
+      "sampleAccepted": [],
+      "error": "",
+      "sampleCandidates": [
+        {
+          "title": "9月27日(日) チャレンジステーション@道の駅かでな開催",
+          "url": "https://michinoeki-kadena.jp/news/n3340294.html"
+        },
+        {
+          "title": "9月29日(火)けんこうフェスタin道の駅かでな",
+          "url": "https://michinoeki-kadena.jp/news/n3339126.html"
+        },
+        {
+          "title": "9月19日(土)軒下イベント@道の駅かでな",
+          "url": "https://michinoeki-kadena.jp/news/n3333723.html"
+        },
+        {
+          "title": "月眺みぬ会開催のお知らせ",
+          "url": "https://michinoeki-kadena.jp/news/n3328631.html"
+        },
+        {
+          "title": "8月23日(日) チャレンジステーション@道の駅かでな開催",
+          "url": "https://michinoeki-kadena.jp/news/n3317535.html"
+        },
+        {
+          "title": "8月13日(木)@道の駅かでな軒下イベント",
+          "url": "https://michinoeki-kadena.jp/news/n3312235.html"
+        },
+        {
+          "title": "7月26日(日) チャレンジステーション@道の駅かでな開催",
+          "url": "https://michinoeki-kadena.jp/news/n3294075.html"
+        },
+        {
+          "title": "ビールイベント開催!",
+          "url": "https://michinoeki-kadena.jp/news/n3292962.html"
+        }
+      ]
+    }
+  ],
+  "accepted": 0
+}
