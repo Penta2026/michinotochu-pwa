@@ -83,6 +83,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "信州新野千石平",
+      "prefecture": "長野県",
+      "title": "●10月10日(土)〜12日(月・祝) 信州新野千石平 道の駅【収穫祭】",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-12",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
       "roadName": "西いなば気楽里",
       "prefecture": "鳥取県",
       "title": "【西いなば気楽里】ミルクフェアを開催いたします！ １０月１０日(土)１１時～、１４時～",
@@ -180,6 +190,16 @@
       "endDate": "2026-10-24",
       "publishedAt": "2026-10-09",
       "url": "https://eki.bingofuchu.jp/information/20261002",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "飯高駅",
+      "prefecture": "三重県",
+      "title": "●10月24日(土)・25日(日)※ガラガラ抽選券配布期間:10月10日(土)~25日(日)14:00まで 飯高駅 感謝祭",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-24",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
       "status": "scheduled"
     },
     {

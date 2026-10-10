@@ -5,10 +5,59 @@
       "region": "北海道",
       "url": "https://hokkaido-michinoeki.jp/",
       "status": "discovery",
-      "reachable": false,
-      "candidates": [],
-      "candidateCount": 0,
-      "error": "ReadTimeout: HTTPSConnectionPool(host='hokkaido-michinoeki.jp', port=443): Read timed out. (read timeout=12)"
+      "reachable": true,
+      "candidates": [
+        {
+          "title": "日本各地の「美味しい」がやってきた！第9弾 ! 開催中!! NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/"
+        },
+        {
+          "title": "泊村×真狩村 観光物産展 開催！！ NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823/"
+        },
+        {
+          "title": "キッチンカーがやって来る！ 道の駅感謝祭！ NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/horokanaiinfo/69795/"
+        },
+        {
+          "title": "道の駅なないろ・ななえ🌈イベント情報✨ NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nanaeinfo/69782/"
+        },
+        {
+          "title": "日高町道の駅フェスト開催のお知らせ NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/"
+        },
+        {
+          "title": "10月17日、18日は道の駅たきかわ大収穫祭です！",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/"
+        },
+        {
+          "title": "道の駅「羊のまち 侍・しべつ」秋まつり開催！！",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shibetsuinfo/69720/"
+        },
+        {
+          "title": "１０月のイベントカレンダー",
+          "url": "https://hokkaido-michinoeki.jp/rinjiinfo/69662/"
+        },
+        {
+          "title": "９月のイベントカレンダー",
+          "url": "https://hokkaido-michinoeki.jp/rinjiinfo/68997/"
+        },
+        {
+          "title": "８月のイベントカレンダー",
+          "url": "https://hokkaido-michinoeki.jp/rinjiinfo/68450/"
+        },
+        {
+          "title": "７月２５日のつきがた夏まつり開催に伴うレストラン営業時間の延長について",
+          "url": "https://hokkaido-michinoeki.jp/rinjiinfo/68148/"
+        },
+        {
+          "title": "第14回全国「道の駅」シンポジウムin留萌開催のお知らせ！",
+          "url": "https://hokkaido-michinoeki.jp/topics/68349/"
+        }
+      ],
+      "candidateCount": 12,
+      "error": ""
     },
     {
       "region": "東北",
