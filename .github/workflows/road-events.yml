@@ -41,7 +41,7 @@ jobs:
         run: python scripts/road_event_gap_monitor.py
       - name: Commit only if event data changed
         run: |
-          git add data/road_events.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json data/hokuriku_event_audit.json data/kyushu_okinawa_event_audit.json data/kyushu_six_prefectures_audit.json data/prefecture_event_coverage.json data/kanto_three_prefectures_audit.json data/kanto_remaining_prefectures_audit.json data/kinki_five_prefectures_audit.json data/verified_station_reconfirmation_audit.json data/station_event_discovery_audit.json data/road_event_gap_monitor.json
+          git add data/road_events.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json data/hokuriku_event_audit.json data/kyushu_okinawa_event_audit.json data/kyushu_six_prefectures_audit.json data/prefecture_event_coverage.json data/kanto_three_prefectures_audit.json data/kanto_remaining_prefectures_audit.json data/kinki_five_prefectures_audit.json data/verified_station_reconfirmation_audit.json data/station_event_discovery_audit.json data/road_event_gap_monitor.json docs/ROAD_EVENT_GAP_DASHBOARD.md
           if git diff --cached --quiet; then
             echo "イベントデータに変更なし"
             exit 0
