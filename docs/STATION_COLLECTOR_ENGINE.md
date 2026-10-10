@@ -253,3 +253,27 @@ Phase 2の宣言的設定ファイル`data/station_event_discovery_sources.json`
 - `python -m unittest`相当のActionsテストは **217件予定**。公式サイトへの実接続・クローリング結果はまだ未検証。5つのsource IDの`accepted`・`reasons`・`fetchErrors`を確認する。
 - `data/prefecture_event_coverage.json`の`summary.historicalObservedPrefectures`および`historical.neverObservedPrefectures`、`road_event_quality_report.json`の重複・無効・未再確認を合わせて確認する。
 - 失敗した場合は保存済みイベントの保持を優先し、公式根拠のない日付/場所を補って47県達成に見せかけない。
+
+## 2026-10-11 Phase 3: 漏れ候補・取得異常の自動監視（次回Actions未検証）
+
+全国47/47県で収集実績があっても、駅ごとの催事を網羅できたとは限らない。**総イベント発見率は、独立した正解データがない限り算出不能**。そのため「漏れ候補を確実に見つけて手動調査へ回す」仕組みを追加する。**本章の機能は次のActionsで実測するまでは完了検証済みとみなさない**。
+
+### データと実行
+
+- 解析プログラム：`scripts/road_event_gap_monitor.py`。GitHub Actionsの「Retrieve official event listings」「Audit 47-prefecture coverage」の後に`Monitor collection gaps and source health`を追加。
+- 入力：`data/station_event_discovery_audit.json`、`data/station_event_discovery_sources.json`、`data/prefecture_event_coverage.json`、`data/road_event_quality_report.json`、`data/road_event_sources_report.json`、`data/app_data.js`。
+- 出力：`data/road_event_gap_monitor.json`（構造化監査、設定型27ソース単位・各駅マスタ照合）、`docs/ROAD_EVENT_GAP_DASHBOARD.md`（人が読む要確認候補の抜粋・警告・県別駅数表）。
+- 現行アプリ内マスタ`window.APP_DATA.roads`には**道の駅1,234件**（生成2026-10-04 21:45、`window.DATA_META.roadStations`=1234）。JavaScriptを実行せずJSONデコーダで読み、都道府県と保守的に正規化した駅名で設定対象駅と照合する。このマスタは**アプリ内スナップショット**であり、国交省等の最新登録数を独立確認したものではない。
+- 駅ごとの区分：`dedicated_source_configured`（個別収集先あり）、`published_by_other_collectors`（個別収集先なしだが地域等経由の現行イベントあり）、`no_dedicated_source`（個別収集先なし・現行登録なし）。**`no_dedicated_source`は「完全未監視」「イベントなし」を意味しない**。
+
+### 検知するリスク
+
+- **公開直前の見落とし候補**：採用見送りの`undated`、`venue_missing`、`no_individually_dated_sections`、`no_individually_dated_monthly_events`、`no_grounded_program_year`等の例を`reviewCandidates`に収集。画像・月間カレンダーの案内見出しも`calendar_announcement_needs_detail`として要確認。ただし`past`・`offsite`をむやみに漏れ扱いしない。
+- **取得異常**：設定型ソースの`fetchFailed`・`listingError`、地域公式ホームページの`reachable=false`、設定にあるが監査に載らないソース、収集日付`checkedOn`の不一致を警告。取得エラーはGitHub Actionsの`::warning`にも表示。例：愛媛の旧PDF HTTP 404。
+- **静かな停止**：候補0件が**異なる日本暦日で3日連続**したソースを注意表示。同じ日に手動Runを繰り返しても3日には数えない。イベントが出ていないだけの場合もあるため、これ単独で収集器異常・漏れとは断定しない。
+- **記事チェック上限**：候補数がチェック済み・既存URL除外を超え、設定上限`maxArticles`に到達した収集先を表示。上限の先に候補が残っている可能性を知らせる。
+- **再確認待ちと過去実績**：品質監査の`notReconfirmed`を別枠で保持。滋賀・鳥取・徳島のように現行0件でも累計で達成済みの県を区別。
+
+**限界**：`rejectedExamples`は各収集先につき最大5個などのサンプルだけ。全ての候補記事・画像・SNSを調査するわけではなく、登録済みの道の駅情報が最新とも限らない。監査の警告を受けて公式サイトを手動比較する流れが次の改善余地。警告自体はイベント削除や自動登録を行わない。Actionsの実行成功は監視が動いた証拠だが、**取りこぼしゼロの保証ではない**。
+
+オフライン監査テスト：`scripts/test_road_event_gap_monitor.py`に**11件追加**。従来217件 → **228件のテストを次回Actionsで確認**。
