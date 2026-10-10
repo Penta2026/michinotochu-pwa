@@ -225,8 +225,21 @@ def collect_hokuriku(today):
                     print(f"北陸ブラウザ収集失敗: {browser_error}")
             items = static_records + rendered_records
             for item in items:
-                key = (item["roadName"], item["startDate"], item["endDate"], item["title"])
-                found[key] = item
+                parsed = urlparse(item["url"])
+                article = parse_qs(parsed.query).get("article", [None])[0]
+                if article and parsed.hostname in ("www.hokuriku-michinoeki.jp",
+                                                   "hokuriku-michinoeki.jp"):
+                    # Identical event appears with different dc=calendar dates.
+                    # Pin link to its actual start, keeping official article ID.
+                    from urllib.parse import urlencode
+                    item["url"] = CALENDAR + "?" + urlencode(
+                        {"dc": item["startDate"], "article": article})
+                    key = (article, item["roadName"], item["startDate"], item["endDate"])
+                else:
+                    key = (item["url"], item["roadName"], item["startDate"], item["endDate"])
+                prev = found.get(key)
+                if prev is None or len(item["title"]) < len(prev["title"]):
+                    found[key] = item
             page_text = soup.get_text(" ", strip=True)
             scripts = [urljoin(response.url, tag.get("src", "")) for tag in soup.select("script[src]")]
             audits.append({
