@@ -97,7 +97,7 @@ def audit_chubu_bulletin():
         previous = json.loads(REPORT.read_text(encoding="utf-8")) if REPORT.exists() else None
         if previous != report:
             REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        print(f"中部PDF列診断: ページ {len(report[\'pages\'])} / 見出し {sum(len(p[\'headings\']) for p in report[\'pages\'])} / 日付行 {sum(len(p[\'dated_rows\']) for p in report[\'pages\'])}")
+        print(f"中部PDF列診断: ページ {len(report['pages'])} / 見出し {sum(len(p['headings']) for p in report['pages'])} / 日付行 {sum(len(p['dated_rows']) for p in report['pages'])}")
         print(f"中部PDF: 発見 {len(links)} / 最新 {url} / "
               f"ページ {metrics['pages']} / 日付入り行 {metrics['dated_lines']} / "
               f"駅内見出し {metrics['contains_station_events_heading']} / "
