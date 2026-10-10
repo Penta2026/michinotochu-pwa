@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 36,
-  "inputCollected": 34,
+  "inputCollected": 37,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -130,6 +130,10 @@
       "title": "●10月31日(土) まめなかマルシェ ハロウィンバージョン"
     },
     {
+      "roadName": "古今伝授の里やまと",
+      "title": "●10月31日(土)〜11月3日(火・祝) 感謝祭"
+    },
+    {
       "roadName": "柳津",
       "title": "●10月25日(日) Yanaizuマルシェ"
     },
@@ -140,8 +144,13 @@
     {
       "roadName": "飯高駅",
       "title": "●10月24日(土)・25日(日)※ガラガラ抽選券配布期間:10月10日(土)~25日(日)14:00まで 飯高駅 感謝祭"
+    },
+    {
+      "roadName": "飯高駅",
+      "title": "●10月29日(木)~11月24日(火) 【展示】田中三津子 人形展"
     }
   ],
   "possibleDuplicates": [],
-  "finalCount": 36
+  "notReconfirmed": [],
+  "finalCount": 37
 }
