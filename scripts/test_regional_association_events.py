@@ -79,6 +79,10 @@ class DateParsingTests(unittest.TestCase):
         self.assertEqual(bulletin_date("●10月24日(土)・25日(日) 飯高駅 感謝祭", 2026),
                          ("2026-10-24", "2026-10-25"))
 
+    def test_chubu_reject_end_only(self):
+        self.assertIsNone(bulletin_date("●~11月30日(月) NWR166スタンプラリー", 2026))
+        self.assertIsNone(bulletin_date("●～11月17日(火) 【展示】", 2026))
+
     def test_chubu_verified_station(self):
         report={"source":"https://www.chubu-michinoeki.org/pdf/test.pdf",
                 "pages":[{"rows":[
