@@ -188,7 +188,8 @@
         "LIVE",
         "音楽",
         "フェア"
-      ]
+      ],
+      "trustArticleSectionsWithStationVenue": true
     },
     {
       "id": "wakayama_shikinosato",
