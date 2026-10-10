@@ -50,6 +50,7 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
                 today=None):
     today = today or datetime.now(JST).date().isoformat()
     previous = previous or {}
+    fresh_discovery = discovery.get("checkedOn") == today
     configs = {x["id"]: x for x in registry.get("sources", [])
                if x.get("enabled", False)}
     earlier = {x["id"]: x for x in previous.get("sources", [])
@@ -134,6 +135,10 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
                 "priority": level, "status": "unverified_candidate",
             })
 
+    if not fresh_discovery:
+        warnings.append({"kind": "stale_discovery_audit", "severity": "warning",
+                         "expectedDate": today,
+                         "actualDate": discovery.get("checkedOn")})
     for sid, cfg in configs.items():
         if sid not in {s["id"] for s in checked_sources}:
             warnings.append({"kind": "configured_source_not_audited",
@@ -189,6 +194,7 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
             "currentEvents": coverage.get("summary", {}).get("registeredEvents", 0),
             "phase2SourcesConfigured": len(configs),
             "phase2SourcesAudited": len(checked_sources),
+            "phase2AuditFresh": fresh_discovery,
             "regionalHomepagesAudited": len(regional_checks),
             "targetedStationPrefectures": coverage.get("summary", {}).get("targetedStationFeedPrefectures", 0),
             "publishedStations": len(current_stations),
