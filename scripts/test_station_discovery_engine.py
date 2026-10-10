@@ -1159,5 +1159,55 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
                     "https://sakuas.com/event/99999/")
         self.assertEqual((result,reason),([],"no_individually_dated_sections"))
 
+    def test_kagoshima_official_vendor_schedule_station_specific_popup(self):
+        import json
+        from station_discovery_engine import RULES
+        spec=next(x for x in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                  if x["id"]=="kagoshima_sakimoto_official_station_popup_oct")
+        html="""<main><h1>10月に九州で開催予定の催事を11件お知らせいたします。</h1>
+          <h2>10月の九州の催事⑩</h2>
+          <h3>催事先</h3><p>道の駅おおすみ弥五郎伝説の里</p>
+          <h3>催事日</h3><p>2026年10月24日(土)</p>
+          <h3>催事場所</h3><p>施設内</p>
+          <h2>10月の九州の催事⑪</h2>
+          <h3>催事先</h3><p>道の駅　たるみず　はまびら</p>
+          <h3>催事日</h3><p>2026年10月25日(日)</p>
+          <h3>催事場所</h3><p>施設内</p>
+          <h3>販売時間</h3><p>PM9：00～なくなり次第</p>
+          </main>"""
+        found,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda _:soup(html),report_path=None)
+        self.assertEqual(audit["newEvents"],1)
+        self.assertEqual(found[0]["startDate"],"2026-10-25")
+        self.assertEqual(found[0]["roadName"],"たるみずはまびら")
+        self.assertEqual(len(found),1)
+        self.assertEqual(found[0]["url"],spec["listingUrl"])
+
+    def test_kagoshima_vendor_never_borrows_neighbor_date_venue(self):
+        from station_discovery_engine import _verified_official_vendor_schedule_records
+        spec={**TOKYO,"allowedHosts":["shokupan-sakimoto.com"],
+              "articlePathPattern":r"^/news/kyusyusaiji_oct/?$",
+              "requiredEventTitle":"10月の九州の催事⑪",
+              "venueProofPattern":r"催事先\s*道の駅\s*たるみず\s*はまびら"}
+        u="https://shokupan-sakimoto.com/news/kyusyusaiji_oct/"
+        html="""<main><h2>10月の九州の催事⑩</h2>
+          <p>催事先 道の駅 たるみず はまびら</p>
+          <p>催事日 2026年10月24日</p>
+          <p>催事場所 施設内</p>
+          <h2>10月の九州の催事⑪</h2>
+          <p>催事先 駅前商店街</p>
+          <p>催事日 2026年10月25日</p>
+          <p>催事場所 施設内</p></main>"""
+        result,why=_verified_official_vendor_schedule_records(
+            spec,soup(html),TODAY,u)
+        self.assertEqual((result,why),([],"vendor_station_missing"))
+        html=html.replace("催事先 駅前商店街","催事先 道の駅 たるみず はまびら")
+        html=html.replace("催事日 2026年10月25日","催事日 10月25日")
+        self.assertEqual(_verified_official_vendor_schedule_records(
+            spec,soup(html),TODAY,u)[1],"vendor_date_missing")
+        self.assertEqual(_verified_official_vendor_schedule_records(
+            spec,soup(html),TODAY,"https://fake.example/news/kyusyusaiji_oct/")[1],
+            "unofficial_vendor")
+
 if __name__ == "__main__":
     unittest.main()
