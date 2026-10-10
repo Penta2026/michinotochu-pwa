@@ -46,13 +46,16 @@ def _period(text, posted=None):
     return parse_period(_date_text(text), posted)
 
 def _official_url(url, source, *, article):
-    parsed = urlparse(url)
-    if (parsed.scheme != "https" or parsed.username or parsed.password or
-            parsed.port is not None or parsed.hostname not in source["allowedHosts"]):
+    try:
+        parsed = urlparse(url)
+        if (parsed.scheme != "https" or parsed.username or parsed.password or
+                parsed.port is not None or parsed.hostname not in source["allowedHosts"]):
+            return False
+        if article and not re.fullmatch(source["articlePathPattern"], parsed.path):
+            return False
+        return True
+    except ValueError:
         return False
-    if article and not re.fullmatch(source["articlePathPattern"], parsed.path):
-        return False
-    return True
 
 def _validate_sources(sources):
     ids = set()
@@ -141,6 +144,24 @@ def _article_period(title, lines, posted):
             return period
     return None
 
+def _publication(soup, spec, title, today):
+    """Prefer an explicitly configured article posting date, not event time."""
+    selectors = spec.get("publicationSelector", "")
+    for item in soup.select(selectors) if selectors else []:
+        value = clean(item.get("content") or item.get("datetime") or item.get_text(" ", strip=True))
+        match = re.search(r"(20[0-9]{2})[年./-]([0-9]{1,2})[月./-]([0-9]{1,2})", value)
+        if not match:
+            continue
+        try:
+            posted = date(*map(int, match.groups()))
+        except ValueError:
+            continue
+        if posted <= today:
+            return posted
+    posted = publication_date(soup, title)
+    return posted if posted is not None and posted <= today else None
+
+
 def _article_record(source, soup, listing_title, today, url):
     article = _pick_article(soup, source)
     if article is None:
@@ -154,14 +175,13 @@ def _article_record(source, soup, listing_title, today, url):
     body = clean(article.get_text(" ", strip=True))
     if not any(w in body for w in source["requiredVenueTokens"]):
         return None, "venue_missing"
-    for line in lines:
-        if VENUE_LABEL.search(line):
-            if not any(w in line for w in source["requiredVenueTokens"]):
+    for i, line in enumerate(lines):
+        label = VENUE_LABEL.search(line)
+        if label:
+            value = line[label.end():] or (lines[i + 1] if i + 1 < len(lines) else "")
+            if not any(w in value for w in source["requiredVenueTokens"]):
                 return None, "offsite"
-    posted = publication_date(soup, title)
-    # A future "published" date is usually a mislabeled event date.
-    if posted and posted > today:
-        posted = None
+    posted = _publication(soup, source, title, today)
     period = _article_period(title, lines, posted)
     if period is None:
         return None, "undated"
