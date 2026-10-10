@@ -825,6 +825,40 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(_article_record(spec,soup(wrong),"森里海の市",TODAY,URL),
                          (None,"offsite"))
 
+    def test_kumamoto_listing_card_from_official_calendar(self):
+        spec={**TOKYO,"id":"aso_calendar","prefecture":"熊本県",
+              "roadName":"あそ望の郷くぎの",
+              "listingUrl":"https://minamiaso.info/event/?cm=10&cy=2026",
+              "allowedHosts":["minamiaso.info"],
+              "requiredVenueTokens":["道の駅あそ望の郷くぎの"],
+              "allowedEventWords":["青空レストラン"],
+              "articleMode":"dated_station_calendar"}
+        html="""<main><h1>2026年10月 カレンダー切り替え</h1>
+        <div>2026年10月12日</div>
+        <h2>第11回 南阿蘇の青空レストラン</h2>
+        <div>道の駅あそ望の郷くぎの</div>
+        <p>2026年10月12日（月・祝）、キッチンカーが集結するイベント</p>
+        <div>2026年10月18日</div>
+        <h2>青空レストラン サテライト</h2>
+        <div>熊本県野外劇場アスペクタ</div>
+        <p>道の駅あそ望の郷くぎのも応援しています</p>
+        </main>"""
+        records,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda _:soup(html),report_path=None)
+        self.assertEqual(audit["newEvents"],1)
+        self.assertEqual(records[0]["startDate"],"2026-10-12")
+        self.assertEqual(records[0]["roadName"],"あそ望の郷くぎの")
+
+    def test_kumamoto_calendar_without_local_year_rejected(self):
+        from station_discovery_engine import _dated_station_calendar_records
+        spec={**TOKYO,"requiredVenueTokens":["道の駅あそ望の郷くぎの"],
+              "allowedEventWords":["青空レストラン"]}
+        html="""<main><div>10月12日</div>
+           <h2>第11回 南阿蘇の青空レストラン</h2>
+           <p>道の駅あそ望の郷くぎの</p></main>"""
+        rec,why=_dated_station_calendar_records(spec,soup(html),TODAY,URL)
+        self.assertEqual((rec,why),([],"no_strict_official_calendar_cards"))
+
     def test_prefers_specific_venue_event_in_large_city_archive(self):
         spec={**TOKYO,"id":"ehime","listingUrl":"https://www.city.yawatahama.ehime.jp/event/2026/",
               "allowedHosts":["www.city.yawatahama.ehime.jp"],
