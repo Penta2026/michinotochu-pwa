@@ -1209,5 +1209,46 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
             spec,soup(html),TODAY,"https://fake.example/news/kyusyusaiji_oct/")[1],
             "unofficial_vendor")
 
+    def test_wakayama_prefecture_event_detail_festival_is_grounded(self):
+        import json
+        from station_discovery_engine import RULES
+        spec=next(x for x in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                  if x["id"]=="wakayama_prefecture_seishumatsuri_official")
+        html="""<main><h1>～ようおこしなして～　青洲まつり2026</h1>
+          <p>地元の皆様と楽しむ青洲まつり</p>
+          <h2>基本情報</h2><dl><dt>開催期間</dt><dd>10月25日（日）</dd>
+          <dt>開催場所</dt><dd>道の駅「青洲の里」 旧名手本陣</dd></dl>
+          </main>"""
+        events,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda _:soup(html),report_path=None)
+        self.assertEqual(audit["newEvents"],1)
+        self.assertEqual(events[0]["startDate"],"2026-10-25")
+        self.assertEqual(events[0]["endDate"],"2026-10-25")
+        self.assertEqual(events[0]["prefecture"],"和歌山県")
+        self.assertEqual(events[0]["roadName"],"青洲の里")
+
+    def test_wakayama_festival_requires_title_year_and_explicit_venue(self):
+        from station_discovery_engine import _verified_official_event_detail_records
+        spec={**TOKYO,"allowedHosts":["www.wakayama-kanko.or.jp"],
+              "articlePathPattern":r"^/events/detail_3879\.html$",
+              "requiredEventTitle":"青洲まつり2026","titleMatchContains":True,
+              "eventDateMode":"heading_year_labeled_day",
+              "venueProofPattern":r"開催場所\s*道の駅\s*[「『]?青洲の里"}
+        url="https://www.wakayama-kanko.or.jp/events/detail_3879.html"
+        html="""<main><h1>青洲まつり2026</h1>
+          <p>開催期間 10月25日（日）</p>
+          <p>開催場所 旧名手本陣</p>
+          <footer>道の駅 青洲の里</footer></main>"""
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,url)[1],"event_venue_missing")
+        html=html.replace("開催場所 旧名手本陣","開催場所 道の駅 青洲の里")
+        html=html.replace("青洲まつり2026","青洲まつり")
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,url)[1],"event_title_missing")
+        html=html.replace("青洲まつり","青洲まつり2026")
+        html=html.replace("10月25日","2025年10月25日")
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,url)[1],"event_invalid_or_past")
+
 if __name__ == "__main__":
     unittest.main()
