@@ -75,6 +75,7 @@ def collect_generic_regions(today):
             continue
         candidates = {}
         host = urlparse(response.url).hostname
+        discovered = 0
         for a in soup.select("a[href]"):
             title = clean(a.get_text(" ", strip=True))
             if not 6 <= len(title) <= 160 or not any(w in title for w in EVENTS):
@@ -85,12 +86,12 @@ def collect_generic_regions(today):
             if urlparse(href).hostname != host or href == response.url:
                 continue
             context = clean((a.find_parent(["li", "article"]) or a.parent).get_text(" ", strip=True))
-            if "道の駅" not in title and "道の駅" not in context:
-                continue
+            discovered += 1
             candidates.setdefault(href, (title, context))
             if len(candidates) >= LIMIT:
                 break
         stats["candidate"] = len(candidates)
+        print(f"全国補完 {region}: イベント語句リンク {discovered} / 詳細対象 {len(candidates)}")
         for url, (title, context) in candidates.items():
             try:
                 res = requests.get(url, headers=HEADERS, timeout=8)
@@ -105,6 +106,9 @@ def collect_generic_regions(today):
                 continue
             content = clean(body_node.get_text(" ", strip=True))
             station_match = STATION.search(title) or STATION.search(context)
+            if not station_match:
+                heading = detail.find(["h1", "h2"])
+                station_match = STATION.search(clean(heading.get_text(" ", strip=True))) if heading else None
             if not station_match:
                 stats["missing_station"] += 1
                 continue
