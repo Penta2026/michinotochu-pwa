@@ -479,7 +479,7 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         import json
         from station_discovery_engine import RULES
         sources=json.loads(RULES.read_text(encoding="utf-8"))["sources"]
-        self.assertEqual(len(sources),19)
+        self.assertEqual(len(sources),21)
         expected={"山口県","福井県","大阪府","熊本県","宮崎県"}
         self.assertTrue(expected.issubset({r["prefecture"] for r in sources}))
         self.assertTrue(all(r["enabled"] for r in sources))
@@ -658,6 +658,54 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
                                     "https://sakuas.com/event/9999/")
         self.assertEqual(result,[])
         self.assertEqual(why,"no_individually_dated_sections")
+
+    def test_nagasaki_himawari_official_bike_event_october(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"roadName":"ひまわり","prefecture":"長崎県",
+              "articleSelector":"article",
+              "titleSelectors":["article h1"],
+              "allowedEventWords":["バイクイベント"],
+              "requiredVenueTokens":["道の駅ひまわり"],
+              "useListingPublicationDate":True}
+        article=soup("""<article><h1>バイクイベント開催 １０月１８日(日)</h1>
+           <p>バイクイベント開催 １０月１８日(日) 10:00～15:00</p>
+           <p>場所 道の駅ひまわり</p>
+           <p>主催 K.R.factory＋M</p></article>""")
+        listing="2026.10.07 バイクイベント開催 １０月１８日(日)"
+        rec,why=_article_record(spec,article,listing,TODAY,
+                                "https://michinoeki-himawari.com/post-1000/")
+        self.assertEqual(why,"accepted")
+        self.assertEqual(rec["startDate"],"2026-10-18")
+        self.assertEqual(rec["prefecture"],"長崎県")
+
+    def test_nagasaki_old_year_not_reinterpreted_as_current(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"roadName":"ひまわり",
+              "articleSelector":"article","requiredVenueTokens":["道の駅ひまわり"],
+              "useListingPublicationDate":True}
+        article=soup("""<article><h1>バイクイベント開催 10月18日(土)</h1>
+          <p>場所 道の駅ひまわり</p></article>""")
+        listing="2025.10.07 バイクイベント開催 10月18日(土)"
+        rec,why=_article_record(spec,article,listing,TODAY,URL)
+        self.assertEqual((rec,why),(None,"past"))
+
+    def test_kagoshima_official_upcoming_event_requires_year_and_location(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"roadName":"たるみずはまびら","prefecture":"鹿児島県",
+              "articleSelector":"article","titleSelectors":["article h1"],
+              "requiredVenueTokens":["道の駅たるみずはまびら"],
+              "allowedEventWords":["イベント"],"allowExplicitDatedParagraph":True}
+        article=soup("""<article><h1>秋の体験イベント</h1>
+          <p>道の駅たるみずはまびらにて2026年11月14日(土)に
+          イベントを開催します。</p></article>""")
+        rec,why=_article_record(spec,article,"秋の体験イベント",TODAY,
+                                "https://tarumizuhamabira.jp/information/example/")
+        self.assertEqual(why,"accepted")
+        self.assertEqual(rec["startDate"],"2026-11-14")
+        undated=soup("""<article><h1>秋の体験イベント</h1>
+          <p>道の駅たるみずはまびらでの開催日未定</p></article>""")
+        rec,why=_article_record(spec,undated,"秋の体験イベント",TODAY,URL)
+        self.assertEqual((rec,why),(None,"undated"))
 
 if __name__ == "__main__":
     unittest.main()
