@@ -116,6 +116,21 @@ class VerifiedArticleReconfirmationTests(unittest.TestCase):
         self.assertEqual(_rule_for(miyazaki,rules)["id"],"miyazaki_niqll")
         self.assertIsNone(_rule_for({**miyazaki,"url":"https://evil.example/event/"},rules))
 
+    def test_yamaguchi_abu_verification_rule_matches_existing_url_only(self):
+        import json
+        from verified_station_engine import RULES as REGISTERED
+        rules=json.loads(REGISTERED.read_text(encoding="utf-8"))["sources"]
+        rec={"prefecture":"山口県","roadName":"阿武町",
+             "url":"https://www.abucreation.com/topics/"
+                   "%e4%bb%a4%e5%92%8c6%e5%b9%b410%e6%9c%8813%e6%97%a5"
+                   "%ef%bc%88%e6%97%a5%ef%bc%89%e7%ac%ac30%e5%9b%9e%e6"
+                   "%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%82%92"
+                   "%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99/"}
+        self.assertEqual(_rule_for(rec,rules)["id"],"yamaguchi_abu")
+        self.assertIsNone(_rule_for({**rec,"roadName":"あいお"},rules))
+        self.assertIsNone(_rule_for({**rec,"url":"https://evil.example/topics/post/"},rules))
+        self.assertIsNone(_rule_for({**rec,"url":"https://www.abucreation.com/other"},rules))
+
     def test_unmatched_rule_never_creates_event(self):
         fake=dict(KASAMA,prefecture="東京都")
         recovered,audit=reconfirm_known_articles(
