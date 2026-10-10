@@ -113,6 +113,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "羊のまち 侍・しべつ",
+      "prefecture": "北海道",
+      "title": "道の駅「羊のまち 侍・しべつ」秋まつり開催!!",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "publishedAt": "",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shibetsuinfo/69720/",
+      "status": "scheduled"
+    },
+    {
       "roadName": "西いなば気楽里",
       "prefecture": "鳥取県",
       "title": "【西いなば気楽里】ミルクフェアを開催いたします！ １０月１０日(土)１１時～、１４時～",
@@ -130,6 +140,16 @@
       "endDate": "2026-10-10",
       "publishedAt": "2026-09-10",
       "url": "https://nishiinaba.jp/pages/47/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "樹海ロード日高",
+      "prefecture": "北海道",
+      "title": "日高町道の駅フェスト開催のお知らせ NEW",
+      "startDate": "2026-10-11",
+      "endDate": "2026-10-11",
+      "publishedAt": "",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
       "status": "scheduled"
     },
     {

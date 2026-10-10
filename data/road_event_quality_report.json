@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 36,
-  "inputCollected": 37,
+  "inputPrevious": 37,
+  "inputCollected": 39,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -148,9 +148,13 @@
     {
       "roadName": "飯高駅",
       "title": "●10月29日(木)~11月24日(火) 【展示】田中三津子 人形展"
+    },
+    {
+      "roadName": "飯高駅",
+      "title": "●10月17日(土)~25日(日) 『滝原宮グッズフェア』"
     }
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [],
-  "finalCount": 37
+  "finalCount": 39
 }
