@@ -1,6 +1,6 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-10**（Phase 2の公式収集先を3→7駅へ拡張しGitHubに実装。追加4ルートは**次回Actions検証待ち**。確定68件・32県）  
+更新基準: **2026-10-10**（Phase 2の7駅拡張後、和歌山の複数イベント解析でテスト2件失敗。記事掲載年の取得ロジックを修正して再実行待ち。確定68件・32県）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
@@ -201,6 +201,14 @@
 - **検証前の最終確定値**: 公開イベント68件、登録実績32/47県、未登録15都府県、未再確認0件・重複候補0件。**追加4ルートから何件採用できたかは次回Actionsで確定**。
 - **次回Actionsで見るべき監査**: `data/station_event_discovery_audit.json`の追加4ルートの`candidates`/`checked`/`accepted`/`fetchFailed`/`reasons`。公開`road_events.json`の福井・大阪・和歌山新規登録、`road_event_quality_report.json`の不正期間・疑似重複・未再確認も確認。大阪の会場証拠、和歌山の「同じURLの複数イベント」の内容を優先して検査。必要なら次回改修を行う。
 - **詳細設計**: `docs/STATION_COLLECTOR_ENGINE.md`にこの拡張と安全条件を記載。
+
+## 2026-10-10 Phase 2拡張後の赤テストと修正（次回Actions確認待ち）
+
+- **ユーザーのGitHub Actions実測**: Pythonテスト150件中**2件失敗**（`FAILED(failures=2)`）。画像で確認した1件は`test_wakayama_multi_notice_extracts_two_independently_dated_events`: `no_individually_dated_sections`と判定され`accepted`に至らない。もう1件は`test_wakayama_multi_does_not_block_same_article_later_events`で返却イベントが0件（期待1件）。収集ジョブに進まず中断したため、**7駅からの本番イベント追加件数は未確定**。
+- **原因**: テストの`TOKYO`流用設定では`titleSelectors=["article h1"]`だが、和歌山の模擬記事は`<main><h1>...`。複数イベント解析器は設定上の狭いタイトルセレクタのため実記事タイトルを取れず、`publication_date`へ正しい見出しを渡せなかった。投稿年の証拠が得られないため`10月17日`など短い日付を拒否していた。**年を推測して受理する安全性違反ではない**。
+- **修正**: `scripts/station_discovery_engine.py`の`_section_records`で**実際に選ばれた記事コンテナの`h1/h2`を取得**し、公式記事内の投稿日時`time[datetime]`との照合に利用。月日を勝手に今年へ補わず、本文と掲載年がそろった場合だけ確定。
+- **回帰テスト追加**: `scripts/test_station_discovery_engine.py`に`test_wakayama_article_heading_supplies_publication_year_even_with_narrow_selector`を追加。既存150件＋新テスト1件＝**151件を次回GitHub Actionsで検証予定**。和歌山2件の失敗が解消したか、他のテストと統合収集も問題ないかを確認する。
+- **次回手順**: [road-events.yml](../.github/workflows/road-events.yml)の`Run workflow` → テスト成功 → 追加4ルートの`data/station_event_discovery_audit.json` → 県別登録・品質監査 → 引継ぎ更新。修正コミット済みだが、**まだ緑を確認していない**。
 
 ## 未解決・優先順位
 
