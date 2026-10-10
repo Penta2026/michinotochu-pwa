@@ -534,6 +534,29 @@ class DateParsingTests(unittest.TestCase):
         result,_=reconcile([],[base,other],date(2026,10,11))
         self.assertEqual(len(result),2)
 
+    def test_station_name_label_and_unlabelled_same_event_remain_one(self):
+        base={"prefecture":"三重県","roadName":"飯高駅",
+              "title":"秋の感謝祭",
+              "url":"https://official.example/events/1",
+              "startDate":"2026-10-24","endDate":"2026-10-25"}
+        station_label=dict(base,title="【道の駅飯高駅】秋の感謝祭")
+        short_label=dict(base,title="【飯高駅】秋の感謝祭")
+        result,audit=reconcile([station_label],[short_label,base],date(2026,10,11))
+        self.assertEqual(len(result),1)
+        self.assertEqual(audit["notReconfirmed"],[])
+        self.assertEqual(audit["collapsedStatusBadgeDuplicates"]["previous"],0)
+
+    def test_pdf_distinct_bracketed_event_types_across_articles_not_duplicates(self):
+        base={"prefecture":"三重県","roadName":"飯高駅",
+              "title":"【物産展】秋の催し",
+              "url":"https://official.example/events-a.pdf",
+              "startDate":"2026-10-24","endDate":"2026-10-25"}
+        other=dict(base,title="【体験会】秋の催し",
+                   url="https://official.example/events-b.pdf")
+        result,audit=reconcile([], [base,other],date(2026,10,11))
+        self.assertEqual(len(result),2)
+        self.assertEqual(audit["possibleDuplicates"],[])
+
     def test_new_is_preserved_inside_actual_event_name(self):
         base={"prefecture":"北海道","roadName":"樹海ロード日高",
               "title":"NEW YEAR マルシェ",
