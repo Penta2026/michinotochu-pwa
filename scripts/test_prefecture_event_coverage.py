@@ -86,7 +86,13 @@ class PrefectureCoverageTests(unittest.TestCase):
         self.assertEqual(sources["京都府"], ["和", "京丹波 味夢の里"])
         self.assertEqual(sources["大阪府"], ["いずみ山愛の里", "奥河内くろまろの郷"])
         self.assertEqual(sources["奈良県"], ["クロスウェイなかまち"])
-        self.assertEqual(sources["和歌山県"], ["ねごろ歴史の丘", "海南サクアス", "四季の郷公園"])
+        # New verified official stations can be appended without invalidating
+        # previously configured feeds or accidentally duplicating a station.
+        wakayama = sources["和歌山県"]
+        self.assertEqual(wakayama[:3], ["ねごろ歴史の丘", "海南サクアス", "四季の郷公園"])
+        self.assertIn("青洲の里", wakayama)
+        self.assertEqual(wakayama.count("青洲の里"), 1)
+        self.assertEqual(len(wakayama), len(set(wakayama)))
         self.assertEqual(sources["岩手県"], ["遠野風の丘"])
         self.assertEqual(sources["山形県"], ["たかはた"])
         self.assertEqual(sources["福島県"], ["ふくしま"])
