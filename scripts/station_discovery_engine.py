@@ -367,10 +367,18 @@ def _section_records(spec, soup, today, url):
         date_found = None
         venue_found = False
         for line in snippet:
-            if line.startswith(("🗓", "📅")):
-                date_found = _period(SECTION_DATE.sub("", line), posted)
-            if line.startswith("📍"):
-                venue = SECTION_VENUE.sub("", line).strip()
+            # Official station articles may replace the calendar/pin emoji
+            # with explicit labels. Labels are per section, never site-wide.
+            explicit_date = (line.startswith(("🗓", "📅")) or
+                             bool(re.match(r"^(?:開催日(?:時|程)?|開催期間|日程|日時)\\s*[:：]", line)))
+            explicit_venue = (line.startswith("📍") or
+                              bool(re.match(r"^(?:会場|開催場所|場所)\\s*[:：]", line)))
+            if explicit_date:
+                candidate = _period(SECTION_DATE.sub("", line), posted)
+                if candidate:
+                    date_found = candidate
+            if explicit_venue:
+                venue = re.sub(r"^(?:📍\\s*)?(?:会場|開催場所|場所)?\\s*[:：]?\\s*", "", line).strip()
                 venue_found = any(token in venue for token in spec["approvedVenueTokens"])
         if not date_found or not venue_found or date_found[1] < today.isoformat():
             continue
