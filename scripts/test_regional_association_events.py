@@ -7,6 +7,7 @@ from generic_region_events import period as generic_period
 from collect_road_events import chugoku_period
 from hokkaido_events import parse_dates
 from kanto_events import event_period
+from chubu_events import bulletin_links
 
 class DateParsingTests(unittest.TestCase):
     def test_explicit_two_day(self):
@@ -60,6 +61,15 @@ class DateParsingTests(unittest.TestCase):
     def test_kanto_explicit_year(self):
         self.assertEqual(event_period("2026年10月24日(土)",date(2026,10,1)),
                          ("2026-10-24","2026-10-24"))
+
+    def test_chubu_bulletin_discovery(self):
+        html = '<a href="/pdf/20260901event_vol103.pdf">中部イベント情報</a>'
+        self.assertEqual(bulletin_links(html, "https://www.chubu-michinoeki.org/"),
+                         ["https://www.chubu-michinoeki.org/pdf/20260901event_vol103.pdf"])
+
+    def test_chubu_ignore_external_bulletin(self):
+        html = '<a href="https://example.com/event.pdf">中部イベント情報</a>'
+        self.assertEqual(bulletin_links(html, "https://www.chubu-michinoeki.org/"), [])
 
     def test_no_dates(self):
         self.assertIsNone(_period("秋のイベント開催"))
