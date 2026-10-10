@@ -325,7 +325,7 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         from station_discovery_engine import RULES
         config=json.loads(RULES.read_text(encoding="utf-8"))
         specs=config["sources"]
-        self.assertEqual(len(specs),13)
+        self.assertGreaterEqual(len(specs),13)
         self.assertTrue({"岩手県","山形県","福島県","静岡県","山口県","愛媛県"}.issubset(
             {x["prefecture"] for x in specs}))
         _validate_sources(specs)
@@ -474,6 +474,130 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
                          date(2026,10,8))
         self.assertIsNone(_listing_posted("EVENT 2026.10.20 秋のフェスタ",TODAY))
         self.assertIsNone(_listing_posted("EVENT 10.08 秋のフェスタ",TODAY))
+
+    def test_eleven_zero_event_prefectures_have_new_official_choices(self):
+        import json
+        from station_discovery_engine import RULES
+        sources=json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+        self.assertEqual(len(sources),18)
+        expected={"山口県","福井県","大阪府","熊本県","宮崎県"}
+        self.assertTrue(expected.issubset({r["prefecture"] for r in sources}))
+        self.assertTrue(all(r["enabled"] for r in sources))
+        _validate_sources(sources)
+
+    def test_osaka_station_official_dated_table_extracts_marché(self):
+        from station_discovery_engine import _dated_station_table_records
+        spec={**TOKYO,"id":"kuromaro","prefecture":"大阪府",
+              "roadName":"奥河内くろまろの郷",
+              "listingUrl":"https://kuromaro.com/event/list/page/4/",
+              "allowedHosts":["kuromaro.com"],
+              "articlePathPattern":r"^/event/.*$",
+              "requireCategoryTokens":["バザール広場イベント"],
+              "allowedEventWords":["くろまろマルシェ"],
+              "articleMode":"dated_station_table"}
+        html="""<table><tr><th>実施日</th><th>カテゴリ</th><th>イベント名</th></tr>
+          <tr><td>2026年10月24日～10月25日</td>
+            <td>バザール広場イベント</td>
+            <td><a href="/event/124/">（全面）第25回 奥河内くろまろマルシェ 1024-1025</a></td></tr>
+          <tr><td>2026年10月25日～10月25日</td>
+            <td>周辺施設</td><td>奥河内くろまろマルシェ</td></tr>
+          </table>"""
+        result,why=_dated_station_table_records(
+            spec,soup(html),TODAY,spec["listingUrl"])
+        self.assertEqual(why,"accepted")
+        self.assertEqual(len(result),1)
+        self.assertEqual((result[0]["startDate"],result[0]["endDate"]),
+                         ("2026-10-24","2026-10-25"))
+        self.assertEqual(result[0]["roadName"],"奥河内くろまろの郷")
+
+    def test_osaka_event_list_never_guesses_year_from_numeric_title(self):
+        from station_discovery_engine import _dated_station_table_records
+        spec={**TOKYO,"id":"kuromaro","requiredVenueTokens":["奥河内"],
+              "allowedHosts":["kuromaro.com"],
+              "requireCategoryTokens":["バザール広場イベント"],
+              "allowedEventWords":["マルシェ"]}
+        html="""<table><tr><td>10月24日～25日</td>
+        <td>バザール広場イベント</td><td>マルシェ 1024-1025</td></tr></table>"""
+        result,why=_dated_station_table_records(
+            spec,soup(html),TODAY,"https://kuromaro.com/event/list/")
+        self.assertEqual(result,[])
+        self.assertEqual(why,"no_official_dated_station_rows")
+
+    def test_yamaguchi_abucho_reiwa_title_event_and_official_venue(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"roadName":"阿武町","prefecture":"山口県",
+              "articleSelector":"article","titleSelectors":["h1"],
+              "allowedEventWords":["森里海の市"],
+              "requiredVenueTokens":["道の駅阿武町"],"requireVenueLabel":True}
+        html="""<article>
+          <h1>令和8年10月11日(日)第48回森里海の市を開催します。</h1>
+          <h2>開催日</h2><p>開催日：令和8年10月11日(日)</p>
+          <p>開催場所：道の駅阿武町</p></article>"""
+        rec,why=_article_record(spec,soup(html),"第48回森里海の市",TODAY,
+                                "https://www.abucreation.com/topics/official/")
+        self.assertEqual(why,"accepted")
+        self.assertEqual(rec["startDate"],"2026-10-11")
+
+    def test_yamaguchi_not_only_a_recruitment_notice(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"roadName":"阿武町",
+              "articleSelector":"article","titleSelectors":["h1"],
+              "allowedEventWords":["森里海の市"],
+              "requiredVenueTokens":["道の駅阿武町"],"requireVenueLabel":True}
+        html="""<article><h1>森里海の市 出店者募集</h1>
+           <p>開催日：令和8年10月11日(日)</p>
+           <p>開催場所：道の駅阿武町</p></article>"""
+        rec,why=_article_record(spec,soup(html),"募集",TODAY,URL)
+        self.assertIsNone(rec)
+
+    def test_kumamoto_tourism_detail_stated_station_venue(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"articleSelector":"article",
+              "titleSelectors":["h1"],"dateSelectors":"p,tr,td",
+              "requiredVenueTokens":["道の駅あそ望の郷くぎの"],
+              "allowedEventWords":["青空レストラン"],"requireVenueLabel":True,
+              "roadName":"あそ望の郷くぎの","prefecture":"熊本県"}
+        html="""<article><h1>第11回 南阿蘇の青空レストラン</h1>
+          <table><tr><th>日時</th><td>2026年10月12日（月）10:00～16:00</td></tr>
+          <tr><th>会場</th><td>道の駅あそ望の郷くぎの 芝生広場</td></tr></table></article>"""
+        rec,why=_article_record(spec,soup(html),"青空レストラン",TODAY,URL)
+        self.assertEqual(why,"accepted")
+        self.assertEqual(rec["startDate"],"2026-10-12")
+
+    def test_kumamoto_tourism_other_event_venue_rejected(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"articleSelector":"article",
+              "titleSelectors":["h1"],"dateSelectors":"p,tr,td",
+              "requiredVenueTokens":["道の駅あそ望の郷くぎの"],
+              "allowedEventWords":["青空レストラン"],"requireVenueLabel":True}
+        html="""<article><h1>青空レストラン</h1>
+          <p>協力：道の駅あそ望の郷くぎの</p>
+          <table><tr><th>日時</th><td>2026年10月12日（月）</td></tr>
+          <tr><th>会場</th><td>別会場 熊本市ホール</td></tr></table></article>"""
+        rec,why=_article_record(spec,soup(html),"青空レストラン",TODAY,URL)
+        self.assertEqual((rec,why),(None,"offsite"))
+
+    def test_miyazaki_r8_11month_event_year_from_paragraph(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"articleSelector":"article",
+              "titleSelectors":["h1"],"allowedEventWords":["蕎麦打ち"],
+              "requiredVenueTokens":["NiQLL"],"allowExplicitDatedParagraph":True}
+        html="""<article><h1>〖NiQLLキッチン〗11月 秋の蕎麦打ち体験</h1>
+          <p>R8 11月10日(火)NiQLLキッチン「秋の蕎麦打ち体験」開催！</p>
+          </article>"""
+        rec,why=_article_record(spec,soup(html),"蕎麦打ち",TODAY,URL)
+        self.assertEqual(why,"accepted")
+        self.assertEqual(rec["startDate"],"2026-11-10")
+
+    def test_miyazaki_undated_class_announcement_not_event_period(self):
+        from station_discovery_engine import _article_record
+        spec={**TOKYO,"articleSelector":"article",
+              "titleSelectors":["h1"],"allowedEventWords":["蕎麦打ち"],
+              "requiredVenueTokens":["NiQLL"],"allowExplicitDatedParagraph":True}
+        html="""<article><h1>NiQLL 秋の蕎麦打ち体験</h1>
+          <p>日程詳細は後日ご案内いたします</p></article>"""
+        rec,why=_article_record(spec,soup(html),"蕎麦打ち",TODAY,URL)
+        self.assertEqual((rec,why),(None,"undated"))
 
 if __name__ == "__main__":
     unittest.main()
