@@ -1,7 +1,7 @@
 """Offline regression tests for conservative collection-gap monitoring."""
 import unittest
 
-from road_event_gap_monitor import make_report, render_dashboard
+from road_event_gap_monitor import make_report, render_dashboard, parse_app_station_master
 
 TODAY = "2026-10-11"
 
@@ -170,6 +170,47 @@ class GapMonitorTests(unittest.TestCase):
         self.assertIn("開催日不明のマルシェ", text)
         self.assertIn("駅マスタ未接続", text)
         self.assertIn("47", text)
+
+    def test_in_app_master_json_assignment_is_parsed_without_running_js(self):
+        text = ('window.DATA_META={"roadStations":2};\n'
+                'window.APP_DATA={"meta":{"roadStations":2,"generated":"2026-10-04"},'
+                '"roads":[{"id":"RS001","prefecture":"東京都","name":"八王子滝山"},'
+                '{"id":"RS002","prefecture":"北海道","name":"たきかわ"}]};\n')
+        parsed = parse_app_station_master(text)
+        self.assertEqual(len(parsed["stations"]), 2)
+        self.assertEqual(parsed["stations"][0]["roadName"], "八王子滝山")
+        self.assertEqual(parsed["generated"], "2026-10-04")
+        self.assertRaises(ValueError, parse_app_station_master,
+                          text.replace('"roadStations":2,"generated"',
+                                       '"roadStations":3,"generated"'))
+        self.assertRaises(ValueError, parse_app_station_master,
+                          text.replace('"id":"RS002"', '"id":"RS001"'))
+
+    def test_in_app_master_exposes_no_dedicated_source_without_claiming_blindness(self):
+        station_master = {
+            "generated": "2026-10-04", "version": "2.8.20",
+            "stations": [
+                {"id": "RS001", "prefecture": "東京都", "roadName": "八王子滝山"},
+                {"id": "RS002", "prefecture": "北海道", "roadName": "たきかわ"},
+                {"id": "RS003", "prefecture": "東京都", "roadName": "東京もう一つの駅"},
+            ],
+        }
+        report = make_report(
+            {"checkedOn": TODAY, "sources": [source()]},
+            self.config(), self.coverage(), {"notReconfirmed": []},
+            {"sources": []}, today=TODAY, station_master=station_master)
+        self.assertEqual(report["summary"]["appMasterStations"], 3)
+        self.assertEqual(report["summary"]["appMasterWithDedicatedSource"], 1)
+        self.assertEqual(report["summary"]["appMasterWithoutDedicatedSource"], 2)
+        self.assertEqual(report["summary"]["appMasterCurrentlyPublishedStations"], 2)
+        self.assertEqual(report["appMasterStations"][1]["status"],
+                         "published_by_other_collectors")
+        self.assertEqual(report["appMasterStations"][2]["status"],
+                         "no_dedicated_source")
+        dashboard = render_dashboard(report)
+        self.assertIn("アプリ内駅マスタと個別公式収集先の照合", dashboard)
+        self.assertIn("地域連絡会などから拾える場合", dashboard)
+        self.assertIn("東京もう一つの駅", str(report["appMasterStations"]))
 
     def test_unconfirmed_items_are_retained_as_review_only(self):
         record = {"roadName": "阿武町", "title": "森里海の市",
