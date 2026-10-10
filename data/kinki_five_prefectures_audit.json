@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "prefecture": "福井県",
+      "roadName": "若狭美浜はまびより",
+      "url": "https://hamabiyori.com/events/",
+      "listingError": "",
+      "candidates": 0,
+      "checked": 0,
+      "accepted": 0,
+      "past": 0,
+      "undated": 0,
+      "venueMismatch": 0,
+      "failed": 0,
+      "examples": [],
+      "undatedExamples": []
+    },
+    {
+      "prefecture": "京都府",
+      "roadName": "和",
+      "url": "https://wachi-nagomi.com/topics/category/event/",
+      "listingError": "",
+      "candidates": 7,
+      "checked": 7,
+      "accepted": 3,
+      "past": 3,
+      "undated": 1,
+      "venueMismatch": 0,
+      "failed": 0,
+      "examples": [
+        {
+          "title": "<坂原アグリ主催>黒大豆枝豆もぎとり収穫体験のご案内(2026年10/16〜11/3)",
+          "start": "2026-10-16",
+          "end": "2026-11-03",
+          "url": "https://wachi-nagomi.com/topics/post-10529/"
+        },
+        {
+          "title": "10/10[土] 〜12[月] 3連休 道の駅 和イベント案内",
+          "start": "2026-10-10",
+          "end": "2026-10-12",
+          "url": "https://wachi-nagomi.com/topics/post-10488/"
+        },
+        {
+          "title": "10/11『いととめのぼたもち』実演販売",
+          "start": "2026-10-11",
+          "end": "2026-10-11",
+          "url": "https://wachi-nagomi.com/topics/itotome/"
+        }
+      ],
+      "undatedExamples": [
+        {
+          "title": "イベント情報なども掲載↑",
+          "url": "https://wachi-nagomi.com/topics/business-day-calendar/"
+        }
+      ]
+    },
+    {
+      "prefecture": "京都府",
+      "roadName": "京丹波 味夢の里",
+      "url": "https://ajim.info/",
+      "listingError": "",
+      "candidates": 3,
+      "checked": 3,
+      "accepted": 2,
+      "past": 1,
+      "undated": 0,
+      "venueMismatch": 0,
+      "failed": 0,
+      "examples": [
+        {
+          "title": "10月24日(土)『味夢の里 黒豆の枝豆祭り』を開催します!",
+          "start": "2026-10-24",
+          "end": "2026-10-24",
+          "url": "https://ajim.info/info/details.php?id=98"
+        },
+        {
+          "title": "11月15日(日)『あんマルシェ2026&譲渡会』を開催します!",
+          "start": "2026-11-15",
+          "end": "2026-11-15",
+          "url": "https://ajim.info/info/details.php?id=154"
+        }
+      ],
+      "undatedExamples": []
+    },
+    {
+      "prefecture": "大阪府",
+      "roadName": "いずみ山愛の里",
+      "url": "https://izuminambu-rc.jp/",
+      "listingError": "",
+      "candidates": 0,
+      "checked": 0,
+      "accepted": 0,
+      "past": 0,
+      "undated": 0,
+      "venueMismatch": 0,
+      "failed": 0,
+      "examples": [],
+      "undatedExamples": []
+    },
+    {
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='michi-no-eki-crosswaynakamachi.pref.nara.jp', port=443): Max retries exceeded with url: /newslist (Caused by ConnectTimeoutError(<HTTP",
+      "candidates": 0,
+      "checked": 0,
+      "accepted": 0,
+      "past": 0,
+      "undated": 0,
+      "venueMismatch": 0,
+      "failed": 0,
+      "examples": [],
+      "undatedExamples": []
+    },
+    {
+      "prefecture": "和歌山県",
+      "roadName": "ねごろ歴史の丘",
+      "url": "https://www.negororekishinooka.jp/",
+      "listingError": "",
+      "candidates": 0,
+      "checked": 0,
+      "accepted": 0,
+      "past": 0,
+      "undated": 0,
+      "venueMismatch": 0,
+      "failed": 0,
+      "examples": [],
+      "undatedExamples": []
+    }
+  ],
+  "accepted": 5
+}
