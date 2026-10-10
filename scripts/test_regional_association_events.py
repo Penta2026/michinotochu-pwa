@@ -525,6 +525,15 @@ class DateParsingTests(unittest.TestCase):
         self.assertEqual(len(records),4)
         self.assertEqual(audit["collapsedStatusBadgeDuplicates"]["collected"],0)
 
+    def test_pdf_multiple_bracketed_events_do_not_collapse(self):
+        base={"prefecture":"三重県","roadName":"飯高駅",
+              "title":"【物産展】秋の催し",
+              "url":"https://official.example/events.pdf",
+              "startDate":"2026-10-24","endDate":"2026-10-25"}
+        other=dict(base,title="【体験会】秋の催し")
+        result,_=reconcile([],[base,other],date(2026,10,11))
+        self.assertEqual(len(result),2)
+
     def test_new_is_preserved_inside_actual_event_name(self):
         base={"prefecture":"北海道","roadName":"樹海ロード日高",
               "title":"NEW YEAR マルシェ",
