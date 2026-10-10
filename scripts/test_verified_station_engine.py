@@ -104,6 +104,18 @@ class VerifiedArticleReconfirmationTests(unittest.TestCase):
         self.assertEqual(len(final),1)
         self.assertEqual(len(quality["notReconfirmed"]),1)
 
+    def test_recent_fukui_miyazaki_reconfirm_registry_urls(self):
+        import json
+        from verified_station_engine import RULES as REGISTERED
+        rules=json.loads(REGISTERED.read_text(encoding="utf-8"))["sources"]
+        fukui={"prefecture":"福井県","roadName":"南えちぜん山海里",
+               "url":"https://kineno-nanjo.com/info/news/post-5318/"}
+        miyazaki={"prefecture":"宮崎県","roadName":"都城NiQLL",
+                  "url":"https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%9111%e6%9c%88%e3%80%80%e7%a7%8b%e3%81%ae%e8%95%8e%e9%ba%a6%e6%89%93%e3%81%a1%e4%bd%93%e9%a8%93/"}
+        self.assertEqual(_rule_for(fukui,rules)["id"],"fukui_sankairi")
+        self.assertEqual(_rule_for(miyazaki,rules)["id"],"miyazaki_niqll")
+        self.assertIsNone(_rule_for({**miyazaki,"url":"https://evil.example/event/"},rules))
+
     def test_unmatched_rule_never_creates_event(self):
         fake=dict(KASAMA,prefecture="東京都")
         recovered,audit=reconfirm_known_articles(
