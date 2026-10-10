@@ -338,6 +338,67 @@ def _official_program_records(spec, soup, today, url):
     return list(unique.values()), "accepted" if unique else "no_grounded_program_event"
 
 
+MONTHLY_HEADING = re.compile(r"(20[0-9]{2})年\s*([0-9]{1,2})月\s*道の駅イベントのご案内")
+MONTHLY_DAY = re.compile(r"^([0-9]{1,2})月\s*([0-9]{1,2})日\s*[\(（]([月火水木金土日])")
+MONTHLY_OFFSITE = ("道の駅外", "市役所", "ホールで開催", "川の駅で", "町民会館", "別会場")
+
+def _monthly_calendar_records(spec, soup, today, url):
+    """Parse individually titled, explicitly day-dated notices on station pages.
+
+    The year and month come from this very article's event-program heading.
+    Never make one all-month event or infer missing weekdays from today.
+    """
+    article = _pick_article(soup, spec)
+    if article is None:
+        return [], "no_article"
+    lines = [clean(x) for x in article.get_text("\n", strip=True).splitlines()]
+    heading = next((x for x in lines[:20] if MONTHLY_HEADING.search(x)), "")
+    match = MONTHLY_HEADING.search(heading)
+    if not match:
+        return [], "no_grounded_program_year"
+    year, month = int(match.group(1)), int(match.group(2))
+    if not 1 <= month <= 12:
+        return [], "invalid_program_month"
+    try:
+        grounding = date(year, month, 1)
+    except ValueError:
+        return [], "invalid_program_month"
+    if not any(token in heading for token in ("道の駅イベント",)):
+        return [], "venue_missing"
+    posted = _publication(soup, spec, heading, today)
+    events = []
+    for i, line in enumerate(lines):
+        dm = MONTHLY_DAY.match(line)
+        if not dm or int(dm.group(1)) != month or i == 0:
+            continue
+        title = lines[i - 1].strip("『』「」 　")
+        if not 3 <= len(title) <= 85 or MONTHLY_DAY.match(title):
+            continue
+        if any(w in title for w in BLOCK):
+            continue
+        if not any(w in title for w in spec.get("monthlyEventWords", EVENT_WORDS)):
+            continue
+        period = _period(line, grounding)
+        if not period or period[1] < today.isoformat():
+            continue
+        # The following description must be part of this single event and
+        # must not positively identify a different venue.
+        segment = []
+        for nxt in lines[i+1:i+9]:
+            if MONTHLY_DAY.match(nxt):
+                break
+            segment.append(nxt)
+        context = clean(" ".join(segment))
+        if any(w in context for w in MONTHLY_OFFSITE):
+            continue
+        events.append({"roadName":spec["roadName"],"prefecture":spec["prefecture"],
+                       "title":title,"startDate":period[0],"endDate":period[1],
+                       "publishedAt":posted.isoformat() if posted else "",
+                       "url":url,"status":"scheduled"})
+    unique = {(x["url"],x["title"],x["startDate"],x["endDate"]):x for x in events}
+    return list(unique.values()), "accepted" if unique else "no_individually_dated_monthly_events"
+
+
 def _fetch(url):
     r = requests.get(url, headers=HEADERS, timeout=(4, 9), allow_redirects=False)
     r.raise_for_status()
@@ -383,7 +444,7 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
         summary["candidates"] = len(links)
         for url, text in links.items():
             mode = spec.get("articleMode")
-            multi = mode in ("dated_sections", "official_station_program")
+            multi = mode in ("dated_sections", "official_station_program", "monthly_calendar_article")
             if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
@@ -399,6 +460,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             if multi:
                 if mode == "official_station_program":
                     found, why = _official_program_records(spec, detail, today, url)
+                elif mode == "monthly_calendar_article":
+                    found, why = _monthly_calendar_records(spec, detail, today, url)
                 else:
                     found, why = _section_records(spec, detail, today, url)
                 # With several events per article, URL-level dedup is unsafe:
