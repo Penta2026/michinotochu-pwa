@@ -333,6 +333,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "あそ望の郷くぎの",
+      "prefecture": "熊本県",
+      "title": "第11回 南阿蘇の青空レストラン",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-12",
+      "publishedAt": "",
+      "url": "https://minamiaso.info/event/?cm=10&cy=2026",
+      "status": "scheduled"
+    },
+    {
       "roadName": "マチテラス日進",
       "prefecture": "愛知県",
       "title": "●10月12日(月・祝)10:00~15:00(※予定) 【秋だ!フェスだ!運動だ!】マチテラス日進で大人も子どもも体を動かそう!",
@@ -483,6 +493,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "ひまわり",
+      "prefecture": "長崎県",
+      "title": "バイクイベント開催 10月18日(日)",
+      "startDate": "2026-10-18",
+      "endDate": "2026-10-18",
+      "publishedAt": "2026-10-07",
+      "url": "https://michinoeki-himawari.com/news/",
+      "status": "scheduled"
+    },
+    {
       "roadName": "笠岡ベイファーム",
       "prefecture": "岡山県",
       "title": "【笠岡ベイファーム】道の駅 笠岡ベイファーム 15周年感謝祭！10月18日（日）9:30～15:00",
@@ -540,6 +560,16 @@
       "endDate": "2026-10-24",
       "publishedAt": "2026-10-04",
       "url": "https://ajim.info/info/details.php?id=98",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "奥河内くろまろの郷",
+      "prefecture": "大阪府",
+      "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "publishedAt": "",
+      "url": "https://kuromaro.com/event/list/page/4/",
       "status": "scheduled"
     },
     {
@@ -770,6 +800,16 @@
       "endDate": "2026-11-21",
       "publishedAt": "2026-10-03",
       "url": "https://www.izugateway.com/event/6779/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "阿武町",
+      "prefecture": "山口県",
+      "title": "令和8年11月29日(日)第49回森里海の市を開催します。",
+      "startDate": "2026-11-29",
+      "endDate": "2026-11-29",
+      "publishedAt": "",
+      "url": "https://www.abucreation.com/topics/%e4%bb%a4%e5%92%8c6%e5%b9%b410%e6%9c%8813%e6%97%a5%ef%bc%88%e6%97%a5%ef%bc%89%e7%ac%ac30%e5%9b%9e%e6%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99/",
       "status": "scheduled"
     }
   ],

@@ -234,6 +234,11 @@
           "reason": "no_individually_dated_sections"
         },
         {
+          "title": "オリジナル海鮮丼コンテスト開催!",
+          "url": "https://sakuas.com/event/4441/",
+          "reason": "no_individually_dated_sections"
+        },
+        {
           "title": "3周年祭🎉",
           "url": "https://sakuas.com/event/4457/",
           "reason": "no_individually_dated_sections"
@@ -241,11 +246,6 @@
         {
           "title": "8月イベント",
           "url": "https://sakuas.com/event/4382/",
-          "reason": "no_individually_dated_sections"
-        },
-        {
-          "title": "7月後半イベント",
-          "url": "https://sakuas.com/event/4361/",
           "reason": "no_individually_dated_sections"
         }
       ]
@@ -307,9 +307,9 @@
       "fetchFailed": 0,
       "reasons": {
         "undated": 4,
-        "not_event": 2,
         "offsite": 1,
-        "past": 1
+        "past": 1,
+        "not_event": 2
       },
       "examples": [],
       "rejectedExamples": [
@@ -317,11 +317,6 @@
           "title": "風の丘の空ノ市 日程:9月27日(日) 時間:10時~15時",
           "url": "https://kazenooka.tonofurusato.jp/news/%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%ae%e7%a9%ba%e3%83%8e%e5%b8%82-9%e6%9c%88%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%909%e6%9c%8827%e6%97%a5%e6%97%a5%e3%80%91/",
           "reason": "undated"
-        },
-        {
-          "title": "日本のふるさと遠野まつり 期 間:9月9日(水)~10月4日(日) 場 所:エントランスホール",
-          "url": "https://kazenooka.tonofurusato.jp/news/%e4%bc%81%e7%94%bb%e5%b1%95%e7%a4%ba%e3%80%8e%e6%97%a5%e6%9c%ac%e3%81%ae%e3%81%b5%e3%82%8b%e3%81%95%e3%81%a8%e9%81%a0%e9%87%8e%e3%81%be%e3%81%a4%e3%82%8a%e3%80%8f%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89/",
-          "reason": "not_event"
         },
         {
           "title": "お散歩ついでにマルシェ 開催日:9月13日(日) 日 時:10:00~15:00",
@@ -337,6 +332,11 @@
           "title": "遠野風の丘フードマルシェ 日程:9月6日(日) 10:00~16:00",
           "url": "https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%83%95%e3%83%bc%e3%83%89%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a7%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%829%e6%9c%886%e6%97%a5%e6%97%a5/",
           "reason": "undated"
+        },
+        {
+          "title": "遠野風の丘夏休みフェア 期間:8/1(土)~8/16(日)",
+          "url": "https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e5%a4%8f%e4%bc%91%e3%81%bf%e3%83%95%e3%82%a7%e3%82%a2%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%908%e6%9c%881%e6%97%a5%ef%bd%9e8%e6%9c%8816/",
+          "reason": "past"
         }
       ]
     },
@@ -376,8 +376,8 @@
       "fetchFailed": 0,
       "reasons": {
         "venue_missing": 2,
-        "not_event": 4,
-        "past": 4
+        "past": 4,
+        "not_event": 4
       },
       "examples": [],
       "rejectedExamples": [
@@ -387,9 +387,9 @@
           "reason": "venue_missing"
         },
         {
-          "title": "EVENT 2026.09.22 【9/26(土)・27(日)秋のハンドメイド雑貨市】",
-          "url": "https://m-fukushima.com/info/695",
-          "reason": "not_event"
+          "title": "EVENT 2026.10.05 【11/1(日)】福島おおざそうインター工業団地とロボット見学会",
+          "url": "https://m-fukushima.com/info/698",
+          "reason": "venue_missing"
         },
         {
           "title": "EVENT 2026.09.22 【10/3(土)・4(日)海の幸サンマまつり】",
@@ -491,14 +491,21 @@
       "listingError": "",
       "candidates": 10,
       "checked": 8,
-      "accepted": 0,
+      "accepted": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "reasons": {
-        "venue_missing": 4,
+        "venue_missing": 3,
         "not_event": 4
       },
-      "examples": [],
+      "examples": [
+        {
+          "title": "令和8年11月29日(日)第49回森里海の市を開催します。",
+          "start": "2026-11-29",
+          "end": "2026-11-29",
+          "url": "https://www.abucreation.com/topics/%e4%bb%a4%e5%92%8c6%e5%b9%b410%e6%9c%8813%e6%97%a5%ef%bc%88%e6%97%a5%ef%bc%89%e7%ac%ac30%e5%9b%9e%e6%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99/"
+        }
+      ],
       "rejectedExamples": [
         {
           "title": "2026/10/01 令和8年10月11日(日)第48回森里海の市を開催します!! 令和8年10月11日(日)第48回森里海の市を開催します。 当日は道の駅阿武町大創業祭も開催されます。 先着300名",
@@ -511,19 +518,19 @@
           "reason": "venue_missing"
         },
         {
-          "title": "2026/06/05 ♨鹿島の湯より回数券販売のお知らせ。",
-          "url": "https://www.abucreation.com/topics/%e8%87%a8%e6%99%82%e4%bc%91%e6%a5%ad%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
-          "reason": "not_event"
-        },
-        {
           "title": "2025/04/28 7/6(土)第6回 ABUスイムラン道の駅フェスタ2025。森里海の市とカレーフェスタも同時開催。 詳しいことは阿武町のホームページから。https://www.town.abu",
           "url": "https://www.abucreation.com/topics/7-6%e5%9c%9f%e7%ac%ac%ef%bc%96%e5%9b%9e-abu%e3%82%b9%e3%82%a4%e3%83%a0%e3%83%a9%e3%83%b3%e9%81%93%e3%81%ae%e9%a7%85%e3%83%95%e3%82%a7%e3%82%b9%e3%82%bf2025%e3%80%82%e6%a3%ae%e9%87%8c%e6%b5%b7/",
           "reason": "venue_missing"
         },
         {
-          "title": "2026/10/03 令和8年11月29日(日)第49回森里海の市を開催します。 令和8年11月29日(日)第49回森里海の市を開催します。 出店者募集中、締切は11月6日(金)です。皆様のご参加お待",
-          "url": "https://www.abucreation.com/topics/%e4%bb%a4%e5%92%8c6%e5%b9%b410%e6%9c%8813%e6%97%a5%ef%bc%88%e6%97%a5%ef%bc%89%e7%ac%ac30%e5%9b%9e%e6%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99/",
-          "reason": "venue_missing"
+          "title": "2026/06/05 ♨鹿島の湯より回数券販売のお知らせ。",
+          "url": "https://www.abucreation.com/topics/%e8%87%a8%e6%99%82%e4%bc%91%e6%a5%ad%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+          "reason": "not_event"
+        },
+        {
+          "title": "2026/04/19 道の駅各施設ゴールデンウィークの営業について 道の駅各施設及びテナントのゴールデンウィーク中の営業については下記のとおりです。多くのみなさんのご利用をお待ちしています。",
+          "url": "https://www.abucreation.com/topics/%e9%81%93%e3%81%ae%e9%a7%85%e5%90%84%e6%96%bd%e8%a8%ad%e3%82%b4%e3%83%bc%e3%83%ab%e3%83%87%e3%83%b3%e3%82%a6%e3%82%a3%e3%83%bc%e3%82%af%e3%81%ae%e5%96%b6%e6%a5%ad%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
+          "reason": "not_event"
         }
       ]
     },
@@ -535,24 +542,16 @@
       "listingError": "",
       "candidates": 152,
       "checked": 8,
-      "accepted": 1,
-      "knownSkipped": 0,
+      "accepted": 0,
+      "knownSkipped": 1,
       "fetchFailed": 0,
       "reasons": {
         "undated": 3,
         "venue_missing": 1,
-        "not_event": 1,
-        "past": 1,
-        "offsite": 1
+        "past": 2,
+        "offsite": 2
       },
-      "examples": [
-        {
-          "title": "5周年記念感謝祭",
-          "start": "2026-10-10",
-          "end": "2026-10-12",
-          "url": "https://kineno-nanjo.com/info/news/post-5318/"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": [
         {
           "title": "お知らせ 2026.10.03 5周年記念感謝祭特別記念きっぷ",
@@ -570,14 +569,14 @@
           "reason": "undated"
         },
         {
-          "title": "お知らせ 2026.08.07 お盆用菊販売",
-          "url": "https://kineno-nanjo.com/info/news/post-5249/",
-          "reason": "not_event"
-        },
-        {
           "title": "お知らせ 2026.07.25 夏の感謝祭!",
           "url": "https://kineno-nanjo.com/info/news/post-5213/",
           "reason": "undated"
+        },
+        {
+          "title": "お知らせ 2026.06.24 オリジナル日本酒 販売記念イベント",
+          "url": "https://kineno-nanjo.com/info/news/post-5170/",
+          "reason": "past"
         }
       ]
     },
@@ -589,20 +588,19 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 0,
+      "accepted": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
-      "reasons": {
-        "no_official_dated_station_rows": 1
-      },
-      "examples": [],
-      "rejectedExamples": [
+      "reasons": {},
+      "examples": [
         {
-          "title": "公式開催案内",
-          "url": "https://kuromaro.com/event/list/page/4/",
-          "reason": "no_official_dated_station_rows"
+          "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025",
+          "start": "2026-10-24",
+          "end": "2026-10-25",
+          "url": "https://kuromaro.com/event/list/page/4/"
         }
-      ]
+      ],
+      "rejectedExamples": []
     },
     {
       "id": "kumamoto_minamiaso_official_tourism",
@@ -610,13 +608,20 @@
       "roadName": "あそ望の郷くぎの",
       "listingUrl": "https://minamiaso.info/event/?cm=10&cy=2026",
       "listingError": "",
-      "candidates": 3,
-      "checked": 0,
-      "accepted": 0,
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 1,
       "knownSkipped": 0,
-      "fetchFailed": 3,
+      "fetchFailed": 0,
       "reasons": {},
-      "examples": [],
+      "examples": [
+        {
+          "title": "第11回 南阿蘇の青空レストラン",
+          "start": "2026-10-12",
+          "end": "2026-10-12",
+          "url": "https://minamiaso.info/event/?cm=10&cy=2026"
+        }
+      ],
       "rejectedExamples": []
     },
     {
@@ -627,22 +632,15 @@
       "listingError": "",
       "candidates": 13,
       "checked": 10,
-      "accepted": 1,
-      "knownSkipped": 0,
+      "accepted": 0,
+      "knownSkipped": 1,
       "fetchFailed": 0,
       "reasons": {
         "undated": 3,
         "past": 1,
-        "not_event": 5
+        "not_event": 6
       },
-      "examples": [
-        {
-          "title": "【NiQLL`sキッチン】11月 秋の蕎麦打ち体験 午前・午後の部",
-          "start": "2026-11-10",
-          "end": "2026-11-10",
-          "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%9111%e6%9c%88%e3%80%80%e7%a7%8b%e3%81%ae%e8%95%8e%e9%ba%a6%e6%89%93%e3%81%a1%e4%bd%93%e9%a8%93/"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": [
         {
           "title": "イベント 【NiQLL’sスクール】令和8年11月の講座のご案内 多目的室で開催する令和8年11月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新し",
@@ -660,14 +658,14 @@
           "reason": "undated"
         },
         {
-          "title": "未分類 R8 夏休みワークショップ 豆腐&みそ玉レシピ 2026年8月4日",
-          "url": "https://coconiqll.co.jp/r8%e3%80%80%e5%a4%8f%e4%bc%91%e3%81%bf%e3%83%af%e3%83%bc%e3%82%af%e3%82%b7%e3%83%a7%e3%83%83%e3%83%97%e3%80%80%e8%b1%86%e8%85%90%ef%bc%86%e3%81%bf%e3%81%9d%e7%8e%89%e3%83%ac%e3%82%b7%e3%83%94/",
-          "reason": "not_event"
-        },
-        {
           "title": "イベント 【NiQLL’sスクール】令和8年9月の講座のご案内 多目的室で開催する令和8年9月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新しいラ",
           "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b49%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
           "reason": "undated"
+        },
+        {
+          "title": "イベント 令和8年12月ニクルの朝市 出店募集!! 「道の駅」都城NiQLLでは毎月第3土曜日に朝市を開催しています。そこで、朝市に出店していただける方を募集します。要項をダウンロードのうえご確認いた",
+          "url": "https://coconiqll.co.jp/%e4%bb%a4%e5%92%8c8%e5%b9%b412%e6%9c%88%e3%83%8b%e3%82%af%e3%83%ab%e3%81%ae%e6%9c%9d%e5%b8%82%e3%80%80%e5%87%ba%e5%ba%97%e5%8b%9f%e9%9b%86%ef%bc%81%ef%bc%81/",
+          "reason": "not_event"
         }
       ]
     },
@@ -678,39 +676,39 @@
       "listingUrl": "https://www.city.yawatahama.ehime.jp/event/2026/",
       "listingError": "",
       "candidates": 20,
-      "checked": 8,
+      "checked": 12,
       "accepted": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "reasons": {
-        "not_event": 7,
-        "venue_missing": 1
+        "venue_missing": 1,
+        "not_event": 11
       },
       "examples": [],
       "rejectedExamples": [
+        {
+          "title": "第13回やわたはま産業まつりについて",
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2026081300028/",
+          "reason": "venue_missing"
+        },
+        {
+          "title": "交通アクセス",
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2020081800014/",
+          "reason": "not_event"
+        },
         {
           "title": "市営駐車場",
           "url": "https://www.city.yawatahama.ehime.jp/doc/2019100100020/",
           "reason": "not_event"
         },
         {
+          "title": "観光情報誌",
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2022110800019/",
+          "reason": "not_event"
+        },
+        {
           "title": "第4回 八幡浜市美術館共催展『美しい風景との出合い~二宮亮二展~』",
           "url": "https://www.city.yawatahama.ehime.jp/doc/2025122600073/",
-          "reason": "not_event"
-        },
-        {
-          "title": "八幡市×八幡浜市同時開催!令和8年8月8日「八の日」記念事業を実施します!(八日市への特別出店)",
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2026073100025/",
-          "reason": "not_event"
-        },
-        {
-          "title": "【お知らせ】第56回八幡浜みなと花火大会について",
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2026070200025/",
-          "reason": "not_event"
-        },
-        {
-          "title": "リサイクルフェア2026の開催について",
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2026081200014/",
           "reason": "not_event"
         }
       ]
@@ -721,13 +719,20 @@
       "roadName": "ひまわり",
       "listingUrl": "https://michinoeki-himawari.com/news/",
       "listingError": "",
-      "candidates": 0,
-      "checked": 0,
-      "accepted": 0,
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 1,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "reasons": {},
-      "examples": [],
+      "examples": [
+        {
+          "title": "バイクイベント開催 10月18日(日)",
+          "start": "2026-10-18",
+          "end": "2026-10-18",
+          "url": "https://michinoeki-himawari.com/news/"
+        }
+      ],
       "rejectedExamples": []
     },
     {
@@ -758,6 +763,11 @@
           "reason": "undated"
         },
         {
+          "title": "🎉🎪 シルバーウィーク期間限定! 🎪🎉 \\ キッチンカー大集合! / 2026.09.16",
+          "url": "https://tarumizuhamabira.jp/information/1276/",
+          "reason": "undated"
+        },
+        {
           "title": "\\シルバーウィーク期間限定/ 🛍️✨試飲・試食販売のお知らせ✨🛍️ 2026.09.15",
           "url": "https://tarumizuhamabira.jp/information/%ef%bc%bc%e3%82%b7%e3%83%ab%e3%83%90%e3%83%bc%e3%82%a6%e3%82%a3%e3%83%bc%e3%82%af%e6%9c%9f%e9%96%93%e9%99%90%e5%ae%9a%ef%bc%8f-%f0%9f%9b%8d%ef%b8%8f%e2%9c%a8%e8%a9%a6%e9%a3%b2%e3%83%bb%e8%a9%a6/",
           "reason": "undated"
@@ -766,14 +776,9 @@
           "title": "🎉🎵 シルバーウィークイベント開催!! 🎵🎉 2026.09.15",
           "url": "https://tarumizuhamabira.jp/information/%f0%9f%8e%89%f0%9f%8e%b5-%e3%82%b7%e3%83%ab%e3%83%90%e3%83%bc%e3%82%a6%e3%82%a3%e3%83%bc%e3%82%af%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e9%96%8b%e5%82%ac%ef%bc%81%ef%bc%81-%f0%9f%8e%b5%f0%9f%8e%89/",
           "reason": "undated"
-        },
-        {
-          "title": "【緊急告知】道の駅たるみずはまびらより特別販売イベントのお知らせ! 2026.05.30",
-          "url": "https://tarumizuhamabira.jp/information/%e3%80%90%e7%b7%8a%e6%80%a5%e5%91%8a%e7%9f%a5%e3%80%91%e9%81%93%e3%81%ae%e9%a7%85%e3%81%9f%e3%82%8b%e3%81%bf%e3%81%9a%e3%81%af%e3%81%be%e3%81%b3%e3%82%89%e3%82%88%e3%82%8a%e7%89%b9%e5%88%a5%e8%b2%a9/",
-          "reason": "undated"
         }
       ]
     }
   ],
-  "newEvents": 2
+  "newEvents": 4
 }

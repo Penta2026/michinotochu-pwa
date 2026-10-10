@@ -9,29 +9,24 @@
   },
   "summary": {
     "prefectureCount": 47,
-    "observedPrefectures": 38,
-    "zeroRegisteredPrefectures": 9,
-    "registeredEvents": 77,
+    "observedPrefectures": 42,
+    "zeroRegisteredPrefectures": 5,
+    "registeredEvents": 81,
     "targetedStationFeedPrefectures": 25,
-    "notReconfirmedEvents": 7,
+    "notReconfirmedEvents": 3,
     "unknownPrefectures": []
   },
   "priorities": {
     "reconfirm": [
-      "岩手県",
       "山形県",
-      "福島県",
-      "静岡県"
+      "福井県",
+      "宮崎県"
     ],
     "noEventsButTargetedFeed": [
       "東京都",
       "神奈川県",
-      "大阪府",
       "和歌山県",
-      "山口県",
       "愛媛県",
-      "長崎県",
-      "熊本県",
       "鹿児島県"
     ],
     "noEventsNoTargetedFeed": []
@@ -88,23 +83,20 @@
     {
       "region": "近畿",
       "prefectureCount": 7,
-      "observedPrefectures": 5,
+      "observedPrefectures": 6,
       "zeroRegisteredPrefectures": [
-        "大阪府",
         "和歌山県"
       ],
-      "registeredEventCount": 11,
+      "registeredEventCount": 12,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11
     },
     {
       "region": "中国",
       "prefectureCount": 5,
-      "observedPrefectures": 4,
-      "zeroRegisteredPrefectures": [
-        "山口県"
-      ],
-      "registeredEventCount": 8,
+      "observedPrefectures": 5,
+      "zeroRegisteredPrefectures": [],
+      "registeredEventCount": 9,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35
     },
@@ -122,13 +114,11 @@
     {
       "region": "九州・沖縄",
       "prefectureCount": 8,
-      "observedPrefectures": 5,
+      "observedPrefectures": 7,
       "zeroRegisteredPrefectures": [
-        "長崎県",
-        "熊本県",
         "鹿児島県"
       ],
-      "registeredEventCount": 5,
+      "registeredEventCount": 7,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0
     }
@@ -180,9 +170,9 @@
       "targetedStationFeeds": [
         "遠野風の丘"
       ],
-      "notReconfirmedCount": 2,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
@@ -248,9 +238,9 @@
       "targetedStationFeeds": [
         "ふくしま"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
@@ -488,9 +478,9 @@
       "targetedStationFeeds": [
         "伊豆ゲートウェイ函南"
       ],
-      "notReconfirmedCount": 3,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"
@@ -539,9 +529,9 @@
         "南えちぜん山海里",
         "若狭美浜はまびより"
       ],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
@@ -585,16 +575,18 @@
     {
       "prefecture": "大阪府",
       "reportingRegion": "近畿",
-      "eventCount": 0,
-      "observedStations": [],
-      "observedStationCount": 0,
+      "eventCount": 1,
+      "observedStations": [
+        "奥河内くろまろの郷"
+      ],
+      "observedStationCount": 1,
       "targetedStationFeeds": [
         "いずみ山愛の里",
         "奥河内くろまろの郷"
       ],
       "notReconfirmedCount": 0,
-      "state": "targeted_feed_no_registered_events",
-      "nextAction": "inspect_official_article_dates",
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
@@ -721,16 +713,18 @@
     {
       "prefecture": "山口県",
       "reportingRegion": "中国",
-      "eventCount": 0,
-      "observedStations": [],
-      "observedStationCount": 0,
+      "eventCount": 1,
+      "observedStations": [
+        "阿武町"
+      ],
+      "observedStationCount": 1,
       "targetedStationFeeds": [
         "あいお",
         "阿武町"
       ],
       "notReconfirmedCount": 0,
-      "state": "targeted_feed_no_registered_events",
-      "nextAction": "inspect_official_article_dates",
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35,
       "regionalAuditMode": "adapter"
@@ -838,16 +832,18 @@
     {
       "prefecture": "長崎県",
       "reportingRegion": "九州・沖縄",
-      "eventCount": 0,
-      "observedStations": [],
-      "observedStationCount": 0,
+      "eventCount": 1,
+      "observedStations": [
+        "ひまわり"
+      ],
+      "observedStationCount": 1,
       "targetedStationFeeds": [
         "させぼっくす９９",
         "ひまわり"
       ],
       "notReconfirmedCount": 0,
-      "state": "targeted_feed_no_registered_events",
-      "nextAction": "inspect_official_article_dates",
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"
@@ -855,16 +851,18 @@
     {
       "prefecture": "熊本県",
       "reportingRegion": "九州・沖縄",
-      "eventCount": 0,
-      "observedStations": [],
-      "observedStationCount": 0,
+      "eventCount": 1,
+      "observedStations": [
+        "あそ望の郷くぎの"
+      ],
+      "observedStationCount": 1,
       "targetedStationFeeds": [
         "あそ望の郷くぎの",
         "すいかの里植木"
       ],
       "notReconfirmedCount": 0,
-      "state": "targeted_feed_no_registered_events",
-      "nextAction": "inspect_official_article_dates",
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"
@@ -898,9 +896,9 @@
       "targetedStationFeeds": [
         "都城NiQLL"
       ],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"
