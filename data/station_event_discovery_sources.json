@@ -552,7 +552,8 @@
         "イベント"
       ],
       "maxArticles": 8,
-      "requireVenueLabel": true
+      "requireVenueLabel": true,
+      "dateSelectors": "p,li,h2,h3,td,dd,tr"
     },
     {
       "id": "miyazaki_niqll",
