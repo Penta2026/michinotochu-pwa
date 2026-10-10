@@ -235,6 +235,13 @@ def _section_records(spec, soup, today, url):
     if not any(w in body for w in spec["requiredVenueTokens"]):
         return [], "venue_missing"
     heading = _headline(soup, spec, "イベント案内")
+    # Some site-specific title selectors are narrower than the article
+    # container selected for this roundup (e.g. "article h1" vs <main>).
+    # Derive the *actual local heading* for publication_date() so its scope
+    # stays within this notice. Never substitute today's year.
+    local_heading = article.select_one("h1, h2")
+    if local_heading:
+        heading = clean(local_heading.get_text(" ", strip=True))
     posted = _publication(soup, spec, heading, today)
     lines = [clean(v) for v in article.get_text("\n", strip=True).splitlines()]
     out = []
