@@ -222,6 +222,89 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
     }
 
 
+def _md(value):
+    return str(value or "").replace("|", r"\|").replace("\n", " ").replace("\r", " ").replace("\x60", "'")[:210]
+
+
+def render_dashboard(report):
+    """Small human-readable action list, deliberately labelled advisory."""
+    summary = report["summary"]
+    lines = [
+        "# 道の駅イベント・取りこぼし監視ダッシュボード",
+        "",
+        "監査日（日本時間）: **" + report["checkedOn"] + "**",
+        "",
+        "> **注意:** このページは収集漏れの「可能性」を探すための監査です。",
+        "> 未登録イベント数や全国の収集率を推定したものではありません。",
+        "> 候補は未検証であり、公式日時・会場確認前に公開登録しません。",
+        "",
+        "## 収集状況",
+        "",
+        "| 指標 | 件数 |",
+        "|---|---:|",
+        "| 累計で収集実績のある都道府県 | {}/47 |".format(
+            summary["historicalPrefecturesReached"]),
+        "| 現在イベントのある都道府県 | {}/47 |".format(
+            summary["prefecturesWithCurrentEvents"]),
+        "| 現在の公開イベント | {} |".format(summary["currentEvents"]),
+        "| 設定型の公式収集ルート（監査済/設定） | {}/{} |".format(
+            summary["phase2SourcesAudited"], summary["phase2SourcesConfigured"]),
+        "| 収集先の取得問題 | {} |".format(summary["sourcesWithFetchProblems"]),
+        "| 候補が0件の収集先 | {} |".format(summary["sourcesWithZeroCandidates"]),
+        "| 記事チェック上限に達した収集先 | {} |".format(
+            summary["sourcesAtCheckLimit"]),
+        "| 記事の要確認サンプル | {} |".format(summary["potentialReviewSamples"]),
+        "| 既存イベントの未再確認 | {} |".format(summary["unreconfirmedEvents"]),
+        "",
+        "設定型監査データの鮮度: **{}**".format(
+            "当日分" if summary["phase2AuditFresh"] else "古いか日付不明（要確認）"),
+        "",
+        "## 取得状況の注意事項",
+        "",
+    ]
+    if not report["warnings"]:
+        lines.append("現在の設定型監査で警告はありません（収集漏れがないという意味ではありません）。")
+    for item in report["warnings"][:30]:
+        target = item.get("sourceId") or item.get("region") or "監査全体"
+        lines.append("- **{}** — {} （{}）".format(
+            _md(item["kind"]), _md(target), _md(item["severity"])))
+    if len(report["warnings"]) > 30:
+        lines.append("- その他 {}件（全件はJSON参照）".format(
+            len(report["warnings"]) - 30))
+    lines += [
+        "",
+        "## 人が確認する候補（抜粋）",
+        "",
+        "以下は**不採用記事のサンプル**です。実際にイベントかどうかは未確認。",
+        "",
+        "| 県 | 駅 | 見出し | 保留理由 |",
+        "|---|---|---|---|",
+    ]
+    for entry in report["reviewCandidates"][:25]:
+        lines.append("| {} | {} | {} | {} |".format(
+            _md(entry["prefecture"]), _md(entry["roadName"]),
+            _md(entry["title"]), _md(entry["reviewReason"])))
+    if not report["reviewCandidates"]:
+        lines.append("| ― | ― | 現在のサンプルなし | ― |")
+    lines += [
+        "",
+        "## 収集先について",
+        "",
+        "- **現在登録されている駅数:** {}駅".format(summary["publishedStations"]),
+        "- **個別対象駅として設定されていない登録済み駅:** {}駅".format(
+            summary["publishedStationsWithoutDirectTarget"]),
+        "  - 地域サイト等で登録されている場合があるため、「未監視駅」とは断定できません。",
+        "- **全国すべての道の駅との照合:** 未実施（完全な駅マスタ未接続）。",
+        "- **現行イベント0件だが過去の登録実績がある県:** " +
+        ("、".join(report["historicallyReachedWithNoCurrentEvents"]) or "なし"),
+        "",
+        "詳細データ: [収集漏れ監査JSON](../data/road_event_gap_monitor.json)、"
+        "[県別収集監査JSON](../data/prefecture_event_coverage.json)",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def _load(name):
     return json.loads((DATA / name).read_text(encoding="utf-8"))
 
@@ -238,6 +321,10 @@ def main():
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != rendered:
         OUTPUT.write_text(rendered, encoding="utf-8")
+    dashboard = DATA.parent / "docs" / "ROAD_EVENT_GAP_DASHBOARD.md"
+    content = render_dashboard(report)
+    if not dashboard.exists() or dashboard.read_text(encoding="utf-8") != content:
+        dashboard.write_text(content, encoding="utf-8")
     s = report["summary"]
     print("収集漏れ監査: 設定型 {}/{}先 / 要確認候補サンプル {}件 / "
           "取得問題 {}先 / 候補0 {}先 / 検査上限 {}先 / 未再確認 {}件".format(
@@ -245,6 +332,15 @@ def main():
               s["potentialReviewSamples"], s["sourcesWithFetchProblems"],
               s["sourcesWithZeroCandidates"], s["sourcesAtCheckLimit"],
               s["unreconfirmedEvents"]))
+    # Surface genuine source-fetch and audit-freshness problems even if the
+    # collector finishes green. These are advisory, not fake event records.
+    for warning in report["warnings"]:
+        if warning["kind"] in ("source_fetch_error", "stale_discovery_audit",
+                               "configured_source_not_audited",
+                               "regional_homepage_unreachable"):
+            target = warning.get("sourceId") or warning.get("region") or "audit"
+            print("::warning title=Road event source monitor::{}: {}".format(
+                warning["kind"], target))
     # Warning findings must not fail the collection pipeline. Invalid
     # input/schema or code errors should still raise to make failure visible.
     return 0
