@@ -1246,9 +1246,8 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(_verified_official_event_detail_records(
             spec,soup(html),TODAY,url)[1],"event_title_missing")
         html=html.replace("青洲まつり","青洲まつり2026")
-        html=html.replace("10月25日","2025年10月25日")
         self.assertEqual(_verified_official_event_detail_records(
-            spec,soup(html),TODAY,url)[1],"event_invalid_or_past")
+            spec,soup(html),date(2026,10,26),url)[1],"event_invalid_or_past")
 
 if __name__ == "__main__":
     unittest.main()
