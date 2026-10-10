@@ -727,6 +727,31 @@
       "requiredEventTitle": "第13回やわたはま産業まつり",
       "articleMode": "verified_official_pdf",
       "maxArticles": 1
+    },
+    {
+      "id": "kanagawa_creativeweek_official_roadstation_art",
+      "enabled": true,
+      "prefecture": "神奈川県",
+      "roadName": "湘南ちがさき",
+      "listingUrl": "https://creativeweek.net/event-detail.php?no=37",
+      "allowedHosts": [
+        "creativeweek.net",
+        "www.creativeweek.net"
+      ],
+      "articlePathPattern": "^/event-detail\\.php$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main, article, body",
+      "titleSelectors": [
+        "h1",
+        "h2"
+      ],
+      "requiredVenueTokens": [
+        "道の駅湘南ちがさき"
+      ],
+      "requiredEventTitle": "かとうくみプレンティーズ原画展",
+      "venueProofPattern": "会場\\s*道の駅\\s*湘南ちがさき",
+      "articleMode": "verified_official_event_detail",
+      "maxArticles": 1
     }
   ]
 }
