@@ -909,5 +909,88 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(list(_links(soup(html),spec))[0],
                          "https://www.city.yawatahama.ehime.jp/doc/103/")
 
+    def test_ehime_official_pdf_grounded_title_date_and_venue(self):
+        from station_discovery_engine import _verified_official_pdf_records
+        spec={**TOKYO, "id":"ehime_pdf","prefecture":"愛媛県",
+              "roadName":"八幡浜みなっと","allowedHosts":["www.city.yawatahama.ehime.jp"],
+              "listingUrl":"https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/official.pdf",
+              "articlePathPattern":r"^/doc/2026041700097/file_contents/official\.pdf$",
+              "requiredEventTitle":"第13回やわたはま産業まつり",
+              "requiredVenueTokens":["八幡浜みなっと"],
+              "articleMode":"verified_official_pdf","maxArticles":1}
+        text="""第13回やわたはま産業まつり 開催業務委託仕様書
+        2 開催概要 第1 イベント名称
+        第13回やわたはま産業まつり
+        第8回ダルメインWorldマーマレードアワード
+        第2 開催日時
+        令和8年11月22日(日) 午前10時~午後4時
+        第3 開催場所
+        道の駅・みなとオアシス「八幡浜みなっと」
+        第4 目標入場者数 約1万2千人"""
+        records,why=_verified_official_pdf_records(spec,text,TODAY,spec["listingUrl"])
+        self.assertEqual(why,"accepted")
+        self.assertEqual(len(records),1)
+        self.assertEqual(records[0]["startDate"],"2026-11-22")
+        self.assertEqual(records[0]["roadName"],"八幡浜みなっと")
+
+    def test_ehime_official_pdf_rejects_wrong_year_or_offsite(self):
+        from station_discovery_engine import _verified_official_pdf_records
+        spec={**TOKYO, "id":"ehime_pdf","prefecture":"愛媛県",
+              "roadName":"八幡浜みなっと","allowedHosts":["www.city.yawatahama.ehime.jp"],
+              "listingUrl":"https://www.city.yawatahama.ehime.jp/doc/official.pdf",
+              "articlePathPattern":r"^/doc/official\.pdf$",
+              "requiredEventTitle":"第13回やわたはま産業まつり",
+              "requiredVenueTokens":["八幡浜みなっと"]}
+        text="""第1 イベント名称 第13回やわたはま産業まつり
+        第2 開催日時 令和7年11月22日(土)
+        第3 開催場所 道の駅・みなとオアシス「八幡浜みなっと」
+        第4 入場者数 約1000"""
+        result,why=_verified_official_pdf_records(spec,text,TODAY,spec["listingUrl"])
+        self.assertEqual(result,[])
+        self.assertEqual(why,"pdf_date_invalid_or_past")
+        text=text.replace("令和7年11月22日(土)","令和8年11月22日(日)")
+        text=text.replace("八幡浜みなっと","市民体育館")
+        self.assertEqual(_verified_official_pdf_records(
+            spec,text,TODAY,spec["listingUrl"])[1],"pdf_venue_missing")
+
+    def test_ehime_official_pdf_rejects_missing_title_and_wrong_host(self):
+        from station_discovery_engine import _verified_official_pdf_records
+        spec={**TOKYO,"id":"ehime_pdf","prefecture":"愛媛県",
+              "roadName":"八幡浜みなっと","allowedHosts":["www.city.yawatahama.ehime.jp"],
+              "listingUrl":"https://www.city.yawatahama.ehime.jp/doc/official.pdf",
+              "articlePathPattern":r"^/doc/official\.pdf$",
+              "requiredEventTitle":"第13回やわたはま産業まつり",
+              "requiredVenueTokens":["八幡浜みなっと"]}
+        text="""第1 イベント名称 無関係のバザー
+        第2 開催日時 令和8年11月22日(日)
+        第3 開催場所 八幡浜みなっと
+        第4 終了"""
+        self.assertEqual(_verified_official_pdf_records(
+            spec,text,TODAY,spec["listingUrl"])[1],"pdf_event_title_missing")
+        self.assertEqual(_verified_official_pdf_records(
+            spec,text,TODAY,"https://evil.example/doc/official.pdf")[1],"unofficial_pdf")
+
+    def test_ehime_pdf_collector_injected_text_does_not_require_html(self):
+        spec={**TOKYO,"id":"ehime_pdf","prefecture":"愛媛県",
+              "roadName":"八幡浜みなっと",
+              "listingUrl":"https://www.city.yawatahama.ehime.jp/doc/official.pdf",
+              "allowedHosts":["www.city.yawatahama.ehime.jp"],
+              "articlePathPattern":r"^/doc/official\.pdf$",
+              "articleMode":"verified_official_pdf",
+              "requiredEventTitle":"第13回やわたはま産業まつり",
+              "requiredVenueTokens":["八幡浜みなっと"],"maxArticles":1}
+        text="""第1 イベント名称 第13回やわたはま産業まつり
+        第2 開催日時 令和8年11月22日(日)
+        第3 開催場所 道の駅・みなとオアシス「八幡浜みなっと」
+        第4 備考"""
+        records,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda _: self.fail("PDF is not an HTML page"),
+            pdf_fetch=lambda url:text,report_path=None)
+        self.assertEqual(audit["newEvents"],1)
+        self.assertEqual(records[0]["startDate"],"2026-11-22")
+        records,audit=collect_configured_station_events(
+            TODAY,records,[spec],pdf_fetch=lambda url:text,report_path=None)
+        self.assertEqual((len(records),audit["newEvents"]),(0,0))
+
 if __name__ == "__main__":
     unittest.main()
