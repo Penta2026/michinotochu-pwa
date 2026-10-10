@@ -174,6 +174,14 @@ class DateParsingTests(unittest.TestCase):
         self.assertEqual(len(records),2)
         self.assertEqual(len(audit["corrected"]),0)
 
+    def test_reconcile_reports_unconfirmed(self):
+        base={"url":"https://official.example/a","roadName":"飯高駅",
+              "title":"感謝祭","startDate":"2026-10-24","endDate":"2026-10-25"}
+        other=dict(base,title="展示会")
+        records,audit=reconcile([base,other],[base],date(2026,10,10))
+        self.assertEqual(len(records),2)
+        self.assertEqual([x["title"] for x in audit["notReconfirmed"]],["展示会"])
+
     def test_no_dates(self):
         self.assertIsNone(_period("秋のイベント開催"))
 
