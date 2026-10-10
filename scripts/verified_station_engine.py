@@ -34,7 +34,7 @@ def _subject(title):
     quotes = re.findall(r"[『「]([^』」]{4,80})[』」]", t)
     # For notices like 【イベント】10/24『ハロウィンマーケット』,
     # distinguish the event from generic official category labels.
-    names = [x for x in quotes if "道の駅" not in x or len(x) <= 15]
+    names = [x for x in quotes if not re.match(r"^道の駅[\s　]+", x)]
     if names:
         t = names[-1]
     else:
