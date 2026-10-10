@@ -40,7 +40,11 @@ def _date_text(text):
     def convert(m):
         n = 1 if m.group(1) == "元" else int(m.group(1))
         return str(2018 + n) + "年"
-    return ERA.sub(convert, clean(text))
+    value = ERA.sub(convert, clean(text))
+    # Explicit Japanese "R8 11月10日" notation is year evidence.
+    # Do not infer year from a bare 11月10日.
+    return re.sub(r"(?<![A-Za-z0-9])R\s*([0-9]{1,2})\s*(?=[0-9]{1,2}月)",
+                  lambda m: str(2018 + int(m.group(1))) + "年", value)
 
 def _period(text, posted=None):
     return parse_period(_date_text(text), posted)
@@ -75,7 +79,7 @@ def _validate_sources(sources):
 
 def _links(soup, source):
     """Prefer event-looking links but preserve the listing order within tier."""
-    if source.get("articleMode") == "official_station_program":
+    if source.get("articleMode") in ("official_station_program", "dated_station_table"):
         # The official event schedule IS the article; it need not hyperlink
         # back to itself. The parser must still validate each stated date.
         return {source["listingUrl"]: "公式開催案内"}
@@ -247,9 +251,15 @@ def _article_record(source, soup, listing_title, today, url):
         for line in lines:
             if re.search(r"(?:投稿日|更新日|公開日|掲載日|受付期間|申込期限)", line):
                 continue
-            if not re.search(r"20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}", line):
+            dated = _date_text(line)
+            if not re.search(r"20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}", dated):
                 continue
-            period = _period(line, posted)
+            # Publishing metadata (not the event date) must never enter here.
+            # A full explicit event year in an event paragraph is admissible.
+            if not (any(w in line for w in terms) or
+                    re.search(r"(?:開催|日時|日程|実施日|イベント)", line)):
+                continue
+            period = _period(dated, posted)
             if period:
                 break
     if period is None:
@@ -421,6 +431,47 @@ def _monthly_calendar_records(spec, soup, today, url):
     return list(unique.values()), "accepted" if unique else "no_individually_dated_monthly_events"
 
 
+def _dated_station_table_records(spec, soup, today, url):
+    """Station-owned event-table rows with per-row year, dates and on-site category.
+
+    The table is the primary official source. We never infer a date from a
+    numeric item title (e.g. "1024") or from the surrounding page timestamp.
+    """
+    host = urlparse(url)
+    if host.hostname not in spec["allowedHosts"]:
+        return [], "unofficial_listing"
+    events = []
+    for tr in soup.select("tr"):
+        cells = tr.find_all(["td", "th"], recursive=False)
+        if len(cells) < 3:
+            continue
+        dated = clean(cells[0].get_text(" ", strip=True))
+        venue = clean(cells[1].get_text(" ", strip=True))
+        if not any(t in venue for t in spec.get("requireCategoryTokens", [])):
+            continue
+        title = clean(cells[-1].get_text(" ", strip=True))
+        if (not any(word in title for word in spec.get("allowedEventWords", EVENT_WORDS))
+                or any(w in title for w in BLOCK)):
+            continue
+        if not re.search(r"20[0-9]{2}年[0-9]{1,2}月", dated):
+            continue
+        period = _period(dated)
+        if not period or period[1] < today.isoformat():
+            continue
+        # Per-event href if offered, otherwise cite the official dated list.
+        a = cells[-1].find("a", href=True)
+        page = urljoin(url, a["href"]) if a else url
+        if not _official_url(page, spec, article=bool(a)):
+            continue
+        events.append({"roadName":spec["roadName"],"prefecture":spec["prefecture"],
+                       "title":title,"startDate":period[0],"endDate":period[1],
+                       "publishedAt":"","url":page,"status":"scheduled"})
+    seen={}
+    for e in events:
+        seen[(e["url"],e["title"],e["startDate"],e["endDate"])]=e
+    return list(seen.values()), "accepted" if seen else "no_official_dated_station_rows"
+
+
 def _fetch(url):
     r = requests.get(url, headers=HEADERS, timeout=(4, 9), allow_redirects=False)
     r.raise_for_status()
@@ -466,14 +517,15 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
         summary["candidates"] = len(links)
         for url, text in links.items():
             mode = spec.get("articleMode")
-            multi = mode in ("dated_sections", "official_station_program", "monthly_calendar_article")
+            multi = mode in ("dated_sections", "official_station_program",
+                             "monthly_calendar_article", "dated_station_table")
             if not multi and (url in known_urls or url in newly_seen):
                 summary["knownSkipped"] += 1
                 continue
             if summary["checked"] >= int(spec.get("maxArticles", 6)):
                 break
             try:
-                detail = listing if (mode == "official_station_program" and
+                detail = listing if (mode in ("official_station_program", "dated_station_table") and
                                      url == spec["listingUrl"]) else fetch(url)
             except (requests.RequestException, ValueError, AttributeError):
                 summary["fetchFailed"] += 1
@@ -482,6 +534,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             if multi:
                 if mode == "official_station_program":
                     found, why = _official_program_records(spec, detail, today, url)
+                elif mode == "dated_station_table":
+                    found, why = _dated_station_table_records(spec, detail, today, url)
                 elif mode == "monthly_calendar_article":
                     found, why = _monthly_calendar_records(spec, detail, today, url)
                 else:
