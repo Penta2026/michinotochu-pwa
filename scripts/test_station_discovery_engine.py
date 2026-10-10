@@ -1413,6 +1413,37 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
             self.assertIsNone(record)
             self.assertIn(why,("venue_missing","offsite"))
 
+    def test_rotating_archive_event_is_eventually_discovered_without_relaxing_rules(self):
+        import tempfile
+        from pathlib import Path
+        spec={**TOKYO,"id":"deep-archive","maxArticles":4}
+        listing="<main>"+"".join(
+            f'<a href="/news/{i}">秋のイベント情報 {i}</a>'
+            for i in range(100,110))+"</main>"
+        undated="""<article><h1>秋のマルシェ開催</h1>
+          <p>会場：道の駅八王子滝山</p></article>"""
+        dated="""<article><h1>秋のマルシェ開催</h1>
+          <p>開催日時：2026年11月10日(火) 10:00〜15:00</p>
+          <p>開催場所：道の駅八王子滝山</p></article>"""
+        with tempfile.TemporaryDirectory() as folder:
+            report=Path(folder)/"audit.json"
+            discoveries=[]
+            for delta in range(8):
+                d=date(2026,10,10+delta)
+                def fetch(url):
+                    if url==spec["listingUrl"]:
+                        return soup(listing)
+                    return soup(dated if url.endswith("/109") else undated)
+                found, audit = collect_configured_station_events(
+                    d, [], [spec], fetch=fetch, report_path=report)
+                discoveries.extend(found)
+                if found:
+                    break
+            self.assertEqual(len(discoveries),1)
+            self.assertTrue(discoveries[0]["url"].endswith("/109"))
+            self.assertEqual(discoveries[0]["startDate"],"2026-11-10")
+            self.assertEqual(audit["newEvents"],1)
+
     def test_prior_known_articles_do_not_use_exploration_budget(self):
         from station_discovery_engine import _plan_article_inspection
         links={f"https://www.michinoeki-hachioji.net/news/{i}":
