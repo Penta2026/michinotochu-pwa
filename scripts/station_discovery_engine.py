@@ -725,7 +725,8 @@ def _verified_official_event_detail_records(spec, soup, today, url):
     heading = clean(spec["requiredEventTitle"])
     matches = [clean(n.get_text(" ", strip=True)) for n in
                article.select("h1, h2, h3, h4")]
-    if heading not in matches:
+    if (heading not in matches and not
+            (spec.get("titleMatchContains") and any(heading in m for m in matches))):
         return [], "event_title_missing"
     body = clean(article.get_text(" ", strip=True))
     # "会場 道の駅 湘南ちがさき" belongs to the named exhibition,
@@ -736,20 +737,36 @@ def _verified_official_event_detail_records(spec, soup, today, url):
     # Event-site programme notation: "2026.10.10 SAT — 11.23 MON"
     # or "2026 10.10 SAT 11.23 MON". The end month/day must be
     # adjacent to the explicitly dated start, not a global page date.
-    dated = re.search(r"(?<![0-9])(20[0-9]{2})[.\s/-]+([0-9]{1,2})[./]([0-9]{1,2})(?![0-9])", body)
-    if dated is None:
-        return [], "event_year_missing"
-    nearby = body[dated.end():dated.end()+36]
-    second = re.search(r"([0-9]{1,2})[./]([0-9]{1,2})(?![0-9])", nearby)
-    if second is None:
-        return [], "event_range_missing"
-    try:
-        yr, m, d = [int(x) for x in dated.groups()]
-        start = date(yr, m, d)
-        endm, endd = [int(x) for x in second.groups()]
-        end = date(yr + (1 if endm < m else 0), endm, endd)
-    except ValueError:
-        return [], "event_invalid_date"
+    if spec.get("eventDateMode") == "heading_year_labeled_day":
+        # A prefecture tourism organizer's event page can print the year in
+        # the event's own heading and only a month/day in its date field.
+        # Never inherit the year from the current clock or unrelated metadata.
+        matchyear = re.search(r"20[0-9]{2}", heading)
+        matchday = re.search(
+            r"開催期間\s*([0-9]{1,2})月\s*([0-9]{1,2})日", body)
+        if matchyear is None or matchday is None:
+            return [], "event_year_or_day_missing"
+        try:
+            start = date(int(matchyear.group()), int(matchday.group(1)),
+                         int(matchday.group(2)))
+        except ValueError:
+            return [], "event_invalid_date"
+        end = start
+    else:
+        dated = re.search(r"(?<![0-9])(20[0-9]{2})[.\s/-]+([0-9]{1,2})[./]([0-9]{1,2})(?![0-9])", body)
+        if dated is None:
+            return [], "event_year_missing"
+        nearby = body[dated.end():dated.end()+36]
+        second = re.search(r"([0-9]{1,2})[./]([0-9]{1,2})(?![0-9])", nearby)
+        if second is None:
+            return [], "event_range_missing"
+        try:
+            yr, m, d = [int(x) for x in dated.groups()]
+            start = date(yr, m, d)
+            endm, endd = [int(x) for x in second.groups()]
+            end = date(yr + (1 if endm < m else 0), endm, endd)
+        except ValueError:
+            return [], "event_invalid_date"
     if end < start or (end-start).days > 90 or end < today:
         return [], "event_invalid_or_past"
     record = {"roadName":spec["roadName"],"prefecture":spec["prefecture"],
