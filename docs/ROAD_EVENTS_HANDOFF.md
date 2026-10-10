@@ -6,6 +6,20 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-10 17:13〜17:19 JST Actions #59 成功・PDF通信失敗／再確認監査の改善待ち
+
+- [Actions #59](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38037106571) **全ステップ成功**。**198テスト全件OK**。以前の収集ルート固定数テストは解消。Pages公開も成功。
+- **確定値は全国81件・42/47県・未登録5都県（東京・神奈川・和歌山・愛媛・鹿児島）のまま**。品質監査では無効0・重複候補0。ただし**未再確認は5件（前回3件）**。
+- 愛媛の新設 `verified_official_pdf`：公式PDFは `https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf`。市公式開催資料は「第13回やわたはま産業まつり／令和8年11月22日／八幡浜みなっと」の3条件を裏付けるが、**ActionsからPDF本体の取得が1件失敗**（`checked=0, fetchFailed=1`）。現行監査にはHTTP状態など例外が記録されていないので、取得できない理由を断定しない。イベント未登録。
+- 未再確認5件は山形「たかはた」、大阪「奥河内くろまろの郷」、山口「阿武町」、長崎「ひまわり」、熊本「あそ望の郷くぎの」。**福井と宮崎は厳密な公式記事再確認に成功**し、前回の未再確認から脱した。
+- 大阪・長崎・熊本は新規収集監査の `reasons.accepted=1` で、実際には公式ページから前回と**同じイベント情報を解析**できていたが、既存イベントと一致するため新規収集から除外され、品質監査でも「再確認済み」と扱われなかった。山口は既存URLをスキップする単一記事モードであるため別途再確認策が必要。
+- **#59実行後に反映したコード変更（次のActionsでの実測待ち）**：
+  - `scripts/station_discovery_engine.py`：`reconfirm_previous`を指定した場合、複数イベント収集モードで**URL・正規化タイトル・開始日・終了日がすべて前回と一致**するイベントだけ、既存レコードとして収集結果に戻し`reconfirmedEvents`と各ルート`reconfirmed`を計上。`newEvents`には含めない。異なる開催日・場所は無条件に再確認しない。従来の呼出しでは動作変更なし。
+  - `scripts/collect_road_events.py`：引数`reconfirm_previous=old`を渡して、上記の確実に一致した既存データを`road_event_quality.reconcile`に渡す。未再確認誤判定を減らす狙い。
+  - PDFの詳細取得エラーを `station_event_discovery_audit.json` 各ソースの `fetchErrors`（URL・例外名・内容の短縮）に記録。**URLの応答が403なのか404なのか等、次の本番結果を待って判定**。
+  - `scripts/test_station_discovery_engine.py`に、既存イベント同一再確認・別会場/別日拒否・PDF HTTPエラー監査の3テストを追加。**次回予定201テスト**。
+- 修正コミット：`35749ae9` エンジン、`2b4b4b95` 本番収集連携、`edd36799` 新規テスト、`f3ce7fc2` テストパス正規表現修正。**新規Run workflowが必要**。次回チェック項目は198→201テスト、`newEvents` / `reconfirmedEvents`、`fetchErrors`、未再確認件数、登録県数。
+
 ## 2026-10-10 Actions #58 失敗・公式収集ルート数のテスト修正済み（再検証待ち）
 
 - [Actions #58](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38036930198) は **198テスト中1件失敗（197成功）**で停止。失敗箇所は `test_eleven_zero_event_prefectures_have_new_official_choices` の厳密な `len(sources) == 21` 判定。愛媛のPDFルート追加で設定ファイルは**22ルート**となったため期待値が陳腐化した。
