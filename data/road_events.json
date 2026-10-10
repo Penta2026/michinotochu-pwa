@@ -23,6 +23,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "飯高駅",
+      "prefecture": "三重県",
+      "title": "●10月1日(木)~27日(火) 【展示】川瀬寿男 写真展",
+      "startDate": "2026-10-01",
+      "endDate": "2026-10-27",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
       "roadName": "滝宮",
       "prefecture": "香川県",
       "title": "【道の駅「滝宮」・綾川町うどん会館】日本伝統芸能「猿まわし」の公演を開催いたします。",
@@ -93,6 +103,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "古今伝授の里やまと",
+      "prefecture": "岐阜県",
+      "title": "●10月10日(土)〜12日(月・祝) ラックモリヤマ商店自然食品販売",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-12",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
       "roadName": "西いなば気楽里",
       "prefecture": "鳥取県",
       "title": "【西いなば気楽里】ミルクフェアを開催いたします！ １０月１０日(土)１１時～、１４時～",
@@ -110,6 +130,16 @@
       "endDate": "2026-10-10",
       "publishedAt": "2026-09-10",
       "url": "https://nishiinaba.jp/pages/47/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "マチテラス日進",
+      "prefecture": "愛知県",
+      "title": "●10月12日(月・祝)10:00~15:00(※予定) 【秋だ!フェスだ!運動だ!】マチテラス日進で大人も子どもも体を動かそう!",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-12",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
       "status": "scheduled"
     },
     {
@@ -163,6 +193,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "古今伝授の里やまと",
+      "prefecture": "岐阜県",
+      "title": "●10月17日(土)・18日(日) とんぼ玉販売",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
       "roadName": "笠岡ベイファーム",
       "prefecture": "岡山県",
       "title": "【笠岡ベイファーム】道の駅 笠岡ベイファーム 15周年感謝祭！10月18日（日）9:30～15:00",
@@ -190,6 +230,16 @@
       "endDate": "2026-10-24",
       "publishedAt": "2026-10-09",
       "url": "https://eki.bingofuchu.jp/information/20261002",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "飯高駅",
+      "prefecture": "三重県",
+      "title": "●10月24日(土)・25日(日)※ガラガラ抽選券配布期間:10月10日(土)~25日(日)14:00まで 飯高駅 感謝祭",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
       "status": "scheduled"
     },
     {
@@ -233,6 +283,16 @@
       "status": "scheduled"
     },
     {
+      "roadName": "古今伝授の里やまと",
+      "prefecture": "岐阜県",
+      "title": "●10月26日(月) 風呂の日 やまと温泉やすらぎ館をお得に楽しめます。",
+      "startDate": "2026-10-26",
+      "endDate": "2026-10-26",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
       "roadName": "飯高駅",
       "prefecture": "三重県",
       "title": "●10月29日(木)~11月24日(火) 【展示】田中三津子 人形展",
@@ -256,6 +316,16 @@
       "roadName": "マチテラス日進",
       "prefecture": "愛知県",
       "title": "●10月31日(土) 【ミュージックテラスvol.2】マルシェあり、ライブありの文化祭をたのしもう!",
+      "startDate": "2026-10-31",
+      "endDate": "2026-10-31",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "古今伝授の里やまと",
+      "prefecture": "岐阜県",
+      "title": "●10月31日(土) まめなかマルシェ ハロウィンバージョン",
       "startDate": "2026-10-31",
       "endDate": "2026-10-31",
       "publishedAt": "",
@@ -290,6 +360,36 @@
       "endDate": "2026-11-01",
       "publishedAt": "",
       "url": "https://yunoeki-oyu.jp/information/kuromanta-rock-fes/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "飯高駅",
+      "prefecture": "三重県",
+      "title": "●~11月17日(火) 【展示】",
+      "startDate": "2026-11-17",
+      "endDate": "2026-11-17",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "飯高駅",
+      "prefecture": "三重県",
+      "title": "●~11月30日(月) NWR166スタンプラリー",
+      "startDate": "2026-11-30",
+      "endDate": "2026-11-30",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "飯高駅",
+      "prefecture": "三重県",
+      "title": "●~12月3日(木) [レストラン]秋限定メニュー",
+      "startDate": "2026-12-03",
+      "endDate": "2026-12-03",
+      "publishedAt": "",
+      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
       "status": "scheduled"
     }
   ],
