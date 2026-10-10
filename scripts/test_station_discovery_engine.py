@@ -204,6 +204,21 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(_article_record(spec,soup(html),"秋のマルシェ",TODAY,URL),
                          (None,"venue_missing"))
 
+    def test_osaka_shared_site_onsite_lobby_is_strictly_verified(self):
+        spec={**TOKYO,"id":"osaka_shared","roadName":"いずみ山愛の里",
+              "prefecture":"大阪府",
+              "requiredVenueTokens":["南部リージョンセンター"],
+              "allowExplicitDatedParagraph":True,
+              "requireVenueLabel":True,
+              "venueProofPattern":r"南部リージョンセンタ[ー-].{0,35}(?:1階|ロビ[ー-])"}
+        article=soup("""<article><h1>いずみの山の小さなマルシェ10月</h1>
+           <time datetime="2026-10-02">2026年10月2日</time>
+           <p>2026年10月18日（日）10:00～16:00</p>
+           <p>和泉市南部リージョンセンタ－　１階ロビ－</p></article>""")
+        result,why=_article_record(spec,article,"マルシェ",TODAY,URL)
+        self.assertEqual(why,"accepted")
+        self.assertEqual(result["startDate"],"2026-10-18")
+
     def test_wakayama_multi_notice_extracts_two_independently_dated_events(self):
         from station_discovery_engine import _section_records
         spec={**TOKYO,"id":"sakuas","prefecture":"和歌山県",
