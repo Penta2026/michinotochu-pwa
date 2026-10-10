@@ -1032,8 +1032,9 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
         print(f"設定型新規収集 {spec['prefecture']} {spec['roadName']}: "
               f"候補={summary['candidates']} 新規採用={summary['accepted']} "
               f"既存URL={summary['knownSkipped']} 取得失敗={summary['fetchFailed']}")
-    audit = {"schemaVersion": 1, "sources": summaries,
-             "newEvents": new_count, "reconfirmedEvents": reconfirmed_count}
+    audit = {"schemaVersion": 1, "checkedOn": today.isoformat(),
+             "sources": summaries, "newEvents": new_count,
+             "reconfirmedEvents": reconfirmed_count}
     if report_path is not None:
         payload = json.dumps(audit, ensure_ascii=False, indent=2) + "\n"
         if not report_path.exists() or report_path.read_text(encoding="utf-8") != payload:
