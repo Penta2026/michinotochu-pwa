@@ -1,10 +1,26 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-11 Actions #67 本番成功**（228テスト全件OK、累計47/47県・現行44県/78イベント。1,234駅マスタ照合と収集漏れ監視ダッシュボード稼働）  
+更新基準: **2026-10-11 Actions #67 確定＋Phase 4実装**（累計47/47県・現行44県/78イベント。新着優先・日替わり巡回・236テストは次回Actions未検証）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-11 Phase 4・収集精度向上（新着優先＋日替わり巡回、**次回Actions検証待ち**）
+
+- **基準**：Actions #67 228件全件OK、累計47/47県、現行44/47県・78イベント、個別27ソース、道の駅マスタ1,234駅、未再確認3件。検知したボトルネック：記事確認上限11ソース、要確認43サンプル。**今回の実装で新規イベントが増えたとはまだ断定しない**。
+- `scripts/station_discovery_engine.py`：
+  - 一覧の見出しに**西暦年/月/日と開催等の文言が隣接する記事を優先**。`_listing_date_priority`は取得の優先度だけを変え、投稿日そのものをイベント日として採用することはない。
+  - 記事数が`maxArticles`を超える場合、たとえば上限8件なら**優先記事6件＋日替わり巡回2件**を確認。`_plan_article_inspection`で残り候補を循環選択。福井「南えちぜん山海里」152候補/詳細8件のような長いアーカイブで先頭記事だけを再取得する偏りを緩和。
+  - `data/station_event_discovery_audit.json`に`eligibleCandidates`、`uninspectedCandidates`、`explorationStart`、`explorationNext`、`explorationSlots`、`explorationPool`を永続化。**同日複数回のRun workflowは同じ巡回位置、翌日以降は次の候補から**。既存URLを詳細チェック上限枠に含めない。固定URLの公式イベントモードは巡回対象にしない。
+  - 監査に保存する拒否記事のサンプル上限を各ソース**5→16件**に拡張。ただし採用基準（開催日・道の駅の会場・終了日・公式ホストなど）は一切緩めない。
+- `scripts/road_event_gap_monitor.py`：
+  - 新エンジンの**未調査候補件数**を監査して、残り何件に確認が必要か数値化。`sourcesUsingRotatingInspection`／`rotatingInspectionSlots`も表示。`article_check_limit`警告は本当に上限外の候補が残る場合に出す。
+  - 要確認記事の見出しを`future_schedule_hint`／`past_schedule_hint`／`unknown_date`に分け、**明確な開催予定の候補を先に**、古い可能性が高い記事を後に表示。日時の完全な確認は従来どおり本文を参照するため、見出しから勝手に公開登録しない。
+  - 本番ダッシュボード `docs/ROAD_EVENT_GAP_DASHBOARD.md` は次回Actionsで自動更新。初回 #67 で生成した43サンプルは直ちに消さない。新規監査結果で順位や件数が変わる。
+- **回帰テスト8件追加**：`scripts/test_station_discovery_engine.py`に**5件**（将来日付き見出しの順位／同日同じ巡回／翌日の巡回先変更／アーカイブ深部の催事発見／会場条件を維持／旧URLを枠除外を包括）、`scripts/test_road_event_gap_monitor.py`に**3件**（将来・過去候補の分別／投稿日時の誤認抑制／実測未調査件数）。前回228＋8＝**次回236テスト予定**。
+- **未実測**：新しい巡回により本当に何件のイベントが追加で見つかるか、真の収集率が何%かは不明。全国漏れゼロ保証ではない。新しいサイト構造の変化やSNS/画像だけの情報は別フェーズ。
+- 次の確認：更新後`main`から新規 Run workflow → 236テスト全件合格・監査生成 → `station_event_discovery_audit.json`の候補残数／巡回位置 → `road_event_gap_monitor.json`の将来候補／巡回対象ルート数 → 品質監査の重複候補/未再確認変化。**テストが赤ならログを見て修正し、旧実行のRe-runではなく新しいRun workflow**。
 
 ## 2026-10-11 07:47〜07:54 JST Actions #67 収集漏れ監視・本番初回成功！
 
