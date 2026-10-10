@@ -111,6 +111,16 @@
         "www.coconiqll.co.jp"
       ],
       "pathPattern": "^/[^/]+/?$"
+    },
+    {
+      "id": "yamaguchi_abu",
+      "prefecture": "山口県",
+      "roadName": "阿武町",
+      "allowedHosts": [
+        "www.abucreation.com",
+        "abucreation.com"
+      ],
+      "pathPattern": "^/topics/[^/]+/?$"
     }
   ]
 }
