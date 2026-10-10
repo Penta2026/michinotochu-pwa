@@ -707,5 +707,20 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         rec,why=_article_record(spec,undated,"秋の体験イベント",TODAY,URL)
         self.assertEqual((rec,why),(None,"undated"))
 
+    def test_prefecture_gap_audit_keeps_rejected_article_examples(self):
+        spec={**TOKYO,"id":"audit","maxArticles":2}
+        listing='<a href="/news/1001">11月イベント開催日未定</a>'
+        article='<article><h1>秋のイベント</h1><p>道の駅八王子滝山</p></article>'
+        urls={spec["listingUrl"]:listing,
+              "https://www.michinoeki-hachioji.net/news/1001":article}
+        records,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda u:soup(urls[u]),report_path=None)
+        self.assertEqual(records,[])
+        one=audit["sources"][0]
+        self.assertEqual(one["accepted"],0)
+        self.assertEqual(one["reasons"]["undated"],1)
+        self.assertEqual(one["rejectedExamples"][0]["reason"],"undated")
+        self.assertIn("/news/1001",one["rejectedExamples"][0]["url"])
+
 if __name__ == "__main__":
     unittest.main()
