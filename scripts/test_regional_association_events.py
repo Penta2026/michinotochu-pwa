@@ -38,6 +38,12 @@ class DateParsingTests(unittest.TestCase):
         self.assertEqual(chugoku_period("第6回 秋フェスタ 10月24日(土)10時から", date(2026, 10, 1)),
                          ("2026-10-24", "2026-10-24"))
 
+    def test_chugoku_tonbara_festival(self):
+        self.assertEqual(
+            chugoku_period("第６回 秋わくわくフェスタ 10月24日（土）10時から15時",
+                           date(2026,9,25)),
+            ("2026-10-24","2026-10-24"))
+
     def test_chugoku_multiple_dates(self):
         self.assertEqual(chugoku_period("秋の祭 10月17日(土)～10月18日(日)", date(2026, 10, 1)),
                          ("2026-10-17", "2026-10-18"))
