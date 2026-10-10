@@ -153,8 +153,12 @@ def _publication_date(soup):
 def collect_kinki_association(today):
     """Read linked articles and their event date fields, with page-local prefectures."""
     results, seen, checked = [], set(), 0
+    url = KINKI
+    visited_pages = set()
     for page_number in range(1, 4):
-        url = KINKI if page_number == 1 else KINKI.rstrip("/") + f"/page/{page_number}/"
+        if url in visited_pages:
+            break
+        visited_pages.add(url)
         try:
             listing = _get(url)
         except requests.RequestException as exc:
@@ -193,8 +197,13 @@ def collect_kinki_association(today):
             road = _clean(match.group(1))
             if road and any(w in title + " " + _clean(detail.title.get_text(" ", strip=True) if detail.title else "") for w in EVENT_WORDS):
                 results.append(_record(road, pref, title, period, href))
-        if page_candidates == 0:
+        next_link = listing.select_one('a[rel="next"], .next.page-numbers, a.next')
+        if not next_link or not next_link.get("href"):
             break
+        next_url = urljoin(url, next_link["href"])
+        if urlparse(next_url).hostname not in ("www.kinki-michinoeki.com", "kinki-michinoeki.com"):
+            break
+        url = next_url
     print(f"近畿連絡会: 詳細候補 {checked} / 採用 {len(results)} 件")
     return results
 
