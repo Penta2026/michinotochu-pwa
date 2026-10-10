@@ -87,13 +87,32 @@ def coalesce_status_badge_records(records):
     return clean_records
 
 
+def identity_title(record):
+    """Preserve meaningful [event type] tags; remove only station name tags.
+
+    [道の駅X] and [X] are station labels when X is this record's station.
+    [物産展] and [体験会] are *different events*, even when the rest of the
+    title, official URL, and event period are identical (e.g., one PDF).
+    """
+    title = unicodedata.normalize("NFKC", record.get("title") or "").casefold()
+    title = re.sub(r"^[●\s]+", "", title)
+    match = re.match(r"^(?:【([^】]{1,35})】|\[([^\]]{1,35})\])\s*", title)
+    station = re.sub(r"\s+", "", unicodedata.normalize(
+        "NFKC", record.get("roadName") or "").casefold())
+    if match and station:
+        label = re.sub(r"\s+", "", match.group(1) or match.group(2))
+        if label in (station, "道の駅" + station):
+            title = title[match.end():]
+    return re.sub(r"\s+", "", title)
+
+
 def identity(record):
     # Distinguish simultaneous events, including several entries in one PDF.
     article = hokuriku_article_id(record)
     if article:
         return ("hokuriku-article:" + article, record.get("roadName", ""), "")
     return (record.get("url", ""), record.get("roadName", ""),
-            canonical_title(record.get("title", "")))
+            identity_title(record))
 
 def exact_key(record):
     return (record.get("url", ""), record.get("roadName", ""),
@@ -200,7 +219,7 @@ def reconcile(old, new, today):
     for i, one in enumerate(items):
         for other in items[i+1:]:
             if (one["roadName"] == other["roadName"] and one["startDate"] == other["startDate"]
-                and one["url"] != other["url"] and canonical_title(one["title"]) == canonical_title(other["title"])):
+                and one["url"] != other["url"] and identity_title(one) == identity_title(other)):
                 report["possibleDuplicates"].append({"roadName": one["roadName"],
                     "titles": [one["title"], other["title"]], "urls": [one["url"], other["url"]]})
     results = sorted(items, key=lambda e: (e["startDate"], e["roadName"], e["title"]))
