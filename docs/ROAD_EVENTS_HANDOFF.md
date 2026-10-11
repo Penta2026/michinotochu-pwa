@@ -6,6 +6,15 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-12 Phase 5 — 全国の残課題を効率よく改善する作業順（**新コードのActions未検証**）
+
+- **優先の考え方**：開発成熟度を「約80%」とするのは主観的な進捗目安であり、捕捉率80%の実測ではない。2026-10-12 #74 実績は268テスト全件成功、累計47/47県、現行43県73件、駅マスタ1,234駅中専用収集先37駅（専用設定のない駅1,197駅）。広域公式サイトで収集できる駅もあるので、専用設定なし＝未収集とは断定しない。
+- **このターンの実装（次回Actions未検証）**：`scripts/road_event_recall_audit.py` に `notice_review_priority` を新設し、公式候補のレビュー作業を優先順に並べる。`future_schedule_hint`を最優先に、前年以前の年表記、曜日と当年日付の不整合、過去日程の手掛かりを**要確認のまま**分類する。`road_event_recall_audit.json` に `reviewPriority` / `summary.reviewPriorityCounts`、`ROAD_EVENT_RECALL_DASHBOARD.md` に内訳と優先順を出力。以前のダッシュボードで中国地方の古い見出しが先頭25件を占め、直近の調査対象を探しにくかった問題への改善。**候補を自動削除・公開・期限切れ確定にはしない**。既存の監査`candidatesForManualReview`や個別に検証した標本捕捉率の定義は不変。
+- **回帰テスト5件追加**：昔の年表記でも未一致候補を維持、令和表記、年未確定の曜日不整合、未来日程優先、分類によって全国捕捉率を誤算出しないこと。#74の268件から**次回273件予定**。新コードが本番稼働したと確定できるのは次の緑のActions以降。
+- **愛媛の独立調査**：八幡浜市公式イベント検索 `https://www.city.yawatahama.ehime.jp/event-search/` に2026年11月22日「第13回やわたはま産業まつり」の開催日表示がある。一方、市の個別記事 `https://www.city.yawatahama.ehime.jp/doc/2026081300028/` はこれまで収集監査で `venue_missing`、市公式PDF `ehime_city_official_festival_pdf` はActionsでHTTP 404が継続。検索インデックスにPDF文面が残っていても**Actionsが現物を取得できたことにはならず、自動登録の根拠に使わない**。11/11の「NPOのための広報セミナー」は既存公開・再確認済み。11/22の産業まつりは**未登録**。
+- **次の高効果順**：①最新版mainで273テストと監査優先順位の本番検証、②愛媛11/22について現在取得可能な市公式HTMLまたは代替公式PDFを探し**開催日＋道の駅構内会場**を自動検証できるルートに切替（404のままのリンクを無条件再試行しない）、③対象期間・駅を先に固定した独立サンプル監査で現行捕捉率を測定、④広域公式ソースの拡張で専用未設定の駅にも効く発見ルートを増やす。単なる件数より**検証できる捕捉率**とエラー削減を重視。
+- **次回実行**：今回はコードとテストの更新があるため最新版`main`から新規 `Run workflow` が必要。緑になったらテスト273/273、候補の優先順、旧46件の未一致監査との比較、愛媛404と産業まつりの採否、公開件数・品質・Pagesを実測する。
+
 ## 2026-10-12 Actions #74 緑 — 大阪の取りこぼし1件を回収（本番確定）
 
 - [Actions #74](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38176722917) は `main` のコミット `b893b4b2` で全工程成功。実行ログで **268 tests / OK** を確認。Pages build [#1405](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38177191855) も成功。
