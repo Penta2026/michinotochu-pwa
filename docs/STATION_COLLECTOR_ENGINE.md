@@ -321,3 +321,13 @@ Phase 3のActions #67で収集漏れ監視は **228テスト全件OK**。直近�
 - `.github/workflows/road-events.yml`の全国・地方サイト監査→収集→品質監査→駅マスタ漏れ監査の**後**に「Independently cross-check official event notices」を実行し、上記JSONとMarkdownをGitHubへ自動保存する。
 - 新規 `scripts/test_road_event_recall_audit.py` に **12件**の回帰テスト。Actions #70で243件成功したので、次回 **255件**を見込む。**新しい実装は次回Run workflow未検証**。
 - 次のActionsで、既存公式URL照合数、URL不一致で要確認の告知、独立公式サイト到達失敗、手動台帳の標本率（初期値は未算出）を確認。その後、日時・道の駅会場が確かにある候補を個別に解析器へ反映し、実際の取りこぼし改善数を測る。
+
+## Phase 5 実例照合：北海道「しらぬか恋問館」のイベント見逃し検出・改善（2026-10-11、Actions実証待ち）
+
+- 最新確定データ（Actions #70）：累計47/47県・現行77イベント、243テスト成功。
+- 公式URL`https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/`の**2026年10月9日公開**記事では「日本各地の『美味しい』がやってきた！第9弾」が**10月9日～19日・📍道の駅しらぬか恋問館**に開催されると記載。駅運営元公式`https://michinoeki-shiranuka.jp/news/`からも同告知が辿れる。公開フィードには当該イベントが登録されていなかった（10/11照合時点）。**単なるURL不一致でなく、公式掲載日時・会場が揃った確定的な取りこぼし1件**。
+- **修正前の確認済み3件標本**：関東公式の「こすげ」10/24秋まつり・「庄和」10/31～11/1わくわく体験は収集済み、「しらぬか恋問館」10/9～19の物産フェアは未収集、**2/3＝66.7％**。恣意的に集めた小標本なので、**全国の捕捉率ではない**。レビューの証拠と日付は`data/road_event_recall_reviews.json`に記録（AIによる一次情報確認、実際の人間監査ではない）。
+- `scripts/road_event_recall_audit.py`を変更：レビュー記録を現行フィードと比較するとき、すでに終了した催事を母数から除外する。`historicalPositiveReviews`（過去を含むレビュー数）、`expiredPositiveReviews`（期限切れ除外）を追跡。終了記事が自動削除されただけで「取りこぼし件数」が増えないようにする。標本内発見率は実際の当日有効なレビューデータのみで算出し、全国推定には用いない。
+- `scripts/station_discovery_engine.py`に`eventDateMode=published_year_pinned_range`を追加。**公式記事内の掲載年**と`📅 月日～月日`、`📍 道の駅名`が揃った場合だけ年付けする。掲載日がイベント開始後、60日以上前の掲載、年なし、旧年、別会場、非公式ドメインは不採用。新規設定型ソース`hokkaido_shiranuka_official_okinawa_popup_oct`を固定URLとして追加（**27→28ルート**）。
+- `scripts/test_road_event_recall_audit.py`に3テスト、`scripts/test_station_discovery_engine.py`に3テスト（合計+6）。独立照合フェーズの12テストと合わせて、**次回261テスト予定**（Actions #70時点243+12+6）。**まだ本番Actionsのグリーン・追加登録は未確認**。
+- 実行後の確認：#71以降の最新版main新規`Run workflow`で、北海道新ルートの採用1件、公開`road_events.json`、監査`road_event_quality_report.json`、`road_event_recall_audit.json`の非ランダム3件の標本を照合。正しく取り込めたらイベントはその他変化がなければ77→78件、標本は3/3になる見込み。**実測までは確定と書かない**。
