@@ -114,11 +114,18 @@ def _iso(value):
         return None
 
 
-def reviewed_sample(ledger, published):
-    """Only verified, individually documented examples enter the denominator."""
+def reviewed_sample(ledger, published, today=None):
+    """Only verified, individually documented, in-scope notices enter the rate.
+
+    The published event feed drops events after their end date. A verified
+    historic event must not become a *new miss* merely because it expired.
+    """
     if ledger.get("schemaVersion") != 1:
         raise ValueError("Unrecognized independent review ledger version")
     results, seen = [], set()
+    as_of = _iso(today) if today is not None else None
+    if today is not None and as_of is None:
+        raise ValueError("Invalid evaluation date")
     for item in ledger.get("reviews", []):
         decision = item.get("decision")
         url = _urlkey(item.get("officialUrl"))
@@ -136,6 +143,10 @@ def reviewed_sample(ledger, published):
                             ("prefecture", "roadName", "title", "dateEvidence", "venueEvidence"))):
                 raise ValueError("Positive review lacks independently verified venue or date")
             station = _station_key(item["prefecture"], item["roadName"])
+            if as_of is not None and end < as_of:
+                results.append({**item, "matchStatus": "expired_outside_live_feed",
+                                "inCurrentSample": False})
+                continue
             hits = [event for event in published
                     if _station_key(event.get("prefecture"), event.get("roadName")) == station
                     and _iso(event.get("startDate")) and _iso(event.get("endDate"))
@@ -148,11 +159,16 @@ def reviewed_sample(ledger, published):
             if not item.get("reason"):
                 raise ValueError("Negative review requires an exclusion reason")
             status = "excluded_nonstation_event"
-        results.append({**item, "matchStatus": status})
-    positives = [x for x in results if x["decision"] == "confirmed_on_site"]
+        results.append({**item, "matchStatus": status,
+                        "inCurrentSample": decision == "confirmed_on_site"})
+    historical_positives = [x for x in results if x["decision"] == "confirmed_on_site"]
+    positives = [x for x in historical_positives if x["inCurrentSample"]]
     hits = sum(x["matchStatus"] == "found_in_feed" for x in positives)
     return {"reviews": results, "reviewed": len(results),
-            "positiveOnSite": len(positives), "found": hits,
+            "positiveOnSite": len(positives),
+            "historicalPositiveReviews": len(historical_positives),
+            "expiredPositiveReviews": len(historical_positives) - len(positives),
+            "found": hits,
             "notFound": len(positives) - hits,
             "rateWithinReviewedSample": round(hits / len(positives), 3)
             if positives else None,
@@ -220,7 +236,7 @@ def make_report(regional, national, master, published, ledger, today):
         ranks[x["status"]], x["headlineDateHint"] != "future_schedule_hint",
         x["source"], x["url"]))
     counts = {kind: sum(x["status"] == kind for x in candidates) for kind in kinds}
-    sample = reviewed_sample(ledger, published)
+    sample = reviewed_sample(ledger, published, today=today)
     return {
         "schemaVersion": 1, "checkedOn": today,
         "summary": {
@@ -231,6 +247,7 @@ def make_report(regional, national, master, published, ledger, today):
             "candidatesForManualReview": (counts["unmatched_official_notice"] +
                                           counts["same_official_url_title_needs_review"]),
             "sampleVerifiedOnSite": sample["positiveOnSite"],
+            "sampleExpiredExcluded": sample["expiredPositiveReviews"],
             "sampleFound": sample["found"], "sampleNotFound": sample["notFound"],
             "sampleDiscoveryRate": sample["rateWithinReviewedSample"],
         },
@@ -267,6 +284,8 @@ def render_dashboard(report):
            "", "## 独立に確認した標本（全国の網羅率ではありません）", "",
            "- 開催日・駅会場を個別確認したイベント: {}件".format(s["sampleVerifiedOnSite"]),
            "- 公開イベントと照合できた件数: {}件".format(s["sampleFound"]),
+           "- 終了日の経過で現行標本から除外した検証済みイベント: {}件".format(
+               s["sampleExpiredExcluded"]),
            "- 公開イベントと照合できない件数: {}件".format(s["sampleNotFound"]),
            ("- 標本内の発見率: {:.1%}".format(s["sampleDiscoveryRate"])
             if s["sampleDiscoveryRate"] is not None
@@ -289,6 +308,7 @@ def render_dashboard(report):
       "- 別の公式URLで同じ催しが登録済みの可能性も、上の候補には残り得ます。",
       "- 人が公式本文で確認した証拠だけをレビュー台帳に登録した場合に限り、標本内の発見率を計算。",
       "- この標本はランダム抽出ではなく、全国の真のイベント発見率の推定には使えません。",
+      "- 現在の公開フィードから終了済み催事が消えても、過去の捕捉漏れとしては数えません。",
       "", "[監査JSON](../data/road_event_recall_audit.json) ／ "
          "[収集漏れ監査](ROAD_EVENT_GAP_DASHBOARD.md)", ""])
     return "\n".join(out)
