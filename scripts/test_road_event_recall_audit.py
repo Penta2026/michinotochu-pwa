@@ -2,8 +2,8 @@
 import unittest
 
 from road_event_recall_audit import (
-    _station_from_title, fetch_national, make_report, parse_national_notices,
-    render_dashboard, reviewed_sample,
+    _station_from_title, fetch_national, make_report, notice_review_priority,
+    parse_national_notices, render_dashboard, reviewed_sample,
 )
 
 DAY = "2026-10-11"
@@ -58,6 +58,60 @@ class IndependentRecallTests(unittest.TestCase):
             NATIONAL if national is None else national,
             MASTER, PUBLISHED if published is None else published,
             EMPTY_LEDGER if ledger is None else ledger, DAY)
+
+    def test_historical_year_hint_kept_but_deprioritized(self):
+        title = "【道の駅庄和】2025年10月13日 秋まつり"
+        self.assertEqual(
+            notice_review_priority(title, "unknown_date", "2026-10-12"),
+            "older_year_mentioned")
+        regional = {"sources": [{"region": "関東", "reachable": True,
+                    "candidates": [{"title": title,
+                                    "url": "https://official.example/old"},
+                                   {"title": "【道の駅こすげ】秋まつり",
+                                    "url": "https://official.example/unknown"}]}]}
+        report = self.report(regional=regional)
+        self.assertEqual(report["summary"]["candidatesForManualReview"], 2)
+        self.assertEqual(report["summary"]["reviewPriorityCounts"]
+                         ["older_year_mentioned"], 1)
+        self.assertEqual(report["candidates"][0]["roadName"], "こすげ")
+        self.assertEqual(report["candidates"][-1]["roadName"], "庄和")
+
+    def test_old_japanese_era_is_a_queue_hint_not_event_rejection(self):
+        p = notice_review_priority(
+            "【道の駅庄和】令和7年10月13日 秋まつり",
+            "unknown_date", "2026-10-12")
+        self.assertEqual(p, "older_year_mentioned")
+
+    def test_weekday_mismatch_prompts_year_check(self):
+        self.assertEqual(
+            notice_review_priority("【道の駅庄和】10月13日(日) 秋まつり",
+                                   "unknown_date", "2026-10-12"),
+            "weekday_year_mismatch_check")
+        self.assertEqual(
+            notice_review_priority("【道の駅庄和】10月18日(日) 秋まつり",
+                                   "unknown_date", "2026-10-12"),
+            "date_and_venue_verification_needed")
+
+    def test_future_event_hint_takes_priority_over_old_article_metadata(self):
+        self.assertEqual(
+            notice_review_priority("【道の駅庄和】2025年記事・秋まつり",
+                                   "future_schedule_hint", "2026-10-12"),
+            "future_schedule_hint")
+
+    def test_triage_keeps_manual_review_and_never_raises_national_recall(self):
+        regional = {"sources": [{"region": "中国", "reachable": True,
+                    "candidates": [
+                        {"title": "【道の駅庄和】秋まつり 10月13日(日)",
+                         "url": "https://official.example/ambiguous"},
+                        {"title": "【道の駅こすげ】2025年秋まつり",
+                         "url": "https://official.example/old"}]}]}
+        result = self.report(regional=regional)
+        self.assertEqual(result["summary"]["candidatesForManualReview"], 2)
+        self.assertIsNone(result["summary"]["sampleDiscoveryRate"])
+        rendered = render_dashboard(result)
+        self.assertIn("優先順位", rendered)
+        self.assertIn("曜日と今年の日付が不一致", rendered)
+        self.assertIn("前年度", rendered.replace("前年以前", "前年度"))
 
     def test_national_only_accepts_official_article_links(self):
         html = """<nav><a href="/notices">一覧</a></nav>
