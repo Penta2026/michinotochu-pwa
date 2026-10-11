@@ -33,7 +33,7 @@ const fixtureEvents = [
   schedule("中止の駅", { status: "cancelled" })
 ];
 
-function fixture({ ride = { lat: 35, lng: 139 }, events = fixtureEvents, roadsData = roads, onFormatter = () => {} } = {}) {
+function fixture({ ride = { lat: 35, lng: 139 }, events = fixtureEvents, roadsData = roads, landmarksData = [], onFormatter = () => {} } = {}) {
   const elements = new Map();
   const domEvents = new Map();
   const storage = new Map([
@@ -61,7 +61,7 @@ function fixture({ ride = { lat: 35, lng: 139 }, events = fixtureEvents, roadsDa
   node("tourEventList").hidden = true;
   node("tourReturnSame").checked = true;
   const ctx = {
-    window: { APP_DATA: { roads: roadsData, landmarks: [] }, RIDERS_CAFES: [] },
+    window: { APP_DATA: { roads: roadsData, landmarks: landmarksData }, RIDERS_CAFES: [] },
     origins: { ride },
     document: {
       getElementById: node,
@@ -202,19 +202,64 @@ test("full station inventory does not rebuild Intl formatters or scan 500 events
   assert.ok(performance.now() - start < 5000, "event filtering unexpectedly slow");
 });
 
-test("event station mode hides duplicate search controls but other modes retain them", () => {
+test("event mode hides picker, while normal station mode auto-populates it without a button", () => {
   const f = fixture();
-  assert.equal(f.node("tourSearchBtn").hidden, true);
   assert.equal(f.node("tourCandidatePicker").hidden, true);
   f.change("tourGroup", "road");
   f.ctx.window.tourGroupChanged();
-  assert.equal(f.node("tourSearchBtn").hidden, false);
   assert.equal(f.node("tourCandidatePicker").hidden, false);
-  assert.deepEqual(f.search().sort(), ["北100", "東100", "終了済み駅", "中止の駅"].sort());
+  assert.deepEqual(
+    Array.from(f.ctx.window.tourCandidates, x=>x.name).sort(),
+    ["北100", "東100", "終了済み駅", "中止の駅"].sort());
+  assert.match(f.node("tourTargetSelect").innerHTML, /北100/);
   f.change("tourGroup", "roadEvent");
   f.ctx.window.tourGroupChanged();
-  assert.equal(f.node("tourSearchBtn").hidden, true);
   assert.equal(f.node("tourCandidatePicker").hidden, true);
+});
+
+test("distance and direction changes refresh normal goal picker immediately", () => {
+  const f=fixture();
+  f.change("tourGroup","road");
+  f.ctx.window.tourGroupChanged();
+  f.change("tourDistance","445");
+  assert.deepEqual(Array.from(f.ctx.window.tourCandidates,x=>x.name),["遠方の駅"]);
+  assert.match(f.node("tourTargetSelect").innerHTML,/遠方の駅/);
+  f.change("tourDirection","east");
+  assert.equal(f.ctx.window.tourCandidates.length,0);
+  assert.doesNotMatch(f.node("tourTargetSelect").innerHTML,/遠方の駅/);
+  f.change("tourDistance","0");
+  assert.equal(f.ctx.window.tourCandidates.length,0);
+  assert.match(f.node("tourCandidateCount").textContent,/距離の入力値を確認してください/);
+});
+
+test("spot category switching also refreshes the selectable candidates", () => {
+  const landmarks=[
+    {name:"北の定番",prefecture:"東京都",level:"A",lat:35.92,lng:139},
+    {name:"東の寄り道",prefecture:"千葉県",level:"B",lat:35,lng:140.06}
+  ];
+  const f=fixture({landmarksData:landmarks});
+  f.change("tourGroup","A");
+  f.ctx.window.tourGroupChanged();
+  assert.deepEqual(Array.from(f.ctx.window.tourCandidates,x=>x.name),["北の定番"]);
+  f.change("tourGroup","B");
+  f.ctx.window.tourGroupChanged();
+  assert.deepEqual(Array.from(f.ctx.window.tourCandidates,x=>x.name),["東の寄り道"]);
+  assert.match(f.node("tourTargetSelect").innerHTML,/東の寄り道/);
+  f.change("tourGroup","A");
+  f.ctx.window.tourGroupChanged();
+  assert.doesNotMatch(f.node("tourTargetSelect").innerHTML,/東の寄り道/);
+});
+
+test("missing origin clears stale dropdown choices instead of leaving an old list", () => {
+  const f=fixture();
+  f.change("tourGroup","road");
+  f.ctx.window.tourGroupChanged();
+  assert.ok(f.ctx.window.tourCandidates.length>0);
+  f.ctx.origins.ride=null;
+  f.ctx.window.tourRefreshCandidates();
+  assert.equal(f.ctx.window.tourCandidates.length,0);
+  assert.match(f.node("tourCandidateCount").textContent,/先に出発地点を設定してください/);
+  assert.doesNotMatch(f.node("tourTargetSelect").innerHTML,/北100/);
 });
 
 test("event list lets user register its station as touring goal without second search", () => {
@@ -242,7 +287,8 @@ test("the web entry point and service worker both deploy the new PWA version", (
   const version = JSON.parse(fs.readFileSync(path.join(root, "data/version.json"), "utf8"));
   assert.match(index, /tour-plan\.js\?v=1\.6\.22/);
   assert.match(index, /目標距離内のイベント開催駅を見る/);
-  assert.match(index, /id="tourSearchBtn"/);
+  assert.doesNotMatch(index, /id="tourSearchBtn"/);
+  assert.doesNotMatch(index, /🎯 目標地点の候補を見る/);
   assert.match(index, /id="tourCandidatePicker"/);
   assert.match(worker, /michino-shell-v1\.6\.22/);
   assert.match(worker, /tour-plan\.js\?v=1\.6\.22/);
