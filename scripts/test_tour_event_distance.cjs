@@ -202,13 +202,49 @@ test("full station inventory does not rebuild Intl formatters or scan 500 events
   assert.ok(performance.now() - start < 5000, "event filtering unexpectedly slow");
 });
 
+test("event station mode hides duplicate search controls but other modes retain them", () => {
+  const f = fixture();
+  assert.equal(f.node("tourSearchBtn").hidden, true);
+  assert.equal(f.node("tourCandidatePicker").hidden, true);
+  f.change("tourGroup", "road");
+  f.ctx.window.tourGroupChanged();
+  assert.equal(f.node("tourSearchBtn").hidden, false);
+  assert.equal(f.node("tourCandidatePicker").hidden, false);
+  assert.deepEqual(f.search().sort(), ["北100", "東100", "終了済み駅", "中止の駅"].sort());
+  f.change("tourGroup", "roadEvent");
+  f.ctx.window.tourGroupChanged();
+  assert.equal(f.node("tourSearchBtn").hidden, true);
+  assert.equal(f.node("tourCandidatePicker").hidden, true);
+});
+
+test("event list lets user register its station as touring goal without second search", () => {
+  const f = fixture();
+  f.openEvents();
+  assert.match(f.html(), /onclick="tourChooseEvent\(0\)"/);
+  assert.match(f.html(), /🎯 この道の駅を目標に登録/);
+  f.ctx.window.tourChooseEvent(0);
+  assert.match(f.node("tourTargetNotice").textContent, /北100/);
+  assert.match(f.node("tourPlanState").innerHTML, /🎯 目標：北100/);
+  assert.equal(f.node("tourTargetMapBtn").hidden, false);
+  assert.match(f.html(), /✅ 目標に登録済み/);
+  // The original registration action remains available for other groups.
+  f.change("tourGroup", "road");
+  f.ctx.window.tourGroupChanged();
+  f.search();
+  f.node("tourTargetSelect").value = "1";
+  f.ctx.window.tourChooseSelected();
+  assert.match(f.node("tourTargetNotice").textContent, /東100/);
+});
+
 test("the web entry point and service worker both deploy the new PWA version", () => {
   const index = fs.readFileSync(path.join(root, "index.html"), "utf8");
   const worker = fs.readFileSync(path.join(root, "service-worker.js"), "utf8");
   const version = JSON.parse(fs.readFileSync(path.join(root, "data/version.json"), "utf8"));
-  assert.match(index, /tour-plan\.js\?v=1\.6\.21/);
+  assert.match(index, /tour-plan\.js\?v=1\.6\.22/);
   assert.match(index, /目標距離内のイベント開催駅を見る/);
-  assert.match(worker, /michino-shell-v1\.6\.21/);
-  assert.match(worker, /tour-plan\.js\?v=1\.6\.21/);
-  assert.equal(version.appVersion, "1.6.21");
+  assert.match(index, /id="tourSearchBtn"/);
+  assert.match(index, /id="tourCandidatePicker"/);
+  assert.match(worker, /michino-shell-v1\.6\.22/);
+  assert.match(worker, /tour-plan\.js\?v=1\.6\.22/);
+  assert.equal(version.appVersion, "1.6.22");
 });
