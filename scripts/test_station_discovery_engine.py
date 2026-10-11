@@ -230,6 +230,15 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(_article_record(spec, soup(html), listing, TODAY, URL),
                          (None, "listing_article_date_conflict"))
 
+    def test_osaka_listing_cannot_override_different_unyeared_article_day(self):
+        spec = self._osaka_listing_evidence_source()
+        html = """<article><h1>いずみの山の小さなマルシェ10月</h1>
+          <p>日時：10月25日(日) 10:00～16:00</p>
+          <p>会場：南部リージョンセンター 1階ロビー</p></article>"""
+        listing = "開催予定 いずみの山の小さなマルシェ10月 2026年10月18日(日)開催"
+        self.assertEqual(_article_record(spec, soup(html), listing, TODAY, URL),
+                         (None, "listing_article_date_conflict"))
+
     def test_osaka_listing_date_cancelled_event_must_stay_unpublished(self):
         spec = self._osaka_listing_evidence_source()
         html = """<article><h1>いずみの山の小さなマルシェ10月</h1>
