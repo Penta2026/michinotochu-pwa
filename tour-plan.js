@@ -11,7 +11,15 @@ const origin=()=>typeof origins!=="undefined"?origins.ride:null;
 function spots(goalOnly=false){const data=window.APP_DATA||{};return [...(data.roads||[]).map(x=>({...x,tourGroup:"road"})),...(data.landmarks||[]).map(x=>({...x,tourGroup:x.level==="A"?"A":"B"})),...(window.RIDERS_CAFES||[]).filter(x=>(x.publish!==false||x.testOnly)&&(!goalOnly||(x.gachaDestinationEligible===true||(x.gachaDestinationEligible!==false&&["cafe","food","rest","community"].includes(x.spotCategory||"cafe"))))).map(x=>({...x,tourGroup:"riders"}))].filter(valid)}
 function categoryOptions(group){return group==="riders"?groupOptions:(group==="A"||group==="B")&&typeof FEATURES!=="undefined"?FEATURES:[["","すべて"]]}
 function fillCategory(groupId,categoryId){const group=el(groupId).value;el(categoryId).innerHTML=categoryOptions(group).map(x=>"<option value="+JSON.stringify(x[0])+">"+esc(x[1])+"</option>").join("")}
-function changeGroup(){fillCategory("tourGroup","tourCategory")}
+function changeGroup(){
+ fillCategory("tourGroup","tourCategory");
+ // The event list already supplies the event details and a direct select action.
+ // Keep the ordinary destination search for every other spot category.
+ const eventMode=el("tourGroup").value==="roadEvent";
+ const searchButton=el("tourSearchBtn"),picker=el("tourCandidatePicker");
+ if(searchButton)searchButton.hidden=eventMode;
+ if(picker)picker.hidden=eventMode;
+}
 function changeNearGroup(){fillCategory("tourNearGroup","tourNearCategory");if(state.target)nearby()}
 function byCategory(x,group,cat){return group==="riders"?(!cat||(x.spotCategory||"cafe")===cat):((group==="A"||group==="B")&&cat?featureMatch(x,cat):true)}
 function dropOptions(list,selectId,placeholder,formatter){el(selectId).innerHTML='<option value="">'+esc(placeholder)+'</option>'+list.map((x,i)=>'<option value="'+i+'">'+esc(formatter(x))+'</option>').join("")}
@@ -52,7 +60,14 @@ function search(){
  el("tourCandidateCount").textContent=(group==="roadEvent"&&!eventsReady?"⚠️ イベント情報が未取得です。イベント情報を更新してください。":"検索結果 "+list.length+"件（直線"+Math.max(0,settings.km-settings.tol)+"〜"+(settings.km+settings.tol)+"km）"+debug);
  renderRoadEventList();
 }
-function choose(i){const x=window.tourCandidates?.[i];if(!x)return;state.target={name:x.name,lat:x.lat,lng:x.lng,navQuery:x.navQuery||""};state.stops=[];const notice=el("tourTargetNotice");if(notice)notice.textContent="✅ 目標地点を「"+x.name+"」に設定しました。以下に目標地点から直線"+el("tourRadius").value+"km以内の追加候補を表示しています。";render();nearby();const eventInfo=el("tourTargetEventNotice");if(eventInfo){const es=activeRoadEvents(x);eventInfo.hidden=es.length===0;eventInfo.innerHTML=es.length?"<b>📅 この道の駅の開催予定イベント</b>"+es.map(e=>"<div>"+esc(e.startDate)+(e.endDate!==e.startDate?"〜"+esc(e.endDate):"")+"："+esc(e.title)+(e.url?' <a href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">公式案内 ↗</a>':"")+"</div>").join(""):""}}
+function chooseTarget(x){if(!x)return;state.target={name:x.name,lat:x.lat,lng:x.lng,navQuery:x.navQuery||""};state.stops=[];const notice=el("tourTargetNotice");if(notice)notice.textContent="✅ 目標地点を「"+x.name+"」に設定しました。以下に目標地点から直線"+el("tourRadius").value+"km以内の追加候補を表示しています。";render();nearby();const eventInfo=el("tourTargetEventNotice");if(eventInfo){const es=activeRoadEvents(x);eventInfo.hidden=es.length===0;eventInfo.innerHTML=es.length?"<b>📅 この道の駅の開催予定イベント</b>"+es.map(e=>"<div>"+esc(e.startDate)+(e.endDate!==e.startDate?"〜"+esc(e.endDate):"")+"："+esc(e.title)+(e.url?' <a href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">公式案内 ↗</a>':"")+"</div>").join(""):""}}
+function choose(i){chooseTarget(window.tourCandidates?.[i])}
+function chooseEvent(i){
+ const candidate=window.tourEventCandidates?.[i];
+ if(!candidate)return;
+ chooseTarget(candidate);
+ renderRoadEventList();
+}
 function nearby(){if(!state.target)return alert("目標地点を選択してください");const km=+el("tourRadius").value;if(!(km>=0&&km<=300))return alert("寄り道半径を確認してください");const group=el("tourNearGroup").value,cat=el("tourNearCategory").value;const list=spots().filter(x=>group==="all"||x.tourGroup===group).filter(x=>byCategory(x,group,cat)).filter(x=>dKm(x,state.target)<=km&&!(x.name===state.target.name&&x.lat===state.target.lat&&x.lng===state.target.lng)).sort((a,b)=>dKm(a,state.target)-dKm(b,state.target));window.tourNearList=list;dropOptions(list,"tourNearSelect","追加する寄り道地点を選択してください",x=>x.name+" / "+(x.prefecture||"")+" / 直線"+dKm(x,state.target).toFixed(1)+"km");el("tourNearCount").textContent="周辺候補 "+list.length+"件（目標地点から直線"+km+"km以内）"}
 function add(x){if(!state.target)return alert("目標地点を選択してください");if(state.stops.length>=2)return alert("寄り道は最大2地点です");state.stops.push(x);render()}
 function addNearby(i){const x=window.tourNearList?.[i];if(x)add({name:x.name,lat:x.lat,lng:x.lng,navQuery:x.navQuery||""})}
@@ -104,8 +119,9 @@ function renderRoadEventList(){
  if(!stations.length){list.innerHTML='<p class="note">📅 '+esc(area)+'に開催予定イベントのある道の駅はありません。全国の駅は表示していません。</p>';return}
  const count=stations.reduce((n,x)=>n+activeRoadEvents(x).length,0);
  list.innerHTML='<p class="note">📅 '+esc(area)+'：該当'+stations.length+'駅・開催終了前のイベント'+count+'件</p>'+
-  stations.map(x=>'<div class="panel" style="margin:8px 0;padding:12px"><strong>📍 '+esc(x.name)+'</strong> <span class="note">'+esc(x.prefecture||"")+'</span><div class="note">出発地点から直線'+x.tourKm.toFixed(1)+'km</div>'+
-   activeRoadEvents(x).map(e=>'<div style="margin-top:8px"><div>📅 '+esc(e.startDate)+(e.endDate!==e.startDate?' 〜 '+esc(e.endDate):'')+'</div><div>'+esc(e.title)+'</div>'+(e.url?'<div style="margin-top:6px"><a href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">公式イベント案内 ↗</a></div>':'')+'</div>').join("")+'</div>').join("");
+  stations.map((x,i)=>'<div class="panel" style="margin:8px 0;padding:12px"><strong>📍 '+esc(x.name)+'</strong> <span class="note">'+esc(x.prefecture||"")+'</span><div class="note">出発地点から直線'+x.tourKm.toFixed(1)+'km</div>'+
+   activeRoadEvents(x).map(e=>'<div style="margin-top:8px"><div>📅 '+esc(e.startDate)+(e.endDate!==e.startDate?' 〜 '+esc(e.endDate):'')+'</div><div>'+esc(e.title)+'</div>'+(e.url?'<div style="margin-top:6px"><a href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">公式イベント案内 ↗</a></div>':'')+'</div>').join("")+
+   '<button type="button" class="soft tour-action tour-action-select" style="width:100%;margin-top:10px" onclick="tourChooseEvent('+i+')">'+(state.target&&state.target.name===x.name&&+state.target.lat===+x.lat&&+state.target.lng===+x.lng?'✅ 目標に登録済み':'🎯 この道の駅を目標に登録')+'</button></div>').join("");
 }
 function toggleRoadEventList(){const list=el("tourEventList"),btn=el("tourEventListBtn");if(!list||!btn)return;list.hidden=!list.hidden;btn.setAttribute("aria-expanded",String(!list.hidden));btn.textContent=list.hidden?"📋 目標距離内のイベント開催駅を見る":"📋 目標距離内の一覧を閉じる";renderRoadEventList()}
 function renderEventStatus(message){const e=el("tourEventStatus");if(!e)return;const checked=localStorage.getItem(EVENT_CHECK_KEY),active=Array.from(liveEventIndex().values()).reduce((n,v)=>n+v.length,0);e.textContent=(message?message+" / ":"")+(checked?"最終取得："+new Date(checked).toLocaleString("ja-JP"):"未取得")+" / 登録 "+roadEvents.length+"件（終了前 "+active+"件）"}
@@ -128,6 +144,6 @@ function deleteSelected(){const id=el("tourSavedPlans").value;if(id)deletePlan(i
 function sendToDetour(){if(!origin()||!state.target)return alert("先に出発地点と目標地点を指定してください");const snapshot=planSnapshot();if(!snapshot)return;window.tourImportToDetour?.(snapshot);showView("detour")}
 function importFromDetour(){const chosen=window.tourExportFromDetour?.();if(!chosen)return alert("寄り道から取り込む地点がありません");if(chosen.length>2)return alert("寄り道は最大2地点です。寄り道しようで選択数を減らしてください");state.stops=chosen.map(p=>({name:p.name||"寄り道地点",lat:p.lat,lng:p.lng,navQuery:p.navQuery||""}));render();showView("ride");alert("寄り道"+chosen.length+"地点を反映しました。保存すると計画を更新できます。")}
 
-window.tourRefreshEventList=renderRoadEventList;window.tourPreviewRoute=previewRoute;window.tourToggleEventList=toggleRoadEventList;window.tourUpdateRoadEvents=updateRoadEvents;window.tourRenderFavoritePlans=renderFavoritePlans;window.tourOpenFavoritePlan=openFavoritePlan;window.tourMapFavoritePlan=mapFavoritePlan;window.tourGroupChanged=changeGroup;window.tourSavePlan=()=>savePlan(false);window.tourSavePlanAs=()=>savePlan(true);window.tourLoadSelected=loadSelected;window.tourDeleteSelected=deleteSelected;window.tourSendToDetour=sendToDetour;window.tourImportFromDetour=importFromDetour;window.tourNearGroupChanged=changeNearGroup;window.tourChooseSelected=chooseSelected;window.tourAddNearbySelected=addNearbySelected;window.tourSearch=search;window.tourChoose=choose;window.tourSearchNearby=nearby;window.tourAddNearby=addNearby;window.tourRemove=remove;window.tourReturnChanged=changeReturn;window.tourOpenMaps=openMaps;
+window.tourChooseEvent=chooseEvent;window.tourRefreshEventList=renderRoadEventList;window.tourPreviewRoute=previewRoute;window.tourToggleEventList=toggleRoadEventList;window.tourUpdateRoadEvents=updateRoadEvents;window.tourRenderFavoritePlans=renderFavoritePlans;window.tourOpenFavoritePlan=openFavoritePlan;window.tourMapFavoritePlan=mapFavoritePlan;window.tourGroupChanged=changeGroup;window.tourSavePlan=()=>savePlan(false);window.tourSavePlanAs=()=>savePlan(true);window.tourLoadSelected=loadSelected;window.tourDeleteSelected=deleteSelected;window.tourSendToDetour=sendToDetour;window.tourImportFromDetour=importFromDetour;window.tourNearGroupChanged=changeNearGroup;window.tourChooseSelected=chooseSelected;window.tourAddNearbySelected=addNearbySelected;window.tourSearch=search;window.tourChoose=choose;window.tourSearchNearby=nearby;window.tourAddNearby=addNearby;window.tourRemove=remove;window.tourReturnChanged=changeReturn;window.tourOpenMaps=openMaps;
 document.addEventListener("DOMContentLoaded",()=>{if(el("tourGroup")){changeGroup();changeNearGroup();render();changeReturn();renderPlans();loadLocalRoadEvents();["tourDistance","tourTolerance","tourDirection"].forEach(id=>{const field=el(id);if(field){field.addEventListener("input",renderRoadEventList);field.addEventListener("change",renderRoadEventList)}})}});
 })();
