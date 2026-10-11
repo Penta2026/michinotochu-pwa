@@ -436,6 +436,18 @@ def _article_record(source, soup, listing_title, today, url):
         # Even an explicitly dated listing cannot override cancellation.
         if re.search(r"開催を中止|開催中止|中止となりました|延期となりました", body):
             return None, "cancelled"
+        # An article-local event schedule may omit the year. Do not replace
+        # a *contradicting* month/day with the listing's printed year.
+        expected_month_day = tuple(map(int, listing_period[0][5:].split("-")))
+        for line in lines:
+            if not re.search(r"開催日|開催日時|開催期間|イベント日時|日程|日時|実施日", line):
+                continue
+            if re.search(r"申込|受付|募集|締切|締め切り", line):
+                continue
+            stated = re.findall(r"(?<![0-9])([0-9]{1,2})月\s*([0-9]{1,2})日",
+                                _date_text(line))
+            if any(tuple(map(int, pair)) != expected_month_day for pair in stated):
+                return None, "listing_article_date_conflict"
         period = listing_period
     if period is None:
         return None, "undated"
