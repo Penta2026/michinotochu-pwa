@@ -857,7 +857,30 @@ def _verified_official_event_detail_records(spec, soup, today, url):
     # Event-site programme notation: "2026.10.10 SAT — 11.23 MON"
     # or "2026 10.10 SAT 11.23 MON". The end month/day must be
     # adjacent to the explicitly dated start, not a global page date.
-    if spec.get("eventDateMode") == "labeled_full_year_single":
+    if spec.get("eventDateMode") == "published_year_pinned_range":
+        # A fixed official article has a verified publication year and
+        # a clearly labelled on-site range with month/day but no year.
+        # Ground year in the ARTICLE publication stamp, never today's year.
+        text = _date_text(body)
+        pub = re.search(
+            r"(?<![0-9])(20[0-9]{2})年([0-9]{1,2})月([0-9]{1,2})日", text)
+        dates = re.search(
+            r"📅\\s*([0-9]{1,2})月\\s*([0-9]{1,2})日"
+            r".{0,18}?[～〜~－—-]\\s*([0-9]{1,2})月\\s*([0-9]{1,2})日",
+            text)
+        if pub is None or dates is None:
+            return [], "event_published_year_or_pinned_range_missing"
+        try:
+            yr, pm, pd = map(int, pub.groups())
+            sm, sd, em, ed = map(int, dates.groups())
+            published = date(yr, pm, pd)
+            start = date(yr, sm, sd)
+            end = date(yr + (1 if em < sm else 0), em, ed)
+        except ValueError:
+            return [], "event_invalid_date"
+        if not (published <= start and (start - published).days <= 60):
+            return [], "event_publication_year_not_grounded"
+    elif spec.get("eventDateMode") == "labeled_full_year_single":
         # Only a named event's 'イベント開催日時' field can ground a date.
         # A note article's publication stamp or application deadline
         # must never be treated as the event's date.
