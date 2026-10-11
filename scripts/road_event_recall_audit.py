@@ -173,6 +173,13 @@ def make_report(regional, national, master, published, ledger, today):
             title = item.get("title", "")
             if not url or url in seen or not any(w in title for w in EVENT_TERMS):
                 continue
+            # Regional homepage audit also surfaces navigation pages; do not
+            # mistake an event category or index for an individual notice.
+            route = urlparse(url).path.rstrip("/")
+            if (title in ("イベント", "イベント情報", "お知らせ", "催し") or
+                    "/category/" in route or route in (
+                        "/events", "/news", "/notices", "/news-tag/event")):
+                continue
             seen.add(url)
             station = _station_from_title(title, master)
             if url in known:
