@@ -6,6 +6,14 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-12 Phase 5 次の実地調査 — 大阪「いずみ山愛の里」一覧日付の安全な照合（**新コードのActions未検証**）
+
+- **調査結果**：和泉市南部リージョンセンター公式イベント一覧 `https://izuminambu-rc.jp/nb_event/` に「いずみの山の小さなマルシェ10月 2026年10月18日」「午後のミニコンサート ハープの音で癒されるって本当ですか？Vol.7 2026年10月18日」「午後のミニコンサート ～ロマン派のピアノ小品たち～ 2026年11月22日」が掲載（2026-10-12に確認）。国土交通省近畿地方整備局の `https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/izumiyamaai.html` は**南部リージョンセンターを道の駅いずみ山愛の里の施設「交流コーナー」**に掲げる。ただし道の駅と同住所であること**だけでは**、個々のイベント会場が構内だと確定しない。
+- **収集漏れ原因の切り分け**：本番#73では `osaka_izumi_regional_center` が候補11・調査8・採用0。マルシェは `undated`（公式一覧には2026-10-18があるが個別記事から開催日を確定できない）、ハープとピアノは `venue_missing`（公式一覧には日付があるが個別記事で会場の根拠が不足）。3件とも公開登録なし。外部イベント投稿サービスの記述だけを根拠に「駅構内開催」判定しない。
+- **実装変更**：`scripts/station_discovery_engine.py` に**収集先ごとの明示opt-in** `allowOfficialListingEventDate` を追加。大阪 `data/station_event_discovery_sources.json` の1ソースだけを有効化。公式一覧リンク見出しが `開催予定 <イベント名> YYYY年MM月DD日(曜日)開催` 等と一意に判読でき、個別記事のイベント名と一致し、**個別記事内に明示的な館内会場ラベル、または「南部リージョンセンター1階ロビー」等の会場証拠がある**場合に限り、同じ運営公式サイトの一覧開催日を根拠として扱う。個別記事に年付きまたは年なしの開催日があって一覧と矛盾する場合、中止明記、複数日混在、一覧名不一致、記事内会場不明の場合は自動採用しない。従来の個別記事日時確認ルールも維持。採用時には `station_event_discovery_audit.json` の例に `dateEvidence=linked_official_listing` を記録。
+- **テスト**：7件追加（一覧日付＋個別会場の正常採用、フッター/主催者名だけの会場誤認拒否、掲載日・別催事・年省略・複数日拒否、公式一覧と個別記事で年付き開催日が矛盾する場合の拒否、個別記事の年なし別日拒否、開催中止拒否、設定上の厳格会場条件必須）。前回の261件→**次のActionsで268テスト予定**。テスト設計は新条件への回帰防止であり、本番採用の実測ではない。
+- **次の本番確認**：最新版mainの新規 `Run workflow` が必要（古いコミットのRe-runは不可）。①268テストの全件合格、②大阪ソースの候補／`accepted`／`reasons`／`examples.dateEvidence`、③同じイベントの重複登録がないか、④会場不明のコンサート2件が推測で採用されていないか、⑤道の駅イベント公開・Pages、⑥公式標本の捕捉率が誤って全国推定に転用されていないかを点検。**未検証の3件を確定収集と書かないこと**。
+
 ## 2026-10-12 Phase 5 初回本番検証 — Actions #72・#73 成功
 
 - [Actions #71](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38148731654)は261件中1件失敗。新規北海道ルートが増えたのに、`test_configured_station_feeds_include_three_kanto_prefectures`で設定県集合を旧25県へ完全一致させていたことが原因。改修 [`cbdb2a4e`](https://github.com/Penta2026/michinotochu-pwa/commit/cbdb2a4e17cf72f229b50d63535eaa5ac8e31736) で旧25県の維持、新規県許容、未知県・駅の重複拒否、北海道「しらぬか恋問館」存在を検査。
