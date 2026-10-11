@@ -158,6 +158,30 @@ class IndependentRecallTests(unittest.TestCase):
         result = reviewed_sample({"schemaVersion": 1, "reviews": [future]}, PUBLISHED)
         self.assertEqual(result["notFound"], 1)
 
+    def test_curated_official_review_ledger_catches_initially_missed_notice(self):
+        import json
+        from road_event_recall_audit import REVIEWS
+        ledger=json.loads(REVIEWS.read_text(encoding="utf-8"))
+        self.assertEqual(len(ledger["reviews"]),3)
+        self.assertTrue(all(x["dateEvidence"] and x["venueEvidence"]
+                            for x in ledger["reviews"]))
+        # Freeze the original independent benchmark, not the live JSON:
+        # a future collection fix must never make this regression fail.
+        imported=[{
+            "prefecture": item["prefecture"], "roadName": item["roadName"],
+            "title": item["title"], "startDate": item["startDate"],
+            "endDate": item["endDate"], "url": item["officialUrl"]
+        } for item in ledger["reviews"] if item["roadName"] != "しらぬか恋問館"]
+        result=reviewed_sample(ledger,imported,today=DAY)
+        self.assertEqual(result["positiveOnSite"],3)
+        self.assertEqual(result["found"],2)
+        self.assertEqual(result["notFound"],1)
+        self.assertAlmostEqual(result["rateWithinReviewedSample"],2/3,places=3)
+        self.assertEqual(
+            [x["roadName"] for x in result["reviews"]
+             if x["matchStatus"]=="verified_notice_not_found_in_feed"],
+            ["しらぬか恋問館"])
+
     def test_expired_verified_event_does_not_look_like_new_miss(self):
         ledger = {"schemaVersion": 1, "reviews": [
             positive(startDate="2026-09-01", endDate="2026-09-02")]}
