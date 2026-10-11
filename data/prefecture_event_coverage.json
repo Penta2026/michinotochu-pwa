@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "basisUpdatedAt": "2026-10-11",
+  "basisUpdatedAt": "2026-10-12",
   "definitions": {
     "observed": "Only the dated events currently present in data/road_events.json.",
     "targetedFeed": "An explicitly configured station source, not proof of parsing or future-event availability.",
@@ -60,6 +60,7 @@
     ],
     "neverObservedPrefectures": [],
     "previouslyObservedWithoutCurrentEvents": [
+      "栃木県",
       "滋賀県",
       "鳥取県",
       "徳島県"
@@ -67,39 +68,29 @@
   },
   "summary": {
     "prefectureCount": 47,
-    "observedPrefectures": 44,
-    "zeroRegisteredPrefectures": 3,
+    "observedPrefectures": 43,
+    "zeroRegisteredPrefectures": 4,
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
-    "registeredEvents": 78,
+    "registeredEvents": 72,
     "targetedStationFeedPrefectures": 26,
-    "notReconfirmedEvents": 20,
+    "notReconfirmedEvents": 1,
     "unknownPrefectures": []
   },
   "priorities": {
     "reconfirm": [
-      "福島県",
-      "茨城県",
-      "栃木県",
-      "千葉県",
-      "神奈川県",
-      "静岡県",
-      "大阪府",
-      "奈良県",
-      "島根県",
-      "山口県",
-      "佐賀県",
-      "熊本県",
-      "宮崎県",
-      "鹿児島県"
+      "山口県"
     ],
     "historicalNeverObserved": [],
     "previouslyObservedWithoutCurrentEvents": [
+      "栃木県",
       "滋賀県",
       "鳥取県",
       "徳島県"
     ],
-    "noEventsButTargetedFeed": [],
+    "noEventsButTargetedFeed": [
+      "栃木県"
+    ],
     "noEventsNoTargetedFeed": [
       "滋賀県",
       "鳥取県",
@@ -112,7 +103,7 @@
       "prefectureCount": 1,
       "observedPrefectures": 1,
       "zeroRegisteredPrefectures": [],
-      "registeredEventCount": 4,
+      "registeredEventCount": 3,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 12
     },
@@ -121,16 +112,18 @@
       "prefectureCount": 6,
       "observedPrefectures": 6,
       "zeroRegisteredPrefectures": [],
-      "registeredEventCount": 11,
+      "registeredEventCount": 10,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11
     },
     {
       "region": "関東",
       "prefectureCount": 9,
-      "observedPrefectures": 9,
-      "zeroRegisteredPrefectures": [],
-      "registeredEventCount": 13,
+      "observedPrefectures": 8,
+      "zeroRegisteredPrefectures": [
+        "栃木県"
+      ],
+      "registeredEventCount": 12,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5
     },
@@ -159,9 +152,9 @@
       "zeroRegisteredPrefectures": [
         "滋賀県"
       ],
-      "registeredEventCount": 12,
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0
+      "registeredEventCount": 10,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11
     },
     {
       "region": "中国",
@@ -170,7 +163,7 @@
       "zeroRegisteredPrefectures": [
         "鳥取県"
       ],
-      "registeredEventCount": 6,
+      "registeredEventCount": 5,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35
     },
@@ -199,15 +192,14 @@
     {
       "prefecture": "北海道",
       "reportingRegion": "北海道",
-      "eventCount": 4,
+      "eventCount": 3,
       "observedStations": [
         "しらぬか恋問館",
         "たきかわ",
-        "樹海ロード日高",
         "真狩フラワーセンター"
       ],
       "historicallyObserved": true,
-      "observedStationCount": 4,
+      "observedStationCount": 3,
       "targetedStationFeeds": [
         "しらぬか恋問館"
       ],
@@ -257,7 +249,7 @@
     {
       "prefecture": "宮城県",
       "reportingRegion": "東北",
-      "eventCount": 5,
+      "eventCount": 4,
       "observedStations": [
         "村田"
       ],
@@ -319,9 +311,9 @@
       "targetedStationFeeds": [
         "ふくしま"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
@@ -339,9 +331,9 @@
         "かさま",
         "ひたちおおた"
       ],
-      "notReconfirmedCount": 4,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -349,18 +341,16 @@
     {
       "prefecture": "栃木県",
       "reportingRegion": "関東",
-      "eventCount": 1,
-      "observedStations": [
-        "ましこ"
-      ],
+      "eventCount": 0,
+      "observedStations": [],
       "historicallyObserved": true,
-      "observedStationCount": 1,
+      "observedStationCount": 0,
       "targetedStationFeeds": [
         "ましこ"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "targeted_feed_no_registered_events",
+      "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -414,9 +404,9 @@
         "しょうなん",
         "保田小学校"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -452,9 +442,9 @@
       "targetedStationFeeds": [
         "湘南ちがさき"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
@@ -576,9 +566,9 @@
       "targetedStationFeeds": [
         "伊豆ゲートウェイ函南"
       ],
-      "notReconfirmedCount": 3,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"
@@ -633,8 +623,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -648,14 +638,14 @@
       "notReconfirmedCount": 0,
       "state": "no_registered_events",
       "nextAction": "discover_prefecture_station_feeds",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
       "prefecture": "京都府",
       "reportingRegion": "近畿",
-      "eventCount": 5,
+      "eventCount": 4,
       "observedStations": [
         "京丹波 味夢の里",
         "和"
@@ -669,8 +659,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -686,11 +676,11 @@
         "いずみ山愛の里",
         "奥河内くろまろの郷"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -706,14 +696,14 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
       "prefecture": "奈良県",
       "reportingRegion": "近畿",
-      "eventCount": 2,
+      "eventCount": 1,
       "observedStations": [
         "クロスウェイなかまち"
       ],
@@ -722,11 +712,11 @@
       "targetedStationFeeds": [
         "クロスウェイなかまち"
       ],
-      "notReconfirmedCount": 2,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -747,8 +737,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -769,18 +759,17 @@
     {
       "prefecture": "島根県",
       "reportingRegion": "中国",
-      "eventCount": 3,
+      "eventCount": 2,
       "observedStations": [
-        "ごいせ仁摩",
         "シルクウェイにちはら",
         "頓原"
       ],
       "historicallyObserved": true,
-      "observedStationCount": 3,
+      "observedStationCount": 2,
       "targetedStationFeeds": [],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35,
       "regionalAuditMode": "adapter"
@@ -938,9 +927,9 @@
       "targetedStationFeeds": [
         "しろいし"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"
@@ -978,9 +967,9 @@
         "あそ望の郷くぎの",
         "すいかの里植木"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"
@@ -1016,9 +1005,9 @@
       "targetedStationFeeds": [
         "都城NiQLL"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"
@@ -1035,9 +1024,9 @@
       "targetedStationFeeds": [
         "たるみずはまびら"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0,
       "regionalAuditMode": "discovery"

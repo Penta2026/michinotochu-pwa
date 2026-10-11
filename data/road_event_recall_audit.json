@@ -3,16 +3,16 @@
   "checkedOn": "2026-10-12",
   "summary": {
     "officialSources": 10,
-    "reachableSources": 9,
-    "announcementsCompared": 70,
+    "reachableSources": 10,
+    "announcementsCompared": 80,
     "statuses": {
-      "unmatched_official_notice": 37,
+      "unmatched_official_notice": 45,
       "same_official_url_title_needs_review": 1,
       "possible_same_event_other_url": 2,
-      "station_not_unambiguously_identified": 19,
-      "published_same_official_url": 11
+      "station_not_unambiguously_identified": 22,
+      "published_same_official_url": 10
     },
-    "candidatesForManualReview": 38,
+    "candidatesForManualReview": 46,
     "sampleVerifiedOnSite": 3,
     "sampleExpiredExcluded": 0,
     "sampleFound": 3,
@@ -58,7 +58,7 @@
     {
       "name": "近畿",
       "url": "https://www.kinki-michinoeki.com/news-tag/event/",
-      "reachable": false,
+      "reachable": true,
       "error": null
     },
     {
@@ -473,6 +473,94 @@
       "evidenceStatus": "listing_only_not_date_or_venue_verified"
     },
     {
+      "source": "近畿",
+      "title": "【道の駅 みき】1/10(土)～12(月・祝) 産地直送！相生産牡蠣祭り",
+      "url": "https://www.kinki-michinoeki.com/news/%E3%80%90%E9%81%93%E3%81%AE%E9%A7%85-%E3%81%BF%E3%81%8D%E3%80%911-10%E5%9C%9F%EF%BD%9E12%E6%9C%88%E3%83%BB%E7%A5%9D%E3%80%80%E7%94%A3%E5%9C%B0%E7%9B%B4%E9%80%81%EF%BC%81%E7%9B%B8%E7%94%9F%E7%94%A3",
+      "prefecture": "兵庫県",
+      "roadName": "みき",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "近畿",
+      "title": "【道の駅 みき】12/6(土)～7(日) ながさわ道の駅みき店 冬の大感謝祭",
+      "url": "https://www.kinki-michinoeki.com/news/%E3%80%90%E9%81%93%E3%81%AE%E9%A7%85-%E3%81%BF%E3%81%8D%E3%80%9112-6%E5%9C%9F%EF%BD%9E7%E6%97%A5-%E3%81%AA%E3%81%8C%E3%81%95%E3%82%8F%E9%81%93%E3%81%AE%E9%A7%85%E3%81%BF%E3%81%8D%E5%BA%97",
+      "prefecture": "兵庫県",
+      "roadName": "みき",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "近畿",
+      "title": "【道の駅クロスウェイなかまち】2/21（土）～3/1（日）「奈良のいちごフェア」開催中！",
+      "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0222",
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "近畿",
+      "title": "【道の駅クロスウェイなかまち】3/14（土）～3/22（日）開催「奈良のいちごフェア２０２６」大好評につき【第２弾】！",
+      "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0303",
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "近畿",
+      "title": "【道の駅クロスウェイなかまち】5/16（土）「防災フェス2026 ～新緑の候～」開催！",
+      "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0504",
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "近畿",
+      "title": "【道の駅クロスウェイなかまち】8/8（土）～16（日）「納涼フェア2026」開催！",
+      "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0730",
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "近畿",
+      "title": "【道の駅クロスウェイなかまち】2026年シルバーウィーク特別企画「グラウンド・ランタン祭り＆夜市」",
+      "url": "https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0828_2",
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "近畿",
+      "title": "【道の駅なら歴史芸術文化村】12/20（土）開催『Christmas Concert 2025: Gospel and Others』",
+      "url": "https://www.kinki-michinoeki.com/news/nrg-bunkamura_2025-1128",
+      "prefecture": "奈良県",
+      "roadName": "なら歴史芸術文化村",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
       "source": "関東",
       "title": "【道の駅両神温泉薬師の湯】8/22（土） 納涼祭･･･ 日時：2026年8月22日（土） 10:00-15:00 場所：道の駅両神温泉薬師の湯 温泉前ひろば 内容： ・世界に1台のレア車両、秩父消防本部、日産スカイライン指令車（今年、トミカからミニカーも販…",
       "url": "https://www.kanto-michinoeki.jp/archives/18167.html",
@@ -530,6 +618,17 @@
       "possibleOverlapUrls": [
         "https://www.sk-michinoeki.jp/events/4219"
       ],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "日高町道の駅フェスト開催のお知らせ",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
       "headlineDateHint": "unknown_date",
       "evidenceStatus": "listing_only_not_date_or_venue_verified"
     },
@@ -743,6 +842,28 @@
       "evidenceStatus": "listing_only_not_date_or_venue_verified"
     },
     {
+      "source": "近畿",
+      "title": "第14回全国「道の駅」シンポジウムin留萌 開催について",
+      "url": "https://www.kinki-michinoeki.com/news/%E7%AC%AC14%E5%9B%9E%E5%85%A8%E5%9B%BD%E3%80%8C%E9%81%93%E3%81%AE%E9%A7%85%E3%80%8D%E3%82%B7%E3%83%B3%E3%83%9D%E3%82%B8%E3%82%A6%E3%83%A0in%E7%95%99%E8%90%8C%E3%80%80%E9%96%8B%E5%82%AC%E3%81%AB",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "近畿",
+      "title": "「道の駅 奥永源寺渓流の里」開駅１１周年記念祭を開催します。",
+      "url": "https://www.kinki-michinoeki.com/news/%E9%96%8B%E9%A7%85%EF%BC%91%EF%BC%91%E5%91%A8%E5%B9%B4%E8%A8%98%E5%BF%B5%E7%A5%AD%E3%82%92%E9%96%8B%E5%82%AC%E3%81%97%E3%81%BE%E3%81%99%E3%80%82",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
       "source": "中国",
       "title": "【頓原】第６回 秋わくわくフェスタ 10月24日（土）10時から15時",
       "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000694.pdf",
@@ -773,17 +894,6 @@
       "status": "published_same_official_url",
       "possibleOverlapUrls": [],
       "headlineDateHint": "past_schedule_hint",
-      "evidenceStatus": "listing_only_not_date_or_venue_verified"
-    },
-    {
-      "source": "北海道",
-      "title": "日高町道の駅フェスト開催のお知らせ",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778",
-      "prefecture": "",
-      "roadName": "",
-      "status": "published_same_official_url",
-      "possibleOverlapUrls": [],
-      "headlineDateHint": "unknown_date",
       "evidenceStatus": "listing_only_not_date_or_venue_verified"
     },
     {

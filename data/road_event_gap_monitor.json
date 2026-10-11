@@ -9,44 +9,45 @@
   },
   "summary": {
     "historicalPrefecturesReached": 47,
-    "prefecturesWithCurrentEvents": 44,
-    "currentEvents": 78,
+    "prefecturesWithCurrentEvents": 43,
+    "currentEvents": 72,
     "phase2SourcesConfigured": 28,
     "phase2SourcesAudited": 28,
-    "phase2AuditFresh": false,
+    "phase2AuditFresh": true,
     "regionalHomepagesAudited": 9,
     "targetedStationPrefectures": 26,
-    "publishedStations": 53,
-    "publishedStationsWithoutDirectTarget": 26,
+    "publishedStations": 50,
+    "publishedStationsWithoutDirectTarget": 24,
     "appMasterStations": 1234,
     "appMasterWithDedicatedSource": 37,
     "appMasterWithoutDedicatedSource": 1197,
-    "appMasterCurrentlyPublishedStations": 53,
+    "appMasterCurrentlyPublishedStations": 50,
     "configuredTargetNamesNotMatchedToAppMaster": 0,
-    "potentialReviewSamples": 28,
+    "potentialReviewSamples": 52,
     "rejectedReasonCounts": {
-      "not_event": 38,
+      "no_grounded_program_year": 2,
+      "no_individually_dated_monthly_events": 4,
+      "no_individually_dated_sections": 8,
+      "not_event": 55,
       "offsite": 3,
-      "past": 8,
-      "undated": 18,
-      "venue_missing": 7
+      "past": 13,
+      "undated": 24,
+      "venue_missing": 9
     },
-    "sourcesWithFetchProblems": 12,
-    "sourcesWithZeroCandidates": 1,
-    "sourcesAtCheckLimit": 7,
-    "sourcesUsingRotatingInspection": 7,
-    "rotatingInspectionSlots": 13,
-    "uninspectedCandidateSlots": 161,
+    "sourcesWithFetchProblems": 1,
+    "sourcesWithZeroCandidates": 2,
+    "sourcesAtCheckLimit": 9,
+    "sourcesUsingRotatingInspection": 9,
+    "rotatingInspectionSlots": 17,
+    "uninspectedCandidateSlots": 164,
     "reviewWithExplicitFutureHint": 3,
     "reviewWithExplicitPastHint": 3,
-    "warnings": 21,
+    "warnings": 10,
     "warningKinds": {
-      "article_check_limit": 7,
-      "regional_homepage_unreachable": 1,
-      "source_fetch_error": 12,
-      "stale_discovery_audit": 1
+      "article_check_limit": 9,
+      "source_fetch_error": 1
     },
-    "unreconfirmedEvents": 20
+    "unreconfirmedEvents": 1
   },
   "publishedStationsWithoutDirectTarget": [
     {
@@ -62,11 +63,6 @@
     {
       "prefecture": "北海道",
       "roadName": "たきかわ",
-      "status": "published_through_other_collector_not_unmonitored"
-    },
-    {
-      "prefecture": "北海道",
-      "roadName": "樹海ロード日高",
       "status": "published_through_other_collector_not_unmonitored"
     },
     {
@@ -107,11 +103,6 @@
     {
       "prefecture": "岡山県",
       "roadName": "笠岡ベイファーム",
-      "status": "published_through_other_collector_not_unmonitored"
-    },
-    {
-      "prefecture": "島根県",
-      "roadName": "ごいせ仁摩",
       "status": "published_through_other_collector_not_unmonitored"
     },
     {
@@ -463,8 +454,8 @@
       "prefecture": "北海道",
       "roadName": "樹海ロード日高",
       "dedicatedSourceConfigured": false,
-      "currentlyPublishedEvent": true,
-      "status": "published_by_other_collectors"
+      "currentlyPublishedEvent": false,
+      "status": "no_dedicated_source"
     },
     {
       "id": "RS0036",
@@ -2975,7 +2966,7 @@
       "prefecture": "栃木県",
       "roadName": "ましこ",
       "dedicatedSourceConfigured": true,
-      "currentlyPublishedEvent": true,
+      "currentlyPublishedEvent": false,
       "status": "dedicated_source_configured"
     },
     {
@@ -7583,8 +7574,8 @@
       "prefecture": "島根県",
       "roadName": "ごいせ仁摩",
       "dedicatedSourceConfigured": false,
-      "currentlyPublishedEvent": true,
-      "status": "published_by_other_collectors"
+      "currentlyPublishedEvent": false,
+      "status": "no_dedicated_source"
     },
     {
       "id": "RS0927",
@@ -10092,7 +10083,7 @@
       "prefecture": "北海道",
       "masterStations": 128,
       "dedicatedSources": 1,
-      "publishedStations": 4,
+      "publishedStations": 3,
       "noDedicatedSource": 127
     },
     {
@@ -10204,7 +10195,7 @@
       "prefecture": "島根県",
       "masterStations": 29,
       "dedicatedSources": 0,
-      "publishedStations": 3,
+      "publishedStations": 2,
       "noDedicatedSource": 29
     },
     {
@@ -10253,7 +10244,7 @@
       "prefecture": "栃木県",
       "masterStations": 25,
       "dedicatedSources": 1,
-      "publishedStations": 1,
+      "publishedStations": 0,
       "noDedicatedSource": 24
     },
     {
@@ -10392,6 +10383,7 @@
   ],
   "configuredTargetsNotMatchedToAppMaster": [],
   "historicallyReachedWithNoCurrentEvents": [
+    "栃木県",
     "滋賀県",
     "鳥取県",
     "徳島県"
@@ -10434,6 +10426,102 @@
       "status": "unverified_candidate"
     },
     {
+      "sourceId": "wakayama_sakuas",
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "url": "https://sakuas.com/event/4361/",
+      "title": "7月後半イベント",
+      "sourceReason": "no_individually_dated_sections",
+      "reviewReason": "event_sections_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "wakayama_sakuas",
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "url": "https://sakuas.com/event/4382/",
+      "title": "8月イベント",
+      "sourceReason": "no_individually_dated_sections",
+      "reviewReason": "event_sections_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "wakayama_sakuas",
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "url": "https://sakuas.com/event/4441/",
+      "title": "オリジナル海鮮丼コンテスト開催!",
+      "sourceReason": "no_individually_dated_sections",
+      "reviewReason": "event_sections_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "wakayama_sakuas",
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "url": "https://sakuas.com/event/4457/",
+      "title": "3周年祭🎉",
+      "sourceReason": "no_individually_dated_sections",
+      "reviewReason": "event_sections_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "wakayama_sakuas",
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "url": "https://sakuas.com/event/4488/",
+      "title": "9月イベント情報",
+      "sourceReason": "no_individually_dated_sections",
+      "reviewReason": "event_sections_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "wakayama_sakuas",
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "url": "https://sakuas.com/event/4497/",
+      "title": "9月イベントカレンダー",
+      "sourceReason": "no_individually_dated_sections",
+      "reviewReason": "event_sections_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "wakayama_sakuas",
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "url": "https://sakuas.com/event/4534/",
+      "title": "10月イベントカレンダー前半",
+      "sourceReason": "no_individually_dated_sections",
+      "reviewReason": "event_sections_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "wakayama_sakuas",
+      "prefecture": "和歌山県",
+      "roadName": "海南サクアス",
+      "url": "https://sakuas.com/event/4555/",
+      "title": "10月イベント情報",
+      "sourceReason": "no_individually_dated_sections",
+      "reviewReason": "event_sections_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
       "sourceId": "wakayama_shikinosato",
       "prefecture": "和歌山県",
       "roadName": "四季の郷公園",
@@ -10458,6 +10546,78 @@
       "status": "unverified_candidate"
     },
     {
+      "sourceId": "wakayama_shikinosato",
+      "prefecture": "和歌山県",
+      "roadName": "四季の郷公園",
+      "url": "https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab/",
+      "title": "Event イ",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "nara_nakamachi",
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20260919",
+      "title": "2026年シルバーウィーク特別企画「グラウンド・ランタン祭り&夜市」 道の駅「クロスウェイなかまち」では、2026年9月19日(土)から9月23日(水・祝)までの5日間、地域住民から観光客まで、誰もが",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "nara_nakamachi",
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261003",
+      "title": "10/3(土)あの「まほろばの宴」がやって来る! Youtubeチャンネル登録者数5万人の DTMer奏人kanato と、仲間の演者たちが、また道の駅「クロスウェイなかまち」にやってきます!秋の特別",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "miyazaki_niqll",
+      "prefecture": "宮崎県",
+      "roadName": "都城NiQLL",
+      "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b410%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
+      "title": "イベント 【NiQLL’sスクール】令和8年10月の講座のご案内 多目的室で開催する令和8年10月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 「道の駅」",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "miyazaki_niqll",
+      "prefecture": "宮崎県",
+      "roadName": "都城NiQLL",
+      "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b49%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
+      "title": "イベント 【NiQLL’sスクール】令和8年9月の講座のご案内 多目的室で開催する令和8年9月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新しいラ",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "miyazaki_niqll",
+      "prefecture": "宮崎県",
+      "roadName": "都城NiQLL",
+      "url": "https://coconiqll.co.jp/3768-2/",
+      "title": "イベント 【NiQLL’sスクール】令和8年11月の講座のご案内 多目的室で開催する令和8年11月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新し",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
       "sourceId": "yamaguchi_abu_roadstation",
       "prefecture": "山口県",
       "roadName": "阿武町",
@@ -10465,6 +10625,18 @@
       "title": "2025/04/28 7/6(土)第6回 ABUスイムラン道の駅フェスタ2025。森里海の市とカレーフェスタも同時開催。 詳しいことは阿武町のホームページから。https://www.town.abu",
       "sourceReason": "venue_missing",
       "reviewReason": "onsite_venue_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "iwate_tono_kazenooka",
+      "prefecture": "岩手県",
+      "roadName": "遠野風の丘",
+      "url": "https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%8a%e7%9b%86%e6%9c%9d%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%90%ef%bc%98%e6%9c%8812%e6%97%a5%e6%b0%b4/",
+      "title": "日程:8月12日(水)~8月13日(木) 時間:屋外切り花販売 7:00~ 屋内は通常通り営業 9:00~",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
       "priority": "high",
       "headlineScheduleHint": "unknown_date",
       "status": "unverified_candidate"
@@ -10487,18 +10659,6 @@
       "roadName": "遠野風の丘",
       "url": "https://kazenooka.tonofurusato.jp/news/%e9%98%b2%e7%81%bd%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%909%e6%9c%886%e6%97%a5%e6%97%a5%e3%80%91/",
       "title": "防災イベント 開催日:9月6日(日) 時 間:10:00~15:00",
-      "sourceReason": "undated",
-      "reviewReason": "event_date_unverified",
-      "priority": "high",
-      "headlineScheduleHint": "unknown_date",
-      "status": "unverified_candidate"
-    },
-    {
-      "sourceId": "iwate_tono_kazenooka",
-      "prefecture": "岩手県",
-      "roadName": "遠野風の丘",
-      "url": "https://kazenooka.tonofurusato.jp/news/%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%ae%e7%a9%ba%e3%83%8e%e5%b8%82-8%e6%9c%88%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%908%e6%9c%8823%e6%97%a5%e6%97%a5%e3%80%91/",
-      "title": "日程8月23日(日) 時間:10時~15時",
       "sourceReason": "undated",
       "reviewReason": "event_date_unverified",
       "priority": "high",
@@ -10585,6 +10745,102 @@
       "title": "お知らせ 2026.10.03 5周年記念感謝祭特別記念きっぷ",
       "sourceReason": "undated",
       "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "fukushima_michinoeki",
+      "prefecture": "福島県",
+      "roadName": "ふくしま",
+      "url": "https://m-fukushima.com/info/698",
+      "title": "EVENT 2026.10.05 【11/1(日)】福島おおざそうインター工業団地とロボット見学会",
+      "sourceReason": "venue_missing",
+      "reviewReason": "onsite_venue_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "fukushima_michinoeki",
+      "prefecture": "福島県",
+      "roadName": "ふくしま",
+      "url": "https://m-fukushima.com/info/699",
+      "title": "EVENT 2026.10.06 【10/12(祝・月)パン&ベイクまつり】",
+      "sourceReason": "venue_missing",
+      "reviewReason": "onsite_venue_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "shizuoka_izugateway",
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南",
+      "url": "https://www.izugateway.com/event/6411/",
+      "title": "2026年5月 道の駅イベントのご案内 『函南ランド 重ね捺しGWスタンプラリー』 道の駅伊豆ゲートウェイ函南、川の駅伊豆ゲートウェイ函南、かねふくめんたいぱーく伊豆、伊豆わさびミュージアムの近隣4施",
+      "sourceReason": "no_individually_dated_monthly_events",
+      "reviewReason": "monthly_events_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "shizuoka_izugateway",
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南",
+      "url": "https://www.izugateway.com/event/6436/",
+      "title": "【数量限定】✨『思い出召喚キーホルダー』✨GW特別販売! 2026年4月25日(土)~5月10日(日)@観光情報案内所 ゴールデンウィーク期間に合わせ、“大切な思い出を、いつでも呼び出せる”『思い出召",
+      "sourceReason": "no_grounded_program_year",
+      "reviewReason": "event_year_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "shizuoka_izugateway",
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南",
+      "url": "https://www.izugateway.com/event/6501/",
+      "title": "2026年6月 道の駅イベントのご案内 『ゲートウェイ食市 函南すいかまつり』 今年も函南すいかの販売・試食提供等を予定!ぜひ旬の味覚をお楽しみください♪スイカの甲羅のマモリくんも登場。マモリくんにじ",
+      "sourceReason": "no_individually_dated_monthly_events",
+      "reviewReason": "monthly_events_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "shizuoka_izugateway",
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南",
+      "url": "https://www.izugateway.com/event/6623/",
+      "title": "2026年8月 道の駅イベントのご案内 『函南ランド 重ね捺し夏休みスタンプラリー』 8月1日(土)~8月31日(月) 道の駅伊豆ゲートウェイ函南、川の駅伊豆ゲートウェイ函南、 かねふくめんたいパーク",
+      "sourceReason": "no_individually_dated_monthly_events",
+      "reviewReason": "monthly_events_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "shizuoka_izugateway",
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南",
+      "url": "https://www.izugateway.com/event/6684/",
+      "title": "2026年9月 道の駅イベントのご案内 ハファデイ・グアム・フェスティバル in 静岡 9月5日(土)10:00~17:00 伊豆土肥の恋人岬とグアム島の恋人岬が姉妹提携を結んでいるのはご存知ですか?",
+      "sourceReason": "no_individually_dated_monthly_events",
+      "reviewReason": "monthly_events_unparsed",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "shizuoka_izugateway",
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南",
+      "url": "https://www.izugateway.com/event/6694/",
+      "title": "【タリーズコーヒー伊豆ゲートウェイ函南店】夏のキッズワークショップ🌻 【Tully's キッズ★夏のワークショップ開催!!】 8月18日(火)・19日(水)にTully'sCOFFEEゲートウェイ函南",
+      "sourceReason": "no_grounded_program_year",
+      "reviewReason": "event_year_unverified",
       "priority": "high",
       "headlineScheduleHint": "unknown_date",
       "status": "unverified_candidate"
@@ -10698,11 +10954,35 @@
       "status": "unverified_candidate"
     },
     {
+      "sourceId": "kanagawa_chigasaki",
+      "prefecture": "神奈川県",
+      "roadName": "湘南ちがさき",
+      "url": "https://m-shonanchigasaki.com/topics/detail.php?id=117",
+      "title": "EVENT 2026-08-31 9月イベントカレンダー",
+      "sourceReason": "not_event",
+      "reviewReason": "calendar_announcement_needs_detail",
+      "priority": "medium",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "kanagawa_chigasaki",
+      "prefecture": "神奈川県",
+      "roadName": "湘南ちがさき",
+      "url": "https://m-shonanchigasaki.com/topics/detail.php?id=122",
+      "title": "EVENT 2026-09-28 10月イベントカレンダー",
+      "sourceReason": "not_event",
+      "reviewReason": "calendar_announcement_needs_detail",
+      "priority": "medium",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
       "sourceId": "yamaguchi_abu_roadstation",
       "prefecture": "山口県",
       "roadName": "阿武町",
-      "url": "https://www.abucreation.com/topics/%e7%ac%ac%e4%b8%80%e5%9b%9e%e3%80%8c%e6%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%80%8d%e5%87%ba%e5%ba%97%e7%94%b3%e3%81%97%e8%be%bc%e3%81%bf%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
-      "title": "2026/10/01 令和8年10月11日(日)第48回森里海の市を開催します!! 令和8年10月11日(日)第48回森里海の市を開催します。 当日は道の駅阿武町大創業祭も開催されます。 先着300名",
+      "url": "https://www.abucreation.com/topics/%e5%8c%97%e6%b5%b7%e9%81%93%e9%b6%b4%e5%b1%85%e6%9d%91%e7%89%a9%e7%94%a3%e5%b1%95%e3%81%ae%e9%96%8b%e5%82%ac%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
+      "title": "2026/06/09 北海道鶴居村物産展の開催について 6/20(土)6/21(日)道の駅とサンバシカフェで北海道鶴居村フェアを行います。6/21(土)17:30~21:00はサンバシカフェで夜の居酒",
       "sourceReason": "venue_missing",
       "reviewReason": "onsite_venue_unverified",
       "priority": "low",
@@ -10736,158 +11016,6 @@
   ],
   "unreconfirmedEvents": [
     {
-      "roadName": "かさま",
-      "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します",
-      "url": "https://m-kasama.com/topics/p-06497",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "ごいせ仁摩",
-      "title": "【ごいせ仁摩】朝ごはん新米祭り 10月10日・11日10時～",
-      "url": "https://www.goisenima.com/schedule/570/",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-11",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "ふくしま",
-      "title": "【10/10(土)・11日(日)ガーデンプレイスフェスタ】",
-      "url": "https://m-fukushima.com/info/700",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-11",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "保田小学校",
-      "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)",
-      "url": "https://hotasho.jp/news/%e4%bf%9d%e7%94%b0%e5%b0%8f%e9%99%84%e5%b1%9e%e3%82%88%e3%81%86%e3%81%a1%e3%81%88%e3%82%933%e5%91%a8%e5%b9%b4%e9%96%8b%e5%9c%92%e7%a5%ad%ef%bc%882026-10-10%ef%bd%9e12%ef%bc%89/",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "湘南ちがさき",
-      "title": "かとうくみプレンティーズ原画展",
-      "url": "https://creativeweek.net/event-detail.php?no=37",
-      "startDate": "2026-10-10",
-      "endDate": "2026-11-23",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "ましこ",
-      "title": "道の駅ましこ10周年祭",
-      "url": "https://m-mashiko.com/event/4457/",
-      "startDate": "2026-10-11",
-      "endDate": "2026-10-11",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "クロスウェイなかまち",
-      "title": "10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪",
-      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261011",
-      "startDate": "2026-10-11",
-      "endDate": "2026-10-11",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "あそ望の郷くぎの",
-      "title": "第11回 南阿蘇の青空レストラン",
-      "url": "https://minamiaso.info/event/?cm=10&cy=2026",
-      "startDate": "2026-10-12",
-      "endDate": "2026-10-12",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "かさま",
-      "title": "2026.09.23 イベント お知らせ 【イベント】10/17~18『モンブランフェア』を開催します",
-      "url": "https://m-kasama.com/topics/p-06506",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "ゲートウェイ食市 新米すくい",
-      "url": "https://www.izugateway.com/event/6723/",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "かさま",
-      "title": "2026.09.23 イベント お知らせ 【イベント】10/24~25『ハロウィンマーケット』を開催します",
-      "url": "https://m-kasama.com/topics/p-06502",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "かさま",
-      "title": "2026.09.28 イベント お知らせ 10/24・25リフティングパフォーマンス公演",
-      "url": "https://m-kasama.com/topics/p-06438",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "奥河内くろまろの郷",
-      "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025",
-      "url": "https://kuromaro.com/event/list/page/4/",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "たるみずはまびら",
-      "title": "10月の九州の催事⑪",
-      "url": "https://shokupan-sakimoto.com/news/kyusyusaiji_oct/",
-      "startDate": "2026-10-25",
-      "endDate": "2026-10-25",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "クロスウェイなかまち",
-      "title": "10/31(土)あの「まほろばの宴」が再びやって来る!",
-      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261031",
-      "startDate": "2026-10-31",
-      "endDate": "2026-10-31",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "しろいし",
-      "title": "秋の収穫祭",
-      "url": "https://www.michinoeki-shiroishi.jp/news/%e7%a7%8b%e3%81%ae%e5%8f%8e%e7%a9%ab%e7%a5%ad-2/",
-      "startDate": "2026-11-01",
-      "endDate": "2026-11-01",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "翠のピスタチオ",
-      "url": "https://www.izugateway.com/event/6779/",
-      "startDate": "2026-11-08",
-      "endDate": "2026-11-08",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "都城NiQLL",
-      "title": "【NiQLL`sキッチン】11月 秋の蕎麦打ち体験 午前・午後の部",
-      "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%9111%e6%9c%88%e3%80%80%e7%a7%8b%e3%81%ae%e8%95%8e%e9%ba%a6%e6%89%93%e3%81%a1%e4%bd%93%e9%a8%93/",
-      "startDate": "2026-11-10",
-      "endDate": "2026-11-10",
-      "status": "needs_reconfirmation"
-    },
-    {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "ゲートウェイ食市 干し柿づくり",
-      "url": "https://www.izugateway.com/event/6779/",
-      "startDate": "2026-11-21",
-      "endDate": "2026-11-21",
-      "status": "needs_reconfirmation"
-    },
-    {
       "roadName": "阿武町",
       "title": "令和8年11月29日(日)第49回森里海の市を開催します。",
       "url": "https://www.abucreation.com/topics/%e4%bb%a4%e5%92%8c6%e5%b9%b410%e6%9c%8813%e6%97%a5%ef%bc%88%e6%97%a5%ef%bc%89%e7%ac%ac30%e5%9b%9e%e6%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99/",
@@ -10897,20 +11025,6 @@
     }
   ],
   "warnings": [
-    {
-      "kind": "source_fetch_error",
-      "sourceId": "kanagawa_chigasaki",
-      "prefecture": "神奈川県",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
-    {
-      "kind": "source_fetch_error",
-      "sourceId": "nara_nakamachi",
-      "prefecture": "奈良県",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
     {
       "kind": "article_check_limit",
       "sourceId": "fukui_hamabiyori",
@@ -10928,13 +11042,6 @@
       "candidateCount": 11,
       "checkedCount": 8,
       "uninspectedCandidateCount": 3
-    },
-    {
-      "kind": "source_fetch_error",
-      "sourceId": "wakayama_sakuas",
-      "prefecture": "和歌山県",
-      "severity": "warning",
-      "failureDayStreak": 1
     },
     {
       "kind": "article_check_limit",
@@ -10955,25 +11062,13 @@
       "uninspectedCandidateCount": 1
     },
     {
-      "kind": "source_fetch_error",
+      "kind": "article_check_limit",
       "sourceId": "fukushima_michinoeki",
       "prefecture": "福島県",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
-    {
-      "kind": "source_fetch_error",
-      "sourceId": "shizuoka_izugateway",
-      "prefecture": "静岡県",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
-    {
-      "kind": "source_fetch_error",
-      "sourceId": "yamaguchi_aio",
-      "prefecture": "山口県",
-      "severity": "warning",
-      "failureDayStreak": 1
+      "severity": "notice",
+      "candidateCount": 12,
+      "checkedCount": 10,
+      "uninspectedCandidateCount": 1
     },
     {
       "kind": "article_check_limit",
@@ -10994,25 +11089,13 @@
       "uninspectedCandidateCount": 143
     },
     {
-      "kind": "source_fetch_error",
-      "sourceId": "osaka_kuromaro_official_schedule",
-      "prefecture": "大阪府",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
-    {
-      "kind": "source_fetch_error",
-      "sourceId": "kumamoto_minamiaso_official_tourism",
-      "prefecture": "熊本県",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
-    {
-      "kind": "source_fetch_error",
+      "kind": "article_check_limit",
       "sourceId": "miyazaki_niqll",
       "prefecture": "宮崎県",
-      "severity": "warning",
-      "failureDayStreak": 1
+      "severity": "notice",
+      "candidateCount": 13,
+      "checkedCount": 10,
+      "uninspectedCandidateCount": 2
     },
     {
       "kind": "article_check_limit",
@@ -11029,31 +11112,6 @@
       "prefecture": "愛媛県",
       "severity": "warning",
       "failureDayStreak": 2
-    },
-    {
-      "kind": "source_fetch_error",
-      "sourceId": "kanagawa_creativeweek_official_roadstation_art",
-      "prefecture": "神奈川県",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
-    {
-      "kind": "source_fetch_error",
-      "sourceId": "kagoshima_sakimoto_official_station_popup_oct",
-      "prefecture": "鹿児島県",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
-    {
-      "kind": "stale_discovery_audit",
-      "severity": "warning",
-      "expectedDate": "2026-10-12",
-      "actualDate": "2026-10-11"
-    },
-    {
-      "kind": "regional_homepage_unreachable",
-      "region": "近畿",
-      "severity": "warning"
     }
   ],
   "sources": [
@@ -11085,16 +11143,16 @@
       "roadName": "湘南ちがさき",
       "url": "https://m-shonanchigasaki.com/topics/",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "review_candidates",
+      "candidateCount": 9,
+      "checkedCount": 9,
       "acceptedCount": 0,
       "reconfirmedCount": 0,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='m-shonanchigasaki.com', port=443): Max retries exceeded with url: /topics/ (Caused by ConnectTimeoutError(<HTTPSCo",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
@@ -11107,16 +11165,16 @@
       "roadName": "クロスウェイなかまち",
       "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "review_candidates",
+      "candidateCount": 4,
+      "checkedCount": 2,
       "acceptedCount": 0,
       "reconfirmedCount": 0,
-      "knownSkippedCount": 0,
+      "knownSkippedCount": 2,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='michi-no-eki-crosswaynakamachi.pref.nara.jp', port=443): Max retries exceeded with url: /newslist (Caused by Conne",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
@@ -11173,16 +11231,16 @@
       "roadName": "海南サクアス",
       "url": "https://sakuas.com/event/",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "review_candidates",
+      "candidateCount": 12,
+      "checkedCount": 8,
       "acceptedCount": 0,
       "reconfirmedCount": 0,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='sakuas.com', port=443): Max retries exceeded with url: /event/ (Caused by ConnectTimeoutError(<HTTPSConnection(hos",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
@@ -11261,21 +11319,21 @@
       "roadName": "ふくしま",
       "url": "https://m-fukushima.com/info/?category=2",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
-      "acceptedCount": 0,
+      "status": "review_candidates",
+      "candidateCount": 12,
+      "checkedCount": 10,
+      "acceptedCount": 1,
       "reconfirmedCount": 0,
-      "knownSkippedCount": 0,
+      "knownSkippedCount": 1,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='m-fukushima.com', port=443): Max retries exceeded with url: /info/?category=2 (Caused by ConnectTimeoutError(<HTTP",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
-      "mayHaveUnreviewedCandidates": false,
-      "uninspectedCandidateCount": 0,
-      "explorationSlots": 0,
-      "explorationPool": 0
+      "mayHaveUnreviewedCandidates": true,
+      "uninspectedCandidateCount": 1,
+      "explorationSlots": 2,
+      "explorationPool": 3
     },
     {
       "id": "shizuoka_izugateway",
@@ -11283,16 +11341,16 @@
       "roadName": "伊豆ゲートウェイ函南",
       "url": "https://www.izugateway.com/category/event/",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "review_candidates",
+      "candidateCount": 10,
+      "checkedCount": 8,
       "acceptedCount": 0,
-      "reconfirmedCount": 0,
+      "reconfirmedCount": 3,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='www.izugateway.com', port=443): Max retries exceeded with url: /category/event/ (Caused by ConnectTimeoutError(<HT",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
@@ -11305,17 +11363,17 @@
       "roadName": "あいお",
       "url": "https://michinoeki-aio.com/news/",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
+      "status": "no_candidates",
       "candidateCount": 0,
       "checkedCount": 0,
       "acceptedCount": 0,
       "reconfirmedCount": 0,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='michinoeki-aio.com', port=443): Max retries exceeded with url: /news/ (Caused by ConnectTimeoutError(<HTTPSConnect",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
-      "emptyCandidateDayStreak": 0,
+      "failureDayStreak": 0,
+      "emptyCandidateDayStreak": 1,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
       "explorationSlots": 0,
@@ -11393,16 +11451,16 @@
       "roadName": "奥河内くろまろの郷",
       "url": "https://kuromaro.com/event/list/page/4/",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "active",
+      "candidateCount": 1,
+      "checkedCount": 1,
       "acceptedCount": 0,
-      "reconfirmedCount": 0,
+      "reconfirmedCount": 1,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='kuromaro.com', port=443): Max retries exceeded with url: /event/list/page/4/ (Caused by ConnectTimeoutError(<HTTPS",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
@@ -11415,16 +11473,16 @@
       "roadName": "あそ望の郷くぎの",
       "url": "https://minamiaso.info/event/?cm=10&cy=2026",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "active",
+      "candidateCount": 1,
+      "checkedCount": 1,
       "acceptedCount": 0,
-      "reconfirmedCount": 0,
+      "reconfirmedCount": 1,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='minamiaso.info', port=443): Max retries exceeded with url: /event/?cm=10&cy=2026 (Caused by ConnectTimeoutError(<H",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
@@ -11437,21 +11495,21 @@
       "roadName": "都城NiQLL",
       "url": "https://coconiqll.co.jp/info/",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "review_candidates",
+      "candidateCount": 13,
+      "checkedCount": 10,
       "acceptedCount": 0,
       "reconfirmedCount": 0,
-      "knownSkippedCount": 0,
+      "knownSkippedCount": 1,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='coconiqll.co.jp', port=443): Max retries exceeded with url: /info/ (Caused by ConnectTimeoutError(<HTTPSConnection",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
-      "mayHaveUnreviewedCandidates": false,
-      "uninspectedCandidateCount": 0,
-      "explorationSlots": 0,
-      "explorationPool": 0
+      "mayHaveUnreviewedCandidates": true,
+      "uninspectedCandidateCount": 2,
+      "explorationSlots": 2,
+      "explorationPool": 4
     },
     {
       "id": "ehime_yawatahama_city_events",
@@ -11553,16 +11611,16 @@
       "roadName": "湘南ちがさき",
       "url": "https://creativeweek.net/event-detail.php?no=37",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "active",
+      "candidateCount": 1,
+      "checkedCount": 1,
       "acceptedCount": 0,
-      "reconfirmedCount": 0,
+      "reconfirmedCount": 1,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='creativeweek.net', port=443): Max retries exceeded with url: /event-detail.php?no=37 (Caused by ConnectTimeoutErro",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
@@ -11575,16 +11633,16 @@
       "roadName": "たるみずはまびら",
       "url": "https://shokupan-sakimoto.com/news/kyusyusaiji_oct/",
       "checkedOn": "2026-10-12",
-      "status": "source_error",
-      "candidateCount": 0,
-      "checkedCount": 0,
+      "status": "active",
+      "candidateCount": 1,
+      "checkedCount": 1,
       "acceptedCount": 0,
-      "reconfirmedCount": 0,
+      "reconfirmedCount": 1,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
-      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='shokupan-sakimoto.com', port=443): Max retries exceeded with url: /news/kyusyusaiji_oct/ (Caused by ConnectTimeout",
+      "listingError": "",
       "fetchErrors": [],
-      "failureDayStreak": 1,
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": false,
       "uninspectedCandidateCount": 0,
@@ -11666,8 +11724,8 @@
       "status": "active",
       "candidateCount": 1,
       "checkedCount": 1,
-      "acceptedCount": 1,
-      "reconfirmedCount": 0,
+      "acceptedCount": 0,
+      "reconfirmedCount": 1,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
       "listingError": "",
@@ -11719,8 +11777,8 @@
     {
       "region": "近畿",
       "mode": "adapter",
-      "homepageReachable": false,
-      "homepageCandidateCount": 0,
+      "homepageReachable": true,
+      "homepageCandidateCount": 11,
       "note": "Regional homepage status does NOT prove that its stations' events were parsed."
     },
     {
