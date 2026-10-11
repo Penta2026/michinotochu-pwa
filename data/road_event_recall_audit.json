@@ -1,0 +1,928 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-12",
+  "summary": {
+    "officialSources": 10,
+    "reachableSources": 9,
+    "announcementsCompared": 70,
+    "statuses": {
+      "unmatched_official_notice": 37,
+      "same_official_url_title_needs_review": 1,
+      "possible_same_event_other_url": 2,
+      "station_not_unambiguously_identified": 19,
+      "published_same_official_url": 11
+    },
+    "candidatesForManualReview": 38,
+    "sampleVerifiedOnSite": 3,
+    "sampleExpiredExcluded": 0,
+    "sampleFound": 3,
+    "sampleNotFound": 0,
+    "sampleDiscoveryRate": 1.0
+  },
+  "limitations": {
+    "coverage": "Regional homepage samples and a bounded national first-page notice index only.",
+    "unmatched": "An unmatched URL/title is NOT proof of a missing station event.",
+    "measurement": "A manually reviewed non-random sample does NOT measure national recall."
+  },
+  "sources": [
+    {
+      "name": "北海道",
+      "url": "https://hokkaido-michinoeki.jp/",
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "東北",
+      "url": "https://www.michinoeki-tohoku.com/event",
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "関東",
+      "url": "https://www.kanto-michinoeki.jp/",
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "北陸",
+      "url": "https://www.hokuriku-michinoeki.jp/",
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "中部",
+      "url": "https://www.chubu-michinoeki.org/",
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "近畿",
+      "url": "https://www.kinki-michinoeki.com/news-tag/event/",
+      "reachable": false,
+      "error": null
+    },
+    {
+      "name": "中国",
+      "url": "https://chugoku-michinoeki.jp/news/index.php",
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "四国",
+      "url": "https://www.sk-michinoeki.jp/events",
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "九州・沖縄",
+      "url": "https://www.qsr.mlit.go.jp/n-michi/michi_no_eki/",
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "全国道の駅連絡会",
+      "url": "https://www.michi-no-eki.jp/notices",
+      "reachable": true,
+      "error": ""
+    }
+  ],
+  "candidates": [
+    {
+      "source": "中国",
+      "title": "【笠岡ベイファーム】道の駅13周年感謝祭 10月13日（日）",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000038.pdf",
+      "prefecture": "岡山県",
+      "roadName": "笠岡ベイファーム",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【よがんす白竜】YOGANSU秋の収穫祭 10月12日～14日",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000039.pdf",
+      "prefecture": "広島県",
+      "roadName": "よがんす白竜",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【阿武町】創業33周年 創業祭 10月13日（日）",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000041.pdf",
+      "prefecture": "山口県",
+      "roadName": "阿武町",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【きくがわ】たねたねフェスティバル 10月26日（土）",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000043.pdf",
+      "prefecture": "山口県",
+      "roadName": "きくがわ",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【蛍街道西ノ市】秋の収穫祭 10月20日（日）",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000044.pdf",
+      "prefecture": "山口県",
+      "roadName": "蛍街道西ノ市",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【びんご府中】収穫感謝祭 11月９日（土）９時～１５時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000046.pdf",
+      "prefecture": "広島県",
+      "roadName": "びんご府中",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【さんわ182ステーション】大感謝祭 １１月３日（日）１０時～１６時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000047.pdf",
+      "prefecture": "広島県",
+      "roadName": "さんわ182ステーション",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【三矢の里あきたかた】収穫祭 １１月１０日（日）",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000048.pdf",
+      "prefecture": "広島県",
+      "roadName": "三矢の里あきたかた",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【久米の里】秋の大感謝祭 １１月３日（日）９時３０分～１５時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000049.pdf",
+      "prefecture": "岡山県",
+      "roadName": "久米の里",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【仁保の郷】仁保行こ マルシェ １１月３日（日）１０時～１５時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000050.pdf",
+      "prefecture": "山口県",
+      "roadName": "仁保の郷",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【北浦街道豊北】１１月イベント情報 秋の大感謝祭",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000055.pdf",
+      "prefecture": "山口県",
+      "roadName": "北浦街道　豊北",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【ゆうひパーク浜田】秋の大感謝祭 11月23日（土）～24日（日）9時から18時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000057.pdf",
+      "prefecture": "島根県",
+      "roadName": "ゆうひパーク浜田",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【きくがわ】歳末感謝祭 １１月３０日（土）・１２月１日（日）１０時から１６時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000070.pdf",
+      "prefecture": "山口県",
+      "roadName": "きくがわ",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【笠岡ベイファーム】年末感謝祭 12月21日（土）から30日（月）",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000073.pdf",
+      "prefecture": "岡山県",
+      "roadName": "笠岡ベイファーム",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【笠岡ベイファーム】かきマルシェ2025 １月26日（日）９時～なくなり次第終了",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000078.pdf",
+      "prefecture": "岡山県",
+      "roadName": "笠岡ベイファーム",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【むいかいち温泉】周年祭 2025年４月６日（日）10時～15時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000157.pdf",
+      "prefecture": "島根県",
+      "roadName": "むいかいち温泉",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【きくがわ】菜の花フリマ（ストリートピアノ同時開催） 2025年4月5日（土）・6日（日）9時頃から",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000161.pdf",
+      "prefecture": "山口県",
+      "roadName": "きくがわ",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【蛍街道西ノ市】４月のイベントカレンダー",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000162.pdf",
+      "prefecture": "山口県",
+      "roadName": "蛍街道西ノ市",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【北浦街道豊北】開駅１３周年記念大感謝祭",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000163.pdf",
+      "prefecture": "山口県",
+      "roadName": "北浦街道　豊北",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【久米の里】25周年記念「仙人まつり」を開催 2025年４月２7日（日）９時30分～15時まで",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000166.pdf",
+      "prefecture": "岡山県",
+      "roadName": "久米の里",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【奥出雲おろちループ】奥出雲町制定２０周年春フェス2025 ４月６日（日）10時から15時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000168.pdf",
+      "prefecture": "島根県",
+      "roadName": "奥出雲おろちループ",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【アリストぬまくま】花の駅開催 2025年3月29日（土）・30日（日）9時から15時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000170.pdf",
+      "prefecture": "広島県",
+      "roadName": "アリストぬまくま",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【西いなば気楽里】バイクカフェミーティング開催 2025年7月5日(土) 10時～12時 雨天決行",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000202.pdf",
+      "prefecture": "鳥取県",
+      "roadName": "西いなば 気楽里",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【本庄】 令和7年８月10日～13日 産直市で盆市を開催",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000231.pdf",
+      "prefecture": "島根県",
+      "roadName": "本庄",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【はっとう】隼駅まつり エンジョイ祭 令和7年8月9日（土）・10日(日)",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000250.pdf",
+      "prefecture": "鳥取県",
+      "roadName": "はっとう",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【阿武町】大創業祭を開催 令和7年10月12日(日)",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000299.pdf",
+      "prefecture": "山口県",
+      "roadName": "阿武町",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【奥出雲おろちループ】秋の紅葉祭 開催！ 11月15日（土）10時から15時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000338.pdf",
+      "prefecture": "島根県",
+      "roadName": "奥出雲おろちループ",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【ソレーネ周南】年末年始感謝祭 令和7年12月25日～令和8年1月3日",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000412.pdf",
+      "prefecture": "山口県",
+      "roadName": "ソレーネ周南",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【アリストぬまくま】30周年アリガトウ！感謝祭 2,026年3月28日（土）・29日（日）",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000463.pdf",
+      "prefecture": "広島県",
+      "roadName": "アリストぬまくま",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【ゆうひパーク浜田】多肉祭り ７月５日(日)10時～15時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000570.pdf",
+      "prefecture": "島根県",
+      "roadName": "ゆうひパーク浜田",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【奥出雲おろちループ】第３回 奥出雲おろちループ グルメマラソン開催 10月11日(日)",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000639.pdf",
+      "prefecture": "島根県",
+      "roadName": "奥出雲おろちループ",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【キララ多伎】シルバーウィークフェスティバル ９月１９日（土）～２３日（祝）",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000683.pdf",
+      "prefecture": "島根県",
+      "roadName": "キララ多伎",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【おふく】ビール＆ジビエ フェス2026 9月20日（日）・21日（月・祝）12時～21時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000691.pdf",
+      "prefecture": "山口県",
+      "roadName": "おふく",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "全国道の駅連絡会",
+      "title": "2026年9月30日 滋賀県 【道の駅奥永源寺渓流の里】開駅１１周年記念祭を開催します。",
+      "url": "https://www.michi-no-eki.jp/notices/views/23236",
+      "prefecture": "滋賀県",
+      "roadName": "奥永源寺 渓流の里",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "全国道の駅連絡会",
+      "title": "2026年10月7日 青森県 【道の駅なみおか】アップルヒル 秋の大収穫祭",
+      "url": "https://www.michi-no-eki.jp/notices/views/23244",
+      "prefecture": "青森県",
+      "roadName": "なみおか",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "関東",
+      "title": "【道の駅両神温泉薬師の湯】8/22（土） 納涼祭･･･ 日時：2026年8月22日（土） 10:00-15:00 場所：道の駅両神温泉薬師の湯 温泉前ひろば 内容： ・世界に1台のレア車両、秩父消防本部、日産スカイライン指令車（今年、トミカからミニカーも販…",
+      "url": "https://www.kanto-michinoeki.jp/archives/18167.html",
+      "prefecture": "埼玉県",
+      "roadName": "両神温泉薬師の湯",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "関東",
+      "title": "【尾瀬かたしな】10/4(日)かたしな村まるしぇ･･･ 「かたしな村まるしぇ」を開催いたします。 今回は、尾瀬高校生を中心とした若者たちが企画したイベント 「かたかたかたしな」とのコラボ開催となります。 皆さまのお越しをお待ちしております。 ⦿出店者のご紹…",
+      "url": "https://www.kanto-michinoeki.jp/archives/18221.html",
+      "prefecture": "群馬県",
+      "roadName": "尾瀬かたしな",
+      "status": "unmatched_official_notice",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "関東",
+      "title": "【道の駅こすげ】ミニイベント 秋まつり 2026･･･ 秋の訪れを感じるようになってきました。 道の駅こすげでは、ミニイベント「秋祭り」を開催いたします。 秋の小菅村へ、是非、遊びに来ませんか？地元のきのこや野菜など、小菅村ならでは味覚をご用意してお待ちし…",
+      "url": "https://www.kanto-michinoeki.jp/archives/18244.html",
+      "prefecture": "山梨県",
+      "roadName": "こすげ",
+      "status": "same_official_url_title_needs_review",
+      "possibleOverlapUrls": [
+        "https://www.kanto-michinoeki.jp/archives/18244.html"
+      ],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "全国道の駅連絡会",
+      "title": "2026年10月1日 高知県 【道の駅 まきのさんの道の駅・佐川】佐川おもちゃ美術館☆2026年10月イベントカレンダー",
+      "url": "https://www.michi-no-eki.jp/notices/views/23240",
+      "prefecture": "高知県",
+      "roadName": "まきのさんの道の駅・佐川",
+      "status": "possible_same_event_other_url",
+      "possibleOverlapUrls": [
+        "https://www.sk-michinoeki.jp/events/4217"
+      ],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "全国道の駅連絡会",
+      "title": "2026年10月3日 香川県 【道の駅滝宮】綾川町うどん会館 讃さん広場滝宮店10月イベントのお知らせ",
+      "url": "https://www.michi-no-eki.jp/notices/views/23242",
+      "prefecture": "香川県",
+      "roadName": "滝宮",
+      "status": "possible_same_event_other_url",
+      "possibleOverlapUrls": [
+        "https://www.sk-michinoeki.jp/events/4219"
+      ],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "キッチンカーがやって来る！ 道の駅感謝祭！",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/horokanaiinfo/69795",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "道の駅なないろ・ななえ🌈イベント情報✨",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nanaeinfo/69782",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "道の駅「羊のまち 侍・しべつ」秋まつり開催！！",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shibetsuinfo/69720",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "７月２５日のつきがた夏まつり開催に伴うレストラン営業時間の延長について",
+      "url": "https://hokkaido-michinoeki.jp/rinjiinfo/68148",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "８月のイベントカレンダー",
+      "url": "https://hokkaido-michinoeki.jp/rinjiinfo/68450",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "９月のイベントカレンダー",
+      "url": "https://hokkaido-michinoeki.jp/rinjiinfo/68997",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "１０月のイベントカレンダー",
+      "url": "https://hokkaido-michinoeki.jp/rinjiinfo/69662",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "第14回全国「道の駅」シンポジウムin留萌開催のお知らせ！",
+      "url": "https://hokkaido-michinoeki.jp/topics/68349",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "四国",
+      "title": "【道の駅「滝宮」・綾川町うどん会館】イベント情報のお知らせ",
+      "url": "https://www.sk-michinoeki.jp/events/4204",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "宮城県 道の駅・さんさん南三陸（宮城県南三陸町）オープン！ 開催期間 2022年10月1日",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2022/10/01/2240",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "岩手県 道の駅・いわて北三陸（岩手県久慈市）オープン！ 開催期間 2023年4月19日",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2023/04/19/2250",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "山形県 道の駅・もがみ（山形県最上町）オープン！ 開催期間 2023年11月26日",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2023/11/26/2257",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "山形県 道の駅・やまがた蔵王(山形県山形市)オープン！ 開催期間 2023年12月3日",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2023/12/03/2260",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "秋田県 道の駅・十和田湖(秋田県小坂町)オープン！ 開催期間 2024年10月12日",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2024/10/12/2530",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "宮城県 道の駅・東松島(宮城県東松島市)オープン！ 開催期間 2024年11月27日",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2024/11/27/2533",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "岩手県 道の駅・だいとう(岩手県一関市)オープン！ 開催期間 2025年4月17日",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2025/04/17/2701",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "岩手県 道の駅・もりおか渋民(岩手県盛岡市)オープン！ 開催期間 2025年4月26日",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2025/04/26/2705",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "青森県 岩手県 宮城県 秋田県 山形県 福島県 第8回東北「道の駅」まるごとフェスタ開催！ 開催期間 2025年10月15日(水)～2025年10月16日(木)",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2025/09/11/2795",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "東北",
+      "title": "福島県 道の駅・石川(福島県石川町)オープン！ 開催期間 2026年9月18日～",
+      "url": "https://www.michinoeki-tohoku.com/event/liaison/2026/09/18/3014",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "中国",
+      "title": "【頓原】第６回 秋わくわくフェスタ 10月24日（土）10時から15時",
+      "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000694.pdf",
+      "prefecture": "島根県",
+      "roadName": "頓原",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "全国道の駅連絡会",
+      "title": "2026年9月28日 兵庫県 【道の駅神鍋高原】第35回マロニエまつり／JAたじま日高ふれあいまつり｜2026年10月25日（日）10:00〜14:00",
+      "url": "https://www.michi-no-eki.jp/notices/views/23233",
+      "prefecture": "兵庫県",
+      "roadName": "神鍋高原",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "全国道の駅連絡会",
+      "title": "2026年9月28日 兵庫県 【道の駅神鍋高原】開催決定 神鍋高原イチョウまつり｜イチョウ並木の季節に、道の駅「神鍋高原」で10月25日（日）〜11月29日（日）の土日祝13日間",
+      "url": "https://www.michi-no-eki.jp/notices/views/23234",
+      "prefecture": "兵庫県",
+      "roadName": "神鍋高原",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "past_schedule_hint",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "日高町道の駅フェスト開催のお知らせ",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778",
+      "prefecture": "",
+      "roadName": "",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "泊村×真狩村 観光物産展 開催！！ NEW",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823",
+      "prefecture": "",
+      "roadName": "",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "日本各地の「美味しい」がやってきた！第9弾 ! 開催中!! NEW",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826",
+      "prefecture": "",
+      "roadName": "",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "10月17日、18日は道の駅たきかわ大収穫祭です！",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759",
+      "prefecture": "",
+      "roadName": "",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "四国",
+      "title": "【道の駅「滝宮」・綾川町うどん会館】日本伝統芸能「猿まわし」の公演を開催いたします。",
+      "url": "https://www.sk-michinoeki.jp/events/4212",
+      "prefecture": "",
+      "roadName": "",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "四国",
+      "title": "【まきのさんの道の駅・佐川】佐川おもちゃ美術館☆2026年10月イベントカレンダー",
+      "url": "https://www.sk-michinoeki.jp/events/4217",
+      "prefecture": "高知県",
+      "roadName": "まきのさんの道の駅・佐川",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "四国",
+      "title": "【道の駅「滝宮」・綾川町うどん会館】讃さん広場滝宮店10月イベントのお知らせ",
+      "url": "https://www.sk-michinoeki.jp/events/4219",
+      "prefecture": "",
+      "roadName": "",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "関東",
+      "title": "【道の駅庄和】わくわく体験イベント 日時：１０月３１日(土)～１１月１日(日) １０時～１５時(各コーナーは１２時から１３時まで休止) 会場：道の駅庄和 情報館・交流広場 埼玉県立春日部工業高校による「わくわく体験イベント」を開催…",
+      "url": "https://www.kanto-michinoeki.jp/archives/18237.html",
+      "prefecture": "埼玉県",
+      "roadName": "庄和",
+      "status": "published_same_official_url",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    }
+  ],
+  "reviewedSample": {
+    "reviews": [
+      {
+        "decision": "confirmed_on_site",
+        "reviewedOn": "2026-10-11",
+        "reviewedBy": "assistant_official_source_check",
+        "officialUrl": "https://www.kanto-michinoeki.jp/archives/18244.html",
+        "prefecture": "山梨県",
+        "roadName": "こすげ",
+        "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)",
+        "startDate": "2026-10-24",
+        "endDate": "2026-10-24",
+        "dateEvidence": "公式記事: 日時 2026年10月24日(土)、10:00～15:00（予定）",
+        "venueEvidence": "公式記事: 道の駅こすげではミニイベント「秋祭り」を開催",
+        "reviewNote": "Official Kanto road station association event notice; already in road_events.json.",
+        "matchStatus": "found_in_feed",
+        "inCurrentSample": true
+      },
+      {
+        "decision": "confirmed_on_site",
+        "reviewedOn": "2026-10-11",
+        "reviewedBy": "assistant_official_source_check",
+        "officialUrl": "https://www.kanto-michinoeki.jp/archives/18237.html",
+        "prefecture": "埼玉県",
+        "roadName": "庄和",
+        "title": "【道の駅庄和】わくわく体験イベント",
+        "startDate": "2026-10-31",
+        "endDate": "2026-11-01",
+        "dateEvidence": "公式記事: 2026年9月30日公開、日時 10月31日(土)～11月1日(日) 10:00～15:00",
+        "venueEvidence": "公式記事: 会場 道の駅庄和 情報館・交流広場",
+        "reviewNote": "Official Kanto road station association article. Year grounded by article publishing year and matching weekdays. Already in road_events.json.",
+        "matchStatus": "found_in_feed",
+        "inCurrentSample": true
+      },
+      {
+        "decision": "confirmed_on_site",
+        "reviewedOn": "2026-10-11",
+        "reviewedBy": "assistant_official_source_check",
+        "officialUrl": "https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/",
+        "secondaryOfficialUrl": "https://michinoeki-shiranuka.jp/news/",
+        "prefecture": "北海道",
+        "roadName": "しらぬか恋問館",
+        "title": "日本各地の「美味しい」がやってきた！第9弾",
+        "startDate": "2026-10-09",
+        "endDate": "2026-10-19",
+        "dateEvidence": "北海道道の駅公式: 2026年10月9日付掲載、📅 10月9日（金）～10月19日（月）、9:00～19:00",
+        "venueEvidence": "北海道道の駅公式: 📍 道の駅しらぬか恋問館。駅運営公式サイトも同開催を掲載",
+        "reviewNote": "On-site Okinawa specialty pop-up. Checked against road_events.json on 2026-10-11; no station entry existed. This is one verified missed example, not an estimate of total misses.",
+        "matchStatus": "found_in_feed",
+        "inCurrentSample": true
+      }
+    ],
+    "reviewed": 3,
+    "positiveOnSite": 3,
+    "historicalPositiveReviews": 3,
+    "expiredPositiveReviews": 0,
+    "found": 3,
+    "notFound": 0,
+    "rateWithinReviewedSample": 1.0,
+    "limitations": "Selected human-reviewed examples only; NOT national event recall."
+  }
+}

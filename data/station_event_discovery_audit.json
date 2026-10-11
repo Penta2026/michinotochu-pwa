@@ -65,67 +65,18 @@
       "prefecture": "神奈川県",
       "roadName": "湘南ちがさき",
       "listingUrl": "https://m-shonanchigasaki.com/topics/",
-      "listingError": "",
-      "candidates": 9,
-      "checked": 9,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='m-shonanchigasaki.com', port=443): Max retries exceeded with url: /topics/ (Caused by ConnectTimeoutError(<HTTPSCo",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
-      "reasons": {
-        "not_event": 8,
-        "past": 1
-      },
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "EVENT 2026-09-28 10月イベントカレンダー",
-          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=122",
-          "reason": "not_event"
-        },
-        {
-          "title": "EVENT 2026-08-31 9月イベントカレンダー",
-          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=117",
-          "reason": "not_event"
-        },
-        {
-          "title": "NEWS 2026-09-11 夜間利用時のお願い",
-          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=120",
-          "reason": "not_event"
-        },
-        {
-          "title": "NEWS 2026-09-08 関東『道の駅』スタンプブック2026 再入荷のお知らせ",
-          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=119",
-          "reason": "not_event"
-        },
-        {
-          "title": "NEWS 2026-09-05 大型車駐車場について",
-          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=118",
-          "reason": "not_event"
-        },
-        {
-          "title": "EVENT 2026-10-10 ケイキフラダンスショー 出演チーム募集!",
-          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=123",
-          "reason": "not_event"
-        },
-        {
-          "title": "NEWS 2026-03-31 【採用情報】スタッフ募集について",
-          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=28",
-          "reason": "not_event"
-        },
-        {
-          "title": "NEWS 2026-08-01 Choice! CHIGASAKI第3回募集!エントリー説明会のお知らせ",
-          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=110",
-          "reason": "not_event"
-        },
-        {
-          "title": "EVENT 2026-08-10 茅ヶ崎に沖縄の風が吹く「沖縄フェア」開催!",
-          "url": "https://m-shonanchigasaki.com/topics/detail.php?id=114",
-          "reason": "past"
-        }
-      ],
-      "eligibleCandidates": 9,
+      "rejectedExamples": [],
+      "eligibleCandidates": 0,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -137,31 +88,18 @@
       "prefecture": "奈良県",
       "roadName": "クロスウェイなかまち",
       "listingUrl": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
-      "listingError": "",
-      "candidates": 4,
-      "checked": 2,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='michi-no-eki-crosswaynakamachi.pref.nara.jp', port=443): Max retries exceeded with url: /newslist (Caused by Conne",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
       "reconfirmed": 0,
-      "knownSkipped": 2,
+      "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
-      "reasons": {
-        "undated": 2
-      },
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "10/3(土)あの「まほろばの宴」がやって来る! Youtubeチャンネル登録者数5万人の DTMer奏人kanato と、仲間の演者たちが、また道の駅「クロスウェイなかまち」にやってきます!秋の特別",
-          "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261003",
-          "reason": "undated"
-        },
-        {
-          "title": "2026年シルバーウィーク特別企画「グラウンド・ランタン祭り&夜市」 道の駅「クロスウェイなかまち」では、2026年9月19日(土)から9月23日(水・祝)までの5日間、地域住民から観光客まで、誰もが",
-          "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20260919",
-          "reason": "undated"
-        }
-      ],
-      "eligibleCandidates": 2,
+      "rejectedExamples": [],
+      "eligibleCandidates": 0,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -308,61 +246,18 @@
       "prefecture": "和歌山県",
       "roadName": "海南サクアス",
       "listingUrl": "https://sakuas.com/event/",
-      "listingError": "",
-      "candidates": 12,
-      "checked": 8,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='sakuas.com', port=443): Max retries exceeded with url: /event/ (Caused by ConnectTimeoutError(<HTTPSConnection(hos",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
-      "reasons": {
-        "no_individually_dated_sections": 8
-      },
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "10月イベント情報",
-          "url": "https://sakuas.com/event/4555/",
-          "reason": "no_individually_dated_sections"
-        },
-        {
-          "title": "9月イベント情報",
-          "url": "https://sakuas.com/event/4488/",
-          "reason": "no_individually_dated_sections"
-        },
-        {
-          "title": "オリジナル海鮮丼コンテスト開催!",
-          "url": "https://sakuas.com/event/4441/",
-          "reason": "no_individually_dated_sections"
-        },
-        {
-          "title": "3周年祭🎉",
-          "url": "https://sakuas.com/event/4457/",
-          "reason": "no_individually_dated_sections"
-        },
-        {
-          "title": "8月イベント",
-          "url": "https://sakuas.com/event/4382/",
-          "reason": "no_individually_dated_sections"
-        },
-        {
-          "title": "7月後半イベント",
-          "url": "https://sakuas.com/event/4361/",
-          "reason": "no_individually_dated_sections"
-        },
-        {
-          "title": "10月イベントカレンダー前半",
-          "url": "https://sakuas.com/event/4534/",
-          "reason": "no_individually_dated_sections"
-        },
-        {
-          "title": "9月イベントカレンダー",
-          "url": "https://sakuas.com/event/4497/",
-          "reason": "no_individually_dated_sections"
-        }
-      ],
-      "eligibleCandidates": 12,
+      "rejectedExamples": [],
+      "eligibleCandidates": 0,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -523,130 +418,41 @@
       "prefecture": "福島県",
       "roadName": "ふくしま",
       "listingUrl": "https://m-fukushima.com/info/?category=2",
-      "listingError": "",
-      "candidates": 12,
-      "checked": 10,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='m-fukushima.com', port=443): Max retries exceeded with url: /info/?category=2 (Caused by ConnectTimeoutError(<HTTP",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
       "reconfirmed": 0,
-      "knownSkipped": 1,
+      "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
-      "reasons": {
-        "venue_missing": 2,
-        "past": 4,
-        "not_event": 4
-      },
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "EVENT 2026.10.06 【10/12(祝・月)パン&ベイクまつり】",
-          "url": "https://m-fukushima.com/info/699",
-          "reason": "venue_missing"
-        },
-        {
-          "title": "EVENT 2026.10.05 【11/1(日)】福島おおざそうインター工業団地とロボット見学会",
-          "url": "https://m-fukushima.com/info/698",
-          "reason": "venue_missing"
-        },
-        {
-          "title": "EVENT 2026.09.22 【10/3(土)・4(日)海の幸サンマまつり】",
-          "url": "https://m-fukushima.com/info/694",
-          "reason": "past"
-        },
-        {
-          "title": "EVENT 2026.09.18 【9/19(土)いきいき!ふくしマーケット♪】",
-          "url": "https://m-fukushima.com/info/693",
-          "reason": "past"
-        },
-        {
-          "title": "EVENT 2026.08.19 【8/22(土)・23日(日)ふくしま森のマルシェ】",
-          "url": "https://m-fukushima.com/info/688",
-          "reason": "past"
-        },
-        {
-          "title": "EVENT 2026.08.02 【8/8(土)・9(日)ガーデンプレイスフェスタ】",
-          "url": "https://m-fukushima.com/info/680",
-          "reason": "past"
-        },
-        {
-          "title": "EVENT 2026.09.25 【10/3(土)HAPPY SMILE撮影会】",
-          "url": "https://m-fukushima.com/info/696",
-          "reason": "not_event"
-        },
-        {
-          "title": "EVENT 2026.09.22 【9/26(土)・27(日)秋のハンドメイド雑貨市】",
-          "url": "https://m-fukushima.com/info/695",
-          "reason": "not_event"
-        },
-        {
-          "title": "EVENT 2026.08.17 【ワークショップ】9/12(土)フラワーアレンジメント",
-          "url": "https://m-fukushima.com/info/685",
-          "reason": "not_event"
-        },
-        {
-          "title": "EVENT 2026.08.17 【ももRabiキッズパークよりお知らせ】",
-          "url": "https://m-fukushima.com/info/684",
-          "reason": "not_event"
-        }
-      ],
-      "eligibleCandidates": 11,
-      "uninspectedCandidates": 1,
+      "rejectedExamples": [],
+      "eligibleCandidates": 0,
+      "uninspectedCandidates": 0,
       "explorationStart": 0,
-      "explorationNext": 2,
-      "explorationSlots": 2,
-      "explorationPool": 3
+      "explorationNext": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
     },
     {
       "id": "shizuoka_izugateway",
       "prefecture": "静岡県",
       "roadName": "伊豆ゲートウェイ函南",
       "listingUrl": "https://www.izugateway.com/category/event/",
-      "listingError": "",
-      "candidates": 10,
-      "checked": 8,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='www.izugateway.com', port=443): Max retries exceeded with url: /category/event/ (Caused by ConnectTimeoutError(<HT",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
-      "reconfirmed": 3,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
-      "reasons": {
-        "no_grounded_program_year": 2,
-        "no_individually_dated_monthly_events": 4
-      },
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "【タリーズコーヒー伊豆ゲートウェイ函南店】夏のキッズワークショップ🌻 【Tully's キッズ★夏のワークショップ開催!!】 8月18日(火)・19日(水)にTully'sCOFFEEゲートウェイ函南",
-          "url": "https://www.izugateway.com/event/6694/",
-          "reason": "no_grounded_program_year"
-        },
-        {
-          "title": "2026年9月 道の駅イベントのご案内 ハファデイ・グアム・フェスティバル in 静岡 9月5日(土)10:00~17:00 伊豆土肥の恋人岬とグアム島の恋人岬が姉妹提携を結んでいるのはご存知ですか?",
-          "url": "https://www.izugateway.com/event/6684/",
-          "reason": "no_individually_dated_monthly_events"
-        },
-        {
-          "title": "2026年8月 道の駅イベントのご案内 『函南ランド 重ね捺し夏休みスタンプラリー』 8月1日(土)~8月31日(月) 道の駅伊豆ゲートウェイ函南、川の駅伊豆ゲートウェイ函南、 かねふくめんたいパーク",
-          "url": "https://www.izugateway.com/event/6623/",
-          "reason": "no_individually_dated_monthly_events"
-        },
-        {
-          "title": "2026年6月 道の駅イベントのご案内 『ゲートウェイ食市 函南すいかまつり』 今年も函南すいかの販売・試食提供等を予定!ぜひ旬の味覚をお楽しみください♪スイカの甲羅のマモリくんも登場。マモリくんにじ",
-          "url": "https://www.izugateway.com/event/6501/",
-          "reason": "no_individually_dated_monthly_events"
-        },
-        {
-          "title": "【数量限定】✨『思い出召喚キーホルダー』✨GW特別販売! 2026年4月25日(土)~5月10日(日)@観光情報案内所 ゴールデンウィーク期間に合わせ、“大切な思い出を、いつでも呼び出せる”『思い出召",
-          "url": "https://www.izugateway.com/event/6436/",
-          "reason": "no_grounded_program_year"
-        },
-        {
-          "title": "2026年5月 道の駅イベントのご案内 『函南ランド 重ね捺しGWスタンプラリー』 道の駅伊豆ゲートウェイ函南、川の駅伊豆ゲートウェイ函南、かねふくめんたいぱーく伊豆、伊豆わさびミュージアムの近隣4施",
-          "url": "https://www.izugateway.com/event/6411/",
-          "reason": "no_individually_dated_monthly_events"
-        }
-      ],
-      "eligibleCandidates": 10,
+      "rejectedExamples": [],
+      "eligibleCandidates": 0,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -658,7 +464,7 @@
       "prefecture": "山口県",
       "roadName": "あいお",
       "listingUrl": "https://michinoeki-aio.com/news/",
-      "listingError": "",
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='michinoeki-aio.com', port=443): Max retries exceeded with url: /news/ (Caused by ConnectTimeoutError(<HTTPSConnect",
       "candidates": 0,
       "checked": 0,
       "accepted": 0,
@@ -840,18 +646,18 @@
       "prefecture": "大阪府",
       "roadName": "奥河内くろまろの郷",
       "listingUrl": "https://kuromaro.com/event/list/page/4/",
-      "listingError": "",
-      "candidates": 1,
-      "checked": 1,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='kuromaro.com', port=443): Max retries exceeded with url: /event/list/page/4/ (Caused by ConnectTimeoutError(<HTTPS",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
-      "reconfirmed": 1,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
       "examples": [],
       "rejectedExamples": [],
-      "eligibleCandidates": 1,
+      "eligibleCandidates": 0,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -863,18 +669,18 @@
       "prefecture": "熊本県",
       "roadName": "あそ望の郷くぎの",
       "listingUrl": "https://minamiaso.info/event/?cm=10&cy=2026",
-      "listingError": "",
-      "candidates": 1,
-      "checked": 1,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='minamiaso.info', port=443): Max retries exceeded with url: /event/?cm=10&cy=2026 (Caused by ConnectTimeoutError(<H",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
-      "reconfirmed": 1,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
       "examples": [],
       "rejectedExamples": [],
-      "eligibleCandidates": 1,
+      "eligibleCandidates": 0,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -886,78 +692,23 @@
       "prefecture": "宮崎県",
       "roadName": "都城NiQLL",
       "listingUrl": "https://coconiqll.co.jp/info/",
-      "listingError": "",
-      "candidates": 13,
-      "checked": 10,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='coconiqll.co.jp', port=443): Max retries exceeded with url: /info/ (Caused by ConnectTimeoutError(<HTTPSConnection",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
       "reconfirmed": 0,
-      "knownSkipped": 1,
+      "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
-      "reasons": {
-        "undated": 3,
-        "past": 1,
-        "not_event": 6
-      },
+      "reasons": {},
       "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "イベント 【NiQLL’sスクール】令和8年11月の講座のご案内 多目的室で開催する令和8年11月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新し",
-          "url": "https://coconiqll.co.jp/3768-2/",
-          "reason": "undated"
-        },
-        {
-          "title": "未分類 宮崎ブランドポークフェスタin都城のご案内【主催:宮崎ブランドポーク普及推進協議会】 いつも「道の駅」都城NiQLLをご愛顧いただき、誠にありがとうございます😊2026年9月23日(水) 10",
-          "url": "https://coconiqll.co.jp/%e5%ae%ae%e5%b4%8e%e3%83%96%e3%83%a9%e3%83%b3%e3%83%89%e3%83%9d%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b9%e3%82%bfin%e9%83%bd%e5%9f%8e%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85%e3%80%90%e4%b8%bb%e5%82%ac/",
-          "reason": "past"
-        },
-        {
-          "title": "イベント 【NiQLL’sスクール】令和8年10月の講座のご案内 多目的室で開催する令和8年10月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 「道の駅」",
-          "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b410%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
-          "reason": "undated"
-        },
-        {
-          "title": "イベント 【NiQLL’sスクール】令和8年9月の講座のご案内 多目的室で開催する令和8年9月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新しいラ",
-          "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b49%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
-          "reason": "undated"
-        },
-        {
-          "title": "イベント 令和8年12月ニクルの朝市 出店募集!! 「道の駅」都城NiQLLでは毎月第3土曜日に朝市を開催しています。そこで、朝市に出店していただける方を募集します。要項をダウンロードのうえご確認いた",
-          "url": "https://coconiqll.co.jp/%e4%bb%a4%e5%92%8c8%e5%b9%b412%e6%9c%88%e3%83%8b%e3%82%af%e3%83%ab%e3%81%ae%e6%9c%9d%e5%b8%82%e3%80%80%e5%87%ba%e5%ba%97%e5%8b%9f%e9%9b%86%ef%bc%81%ef%bc%81/",
-          "reason": "not_event"
-        },
-        {
-          "title": "未分類 R8 夏休みワークショップ 豆腐&みそ玉レシピ 2026年8月4日",
-          "url": "https://coconiqll.co.jp/r8%e3%80%80%e5%a4%8f%e4%bc%91%e3%81%bf%e3%83%af%e3%83%bc%e3%82%af%e3%82%b7%e3%83%a7%e3%83%83%e3%83%97%e3%80%80%e8%b1%86%e8%85%90%ef%bc%86%e3%81%bf%e3%81%9d%e7%8e%89%e3%83%ac%e3%82%b7%e3%83%94/",
-          "reason": "not_event"
-        },
-        {
-          "title": "施設の詳細・ご予約はこちら",
-          "url": "https://coconiqll.co.jp/shisetu-detail/",
-          "reason": "not_event"
-        },
-        {
-          "title": "プライバシーポリシー",
-          "url": "https://coconiqll.co.jp/privacy-policy/",
-          "reason": "not_event"
-        },
-        {
-          "title": "情報セキュリティ基本方針",
-          "url": "https://coconiqll.co.jp/security/",
-          "reason": "not_event"
-        },
-        {
-          "title": "お問い合わせ",
-          "url": "https://coconiqll.co.jp/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/",
-          "reason": "not_event"
-        }
-      ],
-      "eligibleCandidates": 12,
-      "uninspectedCandidates": 2,
+      "rejectedExamples": [],
+      "eligibleCandidates": 0,
+      "uninspectedCandidates": 0,
       "explorationStart": 0,
-      "explorationNext": 2,
-      "explorationSlots": 2,
-      "explorationPool": 4
+      "explorationNext": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
     },
     {
       "id": "ehime_yawatahama_city_events",
@@ -965,7 +716,7 @@
       "roadName": "八幡浜みなっと",
       "listingUrl": "https://www.city.yawatahama.ehime.jp/event/2026/",
       "listingError": "",
-      "candidates": 20,
+      "candidates": 19,
       "checked": 12,
       "accepted": 0,
       "reconfirmed": 0,
@@ -1029,22 +780,22 @@
           "reason": "not_event"
         },
         {
-          "title": "オペラ公演『ヘンゼルとグレーテル』",
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2026082700025/",
-          "reason": "not_event"
-        },
-        {
           "title": "愛媛FCマッチシティ「八幡浜市の日」を開催します",
           "url": "https://www.city.yawatahama.ehime.jp/doc/2026093000053/",
           "reason": "not_event"
+        },
+        {
+          "title": "【国保・高齢者医療保険限定】「はまぽん健康塾2026」を開催します",
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2026091500036/",
+          "reason": "not_event"
         }
       ],
-      "eligibleCandidates": 20,
-      "uninspectedCandidates": 8,
+      "eligibleCandidates": 19,
+      "uninspectedCandidates": 7,
       "explorationStart": 0,
       "explorationNext": 2,
       "explorationSlots": 2,
-      "explorationPool": 10
+      "explorationPool": 9
     },
     {
       "id": "nagasaki_himawari",
@@ -1180,18 +931,18 @@
       "prefecture": "神奈川県",
       "roadName": "湘南ちがさき",
       "listingUrl": "https://creativeweek.net/event-detail.php?no=37",
-      "listingError": "",
-      "candidates": 1,
-      "checked": 1,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='creativeweek.net', port=443): Max retries exceeded with url: /event-detail.php?no=37 (Caused by ConnectTimeoutErro",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
-      "reconfirmed": 1,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
       "examples": [],
       "rejectedExamples": [],
-      "eligibleCandidates": 1,
+      "eligibleCandidates": 0,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -1203,18 +954,18 @@
       "prefecture": "鹿児島県",
       "roadName": "たるみずはまびら",
       "listingUrl": "https://shokupan-sakimoto.com/news/kyusyusaiji_oct/",
-      "listingError": "",
-      "candidates": 1,
-      "checked": 1,
+      "listingError": "ConnectTimeout: HTTPSConnectionPool(host='shokupan-sakimoto.com', port=443): Max retries exceeded with url: /news/kyusyusaiji_oct/ (Caused by ConnectTimeout",
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
-      "reconfirmed": 1,
+      "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
       "examples": [],
       "rejectedExamples": [],
-      "eligibleCandidates": 1,
+      "eligibleCandidates": 0,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -1289,8 +1040,38 @@
       "explorationNext": 0,
       "explorationSlots": 0,
       "explorationPool": 0
+    },
+    {
+      "id": "hokkaido_shiranuka_official_okinawa_popup_oct",
+      "prefecture": "北海道",
+      "roadName": "しらぬか恋問館",
+      "listingUrl": "https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 1,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {},
+      "examples": [
+        {
+          "title": "日本各地の「美味しい」がやってきた!第9弾",
+          "start": "2026-10-09",
+          "end": "2026-10-19",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/"
+        }
+      ],
+      "rejectedExamples": [],
+      "eligibleCandidates": 1,
+      "uninspectedCandidates": 0,
+      "explorationStart": 0,
+      "explorationNext": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
     }
   ],
-  "newEvents": 0,
-  "reconfirmedEvents": 12
+  "newEvents": 1,
+  "reconfirmedEvents": 5
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 78,
-  "inputCollected": 74,
+  "inputPrevious": 77,
+  "inputCollected": 58,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -78,6 +78,10 @@
       "title": "日高町道の駅フェスト開催のお知らせ"
     },
     {
+      "roadName": "たきかわ",
+      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!"
+    },
+    {
       "roadName": "親不知ピアパーク",
       "title": "BikeJINツーリングトロフィー 今年もツーリングシーズンはじまりました！道の駅「親不…"
     },
@@ -106,10 +110,6 @@
       "title": "月眺みぬ会開催のお知らせ"
     },
     {
-      "roadName": "しろいし",
-      "title": "秋の収穫祭"
-    },
-    {
       "roadName": "耶馬トピア",
       "title": "竹の千灯籠夜"
     },
@@ -122,36 +122,12 @@
       "title": "【道の駅庄和】わくわく体験イベント"
     },
     {
-      "roadName": "かさま",
-      "title": "2026.09.28 イベント お知らせ 10/24・25リフティングパフォーマンス公演"
-    },
-    {
-      "roadName": "かさま",
-      "title": "2026.09.23 イベント お知らせ 【イベント】10/24~25『ハロウィンマーケット』を開催します"
-    },
-    {
-      "roadName": "かさま",
-      "title": "2026.09.23 イベント お知らせ 【イベント】10/17~18『モンブランフェア』を開催します"
-    },
-    {
-      "roadName": "かさま",
-      "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します"
-    },
-    {
-      "roadName": "ましこ",
-      "title": "道の駅ましこ10周年祭"
-    },
-    {
       "roadName": "あぐりーむ昭和",
       "title": "しょうわむらマルシェ"
     },
     {
       "roadName": "あぐりーむ昭和",
       "title": "りんご足湯"
-    },
-    {
-      "roadName": "保田小学校",
-      "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)"
     },
     {
       "roadName": "和",
@@ -172,14 +148,6 @@
     {
       "roadName": "京丹波 味夢の里",
       "title": "11月15日(日)『あんマルシェ2026&譲渡会』を開催します!"
-    },
-    {
-      "roadName": "クロスウェイなかまち",
-      "title": "10/31(土)あの「まほろばの宴」が再びやって来る!"
-    },
-    {
-      "roadName": "クロスウェイなかまち",
-      "title": "10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪"
     },
     {
       "roadName": "信州新野千石平",
@@ -238,36 +206,8 @@
       "title": "秋の収穫祭"
     },
     {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "翠のピスタチオ"
-    },
-    {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "ゲートウェイ食市 干し柿づくり"
-    },
-    {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "ゲートウェイ食市 新米すくい"
-    },
-    {
-      "roadName": "奥河内くろまろの郷",
-      "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025"
-    },
-    {
-      "roadName": "あそ望の郷くぎの",
-      "title": "第11回 南阿蘇の青空レストラン"
-    },
-    {
       "roadName": "ひまわり",
       "title": "バイクイベント開催 10月18日(日)"
-    },
-    {
-      "roadName": "湘南ちがさき",
-      "title": "かとうくみプレンティーズ原画展"
-    },
-    {
-      "roadName": "たるみずはまびら",
-      "title": "10月の九州の催事⑪"
     },
     {
       "roadName": "青洲の里",
@@ -282,10 +222,6 @@
       "title": "「桑都物語」デジタルクイズスタンプラリー"
     },
     {
-      "roadName": "ふくしま",
-      "title": "【10/10(土)・11日(日)ガーデンプレイスフェスタ】"
-    },
-    {
       "roadName": "南えちぜん山海里",
       "title": "5周年記念感謝祭"
     },
@@ -296,14 +232,18 @@
     {
       "roadName": "遠野風の丘",
       "title": "第19回遠野風の丘一升餅行事を行います。【11月8日(日)・予約制】"
-    },
-    {
-      "roadName": "都城NiQLL",
-      "title": "【NiQLL`sキッチン】11月 秋の蕎麦打ち体験 午前・午後の部"
     }
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [
+    {
+      "roadName": "かさま",
+      "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-12",
+      "url": "https://m-kasama.com/topics/p-06497",
+      "reason": "not_found_in_current_collection"
+    },
     {
       "roadName": "ごいせ仁摩",
       "title": "【ごいせ仁摩】朝ごはん新米祭り 10月10日・11日10時～",
@@ -313,11 +253,139 @@
       "reason": "not_found_in_current_collection"
     },
     {
-      "roadName": "たきかわ",
-      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!",
+      "roadName": "ふくしま",
+      "title": "【10/10(土)・11日(日)ガーデンプレイスフェスタ】",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-11",
+      "url": "https://m-fukushima.com/info/700",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "保田小学校",
+      "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-12",
+      "url": "https://hotasho.jp/news/%e4%bf%9d%e7%94%b0%e5%b0%8f%e9%99%84%e5%b1%9e%e3%82%88%e3%81%86%e3%81%a1%e3%81%88%e3%82%933%e5%91%a8%e5%b9%b4%e9%96%8b%e5%9c%92%e7%a5%ad%ef%bc%882026-10-10%ef%bd%9e12%ef%bc%89/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "湘南ちがさき",
+      "title": "かとうくみプレンティーズ原画展",
+      "startDate": "2026-10-10",
+      "endDate": "2026-11-23",
+      "url": "https://creativeweek.net/event-detail.php?no=37",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "ましこ",
+      "title": "道の駅ましこ10周年祭",
+      "startDate": "2026-10-11",
+      "endDate": "2026-10-11",
+      "url": "https://m-mashiko.com/event/4457/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "クロスウェイなかまち",
+      "title": "10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪",
+      "startDate": "2026-10-11",
+      "endDate": "2026-10-11",
+      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261011",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "あそ望の郷くぎの",
+      "title": "第11回 南阿蘇の青空レストラン",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-12",
+      "url": "https://minamiaso.info/event/?cm=10&cy=2026",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.23 イベント お知らせ 【イベント】10/17~18『モンブランフェア』を開催します",
       "startDate": "2026-10-17",
       "endDate": "2026-10-18",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/",
+      "url": "https://m-kasama.com/topics/p-06506",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "伊豆ゲートウェイ函南",
+      "title": "ゲートウェイ食市 新米すくい",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-17",
+      "url": "https://www.izugateway.com/event/6723/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.23 イベント お知らせ 【イベント】10/24~25『ハロウィンマーケット』を開催します",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "url": "https://m-kasama.com/topics/p-06502",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.09.28 イベント お知らせ 10/24・25リフティングパフォーマンス公演",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "url": "https://m-kasama.com/topics/p-06438",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "奥河内くろまろの郷",
+      "title": "(全面)第25回 奥河内くろまろマルシェ 1024-1025",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "url": "https://kuromaro.com/event/list/page/4/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "たるみずはまびら",
+      "title": "10月の九州の催事⑪",
+      "startDate": "2026-10-25",
+      "endDate": "2026-10-25",
+      "url": "https://shokupan-sakimoto.com/news/kyusyusaiji_oct/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "クロスウェイなかまち",
+      "title": "10/31(土)あの「まほろばの宴」が再びやって来る!",
+      "startDate": "2026-10-31",
+      "endDate": "2026-10-31",
+      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261031",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "しろいし",
+      "title": "秋の収穫祭",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-01",
+      "url": "https://www.michinoeki-shiroishi.jp/news/%e7%a7%8b%e3%81%ae%e5%8f%8e%e7%a9%ab%e7%a5%ad-2/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "伊豆ゲートウェイ函南",
+      "title": "翠のピスタチオ",
+      "startDate": "2026-11-08",
+      "endDate": "2026-11-08",
+      "url": "https://www.izugateway.com/event/6779/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "都城NiQLL",
+      "title": "【NiQLL`sキッチン】11月 秋の蕎麦打ち体験 午前・午後の部",
+      "startDate": "2026-11-10",
+      "endDate": "2026-11-10",
+      "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%9111%e6%9c%88%e3%80%80%e7%a7%8b%e3%81%ae%e8%95%8e%e9%ba%a6%e6%89%93%e3%81%a1%e4%bd%93%e9%a8%93/",
+      "reason": "not_found_in_current_collection"
+    },
+    {
+      "roadName": "伊豆ゲートウェイ函南",
+      "title": "ゲートウェイ食市 干し柿づくり",
+      "startDate": "2026-11-21",
+      "endDate": "2026-11-21",
+      "url": "https://www.izugateway.com/event/6779/",
       "reason": "not_found_in_current_collection"
     },
     {
@@ -329,7 +397,7 @@
       "reason": "not_found_in_current_collection"
     }
   ],
-  "finalCount": 77,
+  "finalCount": 78,
   "futurePublicationDatesCleared": [
     {
       "url": "https://wachi-nagomi.com/topics/post-10529/",
@@ -343,7 +411,7 @@
     "collected": 0
   },
   "collapsedStatusBadgeDuplicates": {
-    "previous": 1,
+    "previous": 0,
     "collected": 0
   }
 }
