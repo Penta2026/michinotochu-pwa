@@ -13,12 +13,11 @@ function categoryOptions(group){return group==="riders"?groupOptions:(group==="A
 function fillCategory(groupId,categoryId){const group=el(groupId).value;el(categoryId).innerHTML=categoryOptions(group).map(x=>"<option value="+JSON.stringify(x[0])+">"+esc(x[1])+"</option>").join("")}
 function changeGroup(){
  fillCategory("tourGroup","tourCategory");
- // The event list already supplies the event details and a direct select action.
- // Keep the ordinary destination search for every other spot category.
- const eventMode=el("tourGroup").value==="roadEvent";
- const searchButton=el("tourSearchBtn"),picker=el("tourCandidatePicker");
- if(searchButton)searchButton.hidden=eventMode;
- if(picker)picker.hidden=eventMode;
+ el("tourCategory").value="";
+ // Event cards select their own station; other modes use the automatic picker.
+ const picker=el("tourCandidatePicker");
+ if(picker)picker.hidden=el("tourGroup").value==="roadEvent";
+ searchSilently();
 }
 function changeNearGroup(){fillCategory("tourNearGroup","tourNearCategory");if(state.target)nearby()}
 function byCategory(x,group,cat){return group==="riders"?(!cat||(x.spotCategory||"cafe")===cat):((group==="A"||group==="B")&&cat?featureMatch(x,cat):true)}
@@ -125,9 +124,19 @@ function renderRoadEventList(){
 }
 function toggleRoadEventList(){const list=el("tourEventList"),btn=el("tourEventListBtn");if(!list||!btn)return;list.hidden=!list.hidden;btn.setAttribute("aria-expanded",String(!list.hidden));btn.textContent=list.hidden?"📋 目標距離内のイベント開催駅を見る":"📋 目標距離内の一覧を閉じる";renderRoadEventList()}
 function renderEventStatus(message){const e=el("tourEventStatus");if(!e)return;const checked=localStorage.getItem(EVENT_CHECK_KEY),active=Array.from(liveEventIndex().values()).reduce((n,v)=>n+v.length,0);e.textContent=(message?message+" / ":"")+(checked?"最終取得："+new Date(checked).toLocaleString("ja-JP"):"未取得")+" / 登録 "+roadEvents.length+"件（終了前 "+active+"件）"}
-function loadLocalRoadEvents(){try{const payload=JSON.parse(localStorage.getItem(EVENT_CACHE_KEY)||"null");roadEvents=Array.isArray(payload?.events)?payload.events.map(sanitizeEvent).filter(Boolean):[];eventsReady=!!payload}catch(e){roadEvents=[];eventsReady=false}renderEventStatus();renderRoadEventList()}
+function loadLocalRoadEvents(){try{const payload=JSON.parse(localStorage.getItem(EVENT_CACHE_KEY)||"null");roadEvents=Array.isArray(payload?.events)?payload.events.map(sanitizeEvent).filter(Boolean):[];eventsReady=!!payload}catch(e){roadEvents=[];eventsReady=false}renderEventStatus();searchSilently()}
 async function updateRoadEvents(){const btn=el("tourEventUpdateBtn");if(btn){btn.disabled=true;btn.textContent="⏳ イベント情報を取得中…"}try{const res=await fetch(EVENT_URL+"?t="+Date.now(),{cache:"no-store"});if(!res.ok)throw Error("HTTP "+res.status);const payload=await res.json();if(payload?.schemaVersion!==1||!Array.isArray(payload.events))throw Error("イベントJSONの形式が不正です");const cleaned=payload.events.map(sanitizeEvent);if(cleaned.some(x=>!x))throw Error("不正なイベント情報が含まれています");localStorage.setItem(EVENT_CACHE_KEY,JSON.stringify({events:cleaned}));localStorage.setItem(EVENT_CHECK_KEY,new Date().toISOString());roadEvents=cleaned;eventsReady=true;renderEventStatus("✅ 更新しました");renderRoadEventList();alert("イベント情報を更新しました！ 登録 "+roadEvents.length+"件。");if(el("tourGroup")?.value==="roadEvent")searchSilently()}catch(e){console.warn("イベント情報の取得失敗",e);renderEventStatus("⚠️ 取得失敗："+String(e.message||e).slice(0,100)+"。以前のデータを使用中");alert("イベント情報の取得に失敗しました。\n"+String(e.message||e)+"\n通信状態を確認して再度お試しください。")}finally{if(btn){btn.disabled=false;btn.textContent="🔄 イベント情報を更新"}}}
-function searchSilently(){if(origin())search();else if(el("tourCandidateCount"))el("tourCandidateCount").textContent="出発地点を決めるとイベント開催予定の道の駅を検索できます"}
+function searchSilently(){
+ const settings=tourSearchSettings();
+ if(settings.error){
+  window.tourCandidates=[];
+  dropOptions([],"tourTargetSelect",settings.error==="先に出発地点を設定してください"?"出発地点を設定してください":"距離条件を確認してください",x=>x.name);
+  el("tourCandidateCount").textContent=settings.error;
+  renderRoadEventList();
+  return;
+ }
+ search();
+}
 const PLAN_KEY="michino_touring_plans_v1";let activePlanId=null;
 function allPlans(){try{const a=JSON.parse(localStorage.getItem(PLAN_KEY)||"[]");return Array.isArray(a)?a:[]}catch(e){return[]}}
 function selectedReturn(){if(el("tourReturnSame").checked)return origin();const v=el("tourReturnName").value.trim();return v?{name:v,navQuery:v}:(typeof origins!=="undefined"&&origins.tourReturn)||null}
@@ -144,6 +153,13 @@ function deleteSelected(){const id=el("tourSavedPlans").value;if(id)deletePlan(i
 function sendToDetour(){if(!origin()||!state.target)return alert("先に出発地点と目標地点を指定してください");const snapshot=planSnapshot();if(!snapshot)return;window.tourImportToDetour?.(snapshot);showView("detour")}
 function importFromDetour(){const chosen=window.tourExportFromDetour?.();if(!chosen)return alert("寄り道から取り込む地点がありません");if(chosen.length>2)return alert("寄り道は最大2地点です。寄り道しようで選択数を減らしてください");state.stops=chosen.map(p=>({name:p.name||"寄り道地点",lat:p.lat,lng:p.lng,navQuery:p.navQuery||""}));render();showView("ride");alert("寄り道"+chosen.length+"地点を反映しました。保存すると計画を更新できます。")}
 
-window.tourChooseEvent=chooseEvent;window.tourRefreshEventList=renderRoadEventList;window.tourPreviewRoute=previewRoute;window.tourToggleEventList=toggleRoadEventList;window.tourUpdateRoadEvents=updateRoadEvents;window.tourRenderFavoritePlans=renderFavoritePlans;window.tourOpenFavoritePlan=openFavoritePlan;window.tourMapFavoritePlan=mapFavoritePlan;window.tourGroupChanged=changeGroup;window.tourSavePlan=()=>savePlan(false);window.tourSavePlanAs=()=>savePlan(true);window.tourLoadSelected=loadSelected;window.tourDeleteSelected=deleteSelected;window.tourSendToDetour=sendToDetour;window.tourImportFromDetour=importFromDetour;window.tourNearGroupChanged=changeNearGroup;window.tourChooseSelected=chooseSelected;window.tourAddNearbySelected=addNearbySelected;window.tourSearch=search;window.tourChoose=choose;window.tourSearchNearby=nearby;window.tourAddNearby=addNearby;window.tourRemove=remove;window.tourReturnChanged=changeReturn;window.tourOpenMaps=openMaps;
-document.addEventListener("DOMContentLoaded",()=>{if(el("tourGroup")){changeGroup();changeNearGroup();render();changeReturn();renderPlans();loadLocalRoadEvents();["tourDistance","tourTolerance","tourDirection"].forEach(id=>{const field=el(id);if(field){field.addEventListener("input",renderRoadEventList);field.addEventListener("change",renderRoadEventList)}})}});
+window.tourChooseEvent=chooseEvent;window.tourRefreshCandidates=searchSilently;window.tourRefreshEventList=renderRoadEventList;window.tourPreviewRoute=previewRoute;window.tourToggleEventList=toggleRoadEventList;window.tourUpdateRoadEvents=updateRoadEvents;window.tourRenderFavoritePlans=renderFavoritePlans;window.tourOpenFavoritePlan=openFavoritePlan;window.tourMapFavoritePlan=mapFavoritePlan;window.tourGroupChanged=changeGroup;window.tourSavePlan=()=>savePlan(false);window.tourSavePlanAs=()=>savePlan(true);window.tourLoadSelected=loadSelected;window.tourDeleteSelected=deleteSelected;window.tourSendToDetour=sendToDetour;window.tourImportFromDetour=importFromDetour;window.tourNearGroupChanged=changeNearGroup;window.tourChooseSelected=chooseSelected;window.tourAddNearbySelected=addNearbySelected;window.tourSearch=search;window.tourChoose=choose;window.tourSearchNearby=nearby;window.tourAddNearby=addNearby;window.tourRemove=remove;window.tourReturnChanged=changeReturn;window.tourOpenMaps=openMaps;
+document.addEventListener("DOMContentLoaded",()=>{if(el("tourGroup")){
+ changeGroup();changeNearGroup();render();changeReturn();renderPlans();loadLocalRoadEvents();
+ // Recalculate options when a filter changes, without a separate search button.
+ ["tourDistance","tourTolerance","tourDirection","tourCategory"].forEach(id=>{
+  const field=el(id);
+  if(field)field.addEventListener("change",searchSilently);
+ });
+}});
 })();
