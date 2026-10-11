@@ -298,3 +298,26 @@ Phase 3のActions #67で収集漏れ監視は **228テスト全件OK**。直近�
 - 今回の新しい回帰テスト：収集側**5件**（優先順位・同日の同一巡回・翌日の移動・奥に埋もれた実イベントの発見・不正会場拒否・既存URLの除外を組合せで確認）と監視側**3件**（将来記事優先・投稿日誤認防止・残存候補の正確な監査）で**合計8件**。前回228件から**次回236件予定**。
 
 **運用手順**：最新版`main`の新規 Run workflow → 236件全件合格確認 → `data/station_event_discovery_audit.json`の`explorationSlots/uninspectedCandidates`、`data/road_event_gap_monitor.json`の`sourcesUsingRotatingInspection/reviewWithExplicitFutureHint`、ダッシュボードの保留候補順位を確認。今回も**処理成功と収集漏れゼロは別**である。
+
+## 2026-10-11 Phase 5：独立公式告知との突合と、人手検証標本による取りこぼし計測（Actions未検証）
+
+これまでのレポートは収集器自身の候補・拒否理由を分析するものだった。Phase 5では、**収集器が採用したかどうかとは別の公式告知一覧**も基準としてイベント発見率の改善箇所を探す。
+
+### ソースと出力
+- エンジン：`scripts/road_event_recall_audit.py`。入力は `data/road_event_sources_report.json`（既存の全国9地域公式サイトへの独立リンク監査）、`data/road_events.json`（現行公開フィード）、`data/app_data.js`（アプリ内道の駅1,234駅マスタ）。
+- 追加の独立ソース：全国「道の駅」連絡会公式の `https://www.michi-no-eki.jp/notices` を**毎日1回・12秒上限**で確認し、公式の `/notices/views/数字` 個別記事の見出しURLを上限35件抽出。別ドメイン・カテゴリ一覧・重複リンクは無視する。取得失敗は Actions warning とレポートに残し、既存イベントを削除したりジョブ全体を赤にしたりしない。
+- 出力：`data/road_event_recall_audit.json`（公式告知URL照合結果）、`docs/ROAD_EVENT_RECALL_DASHBOARD.md`（GitHubで直接読むダッシュボード）。
+- 判断階層：**既存掲載と同じURL＋同じ催し題名の可能性**／**同一URLだが別イベントの可能性（PDF等）**／**別URLで同じ催しの可能性**／**駅名を一意に決められない**／**公開データに対応する候補が見つからない**。最後の分類も「未収集確定」とは呼ばない。年月日・駅構内会場を公式本文で再確認しない限り新規採用不可。
+- 駅の推定は見出し中に明示された`【道の駅○○】`などの括弧内を、アプリ内駅マスタに**一意に**一致させる方式。長い文章の途中に道の駅名が出るだけでは開催駅だと推測しない。PDF同一URLでも別催事が含まれるため、URLだけで「すべて掲載済み」とは判定しない。
+
+### 正解標本の人手レビュー台帳
+- `data/road_event_recall_reviews.json` は **`{"schemaVersion": 1, "reviews": []}`** で開始。検証済みデータのない初回は発見率を **未算出** とする（100%とも0%とも言わない）。
+- 独立に公式記事を読んで実在イベントを確認した場合のみ、`decision: "confirmed_on_site"` と以下を記録：`reviewedOn`（ISO年月日）、`officialUrl`（HTTPS）、`prefecture`、`roadName`、`title`、`startDate`と`endDate`（ISO）、`dateEvidence`（日付が公式記事のどこに書かれているか）、`venueEvidence`（道の駅構内の会場の根拠）。同じ開催日の別イベントは別レコード、同じURLだけでは同一イベントとみなさない。
+- 他会場・中止・非イベント等を確認した場合は`decision: "not_station_event"`、`reason`、`officialUrl`、`reviewedOn`を記録。こちらは正例の分母には含めない。
+- **標本内の発見率 = 発見できた確認済み正例 / 人が確認した正例**。この標本は任意選択であり、**全国のイベント網羅率ではない**。全国の推定をしたい場合は、駅マスタから無作為抽出し、一定期間の個別公式告知を調査する別の標本設計が必要。
+- 台帳は **コードから自動追記しない**。公式本文を確認せずに作られた入力で率を水増しすることを避けるため。台帳は普通のGitHub JSONとして人間が編集できるが、誤った日付・欠けた会場証拠・重複入力は回帰テストと監査実行時にエラーで検出する。台帳が空でも日次照合リストは生成される。
+
+### ワークフローと次の一手
+- `.github/workflows/road-events.yml`の全国・地方サイト監査→収集→品質監査→駅マスタ漏れ監査の**後**に「Independently cross-check official event notices」を実行し、上記JSONとMarkdownをGitHubへ自動保存する。
+- 新規 `scripts/test_road_event_recall_audit.py` に **12件**の回帰テスト。Actions #70で243件成功したので、次回 **255件**を見込む。**新しい実装は次回Run workflow未検証**。
+- 次のActionsで、既存公式URL照合数、URL不一致で要確認の告知、独立公式サイト到達失敗、手動台帳の標本率（初期値は未算出）を確認。その後、日時・道の駅会場が確かにある候補を個別に解析器へ反映し、実際の取りこぼし改善数を測る。
