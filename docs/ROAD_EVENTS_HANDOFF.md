@@ -1,10 +1,20 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-12 PWA 1.6.21／イベント開催駅一覧のスマホフリーズ改善・専用UI CI #9テスト9/9合格**。イベント収集本体の確定基準はActions #75（273テスト成功・現行43県73件）。愛媛PDF404／未再確認2件は残課題。  
+更新基準: **2026-10-12 PWA 1.6.22／イベント検索と目標候補検索の重複UIを整理・専用UI CI #16テスト11/11合格**。イベント収集本体の確定基準はActions #75（273テスト成功・現行43県73件）。愛媛PDF404／未再確認2件は残課題。  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-12 PWA 1.6.22 — 重複していた目標候補検索をイベントモードだけ整理（CI #16緑）
+
+- **ユーザー実機評価**：PWA1.6.21のイベント一覧はスマホで軽くなった。次に「📋 目標距離内のイベント開催駅を見る」があるのに「🎯 目標地点の候補を見る」（ユーザーの表現では「目標地点の情報を見る」）ボタンが重複して不要、との改善要望。
+- **改善**：`tour-plan.js` の `changeGroup()` でスポット区分 `roadEvent` のときだけ `tourSearchBtn` と `tourCandidatePicker`（候補プルダウン・登録ボタン・候補件数）を非表示。通常の道の駅・定番/寄り道・ライダーズスポットの検索UIは従来どおり残す。
+- **イベント一覧に直接操作を追加**：`renderRoadEventList()` が各道の駅へ「🎯 この道の駅を目標に登録」ボタンを表示。押すと `window.tourChooseEvent(i)` →共通 `chooseTarget(x)` からツーリング目標に設定し、寄り道候補・地図確認ボタンを従来同様に更新。選択後は当該駅を「✅ 目標に登録済み」と表示。距離・方角の絞り込みとイベント一覧の軽量索引は維持。 `index.html` の新UI要素は `tourSearchBtn`・`tourCandidatePicker`。
+- **PWA反映**：`index.html`、`app.js`、`pwa.js`、`service-worker.js`、`data/version.json` を `1.6.22` に統一、DB Ver2.8.20は不変。既存 `style.css` の `#ride [hidden]{display:none!important}` によりイベントモード時だけ確実に非表示。
+- **テスト**：`scripts/test_tour_event_distance.cjs` に2件追加し、①イベントモードで重複ボタン非表示／通常モードで再表示、②イベント一覧から直接目標登録→Googleマップボタン活性化・登録済表示／通常の目標選択も維持、を検証。自動UI [Actions #16](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38185303305) **11/11合格、JavaScript構文検査も合格**。
+- **実機確認方法**：スマホで最新版を更新して **Ver1.6.22** を確認。ツーリング計画で「道の駅（イベント）」を選ぶと旧「目標地点の候補を見る」ボタンが消える。目標距離・方角を指定してイベント一覧を開き、該当駅の「この道の駅を目標に登録」を押す。選択済み表示・寄り道候補・マップ連携を確認。通常の道の駅モードに戻せば元の候補検索ボタンが表示される。
+- **注意**：この改修はフロントUIのみ。収集本体のイベント数や愛媛のPDF404、未再確認2件に影響しない。収集用の手動Run workflowは不要。GitHub Pagesの最新デプロイ状態はActionsで別途確認。
 
 ## 2026-10-12 PWA 1.6.21 — 距離内イベント一覧のスマホフリーズ対策（CI #9緑）
 
