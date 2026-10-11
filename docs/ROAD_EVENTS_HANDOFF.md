@@ -1,10 +1,20 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-11 Actions #70 成功＋Phase 5独立照合未検証**（243テスト合格、累計47/47県・現行77イベント。新しい独立公式告知照合＋12テスト・次回255テスト予定）  
+更新基準: **2026-10-11 Actions #70確定＋Phase 5収集漏れ実例修正待ち**（243テストOK・47/47県・77件確定。独立標本3件で修正前2/3、北海道新ルート・261テストは次回Actions未検証）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-11 Phase 5 実例調査：北海道の確認済み取りこぼしを1件発見・修正（**次回Actions未検証**）
+
+- **新しい確定的発見**：北海道「しらぬか恋問館」 **日本各地の「美味しい」がやってきた！第9弾**。北海道の道の駅公式案内 `https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/`（2026年10月9日記事）に**10月9日（金）～10月19日（月）・📍道の駅しらぬか恋問館**と記載。同駅運営公式サイト`https://michinoeki-shiranuka.jp/news/`にも同名記事あり。2026-10-11時点の公開`data/road_events.json`にはこの駅のイベント登録がなく、**検証できた実際の取りこぼし1件**。
+- **最初の実測標本は3件（恣意的抽出・非ランダム）**：山梨「こすげ」10/24秋まつり（関東公式`https://www.kanto-michinoeki.jp/archives/18244.html`）および埼玉「庄和」10/31-11/1体験イベント（`https://www.kanto-michinoeki.jp/archives/18237.html`）は公開済み、北海道「しらぬか恋問館」は未登録。**修正前の標本内捕捉は2/3＝66.7％**。**全国のイベント網羅率ではない**し、未収集を狙って調べた標本なので全国の傾向に外挿しない。
+- `data/road_event_recall_reviews.json`へ出典、日時原文、会場原文、照合日、`reviewedBy=assistant_official_source_check`を記録（AIによる一次情報照合であり、実際の人間監査や行政承認を受けたと偽らない）。今後は毎日の実際の公開データで標本の成否を集計。**イベント終了後は現行フィードから正しく消えるため、過去のレビューを現在の見逃しに数えない**よう`reviewed_sample(..., today)`に対象期限チェックを追加。`historicalPositiveReviews`／`expiredPositiveReviews`を記録。
+- **収集機能の安全な追加**：`scripts/station_discovery_engine.py`に`eventDateMode=published_year_pinned_range`を新設。**記事内の明示掲載年「2026年10月9日」と「📅 10月9日～10月19日」「📍 道の駅しらぬか恋問館」を同一公式記事から検証**。推測した当年、駅のフッター、日時不明、別会場、過去年のイベントからは自動登録しない。`data/station_event_discovery_sources.json`に固定の公式記事 `hokkaido_shiranuka_official_okinawa_popup_oct` を追加。**設定型ソース27→28ルート**。
+- **新規テスト6件**：`scripts/test_road_event_recall_audit.py`に3件（標本の修正前2/3、終了済み確認例の集計除外、過去と現行の混在）、`scripts/test_station_discovery_engine.py`に3件（北海道の採用、掲載年不足・駅外会場拒否、旧年・偽ホスト拒否）。前回#70の243件＋既に追加済みの独立公式監査12件＋6件＝**次回261テスト予定**。
+- **公開イベントの件数は未変更**：この時点の`road_events.json`は#70後の**77件、累計47/47都道府県**。**新たな北海道の1件が採用されるかは次回本番Actionsで要確認**。正しく採用すれば78件（その他新規・期限切れがなければ）となり、標本内は3/3（非ランダム）になる。取得できない場合は監査`reasons`・`fetchErrors`を優先して修正。**達成・改善の見込みと本番実績を混同しない**。
+- **次の作業**：更新後mainで新規`Run workflow`。①261テスト、②設定型28/28ルート、③北海道`hokkaido_shiranuka_official_okinawa_popup_oct`の`accepted`・日付・会場、④`data/road_event_recall_audit.json`の`reviewedSample`と`sampleDiscoveryRate`（恣意的3標本）、⑤品質監査・重複・エラー、⑥Pages公開を実測確認する。
 
 ## 2026-10-11 Phase 5・独立公式告知照合＋標本での発見率計測（次回Actions未検証）
 
