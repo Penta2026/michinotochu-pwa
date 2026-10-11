@@ -1,5 +1,50 @@
 {
   "schemaVersion": 1,
-  "description": "Human-reviewed examples with official dated and on-site venue evidence only. An empty ledger means no sample recall has been measured.",
-  "reviews": []
+  "description": "Individually checked examples from primary official sites (AI-assisted source review); not a random nationwide sample. Positive examples require event date and named on-premises station venue.",
+  "reviews": [
+    {
+      "decision": "confirmed_on_site",
+      "reviewedOn": "2026-10-11",
+      "reviewedBy": "assistant_official_source_check",
+      "officialUrl": "https://www.kanto-michinoeki.jp/archives/18244.html",
+      "prefecture": "山梨県",
+      "roadName": "こすげ",
+      "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-24",
+      "dateEvidence": "公式記事: 日時 2026年10月24日(土)、10:00～15:00（予定）",
+      "venueEvidence": "公式記事: 道の駅こすげではミニイベント「秋祭り」を開催",
+      "reviewNote": "Official Kanto road station association event notice; already in road_events.json."
+    },
+    {
+      "decision": "confirmed_on_site",
+      "reviewedOn": "2026-10-11",
+      "reviewedBy": "assistant_official_source_check",
+      "officialUrl": "https://www.kanto-michinoeki.jp/archives/18237.html",
+      "prefecture": "埼玉県",
+      "roadName": "庄和",
+      "title": "【道の駅庄和】わくわく体験イベント",
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "dateEvidence": "公式記事: 2026年9月30日公開、日時 10月31日(土)～11月1日(日) 10:00～15:00",
+      "venueEvidence": "公式記事: 会場 道の駅庄和 情報館・交流広場",
+      "reviewNote": "Official Kanto road station association article. Year grounded by article publishing year and matching weekdays. Already in road_events.json."
+    },
+    {
+      "decision": "confirmed_on_site",
+      "reviewedOn": "2026-10-11",
+      "reviewedBy": "assistant_official_source_check",
+      "officialUrl": "https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/",
+      "secondaryOfficialUrl": "https://michinoeki-shiranuka.jp/news/",
+      "prefecture": "北海道",
+      "roadName": "しらぬか恋問館",
+      "title": "日本各地の「美味しい」がやってきた！第9弾",
+      "startDate": "2026-10-09",
+      "endDate": "2026-10-19",
+      "dateEvidence": "北海道道の駅公式: 2026年10月9日付掲載、📅 10月9日（金）～10月19日（月）、9:00～19:00",
+      "venueEvidence": "北海道道の駅公式: 📍 道の駅しらぬか恋問館。駅運営公式サイトも同開催を掲載",
+      "reviewNote": "On-site Okinawa specialty pop-up. Checked against road_events.json on 2026-10-11; no station entry existed. This is one verified missed example, not an estimate of total misses."
+    }
+  ],
+  "samplingMethod": "Targeted Phase 5 initial investigation: two known feed examples and one independently confirmed suspected miss. Not representative of national recall."
 }
