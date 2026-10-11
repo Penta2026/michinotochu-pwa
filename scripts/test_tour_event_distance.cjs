@@ -202,19 +202,47 @@ test("full station inventory does not rebuild Intl formatters or scan 500 events
   assert.ok(performance.now() - start < 5000, "event filtering unexpectedly slow");
 });
 
-test("event mode hides picker, while normal station mode auto-populates it without a button", () => {
+test("event stations and regular spots BOTH keep the same destination picker visible", () => {
   const f = fixture();
-  assert.equal(f.node("tourCandidatePicker").hidden, true);
+  assert.equal(f.node("tourCandidatePicker").hidden, false);
+  assert.deepEqual(Array.from(f.ctx.window.tourCandidates, x=>x.name).sort(),
+    ["北100","東100"].sort());
+  assert.match(f.node("tourTargetSelect").innerHTML,/北100/);
   f.change("tourGroup", "road");
   f.ctx.window.tourGroupChanged();
   assert.equal(f.node("tourCandidatePicker").hidden, false);
   assert.deepEqual(
     Array.from(f.ctx.window.tourCandidates, x=>x.name).sort(),
     ["北100", "東100", "終了済み駅", "中止の駅"].sort());
-  assert.match(f.node("tourTargetSelect").innerHTML, /北100/);
   f.change("tourGroup", "roadEvent");
   f.ctx.window.tourGroupChanged();
-  assert.equal(f.node("tourCandidatePicker").hidden, true);
+  assert.equal(f.node("tourCandidatePicker").hidden, false);
+  assert.deepEqual(Array.from(f.ctx.window.tourCandidates, x=>x.name).sort(),
+    ["北100","東100"].sort());
+});
+
+test("event mode target can be selected directly in the BOTTOM dropdown", () => {
+  const f = fixture();
+  assert.equal(f.node("tourCandidatePicker").hidden,false);
+  assert.match(f.node("tourTargetSelect").innerHTML,/北100/);
+  f.node("tourTargetSelect").value="0";
+  f.ctx.window.tourChooseSelected();
+  assert.match(f.node("tourTargetNotice").textContent,/北100/);
+  assert.match(f.node("tourPlanState").innerHTML,/🎯 目標：北100/);
+  assert.equal(f.node("tourTargetMapBtn").hidden,false);
+  assert.match(f.node("tourTargetEventNotice").innerHTML,/この道の駅の開催予定イベント/);
+});
+
+test("event mode dropdown follows distance and direction and never lists nationwide stations", () => {
+  const f=fixture();
+  assert.equal(f.node("tourCandidatePicker").hidden,false);
+  f.change("tourDirection","east");
+  assert.deepEqual(Array.from(f.ctx.window.tourCandidates,x=>x.name),["東100"]);
+  assert.match(f.node("tourTargetSelect").innerHTML,/東100/);
+  assert.doesNotMatch(f.node("tourTargetSelect").innerHTML,/北100|遠方の駅/);
+  f.change("tourDistance","700");
+  assert.equal(f.ctx.window.tourCandidates.length,0);
+  assert.doesNotMatch(f.node("tourTargetSelect").innerHTML,/東100|遠方の駅/);
 });
 
 test("distance and direction changes refresh normal goal picker immediately", () => {
