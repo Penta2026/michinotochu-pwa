@@ -158,6 +158,33 @@ class IndependentRecallTests(unittest.TestCase):
         result = reviewed_sample({"schemaVersion": 1, "reviews": [future]}, PUBLISHED)
         self.assertEqual(result["notFound"], 1)
 
+    def test_expired_verified_event_does_not_look_like_new_miss(self):
+        ledger = {"schemaVersion": 1, "reviews": [
+            positive(startDate="2026-09-01", endDate="2026-09-02")]}
+        result = reviewed_sample(ledger, [], today="2026-10-11")
+        self.assertEqual(result["positiveOnSite"], 0)
+        self.assertEqual(result["historicalPositiveReviews"], 1)
+        self.assertEqual(result["expiredPositiveReviews"], 1)
+        self.assertEqual(result["notFound"], 0)
+        self.assertIsNone(result["rateWithinReviewedSample"])
+        self.assertEqual(result["reviews"][0]["matchStatus"],
+                         "expired_outside_live_feed")
+
+    def test_live_sample_measurement_excludes_historic_but_retains_missing(self):
+        missed = positive(officialUrl="https://hokkaido-michinoeki.jp/michiekiinfo/example/",
+                          prefecture="北海道", roadName="しらぬか恋問館",
+                          title="道の駅の沖縄物産フェア",
+                          startDate="2026-10-09", endDate="2026-10-19")
+        historic = positive(officialUrl="https://official.example/past",
+                            startDate="2026-08-01", endDate="2026-08-02")
+        ledger = {"schemaVersion": 1, "reviews": [positive(), missed, historic]}
+        result = reviewed_sample(ledger, PUBLISHED, today="2026-10-11")
+        self.assertEqual(result["positiveOnSite"], 2)
+        self.assertEqual(result["found"], 1)
+        self.assertEqual(result["notFound"], 1)
+        self.assertEqual(result["expiredPositiveReviews"], 1)
+        self.assertEqual(result["rateWithinReviewedSample"], 0.5)
+
     def test_negative_review_does_not_enter_recall_denominator(self):
         entry = {"decision": "not_station_event", "reviewedOn": DAY,
                  "officialUrl": "https://izuminambu-rc.jp/nb_event/example",
