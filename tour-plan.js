@@ -27,12 +27,17 @@ function tourSearchSettings(){
 // In particular, no event list may ever fall back to unfiltered nationwide data.
 function goalCandidates(settings,group,cat=""){
  const {from,km,tol,dir}=settings;
- return spots(true).filter(x=>group==="all"||x.tourGroup===group||
-   (group==="roadEvent"&&x.tourGroup==="road"&&activeRoadEvents(x).length>0))
+ // For event search, avoid assembling unrelated landmarks and cafés.
+ const source=group==="roadEvent"
+  ? (window.APP_DATA?.roads||[]).filter(valid).map(x=>({...x,tourGroup:"road"}))
+  : spots(true);
+ // Cheap distance and direction checks MUST precede event matching.
+ return source.filter(x=>group==="all"||x.tourGroup===group||group==="roadEvent")
   .filter(x=>byCategory(x,group,cat))
   .map(x=>({...x,tourKm:dKm(from,x),tourAz:azimuth(from,x)}))
   .filter(x=>x.tourKm>=Math.max(0,km-tol)&&x.tourKm<=km+tol)
   .filter(x=>dir==="all"||Math.abs((x.tourAz-compass[dir]+540)%360-180)<=33.75)
+  .filter(x=>group!=="roadEvent"||activeRoadEvents(x).length>0)
   .sort((a,b)=>Math.abs(a.tourKm-km)-Math.abs(b.tourKm-km));
 }
 function search(){
@@ -42,7 +47,7 @@ function search(){
  const list=goalCandidates(settings,group,cat);
  window.tourCandidates=list;
  dropOptions(list,"tourTargetSelect","目標地点を選択してください",x=>x.name+" / "+(x.prefecture||"")+(group==="roadEvent"?" / "+activeRoadEvents(x).map(e=>e.startDate+" "+e.title).join("・"):"")+" / 直線"+x.tourKm.toFixed(1)+"km");
- const eventTotal=roadEvents.filter(e=>e.endDate>=jpToday()&&e.status!=="cancelled").length;
+ const eventTotal=Array.from(liveEventIndex().values()).reduce((n,v)=>n+v.length,0);
  const debug=group==="roadEvent"?" / 情報"+eventTotal+"件・距離・方角内"+list.length+"駅":"";
  el("tourCandidateCount").textContent=(group==="roadEvent"&&!eventsReady?"⚠️ イベント情報が未取得です。イベント情報を更新してください。":"検索結果 "+list.length+"件（直線"+Math.max(0,settings.km-settings.tol)+"〜"+(settings.km+settings.tol)+"km）"+debug);
  renderRoadEventList();
@@ -59,9 +64,30 @@ function previewRoute(includeStops=false){const from=origin(),target=state.targe
 function changeReturn(){el("tourReturnExtra").hidden=el("tourReturnSame").checked}
 function openMaps(){if(!origin()||!state.target)return alert("出発地点と目標地点を設定してください");const ret=el("tourReturnSame").checked?origin():(()=>{const v=el("tourReturnName").value.trim();return v?{name:v,navQuery:v}:(typeof origins!=="undefined"&&origins.tourReturn)||null})();if(!ret)return alert("帰着地点を指定してください");const params=new URLSearchParams({api:"1",origin:label(origin()),destination:label(ret),waypoints:[state.target,...state.stops].map(label).join("|"),travelmode:"driving"});if(el("tourVehicle").value==="125")params.set("avoid","highways,tolls");const url="https://www.google.com/maps/dir/?"+params;if(url.length>2048)return alert("地名が長すぎるためGoogleマップへ渡せません");window.open(url,"_blank","noopener")}
 const EVENT_URL="./data/road_events.json";let roadEvents=[];let eventsReady=false;
-const jpToday=()=>new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
-const sameRoad=(x,e)=>{const norm=v=>String(v||"").normalize("NFKC").replace(/^道の駅[\s　「『]*(?:「|『)?/,"").replace(/[\s　・･「」『』（）()\-ー]/g,"").toLowerCase();const name=norm(x.name),event=norm(e.roadName);const pref=v=>String(v||"").replace(/[都道府県\s　]/g,"");return name===event&&(!e.prefecture||!x.prefecture||pref(x.prefecture)===pref(e.prefecture))};
-const activeRoadEvents=x=>roadEvents.filter(e=>e&&e.roadName&&/^\d{4}-\d{2}-\d{2}$/.test(e.endDate||"")&&e.endDate>=jpToday()&&(!e.publishedAt||e.publishedAt<=jpToday())&&e.status!=="cancelled"&&sameRoad(x,e));
+// Creating Intl.DateTimeFormat inside every event/station comparison blocked
+// mobile browsers for seconds. Reuse one formatter and index live events once.
+const jstDateFormatter=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"});
+const jpToday=()=>jstDateFormatter.format(new Date());
+const roadKey=v=>String(v||"").normalize("NFKC").replace(/^道の駅[\s　「『]*(?:「|『)?/,"").replace(/[\s　・･「」『』（）()\-ー]/g,"").toLowerCase();
+const prefectureKey=v=>String(v||"").replace(/[都道府県\s　]/g,"");
+let indexedEventsSource=null,indexedEventsDate="",indexedEvents=new Map();
+function liveEventIndex(){
+ const today=jpToday();
+ if(indexedEventsSource!==roadEvents||indexedEventsDate!==today){
+  const next=new Map();
+  for(const e of roadEvents){
+   if(!e||!e.roadName||!/^\d{4}-\d{2}-\d{2}$/.test(e.endDate||"")||
+      e.endDate<today||(e.publishedAt&&e.publishedAt>today)||e.status==="cancelled")continue;
+   const key=roadKey(e.roadName);
+   if(!next.has(key))next.set(key,[]);
+   next.get(key).push(e);
+  }
+  indexedEvents=next;indexedEventsSource=roadEvents;indexedEventsDate=today;
+ }
+ return indexedEvents;
+}
+const activeRoadEvents=x=>(liveEventIndex().get(roadKey(x.name))||[]).filter(
+ e=>!e.prefecture||!x.prefecture||prefectureKey(x.prefecture)===prefectureKey(e.prefecture));
 const EVENT_CACHE_KEY="michino_road_events_cache_v1";
 const EVENT_CHECK_KEY="michino_road_events_checked_v1";
 function eventDate(v){return /^\d{4}-\d{2}-\d{2}$/.test(v||"")}
@@ -82,7 +108,7 @@ function renderRoadEventList(){
    activeRoadEvents(x).map(e=>'<div style="margin-top:8px"><div>📅 '+esc(e.startDate)+(e.endDate!==e.startDate?' 〜 '+esc(e.endDate):'')+'</div><div>'+esc(e.title)+'</div>'+(e.url?'<div style="margin-top:6px"><a href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">公式イベント案内 ↗</a></div>':'')+'</div>').join("")+'</div>').join("");
 }
 function toggleRoadEventList(){const list=el("tourEventList"),btn=el("tourEventListBtn");if(!list||!btn)return;list.hidden=!list.hidden;btn.setAttribute("aria-expanded",String(!list.hidden));btn.textContent=list.hidden?"📋 目標距離内のイベント開催駅を見る":"📋 目標距離内の一覧を閉じる";renderRoadEventList()}
-function renderEventStatus(message){const e=el("tourEventStatus");if(!e)return;const checked=localStorage.getItem(EVENT_CHECK_KEY),active=roadEvents.filter(x=>x.endDate>=jpToday()&&x.status!=="cancelled").length;e.textContent=(message?message+" / ":"")+(checked?"最終取得："+new Date(checked).toLocaleString("ja-JP"):"未取得")+" / 登録 "+roadEvents.length+"件（終了前 "+active+"件）"}
+function renderEventStatus(message){const e=el("tourEventStatus");if(!e)return;const checked=localStorage.getItem(EVENT_CHECK_KEY),active=Array.from(liveEventIndex().values()).reduce((n,v)=>n+v.length,0);e.textContent=(message?message+" / ":"")+(checked?"最終取得："+new Date(checked).toLocaleString("ja-JP"):"未取得")+" / 登録 "+roadEvents.length+"件（終了前 "+active+"件）"}
 function loadLocalRoadEvents(){try{const payload=JSON.parse(localStorage.getItem(EVENT_CACHE_KEY)||"null");roadEvents=Array.isArray(payload?.events)?payload.events.map(sanitizeEvent).filter(Boolean):[];eventsReady=!!payload}catch(e){roadEvents=[];eventsReady=false}renderEventStatus();renderRoadEventList()}
 async function updateRoadEvents(){const btn=el("tourEventUpdateBtn");if(btn){btn.disabled=true;btn.textContent="⏳ イベント情報を取得中…"}try{const res=await fetch(EVENT_URL+"?t="+Date.now(),{cache:"no-store"});if(!res.ok)throw Error("HTTP "+res.status);const payload=await res.json();if(payload?.schemaVersion!==1||!Array.isArray(payload.events))throw Error("イベントJSONの形式が不正です");const cleaned=payload.events.map(sanitizeEvent);if(cleaned.some(x=>!x))throw Error("不正なイベント情報が含まれています");localStorage.setItem(EVENT_CACHE_KEY,JSON.stringify({events:cleaned}));localStorage.setItem(EVENT_CHECK_KEY,new Date().toISOString());roadEvents=cleaned;eventsReady=true;renderEventStatus("✅ 更新しました");renderRoadEventList();alert("イベント情報を更新しました！ 登録 "+roadEvents.length+"件。");if(el("tourGroup")?.value==="roadEvent")searchSilently()}catch(e){console.warn("イベント情報の取得失敗",e);renderEventStatus("⚠️ 取得失敗："+String(e.message||e).slice(0,100)+"。以前のデータを使用中");alert("イベント情報の取得に失敗しました。\n"+String(e.message||e)+"\n通信状態を確認して再度お試しください。")}finally{if(btn){btn.disabled=false;btn.textContent="🔄 イベント情報を更新"}}}
 function searchSilently(){if(origin())search();else if(el("tourCandidateCount"))el("tourCandidateCount").textContent="出発地点を決めるとイベント開催予定の道の駅を検索できます"}
