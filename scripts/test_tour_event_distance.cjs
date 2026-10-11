@@ -33,7 +33,7 @@ const fixtureEvents = [
   schedule("中止の駅", { status: "cancelled" })
 ];
 
-function fixture({ ride = { lat: 35, lng: 139 }, events = fixtureEvents } = {}) {
+function fixture({ ride = { lat: 35, lng: 139 }, events = fixtureEvents, roadsData = roads, onFormatter = () => {} } = {}) {
   const elements = new Map();
   const domEvents = new Map();
   const storage = new Map([
@@ -61,7 +61,7 @@ function fixture({ ride = { lat: 35, lng: 139 }, events = fixtureEvents } = {}) 
   node("tourEventList").hidden = true;
   node("tourReturnSame").checked = true;
   const ctx = {
-    window: { APP_DATA: { roads, landmarks: [] }, RIDERS_CAFES: [] },
+    window: { APP_DATA: { roads: roadsData, landmarks: [] }, RIDERS_CAFES: [] },
     origins: { ride },
     document: {
       getElementById: node,
@@ -72,7 +72,7 @@ function fixture({ ride = { lat: 35, lng: 139 }, events = fixtureEvents } = {}) 
       setItem(key, value) { storage.set(key, value); }
     },
     alert(message) { throw new Error("Unexpected alert: " + message); },
-    console, Date, Intl, URLSearchParams
+    console, Date, Intl: { DateTimeFormat: class extends Intl.DateTimeFormat { constructor(...args) { super(...args); onFormatter(); } } }, URLSearchParams
   };
   vm.runInNewContext(tourCode, ctx, { filename: "tour-plan.js" });
   domEvents.get("DOMContentLoaded")();
@@ -172,6 +172,36 @@ test("inactive or unpublished events are excluded; event text is escaped", () =>
   assert.ok(!f.html().includes("東100"));
 });
 
+test("full station inventory does not rebuild Intl formatters or scan 500 events per station", () => {
+  const near = roads.slice(0, 2);
+  const manyRoads = [...near, ...Array.from({ length: 1234 }, (_, i) => ({
+    name: "遠方のダミー駅" + i, prefecture: "北海道",
+    lat: 43 + (i % 150) / 150, lng: 140 + (i % 150) / 50
+  }))];
+  const manyEvents = [
+    schedule("北100"), schedule("東100"),
+    ...Array.from({ length: 500 }, (_, i) => ({
+      roadName: "遠方のダミー駅" + i, prefecture: "北海道",
+      title: "テスト用開催イベント" + i, startDate: "2099-01-01",
+      endDate: "2099-12-31", status: "scheduled"
+    }))
+  ];
+  let formatterCreations = 0;
+  const f = fixture({
+    roadsData: manyRoads, events: manyEvents,
+    onFormatter() { formatterCreations++; }
+  });
+  const start = performance.now();
+  f.openEvents();
+  for (let i = 0; i < 3; i++) {
+    assert.deepEqual(f.search().sort(), ["北100", "東100"].sort());
+  }
+  assert.ok(!f.html().includes("遠方のダミー駅"));
+  assert.ok(formatterCreations <= 2, "Intl.DateTimeFormat repeatedly created: " + formatterCreations);
+  // Loose wall-clock protection against accidentally reintroducing O(stations * events)
+  assert.ok(performance.now() - start < 5000, "event filtering unexpectedly slow");
+});
+
 test("the web entry point and service worker both deploy the new PWA version", () => {
   const index = fs.readFileSync(path.join(root, "index.html"), "utf8");
   const worker = fs.readFileSync(path.join(root, "service-worker.js"), "utf8");
@@ -180,5 +210,5 @@ test("the web entry point and service worker both deploy the new PWA version", (
   assert.match(index, /目標距離内のイベント開催駅を見る/);
   assert.match(worker, /michino-shell-v1\.6\.20/);
   assert.match(worker, /tour-plan\.js\?v=1\.6\.20/);
-  assert.equal(version.appVersion, "1.6.20");
+  assert.equal(version.appVersion, "1.6.21");
 });
