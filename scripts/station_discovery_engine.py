@@ -77,6 +77,11 @@ def _validate_sources(sources):
             int(spec.get("maxArticles", 6)) not in range(1, 13)):
             raise ValueError(f"Unsafe discovery source: {spec['id']}")
         re.compile(spec["articlePathPattern"])
+        if spec.get("allowOfficialListingEventDate") and (
+                not spec.get("requireVenueLabel") or
+                not spec.get("venueProofPattern") or
+                spec.get("articleMode")):
+            raise ValueError(f"Unsafe official listing schedule rule: {spec['id']}")
         if spec.get("articleMode") in ("verified_official_pdf", "verified_official_event_detail", "verified_official_vendor_schedule", "verified_official_checkpoint_program"):
             if not _official_url(spec["listingUrl"], spec, article=True):
                 raise ValueError(f"Unsafe fixed official event source: {spec['id']}")
@@ -313,6 +318,43 @@ def _listing_posted(listing_title, today):
     return d if d <= today else None
 
 
+def _linked_official_listing_period(source, listing_title, article_title, today):
+    """Use an explicit event date on a *linked official listing*, never a posting date.
+
+    Opt-in per source only. The caller must have validated a specific
+    on-premises venue in that article before considering this evidence.
+    """
+    if not source.get("allowOfficialListingEventDate"):
+        return None
+    listed = _date_text(listing_title)
+    if not listed.startswith("開催予定 "):
+        return None
+    # Event title is printed before one full-year date followed by '開催'.
+    # Month headers, publication stamps, many-date calendars and mixed
+    # schedules cannot pass this narrow form.
+    full_date = r"(?<![0-9])20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}日?"
+    matches = list(re.finditer(
+        r"(?<![0-9])(20[0-9]{2})[年./-]([0-9]{1,2})[月./-]([0-9]{1,2})日?"
+        r"\\s*(?:\\([^)]{1,8}\\))?\\s*開催(?:予定)?(?:\\s|$)",
+        listed))
+    if len(matches) != 1 or len(re.findall(full_date, listed)) != 1:
+        return None
+    matched = matches[0]
+    listing_name = re.sub(r"^開催予定\\s*", "", listed[:matched.start()])
+    def name_key(value):
+        return re.sub(r"[\\W_]+", "", clean(value))
+    article_key, listing_key = name_key(article_title), name_key(listing_name)
+    if len(article_key) < 7 or not (article_key in listing_key or listing_key in article_key):
+        return None
+    try:
+        day = date(*map(int, matched.groups()))
+    except ValueError:
+        return None
+    if day < today:
+        return None
+    return day.isoformat(), day.isoformat()
+
+
 def _article_record(source, soup, listing_title, today, url):
     article = _pick_article(soup, source)
     if article is None:
@@ -384,6 +426,17 @@ def _article_record(source, soup, listing_title, today, url):
             if candidate:
                 period = candidate
                 break
+    listing_period = _linked_official_listing_period(
+        source, listing_title, title, today)
+    if listing_period and period and listing_period != period:
+        # Disagreeing official pages must be reviewed, not silently picked.
+        return None, "listing_article_date_conflict"
+    from_official_listing = period is None and listing_period is not None
+    if from_official_listing:
+        # Even an explicitly dated listing cannot override cancellation.
+        if re.search(r"開催を中止|開催中止|中止となりました|延期となりました", body):
+            return None, "cancelled"
+        period = listing_period
     if period is None:
         return None, "undated"
     if period[1] < today.isoformat():
@@ -391,7 +444,7 @@ def _article_record(source, soup, listing_title, today, url):
     return {"roadName": source["roadName"], "prefecture": source["prefecture"],
             "title": title, "startDate": period[0], "endDate": period[1],
             "publishedAt": posted.isoformat() if posted else "", "url": url,
-            "status": "scheduled"}, "accepted"
+            "status": "scheduled"}, ("accepted_listing_date" if from_official_listing else "accepted")
 
 SECTION_TITLE = re.compile(r"^[〖【]([^〗】]{3,85})[〗】]$")
 SECTION_DATE = re.compile(r"^[🗓📅]?\s*(?:(?:開催日(?:時|程)?|開催期間|日程|日時)\s*[:：]?\s*)?")
@@ -1129,10 +1182,13 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                     summary["accepted"] += 1
                     new_count += 1
                     if len(summary["examples"]) < 5:
-                        summary["examples"].append({"title": record["title"],
-                                                    "start": record["startDate"],
-                                                    "end": record["endDate"],
-                                                    "url": record["url"]})
+                        example = {"title": record["title"],
+                                   "start": record["startDate"],
+                                   "end": record["endDate"],
+                                   "url": record["url"]}
+                        if why == "accepted_listing_date":
+                            example["dateEvidence"] = "linked_official_listing"
+                        summary["examples"].append(example)
                 newly_seen.add(url)
             elif reconfirmed_this_url == 0:
                 summary["reasons"][why] = summary["reasons"].get(why, 0) + 1
