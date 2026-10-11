@@ -85,6 +85,9 @@ class IndependentRecallTests(unittest.TestCase):
         self.assertEqual(
             _station_from_title("【道の駅こすげ】秋まつり", MASTER)["roadName"],
             "こすげ")
+        self.assertEqual(
+            _station_from_title("〖道の駅庄和〗わくわく体験イベント", MASTER)["roadName"],
+            "庄和")
         self.assertIsNone(
             _station_from_title("和光市で秋のイベント開催", MASTER))
         self.assertIsNone(
