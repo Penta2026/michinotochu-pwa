@@ -1,10 +1,19 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-11 Actions #70確定＋Phase 5収集漏れ実例修正待ち**（243テストOK・47/47県・77件確定。独立標本3件で修正前2/3、北海道新ルート・261テストは次回Actions未検証）  
+更新基準: **2026-10-12 Actions #72・#73本番成功／Phase 5 初回実証完了**（261テスト全件OK、北海道しらぬか新規採用・翌回再確認、独立標本3/3、47/47県累計、現行43県72件。監査に残る候補は未確定）  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-12 Phase 5 初回本番検証 — Actions #72・#73 成功
+
+- [Actions #71](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38148731654)は261件中1件失敗。新規北海道ルートが増えたのに、`test_configured_station_feeds_include_three_kanto_prefectures`で設定県集合を旧25県へ完全一致させていたことが原因。改修 [`cbdb2a4e`](https://github.com/Penta2026/michinotochu-pwa/commit/cbdb2a4e17cf72f229b50d63535eaa5ac8e31736) で旧25県の維持、新規県許容、未知県・駅の重複拒否、北海道「しらぬか恋問館」存在を検査。
+- [Actions #72](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38148951373) と [Actions #73](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38149995266) は**全工程成功**。#73ログでも **261 tests / OK**。Pages配信 [#1396](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38150453143) も成功。
+- **北海道の取りこぼし回収を本番確認**：`data/road_events.json`に「しらぬか恋問館」「日本各地の『美味しい』がやってきた!第9弾」、**2026-10-09〜10-19**、公式URLを収載。#73 の `hokkaido_shiranuka_official_okinawa_popup_oct` は `checked=1, reconfirmed=1, fetchFailed=0` で継続確認成功（`accepted=0`は既存イベント再確認であり失敗ではない）。
+- 独立照合 `data/road_event_recall_audit.json`：公式ソース **10/10取得**、告知見出し **80件**、個別確認済み標本 **3件中3件が現行公開フィードに存在**（修正前2/3→本番3/3）。**100%は恣意抽出した3件に限定**し全国網羅率とは解釈しない。未一致見出し等 **46件要確認**（公式URL未一致45＋同URL題名不一致1。これらがすべて現在の取りこぼしという意味ではない）。
+- 現行イベント **72件・43/47県・50駅**、累計達成 **47/47県**。#73 の品質監査は前回入力78件から終了・無効として7件除外、設定型新規1件、最終72件。**日付経過による件数減少を収集機能退行と誤認しない**。重複候補0。未再確認1件は山口「阿武町」（開催予定11/29、確定中止とは扱わない）。
+- `data/road_event_gap_monitor.json`：設定型 **28/28** 監査済み、未調査候補枠164、レビュー候補52、開催予定日手掛かり3件（大阪いずみ山愛の里の10/18マルシェ・10/18ハープ・11/22ピアノ）。取得警告1件は愛媛市公式PDF。**次の重点**：大阪3候補の公式本文で年月日と道の駅構内会場を個別再検証、愛媛の有効な公式HTML代替導線、未一致46候補の古い日程と現行開催の切り分け。証拠不足イベントは自動公開しない。
 
 ## 2026-10-11 Phase 5 実例調査：北海道の確認済み取りこぼしを1件発見・修正（**次回Actions未検証**）
 
