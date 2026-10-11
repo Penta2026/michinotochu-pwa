@@ -14,9 +14,10 @@ function fillCategory(groupId,categoryId){const group=el(groupId).value;el(categ
 function changeGroup(){
  fillCategory("tourGroup","tourCategory");
  el("tourCategory").value="";
- // Event cards select their own station; other modes use the automatic picker.
+ // Keep the shared destination picker visible in EVERY mode.
+ // Event mode also has detail cards, but the user can choose a station below.
  const picker=el("tourCandidatePicker");
- if(picker)picker.hidden=el("tourGroup").value==="roadEvent";
+ if(picker)picker.hidden=false;
  searchSilently();
 }
 function changeNearGroup(){fillCategory("tourNearGroup","tourNearCategory");if(state.target)nearby()}
