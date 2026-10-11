@@ -74,11 +74,12 @@
     "historicalNeverObservedPrefectures": 0,
     "registeredEvents": 73,
     "targetedStationFeedPrefectures": 26,
-    "notReconfirmedEvents": 1,
+    "notReconfirmedEvents": 2,
     "unknownPrefectures": []
   },
   "priorities": {
     "reconfirm": [
+      "大阪府",
       "山口県"
     ],
     "historicalNeverObserved": [],
@@ -677,9 +678,9 @@
         "いずみ山愛の里",
         "奥河内くろまろの郷"
       ],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"

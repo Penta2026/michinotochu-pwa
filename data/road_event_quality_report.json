@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 72,
-  "inputCollected": 72,
+  "inputPrevious": 73,
+  "inputCollected": 71,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -292,6 +292,14 @@
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [
+    {
+      "roadName": "いずみ山愛の里",
+      "title": "いずみの山の小さなマルシェ10月",
+      "startDate": "2026-10-18",
+      "endDate": "2026-10-18",
+      "url": "https://izuminambu-rc.jp/nb_event/%e3%81%84%e3%81%9a%e3%81%bf%e3%81%ae%e5%b1%b1%e3%81%ae%e5%b0%8f%e3%81%95%e3%81%aa%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a710%e6%9c%88/",
+      "reason": "not_found_in_current_collection"
+    },
     {
       "roadName": "阿武町",
       "title": "令和8年11月29日(日)第49回森里海の市を開催します。",

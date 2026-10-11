@@ -248,24 +248,16 @@
       "listingError": "",
       "candidates": 11,
       "checked": 8,
-      "accepted": 1,
+      "accepted": 0,
       "reconfirmed": 0,
-      "knownSkipped": 0,
+      "knownSkipped": 1,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
         "venue_missing": 2,
-        "not_event": 5
+        "not_event": 6
       },
-      "examples": [
-        {
-          "title": "いずみの山の小さなマルシェ10月",
-          "start": "2026-10-18",
-          "end": "2026-10-18",
-          "url": "https://izuminambu-rc.jp/nb_event/%e3%81%84%e3%81%9a%e3%81%bf%e3%81%ae%e5%b1%b1%e3%81%ae%e5%b0%8f%e3%81%95%e3%81%aa%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a710%e6%9c%88/",
-          "dateEvidence": "linked_official_listing"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": [
         {
           "title": "開催予定 午後のミニコンサート ハープの音で癒されるって本当ですか?Vol.7 2026.10.18(日)開催",
@@ -293,22 +285,27 @@
           "reason": "not_event"
         },
         {
-          "title": "開催予定 メギーと学べる! はじめてでも楽しくキッズ英会話教室 10月~12月 10/3.10.24 11/7.14.21.28 12/12.19 開催",
-          "url": "https://izuminambu-rc.jp/nb_event/%e3%83%a1%e3%82%ae%e3%83%bc%e3%81%a8%e5%ad%a6%e3%81%b9%e3%82%8b%e3%80%80%e3%81%af%e3%81%98%e3%82%81%e3%81%a6%e3%81%a7%e3%82%82%e6%a5%bd%e3%81%97%e3%81%8f%e3%82%ad%e3%83%83%e3%82%ba%e8%8b%b1%e4%bc%9a/",
+          "title": "開催予定 南部リージョンセンター手芸部11月 2026.11.20(金)開催",
+          "url": "https://izuminambu-rc.jp/nb_event/%e5%8d%97%e9%83%a8%e3%83%aa%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%bb%e3%83%b3%e3%82%bf%e3%83%bc%e6%89%8b%e8%8a%b8%e9%83%a811%e6%9c%88/",
           "reason": "not_event"
         },
         {
           "title": "開催予定 南部リージョンセンター手芸部12月 2026.12/ 11.18(金)開催",
           "url": "https://izuminambu-rc.jp/nb_event/%e5%8d%97%e9%83%a8%e3%83%aa%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%bb%e3%83%b3%e3%82%bf%e3%83%bc%e6%89%8b%e8%8a%b8%e9%83%a812%e6%9c%88/",
           "reason": "not_event"
+        },
+        {
+          "title": "開催予定 桃山学院大学写真部展示会 継続開催中",
+          "url": "https://izuminambu-rc.jp/nb_event/momoyamaphoto/",
+          "reason": "not_event"
         }
       ],
-      "eligibleCandidates": 11,
-      "uninspectedCandidates": 3,
+      "eligibleCandidates": 10,
+      "uninspectedCandidates": 2,
       "explorationStart": 2,
-      "explorationNext": 4,
+      "explorationNext": 0,
       "explorationSlots": 2,
-      "explorationPool": 5
+      "explorationPool": 4
     },
     {
       "id": "wakayama_sakuas",
@@ -1321,6 +1318,6 @@
       "explorationPool": 0
     }
   ],
-  "newEvents": 1,
+  "newEvents": 0,
   "reconfirmedEvents": 13
 }

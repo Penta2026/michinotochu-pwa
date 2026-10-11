@@ -18,6 +18,19 @@ URL不一致は取りこぼし確定ではありません。開催日と駅構�
 | 別URLの同一催しの可能性 | 2 |
 | 道の駅名を特定できない見出し | 22 |
 
+## 要確認候補の優先順位（登録可否の判定ではありません）
+
+| 確認の手掛かり | 件数 |
+|---|---:|
+| 開催予定日の手掛かりあり | 0 |
+| 日付・会場の個別確認が必要 | 21 |
+| 記載日付の確認が必要 | 0 |
+| 曜日と今年の日付が不一致（年要確認） | 13 |
+| 過去の日程を示唆 | 1 |
+| 前年以前の年表記あり | 11 |
+
+この分類は見出しだけから作った作業順です。過年度・曜日不一致でも削除や自動不採用はせず、公式本文で確認します。
+
 ## 独立に確認した標本（全国の網羅率ではありません）
 
 - 開催日・駅会場を個別確認したイベント: 3件
@@ -28,33 +41,33 @@ URL不一致は取りこぼし確定ではありません。開催日と駅構�
 
 ## 対応する公開イベントが見つからなかった公式告知
 
-| 情報源 | 県・駅 | 見出し | 公式URL |
-|---|---|---|---|
-| 中国 | 岡山県 笠岡ベイファーム | 【笠岡ベイファーム】道の駅13周年感謝祭 10月13日（日） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000038.pdf) |
-| 中国 | 広島県 よがんす白竜 | 【よがんす白竜】YOGANSU秋の収穫祭 10月12日～14日 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000039.pdf) |
-| 中国 | 山口県 阿武町 | 【阿武町】創業33周年 創業祭 10月13日（日） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000041.pdf) |
-| 中国 | 山口県 きくがわ | 【きくがわ】たねたねフェスティバル 10月26日（土） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000043.pdf) |
-| 中国 | 山口県 蛍街道西ノ市 | 【蛍街道西ノ市】秋の収穫祭 10月20日（日） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000044.pdf) |
-| 中国 | 広島県 びんご府中 | 【びんご府中】収穫感謝祭 11月９日（土）９時～１５時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000046.pdf) |
-| 中国 | 広島県 さんわ182ステーション | 【さんわ182ステーション】大感謝祭 １１月３日（日）１０時～１６時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000047.pdf) |
-| 中国 | 広島県 三矢の里あきたかた | 【三矢の里あきたかた】収穫祭 １１月１０日（日） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000048.pdf) |
-| 中国 | 岡山県 久米の里 | 【久米の里】秋の大感謝祭 １１月３日（日）９時３０分～１５時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000049.pdf) |
-| 中国 | 山口県 仁保の郷 | 【仁保の郷】仁保行こ マルシェ １１月３日（日）１０時～１５時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000050.pdf) |
-| 中国 | 山口県 北浦街道　豊北 | 【北浦街道豊北】１１月イベント情報 秋の大感謝祭 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000055.pdf) |
-| 中国 | 島根県 ゆうひパーク浜田 | 【ゆうひパーク浜田】秋の大感謝祭 11月23日（土）～24日（日）9時から18時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000057.pdf) |
-| 中国 | 山口県 きくがわ | 【きくがわ】歳末感謝祭 １１月３０日（土）・１２月１日（日）１０時から１６時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000070.pdf) |
-| 中国 | 岡山県 笠岡ベイファーム | 【笠岡ベイファーム】年末感謝祭 12月21日（土）から30日（月） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000073.pdf) |
-| 中国 | 岡山県 笠岡ベイファーム | 【笠岡ベイファーム】かきマルシェ2025 １月26日（日）９時～なくなり次第終了 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000078.pdf) |
-| 中国 | 島根県 むいかいち温泉 | 【むいかいち温泉】周年祭 2025年４月６日（日）10時～15時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000157.pdf) |
-| 中国 | 山口県 きくがわ | 【きくがわ】菜の花フリマ（ストリートピアノ同時開催） 2025年4月5日（土）・6日（日）9時頃から | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000161.pdf) |
-| 中国 | 山口県 蛍街道西ノ市 | 【蛍街道西ノ市】４月のイベントカレンダー | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000162.pdf) |
-| 中国 | 山口県 北浦街道　豊北 | 【北浦街道豊北】開駅１３周年記念大感謝祭 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000163.pdf) |
-| 中国 | 岡山県 久米の里 | 【久米の里】25周年記念「仙人まつり」を開催 2025年４月２7日（日）９時30分～15時まで | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000166.pdf) |
-| 中国 | 島根県 奥出雲おろちループ | 【奥出雲おろちループ】奥出雲町制定２０周年春フェス2025 ４月６日（日）10時から15時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000168.pdf) |
-| 中国 | 広島県 アリストぬまくま | 【アリストぬまくま】花の駅開催 2025年3月29日（土）・30日（日）9時から15時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000170.pdf) |
-| 中国 | 鳥取県 西いなば 気楽里 | 【西いなば気楽里】バイクカフェミーティング開催 2025年7月5日(土) 10時～12時 雨天決行 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000202.pdf) |
-| 中国 | 島根県 本庄 | 【本庄】 令和7年８月10日～13日 産直市で盆市を開催 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000231.pdf) |
-| 中国 | 鳥取県 はっとう | 【はっとう】隼駅まつり エンジョイ祭 令和7年8月9日（土）・10日(日) | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000250.pdf) |
+| 優先判定 | 情報源 | 県・駅 | 見出し | 公式URL |
+|---|---|---|---|---|
+| date_and_venue_verification_needed | 中国 | 広島県 よがんす白竜 | 【よがんす白竜】YOGANSU秋の収穫祭 10月12日～14日 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000039.pdf) |
+| date_and_venue_verification_needed | 中国 | 山口県 北浦街道　豊北 | 【北浦街道豊北】１１月イベント情報 秋の大感謝祭 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000055.pdf) |
+| date_and_venue_verification_needed | 中国 | 山口県 蛍街道西ノ市 | 【蛍街道西ノ市】４月のイベントカレンダー | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000162.pdf) |
+| date_and_venue_verification_needed | 中国 | 山口県 北浦街道　豊北 | 【北浦街道豊北】開駅１３周年記念大感謝祭 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000163.pdf) |
+| date_and_venue_verification_needed | 中国 | 山口県 ソレーネ周南 | 【ソレーネ周南】年末年始感謝祭 令和7年12月25日～令和8年1月3日 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000412.pdf) |
+| date_and_venue_verification_needed | 中国 | 広島県 アリストぬまくま | 【アリストぬまくま】30周年アリガトウ！感謝祭 2,026年3月28日（土）・29日（日） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000463.pdf) |
+| date_and_venue_verification_needed | 中国 | 島根県 ゆうひパーク浜田 | 【ゆうひパーク浜田】多肉祭り ７月５日(日)10時～15時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000570.pdf) |
+| date_and_venue_verification_needed | 中国 | 島根県 奥出雲おろちループ | 【奥出雲おろちループ】第３回 奥出雲おろちループ グルメマラソン開催 10月11日(日) | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000639.pdf) |
+| date_and_venue_verification_needed | 中国 | 島根県 キララ多伎 | 【キララ多伎】シルバーウィークフェスティバル ９月１９日（土）～２３日（祝） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000683.pdf) |
+| date_and_venue_verification_needed | 中国 | 山口県 おふく | 【おふく】ビール＆ジビエ フェス2026 9月20日（日）・21日（月・祝）12時～21時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000691.pdf) |
+| date_and_venue_verification_needed | 全国道の駅連絡会 | 滋賀県 奥永源寺 渓流の里 | 2026年9月30日 滋賀県 【道の駅奥永源寺渓流の里】開駅１１周年記念祭を開催します。 | [原文](https://www.michi-no-eki.jp/notices/views/23236) |
+| date_and_venue_verification_needed | 全国道の駅連絡会 | 青森県 なみおか | 2026年10月7日 青森県 【道の駅なみおか】アップルヒル 秋の大収穫祭 | [原文](https://www.michi-no-eki.jp/notices/views/23244) |
+| date_and_venue_verification_needed | 近畿 | 兵庫県 みき | 【道の駅 みき】1/10(土)～12(月・祝) 産地直送！相生産牡蠣祭り | [原文](https://www.kinki-michinoeki.com/news/%E3%80%90%E9%81%93%E3%81%AE%E9%A7%85-%E3%81%BF%E3%81%8D%E3%80%911-10%E5%9C%9F%EF%BD%9E12%E6%9C%88%E3%83%BB%E7%A5%9D%E3%80%80%E7%94%A3%E5%9C%B0%E7%9B%B4%E9%80%81%EF%BC%81%E7%9B%B8%E7%94%9F%E7%94%A3) |
+| date_and_venue_verification_needed | 近畿 | 兵庫県 みき | 【道の駅 みき】12/6(土)～7(日) ながさわ道の駅みき店 冬の大感謝祭 | [原文](https://www.kinki-michinoeki.com/news/%E3%80%90%E9%81%93%E3%81%AE%E9%A7%85-%E3%81%BF%E3%81%8D%E3%80%9112-6%E5%9C%9F%EF%BD%9E7%E6%97%A5-%E3%81%AA%E3%81%8C%E3%81%95%E3%82%8F%E9%81%93%E3%81%AE%E9%A7%85%E3%81%BF%E3%81%8D%E5%BA%97) |
+| date_and_venue_verification_needed | 近畿 | 奈良県 クロスウェイなかまち | 【道の駅クロスウェイなかまち】2/21（土）～3/1（日）「奈良のいちごフェア」開催中！ | [原文](https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0222) |
+| date_and_venue_verification_needed | 近畿 | 奈良県 クロスウェイなかまち | 【道の駅クロスウェイなかまち】3/14（土）～3/22（日）開催「奈良のいちごフェア２０２６」大好評につき【第２弾】！ | [原文](https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0303) |
+| date_and_venue_verification_needed | 近畿 | 奈良県 クロスウェイなかまち | 【道の駅クロスウェイなかまち】5/16（土）「防災フェス2026 ～新緑の候～」開催！ | [原文](https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0504) |
+| date_and_venue_verification_needed | 近畿 | 奈良県 クロスウェイなかまち | 【道の駅クロスウェイなかまち】8/8（土）～16（日）「納涼フェア2026」開催！ | [原文](https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0730) |
+| date_and_venue_verification_needed | 近畿 | 奈良県 クロスウェイなかまち | 【道の駅クロスウェイなかまち】2026年シルバーウィーク特別企画「グラウンド・ランタン祭り＆夜市」 | [原文](https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0828_2) |
+| date_and_venue_verification_needed | 関東 | 群馬県 尾瀬かたしな | 【尾瀬かたしな】10/4(日)かたしな村まるしぇ･･･ 「かたしな村まるしぇ」を開催いたします。 今回は、尾瀬高校生を中心とした若者たちが企画したイベント 「かたかたかたしな」とのコラボ開催となります | [原文](https://www.kanto-michinoeki.jp/archives/18221.html) |
+| date_and_venue_verification_needed | 関東 | 山梨県 こすげ | 【道の駅こすげ】ミニイベント 秋まつり 2026･･･ 秋の訪れを感じるようになってきました。 道の駅こすげでは、ミニイベント「秋祭り」を開催いたします。 秋の小菅村へ、是非、遊びに来ませんか？地元の | [原文](https://www.kanto-michinoeki.jp/archives/18244.html) |
+| weekday_year_mismatch_check | 中国 | 岡山県 笠岡ベイファーム | 【笠岡ベイファーム】道の駅13周年感謝祭 10月13日（日） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000038.pdf) |
+| weekday_year_mismatch_check | 中国 | 山口県 阿武町 | 【阿武町】創業33周年 創業祭 10月13日（日） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000041.pdf) |
+| weekday_year_mismatch_check | 中国 | 山口県 きくがわ | 【きくがわ】たねたねフェスティバル 10月26日（土） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000043.pdf) |
+| weekday_year_mismatch_check | 中国 | 山口県 蛍街道西ノ市 | 【蛍街道西ノ市】秋の収穫祭 10月20日（日） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000044.pdf) |
 
 ## 判定ルール
 
