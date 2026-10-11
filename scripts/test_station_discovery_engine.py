@@ -1456,5 +1456,65 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         self.assertEqual(info["eligibleCandidates"],4)
         self.assertEqual(info["uninspectedCandidates"],0)
 
+    def test_hokkaido_shiranuka_official_popup_published_year_and_venue(self):
+        import json
+        from station_discovery_engine import RULES
+        registry=json.loads(RULES.read_text(encoding="utf-8"))
+        spec=next(x for x in registry["sources"]
+                  if x["id"]=="hokkaido_shiranuka_official_okinawa_popup_oct")
+        html="""<main><h1>日本各地の「美味しい」がやってきた！第9弾 ! 開催中!!</h1>
+          <p>2026年10月9日</p>
+          <p>「わしたショップ」が道の駅しらぬか恋問館に再登場</p>
+          <p>📅 10月9日（金）～10月19日（月）</p>
+          <p>⏰ 9:00～19:00</p>
+          <p>📍 道の駅しらぬか恋問館</p></main>"""
+        found,audit=collect_configured_station_events(
+            TODAY,[],[spec],fetch=lambda _:soup(html),report_path=None)
+        self.assertEqual(audit["newEvents"],1)
+        self.assertEqual(found[0]["prefecture"],"北海道")
+        self.assertEqual(found[0]["roadName"],"しらぬか恋問館")
+        self.assertEqual((found[0]["startDate"],found[0]["endDate"]),
+                         ("2026-10-09","2026-10-19"))
+        self.assertEqual(found[0]["url"],spec["listingUrl"])
+
+    def test_hokkaido_popup_refuses_publication_year_guess_and_wrong_venue(self):
+        from station_discovery_engine import _verified_official_event_detail_records
+        spec={**TOKYO,"allowedHosts":["hokkaido-michinoeki.jp"],
+              "articlePathPattern":r"^/michiekiinfo/shiranukainfo/69826/?$",
+              "requiredEventTitle":"日本各地の「美味しい」がやってきた！第9弾",
+              "titleMatchContains":True,
+              "eventDateMode":"published_year_pinned_range",
+              "venueProofPattern":r"📍\s*道の駅\s*しらぬか恋問館"}
+        url="https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/"
+        html="""<main><h1>日本各地の「美味しい」がやってきた！第9弾 開催中</h1>
+          <p>📅 10月9日（金）～10月19日（月）</p>
+          <p>📍 道の駅しらぬか恋問館</p></main>"""
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,url)[1],
+            "event_published_year_or_pinned_range_missing")
+        html=html.replace("<p>📅", "<p>2026年10月9日 公開</p><p>📅")
+        html=html.replace("📍 道の駅しらぬか恋問館","📍 白糠町役場")
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,url)[1],"event_venue_missing")
+
+    def test_hokkaido_popup_rejects_old_article_and_official_host_spoof(self):
+        from station_discovery_engine import _verified_official_event_detail_records
+        spec={**TOKYO,"allowedHosts":["hokkaido-michinoeki.jp"],
+              "articlePathPattern":r"^/michiekiinfo/shiranukainfo/69826/?$",
+              "requiredEventTitle":"日本各地の「美味しい」がやってきた！第9弾",
+              "titleMatchContains":True,
+              "eventDateMode":"published_year_pinned_range",
+              "venueProofPattern":r"📍\s*道の駅\s*しらぬか恋問館"}
+        url="https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/"
+        html="""<main><h1>日本各地の「美味しい」がやってきた！第9弾 開催中</h1>
+          <p>2025年10月9日 公開</p>
+          <p>📅 10月9日（金）～10月19日（月）</p>
+          <p>📍 道の駅しらぬか恋問館</p></main>"""
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,url)[1],"event_invalid_or_past")
+        self.assertEqual(_verified_official_event_detail_records(
+            spec,soup(html),TODAY,"https://attacker.example/michiekiinfo/shiranukainfo/69826/")[1],
+            "unofficial_detail")
+
 if __name__ == "__main__":
     unittest.main()
