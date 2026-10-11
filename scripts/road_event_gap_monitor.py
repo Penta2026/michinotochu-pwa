@@ -462,6 +462,9 @@ def render_dashboard(report):
         "詳細データ: [収集漏れ監査JSON](../data/road_event_gap_monitor.json)、"
         "[県別収集監査JSON](../data/prefecture_event_coverage.json)",
         "",
+        "**別の公式告知と照合した結果:** "
+        "[独立公式告知監査](ROAD_EVENT_RECALL_DASHBOARD.md)",
+        "",
     ]
     if report["appMasterPrefectures"]:
         lines += [
