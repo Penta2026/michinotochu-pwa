@@ -140,9 +140,8 @@ def reviewed_sample(ledger, published):
                     and _iso(event.get("startDate")) and _iso(event.get("endDate"))
                     and _iso(event["startDate"]) <= end
                     and start <= _iso(event["endDate"])
-                    and (_urlkey(event.get("url")) == url or
-                         SequenceMatcher(None, _titlekey(event.get("title")),
-                                         _titlekey(item["title"])).ratio() >= .83)]
+                    and SequenceMatcher(None, _titlekey(event.get("title")),
+                                        _titlekey(item["title"])).ratio() >= .83]
             status = "found_in_feed" if hits else "verified_notice_not_found_in_feed"
         else:
             if not item.get("reason"):
@@ -164,7 +163,9 @@ def make_report(regional, national, master, published, ledger, today):
                 "reachable": x.get("reachable"), "candidates": x.get("candidates", [])}
                for x in regional.get("sources", [])]
     sources.append(national)
-    known = {_urlkey(event.get("url")) for event in published}
+    known = {}
+    for event in published:
+        known.setdefault(_urlkey(event.get("url")), []).append(event)
     candidates, seen = [], set()
     for src in sources:
         for item in src.get("candidates", []):
@@ -175,7 +176,16 @@ def make_report(regional, national, master, published, ledger, today):
             seen.add(url)
             station = _station_from_title(title, master)
             if url in known:
-                status, overlaps = "published_same_official_url", []
+                titles = [event.get("title", "") for event in known[url]]
+                matched = any(
+                    _titlekey(title) in _titlekey(t) or
+                    _titlekey(t) in _titlekey(title) or
+                    SequenceMatcher(None, _titlekey(title),
+                                    _titlekey(t)).ratio() >= .75
+                    for t in titles if _titlekey(t))
+                status = ("published_same_official_url" if matched else
+                          "same_official_url_title_needs_review")
+                overlaps = [] if matched else [x["url"] for x in known[url][:3]]
             elif station is None:
                 status, overlaps = "station_not_unambiguously_identified", []
             else:
@@ -194,8 +204,9 @@ def make_report(regional, national, master, published, ledger, today):
                 "status": status, "possibleOverlapUrls": overlaps,
                 "headlineDateHint": _dated_headline_hint(title, today),
                 "evidenceStatus": "listing_only_not_date_or_venue_verified"})
-    kinds = ("unmatched_official_notice", "possible_same_event_other_url",
-             "station_not_unambiguously_identified", "published_same_official_url")
+    kinds = ("unmatched_official_notice", "same_official_url_title_needs_review",
+             "possible_same_event_other_url", "station_not_unambiguously_identified",
+             "published_same_official_url")
     ranks = {key: index for index, key in enumerate(kinds)}
     candidates.sort(key=lambda x: (
         ranks[x["status"]], x["headlineDateHint"] != "future_schedule_hint",
@@ -209,7 +220,8 @@ def make_report(regional, national, master, published, ledger, today):
             "reachableSources": sum(x.get("reachable") is True for x in sources),
             "announcementsCompared": len(candidates),
             "statuses": counts,
-            "candidatesForManualReview": counts["unmatched_official_notice"],
+            "candidatesForManualReview": (counts["unmatched_official_notice"] +
+                                          counts["same_official_url_title_needs_review"]),
             "sampleVerifiedOnSite": sample["positiveOnSite"],
             "sampleFound": sample["found"], "sampleNotFound": sample["notFound"],
             "sampleDiscoveryRate": sample["rateWithinReviewedSample"],
@@ -237,7 +249,9 @@ def render_dashboard(report):
            "| 公式記事URLが公開データと一致 | {} |".format(
                s["statuses"]["published_same_official_url"]),
            "| 対応する公開イベント未発見（要確認） | {} |".format(
-               s["candidatesForManualReview"]),
+               s["statuses"]["unmatched_official_notice"]),
+           "| 同じ公式URLだが題名不一致（要確認） | {} |".format(
+               s["statuses"]["same_official_url_title_needs_review"]),
            "| 別URLの同一催しの可能性 | {} |".format(
                s["statuses"]["possible_same_event_other_url"]),
            "| 道の駅名を特定できない見出し | {} |".format(
@@ -253,7 +267,8 @@ def render_dashboard(report):
            "| 情報源 | 県・駅 | 見出し | 公式URL |",
            "|---|---|---|---|"]
     missing = [x for x in report["candidates"]
-               if x["status"] == "unmatched_official_notice"]
+               if x["status"] in ("unmatched_official_notice",
+                                   "same_official_url_title_needs_review")]
     for item in missing[:25]:
         title = item["title"].replace("|", "｜").replace("\n", " ")[:100]
         url = item["url"].replace("(", "%28").replace(")", "%29")
