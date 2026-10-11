@@ -72,7 +72,7 @@
     "zeroRegisteredPrefectures": 4,
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
-    "registeredEvents": 72,
+    "registeredEvents": 73,
     "targetedStationFeedPrefectures": 26,
     "notReconfirmedEvents": 1,
     "unknownPrefectures": []
@@ -152,7 +152,7 @@
       "zeroRegisteredPrefectures": [
         "滋賀県"
       ],
-      "registeredEventCount": 10,
+      "registeredEventCount": 11,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11
     },
@@ -666,12 +666,13 @@
     {
       "prefecture": "大阪府",
       "reportingRegion": "近畿",
-      "eventCount": 1,
+      "eventCount": 2,
       "observedStations": [
+        "いずみ山愛の里",
         "奥河内くろまろの郷"
       ],
       "historicallyObserved": true,
-      "observedStationCount": 1,
+      "observedStationCount": 2,
       "targetedStationFeeds": [
         "いずみ山愛の里",
         "奥河内くろまろの郷"

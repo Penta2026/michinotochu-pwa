@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "checked": 5,
-  "reconfirmed": 4,
+  "checked": 6,
+  "reconfirmed": 5,
   "alreadyCollected": 65,
   "outsideRegistry": 1,
   "failed": 0,
@@ -16,6 +16,12 @@
     "tono_kazenooka": {
       "checked": 2,
       "reconfirmed": 2,
+      "failed": 0,
+      "inconclusive": 0
+    },
+    "fukushima_michinoeki": {
+      "checked": 1,
+      "reconfirmed": 1,
       "failed": 0,
       "inconclusive": 0
     },
@@ -45,6 +51,13 @@
       "prefecture": "岩手県",
       "title": "珈琲とおやつ展開催します【10月17日(土)~10月18日(日)】",
       "url": "https://kazenooka.tonofurusato.jp/news/%e7%8f%88%e7%90%b2%e3%81%a8%e3%81%8a%e3%82%84%e3%81%a4%e5%b1%95%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%9010%e6%9c%8817%e6%97%a5%e5%9c%9f%ef%bd%9e10%e6%9c%8818%e6%97%a5%e6%97%a5%e3%80%91/",
+      "result": "reconfirmed"
+    },
+    {
+      "station": "ふくしま",
+      "prefecture": "福島県",
+      "title": "【10/18(日) サイクル&わん!フェスタ in 道の駅ふくしま】",
+      "url": "https://m-fukushima.com/info/701",
       "result": "reconfirmed"
     },
     {

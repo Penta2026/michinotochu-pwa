@@ -139,17 +139,22 @@
       "listingUrl": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
       "listingError": "",
       "candidates": 4,
-      "checked": 2,
+      "checked": 3,
       "accepted": 0,
       "reconfirmed": 0,
-      "knownSkipped": 2,
+      "knownSkipped": 1,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
-        "undated": 2
+        "undated": 3
       },
       "examples": [],
       "rejectedExamples": [
+        {
+          "title": "10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪ 道の駅「クロスウェイなかまち」では、2026年10月11日(日)に、日本伝統芸能 猿まわし「お猿の森」の公演を開催します。今回は、久",
+          "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261011",
+          "reason": "undated"
+        },
         {
           "title": "10/3(土)あの「まほろばの宴」がやって来る! Youtubeチャンネル登録者数5万人の DTMer奏人kanato と、仲間の演者たちが、また道の駅「クロスウェイなかまち」にやってきます!秋の特別",
           "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261003",
@@ -161,7 +166,7 @@
           "reason": "undated"
         }
       ],
-      "eligibleCandidates": 2,
+      "eligibleCandidates": 3,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
@@ -243,23 +248,25 @@
       "listingError": "",
       "candidates": 11,
       "checked": 8,
-      "accepted": 0,
+      "accepted": 1,
       "reconfirmed": 0,
       "knownSkipped": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
-        "undated": 1,
         "venue_missing": 2,
         "not_event": 5
       },
-      "examples": [],
-      "rejectedExamples": [
+      "examples": [
         {
-          "title": "開催予定 いずみの山の小さなマルシェ10月 2026年10月18日(日)開催",
+          "title": "いずみの山の小さなマルシェ10月",
+          "start": "2026-10-18",
+          "end": "2026-10-18",
           "url": "https://izuminambu-rc.jp/nb_event/%e3%81%84%e3%81%9a%e3%81%bf%e3%81%ae%e5%b1%b1%e3%81%ae%e5%b0%8f%e3%81%95%e3%81%aa%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a710%e6%9c%88/",
-          "reason": "undated"
-        },
+          "dateEvidence": "linked_official_listing"
+        }
+      ],
+      "rejectedExamples": [
         {
           "title": "開催予定 午後のミニコンサート ハープの音で癒されるって本当ですか?Vol.7 2026.10.18(日)開催",
           "url": "https://izuminambu-rc.jp/nb_event/%e5%8d%88%e5%be%8c%e3%81%ae%e3%83%9f%e3%83%8b%e3%82%b3%e3%83%b3%e3%82%b5%e3%83%bc%e3%83%88%e3%80%80%e3%83%8f%e3%83%bc%e3%83%97%e3%81%ae%e9%9f%b3/",
@@ -526,25 +533,23 @@
       "listingError": "",
       "candidates": 12,
       "checked": 10,
-      "accepted": 1,
+      "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 1,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
+        "past": 4,
         "venue_missing": 2,
-        "past": 3,
         "not_event": 4
       },
-      "examples": [
-        {
-          "title": "【10/18(日) サイクル&わん!フェスタ in 道の駅ふくしま】",
-          "start": "2026-10-18",
-          "end": "2026-10-18",
-          "url": "https://m-fukushima.com/info/701"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": [
+        {
+          "title": "EVENT 2026.10.08 【10/10(土)・11日(日)ガーデンプレイスフェスタ】",
+          "url": "https://m-fukushima.com/info/700",
+          "reason": "past"
+        },
         {
           "title": "EVENT 2026.10.06 【10/12(祝・月)パン&ベイクまつり】",
           "url": "https://m-fukushima.com/info/699",

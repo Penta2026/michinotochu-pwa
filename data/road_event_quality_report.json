@@ -1,37 +1,8 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 78,
-  "inputCollected": 71,
-  "expiredOrInvalid": [
-    {
-      "roadName": "村田",
-      "title": "仙南ものづくり展"
-    },
-    {
-      "roadName": "ごいせ仁摩",
-      "title": "【ごいせ仁摩】朝ごはん新米祭り 10月10日・11日10時～"
-    },
-    {
-      "roadName": "ふくしま",
-      "title": "【10/10(土)・11日(日)ガーデンプレイスフェスタ】"
-    },
-    {
-      "roadName": "ましこ",
-      "title": "道の駅ましこ10周年祭"
-    },
-    {
-      "roadName": "クロスウェイなかまち",
-      "title": "10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪"
-    },
-    {
-      "roadName": "和",
-      "title": "10/11『いととめのぼたもち』実演販売"
-    },
-    {
-      "roadName": "樹海ロード日高",
-      "title": "日高町道の駅フェスト開催のお知らせ"
-    }
-  ],
+  "inputPrevious": 72,
+  "inputCollected": 72,
+  "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
     {
@@ -307,6 +278,10 @@
       "title": "珈琲とおやつ展開催します【10月17日(土)~10月18日(日)】"
     },
     {
+      "roadName": "ふくしま",
+      "title": "【10/18(日) サイクル&わん!フェスタ in 道の駅ふくしま】"
+    },
+    {
       "roadName": "遠野風の丘",
       "title": "第19回遠野風の丘一升餅行事を行います。【11月8日(日)・予約制】"
     },
@@ -326,7 +301,7 @@
       "reason": "not_found_in_current_collection"
     }
   ],
-  "finalCount": 72,
+  "finalCount": 73,
   "futurePublicationDatesCleared": [
     {
       "url": "https://wachi-nagomi.com/topics/post-10529/",
