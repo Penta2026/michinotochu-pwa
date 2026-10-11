@@ -854,6 +854,33 @@
       "venueProofPattern": "道の駅\\s*八王子滝山\\s*[（(]",
       "articleMode": "verified_official_checkpoint_program",
       "maxArticles": 1
+    },
+    {
+      "id": "hokkaido_shiranuka_official_okinawa_popup_oct",
+      "enabled": true,
+      "prefecture": "北海道",
+      "roadName": "しらぬか恋問館",
+      "listingUrl": "https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826/",
+      "allowedHosts": [
+        "hokkaido-michinoeki.jp",
+        "www.hokkaido-michinoeki.jp"
+      ],
+      "articlePathPattern": "^/michiekiinfo/shiranukainfo/69826/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main,article,body",
+      "titleSelectors": [
+        "h1",
+        "h2"
+      ],
+      "requiredVenueTokens": [
+        "道の駅しらぬか恋問館"
+      ],
+      "requiredEventTitle": "日本各地の「美味しい」がやってきた！第9弾",
+      "titleMatchContains": true,
+      "eventDateMode": "published_year_pinned_range",
+      "venueProofPattern": "📍\\s*道の駅\\s*しらぬか恋問館",
+      "articleMode": "verified_official_event_detail",
+      "maxArticles": 1
     }
   ]
 }
