@@ -335,14 +335,14 @@ def _linked_official_listing_period(source, listing_title, article_title, today)
     full_date = r"(?<![0-9])20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}日?"
     matches = list(re.finditer(
         r"(?<![0-9])(20[0-9]{2})[年./-]([0-9]{1,2})[月./-]([0-9]{1,2})日?"
-        r"\\s*(?:\\([^)]{1,8}\\))?\\s*開催(?:予定)?(?:\\s|$)",
+        r"\s*(?:\([^)]{1,8}\))?\s*開催(?:予定)?(?:\s|$)",
         listed))
     if len(matches) != 1 or len(re.findall(full_date, listed)) != 1:
         return None
     matched = matches[0]
-    listing_name = re.sub(r"^開催予定\\s*", "", listed[:matched.start()])
+    listing_name = re.sub(r"^開催予定\s*", "", listed[:matched.start()])
     def name_key(value):
-        return re.sub(r"[\\W_]+", "", clean(value))
+        return re.sub(r"[\W_]+", "", clean(value))
     article_key, listing_key = name_key(article_title), name_key(listing_name)
     if len(article_key) < 7 or not (article_key in listing_key or listing_key in article_key):
         return None
