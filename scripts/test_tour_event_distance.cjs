@@ -206,9 +206,9 @@ test("the web entry point and service worker both deploy the new PWA version", (
   const index = fs.readFileSync(path.join(root, "index.html"), "utf8");
   const worker = fs.readFileSync(path.join(root, "service-worker.js"), "utf8");
   const version = JSON.parse(fs.readFileSync(path.join(root, "data/version.json"), "utf8"));
-  assert.match(index, /tour-plan\.js\?v=1\.6\.20/);
+  assert.match(index, /tour-plan\.js\?v=1\.6\.21/);
   assert.match(index, /目標距離内のイベント開催駅を見る/);
-  assert.match(worker, /michino-shell-v1\.6\.20/);
-  assert.match(worker, /tour-plan\.js\?v=1\.6\.20/);
+  assert.match(worker, /michino-shell-v1\.6\.21/);
+  assert.match(worker, /tour-plan\.js\?v=1\.6\.21/);
   assert.equal(version.appVersion, "1.6.21");
 });
