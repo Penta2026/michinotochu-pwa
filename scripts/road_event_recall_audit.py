@@ -42,13 +42,14 @@ def _urlkey(value):
 
 def _titlekey(value):
     value = unicodedata.normalize("NFKC", value or "").casefold()
-    return re.sub(r"[\s・『』「」【】\[\]（）()!！、。:：]+", "", value)
+    return re.sub(r"[\s・『』「」【】〖〗\[\]（）()!！、。:：]+", "", value)
 
 
 def _station_from_title(title, master):
     """Only an unambiguous station inside a title's square brackets qualifies."""
-    brackets = re.findall(r"【([^】]{2,80})】",
+    brackets = re.findall(r"(?:【([^】]{2,80})】|〖([^〗]{2,80})〗)",
                           unicodedata.normalize("NFKC", title or ""))
+    brackets = [left or right for left, right in brackets]
     if not brackets:
         return None
     matches = {}
