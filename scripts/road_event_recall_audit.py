@@ -175,6 +175,41 @@ def reviewed_sample(ledger, published, today=None):
             "limitations": "Selected human-reviewed examples only; NOT national event recall."}
 
 
+def notice_review_priority(title, date_hint, today):
+    """Queue ordering only; never decides event dates or publication.
+
+    Old-year text and mismatched weekday are *hints*, not evidence that
+    a notice has expired. Current-year dates can also be publication dates.
+    """
+    value = unicodedata.normalize("NFKC", title or "")
+    if date_hint == "future_schedule_hint":
+        return "future_schedule_hint"
+    check_day = _iso(today)
+    if check_day is None:
+        raise ValueError("Invalid audit date")
+    years = [int(y) for y in re.findall(r"(?<![0-9])20[0-9]{2}(?![0-9])", value)]
+    years.extend(2018 + int(y) for y in
+                 re.findall(r"令和\s*([0-9]{1,2})年", value))
+    if years and max(years) < check_day.year:
+        return "older_year_mentioned"
+    # An unyeared '10月13日(日)' may refer to an older notice. A weekday
+    # mismatch is a reason to CHECK the year, never to exclude the item.
+    weekday_ids = {"月": 0, "火": 1, "水": 2, "木": 3,
+                   "金": 4, "土": 5, "日": 6}
+    for m in re.finditer(
+            r"(?<![0-9])([0-9]{1,2})月\s*([0-9]{1,2})日"
+            r"\s*[\(（]([月火水木金土日])[\)）]", value):
+        try:
+            stated = date(check_day.year, int(m.group(1)), int(m.group(2)))
+        except ValueError:
+            return "date_in_title_needs_verification"
+        if stated.weekday() != weekday_ids[m.group(3)]:
+            return "weekday_year_mismatch_check"
+    if date_hint == "past_schedule_hint":
+        return "past_schedule_hint"
+    return "date_and_venue_verification_needed"
+
+
 def make_report(regional, national, master, published, ledger, today):
     sources = [{"name": x.get("region"), "url": x.get("url"),
                 "reachable": x.get("reachable"), "candidates": x.get("candidates", [])}
@@ -227,15 +262,32 @@ def make_report(regional, national, master, published, ledger, today):
                 "roadName": station["roadName"] if station else "",
                 "status": status, "possibleOverlapUrls": overlaps,
                 "headlineDateHint": _dated_headline_hint(title, today),
+                "reviewPriority": notice_review_priority(
+                    title, _dated_headline_hint(title, today), today),
                 "evidenceStatus": "listing_only_not_date_or_venue_verified"})
     kinds = ("unmatched_official_notice", "same_official_url_title_needs_review",
              "possible_same_event_other_url", "station_not_unambiguously_identified",
              "published_same_official_url")
     ranks = {key: index for index, key in enumerate(kinds)}
+    priority_order = {
+        "future_schedule_hint": 0,
+        "date_and_venue_verification_needed": 1,
+        "date_in_title_needs_verification": 2,
+        "weekday_year_mismatch_check": 3,
+        "past_schedule_hint": 4,
+        "older_year_mentioned": 5,
+    }
     candidates.sort(key=lambda x: (
-        ranks[x["status"]], x["headlineDateHint"] != "future_schedule_hint",
+        priority_order[x["reviewPriority"]], ranks[x["status"]],
         x["source"], x["url"]))
     counts = {kind: sum(x["status"] == kind for x in candidates) for kind in kinds}
+    # Do not subtract stale-looking articles from unresolved status totals.
+    # This is review-queue triage, not proof of event completion or omission.
+    review_kinds = ("unmatched_official_notice",
+                    "same_official_url_title_needs_review")
+    review_queue = [x for x in candidates if x["status"] in review_kinds]
+    triage_counts = {kind: sum(x["reviewPriority"] == kind for x in review_queue)
+                     for kind in priority_order}
     sample = reviewed_sample(ledger, published, today=today)
     return {
         "schemaVersion": 1, "checkedOn": today,
@@ -250,6 +302,7 @@ def make_report(regional, national, master, published, ledger, today):
             "sampleExpiredExcluded": sample["expiredPositiveReviews"],
             "sampleFound": sample["found"], "sampleNotFound": sample["notFound"],
             "sampleDiscoveryRate": sample["rateWithinReviewedSample"],
+            "reviewPriorityCounts": triage_counts,
         },
         "limitations": {
             "coverage": "Regional homepage samples and a bounded national first-page notice index only.",
@@ -281,6 +334,21 @@ def render_dashboard(report):
                s["statuses"]["possible_same_event_other_url"]),
            "| 道の駅名を特定できない見出し | {} |".format(
                s["statuses"]["station_not_unambiguously_identified"]),
+           "", "## 要確認候補の優先順位（登録可否の判定ではありません）", "",
+           "| 確認の手掛かり | 件数 |", "|---|---:|",
+           "| 開催予定日の手掛かりあり | {} |".format(
+               s["reviewPriorityCounts"]["future_schedule_hint"]),
+           "| 日付・会場の個別確認が必要 | {} |".format(
+               s["reviewPriorityCounts"]["date_and_venue_verification_needed"]),
+           "| 記載日付の確認が必要 | {} |".format(
+               s["reviewPriorityCounts"]["date_in_title_needs_verification"]),
+           "| 曜日と今年の日付が不一致（年要確認） | {} |".format(
+               s["reviewPriorityCounts"]["weekday_year_mismatch_check"]),
+           "| 過去の日程を示唆 | {} |".format(
+               s["reviewPriorityCounts"]["past_schedule_hint"]),
+           "| 前年以前の年表記あり | {} |".format(
+               s["reviewPriorityCounts"]["older_year_mentioned"]),
+           "", "この分類は見出しだけから作った作業順です。過年度・曜日不一致でも削除や自動不採用はせず、公式本文で確認します。",
            "", "## 独立に確認した標本（全国の網羅率ではありません）", "",
            "- 開催日・駅会場を個別確認したイベント: {}件".format(s["sampleVerifiedOnSite"]),
            "- 公開イベントと照合できた件数: {}件".format(s["sampleFound"]),
@@ -291,18 +359,19 @@ def render_dashboard(report):
             if s["sampleDiscoveryRate"] is not None
             else "- 標本内の発見率: 未算出（確認済みの正例なし）"),
            "", "## 対応する公開イベントが見つからなかった公式告知", "",
-           "| 情報源 | 県・駅 | 見出し | 公式URL |",
-           "|---|---|---|---|"]
+           "| 優先判定 | 情報源 | 県・駅 | 見出し | 公式URL |",
+           "|---|---|---|---|---|"]
     missing = [x for x in report["candidates"]
                if x["status"] in ("unmatched_official_notice",
                                    "same_official_url_title_needs_review")]
     for item in missing[:25]:
         title = item["title"].replace("|", "｜").replace("\n", " ")[:100]
         url = item["url"].replace("(", "%28").replace(")", "%29")
-        out.append("| {} | {} {} | {} | [原文]({}) |".format(
-            item["source"], item["prefecture"], item["roadName"], title, url))
+        out.append("| {} | {} | {} {} | {} | [原文]({}) |".format(
+            item["reviewPriority"], item["source"],
+            item["prefecture"], item["roadName"], title, url))
     if not missing:
-        out.append("| ― | ― | 現在の対象記事に候補なし | ― |")
+        out.append("| ― | ― | ― | 現在の対象記事に候補なし | ― |")
     out.extend(["", "## 判定ルール", "",
       "- イベント本文の日時・会場確認をしていない候補は勝手に登録しません。",
       "- 別の公式URLで同じ催しが登録済みの可能性も、上の候補には残り得ます。",
