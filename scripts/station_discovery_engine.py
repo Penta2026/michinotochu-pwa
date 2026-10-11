@@ -865,8 +865,8 @@ def _verified_official_event_detail_records(spec, soup, today, url):
         pub = re.search(
             r"(?<![0-9])(20[0-9]{2})年([0-9]{1,2})月([0-9]{1,2})日", text)
         dates = re.search(
-            r"📅\\s*([0-9]{1,2})月\\s*([0-9]{1,2})日"
-            r".{0,18}?[～〜~－—-]\\s*([0-9]{1,2})月\\s*([0-9]{1,2})日",
+            r"📅\s*([0-9]{1,2})月\s*([0-9]{1,2})日"
+            r".{0,18}?[～〜~－—-]\s*([0-9]{1,2})月\s*([0-9]{1,2})日",
             text)
         if pub is None or dates is None:
             return [], "event_published_year_or_pinned_range_missing"
