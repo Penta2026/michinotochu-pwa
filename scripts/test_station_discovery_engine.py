@@ -181,6 +181,71 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
             "https://hamabiyori.com/%F0%9F%8E%AAexample/",src,article=True))
         self.assertFalse(_official_url(src["listingUrl"],src,article=True))
 
+    def _osaka_listing_evidence_source(self):
+        return {**TOKYO, "id": "osaka_listing_evidence",
+                "roadName": "いずみ山愛の里", "prefecture": "大阪府",
+                "requiredVenueTokens": ["南部リージョンセンター"],
+                "requireVenueLabel": True,
+                "venueProofPattern":
+                    r"南部リージョンセンタ[ー-].{0,35}(?:1階|2階|ロビ[ー-]|ホール|広場|催事)",
+                "allowOfficialListingEventDate": True}
+
+    def test_osaka_linked_official_listing_date_with_local_lobby_evidence(self):
+        spec = self._osaka_listing_evidence_source()
+        html = """<article><h1>いずみの山の小さなマルシェ10月</h1>
+          <p>和泉市南部リージョンセンター 1階ロビーにて開催します。</p>
+          </article>"""
+        listing = "開催予定 いずみの山の小さなマルシェ10月 2026年10月18日(日)開催"
+        event, why = _article_record(spec, soup(html), listing, TODAY, URL)
+        self.assertEqual(why, "accepted_listing_date")
+        self.assertEqual((event["startDate"], event["endDate"]), ("2026-10-18", "2026-10-18"))
+
+    def test_osaka_listing_year_never_overrides_missing_onsite_venue(self):
+        spec = self._osaka_listing_evidence_source()
+        html = """<article><h1>いずみの山の小さなマルシェ10月</h1>
+          <p>主催：南部リージョンセンター</p></article>"""
+        listing = "開催予定 いずみの山の小さなマルシェ10月 2026年10月18日(日)開催"
+        self.assertEqual(_article_record(spec, soup(html), listing, TODAY, URL),
+                         (None, "venue_missing"))
+
+    def test_osaka_listing_date_never_uses_publication_or_other_event(self):
+        spec = self._osaka_listing_evidence_source()
+        html = """<article><h1>いずみの山の小さなマルシェ10月</h1>
+          <p>南部リージョンセンター 1階ロビーにて開催します。</p></article>"""
+        for listing in (
+            "開催予定 いずみの山の小さなマルシェ10月 2026年10月18日 公開",
+            "開催予定 ハープのミニコンサート 2026年10月18日(日)開催",
+            "開催予定 いずみの山の小さなマルシェ10月 10月18日(日)開催",
+            "開催予定 いずみの山の小さなマルシェ10月 2026年10月18日(日)開催 2026年10月25日(日)開催",
+        ):
+            self.assertEqual(_article_record(spec, soup(html), listing, TODAY, URL),
+                             (None, "undated"), listing)
+
+    def test_osaka_listing_and_article_schedule_conflict_is_rejected(self):
+        spec = self._osaka_listing_evidence_source()
+        html = """<article><h1>いずみの山の小さなマルシェ10月</h1>
+          <p>日時：2026年10月25日(日) 10:00～16:00</p>
+          <p>会場：南部リージョンセンター 1階ロビー</p></article>"""
+        listing = "開催予定 いずみの山の小さなマルシェ10月 2026年10月18日(日)開催"
+        self.assertEqual(_article_record(spec, soup(html), listing, TODAY, URL),
+                         (None, "listing_article_date_conflict"))
+
+    def test_osaka_listing_date_cancelled_event_must_stay_unpublished(self):
+        spec = self._osaka_listing_evidence_source()
+        html = """<article><h1>いずみの山の小さなマルシェ10月</h1>
+          <p>南部リージョンセンター 1階ロビーにて開催を中止しました。</p></article>"""
+        listing = "開催予定 いずみの山の小さなマルシェ10月 2026年10月18日(日)開催"
+        self.assertEqual(_article_record(spec, soup(html), listing, TODAY, URL),
+                         (None, "cancelled"))
+
+    def test_osaka_listing_dates_require_venue_proof_at_configuration(self):
+        spec = self._osaka_listing_evidence_source()
+        _validate_sources([spec])
+        with self.assertRaisesRegex(ValueError, "Unsafe official listing"):
+            _validate_sources([{**spec, "venueProofPattern": ""}])
+        with self.assertRaisesRegex(ValueError, "Unsafe official listing"):
+            _validate_sources([{**spec, "requireVenueLabel": False}])
+
     def test_osaka_explicit_on_site_venue_and_unlabelled_yearly_date(self):
         spec={**TOKYO,"id":"osaka","roadName":"いずみ山愛の里",
             "prefecture":"大阪府","requiredVenueTokens":["南部リージョンセンター"],
