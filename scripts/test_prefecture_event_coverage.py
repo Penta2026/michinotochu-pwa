@@ -68,14 +68,22 @@ class PrefectureCoverageTests(unittest.TestCase):
 
     def test_configured_station_feeds_include_three_kanto_prefectures(self):
         sources = targeted_station_sources()
-        self.assertEqual(set(sources), {
+        expected_prefectures = {
             "茨城県", "栃木県", "群馬県",
             "千葉県", "東京都", "神奈川県",
             "岩手県", "山形県", "福島県", "静岡県",
             "福井県", "京都府", "大阪府", "奈良県", "和歌山県",
             "山口県", "愛媛県",
             "福岡県", "佐賀県", "長崎県", "熊本県",
-            "大分県", "宮崎県", "鹿児島県", "沖縄県"})
+            "大分県", "宮崎県", "鹿児島県", "沖縄県"}
+        # Verified feeds can expand to additional prefectures without
+        # invalidating the existing coverage. Still reject missing core
+        # prefectures, unknown names, and duplicate station registrations.
+        self.assertFalse(expected_prefectures - set(sources))
+        self.assertFalse(set(sources) - set(PREFECTURES))
+        for prefecture, stations in sources.items():
+            self.assertEqual(len(stations), len(set(stations)), prefecture)
+        self.assertIn("しらぬか恋問館", sources["北海道"])
         self.assertEqual(sources["茨城県"], ["かさま", "ひたちおおた"])
         self.assertEqual(sources["栃木県"], ["ましこ"])
         self.assertEqual(sources["群馬県"], ["あぐりーむ昭和"])
