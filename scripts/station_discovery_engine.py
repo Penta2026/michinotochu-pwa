@@ -359,6 +359,21 @@ def _article_record(source, soup, listing_title, today, url):
     article = _pick_article(soup, source)
     if article is None:
         return None, "no_article"
+    # An event may have been cancelled AFTER the listing was published.
+    # _headline() skips headings containing BLOCK, which would otherwise
+    # silently fall back to the stale, still-positive LISTING headline.
+    # Inspect the article's OWN heading and explicit cancellation text first.
+    heading = article.select_one("h1, h2, h3")
+    heading_text = clean(heading.get_text(" ", strip=True)) if heading else ""
+    if any(word in heading_text for word in ("中止", "延期")):
+        return None, "cancelled"
+    article_text = clean(article.get_text(" ", strip=True))
+    if re.search(
+        r"開催を中止(?:しました|いたします|とします)|"
+        r"(?:開催|イベント)中止(?:のお知らせ|となりました)|"
+        r"中止となりました|延期となりました", article_text
+    ):
+        return None, "cancelled"
     title = _headline(soup, source, listing_title)
     if not title or any(w in title for w in BLOCK):
         return None, "not_event"
