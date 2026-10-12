@@ -73,6 +73,7 @@ class OfficialDirectoryPilotTests(unittest.TestCase):
         page = """<main>
           <a href="/stations/views/18786">三笠 北海道 三笠市</a>
           <a href="/stations/views/18787">スタープラザ　芦別 北海道 芦別市</a>
+          <a href="/stations/search/all/all/all?page=1">2</a>
         </main>"""
         seen=[]
         def fetch(url):
@@ -96,10 +97,26 @@ class OfficialDirectoryPilotTests(unittest.TestCase):
                               scanned_on="2026-10-13")
         self.assertEqual(second["cursor"],{"page":1,"offset":0})
         self.assertEqual(second["lastRun"]["inspected"],1)
+        self.assertFalse(second["listingTraversalCompleted"])
         self.assertEqual(len(second["stations"]),2)
         self.assertEqual(seen, [LIST_BASE,BASE+"/stations/views/18786",
                                 LIST_BASE,BASE+"/stations/views/18787"])
         self.assertFalse(any("hokkaido-michinoeki.jp" in x for x in seen))
+
+    def test_end_of_nationwide_listing_marks_complete_and_preserves_error_row(self):
+        html='<main><a href="/stations/views/18786">三笠 北海道 三笠市</a></main>'
+        with patch("station_official_directory_discovery.read_app_stations",
+                   return_value=self.roads):
+            data=crawl_once(lambda url: (404,"") if "/views/" in url else (200,html),
+                            robots_allowed=lambda _:True,max_details=1,
+                            scanned_on="2026-10-13")
+        self.assertTrue(data["listingTraversalCompleted"])
+        self.assertEqual(data["lastRun"]["errors"],1)
+        self.assertEqual(data["stations"][0]["directoryCheckStatus"],"http_404")
+        self.assertFalse(data["stations"][0]["officialWebsiteCandidateUrlsUnverified"])
+        again=crawl_once(lambda _: self.fail("Completed crawl must not refetch"),
+                         robots_allowed=lambda _:True,old=data,max_details=1)
+        self.assertTrue(again["listingTraversalCompleted"])
 
     def test_list_mismatch_is_error_not_false_completion(self):
         with patch("station_official_directory_discovery.read_app_stations",
