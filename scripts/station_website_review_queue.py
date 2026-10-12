@@ -29,9 +29,10 @@ def classify(url):
     except ValueError:
         return "invalid"
 
-def build_queue(directory, inventory=None):
+def build_queue(directory, inventory=None, previous=None):
     """Inventory has every station; directory contains only those inspected so far."""
     stations = []
+    previous_rows = {x["id"]: x for x in (previous or {}).get("stations", [])}
     directory_rows = {x["id"]: x for x in directory.get("stations", [])}
     master_rows = (inventory or directory).get("stations", [])
     if inventory and len(master_rows) != inventory.get("summary", {}).get("appStations"):
@@ -45,12 +46,16 @@ def build_queue(directory, inventory=None):
         if code in codes:
             raise ValueError("Duplicate station identity in official directory")
         codes.add(code)
+        old = previous_rows.get(code, {})
+        old_candidates = {x["url"]: x for x in old.get("candidates", [])}
         rows = []
         for url in sorted(set(item.get("officialWebsiteCandidateUrlsUnverified", []))):
             category = classify(url)
-            rows.append({"url": url, "kind": category, "ownershipVerified": False,
-                         "eventListingVerified": False,
-                         "reviewStatus": "blocked_invalid_url" if category == "invalid" else "awaiting_review"})
+            existing = old_candidates.get(url, {})
+            rows.append({"url": url, "kind": category,
+                         "ownershipVerified": bool(existing.get("ownershipVerified", False)),
+                         "eventListingVerified": bool(existing.get("eventListingVerified", False)),
+                         "reviewStatus": existing.get("reviewStatus", "blocked_invalid_url" if category == "invalid" else "awaiting_review")})
         priority = {"station_or_partner_site_unverified": 0, "municipal_information": 1,
                     "regional_directory": 2, "invalid": 3}
         rows.sort(key=lambda r: (priority[r["kind"]], r["url"]))
@@ -60,13 +65,14 @@ def build_queue(directory, inventory=None):
                          "candidates": rows,
                          "siteVerificationState": "awaiting_review" if rows else ("no_candidate_found" if code in directory_rows else "not_checked"),
                          "directoryInspectionState": "checked" if code in directory_rows else "not_checked",
-                         "homepageExistence": "unknown",
-                         "eventCoverageState": "not_assessed"})
+                         "homepageExistence": old.get("homepageExistence", "unknown"),
+                         "eventCoverageState": old.get("eventCoverageState", "not_assessed")})
     stations.sort(key=lambda x: x["id"])
     tally = Counter(c["kind"] for s in stations for c in s["candidates"])
     return {"schemaVersion": 2, "masterStationCount": len(stations),
             "directoryStationsInspected": len([s for s in stations if s["directoryInspectionState"] == "checked"]),
-            "homepageExistsVerified": 0, "homepageAbsentVerified": 0,
+            "homepageExistsVerified": sum(s["homepageExistence"] == "exists" for s in stations),
+            "homepageAbsentVerified": sum(s["homepageExistence"] == "absent_confirmed" for s in stations),
             "sourceDirectoryLastChecked": directory.get("lastChecked", ""),
             "stationsWithCandidates": sum(bool(s["candidates"]) for s in stations),
             "stationsReviewed": 0, "eventListingsVerified": 0,
@@ -75,7 +81,8 @@ def build_queue(directory, inventory=None):
 def main():
     src = json.loads(SOURCE.read_text(encoding="utf-8"))
     inventory = json.loads(INVENTORY.read_text(encoding="utf-8"))
-    result = build_queue(src, inventory)
+    previous = json.loads(OUTPUT.read_text(encoding="utf-8")) if OUTPUT.exists() else {}
+    result = build_queue(src, inventory, previous)
     text = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != text:
         OUTPUT.write_text(text, encoding="utf-8")
