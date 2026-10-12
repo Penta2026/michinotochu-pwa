@@ -777,3 +777,8 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
  #interest .interest-event-detail{padding-left:11px;padding-right:11px}
  #interest .interest-event-entry{padding:10px}
 }
+
+/* Explicitly honor hidden even when the event tools use display:grid. */
+#interest .interest-events-tools[hidden],
+#interest #interestFeatureLabel[hidden],
+#interest #interestRiderDetailLabel[hidden]{display:none!important}
