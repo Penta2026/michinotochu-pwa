@@ -1,0 +1,33 @@
+name: 道の駅イベント収集エンジン回帰テスト
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**.py"
+      - "scripts/requirements-road-events.txt"
+      - "data/station_event_discovery_sources.json"
+      - "data/verified_station_source_rules.json"
+      - ".github/workflows/station-collector-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  official-collector-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-road-events.txt
+      - name: Install dependencies
+        run: python -m pip install -r scripts/requirements-road-events.txt
+      - name: Python syntax
+        run: python -m compileall -q scripts
+      - name: Validate collection, reconfirmation, matching, and safety
+        run: PYTHONPATH=scripts python -m unittest scripts/test_regional_association_events.py scripts/test_prefecture_event_coverage.py scripts/test_kanto_three_prefectures.py scripts/test_kanto_remaining_prefectures.py scripts/test_kinki_five_prefectures.py scripts/test_verified_station_engine.py scripts/test_station_discovery_engine.py scripts/test_road_event_gap_monitor.py scripts/test_road_event_recall_audit.py
