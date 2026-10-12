@@ -21,6 +21,7 @@ JST = timezone(timedelta(hours=9))
 REVIEW_REASONS = {
     "undated": ("event_date_unverified", "high"),
     "venue_missing": ("onsite_venue_unverified", "high"),
+    "known_article_identity_changed": ("previously_published_event_changed", "high"),
     "no_individually_dated_sections": ("event_sections_unparsed", "high"),
     "no_individually_dated_monthly_events": ("monthly_events_unparsed", "high"),
     "no_grounded_program_year": ("event_year_unverified", "high"),
