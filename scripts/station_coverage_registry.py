@@ -71,7 +71,8 @@ def website_candidates(road):
     return sorted(urls)
 
 
-def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on, coverage=None):
+def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on, coverage=None,
+                    directory=None):
     """Every station must receive a result, including 0-event or unknown sites."""
     indexed = {}
     for source in sources.get("sources", []):
@@ -90,6 +91,12 @@ def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on, cov
         for name in item.get("targetedStationFeeds", [])
     }
     audits = {s["id"]: s for s in audit.get("sources", [])}
+    verified_directory = {}
+    for found in (directory or {}).get("stations", []):
+        code = found.get("id")
+        if code in verified_directory:
+            raise ValueError("Duplicate station ID in directory hints")
+        verified_directory[code] = found
     verified_events = Counter(
         station_key(e.get("prefecture"), e.get("roadName"))
         for e in events.get("events", []))
@@ -103,7 +110,14 @@ def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on, cov
         key = station_key(road["prefecture"], road["name"])
         feeds = indexed.get(key, [])
         audited = [audits[x["id"]] for x in feeds if x["id"] in audits]
-        candidates = website_candidates(road)
+        directory_item = verified_directory.get(code)
+        directory_checked = bool(
+            directory_item and station_key(directory_item.get("prefecture"),
+                                           directory_item.get("roadName")) == key)
+        # Station-directory homepages are suggestions, NOT verified site ownership.
+        directory_hints = (directory_item.get("officialWebsiteCandidateUrlsUnverified", [])
+                           if directory_checked else [])
+        candidates = sorted(set(website_candidates(road) + list(directory_hints)))
         covered_any = key in known_targets or bool(feeds or recheck.get(key))
         if verified_events[key]:
             state = "current_official_event_verified"
@@ -119,6 +133,11 @@ def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on, cov
             "id": code, "prefecture": road["prefecture"], "roadName": road["name"],
             "coverageState": state,
             "officialWebsiteCandidateUrlsUnverified": candidates,
+            "directoryDetailUrl": (directory_item.get("directoryDetailUrl", "")
+                                   if directory_checked else ""),
+            "lastDirectoryChecked": (directory_item.get("lastDirectoryChecked", "")
+                                     if directory_checked else ""),
+            "officialSiteOwnershipVerified": False,
             "dedicatedSourceIds": [s["id"] for s in feeds],
             "dedicatedOfficialListingUrls": [s["listingUrl"] for s in feeds],
             "knownArticleRecheckSourceIds": recheck.get(key, []),
@@ -129,7 +148,8 @@ def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on, cov
                                           if s.get("listingError")],
             "currentVerifiedEvents": verified_events[key],
             "eventAbsentConfirmed": False,
-            "nextAction": ("review_official_website_url" if not covered_any
+            "nextAction": ("verify_station_site_candidate" if candidates and not covered_any
+                           else "review_official_website_url" if not covered_any
                            else "continue_verified_source_checks"),
         })
     totals = Counter(x["coverageState"] for x in items)
@@ -148,6 +168,11 @@ def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on, cov
             not x["dedicatedCollectorCoveredAcrossAllModes"] for x in items),
         "masterWebsiteUrlCandidatesUnverified": sum(bool(x["officialWebsiteCandidateUrlsUnverified"])
                                                     for x in items),
+        "nationalDirectoryStationPagesChecked": sum(bool(x["lastDirectoryChecked"])
+                                                     for x in items),
+        "nationalDirectoryLinkCandidateStations": sum(
+            bool(x["officialWebsiteCandidateUrlsUnverified"]) and bool(x["directoryDetailUrl"])
+            for x in items),
         "statuses": dict(sorted(totals.items())),
         "confirmedNoEventStations": 0,
         "allStationRecordsPresent": len(items) == len(roads),
@@ -184,7 +209,9 @@ def render_dashboard(register):
         f"| 既存の地域別専用収集も含む設定済み駅 | {s['stationsWithAnyDedicatedCollector']} |",
         f"| 現在、開催予定が検証・公開済みの駅 | {s['stationsWithCurrentVerifiedEvent']} |",
         f"| 個別の公式情報ルート未設定 | {s['stationsWithoutDedicatedSource']} |",
-        f"| 駅マスタにある公式サイト候補（未検証） | {s['masterWebsiteUrlCandidatesUnverified']} |",
+        f"| 駅マスタ＋公式名簿由来のサイト候補（未検証） | {s['masterWebsiteUrlCandidatesUnverified']} |",
+        f"| 全国連絡会の駅詳細ページ照合済み | {s['nationalDirectoryStationPagesChecked']} |",
+        f"| 全国連絡会からホームページ欄を取得（未検証） | {s['nationalDirectoryLinkCandidateStations']} |",
         f"| 検証済み『開催イベントなし』 | {s['confirmedNoEventStations']}（未判定） |",
         "",
         "## 次の一手",
@@ -220,6 +247,9 @@ def main():
                              get("verified_station_source_rules.json"),
                              get("road_events.json"), audit,
                              coverage=get("prefecture_event_coverage.json"),
+                             directory=(json.loads((DATA / "station_official_directory_candidates.json").read_text(
+                                 encoding="utf-8"))
+                                 if (DATA / "station_official_directory_candidates.json").exists() else {}),
                              checked_on=audit.get("checkedOn") or
                              datetime.now(JST).date().isoformat())
     write_if_changed(OUT, json.dumps(result, ensure_ascii=False, indent=2) + "\n")
