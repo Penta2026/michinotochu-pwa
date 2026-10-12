@@ -87,7 +87,7 @@
       "allowedHosts": [
         "hamabiyori.com"
       ],
-      "articlePathPattern": "^/(?!events/?$|concept/?$|guidance/?$|shop/?$)[^/]+/?$",
+      "articlePathPattern": "^/(?!events/?$|concept/?$|guidance/?$|shop/?$|contact/?$)[^/]+/?$",
       "listingLinkSelector": "a[href]",
       "articleSelector": "article, main",
       "titleSelectors": [
