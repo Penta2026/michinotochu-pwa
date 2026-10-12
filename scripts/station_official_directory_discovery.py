@@ -177,7 +177,7 @@ def crawl_once(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES,
 
 def network_fetch(session):
     def fetch(url, robots=False):
-        if not (url == BASE + "/robots.txt" if robots else same_directory_url(url)):
+        if not (url == BASE + "/robots.txt" if robots else (same_directory_url(url) or same_directory_url(url, detail=True))):
             raise ValueError("Refusing off-directory request")
         response = session.get(url, timeout=12, allow_redirects=False)
         if len(response.content) > MAX_BYTES:
