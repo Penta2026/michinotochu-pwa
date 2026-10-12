@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data" / "station_official_directory_candidates.json"
 OUTPUT = ROOT / "data" / "station_website_review_queue.json"
+INVENTORY = ROOT / "data" / "station_coverage_registry.json"
 
 def classify(url):
     try:
@@ -28,10 +29,18 @@ def classify(url):
     except ValueError:
         return "invalid"
 
-def build_queue(directory):
+def build_queue(directory, inventory=None):
+    """Inventory has every station; directory contains only those inspected so far."""
     stations = []
+    directory_rows = {x["id"]: x for x in directory.get("stations", [])}
+    master_rows = (inventory or directory).get("stations", [])
+    if inventory and len(master_rows) != inventory.get("summary", {}).get("appStations"):
+        raise ValueError("Master station count mismatch")
     codes = set()
-    for item in directory.get("stations", []):
+    for station in master_rows:
+        item = directory_rows.get(station["id"], station)
+        if item["prefecture"] != station["prefecture"] or item["roadName"] != station["roadName"]:
+            raise ValueError("Directory and master station identity mismatch")
         code = item["id"]
         if code in codes:
             raise ValueError("Duplicate station identity in official directory")
@@ -49,18 +58,24 @@ def build_queue(directory):
                          "roadName": item["roadName"],
                          "directoryDetailUrl": item.get("directoryDetailUrl", ""),
                          "candidates": rows,
-                         "siteVerificationState": "awaiting_review" if rows else "no_candidate_found",
+                         "siteVerificationState": "awaiting_review" if rows else ("no_candidate_found" if code in directory_rows else "not_checked"),
+                         "directoryInspectionState": "checked" if code in directory_rows else "not_checked",
+                         "homepageExistence": "unknown",
                          "eventCoverageState": "not_assessed"})
     stations.sort(key=lambda x: x["id"])
     tally = Counter(c["kind"] for s in stations for c in s["candidates"])
-    return {"schemaVersion": 1, "sourceDirectoryLastChecked": directory.get("lastChecked", ""),
+    return {"schemaVersion": 2, "masterStationCount": len(stations),
+            "directoryStationsInspected": len([s for s in stations if s["directoryInspectionState"] == "checked"]),
+            "homepageExistsVerified": 0, "homepageAbsentVerified": 0,
+            "sourceDirectoryLastChecked": directory.get("lastChecked", ""),
             "stationsWithCandidates": sum(bool(s["candidates"]) for s in stations),
             "stationsReviewed": 0, "eventListingsVerified": 0,
             "candidateKinds": dict(sorted(tally.items())), "stations": stations}
 
 def main():
     src = json.loads(SOURCE.read_text(encoding="utf-8"))
-    result = build_queue(src)
+    inventory = json.loads(INVENTORY.read_text(encoding="utf-8"))
+    result = build_queue(src, inventory)
     text = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != text:
         OUTPUT.write_text(text, encoding="utf-8")
