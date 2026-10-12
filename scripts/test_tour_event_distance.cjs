@@ -366,7 +366,7 @@ test("the web entry point and service worker both deploy the new PWA version", (
   const index = fs.readFileSync(path.join(root, "index.html"), "utf8");
   const worker = fs.readFileSync(path.join(root, "service-worker.js"), "utf8");
   const version = JSON.parse(fs.readFileSync(path.join(root, "data/version.json"), "utf8"));
-  assert.match(index, /tour-plan\.js\?v=1\.6\.26/);
+  assert.match(index, /tour-plan\.js\?v=1\.6\.27/);
   assert.match(index, /条件内の開催イベントを詳しく見る/);
   assert.match(index, /id="tourEventSettings"/);
   assert.match(index, /id="tourNearPanel"/);
@@ -375,7 +375,7 @@ test("the web entry point and service worker both deploy the new PWA version", (
   assert.doesNotMatch(index, /id="tourSearchBtn"/);
   assert.doesNotMatch(index, /🎯 目標地点の候補を見る/);
   assert.match(index, /id="tourCandidatePicker"/);
-  assert.match(worker, /michino-shell-v1\.6\.26/);
-  assert.match(worker, /tour-plan\.js\?v=1\.6\.26/);
-  assert.equal(version.appVersion, "1.6.26");
+  assert.match(worker, /michino-shell-v1\.6\.27/);
+  assert.match(worker, /tour-plan\.js\?v=1\.6\.27/);
+  assert.equal(version.appVersion, "1.6.27");
 });
