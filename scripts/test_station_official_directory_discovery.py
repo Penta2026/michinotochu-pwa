@@ -1,0 +1,125 @@
+"""Offline tests: national-directory links are hints, never proof of a station site."""
+import json
+import unittest
+from unittest.mock import patch
+
+from station_official_directory_discovery import (
+    BASE, HOST, LIST_BASE, listing_matches, detail_hints, crawl_once,
+    robots_policy, same_directory_url, network_fetch,
+)
+
+
+class OfficialDirectoryPilotTests(unittest.TestCase):
+    def setUp(self):
+        self.roads = [
+            {"id": "RS0001", "prefecture": "北海道", "name": "三笠"},
+            {"id": "RS0002", "prefecture": "北海道", "name": "スタープラザ　芦別"},
+            {"id": "RS0003", "prefecture": "青森県", "name": "三笠"},
+        ]
+        self.listing = """<main>
+          <a href="/stations/views/18786"><div>三笠</div><p>北海道 三笠市</p></a>
+          <a href="/stations/views/18787">スタープラザ　芦別 北海道 芦別市</a>
+          <a href="/stations/views/99999">三笠 青森県 別の市</a>
+          <a href="/stations/views/12345">偽名 北海道</a>
+          <a href="https://evil.example/stations/views/18788">三笠 北海道</a>
+        </main>"""
+        self.detail = """<h2>道の駅「三笠」</h2>
+          <dl><dt>道の駅名</dt><dd>三笠</dd>
+          <dt>ホームページ</dt><dd><a href="http://www.hokkaido-michinoeki.jp/michinoeki/172/">駅紹介</a></dd>
+          <dt>ホームページ2</dt><dd><a href="https://www.city.mikasa.hokkaido.jp/hotnews/detail/00000036.html">市公式</a></dd></dl>
+          <footer><a href="https://evil.example/unrelated">広告</a></footer>"""
+
+    def test_listing_matches_prefecture_and_name_not_near_matches(self):
+        rows = listing_matches(self.listing, self.roads)
+        self.assertEqual([(x["id"], x["directoryDetailUrl"]) for x in rows], [
+            ("RS0001", BASE + "/stations/views/18786"),
+            ("RS0002", BASE + "/stations/views/18787"),
+            ("RS0003", BASE + "/stations/views/99999"),
+        ])
+
+    def test_homepage_fields_are_only_unverified_link_hints(self):
+        found = detail_hints(self.detail, {"prefecture": "北海道", "roadName": "三笠"})
+        self.assertEqual(len(found), 2)
+        self.assertTrue(any("mikasa.hokkaido.jp" in x for x in found))
+        self.assertTrue(any(x.startswith("http://") for x in found))
+        self.assertFalse(any("evil.example" in x for x in found))
+        self.assertIsNone(detail_hints(
+            self.detail, {"prefecture": "北海道", "roadName": "南ふらの"}))
+
+    def test_reject_redirected_hosts_and_non_directory_paths(self):
+        self.assertTrue(same_directory_url(LIST_BASE+"?page=1"))
+        self.assertTrue(same_directory_url(BASE+"/stations/views/18786",detail=True))
+        for url in ["http://"+HOST+"/stations/views/18786",
+                    "https://evil.example/stations/views/18786",
+                    BASE+"/contact", BASE+"/stations/views/../search/10/all/all",
+                    "https://usr:password@"+HOST+"/stations/views/18786"]:
+            self.assertFalse(same_directory_url(url,detail=True))
+
+    def test_robots_disallow_prevents_crawling(self):
+        def fetch(url, robots=False):
+            self.assertTrue(robots)
+            return 200, "User-agent: *\nDisallow: /stations/"
+        allowed = robots_policy(fetch)
+        self.assertFalse(allowed(LIST_BASE))
+        self.assertTrue(allowed(BASE+"/robots.txt"))
+        with self.assertRaisesRegex(RuntimeError, "disallows"):
+            crawl_once(lambda url: (200,self.listing),robots_allowed=allowed,
+                       max_details=1,scanned_on="2026-10-13")
+        with self.assertRaisesRegex(RuntimeError,"unavailable"):
+            robots_policy(lambda url,robots=False: (503,""))
+
+    def test_bounded_cursor_and_no_auto_offsite_fetch(self):
+        detail2 = self.detail.replace("道の駅「三笠」","道の駅「スタープラザ　芦別」")
+        page = """<main>
+          <a href="/stations/views/18786">三笠 北海道 三笠市</a>
+          <a href="/stations/views/18787">スタープラザ　芦別 北海道 芦別市</a>
+        </main>"""
+        seen=[]
+        def fetch(url):
+            seen.append(url)
+            return 200, {
+                LIST_BASE: page,
+                BASE+"/stations/views/18786": self.detail,
+                BASE+"/stations/views/18787": detail2,
+            }[url]
+        # Use the exact app master in the first iteration only.
+        from station_official_directory_discovery import read_app_stations as real_read
+        with patch("station_official_directory_discovery.read_app_stations",
+                   return_value=self.roads):
+            first=crawl_once(fetch,robots_allowed=lambda x: True,max_details=1,
+                             scanned_on="2026-10-13")
+            self.assertEqual(first["cursor"],{"page":0,"offset":1})
+            self.assertEqual(first["lastRun"]["inspected"],1)
+            self.assertEqual(len(first["stations"]),1)
+            self.assertFalse(first["stations"][0]["officialSiteOwnershipVerified"])
+            second=crawl_once(fetch,robots_allowed=lambda x: True,old=first,max_details=1,
+                              scanned_on="2026-10-13")
+        self.assertEqual(second["cursor"],{"page":1,"offset":0})
+        self.assertEqual(second["lastRun"]["inspected"],1)
+        self.assertEqual(len(second["stations"]),2)
+        self.assertEqual(seen, [LIST_BASE,BASE+"/stations/views/18786",
+                                LIST_BASE,BASE+"/stations/views/18787"])
+        self.assertFalse(any("hokkaido-michinoeki.jp" in x for x in seen))
+
+    def test_list_mismatch_is_error_not_false_completion(self):
+        with patch("station_official_directory_discovery.read_app_stations",
+                   return_value=self.roads):
+            with self.assertRaisesRegex(RuntimeError, "empty or HTML layout changed"):
+                crawl_once(lambda url: (200,"<main>サーバ更新中</main>"),
+                           robots_allowed=lambda x: True,max_details=1,
+                           scanned_on="2026-10-13")
+
+    def test_only_approved_fetch_urls_can_be_network_requested(self):
+        class FakeSession:
+            def get(self,url,**kwargs):
+                return type("Res",(),{"status_code":200,"text":"OK","content":b"OK"})()
+        fetch=network_fetch(FakeSession())
+        with self.assertRaises(ValueError):
+            fetch("https://evil.example/")
+        with self.assertRaises(ValueError):
+            fetch(BASE+"/stations/views/18786/../admin")
+        self.assertEqual(fetch(LIST_BASE), (200,"OK"))
+
+
+if __name__ == "__main__":
+    unittest.main()
