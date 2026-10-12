@@ -674,6 +674,8 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 #ride .tour-step-head p{
   margin:0;color:var(--muted);font-size:12px;line-height:1.5;
 }
+#ride #rideStart .start-panel>h3{display:none}
+#ride #rideStart .start-panel{margin-bottom:14px}
 #ride .tour-step-number{
   display:grid;place-items:center;flex:0 0 33px;height:33px;
   border-radius:50%;background:#367f5a;color:#fff;font-size:16px;font-weight:900;
