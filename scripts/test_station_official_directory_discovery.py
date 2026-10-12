@@ -119,6 +119,7 @@ class OfficialDirectoryPilotTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             fetch(BASE+"/stations/views/18786/../admin")
         self.assertEqual(fetch(LIST_BASE), (200,"OK"))
+        self.assertEqual(fetch(BASE+"/stations/views/18786"), (200,"OK"))
 
 
 if __name__ == "__main__":
