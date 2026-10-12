@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "strategy": [
+    "nationwide_official_source_coverage",
+    "verified_high_traffic_stations",
+    "remaining_individual_stations"
+  ],
+  "publishedPrefectureCount": 36,
+  "prefecturesWithNoCurrentPublishedEvents": 11,
+  "regions": [
+    {
+      "region": "関東",
+      "prefectureCount": 9,
+      "prefecturesWithoutCurrentPublishedEvents": [
+        "栃木県",
+        "千葉県",
+        "長野県"
+      ],
+      "currentPublishedEventCount": 8,
+      "officialSourceUrl": "https://www.kanto-michinoeki.jp/",
+      "sourceAuditState": "reachable",
+      "existingSourceMode": "discovery",
+      "listingCandidatesSeen": 5,
+      "note": "Source audit candidates are not verified station events.",
+      "nextAction": "verify_event_listing_and_build_safe_adapter"
+    },
+    {
+      "region": "九州・沖縄",
+      "prefectureCount": 8,
+      "prefecturesWithoutCurrentPublishedEvents": [
+        "熊本県",
+        "大分県"
+      ],
+      "currentPublishedEventCount": 6,
+      "officialSourceUrl": "https://www.qsr.mlit.go.jp/n-michi/michi_no_eki/",
+      "sourceAuditState": "reachable",
+      "existingSourceMode": "discovery",
+      "listingCandidatesSeen": 0,
+      "note": "Source audit candidates are not verified station events.",
+      "nextAction": "verify_event_listing_and_build_safe_adapter"
+    },
+    {
+      "region": "北陸",
+      "prefectureCount": 3,
+      "prefecturesWithoutCurrentPublishedEvents": [
+        "富山県"
+      ],
+      "currentPublishedEventCount": 4,
+      "officialSourceUrl": "https://www.hokuriku-michinoeki.jp/",
+      "sourceAuditState": "reachable",
+      "existingSourceMode": "discovery",
+      "listingCandidatesSeen": 0,
+      "note": "Source audit candidates are not verified station events.",
+      "nextAction": "verify_event_listing_and_build_safe_adapter"
+    },
+    {
+      "region": "中部",
+      "prefectureCount": 4,
+      "prefecturesWithoutCurrentPublishedEvents": [],
+      "currentPublishedEventCount": 13,
+      "officialSourceUrl": "https://www.chubu-michinoeki.org/",
+      "sourceAuditState": "reachable",
+      "existingSourceMode": "discovery",
+      "listingCandidatesSeen": 0,
+      "note": "Source audit candidates are not verified station events.",
+      "nextAction": "verify_event_listing_and_build_safe_adapter"
+    },
+    {
+      "region": "北海道",
+      "prefectureCount": 1,
+      "prefecturesWithoutCurrentPublishedEvents": [],
+      "currentPublishedEventCount": 3,
+      "officialSourceUrl": "https://hokkaido-michinoeki.jp/",
+      "sourceAuditState": "reachable",
+      "existingSourceMode": "discovery",
+      "listingCandidatesSeen": 13,
+      "note": "Source audit candidates are not verified station events.",
+      "nextAction": "verify_event_listing_and_build_safe_adapter"
+    },
+    {
+      "region": "近畿",
+      "prefectureCount": 7,
+      "prefecturesWithoutCurrentPublishedEvents": [
+        "福井県",
+        "滋賀県"
+      ],
+      "currentPublishedEventCount": 9,
+      "officialSourceUrl": "https://www.kinki-michinoeki.com/news-tag/event/",
+      "sourceAuditState": "reachable",
+      "existingSourceMode": "adapter",
+      "listingCandidatesSeen": 11,
+      "note": "Source audit candidates are not verified station events.",
+      "nextAction": "audit_station_matching_and_missing_prefectures"
+    },
+    {
+      "region": "中国",
+      "prefectureCount": 5,
+      "prefecturesWithoutCurrentPublishedEvents": [
+        "鳥取県"
+      ],
+      "currentPublishedEventCount": 5,
+      "officialSourceUrl": "https://chugoku-michinoeki.jp/news/index.php",
+      "sourceAuditState": "reachable",
+      "existingSourceMode": "adapter",
+      "listingCandidatesSeen": 35,
+      "note": "Source audit candidates are not verified station events.",
+      "nextAction": "audit_station_matching_and_missing_prefectures"
+    },
+    {
+      "region": "四国",
+      "prefectureCount": 4,
+      "prefecturesWithoutCurrentPublishedEvents": [
+        "徳島県"
+      ],
+      "currentPublishedEventCount": 4,
+      "officialSourceUrl": "https://www.sk-michinoeki.jp/events",
+      "sourceAuditState": "reachable",
+      "existingSourceMode": "adapter",
+      "listingCandidatesSeen": 5,
+      "note": "Source audit candidates are not verified station events.",
+      "nextAction": "audit_station_matching_and_missing_prefectures"
+    },
+    {
+      "region": "東北",
+      "prefectureCount": 6,
+      "prefecturesWithoutCurrentPublishedEvents": [
+        "山形県"
+      ],
+      "currentPublishedEventCount": 8,
+      "officialSourceUrl": "https://www.michinoeki-tohoku.com/event",
+      "sourceAuditState": "reachable",
+      "existingSourceMode": "adapter",
+      "listingCandidatesSeen": 11,
+      "note": "Source audit candidates are not verified station events.",
+      "nextAction": "audit_station_matching_and_missing_prefectures"
+    }
+  ],
+  "highTrafficStationPriority": {
+    "state": "awaiting_objective_visitation_evidence",
+    "rule": "Do not rank stations using intuition or current event count."
+  },
+  "interpretation": "Current event count is not source recall; no events published does not mean no event exists."
+}
