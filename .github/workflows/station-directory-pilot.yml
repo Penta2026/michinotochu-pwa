@@ -34,9 +34,11 @@ jobs:
         run: PYTHONPATH=scripts python -m unittest scripts/test_station_official_directory_discovery.py scripts/test_station_coverage_registry.py
       - name: Respect robots policy and inspect at most 24 station details
         run: PYTHONPATH=scripts python scripts/station_official_directory_discovery.py
-      - name: Save candidate station URLs without certifying ownership
+      - name: Refresh all 1234 station coverage records in the SAME job
+        run: python scripts/station_coverage_registry.py
+      - name: Save URL hints and all-station dashboard together
         run: |
-          git add data/station_official_directory_candidates.json
+          git add data/station_official_directory_candidates.json data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md
           if git diff --cached --quiet; then
             echo "公式名簿由来のURL候補は変更なし"
             exit 0
