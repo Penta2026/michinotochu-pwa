@@ -5,7 +5,9 @@
   "stationsReviewed": 0,
   "eventListingsVerified": 0,
   "candidateKinds": {
-    "invalid": 153
+    "municipal_information": 19,
+    "regional_directory": 80,
+    "station_or_partner_site_unverified": 54
   },
   "stations": [
     {
@@ -16,17 +18,17 @@
       "candidates": [
         {
           "url": "http://www.city.mikasa.hokkaido.jp/hotnews/detail/00000036.html",
-          "kind": "invalid",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/172/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -39,18 +41,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18787",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/202/",
-          "kind": "invalid",
+          "url": "https://go-to-ashibetsu.com/media/2018/04/01/20",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://go-to-ashibetsu.com/media/2018/04/01/20",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/202/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -64,10 +66,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/222/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -80,18 +82,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18789",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/263/",
-          "kind": "invalid",
+          "url": "https://michinoeki-shiranuka.jp/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://michinoeki-shiranuka.jp/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/263/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -105,17 +107,17 @@
       "candidates": [
         {
           "url": "http://www.bifuka-kankou.com/michinoeki.php",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/292/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -129,17 +131,17 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-esashi.jp/modules/sightseeing/content0023.html",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/321/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -153,17 +155,17 @@
       "candidates": [
         {
           "url": "http://ageimo.com/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/364/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -177,10 +179,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/389/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -193,18 +195,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18794",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/407/",
-          "kind": "invalid",
+          "url": "https://hotel-arco.jp/sightseeing/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://hotel-arco.jp/sightseeing/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/407/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -217,18 +219,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18796",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/440/",
-          "kind": "invalid",
+          "url": "http://www.masyuko.or.jp/michinoeki/index.html",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.masyuko.or.jp/michinoeki/index.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/440/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -242,10 +244,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/458/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -258,18 +260,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18798",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/472/",
-          "kind": "invalid",
+          "url": "http://www.town.yubetsu.lg.jp/50shisetsu/6nou-kankou/spa-kamiyu.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.yubetsu.lg.jp/50shisetsu/6nou-kankou/spa-kamiyu.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/472/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -282,18 +284,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18799",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/499/",
-          "kind": "invalid",
+          "url": "http://www.iwanai-kanko.org/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.iwanai-kanko.org/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/499/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -307,17 +309,17 @@
       "candidates": [
         {
           "url": "http://www.conchiglie.net/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/531/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -331,17 +333,17 @@
       "candidates": [
         {
           "url": "http://portal.hokuryu.info/sunflowerpark/roadsidestation",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/546/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -355,10 +357,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/564/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -372,10 +374,10 @@
       "candidates": [
         {
           "url": "https://michinoekishimamaki.jimdofree.com/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -389,17 +391,17 @@
       "candidates": [
         {
           "url": "http://www.hiyama.pref.hokkaido.lg.jp/ss/srk/tabi/04s_tais/parts/8401mtr.htm",
-          "kind": "invalid",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/611/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -413,17 +415,17 @@
       "candidates": [
         {
           "url": "http://mombetsu.net/tourist-facilities/%E9%81%93%E3%81%AE%E9%A7%85-%E3%82%AA%E3%83%9B%E3%83%BC%E3%83",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/626/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -437,17 +439,17 @@
       "candidates": [
         {
           "url": "http://mori-bussan.com/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/641/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -461,17 +463,17 @@
       "candidates": [
         {
           "url": "http://onneyu-aq.com/facility3",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/685/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -484,18 +486,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18810",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/704/",
-          "kind": "invalid",
+          "url": "http://www.town.otobe.lg.jp/section/sangyou/e0taal0000000bz1.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.otobe.lg.jp/section/sangyou/e0taal0000000bz1.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/704/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -509,17 +511,17 @@
       "candidates": [
         {
           "url": "http://machiken292.com/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/722/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -532,18 +534,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18812",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/744/",
-          "kind": "invalid",
+          "url": "http://www.town.obira.hokkaido.jp/kanko/detail/00001365.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.obira.hokkaido.jp/kanko/detail/00001365.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/744/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -557,10 +559,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/768/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -574,10 +576,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/795/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -590,18 +592,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18815",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/810/",
-          "kind": "invalid",
+          "url": "https://www.akan.jp/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://www.akan.jp/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/810/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -614,18 +616,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18816",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/825/",
-          "kind": "invalid",
+          "url": "https://michinoeki-otofuke.jp/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://michinoeki-otofuke.jp/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/825/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -639,10 +641,10 @@
       "candidates": [
         {
           "url": "https://pinneshiri-autocamp.com/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -655,18 +657,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18819",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/870/",
-          "kind": "invalid",
+          "url": "http://www.kaminokuni.com/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.kaminokuni.com/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/870/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -679,18 +681,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18820",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/881/",
-          "kind": "invalid",
+          "url": "http://www.vill.kamoenai.hokkaido.jp/hotnews/detail/00000142.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.vill.kamoenai.hokkaido.jp/hotnews/detail/00000142.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/881/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -703,18 +705,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18821",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/892/",
-          "kind": "invalid",
+          "url": "http://www.michinoeki-nakasatsunai.jp/index.html",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.michinoeki-nakasatsunai.jp/index.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/892/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -727,18 +729,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18822",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/906/",
-          "kind": "invalid",
+          "url": "https://maoinooka.jp/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://maoinooka.jp/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/906/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -752,17 +754,17 @@
       "candidates": [
         {
           "url": "http://www.hidaka.pref.hokkaido.lg.jp/ss/srk/hkd/thidaka/008.htm",
-          "kind": "invalid",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/921/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -776,17 +778,17 @@
       "candidates": [
         {
           "url": "http://sobetsu-fp.co.jp/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/937/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -799,18 +801,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18825",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/949/",
-          "kind": "invalid",
+          "url": "http://www.niseko-ta.jp/index.php?id=87",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.niseko-ta.jp/index.php?id=87",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/949/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -823,18 +825,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18826",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/961/",
-          "kind": "invalid",
+          "url": "http://www.town.shiriuchi.hokkaido.jp/kanko/meisho/michinoeki.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.shiriuchi.hokkaido.jp/kanko/meisho/michinoeki.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/961/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -847,18 +849,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18827",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/973/",
-          "kind": "invalid",
+          "url": "http://www.yokodunanosato-fukushima.info/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.yokodunanosato-fukushima.info/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/973/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -871,18 +873,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18828",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/988/",
-          "kind": "invalid",
+          "url": "http://www.niikappu.jp/kurashi/sekatsu/kotsu/miti.html",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.niikappu.jp/kurashi/sekatsu/kotsu/miti.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/988/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -896,17 +898,17 @@
       "candidates": [
         {
           "url": "http://shihoroinfo.com/road-station",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1001/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -920,17 +922,17 @@
       "candidates": [
         {
           "url": "http://town.takinoue.hokkaido.jp/shokai/shisetsu/kankou/michinoeki.html",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1016/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -943,18 +945,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18831",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1026/",
-          "kind": "invalid",
+          "url": "http://www.michinoeki-uryu.com/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.michinoeki-uryu.com/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1026/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -968,17 +970,17 @@
       "candidates": [
         {
           "url": "http://muro-kanko.com/visit/roadside_station.html",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1039/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -992,17 +994,17 @@
       "candidates": [
         {
           "url": "http://www.densukesan.net/2018/kau.html",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1677/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1015,18 +1017,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18834",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1699/",
-          "kind": "invalid",
+          "url": "https://www.spacedome.jp",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://www.spacedome.jp",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1699/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1040,10 +1042,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1747/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1057,17 +1059,17 @@
       "candidates": [
         {
           "url": "http://saroma.jp",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1787/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1080,18 +1082,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18837",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1951/",
-          "kind": "invalid",
+          "url": "http://www.town.yubetsu.lg.jp/60kanko/03annai/you.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.yubetsu.lg.jp/60kanko/03annai/you.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1951/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1104,18 +1106,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18838",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1975/",
-          "kind": "invalid",
+          "url": "http://www.town.oumu.hokkaido.jp/hotnews/detail/00000065.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.oumu.hokkaido.jp/hotnews/detail/00000065.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1975/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1128,18 +1130,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18839",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2010/",
-          "kind": "invalid",
+          "url": "http://www.vill.sarufutsu.hokkaido.jp/hotnews/detail/00000356.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.vill.sarufutsu.hokkaido.jp/hotnews/detail/00000356.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2010/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1152,18 +1154,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18840",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2038/",
-          "kind": "invalid",
+          "url": "https://horokanaisoba.com/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://horokanaisoba.com/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2038/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1177,10 +1179,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2066/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1193,18 +1195,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18842",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2088/",
-          "kind": "invalid",
+          "url": "http://www.kuromatsunai.com/toitvert2/index.html",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.kuromatsunai.com/toitvert2/index.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2088/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1218,10 +1220,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2107/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1234,18 +1236,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18844",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2143/",
-          "kind": "invalid",
+          "url": "http://www.swan44nemuro.com/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.swan44nemuro.com/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2143/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1258,18 +1260,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18845",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2164/",
-          "kind": "invalid",
+          "url": "http://www.town.urausu.hokkaido.jp/kankou/guide/michinoeki.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.urausu.hokkaido.jp/kankou/guide/michinoeki.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2164/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1282,18 +1284,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18846",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2179/",
-          "kind": "invalid",
+          "url": "http://www.natowaesan.com/roadside_station.htm",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.natowaesan.com/roadside_station.htm",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2179/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1307,17 +1309,17 @@
       "candidates": [
         {
           "url": "http://kankou.mori.hokkaido.jp/201510/07-1619.html",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2200/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1330,18 +1332,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18848",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2217/",
-          "kind": "invalid",
+          "url": "http://www.nemuro.pref.hokkaido.lg.jp/ss/srk/kanko/nmrgsdb/3k-spot/3ks-shiretoko-rausu.htm",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.nemuro.pref.hokkaido.lg.jp/ss/srk/kanko/nmrgsdb/3k-spot/3ks-shiretoko-rausu.htm",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2217/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1355,17 +1357,17 @@
       "candidates": [
         {
           "url": "http://www.sarabetsu-pipopa.jp/michinoeki/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "https://www.instagram.com/mitinoekisarabetsu/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1379,17 +1381,17 @@
       "candidates": [
         {
           "url": "http://www.city.date.hokkaido.jp/hotnews/detail/00001549.html",
-          "kind": "invalid",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2253/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1403,17 +1405,17 @@
       "candidates": [
         {
           "url": "http://www.asahikawa-jibasan.com",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2272/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1426,18 +1428,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18852",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2298/",
-          "kind": "invalid",
+          "url": "http://www.vill.shimukappu.lg.jp/shimukappu/section/kikaku/nmudtq0000002gk4.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.vill.shimukappu.lg.jp/shimukappu/section/kikaku/nmudtq0000002gk4.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2298/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1450,18 +1452,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18853",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2325/",
-          "kind": "invalid",
+          "url": "https://www.vill.nishiokoppe.lg.jp/section/kamu/kamu.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://www.vill.nishiokoppe.lg.jp/section/kamu/kamu.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2325/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1474,18 +1476,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18854",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2355/",
-          "kind": "invalid",
+          "url": "https://www.rikubetsu.jp/kanko/michinoeki/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://www.rikubetsu.jp/kanko/michinoeki/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2355/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1498,18 +1500,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18855",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2375/",
-          "kind": "invalid",
+          "url": "http://www.town.koshimizu.hokkaido.jp/hanayaka/",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.koshimizu.hokkaido.jp/hanayaka/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2375/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1523,17 +1525,17 @@
       "candidates": [
         {
           "url": "http://mypage.fukanavi.com/riceland/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2390/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1546,18 +1548,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18857",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2424/",
-          "kind": "invalid",
+          "url": "http://www.nakagawa-showya.com/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.nakagawa-showya.com/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2424/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1570,18 +1572,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18858",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2442/",
-          "kind": "invalid",
+          "url": "http://www.rusutsu.gr.jp/shopping/687.html",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.rusutsu.gr.jp/shopping/687.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2442/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1594,18 +1596,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18859",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2467/",
-          "kind": "invalid",
+          "url": "http://www.teshiotown.hokkaido.jp/?page_id=660",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.teshiotown.hokkaido.jp/?page_id=660",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2467/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1619,17 +1621,17 @@
       "candidates": [
         {
           "url": "http://taiki-sci.jp/cosmall/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2483/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1642,18 +1644,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18861",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2502/",
-          "kind": "invalid",
+          "url": "https://bihoropass.jp/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://bihoropass.jp/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2502/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1666,18 +1668,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18862",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2519/",
-          "kind": "invalid",
+          "url": "http://www.town.rankoshi.hokkaido.jp/topics/2012/02/post_58.html",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.rankoshi.hokkaido.jp/topics/2012/02/post_58.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2519/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1690,18 +1692,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18863",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2533/",
-          "kind": "invalid",
+          "url": "https://toyoura-rss.amebaownd.com/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://toyoura-rss.amebaownd.com/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2533/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1714,18 +1716,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18864",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2548/",
-          "kind": "invalid",
+          "url": "http://www.town.ozora.hokkaido.jp/docs/2014112700039/",
+          "kind": "municipal_information",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.town.ozora.hokkaido.jp/docs/2014112700039/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2548/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1738,18 +1740,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18865",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2569/",
-          "kind": "invalid",
+          "url": "http://www.shikinoyakata.com/eki.html",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "http://www.shikinoyakata.com/eki.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2569/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1762,18 +1764,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18866",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2585/",
-          "kind": "invalid",
+          "url": "https://michinoeki-aioi.com/",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://michinoeki-aioi.com/",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2585/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1787,17 +1789,17 @@
       "candidates": [
         {
           "url": "http://michinoeki-shikaoi.com/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2605/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1811,10 +1813,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2623/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1828,17 +1830,17 @@
       "candidates": [
         {
           "url": "http://www.ashoro-kanko.jp",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2639/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1852,17 +1854,17 @@
       "candidates": [
         {
           "url": "http://salmonpark.com/",
-          "kind": "invalid",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2654/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1876,10 +1878,10 @@
       "candidates": [
         {
           "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2668/",
-          "kind": "invalid",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
@@ -1892,18 +1894,18 @@
       "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18872",
       "candidates": [
         {
-          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2684/",
-          "kind": "invalid",
+          "url": "https://hanafuru.jp/facility/hanaroad.html",
+          "kind": "station_or_partner_site_unverified",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         },
         {
-          "url": "https://hanafuru.jp/facility/hanaroad.html",
-          "kind": "invalid",
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2684/",
+          "kind": "regional_directory",
           "ownershipVerified": false,
           "eventListingVerified": false,
-          "reviewStatus": "blocked_invalid_url"
+          "reviewStatus": "awaiting_review"
         }
       ],
       "siteVerificationState": "awaiting_review",
