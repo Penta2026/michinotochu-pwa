@@ -4,8 +4,9 @@
   "lastChecked": "2026-10-13",
   "cursor": {
     "page": 0,
-    "offset": 6
+    "offset": 30
   },
+  "listingTraversalCompleted": false,
   "stations": [
     {
       "id": "RS0001",
@@ -83,12 +84,341 @@
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0007",
+      "prefecture": "北海道",
+      "roadName": "望羊中山",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18792",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://ageimo.com/",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/364/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0008",
+      "prefecture": "北海道",
+      "roadName": "えんべつ富士見",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18793",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/389/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0009",
+      "prefecture": "北海道",
+      "roadName": "忠類",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18794",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/407/",
+        "https://hotel-arco.jp/sightseeing/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0010",
+      "prefecture": "北海道",
+      "roadName": "摩周温泉",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18796",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/440/",
+        "http://www.masyuko.or.jp/michinoeki/index.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0011",
+      "prefecture": "北海道",
+      "roadName": "おといねっぷ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18797",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/458/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0012",
+      "prefecture": "北海道",
+      "roadName": "かみゆうべつ温泉チューリップの湯",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18798",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/472/",
+        "http://www.town.yubetsu.lg.jp/50shisetsu/6nou-kankou/spa-kamiyu.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0013",
+      "prefecture": "北海道",
+      "roadName": "いわない",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18799",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/499/",
+        "http://www.iwanai-kanko.org/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0014",
+      "prefecture": "北海道",
+      "roadName": "厚岸グルメパーク",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18801",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.conchiglie.net/",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/531/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0015",
+      "prefecture": "北海道",
+      "roadName": "サンフラワー北竜",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18802",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://portal.hokuryu.info/sunflowerpark/roadsidestation",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/546/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0016",
+      "prefecture": "北海道",
+      "roadName": "みついし",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18803",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/564/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0018",
+      "prefecture": "北海道",
+      "roadName": "よってけ！島牧",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18805",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://michinoekishimamaki.jimdofree.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0019",
+      "prefecture": "北海道",
+      "roadName": "てっくいランド大成",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18806",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hiyama.pref.hokkaido.lg.jp/ss/srk/tabi/04s_tais/parts/8401mtr.htm",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/611/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0020",
+      "prefecture": "北海道",
+      "roadName": "オホーツク紋別",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18807",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://mombetsu.net/tourist-facilities/%E9%81%93%E3%81%AE%E9%A7%85-%E3%82%AA%E3%83%9B%E3%83%BC%E3%83",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/626/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0021",
+      "prefecture": "北海道",
+      "roadName": "YOU･遊･もり",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18808",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://mori-bussan.com/",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/641/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0022",
+      "prefecture": "北海道",
+      "roadName": "おんねゆ温泉",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18809",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://onneyu-aq.com/facility3",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/685/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0023",
+      "prefecture": "北海道",
+      "roadName": "ルート２２９元和台",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18810",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/704/",
+        "http://www.town.otobe.lg.jp/section/sangyou/e0taal0000000bz1.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0024",
+      "prefecture": "北海道",
+      "roadName": "ハウスヤルビ奈井江",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18811",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://machiken292.com/",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/722/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0025",
+      "prefecture": "北海道",
+      "roadName": "おびら鰊番屋",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18812",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/744/",
+        "http://www.town.obira.hokkaido.jp/kanko/detail/00001365.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0026",
+      "prefecture": "北海道",
+      "roadName": "マリーンアイランド岡島",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18813",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/768/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0027",
+      "prefecture": "北海道",
+      "roadName": "おこっぺ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18814",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/795/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0028",
+      "prefecture": "北海道",
+      "roadName": "阿寒丹頂の里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18815",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/810/",
+        "https://www.akan.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0029",
+      "prefecture": "北海道",
+      "roadName": "おとふけ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18816",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/825/",
+        "https://michinoeki-otofuke.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0030",
+      "prefecture": "北海道",
+      "roadName": "ピンネシリ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18817",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://pinneshiri-autocamp.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0031",
+      "prefecture": "北海道",
+      "roadName": "上ノ国もんじゅ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18819",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/870/",
+        "http://www.kaminokuni.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
     }
   ],
   "lastRun": {
     "listCount": 35,
-    "inspected": 6,
-    "matched": 6,
+    "inspected": 24,
+    "matched": 24,
     "errors": 0
   }
 }
