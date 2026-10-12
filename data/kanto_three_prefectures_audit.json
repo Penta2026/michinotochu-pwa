@@ -41,11 +41,11 @@
     {
       "prefecture": "栃木県",
       "source": "https://m-mashiko.com/event/",
-      "status": "fetch_failed",
-      "candidates": 0,
+      "status": "checked",
+      "candidates": 40,
       "accepted": 0,
       "examples": [],
-      "error": "ConnectionError: HTTPSConnectionPool(host='m-mashiko.com', port=443): Max retries exceeded with url: /event/ (Caused by NewConnectionError(\"HTTPSConnection(host='m-mas"
+      "error": ""
     },
     {
       "prefecture": "群馬県",

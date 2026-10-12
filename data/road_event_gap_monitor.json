@@ -30,25 +30,25 @@
       "no_individually_dated_monthly_events": 4,
       "no_individually_dated_sections": 8,
       "no_strict_official_calendar_cards": 1,
-      "not_event": 53,
+      "not_event": 54,
       "offsite": 1,
       "past": 16,
       "undated": 26,
       "venue_missing": 10
     },
-    "sourcesWithFetchProblems": 2,
+    "sourcesWithFetchProblems": 1,
     "sourcesWithZeroCandidates": 2,
     "sourcesAtCheckLimit": 9,
     "sourcesUsingRotatingInspection": 9,
     "rotatingInspectionSlots": 17,
-    "uninspectedCandidateSlots": 164,
+    "uninspectedCandidateSlots": 163,
     "reviewWithExplicitFutureHint": 2,
     "reviewWithExplicitPastHint": 4,
-    "warnings": 12,
+    "warnings": 11,
     "warningKinds": {
       "article_check_limit": 9,
       "repeatedly_empty_listing": 1,
-      "source_fetch_error": 2
+      "source_fetch_error": 1
     },
     "unreconfirmedEvents": 0,
     "officialListingReconfirmationCandidates": 7,
@@ -11069,20 +11069,13 @@
   "unreconfirmedEvents": [],
   "warnings": [
     {
-      "kind": "source_fetch_error",
-      "sourceId": "fukui_hamabiyori",
-      "prefecture": "福井県",
-      "severity": "warning",
-      "failureDayStreak": 1
-    },
-    {
       "kind": "article_check_limit",
       "sourceId": "fukui_hamabiyori",
       "prefecture": "福井県",
       "severity": "notice",
-      "candidateCount": 11,
-      "checkedCount": 7,
-      "uninspectedCandidateCount": 3
+      "candidateCount": 10,
+      "checkedCount": 8,
+      "uninspectedCandidateCount": 2
     },
     {
       "kind": "article_check_limit",
@@ -11256,31 +11249,25 @@
       "roadName": "若狭美浜はまびより",
       "url": "https://hamabiyori.com/events/",
       "checkedOn": "2026-10-13",
-      "status": "source_error",
-      "candidateCount": 11,
-      "checkedCount": 7,
+      "status": "review_candidates",
+      "candidateCount": 10,
+      "checkedCount": 8,
       "acceptedCount": 0,
       "reconfirmedCount": 0,
       "knownSkippedCount": 0,
-      "fetchFailedCount": 1,
+      "fetchFailedCount": 0,
       "reconfirmationCandidates": 0,
       "reconfirmationChecked": 0,
       "reconfirmationFailed": 0,
       "reconfirmationUninspected": 0,
       "listingError": "",
-      "fetchErrors": [
-        {
-          "url": "https://hamabiyori.com/contact",
-          "type": "RequestException",
-          "detail": "Non-200/redirect status: 301"
-        }
-      ],
-      "failureDayStreak": 1,
+      "fetchErrors": [],
+      "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": true,
-      "uninspectedCandidateCount": 3,
+      "uninspectedCandidateCount": 2,
       "explorationSlots": 2,
-      "explorationPool": 5
+      "explorationPool": 4
     },
     {
       "id": "osaka_izumi_regional_center",

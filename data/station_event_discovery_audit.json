@@ -196,8 +196,8 @@
       "roadName": "若狭美浜はまびより",
       "listingUrl": "https://hamabiyori.com/events/",
       "listingError": "",
-      "candidates": 11,
-      "checked": 7,
+      "candidates": 10,
+      "checked": 8,
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
@@ -205,16 +205,10 @@
       "reconfirmationChecked": 0,
       "reconfirmationFailed": 0,
       "reconfirmationUninspected": 0,
-      "fetchFailed": 1,
-      "fetchErrors": [
-        {
-          "url": "https://hamabiyori.com/contact",
-          "type": "RequestException",
-          "detail": "Non-200/redirect status: 301"
-        }
-      ],
+      "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
-        "not_event": 6,
+        "not_event": 7,
         "undated": 1
       },
       "examples": [],
@@ -253,14 +247,19 @@
           "title": "READ MORE",
           "url": "https://hamabiyori.com/%e3%83%87%e3%82%b8%e3%82%bf%e3%83%ab%e3%82%b9%e3%82%bf%e3%83%b3%e3%83%97%e3%83%a1%e3%83%a2%e3%83%aa%e3%83%bc%e3%82%ba%e5%8f%82%e5%8a%a0%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
           "reason": "not_event"
+        },
+        {
+          "title": "READ MORE",
+          "url": "https://hamabiyori.com/%f0%9f%93%857%e6%9c%88%e5%96%b6%e6%a5%ad%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
+          "reason": "not_event"
         }
       ],
-      "eligibleCandidates": 11,
-      "uninspectedCandidates": 3,
-      "explorationStart": 4,
-      "explorationNext": 1,
+      "eligibleCandidates": 10,
+      "uninspectedCandidates": 2,
+      "explorationStart": 0,
+      "explorationNext": 2,
       "explorationSlots": 2,
-      "explorationPool": 5
+      "explorationPool": 4
     },
     {
       "id": "osaka_izumi_regional_center",

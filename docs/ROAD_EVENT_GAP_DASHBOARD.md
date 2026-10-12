@@ -14,10 +14,10 @@
 | 現在イベントのある都道府県 | 36/47 |
 | 現在の公開イベント | 60 |
 | 設定型の公式収集ルート（監査済/設定） | 28/28 |
-| 収集先の取得問題 | 2 |
+| 収集先の取得問題 | 1 |
 | 候補が0件の収集先 | 2 |
 | 記事チェック上限に達した収集先 | 9 |
-| 未調査の候補記事枠（重複記事を含む可能性あり） | 164 |
+| 未調査の候補記事枠（重複記事を含む可能性あり） | 163 |
 | 日替わり巡回を実施する収集先 | 9 |
 | 日替わり巡回に割り当てた記事枠 | 17 |
 | 要確認候補のうち将来開催日の明記あり | 2 |
@@ -32,7 +32,6 @@
 
 ## 取得状況の注意事項
 
-- **source_fetch_error** — fukui_hamabiyori （warning）
 - **article_check_limit** — fukui_hamabiyori （notice）
 - **article_check_limit** — osaka_izumi_regional_center （notice）
 - **article_check_limit** — wakayama_shikinosato （notice）
