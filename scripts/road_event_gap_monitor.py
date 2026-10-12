@@ -118,9 +118,30 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
     fresh_discovery = discovery.get("checkedOn") == today
     configs = {x["id"]: x for x in registry.get("sources", [])
                if x.get("enabled", False)}
+    # A deliberately suspended 404 is NOT a healthy source. Keep its missing
+    # official evidence in the dashboard even while suppressing dead fetches.
+    unavailable_evidence = [{
+        "id": x["id"], "prefecture": x.get("prefecture", ""),
+        "roadName": x.get("roadName", ""),
+        "lastHttpStatus": x.get("lastHttpStatus"),
+        "lastObservedFailureOn": x.get("lastObservedFailureOn", ""),
+        "reason": x.get("suspendedReason", ""),
+        "officialRecoveryPage": x.get("officialRecoveryPage", ""),
+        "officialEventArticle": x.get("officialEventArticle", ""),
+        "status": "unresolved_official_evidence",
+    } for x in registry.get("sources", [])
+      if not x.get("enabled", False) and x.get("monitorUnavailableEvidence") is True]
     earlier = {x["id"]: x for x in previous.get("sources", [])
                if x.get("id")}
     checked_sources, warnings, queue = [], [], []
+    for item in unavailable_evidence:
+        warnings.append({
+            "kind": "suspended_unavailable_official_evidence",
+            "sourceId": item["id"], "prefecture": item["prefecture"],
+            "severity": "warning", "reason": item["reason"],
+            "lastHttpStatus": item["lastHttpStatus"],
+            "officialRecoveryPage": item["officialRecoveryPage"],
+        })
     reason_totals = Counter()
     seen_candidates = set()
 
@@ -333,6 +354,7 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
             "potentialReviewSamples": len(queue),
             "rejectedReasonCounts": dict(sorted(reason_totals.items())),
             "sourcesWithFetchProblems": sum(s["status"] == "source_error" for s in checked_sources),
+            "suspendedUnavailableOfficialEvidence": len(unavailable_evidence),
             "sourcesWithZeroCandidates": sum(s["status"] == "no_candidates" for s in checked_sources),
             "sourcesAtCheckLimit": sum(s["mayHaveUnreviewedCandidates"] for s in checked_sources),
             "sourcesUsingRotatingInspection": sum(s["explorationSlots"] > 0 for s in checked_sources),
@@ -364,6 +386,7 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
         "historicallyReachedWithNoCurrentEvents": uncovered,
         "reviewCandidates": queue[:120],
         "unreconfirmedEvents": unconfirmed,
+        "unavailableOfficialEvidence": unavailable_evidence,
         "warnings": warnings,
         "sources": checked_sources,
         "regionalHomepages": regional_checks,
@@ -398,6 +421,8 @@ def render_dashboard(report):
         "| 設定型の公式収集ルート（監査済/設定） | {}/{} |".format(
             summary["phase2SourcesAudited"], summary["phase2SourcesConfigured"]),
         "| 収集先の取得問題 | {} |".format(summary["sourcesWithFetchProblems"]),
+        "| 一時停止中の公式証拠（未復旧・要確認） | {} |".format(
+            summary["suspendedUnavailableOfficialEvidence"]),
         "| 候補が0件の収集先 | {} |".format(summary["sourcesWithZeroCandidates"]),
         "| 記事チェック上限に達した収集先 | {} |".format(
             summary["sourcesAtCheckLimit"]),
@@ -435,6 +460,22 @@ def render_dashboard(report):
     if len(report["warnings"]) > 30:
         lines.append("- その他 {}件（全件はJSON参照）".format(
             len(report["warnings"]) - 30))
+    if report.get("unavailableOfficialEvidence"):
+        lines += ["", "## 公式の一次資料が取得できず保留中の収集先", "",
+                  "404などの恒常的な失敗を避けるため取得を一時停止していますが、",
+                  "**開催会場の一次証拠が復旧した意味ではありません**。掲載保留を継続します。",
+                  "",
+                  "| 県 | 駅 | 根拠の状況 | 最終HTTP | 最終確認日 | 回復確認用の公式ページ |",
+                  "|---|---|---|---|---|---|"]
+        for item in report["unavailableOfficialEvidence"]:
+            url = item["officialRecoveryPage"]
+            link = ("[公式情報を確認]({})".format(
+                url.replace("(", "%28").replace(")", "%29").replace(" ", "%20"))
+                if url.startswith("https://") else "―")
+            lines.append("| {} | {} | {} | {} | {} | {} |".format(
+                _md(item["prefecture"]), _md(item["roadName"]),
+                _md(item["reason"]), _md(item["lastHttpStatus"]),
+                _md(item["lastObservedFailureOn"]), link))
     lines += [
         "",
         "## 人が確認する候補（抜粋）",
@@ -544,6 +585,7 @@ def main():
     for warning in report["warnings"]:
         if warning["kind"] in ("source_fetch_error", "stale_discovery_audit",
                                "configured_source_not_audited",
+                               "suspended_unavailable_official_evidence",
                                "regional_homepage_unreachable"):
             target = warning.get("sourceId") or warning.get("region") or "audit"
             print("::warning title=Road event source monitor::{}: {}".format(
