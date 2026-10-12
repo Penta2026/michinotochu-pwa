@@ -7,6 +7,7 @@ on:
       - "tour-plan.js"
       - "app.js"
       - "index.html"
+      - "style.css"
       - "service-worker.js"
       - "pwa.js"
       - "data/version.json"
