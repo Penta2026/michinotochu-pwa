@@ -72,6 +72,47 @@ class StationCoverageRegistryTests(unittest.TestCase):
                          "other_dedicated_collector_configured")
         self.assertEqual(x["stations"][1]["nextAction"], "review_official_website_url")
 
+    def test_directory_candidate_enriches_only_matching_station_and_stays_unverified(self):
+        scan = {"stations": [
+            {"id": "1", "prefecture": "奈良県", "roadName": "なかまち",
+             "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/123",
+             "lastDirectoryChecked": "2026-10-13",
+             "officialWebsiteCandidateUrlsUnverified": [
+                 "https://directory-hint.example/road"]},
+            {"id": "2", "prefecture": "北海道", "roadName": "イベント未登録",
+             "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/456",
+             "lastDirectoryChecked": "2026-10-13",
+             "officialWebsiteCandidateUrlsUnverified": [
+                 "https://wrong-station.example/"]},
+        ]}
+        x = build_inventory(self.roads, self.sources, {"sources": []},
+                            self.events, self.audit, directory=scan,
+                            checked_on="2026-10-13")
+        self.assertEqual(x["summary"]["nationalDirectoryStationPagesChecked"], 1)
+        self.assertEqual(x["summary"]["nationalDirectoryLinkCandidateStations"], 1)
+        self.assertIn("https://directory-hint.example/road",
+                      x["stations"][0]["officialWebsiteCandidateUrlsUnverified"])
+        self.assertEqual(x["stations"][1]["officialWebsiteCandidateUrlsUnverified"], [])
+        self.assertFalse(x["stations"][0]["officialSiteOwnershipVerified"])
+        self.assertEqual(x["summary"]["stationsWithAnyDedicatedCollector"], 1)
+        self.assertEqual(x["summary"]["confirmedNoEventStations"], 0)
+
+    def test_directory_candidate_creates_verification_action_not_event(self):
+        scan = {"stations": [{
+            "id": "2", "prefecture": "奈良県", "roadName": "イベント未登録",
+            "lastDirectoryChecked": "2026-10-13",
+            "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/456",
+            "officialWebsiteCandidateUrlsUnverified": ["https://maybe-official.example/"],
+        }]}
+        result=build_inventory(self.roads,self.sources,{"sources":[]},
+                               self.events,self.audit,directory=scan,
+                               checked_on="2026-10-13")
+        station=result["stations"][1]
+        self.assertEqual(station["coverageState"],"no_dedicated_source")
+        self.assertEqual(station["nextAction"],"verify_station_site_candidate")
+        self.assertEqual(station["currentVerifiedEvents"],0)
+        self.assertFalse(station["eventAbsentConfirmed"])
+
     def test_website_hints_cannot_be_treated_as_verified_official_sources(self):
         x = self.build()["stations"]
         self.assertEqual(x[0]["officialWebsiteCandidateUrlsUnverified"],
