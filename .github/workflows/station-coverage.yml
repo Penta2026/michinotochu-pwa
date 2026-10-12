@@ -35,6 +35,20 @@ jobs:
         run: PYTHONPATH=scripts python -m unittest scripts/test_station_coverage_registry.py
       - name: Build national station-by-station status register
         run: python scripts/station_coverage_registry.py
+      - name: Check official directory hints were integrated into all-station report
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=Path("data")
+          candidates=data/"station_official_directory_candidates.json"
+          registry=json.loads((data/"station_coverage_registry.json").read_text())
+          expected=len(json.loads(candidates.read_text())["stations"]) if candidates.exists() else 0
+          observed=registry["summary"]["nationalDirectoryStationPagesChecked"]
+          assert observed==expected, f"Directory candidates {expected} != registry {observed}"
+          assert registry["summary"]["appStations"]==1234
+          print(f"台帳整合: {observed}/{expected}の駅詳細候補を全1234駅へ反映")
+          PY
       - name: Publish inventory only if station data changed
         run: |
           git add data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md
