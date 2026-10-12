@@ -1526,7 +1526,7 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         listing = soup("""<main>
             <a href="https://hamabiyori.com/contact">お問い合わせ</a>
             <a href="https://hamabiyori.com/contact/">CONTACT</a>
-            <a href="https://hamabiyori.com/%F0%9F%8E%AA-event/">音楽祭</a>
+            <a href="https://hamabiyori.com/%F0%9F%8E%AA-event/">🎪はまびより音楽祭開催のお知らせ</a>
             </main>""")
         links = _links(listing, spec)
         self.assertEqual(len(links), 1)
