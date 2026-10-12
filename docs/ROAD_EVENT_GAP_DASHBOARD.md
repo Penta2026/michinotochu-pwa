@@ -13,8 +13,9 @@
 | 累計で収集実績のある都道府県 | 47/47 |
 | 現在イベントのある都道府県 | 36/47 |
 | 現在の公開イベント | 60 |
-| 設定型の公式収集ルート（監査済/設定） | 28/28 |
-| 収集先の取得問題 | 1 |
+| 設定型の公式収集ルート（監査済/設定） | 27/27 |
+| 収集先の取得問題 | 0 |
+| 一時停止中の公式証拠（未復旧・要確認） | 1 |
 | 候補が0件の収集先 | 2 |
 | 記事チェック上限に達した収集先 | 9 |
 | 未調査の候補記事枠（重複記事を含む可能性あり） | 163 |
@@ -32,6 +33,7 @@
 
 ## 取得状況の注意事項
 
+- **suspended_unavailable_official_evidence** — ehime_city_official_festival_pdf （warning）
 - **article_check_limit** — fukui_hamabiyori （notice）
 - **article_check_limit** — osaka_izumi_regional_center （notice）
 - **article_check_limit** — wakayama_shikinosato （notice）
@@ -42,7 +44,15 @@
 - **article_check_limit** — fukui_nanjezen_sankairi （notice）
 - **article_check_limit** — miyazaki_niqll （notice）
 - **article_check_limit** — ehime_yawatahama_city_events （notice）
-- **source_fetch_error** — ehime_city_official_festival_pdf （warning）
+
+## 公式の一次資料が取得できず保留中の収集先
+
+404などの恒常的な失敗を避けるため取得を一時停止していますが、
+**開催会場の一次証拠が復旧した意味ではありません**。掲載保留を継続します。
+
+| 県 | 駅 | 根拠の状況 | 最終HTTP | 最終確認日 | 回復確認用の公式ページ |
+|---|---|---|---|---|---|
+| 愛媛県 | 八幡浜みなっと | official_pdf_http_404 | 404 | 2026-10-13 | [公式情報を確認](https://www.city.yawatahama.ehime.jp/doc/2026041700097/) |
 
 ## 人が確認する候補（抜粋）
 

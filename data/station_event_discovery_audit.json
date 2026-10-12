@@ -1255,39 +1255,6 @@
       "explorationPool": 0
     },
     {
-      "id": "ehime_city_official_festival_pdf",
-      "prefecture": "愛媛県",
-      "roadName": "八幡浜みなっと",
-      "listingUrl": "https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf",
-      "listingError": "",
-      "candidates": 1,
-      "checked": 0,
-      "accepted": 0,
-      "reconfirmed": 0,
-      "knownSkipped": 0,
-      "reconfirmationCandidates": 0,
-      "reconfirmationChecked": 0,
-      "reconfirmationFailed": 0,
-      "reconfirmationUninspected": 0,
-      "fetchFailed": 1,
-      "fetchErrors": [
-        {
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf",
-          "type": "HTTPError",
-          "detail": "404 Client Error: Not Found for url: https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf"
-        }
-      ],
-      "reasons": {},
-      "examples": [],
-      "rejectedExamples": [],
-      "eligibleCandidates": 1,
-      "uninspectedCandidates": 0,
-      "explorationStart": 0,
-      "explorationNext": 0,
-      "explorationSlots": 0,
-      "explorationPool": 0
-    },
-    {
       "id": "kanagawa_creativeweek_official_roadstation_art",
       "prefecture": "神奈川県",
       "roadName": "湘南ちがさき",
