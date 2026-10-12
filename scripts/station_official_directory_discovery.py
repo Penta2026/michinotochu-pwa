@@ -9,7 +9,7 @@ import re
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, parse_qs
 from urllib.robotparser import RobotFileParser
 
 import requests
@@ -19,11 +19,11 @@ from station_coverage_registry import DATA, read_app_stations, station_key
 
 HOST = "www.michi-no-eki.jp"
 BASE = "https://" + HOST
-LIST_BASE = BASE + "/stations/search/10/all/all"  # official search, Hokkaido pilot
+LIST_BASE = BASE + "/stations/search/all/all/all"  # all prefectures, paginated
 OUTPUT = DATA / "station_official_directory_candidates.json"
 JST = timezone(timedelta(hours=9))
 AGENT = "MichinotochuStationLinkAudit/1.0 (bounded public-directory lookups)"
-MAX_DETAIL_PAGES = 6
+MAX_DETAIL_PAGES = 24
 MAX_BYTES = 750_000
 
 
@@ -112,12 +112,15 @@ def robots_policy(fetch):
 
 def crawl_once(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES,
                scanned_on=None, pause=None):
-    """One resumable page of public directory inspection, max 6 detail requests."""
+    """One resumable national listing page; limit station details per daily run."""
     old = old or {}
+    if old.get("listingTraversalCompleted"):
+        return {**old, "lastRun": {"listCount": 0, "inspected": 0,
+                                   "matched": 0, "errors": 0}}
     old_rows = {x["id"]: x for x in old.get("stations", [])}
     cursor = old.get("cursor", {"page": 0, "offset": 0})
     page, offset = int(cursor["page"]), int(cursor["offset"])
-    if page < 0 or offset < 0 or not 1 <= max_details <= 20:
+    if page < 0 or offset < 0 or not 1 <= max_details <= 24:
         raise ValueError("Invalid bounded crawl settings")
     scanned_on = scanned_on or datetime.now(JST).date().isoformat()
     listing_url = LIST_BASE + ("?page=" + str(page) if page else "")
@@ -130,46 +133,59 @@ def crawl_once(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES,
     matches = listing_matches(html, roads)
     if not matches:
         raise RuntimeError("directory listing is empty or HTML layout changed")
+    # Offsets should never exceed the page just fetched: fail rather than
+    # claiming that the whole national directory has been checked.
     if offset >= len(matches):
-        offset = 0
-        page += 1
-        listing_url = LIST_BASE + "?page=" + str(page)
-        return {"schemaVersion": 1, "source": BASE + "/search",
-                "lastChecked": scanned_on, "cursor": {"page": page, "offset": offset},
-                "stations": sorted(old_rows.values(), key=lambda x: x["id"]),
-                "lastRun": {"listCount": len(matches), "inspected": 0,
-                            "matched": 0, "errors": 0}}
+        raise RuntimeError("Cursor beyond official listing; review source changes")
     inspected = 0
     matched = 0
     errors = 0
     for item in matches[offset:offset + max_details]:
         url = item["directoryDetailUrl"]
+        status, hints = "not_checked", []
         if not robots_allowed(url):
+            status = "robots_disallowed"
             errors += 1
-            continue
-        if pause:
-            pause(1.5)
-        code, detail = fetch(url)
-        inspected += 1
-        if code != 200:
-            errors += 1
-            continue
-        hints = detail_hints(detail, item)
-        if hints is None:
-            errors += 1
-            continue
-        matched += 1
+        else:
+            if pause:
+                pause(1.5)
+            code, detail = fetch(url)
+            inspected += 1
+            if code != 200:
+                status = "http_" + str(code)
+                errors += 1
+            else:
+                result = detail_hints(detail, item)
+                if result is None:
+                    status = "station_identity_not_confirmed"
+                    errors += 1
+                else:
+                    status, hints = "directory_identity_checked", result
+                    matched += 1
         old_rows[item["id"]] = {
             **item, "lastDirectoryChecked": scanned_on,
+            "directoryCheckStatus": status,
             "officialWebsiteCandidateUrlsUnverified": hints,
             "evidence": "national_station_association_directory_detail_only",
             "officialSiteOwnershipVerified": False,
         }
     end = min(len(matches), offset + max_details)
-    cursor = {"page": page + 1, "offset": 0} if end == len(matches) else {
-        "page": page, "offset": end}
+    # The directory has 1,234 entries split across paginated national results.
+    # Stop only after a real last page, not after exhausting one prefecture.
+    soup = BeautifulSoup(html, "html.parser")
+    has_next = any(
+        same_directory_url(urljoin(BASE, a.get("href", ""))) and
+        urlparse(urljoin(BASE, a.get("href", ""))).path == urlparse(LIST_BASE).path and
+        parse_qs(urlparse(urljoin(BASE, a.get("href", ""))).query).get("page")
+            == [str(page + 1)]
+        for a in soup.select("a[href]")
+    )
+    completed = end == len(matches) and not has_next
+    cursor = ({"page": page + 1, "offset": 0} if end == len(matches) and has_next
+              else {"page": page, "offset": end})
     return {"schemaVersion": 1, "source": BASE + "/search",
             "lastChecked": scanned_on, "cursor": cursor,
+            "listingTraversalCompleted": completed,
             "stations": sorted(old_rows.values(), key=lambda x: x["id"]),
             "lastRun": {"listCount": len(matches), "inspected": inspected,
                         "matched": matched, "errors": errors}}
