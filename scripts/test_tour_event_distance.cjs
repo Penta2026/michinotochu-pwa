@@ -309,16 +309,73 @@ test("event list lets user register its station as touring goal without second s
   assert.match(f.node("tourTargetNotice").textContent, /東100/);
 });
 
+test("tour planner HTML is arranged as one top-to-bottom five-step flow", () => {
+  const html=fs.readFileSync(path.join(root,"index.html"),"utf8");
+  const ride=html.slice(html.indexOf('<section id="ride"'),html.indexOf("</section>",html.indexOf('<section id="ride"')));
+  const stages=['id="rideStart"','id="tourFilters"','id="tourCandidates"',
+    'id="tourNearPanel"','id="tourFinish"','id="tourPlanState"','id="tourSavedPlans"'];
+  const positions=stages.map(id=>ride.indexOf(id));
+  assert.ok(positions.every(p=>p>=0), "all steps must exist");
+  assert.deepEqual(positions,positions.slice().sort((a,b)=>a-b), "steps must follow scroll order");
+  assert.match(ride,/class="tour-flow" aria-label="ツーリング計画の手順"/);
+  assert.equal((ride.match(/class="tour-step-number"/g)||[]).length,5);
+  const events=ride.indexOf('id="tourEventsBox"');
+  assert.ok(events>ride.indexOf('id="tourCandidatePicker"'));
+  assert.ok(events<ride.indexOf('id="tourNearPanel"'));
+  assert.match(ride,/<details id="tourEventSettings"/);
+  assert.ok(ride.indexOf('onclick="tourOpenMaps()"')<ride.indexOf('id="tourSavedPlans"'));
+  assert.doesNotMatch(ride,/onclick="tourSearchNearby\(\)"/);
+  for(const id of ["tourTargetSelect","tourEventList","tourEventListBtn","tourEventUpdateBtn",
+    "tourNearSelect","tourReturnSame","tourPlanName","tourVehicle"]){
+    assert.equal(ride.split('id="'+id+'"').length-1,1,"exactly one "+id);
+  }
+});
+
+test("event details are contextual and close when another category is chosen", () => {
+  const f=fixture();
+  assert.equal(f.node("tourEventsBox").hidden,false);
+  assert.equal(f.node("tourCandidatePicker").hidden,false);
+  f.openEvents();
+  assert.equal(f.node("tourEventList").hidden,false);
+  f.change("tourGroup","road");
+  f.ctx.window.tourGroupChanged();
+  assert.equal(f.node("tourEventsBox").hidden,true);
+  assert.equal(f.node("tourEventList").hidden,true);
+  assert.equal(f.node("tourEventListBtn")["aria-expanded"],"false");
+  assert.equal(f.node("tourCandidatePicker").hidden,false);
+  f.change("tourGroup","roadEvent");
+  f.ctx.window.tourGroupChanged();
+  assert.equal(f.node("tourEventsBox").hidden,false);
+  assert.equal(f.node("tourEventList").hidden,true);
+  assert.match(f.node("tourEventListBtn").textContent,/条件内の開催イベントを詳しく見る/);
+});
+
+test("nearby radius changes refresh near list without a second search button", () => {
+  const f=fixture();
+  f.node("tourTargetSelect").value="0";
+  f.ctx.window.tourChooseSelected();
+  assert.ok(f.ctx.window.tourNearList.length>0);
+  f.change("tourRadius","0");
+  assert.equal(f.ctx.window.tourNearList.length,0);
+  assert.match(f.node("tourNearCount").textContent,/直線0km以内/);
+  f.change("tourRadius","20");
+  assert.ok(f.ctx.window.tourNearList.length>0);
+});
+
 test("the web entry point and service worker both deploy the new PWA version", () => {
   const index = fs.readFileSync(path.join(root, "index.html"), "utf8");
   const worker = fs.readFileSync(path.join(root, "service-worker.js"), "utf8");
   const version = JSON.parse(fs.readFileSync(path.join(root, "data/version.json"), "utf8"));
-  assert.match(index, /tour-plan\.js\?v=1\.6\.24/);
-  assert.match(index, /目標距離内のイベント開催駅を見る/);
+  assert.match(index, /tour-plan\.js\?v=1\.6\.25/);
+  assert.match(index, /条件内の開催イベントを詳しく見る/);
+  assert.match(index, /id="tourEventSettings"/);
+  assert.match(index, /id="tourNearPanel"/);
+  const css=fs.readFileSync(path.join(root,"style.css"),"utf8");
+  assert.match(css, /Touring planner: one-direction, five-step mobile workflow/);
   assert.doesNotMatch(index, /id="tourSearchBtn"/);
   assert.doesNotMatch(index, /🎯 目標地点の候補を見る/);
   assert.match(index, /id="tourCandidatePicker"/);
-  assert.match(worker, /michino-shell-v1\.6\.24/);
-  assert.match(worker, /tour-plan\.js\?v=1\.6\.24/);
-  assert.equal(version.appVersion, "1.6.24");
+  assert.match(worker, /michino-shell-v1\.6\.25/);
+  assert.match(worker, /tour-plan\.js\?v=1\.6\.25/);
+  assert.equal(version.appVersion, "1.6.25");
 });
