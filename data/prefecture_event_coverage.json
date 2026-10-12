@@ -80,7 +80,7 @@
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
     "registeredEvents": 60,
-    "targetedStationFeedPrefectures": 26,
+    "targetedStationFeedPrefectures": 27,
     "notReconfirmedEvents": 0,
     "unknownPrefectures": []
   },
@@ -134,8 +134,8 @@
         "山形県"
       ],
       "registeredEventCount": 8,
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11
     },
     {
       "region": "関東",
@@ -148,7 +148,7 @@
       ],
       "registeredEventCount": 8,
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7
+      "regionalHomepageListingCandidates": 5
     },
     {
       "region": "北陸",
@@ -252,8 +252,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -271,8 +271,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -288,8 +288,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -301,12 +301,14 @@
       ],
       "historicallyObserved": true,
       "observedStationCount": 1,
-      "targetedStationFeeds": [],
+      "targetedStationFeeds": [
+        "てんのう"
+      ],
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -322,8 +324,8 @@
       "notReconfirmedCount": 0,
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -341,8 +343,8 @@
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
-      "regionalHomepageReachable": false,
-      "regionalHomepageListingCandidates": 0,
+      "regionalHomepageReachable": true,
+      "regionalHomepageListingCandidates": 11,
       "regionalAuditMode": "adapter"
     },
     {
@@ -362,7 +364,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -379,7 +381,7 @@
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -398,7 +400,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -415,7 +417,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -433,7 +435,7 @@
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -452,7 +454,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -471,7 +473,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -488,7 +490,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -503,7 +505,7 @@
       "state": "no_registered_events",
       "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {

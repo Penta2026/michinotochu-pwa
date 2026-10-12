@@ -1415,6 +1415,56 @@
       "explorationNext": 0,
       "explorationSlots": 0,
       "explorationPool": 0
+    },
+    {
+      "id": "akita_tenno_official",
+      "prefecture": "秋田県",
+      "roadName": "てんのう",
+      "listingUrl": "https://michinoeki-tenno.jp/",
+      "listingError": "",
+      "candidates": 4,
+      "checked": 4,
+      "accepted": 0,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {
+        "no_article": 4
+      },
+      "examples": [],
+      "rejectedExamples": [
+        {
+          "title": "2026.10.02 イベント 10/31🎃ハロウィンイベント2026",
+          "url": "https://michinoeki-tenno.jp/info/1031halloween/",
+          "reason": "no_article"
+        },
+        {
+          "title": "2026.10.07 イベント 10/10~12「夏秋いちご祭り」開催🍓🎉",
+          "url": "https://michinoeki-tenno.jp/info/1010itigo/",
+          "reason": "no_article"
+        },
+        {
+          "title": "2026.10.12 入浴・サウナ 【10/18】レディースデイ:美肌の湯♨️✨",
+          "url": "https://michinoeki-tenno.jp/info/20261018kurara/",
+          "reason": "no_article"
+        },
+        {
+          "title": "2026.10.10 イベント 【夏秋いちご祭り 開催時間変更のお知らせ🍓】",
+          "url": "https://michinoeki-tenno.jp/info/itigo/",
+          "reason": "no_article"
+        }
+      ],
+      "eligibleCandidates": 4,
+      "uninspectedCandidates": 0,
+      "explorationStart": 0,
+      "explorationNext": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
     }
   ],
   "newEvents": 0,
