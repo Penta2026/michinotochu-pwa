@@ -1,6 +1,9 @@
-name: 全国道の駅公式リンク照合・小規模試験
+name: 全国1234駅の公式リンク候補・分散巡回
 
 on:
+  schedule:
+    - cron: "0 2 * * *"
+      timezone: "Asia/Tokyo"
   push:
     branches: [main]
     paths:
@@ -19,7 +22,7 @@ concurrency:
 jobs:
   pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,9 +34,11 @@ jobs:
           cache-dependency-path: scripts/requirements-road-events.txt
       - name: Install parser dependencies
         run: python -m pip install -r scripts/requirements-road-events.txt
+      - name: Refresh station scan cursor to latest main
+        run: git pull --rebase origin main
       - name: Test safe national directory extraction offline
         run: PYTHONPATH=scripts python -m unittest scripts/test_station_official_directory_discovery.py scripts/test_station_coverage_registry.py
-      - name: Look up only six directory station details, respecting robots rules
+      - name: Respect robots policy and inspect at most 24 station details
         run: PYTHONPATH=scripts python scripts/station_official_directory_discovery.py
       - name: Save candidate station URLs without certifying ownership
         run: |
