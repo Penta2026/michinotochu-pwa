@@ -12,6 +12,7 @@ on:
       - "pwa.js"
       - "data/version.json"
       - "scripts/test_tour_event_distance.cjs"
+      - "scripts/test_interest_road_events.cjs"
       - ".github/workflows/tour-event-ui.yml"
   workflow_dispatch:
 
@@ -30,4 +31,4 @@ jobs:
       - name: JavaScript syntax
         run: node --check tour-plan.js && node --check app.js && node --check pwa.js
       - name: Tour event distance UI regression
-        run: node --test scripts/test_tour_event_distance.cjs
+        run: node --test scripts/test_tour_event_distance.cjs scripts/test_interest_road_events.cjs
