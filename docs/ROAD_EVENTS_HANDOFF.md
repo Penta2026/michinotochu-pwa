@@ -1,10 +1,19 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-13 イベント収集・Phase 6本番Actions #77成功、公式再確認17件・未再確認0件、公開60件/36県/44駅、重複0件。福井の非イベント「お問い合わせ」URL除外を追加し、収集エンジンCI #8で281件全合格**。愛媛PDF404は継続、福井の除外効果は次の本番収集で検証。  
+更新基準: **2026-10-13 Phase 6 本番Actions #78成功。福井「/contact」偽取得エラーの本番解消を確認、公式再確認17件・未再確認0件、公開60件/36県/44駅、重複0件、設定型ソース28件の取得問題は愛媛PDF404の1件のみ**。愛媛産業まつりは公式開催日・検索キャッシュ内の会場記載があるが、会場原本が取得不可のため自動公開保留。  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-13 Phase 6 本番収集 #78 — 福井301解消・残課題は愛媛市公式PDF404
+
+- **本番確定**：[道の駅イベント情報（全国・地域別） #78](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38308950330) 成功。Pages公開 #1520 成功。監査は2026-10-13 JST分。`data/road_events.json` 60件、36県、44駅、`quality.notReconfirmed=0`、`possibleDuplicates=0`、前回比変更なし。
+- **福井の改善効果を実地確認**：`fukui_hamabiyori` 記事候補は11→**10**、`checked=8`、`fetchFailed=0`／`fetchErrors=[]`。前回 `https://hamabiyori.com/contact` の301が偽取得エラーとして載っていた問題は、`articlePathPattern` で非イベントURLを除外し本番で解消。**収集失敗ソース2→1件**。
+- **継続した公式再確認**：全モード合計**17件再確認成功**、新設別枠`reconfirmationCandidates=7`、`reconfirmationChecked=7`、`reconfirmationFailed=0`。大阪「いずみ山愛の里」`reconfirmationChecked=1`／`reconfirmed=1`。山口「阿武町」も再確認成功。再確認の全件確認済とは限らないが、前回と同じ該当レコードは安定。
+- **愛媛の未解決事項**：八幡浜市公式イベント一覧 `https://www.city.yawatahama.ehime.jp/event/2026/` に第13回やわたはま産業まつり**2026-11-22**。市公式プロポーザル本文 `https://www.city.yawatahama.ehime.jp/doc/2026041700097/` には仕様書リンクがあり、ウェブ検索インデックス内の仕様書文面は会場「道の駅・みなとオアシス 八幡浜みなっと」と明記。しかし**仕様書PDF `https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf` が実際の収集でHTTP404（失敗継続3日）**、市の個別イベント記事 `/doc/2026081300028/` は`venue_missing`。検索キャッシュ、過年度記事、非公式紹介記事に依存して開催会場を自動確定しない。今後は市のライブHTMLまたは再取得可能な市公式の代替会場一次資料と日付根拠を同時に検証できる経路を探す。すでに正式採用済の11月11日「NPOのための広報セミナー」は維持。
+- **今後の優先課題**：①八幡浜の404解消、または等価のライブ一次情報への安全な移行（エラーを消すだけの無条件無効化はしない）、②全国の駅マスタ1,234駅と広域・県別の一次ソースのリンク拡張、③独立に採取した標本による真のイベント捕捉率監査。`個別収集元なし=イベント未監視` と断定しない。
+- **ユーザー作業**：#78によって福井設定修正の検証は済んだため**追加の手動Run workflowは不要**。次回の収集コード・公式ソース設定変更時にCIと実地検証を行う。
 
 ## 2026-10-13 本番収集 #76→#77 成功と監査値、福井の偽エラー修正
 
