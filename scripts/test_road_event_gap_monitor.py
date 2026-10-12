@@ -258,6 +258,21 @@ class GapMonitorTests(unittest.TestCase):
                      if x["kind"]=="article_check_limit")
         self.assertEqual(warning["uninspectedCandidateCount"], 143)
 
+    def test_changed_old_event_is_urgent_review_not_new_auto_publication(self):
+        entry = source(
+            reasons={"known_article_identity_changed": 1},
+            rejectedExamples=[{
+                "title": "2026年11月18日開催 秋のマルシェ",
+                "url": "https://official.example/changed",
+                "reason": "known_article_identity_changed",
+            }])
+        report = self.report(entry)
+        self.assertEqual(len(report["reviewCandidates"]), 1)
+        item = report["reviewCandidates"][0]
+        self.assertEqual(item["reviewReason"], "previously_published_event_changed")
+        self.assertEqual(item["priority"], "high")
+        self.assertEqual(item["status"], "unverified_candidate")
+
     def test_monitor_distinguishes_new_discovery_from_bounded_rechecks(self):
         item = source(candidates=12, checked=10, accepted=1, reconfirmed=1,
                       knownSkipped=4, eligibleCandidates=8,
