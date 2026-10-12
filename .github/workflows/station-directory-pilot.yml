@@ -1,0 +1,49 @@
+name: 全国道の駅公式リンク照合・小規模試験
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/station_official_directory_discovery.py"
+      - "scripts/test_station_official_directory_discovery.py"
+      - ".github/workflows/station-directory-pilot.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: road-events-update
+  cancel-in-progress: false
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-road-events.txt
+      - name: Install parser dependencies
+        run: python -m pip install -r scripts/requirements-road-events.txt
+      - name: Test safe national directory extraction offline
+        run: PYTHONPATH=scripts python -m unittest scripts/test_station_official_directory_discovery.py scripts/test_station_coverage_registry.py
+      - name: Look up only six directory station details, respecting robots rules
+        run: PYTHONPATH=scripts python scripts/station_official_directory_discovery.py
+      - name: Save candidate station URLs without certifying ownership
+        run: |
+          git add data/station_official_directory_candidates.json
+          if git diff --cached --quiet; then
+            echo "公式名簿由来のURL候補は変更なし"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "data: record unverified national directory station link candidates"
+          git pull --rebase origin main
+          git push
