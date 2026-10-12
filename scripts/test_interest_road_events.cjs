@@ -194,8 +194,8 @@ test("HTML offers the roadside station event choice and safe refresh controls", 
   assert.match(css, /#interest #interestFeatureLabel\[hidden\]/);
   const sw=fs.readFileSync(path.join(root,"service-worker.js"),"utf8");
   const version=JSON.parse(fs.readFileSync(path.join(root,"data/version.json"),"utf8"));
-  assert.match(html,/app\.js\?v=1\.6\.26/);
-  assert.match(html,/tour-plan\.js\?v=1\.6\.26/);
-  assert.match(sw,/michino-shell-v1\.6\.26/);
-  assert.equal(version.appVersion,"1.6.26");
+  assert.match(html,/app\.js\?v=1\.6\.27/);
+  assert.match(html,/tour-plan\.js\?v=1\.6\.27/);
+  assert.match(sw,/michino-shell-v1\.6\.27/);
+  assert.equal(version.appVersion,"1.6.27");
 });
