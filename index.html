@@ -171,22 +171,48 @@
 </div></section>
 
 <section id="ride" class="view"><div class="screen-card menu-ride"><div class="screen-title-card"><h2>🏍️ 今日の走り方・ツーリング計画</h2><button class="screen-close" onclick="showView('home')">×</button></div><div class="screen-body">
-<p class="lead">行きたい方向と直線距離から目標を探して、寄り道を足して帰ろう。</p>
+<p class="lead">出発地と距離を決めたら、候補を選んで寄り道を追加。上から順に進めるよ。</p>
+<nav class="tour-flow" aria-label="ツーリング計画の手順"><span>① 出発</span><span>② 条件</span><span>③ 行き先</span><span>④ 寄り道</span><span>⑤ 仕上げ</span></nav>
+<div class="tour-step-head"><span class="tour-step-number">1</span><div><h3>出発地点</h3><p>まず、どこから走り出す？</p></div></div>
 <div id="rideStart"><div class="panel start-panel"><h3>📍 スタート地点</h3><div class="origin-status" id="rideOrigin">現在：未設定</div><div class="start-simple"><button class="soft start-current" onclick="useCurrent('ride')">◎ 現在地を使う</button><button class="soft start-station" onclick="stationPicker('ride')">🚉 駅を選ぶ</button><div class="map-pick-row"><button class="soft start-map" onclick="openStartMap('ride')">🗺 Googleマップでスタート地点を選ぶ</button><button class="info-btn" onclick="showMapStartHelp()" title="使い方">ⓘ</button></div><button class="soft reflect-btn start-reflect" onclick="reflectMapLink('ride')">🔗 コピーしたリンクを反映</button></div></div></div>
 
     
-<div class="panel form-grid">
+<div id="tourFilters" class="panel form-grid tour-stage-card"><div class="tour-step-head full"><span class="tour-step-number">2</span><div><h3>行き先を探す条件</h3><p>変更すると下の候補が自動で切り替わるよ</p></div></div>
 <label>目標直線距離（km）<input id="tourDistance" type="number" min="1" max="1000" value="100"></label>
 <label>許容距離 ±（km）<input id="tourTolerance" type="number" min="0" max="300" value="20"></label>
 <label>方角<select id="tourDirection"><option value="all">🎲 全方角</option><option value="north">⬆️ 北（北北西〜北北東）</option><option value="east">➡️ 東（東北東〜東南東）</option><option value="south">⬇️ 南（南南東〜南南西）</option><option value="west">⬅️ 西（西南西〜西北西）</option></select></label>
 <label>スポット区分<select id="tourGroup" onchange="tourGroupChanged()"><option value="all">すべて</option><option value="road">道の駅（全部）</option><option value="roadEvent">道の駅（イベント）</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="riders">ライダーズスポット</option></select></label>
-<label>スポットカテゴリ<select id="tourCategory"><option value="">すべて</option></select></label><div class="full panel" id="tourEventsBox"><h3>📅 道の駅イベント情報</h3><div id="tourEventStatus" class="note" role="status" aria-live="polite">未取得 / 登録 0件</div><button id="tourEventUpdateBtn" type="button" class="soft full tour-action tour-action-filter" onclick="tourUpdateRoadEvents()">🔄 イベント情報を更新</button><button id="tourEventListBtn" type="button" class="soft full tour-action tour-action-filter" onclick="tourToggleEventList()" aria-expanded="false" aria-controls="tourEventList">📋 目標距離内のイベント開催駅を見る</button><div id="tourEventList" class="full" hidden></div><div class="note">イベント情報の更新は任意です。取得した情報はこの端末に保存され、アプリの更新とは別に管理されます。</div></div>
+<label>スポットカテゴリ<select id="tourCategory"><option value="">すべて</option></select></label></div>
+<div id="tourCandidates" class="panel form-grid tour-stage-card">
+  <div class="tour-step-head full"><span class="tour-step-number">3</span><div><h3>目標地点を選ぶ</h3><p>距離と方角に合う候補から選択</p></div></div>
+  <div id="tourCandidateCount" class="tour-result-count full" role="status" aria-live="polite"></div>
+  <div id="tourCandidatePicker" class="full form-grid">
+    <label class="full">目標地点の候補<select id="tourTargetSelect"><option value="">出発地点と条件を設定してください</option></select></label>
+    <button type="button" class="soft full tour-action tour-action-select" onclick="tourChooseSelected()">🎯 この地点を目標に登録</button>
+  </div>
+  <div class="tour-selected full" aria-live="polite">
+    <div id="tourTargetNotice" class="note" role="status">目標地点はまだ設定されていません。</div>
+    <div id="tourTargetEventNotice" class="note" role="status" hidden></div>
+    <button id="tourTargetMapBtn" type="button" class="soft tour-action tour-action-map" onclick="tourPreviewRoute(false)" hidden>🗺️ 目標までのルートをGoogleマップで確認</button>
+  </div>
+  <div id="tourEventsBox" class="tour-event-section full" hidden>
+    <button id="tourEventListBtn" type="button" class="soft tour-action tour-action-filter" onclick="tourToggleEventList()" aria-expanded="false" aria-controls="tourEventList">📅 条件内の開催イベントを詳しく見る</button>
+    <div id="tourEventList" class="tour-event-results" hidden></div>
+    <details id="tourEventSettings" class="tour-event-settings">
+      <summary>🔄 イベント情報の更新・取得状況</summary>
+      <div id="tourEventStatus" class="note" role="status" aria-live="polite">未取得 / 登録 0件</div>
+      <button id="tourEventUpdateBtn" type="button" class="soft tour-action tour-action-filter" onclick="tourUpdateRoadEvents()">🔄 イベント情報を更新</button>
+      <p class="note">イベント情報は端末に保存され、アプリの更新とは別に管理されます。</p>
+    </details>
+  </div>
 </div>
-<div id="tourCandidates" class="panel form-grid"><div id="tourTargetNotice" class="note full" role="status" aria-live="polite">目標地点はまだ設定されていません。</div><div id="tourTargetEventNotice" class="note full" role="status" hidden></div><button id="tourTargetMapBtn" type="button" class="soft full tour-action tour-action-map" onclick="tourPreviewRoute(false)" hidden>🗺️ この目標地点までの走行距離をGoogleマップで確認</button><div id="tourCandidatePicker" class="full form-grid"><label class="full">目標地点の候補<select id="tourTargetSelect"><option value="">検索すると候補が表示されます</option></select></label><button type="button" class="soft full tour-action tour-action-select" onclick="tourChooseSelected()">🎯 選択した地点を目標に登録</button><div id="tourCandidateCount" class="note full"></div></div></div>
-<div class="panel form-grid"><h3 class="full">📍 目標地点周辺のスポット追加</h3>
+<div id="tourNearPanel" class="panel form-grid tour-stage-card">
+  <div class="tour-step-head full"><span class="tour-step-number">4</span><div><h3>寄り道を追加</h3><p>目標地点から近い場所を最大2か所まで</p></div></div>
 <label>検索半径（直線km）<input id="tourRadius" type="number" value="20" min="0" max="300"></label>
-<label>スポット区分<select id="tourNearGroup" onchange="tourNearGroupChanged()"><option value="all">すべて</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="riders">ライダーズスポット</option></select></label><label>スポットカテゴリ<select id="tourNearCategory"><option value="">すべて</option></select></label><div class="full"><button type="button" class="soft full tour-action tour-action-filter" onclick="tourSearchNearby()">🔎 この条件で周辺スポットを更新</button></div><label class="full">追加登録地点の候補<select id="tourNearSelect"><option value="">目標地点を設定すると候補が表示されます</option></select></label><button type="button" class="soft full tour-action tour-action-select" onclick="tourAddNearbySelected()">＋ 選択した地点を追加</button><div id="tourNearCount" class="note full" role="status" aria-live="polite"></div><div class="note full">目標地点1件＋追加地点2件まで。登録順でGoogleマップへ送るよ。</div></div>
-<div class="panel form-grid"><h3 class="full">🏠 帰着地点</h3>
+<label>スポット区分<select id="tourNearGroup" onchange="tourNearGroupChanged()"><option value="all">すべて</option><option value="road">道の駅</option><option value="A">定番スポット</option><option value="B">寄り道スポット</option><option value="riders">ライダーズスポット</option></select></label><label>スポットカテゴリ<select id="tourNearCategory"><option value="">すべて</option></select></label><label class="full">追加登録地点の候補<select id="tourNearSelect"><option value="">目標地点を設定すると候補が表示されます</option></select></label><button type="button" class="soft full tour-action tour-action-select" onclick="tourAddNearbySelected()">＋ 選択した地点を追加</button><div id="tourNearCount" class="note full" role="status" aria-live="polite"></div><div class="note full">目標地点1件＋追加地点2件まで。登録順でGoogleマップへ送るよ。</div></div>
+<div id="tourFinish" class="panel form-grid tour-stage-card">
+  <div class="tour-step-head full"><span class="tour-step-number">5</span><div><h3>帰着・ルート確認・保存</h3><p>走り方を確認して完成！</p></div></div>
+  <h4 class="full tour-section-subhead">🏠 帰着地点</h4>
 <label class="full tour-return-same"><input id="tourReturnSame" type="checkbox" checked onchange="tourReturnChanged()"> 出発地点と同じ</label>
 <div class="full" id="tourReturnExtra" hidden>
 <div class="panel start-panel"><h3>📍 帰着地点を指定</h3><div class="origin-status" id="tourReturnOrigin">現在：未設定</div>
@@ -200,8 +226,9 @@
 <label class="full">または場所名・住所を指定<input id="tourReturnName" placeholder="例：広島駅"></label>
 </div>
 <label>車両区分<select id="tourVehicle"><option value="125">125cc以下（高速・有料を回避）</option><option value="250" selected>250cc以上（高速・有料も可）</option></select></label></div>
-<div class="panel"><h3>🧭 計画した地点</h3><div id="tourPlanState"></div></div><div class="panel form-grid"><h3 class="full">💾 ツーリング計画を保存</h3><label class="full">計画名<input id="tourPlanName" placeholder="例：週末の山方面ツーリング"></label><button type="button" class="soft tour-action tour-action-save" onclick="tourSavePlan()">💾 保存・上書き</button><button type="button" class="soft tour-action tour-action-save" onclick="tourSavePlanAs()">📑 別名で保存</button><label class="full">保存した計画<select id="tourSavedPlans"><option value="">保存した計画を選択</option></select></label><button type="button" class="soft tour-action tour-action-select" onclick="tourLoadSelected()">📂 読み込む</button><button type="button" class="soft tour-action tour-action-danger" onclick="tourDeleteSelected()">🗑 削除</button><button type="button" class="primary full tour-action tour-action-main" onclick="tourSendToDetour()">🛣️ この計画で「寄り道しよう」へ</button></div>
-<button class="primary action-main tour-action" onclick="tourOpenMaps()">🗺️ Googleマップでルートを確認</button>
+<div class="panel tour-plan-summary"><h3>🧭 計画した地点</h3><div id="tourPlanState"></div></div>
+<button class="primary action-main tour-action tour-route-final" onclick="tourOpenMaps()">🗺️ Googleマップでルートを確認</button>
+<div class="panel form-grid"><h3 class="full">💾 ツーリング計画を保存</h3><label class="full">計画名<input id="tourPlanName" placeholder="例：週末の山方面ツーリング"></label><button type="button" class="soft tour-action tour-action-save" onclick="tourSavePlan()">💾 保存・上書き</button><button type="button" class="soft tour-action tour-action-save" onclick="tourSavePlanAs()">📑 別名で保存</button><label class="full">保存した計画<select id="tourSavedPlans"><option value="">保存した計画を選択</option></select></label><button type="button" class="soft tour-action tour-action-select" onclick="tourLoadSelected()">📂 読み込む</button><button type="button" class="soft tour-action tour-action-danger" onclick="tourDeleteSelected()">🗑 削除</button><button type="button" class="primary full tour-action tour-action-main" onclick="tourSendToDetour()">🛣️ この計画で「寄り道しよう」へ</button></div>
 <div class="note">距離は候補を探す直線距離。実走行距離・フェリー・通行規制・経由地の順序はGoogleマップで確認・調整してね。125cc以下の回避指定は通行可能性を保証しないよ。</div>
 </div></div></section>
 
