@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "source": "https://www.michi-no-eki.jp/search",
+  "lastChecked": "2026-10-13",
+  "cursor": {
+    "page": 0,
+    "offset": 6
+  },
+  "stations": [
+    {
+      "id": "RS0001",
+      "prefecture": "北海道",
+      "roadName": "三笠",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18786",
+      "lastDirectoryChecked": "2026-10-13",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.city.mikasa.hokkaido.jp/hotnews/detail/00000036.html",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/172/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0002",
+      "prefecture": "北海道",
+      "roadName": "スタープラザ　芦別",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18787",
+      "lastDirectoryChecked": "2026-10-13",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/202/",
+        "https://go-to-ashibetsu.com/media/2018/04/01/20"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0003",
+      "prefecture": "北海道",
+      "roadName": "南ふらの",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18788",
+      "lastDirectoryChecked": "2026-10-13",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/222/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0004",
+      "prefecture": "北海道",
+      "roadName": "しらぬか恋問館",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18789",
+      "lastDirectoryChecked": "2026-10-13",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/263/",
+        "https://michinoeki-shiranuka.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0005",
+      "prefecture": "北海道",
+      "roadName": "びふか",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18790",
+      "lastDirectoryChecked": "2026-10-13",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.bifuka-kankou.com/michinoeki.php",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/292/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0006",
+      "prefecture": "北海道",
+      "roadName": "江差",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18791",
+      "lastDirectoryChecked": "2026-10-13",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-esashi.jp/modules/sightseeing/content0023.html",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/321/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    }
+  ],
+  "lastRun": {
+    "listCount": 35,
+    "inspected": 6,
+    "matched": 6,
+    "errors": 0
+  }
+}
