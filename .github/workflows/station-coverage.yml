@@ -1,0 +1,48 @@
+name: 全国1234駅・公式イベント巡回台帳
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/station_coverage_registry.py"
+      - "scripts/test_station_coverage_registry.py"
+      - "data/app_data.js"
+      - "data/station_event_discovery_sources.json"
+      - "data/verified_station_source_rules.json"
+      - ".github/workflows/station-coverage.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: road-events-update
+  cancel-in-progress: false
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test per-station registry without network requests
+        run: PYTHONPATH=scripts python -m unittest scripts/test_station_coverage_registry.py
+      - name: Build national station-by-station status register
+        run: python scripts/station_coverage_registry.py
+      - name: Publish inventory only if station data changed
+        run: |
+          git add data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md
+          if git diff --cached --quiet; then
+            echo "全駅巡回台帳に変更なし"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "data: update national 1234-station source coverage inventory"
+          git pull --rebase origin main
+          git push
