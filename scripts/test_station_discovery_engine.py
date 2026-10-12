@@ -1590,5 +1590,144 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
             spec,soup(html),TODAY,"https://attacker.example/michiekiinfo/shiranukainfo/69826/")[1],
             "unofficial_detail")
 
+
+    def test_official_list_reconfirms_previously_published_osaka_marché(self):
+        import json
+        from station_discovery_engine import RULES
+        from road_event_quality import reconcile
+        spec = next(x for x in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                    if x["id"] == "osaka_izumi_regional_center")
+        url = "https://izuminambu-rc.jp/nb_event/marche-oct/"
+        listing_title = ("開催予定 いずみの山の小さなマルシェ10月 "
+                         "2026年10月18日(日)開催")
+        listing = ('<main><a href="' + url + '">' + listing_title +
+                   '</a></main>')
+        article = """<article><h1>いずみの山の小さなマルシェ10月</h1>
+            <p>会場：南部リージョンセンター 1階ロビー</p></article>"""
+        old = {"roadName": "いずみ山愛の里", "prefecture": "大阪府",
+               "title": "いずみの山の小さなマルシェ10月",
+               "startDate": "2026-10-18", "endDate": "2026-10-18",
+               "publishedAt": "", "url": url, "status": "scheduled"}
+        calls = []
+        def fetch(link):
+            calls.append(link)
+            return soup(listing if link == spec["listingUrl"] else article)
+        actual, audit = collect_configured_station_events(
+            date(2026, 10, 12), [old], [spec], fetch=fetch,
+            report_path=None, reconfirm_previous=[old])
+        self.assertEqual(actual, [old])
+        self.assertEqual(audit["newEvents"], 0)
+        self.assertEqual(audit["reconfirmedEvents"], 1)
+        self.assertEqual(audit["sources"][0]["knownSkipped"], 1)
+        self.assertEqual(audit["sources"][0]["reconfirmationChecked"], 1)
+        self.assertEqual(audit["sources"][0]["reconfirmed"], 1)
+        self.assertEqual(calls.count(url), 1)
+        _, quality = reconcile([old], actual, date(2026, 10, 12))
+        self.assertEqual(quality["notReconfirmed"], [])
+
+    def test_reconfirmation_keeps_new_discovery_budget_intact(self):
+        import json
+        from station_discovery_engine import RULES
+        spec = next(x for x in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                    if x["id"] == "osaka_izumi_regional_center")
+        spec = {**spec, "maxArticles": 1}
+        old_url = "https://izuminambu-rc.jp/nb_event/marche-oct/"
+        new_url = "https://izuminambu-rc.jp/nb_event/marche-nov/"
+        previous = {"roadName": "いずみ山愛の里", "prefecture": "大阪府",
+                    "title": "いずみの山の小さなマルシェ10月",
+                    "startDate": "2026-10-18", "endDate": "2026-10-18",
+                    "publishedAt": "", "url": old_url, "status": "scheduled"}
+        listing = ('<main>'
+                   '<a href="' + old_url + '">開催予定 いずみの山の小さなマルシェ10月 '
+                   '2026年10月18日(日)開催</a>'
+                   '<a href="' + new_url + '">開催予定 いずみの山の小さなマルシェ11月 '
+                   '2026年11月18日(水)開催</a></main>')
+        articles = {
+            old_url: """<article><h1>いずみの山の小さなマルシェ10月</h1>
+                        <p>会場：南部リージョンセンター 1階ロビー</p></article>""",
+            new_url: """<article><h1>いずみの山の小さなマルシェ11月</h1>
+                        <p>会場：南部リージョンセンター 1階ロビー</p></article>""",
+        }
+        fetched = []
+        def fetch(url):
+            fetched.append(url)
+            return soup(listing if url == spec["listingUrl"] else articles[url])
+        records, audit = collect_configured_station_events(
+            date(2026, 10, 12), [previous], [spec], fetch=fetch,
+            report_path=None, reconfirm_previous=[previous])
+        self.assertEqual(audit["newEvents"], 1)
+        self.assertEqual(audit["reconfirmedEvents"], 1)
+        self.assertEqual(audit["sources"][0]["checked"], 2)
+        self.assertEqual(audit["sources"][0]["eligibleCandidates"], 1)
+        self.assertIn(new_url, fetched)
+        self.assertIn(old_url, fetched)
+        self.assertEqual({x["startDate"] for x in records},
+                         {"2026-10-18", "2026-11-18"})
+
+    def test_reconfirmation_rejects_changed_schedule_and_offsite(self):
+        import json
+        from station_discovery_engine import RULES
+        spec = next(x for x in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                    if x["id"] == "osaka_izumi_regional_center")
+        url = "https://izuminambu-rc.jp/nb_event/marche-oct/"
+        listing = ('<main><a href="' + url + '">開催予定 '
+                   'いずみの山の小さなマルシェ10月 2026年10月18日(日)開催</a></main>')
+        previous = {"roadName": "いずみ山愛の里", "prefecture": "大阪府",
+                    "title": "いずみの山の小さなマルシェ10月",
+                    "startDate": "2026-10-18", "endDate": "2026-10-18",
+                    "url": url, "status": "scheduled"}
+        for body in (
+            "<p>日時：2026年10月25日(日)</p><p>会場：南部リージョンセンター 1階ロビー</p>",
+            "<p>日時：2026年10月18日(日)</p><p>会場：八尾市民文化ホール</p>",
+            "<p>会場：南部リージョンセンター 1階ロビーにて開催を中止しました</p>",
+        ):
+            article = "<article><h1>" + previous["title"] + "</h1>" + body + "</article>"
+            records, audit = collect_configured_station_events(
+                date(2026, 10, 12), [previous], [spec],
+                fetch=lambda link: soup(listing if link == spec["listingUrl"] else article),
+                report_path=None, reconfirm_previous=[previous])
+            self.assertEqual(records, [], body)
+            self.assertEqual(audit["reconfirmedEvents"], 0)
+            self.assertEqual(audit["newEvents"], 0)
+
+    def test_old_event_absent_from_official_listing_is_not_reconfirmed(self):
+        spec = {**TOKYO, "id": "old-not-linked"}
+        previous = {"roadName": "八王子滝山", "prefecture": "東京都",
+                    "title": "秋のマルシェ", "startDate": "2026-11-18",
+                    "endDate": "2026-11-18",
+                    "url": "https://www.michinoeki-hachioji.net/news/1001"}
+        seen = []
+        def fetch(url):
+            seen.append(url)
+            return soup("<main>掲載終了しました</main>")
+        records, audit = collect_configured_station_events(
+            date(2026, 10, 12), [previous], [spec], fetch=fetch,
+            report_path=None, reconfirm_previous=[previous])
+        self.assertEqual(records, [])
+        self.assertEqual(audit["reconfirmedEvents"], 0)
+        self.assertEqual(audit["sources"][0]["reconfirmationCandidates"], 0)
+        self.assertEqual(seen, [spec["listingUrl"]])
+
+    def test_reconfirmation_fetch_error_is_audited_not_treated_as_success(self):
+        import requests
+        spec = {**TOKYO, "id": "reconfirm-timeout"}
+        previous = {"roadName": "八王子滝山", "prefecture": "東京都",
+                    "title": "秋のマルシェ", "startDate": "2026-11-18",
+                    "endDate": "2026-11-18",
+                    "url": "https://www.michinoeki-hachioji.net/news/1001"}
+        listing = '<main><a href="/news/1001">秋のマルシェ</a></main>'
+        def fetch(url):
+            if url == previous["url"]:
+                raise requests.Timeout("network failed")
+            return soup(listing)
+        records, audit = collect_configured_station_events(
+            date(2026, 10, 12), [previous], [spec], fetch=fetch,
+            report_path=None, reconfirm_previous=[previous])
+        self.assertEqual(records, [])
+        self.assertEqual(audit["reconfirmedEvents"], 0)
+        self.assertEqual(audit["sources"][0]["reconfirmationChecked"], 0)
+        self.assertEqual(audit["sources"][0]["reconfirmationFailed"], 1)
+        self.assertEqual(audit["sources"][0]["fetchFailed"], 1)
+
 if __name__ == "__main__":
     unittest.main()
