@@ -189,6 +189,9 @@ test("HTML offers the roadside station event choice and safe refresh controls", 
   assert.match(interest,/id="interestResult"/);
   assert.match(interest,/onclick="runInterest\(\)"/);
   assert.ok(interest.indexOf('id="interestEventsTools"') < interest.indexOf('id="interestResult"'));
+  const css=fs.readFileSync(path.join(root,"style.css"),"utf8");
+  assert.match(css, /#interest \.interest-events-tools\[hidden\]/);
+  assert.match(css, /#interest #interestFeatureLabel\[hidden\]/);
   const sw=fs.readFileSync(path.join(root,"service-worker.js"),"utf8");
   const version=JSON.parse(fs.readFileSync(path.join(root,"data/version.json"),"utf8"));
   assert.match(html,/app\.js\?v=1\.6\.26/);
