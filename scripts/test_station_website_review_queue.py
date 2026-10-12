@@ -29,6 +29,20 @@ class WebsiteReviewQueueTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             build_queue({"stations": [row, row]})
 
+    def test_full_master_includes_not_yet_checked_stations(self):
+        master = {"summary": {"appStations": 2}, "stations": [
+            {"id": "RS0001", "prefecture": "北海道", "roadName": "三笠"},
+            {"id": "RS0002", "prefecture": "北海道", "roadName": "南ふらの"}]}
+        directory = {"stations": [{"id": "RS0001", "prefecture": "北海道",
+                       "roadName": "三笠", "officialWebsiteCandidateUrlsUnverified":
+                       ["https://sample.example/"]}]}
+        result = build_queue(directory, master)
+        self.assertEqual(result["masterStationCount"], 2)
+        self.assertEqual(result["directoryStationsInspected"], 1)
+        self.assertEqual(result["stations"][1]["directoryInspectionState"], "not_checked")
+        self.assertEqual(result["stations"][1]["homepageExistence"], "unknown")
+        self.assertEqual(result["stations"][1]["eventCoverageState"], "not_assessed")
+
     def test_rejects_suspicious_urls(self):
         self.assertEqual(classify("file:///etc/passwd"), "invalid")
         self.assertEqual(classify("http://localhost/admin"), "invalid")
