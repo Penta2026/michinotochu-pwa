@@ -1,10 +1,20 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-13 Phase 6 本番Actions #78成功。福井「/contact」偽取得エラーの本番解消を確認、公式再確認17件・未再確認0件、公開60件/36県/44駅、重複0件、設定型ソース28件の取得問題は愛媛PDF404の1件のみ**。愛媛産業まつりは公式開催日・検索キャッシュ内の会場記載があるが、会場原本が取得不可のため自動公開保留。  
+更新基準: **2026-10-13 Phase 7 愛媛404の安全な保留管理を実装。死んだPDF収集先を一時停止し、公式会場証拠の不足を監査警告で保持・市公式イベント一覧は継続収集。収集エンジンCI #13：283/283合格**。直近本番データは #78（公開60件/36県/44駅、再確認17件・未確認0件、重複0件）。今回の停止設定の実地反映は次回収集待ち。  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-13 Phase 7 — 愛媛の404公式PDFを「未解決の一次根拠」として保留・監視
+
+- **確認できた証拠**：八幡浜市公式の[2026年イベント一覧](https://www.city.yawatahama.ehime.jp/event/2026/)には「第13回やわたはま産業まつり」**2026-11-22**。市の[開催委託プロポーザルHTML](https://www.city.yawatahama.ehime.jp/doc/2026041700097/)には仕様書PDFのリンクがある。ウェブ検索インデックスは2026年の仕様書内で会場「道の駅・みなとオアシス『八幡浜みなっと』」の記述を保持。ただし、仕様書PDFの原URL `https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf` は**本番GitHub Actionsで3日以上HTTP404**。当日会場の確認原本へ継続アクセスできず、**11/22産業まつりは自動公開に進めない**。民間まとめ・過年度会場・検索エンジンの索引は自動確証として用いない。
+- **収集元の扱い**：`data/station_event_discovery_sources.json` にある `ehime_city_official_festival_pdf` を **`enabled=false`** とし、`monitorUnavailableEvidence=true`、`suspendedReason=official_pdf_http_404`、確認済のHTTP404/発生日と回復調査用の市公式ページ・今年の[現行イベント記事](https://www.city.yawatahama.ehime.jp/doc/2026081300028/)を記録。壊れた同一URLへの繰り返しアクセスを止める。**同じ県の `ehime_yawatahama_city_events` は有効のまま**で、公式記事に具体的会場根拠と日時が揃うまで `venue_missing` として保留する。
+- **監査で未解決を可視化**：`scripts/road_event_gap_monitor.py` は停止中の `monitorUnavailableEvidence=true` ソースを `unavailableOfficialEvidence` に保持し、`suspendedUnavailableOfficialEvidence` 指標と **`suspended_unavailable_official_evidence` 警告**を常時出す。ダッシュボードには会場証拠が未回復であること、最終HTTP、回復確認用の市公式ページを明示。**「稼働中ソースのHTTP取得失敗0」と「一次会場証拠は未復旧1」を区別する**。警告は回復を証明するものではなく、欠けた情報を隠さないための措置。
+- **エンジン修正**：`scripts/station_discovery_engine.py` の `collect_configured_station_events` で設定を渡された場合も**内部で`enabled=false`を除外**。従来は上位側で無効ソースをフィルターしない呼出元からはアクセスしてしまうバグがあった。公式文面にない会場の推定登録は継続禁止。
+- **回帰テスト**：ソース設定の一時停止と生存している市公式ページの継続確認、無効URLへアクセスしないこと、日時だけの市公式記事からの誤登録を拒否すること、監査に「404保留・警告」が残ることを新規2件含めて検証。 [収集エンジンCI #13](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38315018625) は **283テスト全件成功**。ユーザーのスマホ画面・既存イベント60件には直接変更なし。
+- **次回の本番収集で見ること**：設定型の有効公式ソース **27件**の巡回が成功し、停止中のPDFがGitHub Actionsの取得エラーに混じらないこと、愛媛の再確認が必要な会場未確認候補が監査から消えていないこと、`road_event_gap_monitor.json` に`suspendedUnavailableOfficialEvidence=1` と`suspended_unavailable_official_evidence`警告が残ること、公開イベント数・重複・既存再確認に異常がないこと。ページの監査は実地Runに依存し、CI合格だけで本番確認済としない。
+- **その後の優先順位**：八幡浜市または現行の運営者が公開する**取得可能な2026年当年の会場根拠**を再探索し、証拠が戻ったら停止中のPDFまたは安全な代替公式ルートを復旧する。並行して、全国1,234駅に対する地域・自治体・道の駅の公式イベント発見経路を増やし、独立公式告知との捕捉率比較を進める。
 
 ## 2026-10-13 Phase 6 本番収集 #78 — 福井301解消・残課題は愛媛市公式PDF404
 
