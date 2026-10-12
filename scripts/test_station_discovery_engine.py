@@ -1518,6 +1518,21 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
             self.assertEqual(discoveries[0]["startDate"],"2026-11-10")
             self.assertEqual(audit["newEvents"],1)
 
+    def test_fukui_listing_skips_contact_redirect_but_retains_event_article(self):
+        import json
+        from station_discovery_engine import RULES
+        spec = next(x for x in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                    if x["id"] == "fukui_hamabiyori")
+        listing = soup("""<main>
+            <a href="https://hamabiyori.com/contact">お問い合わせ</a>
+            <a href="https://hamabiyori.com/contact/">CONTACT</a>
+            <a href="https://hamabiyori.com/%F0%9F%8E%AA-event/">音楽祭</a>
+            </main>""")
+        links = _links(listing, spec)
+        self.assertEqual(len(links), 1)
+        self.assertTrue(next(iter(links)).endswith("/%F0%9F%8E%AA-event/"))
+        _validate_sources([spec])
+
     def test_prior_known_articles_do_not_use_exploration_budget(self):
         from station_discovery_engine import _plan_article_inspection
         links={f"https://www.michinoeki-hachioji.net/news/{i}":
