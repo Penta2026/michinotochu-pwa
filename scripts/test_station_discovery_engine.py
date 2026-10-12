@@ -572,17 +572,24 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         import json
         from station_discovery_engine import RULES
         sources=json.loads(RULES.read_text(encoding="utf-8"))["sources"]
-        # Routes grow as official sites are confirmed; an exact count is
-        # not an invariant. Keep all previously covered prefectures and
-        # explicitly verify the new, official Ehime PDF rule.
+        # A broken official PDF is kept as a documented unavailable evidence
+        # source (rather than silently disappearing from the registry).
         self.assertGreaterEqual(len(sources),22)
         expected={"山口県","福井県","大阪府","熊本県","宮崎県","愛媛県"}
         self.assertTrue(expected.issubset({r["prefecture"] for r in sources}))
-        self.assertTrue(all(r["enabled"] for r in sources))
+        self.assertTrue(all(r["enabled"] for r in sources
+                            if r["id"]!="ehime_city_official_festival_pdf"))
         ehime=[r for r in sources if r["id"]=="ehime_city_official_festival_pdf"]
         self.assertEqual(len(ehime),1)
         self.assertEqual(ehime[0]["articleMode"],"verified_official_pdf")
         self.assertEqual(ehime[0]["prefecture"],"愛媛県")
+        self.assertFalse(ehime[0]["enabled"])
+        self.assertTrue(ehime[0]["monitorUnavailableEvidence"])
+        self.assertEqual(ehime[0]["lastHttpStatus"],404)
+        city=[r for r in sources if r["id"]=="ehime_yawatahama_city_events"]
+        self.assertEqual(len(city),1)
+        self.assertTrue(city[0]["enabled"])
+        self.assertTrue(city[0]["requireVenueLabel"])
         _validate_sources(sources)
 
     def test_osaka_station_official_dated_table_extracts_marché(self):
@@ -989,6 +996,26 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
         <a href="/doc/103/">第13回やわたはま産業まつりについて</a>"""
         self.assertEqual(list(_links(soup(html),spec))[0],
                          "https://www.city.yawatahama.ehime.jp/doc/103/")
+
+    def test_unavailable_ehime_pdf_is_not_fetched_and_city_site_remains_checked(self):
+        import json
+        from station_discovery_engine import RULES
+        sources = json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+        retired = next(x for x in sources if x["id"]=="ehime_city_official_festival_pdf")
+        live = next(x for x in sources if x["id"]=="ehime_yawatahama_city_events")
+        requests_seen = []
+        def fetch(url):
+            requests_seen.append(url)
+            return soup('<main><a href="/doc/2026081300028/">第13回やわたはま産業まつりについて</a></main>'
+                        if url==live["listingUrl"] else
+                        '<article><h1>第13回やわたはま産業まつりについて</h1>'
+                        '<p>開催予定：2026年11月22日</p></article>')
+        records,audit=collect_configured_station_events(
+            date(2026,10,13), [], [live,retired], fetch=fetch, report_path=None)
+        self.assertEqual(records,[])
+        self.assertEqual([x["id"] for x in audit["sources"]],[live["id"]])
+        self.assertNotIn(retired["listingUrl"],requests_seen)
+        self.assertEqual(audit["sources"][0]["reasons"].get("venue_missing"),1)
 
     def test_ehime_official_pdf_grounded_title_date_and_venue(self):
         from station_discovery_engine import _verified_official_pdf_records
