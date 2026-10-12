@@ -850,7 +850,7 @@
       "checked": 8,
       "accepted": 0,
       "reconfirmed": 0,
-      "knownSkipped": 1,
+      "knownSkipped": 0,
       "reconfirmationCandidates": 0,
       "reconfirmationChecked": 0,
       "reconfirmationFailed": 0,
@@ -860,8 +860,7 @@
       "reasons": {
         "undated": 3,
         "venue_missing": 1,
-        "past": 2,
-        "offsite": 2
+        "past": 4
       },
       "examples": [],
       "rejectedExamples": [
@@ -881,6 +880,11 @@
           "reason": "undated"
         },
         {
+          "title": "お知らせ 2026.09.28 5周年記念感謝祭",
+          "url": "https://kineno-nanjo.com/info/news/post-5318/",
+          "reason": "past"
+        },
+        {
           "title": "お知らせ 2026.07.25 夏の感謝祭!",
           "url": "https://kineno-nanjo.com/info/news/post-5213/",
           "reason": "undated"
@@ -891,27 +895,22 @@
           "reason": "past"
         },
         {
-          "title": "新着情報 2026.06.02 6/11(木) 第13回 ママ・マルシェ開催!",
-          "url": "https://kineno-nanjo.com/info/event/post-5135/",
-          "reason": "offsite"
+          "title": "お知らせ 2025.12.12 こどもクリスマスイベント2025",
+          "url": "https://kineno-nanjo.com/info/news/post-4824/",
+          "reason": "past"
         },
         {
           "title": "お知らせ 2025.10.19 ふたりでマルシェ",
           "url": "https://kineno-nanjo.com/info/news/post-4714/",
           "reason": "past"
-        },
-        {
-          "title": "新着情報 2025.09.24 10/16(木) 第11回 ママ・マルシェ開催!",
-          "url": "https://kineno-nanjo.com/info/event/post-4664/",
-          "reason": "offsite"
         }
       ],
-      "eligibleCandidates": 151,
-      "uninspectedCandidates": 143,
+      "eligibleCandidates": 152,
+      "uninspectedCandidates": 144,
       "explorationStart": 4,
       "explorationNext": 6,
       "explorationSlots": 2,
-      "explorationPool": 145
+      "explorationPool": 146
     },
     {
       "id": "osaka_kuromaro_official_schedule",
