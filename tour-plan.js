@@ -14,10 +14,18 @@ function fillCategory(groupId,categoryId){const group=el(groupId).value;el(categ
 function changeGroup(){
  fillCategory("tourGroup","tourCategory");
  el("tourCategory").value="";
- // Keep the shared destination picker visible in EVERY mode.
- // Event mode also has detail cards, but the user can choose a station below.
+ const eventMode=el("tourGroup").value==="roadEvent";
+ // Both event and ordinary spots use the SAME destination picker.
  const picker=el("tourCandidatePicker");
  if(picker)picker.hidden=false;
+ // Detailed events and manual cache refresh belong to the destination stage,
+ // not the filter stage; they are shown only for event mode.
+ const eventBox=el("tourEventsBox"),list=el("tourEventList"),btn=el("tourEventListBtn");
+ if(eventBox)eventBox.hidden=!eventMode;
+ if(!eventMode&&list&&btn&& !list.hidden){
+  list.hidden=true;btn.setAttribute("aria-expanded","false");
+  btn.textContent="📅 条件内の開催イベントを詳しく見る";
+ }
  searchSilently();
 }
 function changeNearGroup(){fillCategory("tourNearGroup","tourNearCategory");if(state.target)nearby()}
@@ -123,7 +131,7 @@ function renderRoadEventList(){
    activeRoadEvents(x).map(e=>'<div style="margin-top:8px"><div>📅 '+esc(e.startDate)+(e.endDate!==e.startDate?' 〜 '+esc(e.endDate):'')+'</div><div>'+esc(e.title)+'</div>'+(e.url?'<div style="margin-top:6px"><a href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">公式イベント案内 ↗</a></div>':'')+'</div>').join("")+
    '<button type="button" class="soft tour-action tour-action-select" style="width:100%;margin-top:10px" onclick="tourChooseEvent('+i+')">'+(state.target&&state.target.name===x.name&&+state.target.lat===+x.lat&&+state.target.lng===+x.lng?'✅ 目標に登録済み':'🎯 この道の駅を目標に登録')+'</button></div>').join("");
 }
-function toggleRoadEventList(){const list=el("tourEventList"),btn=el("tourEventListBtn");if(!list||!btn)return;list.hidden=!list.hidden;btn.setAttribute("aria-expanded",String(!list.hidden));btn.textContent=list.hidden?"📋 目標距離内のイベント開催駅を見る":"📋 目標距離内の一覧を閉じる";renderRoadEventList()}
+function toggleRoadEventList(){const list=el("tourEventList"),btn=el("tourEventListBtn");if(!list||!btn)return;list.hidden=!list.hidden;btn.setAttribute("aria-expanded",String(!list.hidden));btn.textContent=list.hidden?"📅 条件内の開催イベントを詳しく見る":"📅 イベント詳細を閉じる";renderRoadEventList()}
 function renderEventStatus(message){const e=el("tourEventStatus");if(!e)return;const checked=localStorage.getItem(EVENT_CHECK_KEY),active=Array.from(liveEventIndex().values()).reduce((n,v)=>n+v.length,0);e.textContent=(message?message+" / ":"")+(checked?"最終取得："+new Date(checked).toLocaleString("ja-JP"):"未取得")+" / 登録 "+roadEvents.length+"件（終了前 "+active+"件）"}
 function loadLocalRoadEvents(){try{const payload=JSON.parse(localStorage.getItem(EVENT_CACHE_KEY)||"null");roadEvents=Array.isArray(payload?.events)?payload.events.map(sanitizeEvent).filter(Boolean):[];eventsReady=!!payload}catch(e){roadEvents=[];eventsReady=false}renderEventStatus();searchSilently()}
 async function updateRoadEvents(){const btn=el("tourEventUpdateBtn");if(btn){btn.disabled=true;btn.textContent="⏳ イベント情報を取得中…"}try{const res=await fetch(EVENT_URL+"?t="+Date.now(),{cache:"no-store"});if(!res.ok)throw Error("HTTP "+res.status);const payload=await res.json();if(payload?.schemaVersion!==1||!Array.isArray(payload.events))throw Error("イベントJSONの形式が不正です");const cleaned=payload.events.map(sanitizeEvent);if(cleaned.some(x=>!x))throw Error("不正なイベント情報が含まれています");localStorage.setItem(EVENT_CACHE_KEY,JSON.stringify({events:cleaned}));localStorage.setItem(EVENT_CHECK_KEY,new Date().toISOString());roadEvents=cleaned;eventsReady=true;renderEventStatus("✅ 更新しました");renderRoadEventList();alert("イベント情報を更新しました！ 登録 "+roadEvents.length+"件。");if(el("tourGroup")?.value==="roadEvent")searchSilently()}catch(e){console.warn("イベント情報の取得失敗",e);renderEventStatus("⚠️ 取得失敗："+String(e.message||e).slice(0,100)+"。以前のデータを使用中");alert("イベント情報の取得に失敗しました。\n"+String(e.message||e)+"\n通信状態を確認して再度お試しください。")}finally{if(btn){btn.disabled=false;btn.textContent="🔄 イベント情報を更新"}}}
@@ -161,6 +169,12 @@ document.addEventListener("DOMContentLoaded",()=>{if(el("tourGroup")){
  ["tourDistance","tourTolerance","tourDirection","tourCategory"].forEach(id=>{
   const field=el(id);
   if(field)field.addEventListener("change",searchSilently);
+ });
+ // Nearby options are recalculated after changing their own conditions;
+ // no extra "update nearby spots" button is needed.
+ ["tourRadius","tourNearCategory"].forEach(id=>{
+  const field=el(id);
+  if(field)field.addEventListener("change",()=>{if(state.target)nearby()});
  });
 }});
 })();
