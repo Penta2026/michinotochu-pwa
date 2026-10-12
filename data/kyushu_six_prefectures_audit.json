@@ -50,11 +50,11 @@
       "roadName": "すいかの里植木",
       "source": "https://suikanosato-ueki.com/category/event_info/",
       "listingError": "",
-      "candidates": 4,
-      "checked": 4,
+      "candidates": 3,
+      "checked": 3,
       "accepted": 0,
       "past": 0,
-      "noEventDate": 4,
+      "noEventDate": 3,
       "detailErrors": 0,
       "examples": [],
       "undatedSamples": [
@@ -79,17 +79,11 @@
       "listingError": "",
       "candidates": 1,
       "checked": 1,
-      "accepted": 1,
-      "past": 0,
+      "accepted": 0,
+      "past": 1,
       "noEventDate": 0,
       "detailErrors": 0,
-      "examples": [
-        {
-          "title": "竹の千灯籠夜",
-          "date": "2026-10-10",
-          "url": "https://www.city-nakatsu.jp/doc/2026100500057/"
-        }
-      ],
+      "examples": [],
       "undatedSamples": []
     },
     {
@@ -147,5 +141,5 @@
       ]
     }
   ],
-  "accepted": 2
+  "accepted": 1
 }

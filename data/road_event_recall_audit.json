@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-12",
+  "checkedOn": "2026-10-13",
   "summary": {
     "officialSources": 10,
     "reachableSources": 10,
-    "announcementsCompared": 80,
+    "announcementsCompared": 81,
     "statuses": {
       "unmatched_official_notice": 45,
       "same_official_url_title_needs_review": 1,
       "possible_same_event_other_url": 2,
-      "station_not_unambiguously_identified": 22,
+      "station_not_unambiguously_identified": 23,
       "published_same_official_url": 10
     },
     "candidatesForManualReview": 46,
@@ -379,6 +379,18 @@
     },
     {
       "source": "北海道",
+      "title": "【びえい】「丘のくら」 『収穫マルシェ』開催！！ NEW",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/bieiokainfo/69848",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
       "title": "日高町道の駅フェスト開催のお知らせ",
       "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778",
       "prefecture": "",
@@ -547,7 +559,7 @@
     },
     {
       "source": "北海道",
-      "title": "泊村×真狩村 観光物産展 開催！！ NEW",
+      "title": "泊村×真狩村 観光物産展 開催！！",
       "url": "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823",
       "prefecture": "",
       "roadName": "",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-12",
+  "updatedAt": "2026-10-13",
   "events": [
     {
       "roadName": "親不知ピアパーク",
@@ -63,16 +63,6 @@
       "status": "scheduled"
     },
     {
-      "roadName": "氷見",
-      "prefecture": "富山県",
-      "title": "ひみ番屋街創業14周年感謝祭 能越コラボ和太鼓＆働くクルマ！！能登と富山の和太鼓1…",
-      "startDate": "2026-10-03",
-      "endDate": "2026-10-12",
-      "publishedAt": "",
-      "url": "https://www.hokuriku-michinoeki.jp/contents/event/?dc=2026-10-03&article=000960",
-      "status": "scheduled"
-    },
-    {
       "roadName": "滝宮",
       "prefecture": "香川県",
       "title": "【道の駅「滝宮」・綾川町うどん会館】日本伝統芸能「猿まわし」の公演を開催いたします。",
@@ -103,76 +93,6 @@
       "status": "scheduled"
     },
     {
-      "roadName": "あぐりーむ昭和",
-      "prefecture": "群馬県",
-      "title": "りんご足湯",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "publishedAt": "",
-      "url": "https://www.vill.showa.gunma.jp/kurashi/kankou/kankou/event/2018-0718-1005-12.html",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "かさま",
-      "prefecture": "茨城県",
-      "title": "2026.09.22 イベント お知らせ 【イベント】10/10~12『道の駅deあそぼ!』を開催します",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "publishedAt": "2026-09-22",
-      "url": "https://m-kasama.com/topics/p-06497",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "保田小学校",
-      "prefecture": "千葉県",
-      "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "publishedAt": "2026-10-10",
-      "url": "https://hotasho.jp/news/%e4%bf%9d%e7%94%b0%e5%b0%8f%e9%99%84%e5%b1%9e%e3%82%88%e3%81%86%e3%81%a1%e3%81%88%e3%82%933%e5%91%a8%e5%b9%b4%e9%96%8b%e5%9c%92%e7%a5%ad%ef%bc%882026-10-10%ef%bd%9e12%ef%bc%89/",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "信州新野千石平",
-      "prefecture": "長野県",
-      "title": "●10月10日(土)〜12日(月・祝) 信州新野千石平 道の駅【収穫祭】",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "publishedAt": "",
-      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "南えちぜん山海里",
-      "prefecture": "福井県",
-      "title": "5周年記念感謝祭",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "publishedAt": "2026-09-28",
-      "url": "https://kineno-nanjo.com/info/news/post-5318/",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "古今伝授の里やまと",
-      "prefecture": "岐阜県",
-      "title": "●10月10日(土)〜12日(月・祝) ラックモリヤマ商店自然食品販売",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "publishedAt": "",
-      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "和",
-      "prefecture": "京都府",
-      "title": "10/10[土] 〜12[月] 3連休 道の駅 和イベント案内",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "publishedAt": "2026-10-08",
-      "url": "https://wachi-nagomi.com/topics/post-10488/",
-      "status": "scheduled"
-    },
-    {
       "roadName": "湘南ちがさき",
       "prefecture": "神奈川県",
       "title": "かとうくみプレンティーズ原画展",
@@ -180,56 +100,6 @@
       "endDate": "2026-11-23",
       "publishedAt": "",
       "url": "https://creativeweek.net/event-detail.php?no=37",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "耶馬トピア",
-      "prefecture": "大分県",
-      "title": "竹の千灯籠夜",
-      "startDate": "2026-10-10",
-      "endDate": "2026-10-12",
-      "publishedAt": "2026-10-08",
-      "url": "https://www.city-nakatsu.jp/doc/2026100500057/",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "たかはた",
-      "prefecture": "山形県",
-      "title": "秋の収穫祭",
-      "startDate": "2026-10-11",
-      "endDate": "2026-10-12",
-      "publishedAt": "",
-      "url": "https://www.rstakahata.com/rst/event.html",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "あそ望の郷くぎの",
-      "prefecture": "熊本県",
-      "title": "第11回 南阿蘇の青空レストラン",
-      "startDate": "2026-10-12",
-      "endDate": "2026-10-12",
-      "publishedAt": "",
-      "url": "https://minamiaso.info/event/?cm=10&cy=2026",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "マチテラス日進",
-      "prefecture": "愛知県",
-      "title": "●10月12日(月・祝)10:00~15:00(※予定) 【秋だ!フェスだ!運動だ!】マチテラス日進で大人も子どもも体を動かそう!",
-      "startDate": "2026-10-12",
-      "endDate": "2026-10-12",
-      "publishedAt": "",
-      "url": "https://www.chubu-michinoeki.org/pdf/20260910event_vol103.pdf",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "村田",
-      "prefecture": "宮城県",
-      "title": "おもと美術品評大会",
-      "startDate": "2026-10-12",
-      "endDate": "2026-10-12",
-      "publishedAt": "",
-      "url": "https://muratamachi.info/%e3%81%8a%e3%82%82%e3%81%a8%e7%be%8e%e8%a1%93%e5%93%81%e8%a9%95%e5%a4%a7%e4%bc%9a-3.htm",
       "status": "scheduled"
     },
     {

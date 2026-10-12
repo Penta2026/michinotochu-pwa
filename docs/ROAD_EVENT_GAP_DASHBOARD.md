@@ -1,6 +1,6 @@
 # 道の駅イベント・取りこぼし監視ダッシュボード
 
-監査日（日本時間）: **2026-10-12**
+監査日（日本時間）: **2026-10-13**
 
 > **注意:** このページは収集漏れの「可能性」を探すための監査です。
 > 未登録イベント数や全国の収集率を推定したものではありません。
@@ -11,28 +11,34 @@
 | 指標 | 件数 |
 |---|---:|
 | 累計で収集実績のある都道府県 | 47/47 |
-| 現在イベントのある都道府県 | 43/47 |
-| 現在の公開イベント | 73 |
+| 現在イベントのある都道府県 | 36/47 |
+| 現在の公開イベント | 60 |
 | 設定型の公式収集ルート（監査済/設定） | 28/28 |
-| 収集先の取得問題 | 1 |
+| 収集先の取得問題 | 2 |
 | 候補が0件の収集先 | 2 |
 | 記事チェック上限に達した収集先 | 9 |
 | 未調査の候補記事枠（重複記事を含む可能性あり） | 163 |
 | 日替わり巡回を実施する収集先 | 9 |
 | 日替わり巡回に割り当てた記事枠 | 17 |
 | 要確認候補のうち将来開催日の明記あり | 2 |
-| 記事の要確認サンプル | 52 |
-| 既存イベントの未再確認 | 2 |
+| 記事の要確認サンプル | 56 |
+| 一覧から既存イベントを再確認する候補URL | 7 |
+| 公式一覧経由の既存URL再検査 | 7 |
+| 公式一覧経由の再検査で取得失敗 | 0 |
+| 設定型の既存イベント照合成功（全モード） | 17 |
+| 既存イベントの未再確認 | 0 |
 
 設定型監査データの鮮度: **当日分**
 
 ## 取得状況の注意事項
 
+- **source_fetch_error** — fukui_hamabiyori （warning）
 - **article_check_limit** — fukui_hamabiyori （notice）
 - **article_check_limit** — osaka_izumi_regional_center （notice）
 - **article_check_limit** — wakayama_shikinosato （notice）
 - **article_check_limit** — iwate_tono_kazenooka （notice）
 - **article_check_limit** — fukushima_michinoeki （notice）
+- **repeatedly_empty_listing** — ehime_minatto （notice）
 - **article_check_limit** — yamaguchi_abu_roadstation （notice）
 - **article_check_limit** — fukui_nanjezen_sankairi （notice）
 - **article_check_limit** — miyazaki_niqll （notice）
@@ -57,10 +63,11 @@
 | 和歌山県 | 海南サクアス | 10月イベント情報 | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4555/) |
 | 和歌山県 | 四季の郷公園 | Event イ | unknown_date | event_date_unverified | [記事を確認](https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab-2-2/) |
 | 和歌山県 | 四季の郷公園 | Event イ | unknown_date | event_date_unverified | [記事を確認](https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab-2/) |
-| 和歌山県 | 四季の郷公園 | Event イ | unknown_date | event_date_unverified | [記事を確認](https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab/) |
+| 和歌山県 | 四季の郷公園 | Event イ 火 水 | unknown_date | event_date_unverified | [記事を確認](https://fh-park.jp/events/%e2%98%857-18%ef%bd%9e3%e9%80%a3%e4%bc%91%e3%81%af-6th-anniversary-%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e9%96%8b%e5%82%ac%ef%bc%81%ef%bc%81%ef%bc%81%e2%98%85/) |
 | 奈良県 | クロスウェイなかまち | 2026年シルバーウィーク特別企画「グラウンド・ランタン祭り&夜市」 道の駅「クロスウェイなかまち」では、2026年9月19日(土)から9月23日(水・祝)までの5日間、地域住民から観光客まで、誰もが | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20260919) |
 | 奈良県 | クロスウェイなかまち | 10/3(土)あの「まほろばの宴」がやって来る! Youtubeチャンネル登録者数5万人の DTMer奏人kanato と、仲間の演者たちが、また道の駅「クロスウェイなかまち」にやってきます!秋の特別 | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261003) |
 | 奈良県 | クロスウェイなかまち | 10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪ 道の駅「クロスウェイなかまち」では、2026年10月11日(日)に、日本伝統芸能 猿まわし「お猿の森」の公演を開催します。今回は、久 | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261011) |
+| 奈良県 | クロスウェイなかまち | 10/31(土)あの「まほろばの宴」が再びやって来る! Youtubeチャンネル登録者数5万人を超える DTMer奏人kanato と、奈良・大阪・京都を中心に活動する達人の演者名手たちが、クロスウェ | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261031) |
 | 宮崎県 | 都城NiQLL | イベント 【NiQLL’sスクール】令和8年10月の講座のご案内 多目的室で開催する令和8年10月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 「道の駅」 | unknown_date | event_date_unverified | [記事を確認](https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b410%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/) |
 | 宮崎県 | 都城NiQLL | イベント 【NiQLL’sスクール】令和8年9月の講座のご案内 多目的室で開催する令和8年9月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新しいラ | unknown_date | event_date_unverified | [記事を確認](https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b49%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/) |
 | 宮崎県 | 都城NiQLL | イベント 【NiQLL’sスクール】令和8年11月の講座のご案内 多目的室で開催する令和8年11月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新し | unknown_date | event_date_unverified | [記事を確認](https://coconiqll.co.jp/3768-2/) |
@@ -68,18 +75,17 @@
 | 岩手県 | 遠野風の丘 | 日程:8月12日(水)~8月13日(木) 時間:屋外切り花販売 7:00~ 屋内は通常通り営業 9:00~ | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%8a%e7%9b%86%e6%9c%9d%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%90%ef%bc%98%e6%9c%8812%e6%97%a5%e6%b0%b4/) |
 | 岩手県 | 遠野風の丘 | 遠野風の丘フードマルシェ 日程:9月6日(日) 10:00~16:00 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%83%95%e3%83%bc%e3%83%89%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a7%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%829%e6%9c%886%e6%97%a5%e6%97%a5/) |
 | 岩手県 | 遠野風の丘 | 防災イベント 開催日:9月6日(日) 時 間:10:00~15:00 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%98%b2%e7%81%bd%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%909%e6%9c%886%e6%97%a5%e6%97%a5%e3%80%91/) |
-| 岩手県 | 遠野風の丘 | 風の丘の空ノ市 日程:9月27日(日) 時間:10時~15時 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%ae%e7%a9%ba%e3%83%8e%e5%b8%82-9%e6%9c%88%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%909%e6%9c%8827%e6%97%a5%e6%97%a5%e3%80%91/) |
-| 愛媛県 | 八幡浜みなっと | 第13回やわたはま産業まつりについて | unknown_date | onsite_venue_unverified | [記事を確認](https://www.city.yawatahama.ehime.jp/doc/2026081300028/) |
+| 岩手県 | 遠野風の丘 | 日程8月23日(日) 時間:10時~15時 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%ae%e7%a9%ba%e3%83%8e%e5%b8%82-8%e6%9c%88%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%908%e6%9c%8823%e6%97%a5%e6%97%a5%e3%80%91/) |
 
 ## 収集先について
 
-- **現在登録されている駅数:** 51駅
-- **個別対象駅として設定されていない登録済み駅:** 24駅
+- **現在登録されている駅数:** 44駅
+- **個別対象駅として設定されていない登録済み駅:** 22駅
   - 地域サイト等で登録されている場合があるため、「未監視駅」とは断定できません。
 - **アプリ内の道の駅マスタ:** 1234駅（2026-10-04 21:45:00時点）
 - **個別の公式収集先が設定されたマスタ駅:** 37駅
 - **個別の公式収集先がないマスタ駅:** 1197駅（地域収集で取得可能な駅も含みます）
-- **現行イベント0件だが過去の登録実績がある県:** 栃木県、滋賀県、鳥取県、徳島県
+- **現行イベント0件だが過去の登録実績がある県:** 山形県、栃木県、千葉県、長野県、富山県、福井県、滋賀県、鳥取県、徳島県、熊本県、大分県
 
 詳細データ: [収集漏れ監査JSON](../data/road_event_gap_monitor.json)、[県別収集監査JSON](../data/prefecture_event_coverage.json)
 
@@ -97,17 +103,17 @@
 | 佐賀県 | 11 | 1 | 10 | 1 |
 | 兵庫県 | 37 | 0 | 37 | 1 |
 | 北海道 | 128 | 1 | 127 | 3 |
-| 千葉県 | 29 | 2 | 27 | 1 |
+| 千葉県 | 29 | 2 | 27 | 0 |
 | 和歌山県 | 36 | 4 | 32 | 1 |
 | 埼玉県 | 21 | 0 | 21 | 1 |
-| 大分県 | 26 | 1 | 25 | 1 |
+| 大分県 | 26 | 1 | 25 | 0 |
 | 大阪府 | 10 | 2 | 8 | 2 |
 | 奈良県 | 18 | 1 | 17 | 1 |
 | 宮城県 | 19 | 0 | 19 | 1 |
 | 宮崎県 | 19 | 1 | 18 | 1 |
-| 富山県 | 16 | 0 | 16 | 1 |
+| 富山県 | 16 | 0 | 16 | 0 |
 | 山口県 | 24 | 2 | 22 | 1 |
-| 山形県 | 24 | 1 | 23 | 1 |
+| 山形県 | 24 | 1 | 23 | 0 |
 | 山梨県 | 22 | 0 | 22 | 1 |
 | 岐阜県 | 55 | 0 | 55 | 2 |
 | 岡山県 | 17 | 0 | 17 | 1 |
@@ -122,17 +128,17 @@
 | 栃木県 | 25 | 1 | 24 | 0 |
 | 沖縄県 | 10 | 1 | 9 | 1 |
 | 滋賀県 | 20 | 0 | 20 | 0 |
-| 熊本県 | 38 | 2 | 36 | 1 |
+| 熊本県 | 38 | 2 | 36 | 0 |
 | 石川県 | 26 | 0 | 26 | 2 |
 | 神奈川県 | 6 | 1 | 5 | 1 |
-| 福井県 | 21 | 2 | 19 | 1 |
+| 福井県 | 21 | 2 | 19 | 0 |
 | 福岡県 | 17 | 1 | 16 | 1 |
 | 福島県 | 37 | 1 | 36 | 1 |
 | 秋田県 | 34 | 0 | 34 | 1 |
 | 群馬県 | 33 | 1 | 32 | 1 |
 | 茨城県 | 16 | 2 | 14 | 1 |
 | 長崎県 | 12 | 2 | 10 | 1 |
-| 長野県 | 54 | 0 | 54 | 1 |
+| 長野県 | 54 | 0 | 54 | 0 |
 | 青森県 | 28 | 0 | 28 | 1 |
 | 静岡県 | 27 | 1 | 26 | 1 |
 | 香川県 | 18 | 0 | 18 | 1 |

@@ -42,19 +42,12 @@
       "listingError": "",
       "candidates": 2,
       "checked": 2,
-      "accepted": 1,
-      "past": 1,
+      "accepted": 0,
+      "past": 2,
       "undated": 0,
       "skipped": 0,
       "errors": 0,
-      "examples": [
-        {
-          "title": "保田小附属ようちえん3周年開園祭(2026.10.10~12)",
-          "start": "2026-10-10",
-          "end": "2026-10-12",
-          "url": "https://hotasho.jp/news/%e4%bf%9d%e7%94%b0%e5%b0%8f%e9%99%84%e5%b1%9e%e3%82%88%e3%81%86%e3%81%a1%e3%81%88%e3%82%933%e5%91%a8%e5%b9%b4%e9%96%8b%e5%9c%92%e7%a5%ad%ef%bc%882026-10-10%ef%bd%9e12%ef%bc%89/"
-        }
-      ],
+      "examples": [],
       "undatedExamples": []
     },
     {
@@ -99,5 +92,5 @@
       ]
     }
   ],
-  "accepted": 1
+  "accepted": 0
 }

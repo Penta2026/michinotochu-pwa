@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-12",
+  "checkedOn": "2026-10-13",
   "sources": [
     {
       "id": "tokyo_hachioji",
@@ -13,6 +13,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -71,6 +75,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -139,14 +147,18 @@
       "listingUrl": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
       "listingError": "",
       "candidates": 4,
-      "checked": 3,
+      "checked": 4,
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 1,
+      "reconfirmationCandidates": 1,
+      "reconfirmationChecked": 1,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
-        "undated": 3
+        "undated": 4
       },
       "examples": [],
       "rejectedExamples": [
@@ -164,6 +176,11 @@
           "title": "2026年シルバーウィーク特別企画「グラウンド・ランタン祭り&夜市」 道の駅「クロスウェイなかまち」では、2026年9月19日(土)から9月23日(水・祝)までの5日間、地域住民から観光客まで、誰もが",
           "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20260919",
           "reason": "undated"
+        },
+        {
+          "title": "10/31(土)あの「まほろばの宴」が再びやって来る! Youtubeチャンネル登録者数5万人を超える DTMer奏人kanato と、奈良・大阪・京都を中心に活動する達人の演者名手たちが、クロスウェ",
+          "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261031",
+          "reason": "undated"
         }
       ],
       "eligibleCandidates": 3,
@@ -180,14 +197,24 @@
       "listingUrl": "https://hamabiyori.com/events/",
       "listingError": "",
       "candidates": 11,
-      "checked": 8,
+      "checked": 7,
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
-      "fetchFailed": 0,
-      "fetchErrors": [],
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
+      "fetchFailed": 1,
+      "fetchErrors": [
+        {
+          "url": "https://hamabiyori.com/contact",
+          "type": "RequestException",
+          "detail": "Non-200/redirect status: 301"
+        }
+      ],
       "reasons": {
-        "not_event": 7,
+        "not_event": 6,
         "undated": 1
       },
       "examples": [],
@@ -224,19 +251,14 @@
         },
         {
           "title": "READ MORE",
-          "url": "https://hamabiyori.com/%e3%80%9051-bar-uragawa%e3%80%80%e5%96%b6%e6%a5%ad%e7%b5%82%e4%ba%86%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e3%80%91/",
-          "reason": "not_event"
-        },
-        {
-          "title": "READ MORE",
-          "url": "https://hamabiyori.com/%f0%9f%93%855%e6%9c%88%e5%96%b6%e6%a5%ad%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
+          "url": "https://hamabiyori.com/%e3%83%87%e3%82%b8%e3%82%bf%e3%83%ab%e3%82%b9%e3%82%bf%e3%83%b3%e3%83%97%e3%83%a1%e3%83%a2%e3%83%aa%e3%83%bc%e3%82%ba%e5%8f%82%e5%8a%a0%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
           "reason": "not_event"
         }
       ],
       "eligibleCandidates": 11,
       "uninspectedCandidates": 3,
-      "explorationStart": 2,
-      "explorationNext": 4,
+      "explorationStart": 4,
+      "explorationNext": 1,
       "explorationSlots": 2,
       "explorationPool": 5
     },
@@ -247,10 +269,14 @@
       "listingUrl": "https://izuminambu-rc.jp/nb_event/",
       "listingError": "",
       "candidates": 11,
-      "checked": 8,
+      "checked": 9,
       "accepted": 0,
-      "reconfirmed": 0,
+      "reconfirmed": 1,
       "knownSkipped": 1,
+      "reconfirmationCandidates": 1,
+      "reconfirmationChecked": 1,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -290,20 +316,20 @@
           "reason": "not_event"
         },
         {
-          "title": "開催予定 南部リージョンセンター手芸部12月 2026.12/ 11.18(金)開催",
-          "url": "https://izuminambu-rc.jp/nb_event/%e5%8d%97%e9%83%a8%e3%83%aa%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%bb%e3%83%b3%e3%82%bf%e3%83%bc%e6%89%8b%e8%8a%b8%e9%83%a812%e6%9c%88/",
+          "title": "開催予定 なっちとTOCO.のクリスタルボウル&ライアー演奏会 2026年11月7日開催",
+          "url": "https://izuminambu-rc.jp/nb_event/%e3%81%aa%e3%81%a3%e3%81%a1%e3%81%a8toco-%e3%81%ae%e3%82%af%e3%83%aa%e3%82%b9%e3%82%bf%e3%83%ab%e3%83%9c%e3%82%a6%e3%83%ab%ef%bc%86%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%bc%e6%bc%94%e5%a5%8f%e4%bc%9a/",
           "reason": "not_event"
         },
         {
-          "title": "開催予定 桃山学院大学写真部展示会 継続開催中",
-          "url": "https://izuminambu-rc.jp/nb_event/momoyamaphoto/",
+          "title": "開催予定 メギーと学べる! はじめてでも楽しくキッズ英会話教室 10月~12月 10/3.10.24 11/7.14.21.28 12/12.19 開催",
+          "url": "https://izuminambu-rc.jp/nb_event/%e3%83%a1%e3%82%ae%e3%83%bc%e3%81%a8%e5%ad%a6%e3%81%b9%e3%82%8b%e3%80%80%e3%81%af%e3%81%98%e3%82%81%e3%81%a6%e3%81%a7%e3%82%82%e6%a5%bd%e3%81%97%e3%81%8f%e3%82%ad%e3%83%83%e3%82%ba%e8%8b%b1%e4%bc%9a/",
           "reason": "not_event"
         }
       ],
       "eligibleCandidates": 10,
       "uninspectedCandidates": 2,
-      "explorationStart": 2,
-      "explorationNext": 0,
+      "explorationStart": 0,
+      "explorationNext": 2,
       "explorationSlots": 2,
       "explorationPool": 4
     },
@@ -318,6 +344,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -384,6 +414,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -418,15 +452,15 @@
           "reason": "not_event"
         },
         {
-          "title": "Event イ",
-          "url": "https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab/",
+          "title": "Event イ 火 水",
+          "url": "https://fh-park.jp/events/%e2%98%857-18%ef%bd%9e3%e9%80%a3%e4%bc%91%e3%81%af-6th-anniversary-%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e9%96%8b%e5%82%ac%ef%bc%81%ef%bc%81%ef%bc%81%e2%98%85/",
           "reason": "undated"
         }
       ],
       "eligibleCandidates": 9,
       "uninspectedCandidates": 3,
-      "explorationStart": 1,
-      "explorationNext": 2,
+      "explorationStart": 2,
+      "explorationNext": 3,
       "explorationSlots": 1,
       "explorationPool": 4
     },
@@ -437,17 +471,21 @@
       "listingUrl": "https://kazenooka.tonofurusato.jp/",
       "listingError": "",
       "candidates": 11,
-      "checked": 8,
+      "checked": 10,
       "accepted": 0,
-      "reconfirmed": 0,
+      "reconfirmed": 2,
       "knownSkipped": 2,
+      "reconfirmationCandidates": 2,
+      "reconfirmationChecked": 2,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
-        "undated": 4,
+        "undated": 5,
         "offsite": 1,
         "past": 1,
-        "not_event": 2
+        "not_event": 1
       },
       "examples": [],
       "rejectedExamples": [
@@ -482,20 +520,20 @@
           "reason": "not_event"
         },
         {
-          "title": "日程:8月12日(水)~8月13日(木) 時間:屋外切り花販売 7:00~ 屋内は通常通り営業 9:00~",
-          "url": "https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%8a%e7%9b%86%e6%9c%9d%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%90%ef%bc%98%e6%9c%8812%e6%97%a5%e6%b0%b4/",
+          "title": "日程8月23日(日) 時間:10時~15時",
+          "url": "https://kazenooka.tonofurusato.jp/news/%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%ae%e7%a9%ba%e3%83%8e%e5%b8%82-8%e6%9c%88%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%908%e6%9c%8823%e6%97%a5%e6%97%a5%e3%80%91/",
           "reason": "undated"
         },
         {
-          "title": "日本のふるさと遠野まつり 期 間:9月9日(水)~10月4日(日) 場 所:エントランスホール",
-          "url": "https://kazenooka.tonofurusato.jp/news/%e4%bc%81%e7%94%bb%e5%b1%95%e7%a4%ba%e3%80%8e%e6%97%a5%e6%9c%ac%e3%81%ae%e3%81%b5%e3%82%8b%e3%81%95%e3%81%a8%e9%81%a0%e9%87%8e%e3%81%be%e3%81%a4%e3%82%8a%e3%80%8f%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89/",
-          "reason": "not_event"
+          "title": "日程:8月12日(水)~8月13日(木) 時間:屋外切り花販売 7:00~ 屋内は通常通り営業 9:00~",
+          "url": "https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%8a%e7%9b%86%e6%9c%9d%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%90%ef%bc%98%e6%9c%8812%e6%97%a5%e6%b0%b4/",
+          "reason": "undated"
         }
       ],
       "eligibleCandidates": 9,
       "uninspectedCandidates": 1,
-      "explorationStart": 2,
-      "explorationNext": 1,
+      "explorationStart": 1,
+      "explorationNext": 0,
       "explorationSlots": 2,
       "explorationPool": 3
     },
@@ -508,13 +546,25 @@
       "candidates": 1,
       "checked": 1,
       "accepted": 0,
-      "reconfirmed": 1,
+      "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
-      "reasons": {},
+      "reasons": {
+        "no_grounded_program_event": 1
+      },
       "examples": [],
-      "rejectedExamples": [],
+      "rejectedExamples": [
+        {
+          "title": "公式開催案内",
+          "url": "https://www.rstakahata.com/rst/event.html",
+          "reason": "no_grounded_program_event"
+        }
+      ],
       "eligibleCandidates": 1,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
@@ -529,10 +579,14 @@
       "listingUrl": "https://m-fukushima.com/info/?category=2",
       "listingError": "",
       "candidates": 12,
-      "checked": 10,
+      "checked": 11,
       "accepted": 0,
-      "reconfirmed": 0,
+      "reconfirmed": 1,
       "knownSkipped": 1,
+      "reconfirmationCandidates": 1,
+      "reconfirmationChecked": 1,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -583,20 +637,20 @@
           "reason": "not_event"
         },
         {
-          "title": "EVENT 2026.08.17 【ワークショップ】9/12(土)フラワーアレンジメント",
-          "url": "https://m-fukushima.com/info/685",
+          "title": "EVENT 2026.09.06 延期【9/26(土)HAPPY SMILE撮影会】",
+          "url": "https://m-fukushima.com/info/690",
           "reason": "not_event"
         },
         {
-          "title": "EVENT 2026.08.17 【ももRabiキッズパークよりお知らせ】",
-          "url": "https://m-fukushima.com/info/684",
+          "title": "EVENT 2026.08.17 【ワークショップ】9/12(土)フラワーアレンジメント",
+          "url": "https://m-fukushima.com/info/685",
           "reason": "not_event"
         }
       ],
       "eligibleCandidates": 11,
       "uninspectedCandidates": 1,
-      "explorationStart": 0,
-      "explorationNext": 2,
+      "explorationStart": 2,
+      "explorationNext": 1,
       "explorationSlots": 2,
       "explorationPool": 3
     },
@@ -611,6 +665,10 @@
       "accepted": 0,
       "reconfirmed": 3,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -668,6 +726,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -691,6 +753,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -710,15 +776,19 @@
       "listingUrl": "https://www.abucreation.com/topics/",
       "listingError": "",
       "candidates": 10,
-      "checked": 8,
+      "checked": 9,
       "accepted": 0,
-      "reconfirmed": 0,
+      "reconfirmed": 1,
       "knownSkipped": 1,
+      "reconfirmationCandidates": 1,
+      "reconfirmationChecked": 1,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
-        "venue_missing": 2,
-        "not_event": 6
+        "venue_missing": 3,
+        "not_event": 5
       },
       "examples": [],
       "rejectedExamples": [
@@ -753,20 +823,20 @@
           "reason": "not_event"
         },
         {
-          "title": "2026/06/09 北海道鶴居村物産展の開催について 6/20(土)6/21(日)道の駅とサンバシカフェで北海道鶴居村フェアを行います。6/21(土)17:30~21:00はサンバシカフェで夜の居酒",
-          "url": "https://www.abucreation.com/topics/%e5%8c%97%e6%b5%b7%e9%81%93%e9%b6%b4%e5%b1%85%e6%9d%91%e7%89%a9%e7%94%a3%e5%b1%95%e3%81%ae%e9%96%8b%e5%82%ac%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
+          "title": "2026/10/01 令和8年10月11日(日)第48回森里海の市を開催します!! 令和8年10月11日(日)第48回森里海の市を開催します。 当日は道の駅阿武町大創業祭も開催されます。 先着300名",
+          "url": "https://www.abucreation.com/topics/%e7%ac%ac%e4%b8%80%e5%9b%9e%e3%80%8c%e6%a3%ae%e9%87%8c%e6%b5%b7%e3%81%ae%e5%b8%82%e3%80%8d%e5%87%ba%e5%ba%97%e7%94%b3%e3%81%97%e8%be%bc%e3%81%bf%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
           "reason": "venue_missing"
         },
         {
-          "title": "2025/10/20 道の駅阿武町テナント棟食品加工場テナント再々募集について 道の駅阿武町では下記の要項にてテナント棟食品加工場のテナントを再々募集します。ご希望者の方は別添申込様式に必要事項をご記",
-          "url": "https://www.abucreation.com/topics/%e9%81%93%e3%81%ae%e9%a7%85%e9%98%bf%e6%ad%a6%e7%94%ba%e3%83%86%e3%83%8a%e3%83%b3%e3%83%88%e6%a3%9f%e9%a3%9f%e5%93%81%e5%8a%a0%e5%b7%a5%e5%a0%b4%e3%83%86%e3%83%8a%e3%83%b3%e3%83%88%e5%8b%9f%e9%9b%86/",
-          "reason": "not_event"
+          "title": "2026/06/09 北海道鶴居村物産展の開催について 6/20(土)6/21(日)道の駅とサンバシカフェで北海道鶴居村フェアを行います。6/21(土)17:30~21:00はサンバシカフェで夜の居酒",
+          "url": "https://www.abucreation.com/topics/%e5%8c%97%e6%b5%b7%e9%81%93%e9%b6%b4%e5%b1%85%e6%9d%91%e7%89%a9%e7%94%a3%e5%b1%95%e3%81%ae%e9%96%8b%e5%82%ac%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
+          "reason": "venue_missing"
         }
       ],
       "eligibleCandidates": 9,
       "uninspectedCandidates": 1,
-      "explorationStart": 2,
-      "explorationNext": 1,
+      "explorationStart": 1,
+      "explorationNext": 0,
       "explorationSlots": 2,
       "explorationPool": 3
     },
@@ -781,6 +851,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 1,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -822,20 +896,20 @@
           "reason": "offsite"
         },
         {
-          "title": "新着情報 2026.02.05 2/21(土) 第12回 ママ・マルシェ開催!",
-          "url": "https://kineno-nanjo.com/info/event/post-4931/",
-          "reason": "offsite"
+          "title": "お知らせ 2025.10.19 ふたりでマルシェ",
+          "url": "https://kineno-nanjo.com/info/news/post-4714/",
+          "reason": "past"
         },
         {
-          "title": "お知らせ 2025.12.12 こどもクリスマスイベント2025",
-          "url": "https://kineno-nanjo.com/info/news/post-4824/",
-          "reason": "past"
+          "title": "新着情報 2025.09.24 10/16(木) 第11回 ママ・マルシェ開催!",
+          "url": "https://kineno-nanjo.com/info/event/post-4664/",
+          "reason": "offsite"
         }
       ],
       "eligibleCandidates": 151,
       "uninspectedCandidates": 143,
-      "explorationStart": 2,
-      "explorationNext": 4,
+      "explorationStart": 4,
+      "explorationNext": 6,
       "explorationSlots": 2,
       "explorationPool": 145
     },
@@ -850,6 +924,10 @@
       "accepted": 0,
       "reconfirmed": 1,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -871,13 +949,25 @@
       "candidates": 1,
       "checked": 1,
       "accepted": 0,
-      "reconfirmed": 1,
+      "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
-      "reasons": {},
+      "reasons": {
+        "no_strict_official_calendar_cards": 1
+      },
       "examples": [],
-      "rejectedExamples": [],
+      "rejectedExamples": [
+        {
+          "title": "公式開催案内",
+          "url": "https://minamiaso.info/event/?cm=10&cy=2026",
+          "reason": "no_strict_official_calendar_cards"
+        }
+      ],
       "eligibleCandidates": 1,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
@@ -892,10 +982,14 @@
       "listingUrl": "https://coconiqll.co.jp/info/",
       "listingError": "",
       "candidates": 13,
-      "checked": 10,
+      "checked": 11,
       "accepted": 0,
-      "reconfirmed": 0,
+      "reconfirmed": 1,
       "knownSkipped": 1,
+      "reconfirmationCandidates": 1,
+      "reconfirmationChecked": 1,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -946,20 +1040,20 @@
           "reason": "not_event"
         },
         {
-          "title": "情報セキュリティ基本方針",
-          "url": "https://coconiqll.co.jp/security/",
+          "title": "イベント 【NiQLL’sガーデンBBQ 2026】のご案内 9月25日(金) 詳細&お申込み 9月26日は応募定数に達しました いつも、「道の駅」都城NiQLLをご愛顧くださり、誠にありがとうござい",
+          "url": "https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%ac%e3%83%bc%e3%83%87%e3%83%b3bbq%e3%80%91/",
           "reason": "not_event"
         },
         {
-          "title": "お問い合わせ",
-          "url": "https://coconiqll.co.jp/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/",
+          "title": "イベント 令和8年11月ニクルの朝市 出店募集!! 「道の駅」都城NiQLLでは、毎月第3土曜日に朝市を開催しています。11月の朝市は、11月7日(土)の第1土曜日に開催いたします。 ... 2026",
+          "url": "https://coconiqll.co.jp/%e4%bb%a4%e5%92%8c8%e5%b9%b411%e6%9c%88%e3%83%8b%e3%82%af%e3%83%ab%e3%81%ae%e6%9c%9d%e5%b8%82%e3%80%80%e5%87%ba%e5%ba%97%e5%8b%9f%e9%9b%86%ef%bc%81%ef%bc%81/",
           "reason": "not_event"
         }
       ],
       "eligibleCandidates": 12,
       "uninspectedCandidates": 2,
-      "explorationStart": 0,
-      "explorationNext": 2,
+      "explorationStart": 2,
+      "explorationNext": 0,
       "explorationSlots": 2,
       "explorationPool": 4
     },
@@ -974,6 +1068,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -1033,20 +1131,20 @@
           "reason": "not_event"
         },
         {
-          "title": "令和8年度発達支援に関する講演会の案内",
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2026091600026/",
+          "title": "リンクについて",
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2014110400047/",
           "reason": "not_event"
         },
         {
-          "title": "個人情報の取り扱いについて",
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2014101600012/",
+          "title": "著作権について",
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2014110400030/",
           "reason": "not_event"
         }
       ],
       "eligibleCandidates": 19,
       "uninspectedCandidates": 7,
-      "explorationStart": 2,
-      "explorationNext": 4,
+      "explorationStart": 4,
+      "explorationNext": 6,
       "explorationSlots": 2,
       "explorationPool": 9
     },
@@ -1061,6 +1159,10 @@
       "accepted": 0,
       "reconfirmed": 1,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -1084,6 +1186,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
@@ -1161,6 +1267,10 @@
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 1,
       "fetchErrors": [
         {
@@ -1190,6 +1300,10 @@
       "accepted": 0,
       "reconfirmed": 1,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -1213,6 +1327,10 @@
       "accepted": 0,
       "reconfirmed": 1,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -1236,6 +1354,10 @@
       "accepted": 0,
       "reconfirmed": 1,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -1259,6 +1381,10 @@
       "accepted": 0,
       "reconfirmed": 1,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -1282,6 +1408,10 @@
       "accepted": 0,
       "reconfirmed": 1,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -1305,6 +1435,10 @@
       "accepted": 0,
       "reconfirmed": 1,
       "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {},
@@ -1319,5 +1453,5 @@
     }
   ],
   "newEvents": 0,
-  "reconfirmedEvents": 13
+  "reconfirmedEvents": 17
 }

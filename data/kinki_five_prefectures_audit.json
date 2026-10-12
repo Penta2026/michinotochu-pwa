@@ -23,8 +23,8 @@
       "listingError": "",
       "candidates": 7,
       "checked": 7,
-      "accepted": 2,
-      "past": 4,
+      "accepted": 1,
+      "past": 5,
       "undated": 1,
       "venueMismatch": 0,
       "failed": 0,
@@ -34,12 +34,6 @@
           "start": "2026-10-16",
           "end": "2026-11-03",
           "url": "https://wachi-nagomi.com/topics/post-10529/"
-        },
-        {
-          "title": "10/10[土] 〜12[月] 3連休 道の駅 和イベント案内",
-          "start": "2026-10-10",
-          "end": "2026-10-12",
-          "url": "https://wachi-nagomi.com/topics/post-10488/"
         }
       ],
       "undatedExamples": [
@@ -135,5 +129,5 @@
       "undatedExamples": []
     }
   ],
-  "accepted": 5
+  "accepted": 4
 }
