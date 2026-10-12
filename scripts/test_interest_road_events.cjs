@@ -11,6 +11,10 @@ const start = app.indexOf("function interestStationEventCard(");
 const end = app.indexOf("function uiCategoryTags(", start);
 assert.ok(start > 0 && end > start, "interest code must be present in actual app.js");
 const interestCode = app.slice(start, end);
+const syncStart = app.indexOf("function syncInterestFeature(){");
+const syncEnd = app.indexOf("function syncRidersCategory(){", syncStart);
+assert.ok(syncStart > 0 && syncEnd > syncStart, "interest filter sync must be present");
+const interestSyncCode = app.slice(syncStart, syncEnd);
 const roads = [
   { id: "road-tokyo", name: "北100", prefecture: "東京都", lat: 35.9, lng: 139 },
   { id: "road-chiba", name: "東100", prefecture: "千葉県", lat: 35, lng: 140.1 },
@@ -86,7 +90,7 @@ function fixture({ cached = true, online = events, cachedEvents = events } = {})
   ctx.$ = node;
   vm.runInNewContext(tour, ctx, { filename: "tour-plan.js" });
   handlers.get("DOMContentLoaded")();
-  vm.runInNewContext(interestCode, ctx, { filename: "app-interest-functions.js" });
+  vm.runInNewContext(interestSyncCode+"\n"+interestCode, ctx, { filename: "app-interest-functions.js" });
   ctx.window.runInterest = ctx.runInterest;
   ctx.syncInterestFeature();
   return { ctx, node, alerts, store, html: () => node("interestResult").innerHTML };
