@@ -1076,6 +1076,10 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
         if registry.get("schemaVersion") != 1:
             raise ValueError("Unsupported discovery registry version")
         sources = registry["sources"]
+    # Disabled routes must never be fetched, including when callers inject the
+    # entire registry rather than prefiltering it. Suspended official evidence
+    # is reported separately by the gap monitor, not silently "recovered".
+    sources = [spec for spec in sources if spec.get("enabled", True)]
     _validate_sources(sources)
     fetch = fetch or _fetch
     pdf_fetch = pdf_fetch or _fetch_official_pdf_text
