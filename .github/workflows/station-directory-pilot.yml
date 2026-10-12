@@ -4,12 +4,6 @@ on:
   schedule:
     - cron: "0 2 * * *"
       timezone: "Asia/Tokyo"
-  push:
-    branches: [main]
-    paths:
-      - "scripts/station_official_directory_discovery.py"
-      - "scripts/test_station_official_directory_discovery.py"
-      - ".github/workflows/station-directory-pilot.yml"
   workflow_dispatch:
 
 permissions:
