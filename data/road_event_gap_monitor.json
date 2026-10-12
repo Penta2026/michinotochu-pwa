@@ -45,9 +45,10 @@
     "uninspectedCandidateSlots": 163,
     "reviewWithExplicitFutureHint": 2,
     "reviewWithExplicitPastHint": 4,
-    "warnings": 11,
+    "warnings": 12,
     "warningKinds": {
       "article_check_limit": 9,
+      "regional_homepage_unreachable": 1,
       "repeatedly_empty_listing": 1,
       "suspended_unavailable_official_evidence": 1
     },
@@ -11178,6 +11179,11 @@
       "candidateCount": 19,
       "checkedCount": 12,
       "uninspectedCandidateCount": 7
+    },
+    {
+      "kind": "regional_homepage_unreachable",
+      "region": "東北",
+      "severity": "warning"
     }
   ],
   "sources": [
@@ -11895,15 +11901,15 @@
     {
       "region": "東北",
       "mode": "adapter",
-      "homepageReachable": true,
-      "homepageCandidateCount": 11,
+      "homepageReachable": false,
+      "homepageCandidateCount": 0,
       "note": "Regional homepage status does NOT prove that its stations' events were parsed."
     },
     {
       "region": "関東",
       "mode": "discovery",
       "homepageReachable": true,
-      "homepageCandidateCount": 5,
+      "homepageCandidateCount": 7,
       "note": "Regional homepage status does NOT prove that its stations' events were parsed."
     },
     {

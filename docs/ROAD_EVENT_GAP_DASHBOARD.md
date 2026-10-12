@@ -44,6 +44,7 @@
 - **article_check_limit** — fukui_nanjezen_sankairi （notice）
 - **article_check_limit** — miyazaki_niqll （notice）
 - **article_check_limit** — ehime_yawatahama_city_events （notice）
+- **regional_homepage_unreachable** — 東北 （warning）
 
 ## 公式の一次資料が取得できず保留中の収集先
 
