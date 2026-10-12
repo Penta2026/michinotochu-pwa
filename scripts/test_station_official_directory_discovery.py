@@ -151,7 +151,7 @@ class OfficialDirectoryPilotTests(unittest.TestCase):
     def test_list_mismatch_is_error_not_false_completion(self):
         with patch("station_official_directory_discovery.read_app_stations",
                    return_value=self.roads):
-            with self.assertRaisesRegex(RuntimeError, "empty or HTML layout changed"):
+            with self.assertRaisesRegex(RuntimeError, "has no exact master matches"):
                 crawl_once(lambda url: (200,"<main>サーバ更新中</main>"),
                            robots_allowed=lambda x: True,max_details=1,
                            scanned_on="2026-10-13")
