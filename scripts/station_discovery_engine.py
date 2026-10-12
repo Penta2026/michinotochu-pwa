@@ -1065,10 +1065,11 @@ def _fetch(url):
 def collect_configured_station_events(today, prior=None, sources=None, fetch=None,
                                       report_path=REPORT, pdf_fetch=None,
                                       reconfirm_previous=None):
-    """Discover only URLs absent from all current and prior verified records.
+    """Discover novel events and independently reconfirm eligible existing ones.
 
-    Keeping an already published URL with its known event collector prevents
-    inconsistent titles from producing duplicate same-day event records.
+    Discovery and reconfirmation have separate bounded inspection budgets.
+    A prior event counts as reconfirmed only after a fresh official listing
+    and article prove the exact same title and event dates and venue.
     """
     if sources is None:
         registry = json.loads(RULES.read_text(encoding="utf-8"))
@@ -1094,6 +1095,8 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                    "roadName": spec["roadName"], "listingUrl": spec["listingUrl"],
                    "listingError": "", "candidates": 0, "checked": 0,
                    "accepted": 0, "reconfirmed": 0, "knownSkipped": 0,
+                   "reconfirmationCandidates": 0, "reconfirmationChecked": 0,
+                   "reconfirmationFailed": 0, "reconfirmationUninspected": 0,
                    "fetchFailed": 0, "fetchErrors": [],
                    "reasons": {}, "examples": [], "rejectedExamples": [],
                    "eligibleCandidates": 0, "uninspectedCandidates": 0,
@@ -1118,7 +1121,9 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                          "verified_official_pdf", "verified_official_event_detail",
                          "verified_official_vendor_schedule",
                          "verified_official_checkpoint_program")
+        recheck_urls = set()
         if not multi:
+            listing_links = links
             excluded = known_urls | newly_seen
             history = audit_history.get(spec["id"], {})
             # Re-running on the same day preserves the same inspected set.
@@ -1129,10 +1134,38 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             links, selection = _plan_article_inspection(
                 links, spec, today, excluded, cursor)
             summary.update(selection)
+            # Inspect previously verified records in a SEPARATE budget.
+            # Never let old URLs crowd out new official notices. Only articles
+            # still linked by this exact official station source may qualify.
+            known_rechecks = {}
+            for item in (reconfirm_previous or ()):
+                url = item.get("url")
+                end = item.get("endDate", "")
+                if (item.get("prefecture") == spec["prefecture"]
+                        and item.get("roadName") == spec["roadName"]
+                        and url in listing_links and url not in links
+                        and re.fullmatch(r"20[0-9]{2}-[0-9]{2}-[0-9]{2}", end)
+                        and end >= today.isoformat()):
+                    known_rechecks[url] = listing_links[url]
+            # Rotate only when an official site has more old notices than
+            # the reconfirmation budget; same-day runs stay deterministic.
+            ordered = sorted(known_rechecks)
+            limit = max(0, min(4, int(spec.get("maxReconfirmArticles", 2))))
+            summary["reconfirmationCandidates"] = len(ordered)
+            summary["reconfirmationUninspected"] = max(0, len(ordered)-limit)
+            if len(ordered) > limit and limit > 0:
+                start = (today.toordinal() * limit) % len(ordered)
+                ordered = [ordered[(start+j) % len(ordered)]
+                           for j in range(limit)]
+            else:
+                ordered = ordered[:limit]
+            recheck_urls = set(ordered)
+            links.update((url, known_rechecks[url]) for url in ordered)
         else:
             summary["eligibleCandidates"] = len(links)
+        inspection_limit = int(spec.get("maxArticles", 6)) + len(recheck_urls)
         for url, text in links.items():
-            if summary["checked"] >= int(spec.get("maxArticles", 6)):
+            if summary["checked"] >= inspection_limit:
                 break
             try:
                 detail = (pdf_fetch(url) if mode == "verified_official_pdf" else
@@ -1140,12 +1173,16 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
                                       url == spec["listingUrl"]) else fetch(url))
             except (requests.RequestException, ValueError, AttributeError) as exc:
                 summary["fetchFailed"] += 1
+                if url in recheck_urls:
+                    summary["reconfirmationFailed"] += 1
                 if len(summary["fetchErrors"]) < 3:
                     summary["fetchErrors"].append({
                         "url": url, "type": type(exc).__name__,
                         "detail": str(exc)[:180]})
                 continue
             summary["checked"] += 1
+            if url in recheck_urls:
+                summary["reconfirmationChecked"] += 1
             reconfirmed_this_url = 0
             if multi:
                 if mode == "official_station_program":
@@ -1188,6 +1225,23 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             else:
                 record, why = _article_record(spec, detail, text, today, url)
                 found = [record] if record else []
+                if url in recheck_urls:
+                    # Exact date, distinctive title and source-linked venue
+                    # evidence are required; an edited notice is NOT proof
+                    # that the previously published event is unchanged.
+                    key = ((record["url"], clean(record["title"]),
+                            record["startDate"], record["endDate"])
+                           if record else None)
+                    previous = previous_verified.get(key)
+                    if (previous is not None and key not in reconfirmed_keys):
+                        records.append(dict(previous))
+                        reconfirmed_keys.add(key)
+                        summary["reconfirmed"] += 1
+                        reconfirmed_this_url += 1
+                        reconfirmed_count += 1
+                    elif record is not None and previous is None:
+                        why = "known_article_identity_changed"
+                    found = []
             if found:
                 for record in found:
                     records.append(record)
