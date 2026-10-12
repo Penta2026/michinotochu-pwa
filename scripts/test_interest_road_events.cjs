@@ -75,6 +75,7 @@ function fixture({ cached = true, online = events, cachedEvents = events } = {})
     console,
     Date, Intl, URLSearchParams,
     RIDERS_CAFES: [],
+    D: { roads, landmarks: [] },
     FEATURES: [["", "すべて"]],
     RIDERS_SPOT_CATEGORIES: [["", "すべて"]],
     RIDERS_CAFE_FILTERS: [["", "すべて"]],
