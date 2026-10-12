@@ -3,8 +3,8 @@
   "source": "https://www.michi-no-eki.jp/search",
   "lastChecked": "2026-10-13",
   "cursor": {
-    "page": 0,
-    "offset": 30
+    "page": 1,
+    "offset": 0
   },
   "listingTraversalCompleted": false,
   "stations": [
@@ -413,12 +413,82 @@
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0032",
+      "prefecture": "北海道",
+      "roadName": "オスコイ！かもえない",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18820",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/881/",
+        "http://www.vill.kamoenai.hokkaido.jp/hotnews/detail/00000142.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0033",
+      "prefecture": "北海道",
+      "roadName": "なかさつない",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18821",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/892/",
+        "http://www.michinoeki-nakasatsunai.jp/index.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0034",
+      "prefecture": "北海道",
+      "roadName": "マオイの丘公園",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18822",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/906/",
+        "https://maoinooka.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0035",
+      "prefecture": "北海道",
+      "roadName": "樹海ロード日高",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18823",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hidaka.pref.hokkaido.lg.jp/ss/srk/hkd/thidaka/008.htm",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/921/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0036",
+      "prefecture": "北海道",
+      "roadName": "そうべつ情報館ｉ（アイ）",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18824",
+      "lastDirectoryChecked": "2026-10-13",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://sobetsu-fp.co.jp/",
+        "http://www.hokkaido-michinoeki.jp/michinoeki/937/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
     }
   ],
   "lastRun": {
     "listCount": 35,
-    "inspected": 24,
-    "matched": 24,
+    "inspected": 5,
+    "matched": 5,
     "errors": 0
   }
 }
