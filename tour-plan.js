@@ -62,10 +62,10 @@ function search(){
  const group=el("tourGroup").value,cat=el("tourCategory").value;
  const list=goalCandidates(settings,group,cat);
  window.tourCandidates=list;
- dropOptions(list,"tourTargetSelect","目標地点を選択してください",x=>x.name+" / "+(x.prefecture||"")+(group==="roadEvent"?" / "+activeRoadEvents(x).map(e=>e.startDate+" "+e.title).join("・"):"")+" / 直線"+x.tourKm.toFixed(1)+"km");
- const eventTotal=Array.from(liveEventIndex().values()).reduce((n,v)=>n+v.length,0);
- const debug=group==="roadEvent"?" / 情報"+eventTotal+"件・距離・方角内"+list.length+"駅":"";
- el("tourCandidateCount").textContent=(group==="roadEvent"&&!eventsReady?"⚠️ イベント情報が未取得です。イベント情報を更新してください。":"検索結果 "+list.length+"件（直線"+Math.max(0,settings.km-settings.tol)+"〜"+(settings.km+settings.tol)+"km）"+debug);
+ dropOptions(list,"tourTargetSelect","目標地点を選択してください",x=>x.name+" / "+(x.prefecture||"")+" / 直線"+x.tourKm.toFixed(1)+"km"+(group==="roadEvent"?" / 📅"+activeRoadEvents(x).length+"件":""));
+ const distanceText="直線"+Math.max(0,settings.km-settings.tol)+"〜"+(settings.km+settings.tol)+"km";
+ const extra=group==="roadEvent"?"・イベント開催駅のみ":"";
+ el("tourCandidateCount").textContent=(group==="roadEvent"&&!eventsReady?"⚠️ イベント情報が未取得です。下の「イベント情報の更新・取得状況」から更新してください。":"候補 "+list.length+"件 / "+distanceText+extra+(list.length===0?"（条件を広げると候補が見つかることがあります）":""));
  renderRoadEventList();
 }
 function chooseTarget(x){if(!x)return;state.target={name:x.name,lat:x.lat,lng:x.lng,navQuery:x.navQuery||""};state.stops=[];const notice=el("tourTargetNotice");if(notice)notice.textContent="✅ 目標地点を「"+x.name+"」に設定しました。以下に目標地点から直線"+el("tourRadius").value+"km以内の追加候補を表示しています。";render();nearby();const eventInfo=el("tourTargetEventNotice");if(eventInfo){const es=activeRoadEvents(x);eventInfo.hidden=es.length===0;eventInfo.innerHTML=es.length?"<b>📅 この道の駅の開催予定イベント</b>"+es.map(e=>"<div>"+esc(e.startDate)+(e.endDate!==e.startDate?"〜"+esc(e.endDate):"")+"："+esc(e.title)+(e.url?' <a href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">公式案内 ↗</a>':"")+"</div>").join(""):""}}
