@@ -191,6 +191,44 @@ def crawl_once(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES,
                         "matched": matched, "errors": errors}}
 
 
+def crawl_batch(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES,
+                scanned_on=None, pause=None):
+    """Spend today's small request budget across page boundaries safely."""
+    if not 1 <= max_details <= 24:
+        raise ValueError("Unreasonable daily directory request budget")
+    current = old or {}
+    remaining = max_details
+    totals = {"listCount": 0, "inspected": 0, "matched": 0,
+              "errors": 0, "examined": 0, "listingPagesVisited": 0}
+    for _ in range(4):  # normally at most two, defensive cap
+        if not remaining or current.get("listingTraversalCompleted"):
+            break
+        previous = current.get("cursor", {"page": 0, "offset": 0})
+        result = crawl_once(fetch, robots_allowed=robots_allowed, old=current,
+                            max_details=remaining, scanned_on=scanned_on,
+                            pause=pause)
+        run = result["lastRun"]
+        # Checked rows includes robots-blocked rows with no HTTP GET.
+        examined = (result["cursor"]["offset"] - previous["offset"]
+                    if result["cursor"]["page"] == previous["page"] else
+                    run["listCount"] - previous["offset"])
+        if examined <= 0 or examined > remaining:
+            raise RuntimeError("Directory cursor failed to make safe progress")
+        for field in ("inspected", "matched", "errors"):
+            totals[field] += run[field]
+        totals["examined"] += examined
+        totals["listingPagesVisited"] += 1
+        totals["listCount"] = run["listCount"]
+        remaining -= examined
+        current = result
+        if (current.get("listingTraversalCompleted")
+                or result["cursor"]["page"] == previous["page"]):
+            break
+    if not current:
+        raise RuntimeError("Directory batch produced no output")
+    return {**current, "lastRun": totals}
+
+
 def network_fetch(session):
     def fetch(url, robots=False):
         if not (url == BASE + "/robots.txt" if robots else (same_directory_url(url) or same_directory_url(url, detail=True))):
@@ -208,7 +246,7 @@ def main():
         session.headers.update({"User-Agent": AGENT, "Accept": "text/html"})
         fetch = network_fetch(session)
         allowed = robots_policy(fetch)
-        result = crawl_once(fetch, robots_allowed=allowed, old=old, pause=time.sleep)
+        result = crawl_batch(fetch, robots_allowed=allowed, old=old, pause=time.sleep)
     text = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != text:
         OUTPUT.write_text(text, encoding="utf-8")
