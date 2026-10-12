@@ -889,6 +889,48 @@
       "venueProofPattern": "📍\\s*道の駅\\s*しらぬか恋問館",
       "articleMode": "verified_official_event_detail",
       "maxArticles": 1
+    },
+    {
+      "id": "akita_tenno_official",
+      "enabled": true,
+      "prefecture": "秋田県",
+      "roadName": "てんのう",
+      "listingUrl": "https://michinoeki-tenno.jp/",
+      "allowedHosts": [
+        "michinoeki-tenno.jp"
+      ],
+      "articlePathPattern": "^/info/[a-zA-Z0-9_-]+/?$",
+      "listingLinkSelector": "a[href*='/info/']",
+      "articleSelector": "article, main",
+      "titleSelectors": [
+        "article h1",
+        "main h1",
+        "h1"
+      ],
+      "publicationSelector": "time[datetime], meta[property='article:published_time']",
+      "requiredVenueTokens": [
+        "道の駅てんのう"
+      ],
+      "venueProofPattern": "会場\\s*[:：]?\\s*道の駅てんのう",
+      "requireVenueLabel": true,
+      "allowedEventWords": [
+        "イベント",
+        "祭",
+        "まつり",
+        "フェス",
+        "マルシェ",
+        "販売会",
+        "ライブ",
+        "LIVE",
+        "フェア",
+        "催し",
+        "ハロウィン",
+        "コンサート",
+        "朝市"
+      ],
+      "maxArticles": 8,
+      "allowExplicitDatedParagraph": true,
+      "note": "公式 https://michinoeki-tenno.jp/info/1031halloween/ の2026-10-31開催日・会場を確認。記事内の当年日時と会場証拠の双方必須。"
     }
   ]
 }
