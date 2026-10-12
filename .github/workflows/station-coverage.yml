@@ -9,6 +9,7 @@ on:
       - "data/app_data.js"
       - "data/station_event_discovery_sources.json"
       - "data/verified_station_source_rules.json"
+      - "data/station_official_directory_candidates.json"
       - ".github/workflows/station-coverage.yml"
   workflow_dispatch:
 
