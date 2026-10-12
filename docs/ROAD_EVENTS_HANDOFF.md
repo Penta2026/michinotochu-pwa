@@ -1,11 +1,19 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-13 Phase 7 愛媛404の安全な保留管理を実装。死んだPDF収集先を一時停止し、公式会場証拠の不足を監査警告で保持・市公式イベント一覧は継続収集。収集エンジンCI #13：283/283合格**。直近本番データは #78（公開60件/36県/44駅、再確認17件・未確認0件、重複0件）。今回の停止設定の実地反映は次回収集待ち。  
+更新基準: **2026-10-13 Phase 7 本番#80で愛媛の壊れたPDF取得停止と警告保持を確認。Phase 8：秋田「道の駅てんのう」の公式イベント収集先を追加し、古い一覧見出しによる中止イベント誤掲載も防止。収集CI #16：285/285合格**。最新の確定公開データは本番#80（60件/36県/44駅、再確認17件・未確認0件、重複0件）。Phase 8の秋田イベント採用結果は本番実行待ち。  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 Phase 8 — 新規公式巡回駅を秋田「てんのう」に拡張、中止時の偽陽性も補修
+
+- **Phase 7の本番確定**：[道の駅イベント収集 #79](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38315353726)、[#80](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38316020954) が成功。`data/station_event_discovery_audit.json` の設定型実稼働ソース **27件**はすべて監査され、愛媛市公式PDFへのアクセスは**停止成功**（監査から当該PDFは消失）。`road_event_gap_monitor.json`では **`sourcesWithFetchProblems=0` だが `suspendedUnavailableOfficialEvidence=1`**、`suspended_unavailable_official_evidence`の継続警告あり。愛媛市2026年開催予定記事の `venue_missing` 保留も継続。公開イベント60件/36県/44駅、既存再確認17件、未再確認0件、重複0件。
+- **全国拡張の着手駅**：アプリ駅マスタと東北の駅紹介では秋田県 `てんのう` が正規の駅名で、潟上市の道の駅として確認。公式 `https://michinoeki-tenno.jp/` のイベント見出しから個別の `/info/<slug>/` 記事を辿る新規収集先 **`akita_tenno_official`** を `data/station_event_discovery_sources.json` に追加。公式記事 `https://michinoeki-tenno.jp/info/1031halloween/` には **2026-10-31** の「ハロウィンイベント2026」と **会場：道の駅てんのう** が両方掲載されている。個別記事の**明示された開催年・開催日・会場**を要求し、URLは `https`・当該公式ドメイン・`/info/<slug>/` のみ許可、ニュース一覧・問い合わせ・他ドメインは不採用。今回の新規採用は次回本番収集で判定し、テスト成功だけで公開件数が増えたとは言わない。
+- **全国共通の安全補修**：通常記事の`_headline()`は「中止」等の語を含む新しい見出しを避け、古い一覧のイベント見出しにフォールバックする場合があった。これだと開催中止が公式記事へ掲載されても旧一覧が残っている限り再採用されるリスクがある。 `scripts/station_discovery_engine.py` の `_article_record()` で**記事本体の当該見出しの中止・延期と、本文に明記された開催中止を先に照合**し、取消しイベントは採用しない。雨天時に中止の可能性を案内するだけの事前注記はキャンセル確定にしない設計。
+- **検証**：`scripts/test_station_discovery_engine.py` に2件追加。10/31開催・駅内会場の抽出と、別会場・年違い・日付なし・中止見出しの拒否、公式ドメイン/ニュース記事パスのみ対象のテスト。最初の #15 で中止タイトルが旧一覧経由で採用されるリスクが検出され、共通パーサーを改善した後 [収集CI #16](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38317037784) **285/285合格**。自動テストはHTML模擬データで実施、実サイトの取得・採否は次回Run workflowで検証。
+- **次の実地監査で見るべきこと**：`station_event_discovery_audit.json`の `akita_tenno_official` が掲載URLを抽出でき、`candidates>0` かつ`checked>0`、公式10/31イベントの期間と会場が確認できれば新規採用になること。万一`venue_missing`/`undated`なら**誤掲載しないまま記事構造を調査**。従来の60件、愛媛の警告、未再確認0、重複0への悪影響がないこと。
+- **次に追加したい収集先**：秋田の別の公式駅 `あきた港（ポートタワーセリオン）` でも公式ニュース（例：2026-11-08「藤原美幸 民謡LIVE」）が確認できる。ただし、公式サイトのリンク構造・HTML/取得安定性と道の駅敷地内会場の個別検証が必要なため、まず`てんのう`の本番実績を確認してから増設する。その他の11県の「現行0件」を、駅にイベントがないことの証明と誤解しない。
 ## 2026-10-13 Phase 7 — 愛媛の404公式PDFを「未解決の一次根拠」として保留・監視
 
 - **確認できた証拠**：八幡浜市公式の[2026年イベント一覧](https://www.city.yawatahama.ehime.jp/event/2026/)には「第13回やわたはま産業まつり」**2026-11-22**。市の[開催委託プロポーザルHTML](https://www.city.yawatahama.ehime.jp/doc/2026041700097/)には仕様書PDFのリンクがある。ウェブ検索インデックスは2026年の仕様書内で会場「道の駅・みなとオアシス『八幡浜みなっと』」の記述を保持。ただし、仕様書PDFの原URL `https://www.city.yawatahama.ehime.jp/doc/2026041700097/file_contents/file_20264175162551_1.pdf` は**本番GitHub Actionsで3日以上HTTP404**。当日会場の確認原本へ継続アクセスできず、**11/22産業まつりは自動公開に進めない**。民間まとめ・過年度会場・検索エンジンの索引は自動確証として用いない。
