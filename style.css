@@ -654,3 +654,83 @@ body.pwa-starting .shell,body.pwa-starting .topbar,body.pwa-starting footer{poin
 #detour .detour-map-search .detour-genre-change-btn{display:flex;width:100%;box-sizing:border-box;min-height:52px;padding:12px 16px;margin:0 0 12px;align-items:center;justify-content:center;text-align:center;font-size:15px;font-weight:800;border-radius:14px;background:#edf5ff;color:#28669e;border:1px solid #a6c9ee;box-shadow:0 3px 8px #173a4f0c;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
 #detour .detour-map-search .detour-genre-change-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px #173a4f18}
 #detour .detour-map-search .detour-genre-change-btn:focus-visible{outline:3px solid #a6c9ee;outline-offset:2px}
+
+/* Touring planner: one-direction, five-step mobile workflow (PWA 1.6.25) */
+#ride .tour-flow{
+  display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;
+  padding:10px 11px;background:#eef5f0;border:1px solid #dce9df;border-radius:13px;
+}
+#ride .tour-flow span{
+  flex:1 0 auto;text-align:center;white-space:nowrap;font-size:11px;font-weight:800;
+  color:#476957;padding:6px 7px;border-radius:8px;background:#fff;
+}
+#ride .tour-step-head{
+  display:flex;align-items:center;gap:12px;min-width:0;margin:0 0 12px;
+}
+#ride .tour-step-head h3{
+  margin:0 0 2px;font-size:17px;font-weight:850;line-height:1.3;
+  color:#244839;
+}
+#ride .tour-step-head p{
+  margin:0;color:var(--muted);font-size:12px;line-height:1.5;
+}
+#ride .tour-step-number{
+  display:grid;place-items:center;flex:0 0 33px;height:33px;
+  border-radius:50%;background:#367f5a;color:#fff;font-size:16px;font-weight:900;
+}
+#ride .tour-stage-card{
+  border:1px solid #e0e9e5;padding:17px;margin-bottom:14px;
+  box-shadow:0 2px 8px #173a4f08;
+}
+#ride .tour-stage-card>.tour-step-head{
+  padding-bottom:12px;border-bottom:1px solid #e9efec;margin-bottom:2px;
+}
+#ride .tour-result-count{
+  border-radius:10px;background:#eff6f1;color:#285e45;border:1px solid #d5e9da;
+  font-size:13px;font-weight:750;padding:10px 12px;line-height:1.5;
+}
+#ride #tourCandidates #tourCandidatePicker{
+  grid-template-columns:minmax(0,1fr);gap:11px;align-items:stretch;
+}
+#ride .tour-selected{
+  border-top:1px solid #e9efec;padding-top:11px;display:grid;gap:8px;
+}
+#ride #tourTargetNotice{
+  padding:11px 12px;border-radius:10px;background:#f5f8fa;
+  font-weight:700;font-size:13px;line-height:1.6;
+}
+#ride #tourTargetEventNotice{
+  padding:10px 12px;border-radius:10px;background:#f4f9f2;
+  font-size:12px;line-height:1.7;overflow-wrap:anywhere;
+}
+#ride .tour-event-section{
+  display:grid;gap:9px;border-top:1px solid #e9efec;padding-top:11px;
+}
+#ride .tour-event-settings{
+  background:#f7faf8;border:1px solid #e0e9e5;border-radius:10px;
+  padding:10px 12px;
+}
+#ride .tour-event-settings summary{
+  font-size:12px;font-weight:800;color:#486b56;cursor:pointer;padding:3px 0;
+}
+#ride .tour-event-settings[open] summary{margin-bottom:12px}
+#ride .tour-event-settings button{margin:9px 0}
+#ride .tour-event-settings p{margin:2px 0}
+#ride .tour-event-results>.note{margin:8px 0}
+#ride .tour-event-results>.panel{
+  margin:9px 0;padding:13px!important;border:1px solid #e5efeb;
+  box-shadow:none;border-radius:11px;background:#fbfdfb;
+}
+#ride .tour-section-subhead{
+  color:#38564a;font-weight:800;font-size:14px;margin:8px 0 0;
+}
+#ride .tour-plan-summary{margin:0 0 12px}
+#ride .tour-route-final{margin:0 0 13px}
+@media(max-width:620px){
+  #ride .tour-flow{gap:5px;padding:8px}
+  #ride .tour-flow span{font-size:10px;padding:5px 4px}
+  #ride .tour-stage-card{padding:14px;margin-bottom:12px}
+  #ride .tour-step-head h3{font-size:16px}
+  #ride .tour-step-head p{font-size:11px}
+  #ride .tour-stage-card .form-grid{grid-template-columns:1fr}
+}
