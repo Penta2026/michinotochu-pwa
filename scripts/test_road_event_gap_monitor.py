@@ -258,6 +258,27 @@ class GapMonitorTests(unittest.TestCase):
                      if x["kind"]=="article_check_limit")
         self.assertEqual(warning["uninspectedCandidateCount"], 143)
 
+    def test_monitor_distinguishes_new_discovery_from_bounded_rechecks(self):
+        item = source(candidates=12, checked=10, accepted=1, reconfirmed=1,
+                      knownSkipped=4, eligibleCandidates=8,
+                      uninspectedCandidates=0,
+                      reconfirmationCandidates=4,
+                      reconfirmationChecked=2,
+                      reconfirmationFailed=1,
+                      reconfirmationUninspected=2,
+                      fetchFailed=1)
+        report = self.report(item)
+        metrics = report["summary"]
+        self.assertEqual(metrics["officialListingReconfirmationCandidates"], 4)
+        self.assertEqual(metrics["officialListingReconfirmationChecked"], 2)
+        self.assertEqual(metrics["officialListingReconfirmationFailed"], 1)
+        self.assertEqual(metrics["officialListingReconfirmedEvents"], 1)
+        self.assertEqual(report["sources"][0]["reconfirmationUninspected"], 2)
+        self.assertEqual(metrics["sourcesAtCheckLimit"], 0)
+        dashboard = render_dashboard(report)
+        self.assertIn("公式一覧経由の既存URL再検査", dashboard)
+        self.assertIn("再検査で取得失敗", dashboard)
+
     def test_unconfirmed_items_are_retained_as_review_only(self):
         record = {"roadName": "阿武町", "title": "森里海の市",
                   "url": "https://official.example/abu",
