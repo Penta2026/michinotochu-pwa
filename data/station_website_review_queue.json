@@ -1,0 +1,1913 @@
+{
+  "schemaVersion": 1,
+  "sourceDirectoryLastChecked": "2026-10-13",
+  "stationsWithCandidates": 83,
+  "stationsReviewed": 0,
+  "eventListingsVerified": 0,
+  "candidateKinds": {
+    "invalid": 153
+  },
+  "stations": [
+    {
+      "id": "RS0001",
+      "prefecture": "北海道",
+      "roadName": "三笠",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18786",
+      "candidates": [
+        {
+          "url": "http://www.city.mikasa.hokkaido.jp/hotnews/detail/00000036.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/172/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0002",
+      "prefecture": "北海道",
+      "roadName": "スタープラザ　芦別",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18787",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/202/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://go-to-ashibetsu.com/media/2018/04/01/20",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0003",
+      "prefecture": "北海道",
+      "roadName": "南ふらの",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18788",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/222/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0004",
+      "prefecture": "北海道",
+      "roadName": "しらぬか恋問館",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18789",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/263/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://michinoeki-shiranuka.jp/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0005",
+      "prefecture": "北海道",
+      "roadName": "びふか",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18790",
+      "candidates": [
+        {
+          "url": "http://www.bifuka-kankou.com/michinoeki.php",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/292/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0006",
+      "prefecture": "北海道",
+      "roadName": "江差",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18791",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-esashi.jp/modules/sightseeing/content0023.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/321/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0007",
+      "prefecture": "北海道",
+      "roadName": "望羊中山",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18792",
+      "candidates": [
+        {
+          "url": "http://ageimo.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/364/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0008",
+      "prefecture": "北海道",
+      "roadName": "えんべつ富士見",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18793",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/389/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0009",
+      "prefecture": "北海道",
+      "roadName": "忠類",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18794",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/407/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://hotel-arco.jp/sightseeing/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0010",
+      "prefecture": "北海道",
+      "roadName": "摩周温泉",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18796",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/440/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.masyuko.or.jp/michinoeki/index.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0011",
+      "prefecture": "北海道",
+      "roadName": "おといねっぷ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18797",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/458/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0012",
+      "prefecture": "北海道",
+      "roadName": "かみゆうべつ温泉チューリップの湯",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18798",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/472/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.yubetsu.lg.jp/50shisetsu/6nou-kankou/spa-kamiyu.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0013",
+      "prefecture": "北海道",
+      "roadName": "いわない",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18799",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/499/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.iwanai-kanko.org/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0014",
+      "prefecture": "北海道",
+      "roadName": "厚岸グルメパーク",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18801",
+      "candidates": [
+        {
+          "url": "http://www.conchiglie.net/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/531/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0015",
+      "prefecture": "北海道",
+      "roadName": "サンフラワー北竜",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18802",
+      "candidates": [
+        {
+          "url": "http://portal.hokuryu.info/sunflowerpark/roadsidestation",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/546/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0016",
+      "prefecture": "北海道",
+      "roadName": "みついし",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18803",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/564/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0018",
+      "prefecture": "北海道",
+      "roadName": "よってけ！島牧",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18805",
+      "candidates": [
+        {
+          "url": "https://michinoekishimamaki.jimdofree.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0019",
+      "prefecture": "北海道",
+      "roadName": "てっくいランド大成",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18806",
+      "candidates": [
+        {
+          "url": "http://www.hiyama.pref.hokkaido.lg.jp/ss/srk/tabi/04s_tais/parts/8401mtr.htm",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/611/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0020",
+      "prefecture": "北海道",
+      "roadName": "オホーツク紋別",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18807",
+      "candidates": [
+        {
+          "url": "http://mombetsu.net/tourist-facilities/%E9%81%93%E3%81%AE%E9%A7%85-%E3%82%AA%E3%83%9B%E3%83%BC%E3%83",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/626/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0021",
+      "prefecture": "北海道",
+      "roadName": "YOU･遊･もり",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18808",
+      "candidates": [
+        {
+          "url": "http://mori-bussan.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/641/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0022",
+      "prefecture": "北海道",
+      "roadName": "おんねゆ温泉",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18809",
+      "candidates": [
+        {
+          "url": "http://onneyu-aq.com/facility3",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/685/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0023",
+      "prefecture": "北海道",
+      "roadName": "ルート２２９元和台",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18810",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/704/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.otobe.lg.jp/section/sangyou/e0taal0000000bz1.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0024",
+      "prefecture": "北海道",
+      "roadName": "ハウスヤルビ奈井江",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18811",
+      "candidates": [
+        {
+          "url": "http://machiken292.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/722/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0025",
+      "prefecture": "北海道",
+      "roadName": "おびら鰊番屋",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18812",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/744/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.obira.hokkaido.jp/kanko/detail/00001365.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0026",
+      "prefecture": "北海道",
+      "roadName": "マリーンアイランド岡島",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18813",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/768/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0027",
+      "prefecture": "北海道",
+      "roadName": "おこっぺ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18814",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/795/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0028",
+      "prefecture": "北海道",
+      "roadName": "阿寒丹頂の里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18815",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/810/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://www.akan.jp/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0029",
+      "prefecture": "北海道",
+      "roadName": "おとふけ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18816",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/825/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://michinoeki-otofuke.jp/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0030",
+      "prefecture": "北海道",
+      "roadName": "ピンネシリ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18817",
+      "candidates": [
+        {
+          "url": "https://pinneshiri-autocamp.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0031",
+      "prefecture": "北海道",
+      "roadName": "上ノ国もんじゅ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18819",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/870/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.kaminokuni.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0032",
+      "prefecture": "北海道",
+      "roadName": "オスコイ！かもえない",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18820",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/881/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.vill.kamoenai.hokkaido.jp/hotnews/detail/00000142.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0033",
+      "prefecture": "北海道",
+      "roadName": "なかさつない",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18821",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/892/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.michinoeki-nakasatsunai.jp/index.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0034",
+      "prefecture": "北海道",
+      "roadName": "マオイの丘公園",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18822",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/906/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://maoinooka.jp/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0035",
+      "prefecture": "北海道",
+      "roadName": "樹海ロード日高",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18823",
+      "candidates": [
+        {
+          "url": "http://www.hidaka.pref.hokkaido.lg.jp/ss/srk/hkd/thidaka/008.htm",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/921/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0036",
+      "prefecture": "北海道",
+      "roadName": "そうべつ情報館ｉ（アイ）",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18824",
+      "candidates": [
+        {
+          "url": "http://sobetsu-fp.co.jp/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/937/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0037",
+      "prefecture": "北海道",
+      "roadName": "ニセコビュープラザ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18825",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/949/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.niseko-ta.jp/index.php?id=87",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0038",
+      "prefecture": "北海道",
+      "roadName": "しりうち",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18826",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/961/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.shiriuchi.hokkaido.jp/kanko/meisho/michinoeki.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0039",
+      "prefecture": "北海道",
+      "roadName": "横綱の里ふくしま",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18827",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/973/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.yokodunanosato-fukushima.info/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0040",
+      "prefecture": "北海道",
+      "roadName": "サラブレッドロード新冠",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18828",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/988/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.niikappu.jp/kurashi/sekatsu/kotsu/miti.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0041",
+      "prefecture": "北海道",
+      "roadName": "ピア２１しほろ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18829",
+      "candidates": [
+        {
+          "url": "http://shihoroinfo.com/road-station",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1001/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0042",
+      "prefecture": "北海道",
+      "roadName": "香りの里たきのうえ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18830",
+      "candidates": [
+        {
+          "url": "http://town.takinoue.hokkaido.jp/shokai/shisetsu/kankou/michinoeki.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1016/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0043",
+      "prefecture": "北海道",
+      "roadName": "田園の里うりゅう",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18831",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1026/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.michinoeki-uryu.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0044",
+      "prefecture": "北海道",
+      "roadName": "みたら室蘭",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18832",
+      "candidates": [
+        {
+          "url": "http://muro-kanko.com/visit/roadside_station.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1039/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0045",
+      "prefecture": "北海道",
+      "roadName": "とうま",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18833",
+      "candidates": [
+        {
+          "url": "http://www.densukesan.net/2018/kau.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1677/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0046",
+      "prefecture": "北海道",
+      "roadName": "スペース・アップルよいち",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18834",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1699/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://www.spacedome.jp",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0047",
+      "prefecture": "北海道",
+      "roadName": "ほっと♡はぼろ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18835",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1747/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0048",
+      "prefecture": "北海道",
+      "roadName": "サロマ湖",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18836",
+      "candidates": [
+        {
+          "url": "http://saroma.jp",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1787/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0049",
+      "prefecture": "北海道",
+      "roadName": "愛ランド湧別",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18837",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1951/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.yubetsu.lg.jp/60kanko/03annai/you.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0050",
+      "prefecture": "北海道",
+      "roadName": "おうむ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18838",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1975/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.oumu.hokkaido.jp/hotnews/detail/00000065.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0051",
+      "prefecture": "北海道",
+      "roadName": "さるふつ公園",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18839",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2010/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.vill.sarufutsu.hokkaido.jp/hotnews/detail/00000356.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0052",
+      "prefecture": "北海道",
+      "roadName": "森と湖の里ほろかない",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18840",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2038/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://horokanaisoba.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0053",
+      "prefecture": "北海道",
+      "roadName": "うたしないチロルの湯",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18841",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2066/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0054",
+      "prefecture": "北海道",
+      "roadName": "くろまつない",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18842",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2088/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.kuromatsunai.com/toitvert2/index.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0055",
+      "prefecture": "北海道",
+      "roadName": "たきかわ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18843",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2107/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0056",
+      "prefecture": "北海道",
+      "roadName": "スワン４４ねむろ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18844",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2143/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.swan44nemuro.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0057",
+      "prefecture": "北海道",
+      "roadName": "つるぬま",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18845",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2164/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.urausu.hokkaido.jp/kankou/guide/michinoeki.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0058",
+      "prefecture": "北海道",
+      "roadName": "なとわ・えさん",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18846",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2179/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.natowaesan.com/roadside_station.htm",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0059",
+      "prefecture": "北海道",
+      "roadName": "つど～る・プラザ・さわら",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18847",
+      "candidates": [
+        {
+          "url": "http://kankou.mori.hokkaido.jp/201510/07-1619.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2200/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0060",
+      "prefecture": "北海道",
+      "roadName": "知床・らうす",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18848",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2217/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.nemuro.pref.hokkaido.lg.jp/ss/srk/kanko/nmrgsdb/3k-spot/3ks-shiretoko-rausu.htm",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0061",
+      "prefecture": "北海道",
+      "roadName": "さらべつ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18849",
+      "candidates": [
+        {
+          "url": "http://www.sarabetsu-pipopa.jp/michinoeki/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://www.instagram.com/mitinoekisarabetsu/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0062",
+      "prefecture": "北海道",
+      "roadName": "だて歴史の杜",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18850",
+      "candidates": [
+        {
+          "url": "http://www.city.date.hokkaido.jp/hotnews/detail/00001549.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2253/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0063",
+      "prefecture": "北海道",
+      "roadName": "あさひかわ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18851",
+      "candidates": [
+        {
+          "url": "http://www.asahikawa-jibasan.com",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2272/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0064",
+      "prefecture": "北海道",
+      "roadName": "自然体感しむかっぷ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18852",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2298/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.vill.shimukappu.lg.jp/shimukappu/section/kikaku/nmudtq0000002gk4.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0065",
+      "prefecture": "北海道",
+      "roadName": "にしおこっぺ花夢",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18853",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2325/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://www.vill.nishiokoppe.lg.jp/section/kamu/kamu.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0066",
+      "prefecture": "北海道",
+      "roadName": "オーロラタウン９３りくべつ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18854",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2355/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://www.rikubetsu.jp/kanko/michinoeki/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0067",
+      "prefecture": "北海道",
+      "roadName": "はなやか（葉菜野花）小清水",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18855",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2375/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.koshimizu.hokkaido.jp/hanayaka/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0068",
+      "prefecture": "北海道",
+      "roadName": "ライスランドふかがわ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18856",
+      "candidates": [
+        {
+          "url": "http://mypage.fukanavi.com/riceland/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2390/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0069",
+      "prefecture": "北海道",
+      "roadName": "なかがわ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18857",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2424/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.nakagawa-showya.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0070",
+      "prefecture": "北海道",
+      "roadName": "２３０ルスツ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18858",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2442/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.rusutsu.gr.jp/shopping/687.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0071",
+      "prefecture": "北海道",
+      "roadName": "てしお",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18859",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2467/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.teshiotown.hokkaido.jp/?page_id=660",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0072",
+      "prefecture": "北海道",
+      "roadName": "コスモール大樹",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18860",
+      "candidates": [
+        {
+          "url": "http://taiki-sci.jp/cosmall/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2483/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0073",
+      "prefecture": "北海道",
+      "roadName": "ぐるっとパノラマ美幌峠",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18861",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2502/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://bihoropass.jp/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0074",
+      "prefecture": "北海道",
+      "roadName": "らんこし・ふるさとの丘",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18862",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2519/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.rankoshi.hokkaido.jp/topics/2012/02/post_58.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0075",
+      "prefecture": "北海道",
+      "roadName": "とようら",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18863",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2533/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://toyoura-rss.amebaownd.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0076",
+      "prefecture": "北海道",
+      "roadName": "メルヘンの丘めまんべつ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18864",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2548/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.town.ozora.hokkaido.jp/docs/2014112700039/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0077",
+      "prefecture": "北海道",
+      "roadName": "むかわ四季の館",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18865",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2569/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.shikinoyakata.com/eki.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0078",
+      "prefecture": "北海道",
+      "roadName": "あいおい",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18866",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2585/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://michinoeki-aioi.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0079",
+      "prefecture": "北海道",
+      "roadName": "しかおい",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18867",
+      "candidates": [
+        {
+          "url": "http://michinoeki-shikaoi.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2605/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0080",
+      "prefecture": "北海道",
+      "roadName": "しらたき",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18868",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2623/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0081",
+      "prefecture": "北海道",
+      "roadName": "あしょろ銀河ホール２１",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18869",
+      "candidates": [
+        {
+          "url": "http://www.ashoro-kanko.jp",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2639/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0082",
+      "prefecture": "北海道",
+      "roadName": "サーモンパーク千歳",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18870",
+      "candidates": [
+        {
+          "url": "http://salmonpark.com/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2654/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0083",
+      "prefecture": "北海道",
+      "roadName": "ひがしかわ「道草館」",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18871",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2668/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    },
+    {
+      "id": "RS0084",
+      "prefecture": "北海道",
+      "roadName": "花ロードえにわ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/18872",
+      "candidates": [
+        {
+          "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2684/",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        },
+        {
+          "url": "https://hanafuru.jp/facility/hanaroad.html",
+          "kind": "invalid",
+          "ownershipVerified": false,
+          "eventListingVerified": false,
+          "reviewStatus": "blocked_invalid_url"
+        }
+      ],
+      "siteVerificationState": "awaiting_review",
+      "eventCoverageState": "not_assessed"
+    }
+  ]
+}
