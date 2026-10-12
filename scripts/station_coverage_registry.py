@@ -71,7 +71,7 @@ def website_candidates(road):
     return sorted(urls)
 
 
-def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on):
+def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on, coverage=None):
     """Every station must receive a result, including 0-event or unknown sites."""
     indexed = {}
     for source in sources.get("sources", []):
@@ -82,6 +82,13 @@ def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on):
     for source in reconfirm.get("sources", []):
         recheck.setdefault(station_key(source.get("prefecture"),
                                        source.get("roadName")), []).append(source["id"])
+    # Include older, explicitly targeted collection adapters tracked in
+    # the 47-prefecture audit; the two JSON registries are NOT all collectors.
+    known_targets = {
+        station_key(item.get("prefecture"), name)
+        for item in (coverage or {}).get("prefectures", [])
+        for name in item.get("targetedStationFeeds", [])
+    }
     audits = {s["id"]: s for s in audit.get("sources", [])}
     verified_events = Counter(
         station_key(e.get("prefecture"), e.get("roadName"))
@@ -97,12 +104,15 @@ def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on):
         feeds = indexed.get(key, [])
         audited = [audits[x["id"]] for x in feeds if x["id"] in audits]
         candidates = website_candidates(road)
+        covered_any = key in known_targets or bool(feeds or recheck.get(key))
         if verified_events[key]:
             state = "current_official_event_verified"
         elif audited:
             state = "dedicated_source_checked_no_verified_future_event"
         elif feeds or recheck.get(key):
             state = "dedicated_source_configured_not_checked"
+        elif covered_any:
+            state = "other_dedicated_collector_configured"
         else:
             state = "no_dedicated_source"
         items.append({
@@ -112,15 +122,15 @@ def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on):
             "dedicatedSourceIds": [s["id"] for s in feeds],
             "dedicatedOfficialListingUrls": [s["listingUrl"] for s in feeds],
             "knownArticleRecheckSourceIds": recheck.get(key, []),
+            "dedicatedCollectorCoveredAcrossAllModes": covered_any,
             "latestSourceAuditOn": audit.get("checkedOn", "") if audited else "",
             "latestSourceFetchFailed": sum(s.get("fetchFailed", 0) for s in audited),
             "latestSourceListingErrors": [s["listingError"] for s in audited
                                           if s.get("listingError")],
             "currentVerifiedEvents": verified_events[key],
             "eventAbsentConfirmed": False,
-            "nextAction": ("review_official_website_url"
-                           if not feeds and not recheck.get(key) else
-                           "continue_verified_source_checks"),
+            "nextAction": ("review_official_website_url" if not covered_any
+                           else "continue_verified_source_checks"),
         })
     totals = Counter(x["coverageState"] for x in items)
     summary = {
@@ -132,9 +142,10 @@ def build_inventory(roads, sources, reconfirm, events, audit, *, checked_on):
         "stationsWithCurrentVerifiedEvent": sum(x["currentVerifiedEvents"] > 0
                                                  for x in items),
         "currentVerifiedEventRecords": sum(x["currentVerifiedEvents"] for x in items),
-        "stationsWithoutDedicatedSource": sum(not(x["dedicatedSourceIds"] or
-                                                  x["knownArticleRecheckSourceIds"])
-                                               for x in items),
+        "stationsWithAnyDedicatedCollector": sum(
+            x["dedicatedCollectorCoveredAcrossAllModes"] for x in items),
+        "stationsWithoutDedicatedSource": sum(
+            not x["dedicatedCollectorCoveredAcrossAllModes"] for x in items),
         "masterWebsiteUrlCandidatesUnverified": sum(bool(x["officialWebsiteCandidateUrlsUnverified"])
                                                     for x in items),
         "statuses": dict(sorted(totals.items())),
@@ -169,7 +180,8 @@ def render_dashboard(register):
         "| 指標 | 駅数 |", "|---|---:|",
         f"| アプリに登録済みの駅 | {s['appStations']} |",
         f"| 個別のイベント一覧巡回ルートあり | {s['individualSourcesWithListing']} |",
-        f"| 既存記事の再確認も含む個別公式ルートあり | {s['individualSourcesIncludingRecheck']} |",
+        f"| 新型エンジン＋既存記事の確認設定 | {s['individualSourcesIncludingRecheck']} |",
+        f"| 既存の地域別専用収集も含む設定済み駅 | {s['stationsWithAnyDedicatedCollector']} |",
         f"| 現在、開催予定が検証・公開済みの駅 | {s['stationsWithCurrentVerifiedEvent']} |",
         f"| 個別の公式情報ルート未設定 | {s['stationsWithoutDedicatedSource']} |",
         f"| 駅マスタにある公式サイト候補（未検証） | {s['masterWebsiteUrlCandidatesUnverified']} |",
@@ -207,6 +219,7 @@ def main():
     result = build_inventory(roads, get("station_event_discovery_sources.json"),
                              get("verified_station_source_rules.json"),
                              get("road_events.json"), audit,
+                             coverage=get("prefecture_event_coverage.json"),
                              checked_on=audit.get("checkedOn") or
                              datetime.now(JST).date().isoformat())
     write_if_changed(OUT, json.dumps(result, ensure_ascii=False, indent=2) + "\n")
