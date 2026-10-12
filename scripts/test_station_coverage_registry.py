@@ -56,6 +56,22 @@ class StationCoverageRegistryTests(unittest.TestCase):
         self.assertEqual(x["stations"][1]["coverageState"],
                          "dedicated_source_configured_not_checked")
 
+    def test_legacy_regional_station_targets_are_counted_as_individual_coverage(self):
+        coverage = {"prefectures": [
+            {"prefecture": "秋田県", "targetedStationFeeds": ["道の駅てんのう"]},
+            {"prefecture": "奈良県", "targetedStationFeeds": ["なかまち"]},
+        ]}
+        x = build_inventory(self.roads, self.sources, {"sources": []},
+                            self.events, self.audit, coverage=coverage,
+                            checked_on="2026-10-13")
+        self.assertEqual(x["summary"]["individualSourcesWithListing"], 1)
+        self.assertEqual(x["summary"]["stationsWithAnyDedicatedCollector"], 2)
+        self.assertEqual(x["summary"]["stationsWithoutDedicatedSource"], 1)
+        self.assertTrue(x["stations"][2]["dedicatedCollectorCoveredAcrossAllModes"])
+        self.assertEqual(x["stations"][2]["coverageState"],
+                         "other_dedicated_collector_configured")
+        self.assertEqual(x["stations"][1]["nextAction"], "review_official_website_url")
+
     def test_website_hints_cannot_be_treated_as_verified_official_sources(self):
         x = self.build()["stations"]
         self.assertEqual(x[0]["officialWebsiteCandidateUrlsUnverified"],
