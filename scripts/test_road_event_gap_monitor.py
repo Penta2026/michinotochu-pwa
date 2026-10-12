@@ -84,6 +84,34 @@ class GapMonitorTests(unittest.TestCase):
         self.assertEqual(report["summary"]["rejectedReasonCounts"]["offsite"], 1)
         self.assertIn("not all rejected articles", report["limitations"]["reviewQueue"])
 
+    def test_suspended_official_pdf_stays_visible_as_unresolved_alert(self):
+        suspended = {
+            "id": "ehime_city_official_festival_pdf", "enabled": False,
+            "prefecture": "愛媛県", "roadName": "八幡浜みなっと",
+            "suspendedReason": "official_pdf_http_404",
+            "monitorUnavailableEvidence": True,
+            "lastHttpStatus": 404, "lastObservedFailureOn": "2026-10-13",
+            "officialRecoveryPage": "https://www.city.yawatahama.ehime.jp/doc/2026041700097/",
+            "officialEventArticle": "https://www.city.yawatahama.ehime.jp/doc/2026081300028/",
+        }
+        config = self.config()
+        config["sources"].append(suspended)
+        report = self.report(registry=config)
+        self.assertEqual(report["summary"]["phase2SourcesConfigured"], 1)
+        self.assertEqual(report["summary"]["sourcesWithFetchProblems"], 0)
+        self.assertEqual(report["summary"]["suspendedUnavailableOfficialEvidence"], 1)
+        self.assertEqual(report["unavailableOfficialEvidence"][0]["status"],
+                         "unresolved_official_evidence")
+        self.assertTrue(any(x["kind"]=="suspended_unavailable_official_evidence"
+                            for x in report["warnings"]))
+        self.assertNotIn("ehime_city_official_festival_pdf",
+                         {x["id"] for x in report["sources"]})
+        dashboard = render_dashboard(report)
+        self.assertIn("公式の一次資料が取得できず保留中", dashboard)
+        self.assertIn("八幡浜みなっと", dashboard)
+        self.assertIn("official_pdf_http_404", dashboard)
+        self.assertIn("一時停止中の公式証拠", dashboard)
+
     def test_source_fetch_issue_is_visible_and_persists_across_days(self):
         failed = source(candidates=1, checked=0, fetchFailed=1,
                         fetchErrors=[{"type": "HTTPError", "detail": "404"}])
