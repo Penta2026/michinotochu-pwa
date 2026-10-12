@@ -1545,6 +1545,70 @@ class ConfiguredDiscoveryTests(unittest.TestCase):
             self.assertEqual(discoveries[0]["startDate"],"2026-11-10")
             self.assertEqual(audit["newEvents"],1)
 
+    def test_akita_tenno_official_halloween_notice_is_grounded(self):
+        import json
+        from station_discovery_engine import RULES
+        spec = next(s for s in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                    if s["id"] == "akita_tenno_official")
+        url = "https://michinoeki-tenno.jp/info/1031halloween/"
+        listing = ('<main><a href="/info/1031halloween/">'
+                   '10/31🎃ハロウィンイベント2026</a></main>')
+        def article(content, title="10/31🎃ハロウィンイベント2026"):
+            return ('<article><h1>' + title + '</h1>' + content + '</article>')
+        valid = article(
+            '<p>🎃道の駅てんのうで初開催！</p>'
+            '<p>📅開催日：2026年10月31日（土）</p>'
+            '<p>📍会場：道の駅てんのう</p>')
+        seen = []
+        def fetch(link):
+            seen.append(link)
+            return soup(listing if link == spec["listingUrl"] else valid)
+        records, audit = collect_configured_station_events(
+            date(2026, 10, 13), [], [spec], fetch=fetch, report_path=None)
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]["roadName"], "てんのう")
+        self.assertEqual(records[0]["prefecture"], "秋田県")
+        self.assertEqual(records[0]["startDate"], "2026-10-31")
+        self.assertEqual(records[0]["url"], url)
+        self.assertEqual(audit["newEvents"], 1)
+        self.assertEqual(audit["sources"][0]["fetchFailed"], 0)
+        self.assertEqual(seen, [spec["listingUrl"], url])
+        for wrong in (
+            article('<p>📅開催日：2026年10月31日（土）</p>'
+                    '<p>📍会場：潟上市役所</p>'),
+            article('<p>🎃道の駅てんのうで初開催！</p>'
+                    '<p>📅開催日：2026年10月31日（土）</p>'
+                    '<p>📍会場：潟上市役所</p>'),
+            article('<p>📅開催日：2026年10月31日（土）</p>'
+                    '<p>📍会場：道の駅てんのう</p>',
+                    "10/31🎃ハロウィンイベント2026 中止のお知らせ"),
+            article('<p>📅開催日：2025年10月31日（金）</p>'
+                    '<p>📍会場：道の駅てんのう</p>'),
+            article('<p>📍会場：道の駅てんのう</p>'),
+        ):
+            invalid, info = collect_configured_station_events(
+                date(2026, 10, 13), [], [spec],
+                fetch=lambda link: soup(listing if link == spec["listingUrl"] else wrong),
+                report_path=None)
+            self.assertEqual(invalid, [], wrong)
+            self.assertEqual(info["newEvents"], 0)
+
+    def test_akita_tenno_listing_does_not_follow_outside_or_undocumented_paths(self):
+        import json
+        from station_discovery_engine import RULES
+        spec = next(s for s in json.loads(RULES.read_text(encoding="utf-8"))["sources"]
+                    if s["id"] == "akita_tenno_official")
+        listing = soup("""<main>
+            <a href="/info/1031halloween/">ハロウィンイベント2026</a>
+            <a href="/info/">新着情報一覧</a>
+            <a href="/info/bad/more/">イベント不明</a>
+            <a href="https://othersite.example/info/spoof/">イベント開催</a>
+            <a href="/contact/">お問い合わせ</a>
+            </main>""")
+        links = _links(listing, spec)
+        self.assertEqual(list(links), ["https://michinoeki-tenno.jp/info/1031halloween/"])
+        _validate_sources([spec])
+
     def test_fukui_listing_skips_contact_redirect_but_retains_event_article(self):
         import json
         from station_discovery_engine import RULES
