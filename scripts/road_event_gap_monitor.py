@@ -158,6 +158,10 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
             "acceptedCount": _positive_int(source.get("accepted")),
             "reconfirmedCount": _positive_int(source.get("reconfirmed")),
             "knownSkippedCount": known, "fetchFailedCount": fetch_failures,
+            "reconfirmationCandidates": _positive_int(source.get("reconfirmationCandidates")),
+            "reconfirmationChecked": _positive_int(source.get("reconfirmationChecked")),
+            "reconfirmationFailed": _positive_int(source.get("reconfirmationFailed")),
+            "reconfirmationUninspected": _positive_int(source.get("reconfirmationUninspected")),
             "listingError": listing_error[:200],
             "fetchErrors": (source.get("fetchErrors") or [])[:3],
             "failureDayStreak": failure_streak,
@@ -338,6 +342,10 @@ def make_report(discovery, registry, coverage, quality, regional, previous=None,
             "warnings": len(warnings),
             "warningKinds": dict(sorted(alert_kinds.items())),
             "unreconfirmedEvents": len(unconfirmed),
+            "officialListingReconfirmationCandidates": sum(x["reconfirmationCandidates"] for x in checked_sources),
+            "officialListingReconfirmationChecked": sum(x["reconfirmationChecked"] for x in checked_sources),
+            "officialListingReconfirmationFailed": sum(x["reconfirmationFailed"] for x in checked_sources),
+            "officialListingReconfirmedEvents": sum(x["reconfirmedCount"] for x in checked_sources),
         },
         "publishedStationsWithoutDirectTarget": [
             {"prefecture": pref, "roadName": station,
@@ -401,6 +409,14 @@ def render_dashboard(report):
         "| 要確認候補のうち将来開催日の明記あり | {} |".format(
             summary["reviewWithExplicitFutureHint"]),
         "| 記事の要確認サンプル | {} |".format(summary["potentialReviewSamples"]),
+        "| 一覧から既存イベントを再確認する候補URL | {} |".format(
+            summary["officialListingReconfirmationCandidates"]),
+        "| 公式一覧経由の既存URL再検査 | {} |".format(
+            summary["officialListingReconfirmationChecked"]),
+        "| 公式一覧経由の再検査で取得失敗 | {} |".format(
+            summary["officialListingReconfirmationFailed"]),
+        "| 設定型の既存イベント照合成功（全モード） | {} |".format(
+            summary["officialListingReconfirmedEvents"]),
         "| 既存イベントの未再確認 | {} |".format(summary["unreconfirmedEvents"]),
         "",
         "設定型監査データの鮮度: **{}**".format(
