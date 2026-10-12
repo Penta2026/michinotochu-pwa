@@ -1,10 +1,20 @@
 # 「道の途中。」道の駅イベント自動収集 — 進捗・引継ぎ
 
-更新基準: **2026-10-12 イベント収集・Phase 6／既存公式イベントの別枠再確認・監査を実装、全自動オフライン回帰CI #5成功**。本番イベントデータの最新確定基準はActions #75（273テスト合格・現行43県73件）。Phase 6の実地収集は次回Run workflow待ち。愛媛PDF404／未再確認2件は旧本番の残課題。  
+更新基準: **2026-10-13 イベント収集・Phase 6本番Actions #77成功、公式再確認17件・未再確認0件、公開60件/36県/44駅、重複0件。福井の非イベント「お問い合わせ」URL除外を追加し、収集エンジンCI #8で281件全合格**。愛媛PDF404は継続、福井の除外効果は次の本番収集で検証。  
 リポジトリ: `Penta2026/michinotochu-pwa` / `main`  
 ワークフロー: [road-events.yml](../.github/workflows/road-events.yml)  
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
+
+## 2026-10-13 本番収集 #76→#77 成功と監査値、福井の偽エラー修正
+
+- **実行結果**：[道の駅イベント収集 #76](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38268756939) と [#77](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38284900268) は共に成功。#76は2026-10-13 JSTに移ったため **開催期間終了などで13件が除外され、73件→60件**へ更新（公式収集失敗による一括削除ではない）。同日#77は**60件で変更なし、除外0件・開催日訂正0・重複候補0**。
+- **継続確認の成功**：#77の `data/station_event_discovery_audit.json` で設定型の既存イベント**17件再確認成功**（そのうち今回追加した一覧経由の別枠再検査は7候補・7URL取得・取得失敗0）。大阪`osaka_izumi_regional_center`は `knownSkipped=1` かつ**別枠で`reconfirmationChecked=1`、`reconfirmed=1`**。山口`yamaguchi_abu_roadstation`も**別枠1/1再確認成功**。 `road_event_quality_report.json` の `notReconfirmed` **0件**、`possibleDuplicates` **0件**。再確認成功17件の全てが新設枠ではなく、複数イベント記事等の既存方式を含むことに注意。
+- **公開データ**：2026-10-13時点、現行**60件・36県・44駅**。累計で47県すべてに過去の収集実績。**現在イベントがない県が11県あることは未収集と同義ではない**。新規採用0件、前回収集時点との差を監査。
+- **未解決の実取得エラー2件**：①`ehime_city_official_festival_pdf` は八幡浜市公式の仕様書PDFが **HTTP404** で継続（3日連続）、11月22日産業まつりの市の開催日掲載は確認できるが会場一次情報に再アクセスできず、**自動登録保留**。②`fukui_hamabiyori` はイベント一覧内の**非イベントの `https://hamabiyori.com/contact`** が記事候補に混ざり、301転送を取得エラーとして誤記録。イベント取得先本体の障害とは異なる。
+- **今回の後続修正**：`data/station_event_discovery_sources.json` の`fukui_hamabiyori.articlePathPattern`で`contact/`をイベント候補から除外。真のイベント記事は引き続き検査する仕様。`scripts/test_station_discovery_engine.py` に専用回帰1件追加。実際の既存ルートで除外されるかを本番ワークフローで確認する必要がある。CI [#8](https://github.com/Penta2026/michinotochu-pwa/actions/runs/38301898304) は**281/281成功**。最初のCI #7はテスト用見出しが5文字未満で既存記事パーサーに落ちたテストデータ誤りで、十分な長さの見出しへ修正後に成功。#8はオフラインの構文・安全検査であり、本番収集の代用ではない。
+- **次の実装順**：愛媛の公式現行PDF/市の記事から「2026年11月22日」と「八幡浜みなっと」の開催会場を**同じ公式証拠源から再取得して**判定できるようにする。福井の非イベント候補が排除されたことを次回収集監査で確認。その後は専用収集先のない駅（マスタ1,234駅中1,197駅、ただし地域・全国連絡会からの収集あり）に効く公式情報源を追加し、独立した真値サンプルを増やして捕捉率を測る。
+- **次回検証時の指標**： `station_event_discovery_audit` の福井`fetchErrors`から `/contact` 301が消えること、愛媛404の状態、大阪の再確認、重複と`notReconfirmed`、新規収集件数。**PWA画面の更新は必要ない**（収集設定とテストのみ）。
 
 ## 2026-10-12 Phase 6 — 「一度掲載したから検査しない」を解消し、収集精度の監視を自動化（本番収集待ち）
 
