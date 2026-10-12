@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 
 from station_official_directory_discovery import (
-    BASE, HOST, LIST_BASE, listing_matches, detail_hints, crawl_once,
+    BASE, HOST, LIST_BASE, listing_matches, detail_hints, crawl_once, crawl_batch,
     robots_policy, same_directory_url, network_fetch,
 )
 
@@ -102,6 +102,36 @@ class OfficialDirectoryPilotTests(unittest.TestCase):
         self.assertEqual(seen, [LIST_BASE,BASE+"/stations/views/18786",
                                 LIST_BASE,BASE+"/stations/views/18787"])
         self.assertFalse(any("hokkaido-michinoeki.jp" in x for x in seen))
+
+    def test_one_daily_batch_crosses_page_boundary_without_missing_records(self):
+        pages = {
+            LIST_BASE: ('<main><a href="/stations/views/18786">三笠 北海道 三笠市</a>'
+                        '<a href="/stations/views/18787">スタープラザ　芦別 北海道 芦別市</a>'
+                        '<a href="/stations/search/all/all/all?page=1">次へ</a></main>'),
+            LIST_BASE+"?page=1": (
+                '<main><a href="/stations/views/99999">三笠 青森県 別の市</a></main>'),
+        }
+        fetched=[]
+        def fetch(url):
+            fetched.append(url)
+            if url in pages:
+                return 200, pages[url]
+            return 200, (self.detail if url.endswith("/18786")
+                         else self.detail.replace('道の駅「三笠」',
+                             '道の駅「スタープラザ　芦別」' if url.endswith("/18787")
+                             else '道の駅「三笠」'))
+        with patch("station_official_directory_discovery.read_app_stations",
+                   return_value=self.roads):
+            x=crawl_batch(fetch,robots_allowed=lambda _:True,max_details=3,
+                         scanned_on="2026-10-13")
+        self.assertTrue(x["listingTraversalCompleted"])
+        self.assertEqual(x["lastRun"]["listingPagesVisited"],2)
+        self.assertEqual(x["lastRun"]["examined"],3)
+        self.assertEqual(x["lastRun"]["inspected"],3)
+        self.assertEqual(len(x["stations"]),3)
+        self.assertEqual(x["cursor"],{"page":1,"offset":1})
+        self.assertEqual(fetched.count(LIST_BASE+"?page=1"),1)
+        self.assertFalse(any("hokkaido-michinoeki.jp" in u for u in fetched))
 
     def test_end_of_nationwide_listing_marks_complete_and_preserves_error_row(self):
         html='<main><a href="/stations/views/18786">三笠 北海道 三笠市</a></main>'
