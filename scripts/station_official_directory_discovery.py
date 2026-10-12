@@ -132,7 +132,17 @@ def crawl_once(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES,
     roads = read_app_stations((DATA / "app_data.js").read_text(encoding="utf-8"))
     matches = listing_matches(html, roads)
     if not matches:
-        raise RuntimeError("directory listing is empty or HTML layout changed")
+        # Log only page structure and a few short link labels (not page text),
+        # to diagnose a changed directory template without skipping stations.
+        candidate_links = [
+            (" ".join(a.stripped_strings)[:100], a.get("href", "")[:140])
+            for a in BeautifulSoup(html, "html.parser").select("a[href]")
+            if same_directory_url(urljoin(BASE, a.get("href", "")), detail=True)
+        ]
+        raise RuntimeError(
+            "directory listing has no exact master matches; page={} "
+            "detail_links={} examples={}".format(
+                page, len(candidate_links), candidate_links[:5]))
     # Offsets should never exceed the page just fetched: fail rather than
     # claiming that the whole national directory has been checked.
     if offset >= len(matches):
