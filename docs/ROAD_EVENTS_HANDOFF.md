@@ -6,6 +6,14 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M2共通化 — 全国9地域の収集健康度を同じ形式で管理
+
+- **実装**：`scripts/national_event_source_priority.py` に `standardize_nine_region_audits` を追加。地域ごとの `collectionHealth` に広域サイト接続、候補URL、追加一覧状態、収集器候補、収集器採用、取得障害、地域公開件数、監査根拠を格納。9地域すべてに同一キーを設定する。
+- **判定規則**：収集器監査のない地域・情報源は `adapterCandidates`／`adapterAccepted` を `null` とする。記事検査件数と最終取得成功日時は実測履歴がない限り `null`。接続成功をイベント採用成功と取り違えない。公開件数は地域別の既存確定値を維持。
+- **テスト**：`scripts/test_national_event_source_priority.py` の既存3地域監査テストを拡張し、北陸の未判明採用を `null`、関東の収集器採用を実測値、九州沖縄の最終成功日時を `null` とする回帰検査を追加。コード・テストはコミット済み。変更後GitHub Actionsとデータ再生成の結果は未確認。
+- **次テーマ**：9地域それぞれのイベント収集器から「記事確認数」「最終成功日時」「理由別の除外数」を実測で記録できる仕組みを追加する。まず関東・北陸・九州沖縄の既存監査から実測可能な項目を精査し、未計測の地域へ段階展開する。9地域の比較は `collectionHealth` を基準にする。あわせて日次Actions実行結果を確認する。
+- **作業方針**：全国均等化を優先し、推測した成功率や未確認イベントは作らない。Issueよりコード→テスト→引継ぎを優先。
+
 ## 2026-10-13 M2統合 — 関東・北陸・九州沖縄の既存収集監査を全国比較へ接続
 
 - **実装**：`scripts/national_event_source_priority.py` に `attach_regional_adapter_health` を追加し、既存の `data/hokuriku_event_audit.json`（静的／ブラウザ抽出、ブラウザ障害）、`data/kyushu_okinawa_event_audit.json`（候補・取得失敗・採用）、`data/kanto_association_event_audit.json`（候補・採否理由、生成後に読込）の3種類を全国優先台帳に取り込んだ。日次生成する `docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md` に収集器別の実績表を追加。
