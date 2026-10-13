@@ -130,6 +130,37 @@ def attach_station_source_health(report, discovery):
     report["stationSourcesAudited"] = sum(v["configuredSourcesAudited"] for v in by_pref.values())
     return report
 
+def attach_regional_adapter_health(report, audits):
+    """Adapter metrics are distinct from regional link-discovery candidates."""
+    lookup = {r["region"]: r for r in report["regions"]}
+    hok = audits.get("北陸", {})
+    pages = hok.get("pages", [])
+    if "北陸" in lookup:
+        lookup["北陸"]["adapterAudit"] = {
+            "auditedPages": len(pages),
+            "candidateMatches": sum(p.get("staticMatched", 0) + p.get("browserMatched", 0) for p in pages),
+            "fetchProblems": sum(bool(p.get("browserError")) for p in pages),
+            "acceptedByAdapter": hok.get("accepted", hok.get("eventCount")),
+        }
+    kyu = audits.get("九州・沖縄", {})
+    if "九州・沖縄" in lookup:
+        sources = kyu.get("sources", [])
+        lookup["九州・沖縄"]["adapterAudit"] = {
+            "auditedSources": len(sources),
+            "candidateMatches": sum(p.get("candidates", 0) for p in sources),
+            "fetchProblems": sum(bool(p.get("error")) or p.get("failed", 0) > 0 for p in sources),
+            "acceptedByAdapter": kyu.get("accepted"),
+        }
+    kan = audits.get("関東", {})
+    if "関東" in lookup and kan:
+        lookup["関東"]["adapterAudit"] = {
+            "candidateMatches": kan.get("candidateCount", 0),
+            "acceptedByAdapter": kan.get("acceptedByAdapter"),
+            "rejectionReasons": {reason: sum(1 for d in kan.get("decisions", []) if d.get("reason") == reason)
+                                 for reason in set(d.get("reason") for d in kan.get("decisions", []))},
+        }
+    return report
+
 def format_dashboard(report):
     lines = ["# 全国優先・道の駅イベント収集 改善台帳", "",
         "全国公式ソースを優先し、次に来場者等の根拠がある高稼働駅、最後に全個別駅を補完する。", "",
@@ -147,7 +178,17 @@ def format_dashboard(report):
         lines.append("| {} | {} | {} | {} | {} |".format(
             r["region"], r["listingCandidatesSeen"], r["secondaryListingState"],
             r["secondaryListingCandidates"], r["regionalAuditError"] or r["secondaryAuditError"] or "なし"))
-    lines += ["", "※広域サイトの候補数は検証済みイベント数ではない。", "", "## 47都道府県の収集根拠", "",
+    lines += ["", "## 広域アダプター実績（監査データのある地域のみ）", "",
+              "| 地域 | 候補・検出件数 | 収集器採用 | 取得障害元・頁 |",
+              "|---|---:|---:|---:|"]
+    for r in report["regions"]:
+        a = r.get("adapterAudit")
+        if a:
+            lines.append("| {} | {} | {} | {} |".format(r["region"],
+                a.get("candidateMatches", "不明"), a.get("acceptedByAdapter", "不明"),
+                a.get("fetchProblems", "不明")))
+    lines += ["", "※北陸の検出件数は走査ページ間で重複する場合がある。収集器採用は最終公開件数ではない。",
+              "※広域サイトの候補数は検証済みイベント数ではない。", "", "## 47都道府県の収集根拠", "",
               "| 都道府県 | 公開件数 | 設定数 | 個別監査元 | 記事候補 | 記事採用 | 取得障害元 | 根拠 |",
               "|---|---:|---:|---:|---:|---:|---:|---|"]
     for r in report["regions"]:
@@ -167,6 +208,14 @@ def main():
     discovery_path = DATA / "station_event_discovery_audit.json"
     discovery = json.loads(discovery_path.read_text(encoding="utf-8")) if discovery_path.exists() else {}
     report = attach_station_source_health(report, discovery)
+    audits = {}
+    for region, filename in (("北陸", "hokuriku_event_audit.json"),
+                             ("九州・沖縄", "kyushu_okinawa_event_audit.json"),
+                             ("関東", "kanto_association_event_audit.json")):
+        path = DATA / filename
+        if path.exists():
+            audits[region] = json.loads(path.read_text(encoding="utf-8"))
+    report = attach_regional_adapter_health(report, audits)
     output = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     dashboard = format_dashboard(report)
     for path, content in ((OUTPUT, output), (DASHBOARD, dashboard)):
