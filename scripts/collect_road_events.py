@@ -448,8 +448,8 @@ def main():
         print(f"共通再確認の実行失敗。既存イベントを保持: {type(exc).__name__}: {exc}", file=sys.stderr)
 
     if not collected:
-        print("照合できるイベントが0件。既存データを維持します。",file=sys.stderr)
-        return 0
+        print("照合できるイベントが0件。既存データを維持し、更新失敗として通知します。",file=sys.stderr)
+        return 1
     # Incremental merge: a source listing may omit a still-valid event due to
     # pagination, a transient layout change, or an incomplete regional feed.
     # Never delete future verified events merely because another event was found.
