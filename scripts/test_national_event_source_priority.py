@@ -61,11 +61,14 @@ class NationwidePriorityTests(unittest.TestCase):
         by_region = {x["region"]: x for x in report["regions"]}
         self.assertEqual(by_region["北陸"]["adapterAudit"]["candidateMatches"], 3)
         self.assertEqual(by_region["九州・沖縄"]["adapterAudit"]["fetchProblems"], 1)
+        self.assertEqual(by_region["九州・沖縄"]["adapterAudit"]["articleChecked"], 0)
         self.assertEqual(by_region["関東"]["adapterAudit"]["acceptedByAdapter"], 1)
         self.assertEqual(by_region["関東"]["currentPublishedEventCount"], 0)
         standardize_nine_region_audits(report)
         self.assertIsNone(by_region["北陸"]["collectionHealth"]["adapterAccepted"])
         self.assertEqual(by_region["関東"]["collectionHealth"]["adapterAccepted"], 1)
+        self.assertEqual(by_region["関東"]["collectionHealth"]["articleChecked"], 0)
+        self.assertIsNone(by_region["北陸"]["collectionHealth"]["articleChecked"])
         self.assertIsNone(by_region["九州・沖縄"]["collectionHealth"]["lastSuccessfulCollectionAt"])
 
     def test_unreachable_source_gets_first_priority(self):
