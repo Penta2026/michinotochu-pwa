@@ -31,12 +31,12 @@ def resolve_station(title, index):
 def onsite_venue(body, road):
     """Venue label must identify the station itself, not a nearby organizer."""
     key = station_key("", road)[1]
-    for line in re.split(r"[\\n。]", body):
-        match = re.search(r"(?:開催場所|開催会場|会場|場所)\\s*[：:]\\s*(.{1,100})", line)
+    for line in re.split(r"[\n。]", body):
+        match = re.search(r"(?:開催場所|開催会場|会場|場所)\s*[：:]\s*(.{1,100})", line)
         if not match:
             continue
         value = match.group(1).split("日時", 1)[0]
-        for m in re.finditer(r"道の駅\\s*[・･]?\\s*([^\\s、,（(。]{2,40})", value):
+        for m in re.finditer(r"道の駅\s*[・･]?\s*([^\s、,（(。]{2,40})", value):
             normalized = station_key("", m.group(1))[1]
             if normalized == key or (
                 normalized.startswith(key) and
