@@ -5,6 +5,8 @@ not from unrelated station links on the page. Event dates must be explicit in
 the notice title or event-labelled detail paragraphs.
 """
 import re
+import json
+from pathlib import Path
 import unicodedata
 from datetime import date
 from urllib.parse import urljoin, urlparse
@@ -13,6 +15,7 @@ import requests
 from bs4 import BeautifulSoup
 
 HOME = "https://hokkaido-michinoeki.jp/"
+AUDIT = Path(__file__).resolve().parents[1] / "data" / "hokkaido_event_audit.json"
 HEADERS = {"User-Agent": "MichinotochuRoadEventBot/1.4 (official event notices; daily)"}
 STATIONS = {
     "shiranukainfo": "しらぬか恋問",
@@ -154,11 +157,13 @@ def collect_hokkaido(today):
         candidates.setdefault(url, ("", road))
     stats = {"accepted": 0, "no_date": 0, "past": 0, "failed": 0}
     output = []
+    detail_checked = 0
     for url, (title, road) in candidates.items():
         try:
             r = session.get(url, headers=HEADERS, timeout=12)
             r.raise_for_status()
             detail = BeautifulSoup(r.text, "html.parser")
+            detail_checked += 1
         except requests.RequestException as exc:
             stats["failed"] += 1
             print(f"北海道詳細取得失敗: {url} {exc}")
@@ -226,4 +231,11 @@ def collect_hokkaido(today):
         stats["accepted"] += 1
     print(f"北海道公式: 告知候補 {len(candidates)} / 採用 {stats['accepted']} / "
           f"日付未確定 {stats['no_date']} / 取得失敗 {stats['failed']}")
+    audit = {"schemaVersion": 1, "checkedOn": today.isoformat(),
+             "candidateCount": len(candidates), "articleChecked": detail_checked,
+             "acceptedByAdapter": stats["accepted"], "fetchFailed": stats["failed"],
+             "dateUnverified": stats["no_date"], "expired": stats["past"]}
+    payload = json.dumps(audit, ensure_ascii=False, indent=2) + "\n"
+    if not AUDIT.exists() or AUDIT.read_text(encoding="utf-8") != payload:
+        AUDIT.write_text(payload, encoding="utf-8")
     return output
