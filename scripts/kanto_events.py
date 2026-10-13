@@ -27,14 +27,18 @@ def resolve_station(title, index):
     return matches[0] if len(matches) == 1 else None
 
 def onsite_venue(body, road):
-    """Require article text to explicitly say the event is held at this station."""
+    """Require an explicit venue label naming this station, not mere mention."""
     key = station_key("", road)[1]
-    labelled = re.findall(r"(?:開催場所|会場|場所|開催会場)\\s*[：:]?\\s*(.{0,90})", body)
-    for value in labelled:
-        cleaned = station_key("", value)[1]
-        if key in cleaned and ("道の駅" in value or key == cleaned[:len(key)]):
+    for line in re.split(r"[\\n。]", body):
+        m = re.search(r"(?:開催場所|開催会場|会場|場所)\\s*[：:]\\s*(.{1,100})", line)
+        if not m:
+            continue
+        venue = m.group(1).split("日時", 1)[0]
+        station_form = re.search(r"道の駅\\s*[・･]?\\s*([^\\s、,（(]{2,40})", venue)
+        if station_form and station_key("", station_form.group(1))[1].startswith(key):
             return True
     return False
+
 TERMS = ("祭","まつり","イベント","マルシェ","フェア","体験","コンサート","収穫")
 STATION = re.compile(r"[【〖](?:道の駅\s*)?([^】〗]+)[】〗]")
 DATE = re.compile(r"(?:(20\d{2})年)?\s*(\d{1,2})月\s*(\d{1,2})日")
@@ -47,7 +51,7 @@ def clean(value):
 def event_period(text, published):
     value=clean(text)
     m=DATE.search(value)
-    if not m or not published:
+    if not m or (not published and not m.group(1)):
         return None
     year=int(m.group(1)) if m.group(1) else published.year
     month,day=int(m.group(2)),int(m.group(3))
@@ -66,7 +70,7 @@ def event_period(text, published):
             end=date(year+(1 if em<month else 0),em,int(follow.group(2)))
         except ValueError:
             return None
-    if start<published or not 0<=(end-start).days<=90:
+    if (published and start<published) or not 0<=(end-start).days<=90:
         return None
     return start.isoformat(),end.isoformat()
 
@@ -131,6 +135,6 @@ def collect_kanto(today):
             continue
         found.append({"roadName":station["name"],"prefecture":station["prefecture"],"title":title,
                       "startDate":parsed[0],"endDate":parsed[1],
-                      "publishedAt":published.isoformat(),"url":url,"status":"scheduled"})
+                      "publishedAt":published.isoformat() if published else "","url":url,"status":"scheduled"})
     print(f"関東公式: 候補 {stats['candidate']} / 採用 {len(found)} / 未照合駅 {stats['unmatched']} / 日付未判定 {stats['undated']} / 過去 {stats['past']} / 取得失敗 {stats['failed']}")
     return found
