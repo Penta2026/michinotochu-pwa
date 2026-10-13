@@ -28,6 +28,14 @@ class CollectionAcceptanceTests(unittest.TestCase):
         self.assertFalse(result["structurallyValid"])
         self.assertIn("published_event_count_mismatch", result["blockingIssues"])
 
+    def test_old_snapshot_is_warning_not_verified_current_run(self):
+        audits = {AUDITS["四国"]: {"schemaVersion": 1, "checkedOn": "2026-10-12"}}
+        result = check(self.coverage, self.sources, self.priority, audits,
+                       "2026-10-13")
+        self.assertTrue(result["structurallyValid"])
+        self.assertIn("stale_adapter_audit:四国", result["warnings"])
+        self.assertFalse(next(r for r in result["regions"] if r["region"] == "四国")["adapterAuditIsFresh"])
+
     def test_missing_region_and_stale_audit_are_visible(self):
         self.sources["sources"] = self.sources["sources"][:-1]
         audits = {AUDITS["北海道"]: {"schemaVersion": 1, "checkedOn": "2026-10-12"}}
