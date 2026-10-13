@@ -54,6 +54,8 @@ def check(coverage, sources, priority, audit_files, checked_on):
             warnings.append("stale_adapter_audit:" + region)
         if not info.get("reachable"):
             warnings.append("regional_homepage_unreachable:" + region)
+        if recorded is not None and recorded.get("checkedOn") is None:
+            warnings.append("adapter_audit_date_unknown:" + region)
         status.append({"region": region, "homepageReachable": info.get("reachable"),
                        "adapterAuditFile": filename, "adapterAuditPresent": recorded is not None,
                        "adapterAuditIsFresh": recorded.get("checkedOn") == checked_on
