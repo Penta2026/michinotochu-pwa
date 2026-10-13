@@ -141,6 +141,10 @@ def attach_regional_adapter_health(report, audits):
             "candidateMatches": sum(p.get("staticMatched", 0) + p.get("browserMatched", 0) for p in pages),
             "fetchProblems": sum(bool(p.get("browserError")) for p in pages),
             "acceptedByAdapter": hok.get("accepted", hok.get("eventCount")),
+            "duplicateCards": hok.get("duplicateCards"),
+            "browserRenderedPages": hok.get("browserRenderedPages"),
+            "browserFailedPages": hok.get("browserFailedPages"),
+            "staticFetchFailedPages": hok.get("staticFetchFailedPages"),
         }
     kyu = audits.get("九州・沖縄", {})
     if "九州・沖縄" in lookup:
@@ -158,6 +162,8 @@ def attach_regional_adapter_health(report, audits):
         lookup["関東"]["adapterAudit"] = {
             "candidateMatches": kan.get("candidateCount", 0),
             "acceptedByAdapter": kan.get("acceptedByAdapter"),
+            "articleFetchSucceeded": kan.get("articleFetchSucceeded"),
+            "articleFetchFailed": kan.get("articleFetchFailed"),
             "articleChecked": sum(1 for d in kan.get("decisions", []) if d.get("reason") not in ("station_unmatched",)),
             "rejectionReasons": {reason: sum(1 for d in kan.get("decisions", []) if d.get("reason") == reason)
                                  for reason in set(d.get("reason") for d in kan.get("decisions", []))},
@@ -181,6 +187,11 @@ def standardize_nine_region_audits(report):
             "articleChecked": a.get("articleChecked"),
             "lastSuccessfulCollectionAt": None,
             "rejectionReasons": a.get("rejectionReasons"),
+            "articleFetchSucceeded": a.get("articleFetchSucceeded"),
+            "articleFetchFailed": a.get("articleFetchFailed"),
+            "browserRenderedPages": a.get("browserRenderedPages"),
+            "browserFailedPages": a.get("browserFailedPages"),
+            "duplicateCards": a.get("duplicateCards"),
             "auditEvidence": ("adapter_audit_available" if a else "regional_links_only"),
             "region": region,
         }
