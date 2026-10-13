@@ -48,6 +48,10 @@ def make_report(coverage, source_audit):
                 "prefecture": p["prefecture"],
                 "currentPublishedEvents": p.get("eventCount", 0),
                 "targetedStationFeedCount": len(p.get("targetedStationFeeds", [])),
+                "configuredSourcesAudited": 0,
+                "candidateArticles": 0,
+                "articlesAcceptedByDiscovery": 0,
+                "sourcesWithFetchProblems": 0,
                 "regionalHomepageReachable": p.get("regionalHomepageReachable", False),
                 "evidenceLevel": ("published_events_observed" if p.get("eventCount", 0) > 0
                     else "targeted_feed_configured_no_current_publication"
@@ -138,7 +142,9 @@ def format_dashboard(report):
     for r in report["regions"]:
         for p in r["prefectureEvidence"]:
             lines.append("| {prefecture} | {currentPublishedEvents} | {targetedStationFeedCount} | {configuredSourcesAudited} | {candidateArticles} | {articlesAcceptedByDiscovery} | {sourcesWithFetchProblems} | {evidenceLevel} |".format(**p))
-    lines += ["", "※広域サイトに接続できたことは、イベントを抽出・公開できた証明ではない。",
+    lines += ["", "※記事採用数は個別収集器の監査値であり、アプリの最終公開件数とは異なる。",
+              "※監査日付は最新監査日のみを表し、最終成功日時の履歴ではない。",
+              "※広域サイトに接続できたことは、イベントを抽出・公開できた証明ではない。",
               "※人気駅の優先順位は、客観的な利用・来場者データを確認後に別途付与する。",
               "※既存のイベント公開判定・重複除去・日付／駅構内会場の照合は変更しない。", ""]
     return "\n".join(lines)
