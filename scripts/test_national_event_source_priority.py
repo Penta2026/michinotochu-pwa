@@ -107,6 +107,28 @@ class NationwidePriorityTests(unittest.TestCase):
         self.assertEqual(health["adapterCandidates"], 7)
         self.assertIsNone(health["lastSuccessfulCollectionAt"])
 
+    def test_remaining_three_region_audits(self):
+        names = ("東北", "中国", "四国")
+        coverage = {"summary": {"observedPrefectures": 0, "zeroRegisteredPrefectures": 0},
+                    "regions": [{"region": n, "prefectureCount": 1,
+                                 "zeroRegisteredPrefectures": [], "registeredEventCount": 0}
+                                for n in names]}
+        report = make_report(coverage, {"sources": []})
+        attach_regional_adapter_health(report, {
+            "東北": {"namiokaCandidates": 4, "namiokaArticlesChecked": 3,
+                     "acceptedByAdapter": 1, "otherCollectorFailures": ["村田"]},
+            "中国": {"candidateArticles": 6, "acceptedByAdapter": 2,
+                     "invalid_date": 2},
+            "四国": {"candidateCards": 5, "pagesChecked": 2,
+                     "acceptedByAdapter": 3}})
+        standardize_nine_region_audits(report)
+        h = {r["region"]: r["collectionHealth"] for r in report["regions"]}
+        self.assertEqual(h["東北"]["articleChecked"], 3)
+        self.assertEqual(h["東北"]["adapterFetchProblems"], 1)
+        self.assertIsNone(h["中国"]["articleChecked"])
+        self.assertEqual(h["中国"]["adapterAccepted"], 2)
+        self.assertEqual(h["四国"]["adapterCandidates"], 5)
+
     def test_unreachable_source_gets_first_priority(self):
         coverage = {"summary": {"observedPrefectures": 1, "zeroRegisteredPrefectures": 1},
                     "regions": [{"region": "東北", "prefectureCount": 1,
