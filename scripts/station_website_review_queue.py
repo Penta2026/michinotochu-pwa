@@ -75,7 +75,7 @@ def build_queue(directory, inventory=None, previous=None):
             "homepageAbsentVerified": sum(s["homepageExistence"] == "absent_confirmed" for s in stations),
             "sourceDirectoryLastChecked": directory.get("lastChecked", ""),
             "stationsWithCandidates": sum(bool(s["candidates"]) for s in stations),
-            "stationsReviewed": 0, "eventListingsVerified": 0,
+            "stationsReviewed": sum(any(c["reviewStatus"] not in ("awaiting_review", "blocked_invalid_url")\n                                           for c in station["candidates"]) for station in stations),\n            "eventListingsVerified": sum(any(c["eventListingVerified"] for c in station["candidates"])\n                                           for station in stations),
             "candidateKinds": dict(sorted(tally.items())), "stations": stations}
 
 def main():
