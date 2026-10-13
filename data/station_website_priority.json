@@ -1,0 +1,1389 @@
+{
+  "schemaVersion": 1,
+  "masterStations": 1234,
+  "directoryInspected": 83,
+  "directoryRemaining": 1151,
+  "stationsWithUnverifiedCandidates": 83,
+  "candidateUrlsAwaitingReview": 153,
+  "zeroCurrentEventPrefectureCandidates": 0,
+  "reviewPriority": [
+    {
+      "stationId": "RS0002",
+      "prefecture": "北海道",
+      "roadName": "スタープラザ　芦別",
+      "url": "https://go-to-ashibetsu.com/media/2018/04/01/20",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0004",
+      "prefecture": "北海道",
+      "roadName": "しらぬか恋問館",
+      "url": "https://michinoeki-shiranuka.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0005",
+      "prefecture": "北海道",
+      "roadName": "びふか",
+      "url": "http://www.bifuka-kankou.com/michinoeki.php",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0006",
+      "prefecture": "北海道",
+      "roadName": "江差",
+      "url": "http://www.hokkaido-esashi.jp/modules/sightseeing/content0023.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0007",
+      "prefecture": "北海道",
+      "roadName": "望羊中山",
+      "url": "http://ageimo.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0009",
+      "prefecture": "北海道",
+      "roadName": "忠類",
+      "url": "https://hotel-arco.jp/sightseeing/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0010",
+      "prefecture": "北海道",
+      "roadName": "摩周温泉",
+      "url": "http://www.masyuko.or.jp/michinoeki/index.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0013",
+      "prefecture": "北海道",
+      "roadName": "いわない",
+      "url": "http://www.iwanai-kanko.org/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0014",
+      "prefecture": "北海道",
+      "roadName": "厚岸グルメパーク",
+      "url": "http://www.conchiglie.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0015",
+      "prefecture": "北海道",
+      "roadName": "サンフラワー北竜",
+      "url": "http://portal.hokuryu.info/sunflowerpark/roadsidestation",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0018",
+      "prefecture": "北海道",
+      "roadName": "よってけ！島牧",
+      "url": "https://michinoekishimamaki.jimdofree.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0020",
+      "prefecture": "北海道",
+      "roadName": "オホーツク紋別",
+      "url": "http://mombetsu.net/tourist-facilities/%E9%81%93%E3%81%AE%E9%A7%85-%E3%82%AA%E3%83%9B%E3%83%BC%E3%83",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0021",
+      "prefecture": "北海道",
+      "roadName": "YOU･遊･もり",
+      "url": "http://mori-bussan.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0022",
+      "prefecture": "北海道",
+      "roadName": "おんねゆ温泉",
+      "url": "http://onneyu-aq.com/facility3",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0024",
+      "prefecture": "北海道",
+      "roadName": "ハウスヤルビ奈井江",
+      "url": "http://machiken292.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0028",
+      "prefecture": "北海道",
+      "roadName": "阿寒丹頂の里",
+      "url": "https://www.akan.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0029",
+      "prefecture": "北海道",
+      "roadName": "おとふけ",
+      "url": "https://michinoeki-otofuke.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0030",
+      "prefecture": "北海道",
+      "roadName": "ピンネシリ",
+      "url": "https://pinneshiri-autocamp.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0031",
+      "prefecture": "北海道",
+      "roadName": "上ノ国もんじゅ",
+      "url": "http://www.kaminokuni.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0033",
+      "prefecture": "北海道",
+      "roadName": "なかさつない",
+      "url": "http://www.michinoeki-nakasatsunai.jp/index.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0034",
+      "prefecture": "北海道",
+      "roadName": "マオイの丘公園",
+      "url": "https://maoinooka.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0036",
+      "prefecture": "北海道",
+      "roadName": "そうべつ情報館ｉ（アイ）",
+      "url": "http://sobetsu-fp.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0037",
+      "prefecture": "北海道",
+      "roadName": "ニセコビュープラザ",
+      "url": "http://www.niseko-ta.jp/index.php?id=87",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0039",
+      "prefecture": "北海道",
+      "roadName": "横綱の里ふくしま",
+      "url": "http://www.yokodunanosato-fukushima.info/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0040",
+      "prefecture": "北海道",
+      "roadName": "サラブレッドロード新冠",
+      "url": "http://www.niikappu.jp/kurashi/sekatsu/kotsu/miti.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0041",
+      "prefecture": "北海道",
+      "roadName": "ピア２１しほろ",
+      "url": "http://shihoroinfo.com/road-station",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0042",
+      "prefecture": "北海道",
+      "roadName": "香りの里たきのうえ",
+      "url": "http://town.takinoue.hokkaido.jp/shokai/shisetsu/kankou/michinoeki.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0043",
+      "prefecture": "北海道",
+      "roadName": "田園の里うりゅう",
+      "url": "http://www.michinoeki-uryu.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0044",
+      "prefecture": "北海道",
+      "roadName": "みたら室蘭",
+      "url": "http://muro-kanko.com/visit/roadside_station.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0045",
+      "prefecture": "北海道",
+      "roadName": "とうま",
+      "url": "http://www.densukesan.net/2018/kau.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0046",
+      "prefecture": "北海道",
+      "roadName": "スペース・アップルよいち",
+      "url": "https://www.spacedome.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0048",
+      "prefecture": "北海道",
+      "roadName": "サロマ湖",
+      "url": "http://saroma.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0052",
+      "prefecture": "北海道",
+      "roadName": "森と湖の里ほろかない",
+      "url": "https://horokanaisoba.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0054",
+      "prefecture": "北海道",
+      "roadName": "くろまつない",
+      "url": "http://www.kuromatsunai.com/toitvert2/index.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0056",
+      "prefecture": "北海道",
+      "roadName": "スワン４４ねむろ",
+      "url": "http://www.swan44nemuro.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0058",
+      "prefecture": "北海道",
+      "roadName": "なとわ・えさん",
+      "url": "http://www.natowaesan.com/roadside_station.htm",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0059",
+      "prefecture": "北海道",
+      "roadName": "つど～る・プラザ・さわら",
+      "url": "http://kankou.mori.hokkaido.jp/201510/07-1619.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0061",
+      "prefecture": "北海道",
+      "roadName": "さらべつ",
+      "url": "http://www.sarabetsu-pipopa.jp/michinoeki/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0061",
+      "prefecture": "北海道",
+      "roadName": "さらべつ",
+      "url": "https://www.instagram.com/mitinoekisarabetsu/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0063",
+      "prefecture": "北海道",
+      "roadName": "あさひかわ",
+      "url": "http://www.asahikawa-jibasan.com",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0066",
+      "prefecture": "北海道",
+      "roadName": "オーロラタウン９３りくべつ",
+      "url": "https://www.rikubetsu.jp/kanko/michinoeki/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0068",
+      "prefecture": "北海道",
+      "roadName": "ライスランドふかがわ",
+      "url": "http://mypage.fukanavi.com/riceland/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0069",
+      "prefecture": "北海道",
+      "roadName": "なかがわ",
+      "url": "http://www.nakagawa-showya.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0070",
+      "prefecture": "北海道",
+      "roadName": "２３０ルスツ",
+      "url": "http://www.rusutsu.gr.jp/shopping/687.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0071",
+      "prefecture": "北海道",
+      "roadName": "てしお",
+      "url": "http://www.teshiotown.hokkaido.jp/?page_id=660",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0072",
+      "prefecture": "北海道",
+      "roadName": "コスモール大樹",
+      "url": "http://taiki-sci.jp/cosmall/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0073",
+      "prefecture": "北海道",
+      "roadName": "ぐるっとパノラマ美幌峠",
+      "url": "https://bihoropass.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0075",
+      "prefecture": "北海道",
+      "roadName": "とようら",
+      "url": "https://toyoura-rss.amebaownd.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0077",
+      "prefecture": "北海道",
+      "roadName": "むかわ四季の館",
+      "url": "http://www.shikinoyakata.com/eki.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0078",
+      "prefecture": "北海道",
+      "roadName": "あいおい",
+      "url": "https://michinoeki-aioi.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0079",
+      "prefecture": "北海道",
+      "roadName": "しかおい",
+      "url": "http://michinoeki-shikaoi.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0081",
+      "prefecture": "北海道",
+      "roadName": "あしょろ銀河ホール２１",
+      "url": "http://www.ashoro-kanko.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0082",
+      "prefecture": "北海道",
+      "roadName": "サーモンパーク千歳",
+      "url": "http://salmonpark.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0084",
+      "prefecture": "北海道",
+      "roadName": "花ロードえにわ",
+      "url": "https://hanafuru.jp/facility/hanaroad.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0001",
+      "prefecture": "北海道",
+      "roadName": "三笠",
+      "url": "http://www.city.mikasa.hokkaido.jp/hotnews/detail/00000036.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0012",
+      "prefecture": "北海道",
+      "roadName": "かみゆうべつ温泉チューリップの湯",
+      "url": "http://www.town.yubetsu.lg.jp/50shisetsu/6nou-kankou/spa-kamiyu.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0019",
+      "prefecture": "北海道",
+      "roadName": "てっくいランド大成",
+      "url": "http://www.hiyama.pref.hokkaido.lg.jp/ss/srk/tabi/04s_tais/parts/8401mtr.htm",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0023",
+      "prefecture": "北海道",
+      "roadName": "ルート２２９元和台",
+      "url": "http://www.town.otobe.lg.jp/section/sangyou/e0taal0000000bz1.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0025",
+      "prefecture": "北海道",
+      "roadName": "おびら鰊番屋",
+      "url": "http://www.town.obira.hokkaido.jp/kanko/detail/00001365.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0032",
+      "prefecture": "北海道",
+      "roadName": "オスコイ！かもえない",
+      "url": "http://www.vill.kamoenai.hokkaido.jp/hotnews/detail/00000142.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0035",
+      "prefecture": "北海道",
+      "roadName": "樹海ロード日高",
+      "url": "http://www.hidaka.pref.hokkaido.lg.jp/ss/srk/hkd/thidaka/008.htm",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0038",
+      "prefecture": "北海道",
+      "roadName": "しりうち",
+      "url": "http://www.town.shiriuchi.hokkaido.jp/kanko/meisho/michinoeki.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0049",
+      "prefecture": "北海道",
+      "roadName": "愛ランド湧別",
+      "url": "http://www.town.yubetsu.lg.jp/60kanko/03annai/you.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0050",
+      "prefecture": "北海道",
+      "roadName": "おうむ",
+      "url": "http://www.town.oumu.hokkaido.jp/hotnews/detail/00000065.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0051",
+      "prefecture": "北海道",
+      "roadName": "さるふつ公園",
+      "url": "http://www.vill.sarufutsu.hokkaido.jp/hotnews/detail/00000356.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0057",
+      "prefecture": "北海道",
+      "roadName": "つるぬま",
+      "url": "http://www.town.urausu.hokkaido.jp/kankou/guide/michinoeki.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0060",
+      "prefecture": "北海道",
+      "roadName": "知床・らうす",
+      "url": "http://www.nemuro.pref.hokkaido.lg.jp/ss/srk/kanko/nmrgsdb/3k-spot/3ks-shiretoko-rausu.htm",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0062",
+      "prefecture": "北海道",
+      "roadName": "だて歴史の杜",
+      "url": "http://www.city.date.hokkaido.jp/hotnews/detail/00001549.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0064",
+      "prefecture": "北海道",
+      "roadName": "自然体感しむかっぷ",
+      "url": "http://www.vill.shimukappu.lg.jp/shimukappu/section/kikaku/nmudtq0000002gk4.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0065",
+      "prefecture": "北海道",
+      "roadName": "にしおこっぺ花夢",
+      "url": "https://www.vill.nishiokoppe.lg.jp/section/kamu/kamu.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0067",
+      "prefecture": "北海道",
+      "roadName": "はなやか（葉菜野花）小清水",
+      "url": "http://www.town.koshimizu.hokkaido.jp/hanayaka/",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0074",
+      "prefecture": "北海道",
+      "roadName": "らんこし・ふるさとの丘",
+      "url": "http://www.town.rankoshi.hokkaido.jp/topics/2012/02/post_58.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0076",
+      "prefecture": "北海道",
+      "roadName": "メルヘンの丘めまんべつ",
+      "url": "http://www.town.ozora.hokkaido.jp/docs/2014112700039/",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0001",
+      "prefecture": "北海道",
+      "roadName": "三笠",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/172/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0002",
+      "prefecture": "北海道",
+      "roadName": "スタープラザ　芦別",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/202/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0003",
+      "prefecture": "北海道",
+      "roadName": "南ふらの",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/222/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0004",
+      "prefecture": "北海道",
+      "roadName": "しらぬか恋問館",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/263/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0005",
+      "prefecture": "北海道",
+      "roadName": "びふか",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/292/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0006",
+      "prefecture": "北海道",
+      "roadName": "江差",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/321/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0007",
+      "prefecture": "北海道",
+      "roadName": "望羊中山",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/364/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0008",
+      "prefecture": "北海道",
+      "roadName": "えんべつ富士見",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/389/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0009",
+      "prefecture": "北海道",
+      "roadName": "忠類",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/407/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0010",
+      "prefecture": "北海道",
+      "roadName": "摩周温泉",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/440/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0011",
+      "prefecture": "北海道",
+      "roadName": "おといねっぷ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/458/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0012",
+      "prefecture": "北海道",
+      "roadName": "かみゆうべつ温泉チューリップの湯",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/472/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0013",
+      "prefecture": "北海道",
+      "roadName": "いわない",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/499/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0014",
+      "prefecture": "北海道",
+      "roadName": "厚岸グルメパーク",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/531/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0015",
+      "prefecture": "北海道",
+      "roadName": "サンフラワー北竜",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/546/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0016",
+      "prefecture": "北海道",
+      "roadName": "みついし",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/564/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0019",
+      "prefecture": "北海道",
+      "roadName": "てっくいランド大成",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/611/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0020",
+      "prefecture": "北海道",
+      "roadName": "オホーツク紋別",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/626/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0021",
+      "prefecture": "北海道",
+      "roadName": "YOU･遊･もり",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/641/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0022",
+      "prefecture": "北海道",
+      "roadName": "おんねゆ温泉",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/685/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0023",
+      "prefecture": "北海道",
+      "roadName": "ルート２２９元和台",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/704/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0024",
+      "prefecture": "北海道",
+      "roadName": "ハウスヤルビ奈井江",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/722/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0025",
+      "prefecture": "北海道",
+      "roadName": "おびら鰊番屋",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/744/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0026",
+      "prefecture": "北海道",
+      "roadName": "マリーンアイランド岡島",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/768/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0027",
+      "prefecture": "北海道",
+      "roadName": "おこっぺ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/795/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0028",
+      "prefecture": "北海道",
+      "roadName": "阿寒丹頂の里",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/810/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0029",
+      "prefecture": "北海道",
+      "roadName": "おとふけ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/825/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0031",
+      "prefecture": "北海道",
+      "roadName": "上ノ国もんじゅ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/870/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0032",
+      "prefecture": "北海道",
+      "roadName": "オスコイ！かもえない",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/881/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0033",
+      "prefecture": "北海道",
+      "roadName": "なかさつない",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/892/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0034",
+      "prefecture": "北海道",
+      "roadName": "マオイの丘公園",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/906/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0035",
+      "prefecture": "北海道",
+      "roadName": "樹海ロード日高",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/921/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0036",
+      "prefecture": "北海道",
+      "roadName": "そうべつ情報館ｉ（アイ）",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/937/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0037",
+      "prefecture": "北海道",
+      "roadName": "ニセコビュープラザ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/949/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0038",
+      "prefecture": "北海道",
+      "roadName": "しりうち",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/961/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0039",
+      "prefecture": "北海道",
+      "roadName": "横綱の里ふくしま",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/973/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0040",
+      "prefecture": "北海道",
+      "roadName": "サラブレッドロード新冠",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/988/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0041",
+      "prefecture": "北海道",
+      "roadName": "ピア２１しほろ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1001/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0042",
+      "prefecture": "北海道",
+      "roadName": "香りの里たきのうえ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1016/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0043",
+      "prefecture": "北海道",
+      "roadName": "田園の里うりゅう",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1026/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0044",
+      "prefecture": "北海道",
+      "roadName": "みたら室蘭",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1039/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0045",
+      "prefecture": "北海道",
+      "roadName": "とうま",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1677/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0046",
+      "prefecture": "北海道",
+      "roadName": "スペース・アップルよいち",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1699/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0047",
+      "prefecture": "北海道",
+      "roadName": "ほっと♡はぼろ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1747/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0048",
+      "prefecture": "北海道",
+      "roadName": "サロマ湖",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1787/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0049",
+      "prefecture": "北海道",
+      "roadName": "愛ランド湧別",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1951/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0050",
+      "prefecture": "北海道",
+      "roadName": "おうむ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/1975/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0051",
+      "prefecture": "北海道",
+      "roadName": "さるふつ公園",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2010/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0052",
+      "prefecture": "北海道",
+      "roadName": "森と湖の里ほろかない",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2038/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0053",
+      "prefecture": "北海道",
+      "roadName": "うたしないチロルの湯",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2066/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0054",
+      "prefecture": "北海道",
+      "roadName": "くろまつない",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2088/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0055",
+      "prefecture": "北海道",
+      "roadName": "たきかわ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2107/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0056",
+      "prefecture": "北海道",
+      "roadName": "スワン４４ねむろ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2143/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0057",
+      "prefecture": "北海道",
+      "roadName": "つるぬま",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2164/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0058",
+      "prefecture": "北海道",
+      "roadName": "なとわ・えさん",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2179/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0059",
+      "prefecture": "北海道",
+      "roadName": "つど～る・プラザ・さわら",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2200/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0060",
+      "prefecture": "北海道",
+      "roadName": "知床・らうす",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2217/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0062",
+      "prefecture": "北海道",
+      "roadName": "だて歴史の杜",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2253/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0063",
+      "prefecture": "北海道",
+      "roadName": "あさひかわ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2272/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0064",
+      "prefecture": "北海道",
+      "roadName": "自然体感しむかっぷ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2298/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0065",
+      "prefecture": "北海道",
+      "roadName": "にしおこっぺ花夢",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2325/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0066",
+      "prefecture": "北海道",
+      "roadName": "オーロラタウン９３りくべつ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2355/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0067",
+      "prefecture": "北海道",
+      "roadName": "はなやか（葉菜野花）小清水",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2375/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0068",
+      "prefecture": "北海道",
+      "roadName": "ライスランドふかがわ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2390/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0069",
+      "prefecture": "北海道",
+      "roadName": "なかがわ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2424/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0070",
+      "prefecture": "北海道",
+      "roadName": "２３０ルスツ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2442/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0071",
+      "prefecture": "北海道",
+      "roadName": "てしお",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2467/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0072",
+      "prefecture": "北海道",
+      "roadName": "コスモール大樹",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2483/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0073",
+      "prefecture": "北海道",
+      "roadName": "ぐるっとパノラマ美幌峠",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2502/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0074",
+      "prefecture": "北海道",
+      "roadName": "らんこし・ふるさとの丘",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2519/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0075",
+      "prefecture": "北海道",
+      "roadName": "とようら",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2533/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0076",
+      "prefecture": "北海道",
+      "roadName": "メルヘンの丘めまんべつ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2548/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0077",
+      "prefecture": "北海道",
+      "roadName": "むかわ四季の館",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2569/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0078",
+      "prefecture": "北海道",
+      "roadName": "あいおい",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2585/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0079",
+      "prefecture": "北海道",
+      "roadName": "しかおい",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2605/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0080",
+      "prefecture": "北海道",
+      "roadName": "しらたき",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2623/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0081",
+      "prefecture": "北海道",
+      "roadName": "あしょろ銀河ホール２１",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2639/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0082",
+      "prefecture": "北海道",
+      "roadName": "サーモンパーク千歳",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2654/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0083",
+      "prefecture": "北海道",
+      "roadName": "ひがしかわ「道草館」",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2668/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0084",
+      "prefecture": "北海道",
+      "roadName": "花ロードえにわ",
+      "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2684/",
+      "kind": "regional_directory",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    }
+  ],
+  "limitation": "Directory link hints are not verified station ownership, event listings or publishable events."
+}
