@@ -6,6 +6,13 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M2 記事取得・重複の実測監査
+
+- 関東 `scripts/kanto_events.py`：記事取得に成功した回数 `articleFetchSucceeded`、失敗回数 `articleFetchFailed` を採否台帳に記録。日付不明で保留した記事にも `event_date_unverified` の判定理由を追加。
+- 北陸 `scripts/hokuriku_events.py`：カレンダーで同一イベントカードが再検出された回数 `duplicateCards`、ブラウザ描画取得ページ数 `browserRenderedPages`、ブラウザ障害ページ数 `browserFailedPages`、静的取得失敗ページ数 `staticFetchFailedPages` を既存監査に追記。
+- 全国比較 `scripts/national_event_source_priority.py`：これらの実測値を9地域共通 `collectionHealth` に接続。未取得の監査値は不明（null）として維持。回帰テストを追加。コード保存済み、本番Actionsでの実測反映は未確認。
+- **次テーマ**：本番ワークフローのテスト・生成データを照合し、関東の保留理由と北陸の重複率を確認して抽出改善の必要箇所を特定。その後、東北・中部・近畿・中国・四国・北海道にも同一の実測監査を安全に接続する。駅の公式情報を根拠とする採用基準は維持。
+
 ## 2026-10-13 M2 実測値の接続
 
 九州・沖縄の既存監査から記事確認件数と理由別の保留件数を全国比較へ接続。関東の候補判定ログからも確認件数と判定理由を集計。北陸には個別記事の確認件数がないため不明値を維持する。最終成功日時も未計測のままにする。
