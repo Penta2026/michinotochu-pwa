@@ -6,6 +6,13 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M2：既存監査の全国横断接続（近畿・中部）
+
+- 既存の近畿5府県公式収集監査を、全国の共通 `collectionHealth` へ接続した。候補数、記事確認数、収集器採用数、取得障害元数、過去・日付不明・会場不一致・取得失敗の各理由を原データどおり集計する。
+- 中部の公式PDF監査は、調査したページ数と日付入り行数 `datedPdfRows` のみ接続。日付入り行は道の駅開催イベントとは限らないため、候補記事数、記事確認数、収集器採用数は不明のまま保持する。
+- `scripts/national_event_source_priority.py` および `scripts/test_national_event_source_priority.py` に実装・回帰テストをコミット。日次ワークフローでは既存の監査ファイルを使って全国ダッシュボードを再生成する。本番Actions実行結果はまだ未確認。
+- **次テーマ**：北海道・東北・中国・四国についても既存の監査ログを確認し、実測可能な記事候補・検査・取得失敗を共通形式へ接続。原データがない地域では無理に推計せず、最小限の監査記録を収集器に追加する。次に47都道府県の不足を定量比較し、優先地域を選ぶ。
+
 ## 2026-10-13 M2 記事取得・重複の実測監査
 
 - 関東 `scripts/kanto_events.py`：記事取得に成功した回数 `articleFetchSucceeded`、失敗回数 `articleFetchFailed` を採否台帳に記録。日付不明で保留した記事にも `event_date_unverified` の判定理由を追加。
