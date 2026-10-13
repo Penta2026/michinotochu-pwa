@@ -1,5 +1,5 @@
 import unittest
-from nationwide_source_audit import scan_event_listing
+from nationwide_source_audit import scan_event_listing, match_station_hints
 
 class FakeResponse:
     def __init__(self, code, body):
@@ -35,6 +35,24 @@ class NationwideEventCategoryTests(unittest.TestCase):
             return FakeResponse(503, "temporary")
         result = scan_event_listing("https://www.kanto-michinoeki.jp/archives/category/event", fetch)
         self.assertEqual(result["state"], "robots_unknown")
+
+class StationHintTests(unittest.TestCase):
+    def test_matches_station_without_claiming_event(self):
+        audit = {"sources": [{"region": "関東", "candidates": [
+            {"title": "【こすげ】秋のマルシェ開催", "url": "https://example.org/article"}]}]}
+        roads = [{"id": "RS100", "prefecture": "山梨県", "name": "こすげ"}]
+        entry = match_station_hints(audit, roads)["sources"][0]["candidates"][0]
+        self.assertEqual(entry["stationIdHint"], "RS100")
+        self.assertFalse(entry["eventVerified"])
+
+    def test_ambiguous_name_not_assigned(self):
+        audit = {"sources": [{"region": "全国", "candidates": [
+            {"title": "【共通駅】イベント開催"}]}]}
+        roads = [{"id": "A", "prefecture": "山梨県", "name": "共通駅"},
+                 {"id": "B", "prefecture": "埼玉県", "name": "共通駅"}]
+        entry = match_station_hints(audit, roads)["sources"][0]["candidates"][0]
+        self.assertEqual(entry["identityStatus"], "ambiguous")
+        self.assertEqual(entry["stationIdHint"], "")
 
 if __name__ == "__main__":
     unittest.main()
