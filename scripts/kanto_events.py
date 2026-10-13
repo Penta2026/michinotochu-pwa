@@ -85,6 +85,7 @@ def collect_kanto(today):
     index = station_index(roads)
     found=[]; seen=set(); stats={"candidate":0,"unmatched":0,"undated":0,"past":0,"failed":0}
     decisions=[]
+    article_fetch_success=0
     for a in soup.select("a[href]"):
         url=urljoin(response.url,a["href"])
         if url in seen or not re.search(r"/archives/\d+\.html$",urlparse(url).path):
@@ -105,6 +106,7 @@ def collect_kanto(today):
             r=session.get(url,timeout=12,headers=HEADERS)
             r.raise_for_status()
             detail=BeautifulSoup(r.text,"html.parser")
+            article_fetch_success+=1
         except requests.RequestException:
             stats["failed"]+=1
             decisions.append({"url":url,"reason":"article_fetch_failed"})
@@ -137,6 +139,7 @@ def collect_kanto(today):
                 if parsed:break
         if not parsed:
             stats["undated"]+=1
+            decisions.append({"url":url,"reason":"event_date_unverified"})
             continue
         if parsed[1]<today.isoformat():
             stats["past"]+=1
@@ -147,7 +150,7 @@ def collect_kanto(today):
                       "startDate":parsed[0],"endDate":parsed[1],
                       "publishedAt":published.isoformat() if published else "","url":url,"status":"scheduled"})
     print(f"関東公式: 候補 {stats['candidate']} / 採用 {len(found)} / 未照合駅 {stats['unmatched']} / 日付未判定 {stats['undated']} / 過去 {stats['past']} / 取得失敗 {stats['failed']}")
-    audit={"schemaVersion":1,"checkedOn":today.isoformat(),"source":SOURCE,"candidateCount":stats["candidate"],"acceptedByAdapter":len(found),"decisions":decisions,"note":"Not final publication count"}
+    audit={"schemaVersion":1,"checkedOn":today.isoformat(),"source":SOURCE,"candidateCount":stats["candidate"],"acceptedByAdapter":len(found),"articleFetchSucceeded":article_fetch_success,"articleFetchFailed":stats["failed"],"decisions":decisions,"note":"Not final publication count"}
     output=json.dumps(audit,ensure_ascii=False,indent=2)+"\n"
     if not AUDIT.exists() or AUDIT.read_text(encoding="utf-8")!=output:
         AUDIT.write_text(output,encoding="utf-8")
