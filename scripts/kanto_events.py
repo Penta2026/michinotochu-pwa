@@ -47,7 +47,7 @@ def onsite_venue(body, road):
 
 TERMS = ("祭","まつり","イベント","マルシェ","フェア","体験","コンサート","収穫")
 STATION = re.compile(r"[【〖](?:道の駅\s*)?([^】〗]+)[】〗]")
-DATE = re.compile(r"(?:(20\d{2})年)?\s*(\d{1,2})月\s*(\d{1,2})日")
+DATE = re.compile(r"(?:(20\\d{2})\\s*(?:年|[./-]))?\\s*(\\d{1,2})\\s*(?:月|[./-])\\s*(\\d{1,2})日?")
 END = re.compile(r"^[\s()月火水木金土日祝・]*[～〜~－–-]\s*(?:(\d{1,2})月\s*)?(\d{1,2})日")
 POSTED = re.compile(r"(?<!\d)(\d{2})\.(\d{2})\.(20\d{2})(?!\d)")
 
@@ -120,7 +120,7 @@ def collect_kanto(today):
             stats["undated"]+=1
             decisions.append({"url":url,"reason":"article_or_date_unverified"})
             continue
-        body=unicodedata.normalize("NFKC",article.get_text("\\n",strip=True))
+        body=unicodedata.normalize("NFKC",article.get_text("\n",strip=True))
         if any(x in body for x in ("開催中止", "イベント中止", "開催を中止", "開催延期")):
             decisions.append({"url":url,"reason":"cancelled_or_postponed"})
             continue
