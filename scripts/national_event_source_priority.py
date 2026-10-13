@@ -161,6 +161,27 @@ def attach_regional_adapter_health(report, audits):
         }
     return report
 
+def standardize_nine_region_audits(report):
+    """One honest schema for every region; unknown metrics stay null."""
+    for row in report["regions"]:
+        a = row.get("adapterAudit", {})
+        region = row["region"]
+        row["collectionHealth"] = {
+            "homepageReachable": row["sourceAuditState"] == "reachable",
+            "homepageCandidateLinks": row.get("listingCandidatesSeen", 0),
+            "secondaryListingState": row.get("secondaryListingState", "not_configured"),
+            "secondaryCandidateLinks": row.get("secondaryListingCandidates", 0),
+            "adapterCandidates": a.get("candidateMatches"),
+            "adapterAccepted": a.get("acceptedByAdapter"),
+            "adapterFetchProblems": a.get("fetchProblems"),
+            "publishedEventsInRegion": row["currentPublishedEventCount"],
+            "articleChecked": None,
+            "lastSuccessfulCollectionAt": None,
+            "auditEvidence": ("adapter_audit_available" if a else "regional_links_only"),
+            "region": region,
+        }
+    return report
+
 def format_dashboard(report):
     lines = ["# 全国優先・道の駅イベント収集 改善台帳", "",
         "全国公式ソースを優先し、次に来場者等の根拠がある高稼働駅、最後に全個別駅を補完する。", "",
@@ -187,7 +208,8 @@ def format_dashboard(report):
             lines.append("| {} | {} | {} | {} |".format(r["region"],
                 a.get("candidateMatches", "不明"), a.get("acceptedByAdapter", "不明"),
                 a.get("fetchProblems", "不明")))
-    lines += ["", "※北陸の検出件数は走査ページ間で重複する場合がある。収集器採用は最終公開件数ではない。",
+    lines += ["", "※47県均等化の比較には各地域の collectionHealth を用いる。未計測の指標は null（不明）。",
+              "※北陸の検出件数は走査ページ間で重複する場合がある。収集器採用は最終公開件数ではない。",
               "※広域サイトの候補数は検証済みイベント数ではない。", "", "## 47都道府県の収集根拠", "",
               "| 都道府県 | 公開件数 | 設定数 | 個別監査元 | 記事候補 | 記事採用 | 取得障害元 | 根拠 |",
               "|---|---:|---:|---:|---:|---:|---:|---|"]
@@ -216,6 +238,7 @@ def main():
         if path.exists():
             audits[region] = json.loads(path.read_text(encoding="utf-8"))
     report = attach_regional_adapter_health(report, audits)
+    report = standardize_nine_region_audits(report)
     output = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     dashboard = format_dashboard(report)
     for path, content in ((OUTPUT, output), (DASHBOARD, dashboard)):
