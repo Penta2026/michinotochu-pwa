@@ -202,6 +202,23 @@ def attach_regional_adapter_health(report, audits):
             "rejectionReasons": {"dateUnverified": hokai.get("dateUnverified"),
                                  "expired": hokai.get("expired")},
         }
+    for region, key in (("東北", "namiokaCandidates"), ("中国", "candidateArticles"),
+                        ("四国", "candidateCards")):
+        data = audits.get(region, {})
+        if region not in lookup or key not in data:
+            continue
+        audit = {"candidateMatches": data[key],
+                 "acceptedByAdapter": data.get("acceptedByAdapter"),
+                 "articleChecked": data.get("namiokaArticlesChecked") if region == "東北" else None,
+                 "auditEvidence": "partial_station_audit" if region == "東北" else "listing_cards_only"}
+        if region == "東北":
+            audit["fetchProblems"] = len(data.get("otherCollectorFailures", []))
+        if region == "中国":
+            audit["rejectionReasons"] = {k: data.get(k, 0) for k in
+                ("unknown_station", "not_event", "missing_publication", "invalid_date")}
+        if region == "四国":
+            audit["auditedPages"] = data.get("pagesChecked")
+        lookup[region]["adapterAudit"] = audit
     return report
 
 def standardize_nine_region_audits(report):
@@ -286,7 +303,10 @@ def main():
                              ("関東", "kanto_association_event_audit.json"),
                              ("近畿", "kinki_five_prefectures_audit.json"),
                              ("中部", "chubu_event_layout_report.json"),
-                             ("北海道", "hokkaido_event_audit.json")):
+                             ("北海道", "hokkaido_event_audit.json"),
+                             ("東北", "tohoku_event_adapter_audit.json"),
+                             ("中国", "chugoku_event_adapter_audit.json"),
+                             ("四国", "shikoku_event_adapter_audit.json")):
         path = DATA / filename
         if path.exists():
             audits[region] = json.loads(path.read_text(encoding="utf-8"))
