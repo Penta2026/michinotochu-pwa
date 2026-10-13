@@ -4,6 +4,8 @@ Do not infer an event end date from publication time or unrelated contests.
 Sources are station-managed websites; each handler can be expanded independently.
 """
 import re
+import json
+from pathlib import Path
 from datetime import date
 from urllib.parse import urljoin, urlparse
 import requests
@@ -177,7 +179,18 @@ def collect_murata(today):
           f"採用 {len(events)} / 日付なし {counts['date_missing']} / "
           f"過去 {counts['past']} / 会場不明 {counts['venue_missing']} / "
           f"取得失敗 {counts['fetch_failed']}")
+    audit = {"schemaVersion":1,"namiokaCandidates":len(candidates),
+             "namiokaArticlesChecked":checked_namioka,
+             "namiokaAccepted":namioka_accepted,
+             "otherCollectorFailures":collector_errors,
+             "acceptedByAdapter":len(events),
+             "note":"Only Namioka has individual article check counts."}
+    body = json.dumps(audit,ensure_ascii=False,indent=2)+"\n"
+    if not TOHOKU_AUDIT.exists() or TOHOKU_AUDIT.read_text(encoding="utf-8") != body:
+        TOHOKU_AUDIT.write_text(body,encoding="utf-8")
     return events
+
+TOHOKU_AUDIT = Path(__file__).resolve().parents[1] / "data" / "tohoku_event_adapter_audit.json"
 
 def collect_tohoku(today=None):
     today = today or date.today()
@@ -197,10 +210,12 @@ def collect_tohoku(today=None):
         if href not in candidates:
             candidates.append(href)
     events = []
+    checked_namioka = 0
     for href in candidates[:20]:
         page = requests.get(href, timeout=18, headers=USER_AGENT)
         page.raise_for_status()
         detail = BeautifulSoup(page.text, "html.parser")
+        checked_namioka += 1
         content = _clean(detail.get_text(" ",strip=True))
         if "アップルヒル秋の大収穫祭" not in content and "アップルヒル 秋の大収穫祭" not in content:
             continue
@@ -212,9 +227,12 @@ def collect_tohoku(today=None):
             "startDate":period[0],"endDate":period[1],
             "publishedAt":"","url":href,"status":"scheduled"})
     print(f"東北・道の駅なみおか: 告知候補 {len(candidates)} / 採用 {len(events)}")
+    namioka_accepted = len(events)
+    collector_errors = []
     for name, collector in (("おおゆ",collect_oyu),("村田",collect_murata)):
         try:
             events.extend(collector(today))
         except (requests.RequestException,ValueError) as exc:
+            collector_errors.append(name)
             print(f"東北・{name} の収集失敗（他の駅は継続）: {exc}")
     return events
