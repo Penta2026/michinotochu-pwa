@@ -137,7 +137,7 @@ def _plan_article_inspection(links, source, today, known_urls=None,
             "explorationStart": 0, "explorationNext": 0,
             "explorationSlots": 0, "explorationPool": 0,
         }
-    exploration_slots = min(int(source.get("explorationSlots", 2)), max(1, budget // 2))
+    exploration_slots = min(int(source.get("explorationSlots", max(1, budget // 4))), max(1, budget // 2))
     primary_count = budget - exploration_slots
     preferred = eligible[:primary_count]
     remainder = eligible[primary_count:]
