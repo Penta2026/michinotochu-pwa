@@ -3,6 +3,7 @@ import re
 import unicodedata
 from datetime import date
 from pathlib import Path
+import json
 from station_coverage_registry import read_app_stations, station_key
 from urllib.parse import urljoin, urlparse
 import requests
@@ -11,6 +12,7 @@ from bs4 import BeautifulSoup
 SOURCE = "https://www.kanto-michinoeki.jp/archives/category/イベント情報"
 HEADERS = {"User-Agent": "MichinotochuRoadEventBot/1.5 (official notices; daily)"}
 MASTER = Path(__file__).resolve().parents[1] / "data" / "app_data.js"
+AUDIT = MASTER.parent / "kanto_association_event_audit.json"
 
 def station_index(roads):
     index = {}
@@ -82,6 +84,7 @@ def collect_kanto(today):
     roads = read_app_stations(MASTER.read_text(encoding="utf-8"))
     index = station_index(roads)
     found=[]; seen=set(); stats={"candidate":0,"unmatched":0,"undated":0,"past":0,"failed":0}
+    decisions=[]
     for a in soup.select("a[href]"):
         url=urljoin(response.url,a["href"])
         if url in seen or not re.search(r"/archives/\d+\.html$",urlparse(url).path):
@@ -96,6 +99,7 @@ def collect_kanto(today):
         station=resolve_station(title, index)
         if station is None:
             stats["unmatched"]+=1
+            decisions.append({"url":url,"reason":"station_unmatched"})
             continue
         try:
             r=session.get(url,timeout=12,headers=HEADERS)
@@ -103,16 +107,20 @@ def collect_kanto(today):
             detail=BeautifulSoup(r.text,"html.parser")
         except requests.RequestException:
             stats["failed"]+=1
+            decisions.append({"url":url,"reason":"article_fetch_failed"})
             continue
         article=detail.select_one("article") or detail.select_one("main") or detail.body
         if article is None:
             stats["undated"]+=1
+            decisions.append({"url":url,"reason":"article_or_date_unverified"})
             continue
         body=clean(article.get_text(" ",strip=True))
         if any(x in body for x in ("開催中止", "イベント中止", "開催を中止", "開催延期")):
+            decisions.append({"url":url,"reason":"cancelled_or_postponed"})
             continue
         if not onsite_venue(body, station["name"]):
             stats["unmatched"]+=1
+            decisions.append({"url":url,"reason":"onsite_venue_unverified"})
             continue
         stamp=POSTED.search(body)
         if not stamp:
@@ -132,9 +140,15 @@ def collect_kanto(today):
             continue
         if parsed[1]<today.isoformat():
             stats["past"]+=1
+            decisions.append({"url":url,"reason":"expired"})
             continue
+        decisions.append({"url":url,"reason":"accepted_by_adapter"})
         found.append({"roadName":station["name"],"prefecture":station["prefecture"],"title":title,
                       "startDate":parsed[0],"endDate":parsed[1],
                       "publishedAt":published.isoformat() if published else "","url":url,"status":"scheduled"})
     print(f"関東公式: 候補 {stats['candidate']} / 採用 {len(found)} / 未照合駅 {stats['unmatched']} / 日付未判定 {stats['undated']} / 過去 {stats['past']} / 取得失敗 {stats['failed']}")
+    audit={"schemaVersion":1,"checkedOn":today.isoformat(),"source":SOURCE,"candidateCount":stats["candidate"],"acceptedByAdapter":len(found),"decisions":decisions,"note":"Not final publication count"}
+    output=json.dumps(audit,ensure_ascii=False,indent=2)+"\n"
+    if not AUDIT.exists() or AUDIT.read_text(encoding="utf-8")!=output:
+        AUDIT.write_text(output,encoding="utf-8")
     return found
