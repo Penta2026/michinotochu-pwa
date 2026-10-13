@@ -6,6 +6,13 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M2 北海道監査を全国共通指標へ接続
+
+- `scripts/hokkaido_events.py` に公式記事候補数・本文取得成功数・収集器採用件数・取得失敗数・日付不明件数・終了済み件数の実測監査を追加。`data/hokkaido_event_audit.json` に日次保存する。
+- `scripts/national_event_source_priority.py` へ北海道の実測監査を統合し、9地域の `collectionHealth` で同じキーを使用する。`.github/workflows/road-events.yml` に監査ファイルのコミット対象を追加。回帰テストも追加。
+- **現状**：GitHubへの実装・テストは保存済み。Actions成功と実サイトでの新監査生成は未確認。東北・中国・四国についてはまだ記事単位の監査データが不足し、推測値で補完しない。
+- **次の工程**：東北・中国・四国の収集器へ候補・検査・取得失敗・不採用理由の最小限の監査記録を実装。各収集器に共通項目を接続して9地域比較を完成。完了後、47県の不足が大きいソースから収集精度を改善する。
+
 ## 2026-10-13 M2：既存監査の全国横断接続（近畿・中部）
 
 - 既存の近畿5府県公式収集監査を、全国の共通 `collectionHealth` へ接続した。候補数、記事確認数、収集器採用数、取得障害元数、過去・日付不明・会場不一致・取得失敗の各理由を原データどおり集計する。
