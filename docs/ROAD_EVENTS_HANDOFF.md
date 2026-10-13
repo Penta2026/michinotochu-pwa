@@ -6,6 +6,14 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M1補強 — 都道府県別の個別収集器監査を全国ダッシュボードへ統合
+
+- **実装**：`scripts/national_event_source_priority.py` に `attach_station_source_health` を追加。`data/station_event_discovery_audit.json` の最新監査結果を都道府県別に集計し、監査された個別収集元数、一覧取得成功元数、取得障害元数、記事候補数、本文チェック数、収集器採用数、未確認候補数を `data/national_event_source_priority.json` と `docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md` へ反映する。既存の日次 `road-events.yml` が引き続き生成する。
+- **注意**：収集器の `accepted` は最終公開件数と一致するとは限らないため `articlesAcceptedByDiscovery` と明記。最新監査日 `stationSourceAuditDate` は監査全体のスナップショット日であり、最終成功日時の履歴を捏造しない。広域公式サイトの到達状況と個別駅の本文抽出の結果を混同しない。候補0件・イベント0件も開催なしを意味しない。
+- **回帰テスト**：`scripts/test_national_event_source_priority.py` に候補7、チェック3、採用1、取得障害2、既知スキップ1、公開0のケースを追加。未検証残3、取得障害元1と算出する。コードとテストはGitHub保存済み、変更後Actionsの本番成否・生成レポート更新は未確認。
+- **次テーマ M1仕上げ→M2**：①県に結びつけられない広域収集器についても最新成功・失敗・記事候補・採否理由を監査ファイルに永続化し、9地域間の比較を完成。②本番実行成功後の新ダッシュボード値を確認して弱い地域を抽出。③公式サイト記事の開催日・対象駅ID・構内会場を独立に検証するM2アダプター改善へ進む。最終公開件数と収集器内採用を重複集計しない。
+- **作業方式**：GitHub Issueは原則増やさず、実装 → テスト → 引継ぎ追記を継続。
+
 ## 2026-10-13 M1 — 全国47県の調査根拠を明確化（全国均等化ロードマップ）
 
 - **今回実装**：`scripts/national_event_source_priority.py` に47都道府県ごとの `prefectureEvidence` を追加。現行公開イベント数、個別収集元設定数、広域ホームページ到達状況、および証拠レベルを各県ごとに記録する。広域ページへのHTTP到達とイベント取得成功を混同しない。
