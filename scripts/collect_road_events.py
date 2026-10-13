@@ -209,12 +209,13 @@ def collect_chugoku():
     response.raise_for_status()
     soup=BeautifulSoup(response.text,"html.parser")
     found=[]
-    diag={"unmatched":0,"unknown_station":0,"not_event":0,"missing_publication":0,"invalid_date":0}
+    diag={"unmatched":0,"unknown_station":0,"not_event":0,"missing_publication":0,"invalid_date":0,"candidateArticles":0}
     for anchor in soup.find_all("a",href=True):
         title=clean(anchor.get_text(" ",strip=True))
         match=re.match(r"^[〖【]([^〗】]+)[〗】]\s*(.+)",title)
         if not match:
             continue
+        diag["candidateArticles"]+=1
         road=match.group(1).strip()
         if road not in CHUGOKU_PREFS:
             diag["unknown_station"]+=1
@@ -270,6 +271,8 @@ def collect_chugoku():
     print(f"中国地方: 採用 {len(found)} 件 / 未登録駅名 {diag['unknown_station']} / "
           f"イベント対象外 {diag['not_event']} / 告知日不明 {diag['missing_publication']} / "
           f"開催日不適合 {diag['invalid_date']}")
+    save_regional_collect_audit("chugoku_event_adapter_audit.json",
+        {**diag,"acceptedByAdapter":len(found),"listFetched":True})
     return found
 
 
