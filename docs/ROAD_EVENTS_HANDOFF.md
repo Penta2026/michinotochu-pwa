@@ -6,6 +6,13 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M3着手 — 47都道府県の実際の取り逃し対策
+
+- **実測の優先根拠**：`data/road_event_gap_monitor.json` の最新スナップショットは47県中現行掲載36県・60件。新規記事探索28収集元のうち9収集元が記事確認上限に達し、未確認候補枠163件。なかでも福井県 `fukui_nanjezen_sankairi` は公式一覧で候補152件・確認8件・未確認144件と大きく偏っている。ただしこれらは未確認URLであってイベント144件を意味しない。
+- **今回の実装**：`data/station_event_discovery_sources.json` の当該公式駅ソースだけ `maxArticles: 8 → 12`。既存 `_plan_article_inspection` の日付優先と巡回探索を活用し、上限内の追加4記事を毎回検査する。公式ドメイン・駅ID・日付・会場の安全検証は変更しない。他駅の巡回枠と日次ワークフローは維持。
+- **テスト**：`scripts/test_station_discovery_engine.py` に公式ドメイン設定に対応する12件の上限テストを追加。GitHubコミット済み。変更後のActions成功や本番での候補減少・新規採用数は未検証。
+- **次工程**：日次 `road-events.yml` 実行後、福井の確認数・未確認数・採用数・日付不明数を差分検証。残る8収集元の上限警告を比較し、単純な枠拡大よりも一覧ページの候補抽出・イベント日付／会場の根拠改善が必要なソースを優先。現行0件の11県を横断して継続追跡する。
+
 ## 2026-10-13 M2 — 残り3地域の収集監査を全国比較へ追加
 
 - 東北：`scripts/region_official_events.py` に、なみおか公式記事の候補数・本文確認数・採用数と、おおゆ／村田収集器の例外発生元を保存する部分監査を追加。東北全駅の記事確認数とは表現しない。
