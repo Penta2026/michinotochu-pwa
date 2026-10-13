@@ -92,7 +92,10 @@ def collect_kanto(today):
     article_fetch_success=0
     for a in soup.select("a[href]"):
         url=urljoin(response.url,a["href"])
-        if url in seen or not re.search(r"/archives/\d+\.html$",urlparse(url).path):
+        parsed_url=urlparse(url)
+        if (url in seen or parsed_url.scheme != "https" or
+                parsed_url.hostname != urlparse(SOURCE).hostname or
+                not re.search(r"/archives/\d+\.html$",parsed_url.path)):
             continue
         title=clean(a.get_text(" ",strip=True))
         m=STATION.search(title)
