@@ -51,6 +51,23 @@ jobs:
         run: python scripts/road_event_recall_audit.py
       - name: Update the all-station coverage and missing-official-URL queue
         run: python scripts/station_coverage_registry.py
+      - name: Show update status in GitHub Actions summary
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          {
+            echo "## 道の駅イベント日次更新"
+            echo ""
+            echo "実行結果: **${JOB_STATUS}**"
+            echo ""
+            if [ "${JOB_STATUS}" != "success" ]; then
+              echo "収集または品質検査に失敗しました。未検証の更新内容はGitHubへコミットしません。"
+              echo "保存済みのイベント情報も最新である保証はないため、ログで原因を確認してください。"
+            else
+              echo "全国収集と検査が正常終了しました（掲載数・公式告知の網羅性は別途確認）。"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit only if event data changed
         run: |
           git add data/national_published_event_quality.json data/zero_prefecture_action_report.json data/national_collection_acceptance.json data/national_event_source_priority.json docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md data/road_events.json data/tohoku_event_adapter_audit.json data/chugoku_event_adapter_audit.json data/shikoku_event_adapter_audit.json data/hokkaido_event_audit.json data/kanto_association_event_audit.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json data/hokuriku_event_audit.json data/kyushu_okinawa_event_audit.json data/kyushu_six_prefectures_audit.json data/prefecture_event_coverage.json data/kanto_three_prefectures_audit.json data/kanto_remaining_prefectures_audit.json data/kinki_five_prefectures_audit.json data/verified_station_reconfirmation_audit.json data/station_event_discovery_audit.json data/road_event_gap_monitor.json docs/ROAD_EVENT_GAP_DASHBOARD.md data/road_event_recall_audit.json docs/ROAD_EVENT_RECALL_DASHBOARD.md data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md
