@@ -1,8 +1,13 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 60,
-  "inputCollected": 59,
-  "expiredOrInvalid": [],
+  "inputCollected": 58,
+  "expiredOrInvalid": [
+    {
+      "roadName": "真狩フラワーセンター",
+      "title": "泊村×真狩村 観光物産展 開催!!"
+    }
+  ],
   "corrected": [],
   "exactDuplicates": [
     {
@@ -60,10 +65,6 @@
     {
       "roadName": "村田",
       "title": "古民具・アート（工房四季庵）展"
-    },
-    {
-      "roadName": "真狩フラワーセンター",
-      "title": "泊村×真狩村 観光物産展 開催!!"
     },
     {
       "roadName": "たきかわ",
@@ -253,7 +254,7 @@
       "reason": "not_found_in_current_collection"
     }
   ],
-  "finalCount": 60,
+  "finalCount": 59,
   "futurePublicationDatesCleared": [
     {
       "url": "https://wachi-nagomi.com/topics/post-10529/",

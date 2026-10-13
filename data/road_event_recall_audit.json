@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-13",
+  "checkedOn": "2026-10-14",
   "summary": {
     "officialSources": 10,
     "reachableSources": 10,
@@ -9,8 +9,8 @@
       "unmatched_official_notice": 45,
       "same_official_url_title_needs_review": 1,
       "possible_same_event_other_url": 2,
-      "station_not_unambiguously_identified": 24,
-      "published_same_official_url": 8
+      "station_not_unambiguously_identified": 25,
+      "published_same_official_url": 7
     },
     "candidatesForManualReview": 46,
     "sampleVerifiedOnSite": 3,
@@ -427,6 +427,18 @@
     },
     {
       "source": "北海道",
+      "title": "泊村×真狩村 観光物産展 開催！！",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
       "title": "道の駅なないろ・ななえ🌈イベント情報✨",
       "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nanaeinfo/69782",
       "prefecture": "",
@@ -551,18 +563,6 @@
       "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000694.pdf",
       "prefecture": "島根県",
       "roadName": "頓原",
-      "status": "published_same_official_url",
-      "possibleOverlapUrls": [],
-      "headlineDateHint": "unknown_date",
-      "reviewPriority": "date_and_venue_verification_needed",
-      "evidenceStatus": "listing_only_not_date_or_venue_verified"
-    },
-    {
-      "source": "北海道",
-      "title": "泊村×真狩村 観光物産展 開催！！",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823",
-      "prefecture": "",
-      "roadName": "",
       "status": "published_same_official_url",
       "possibleOverlapUrls": [],
       "headlineDateHint": "unknown_date",

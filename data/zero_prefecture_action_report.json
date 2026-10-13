@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-13",
+  "checkedOn": "2026-10-14",
   "prefecturesWithoutCurrentEvents": 11,
   "prefecturesWithOfficialReviewLeads": 11,
   "uncoveredPrefectures": [],
@@ -106,9 +106,9 @@
       "uninspectedCandidates": 142,
       "rejectionReasons": {
         "not_event": 7,
-        "undated": 4,
+        "undated": 7,
         "venue_missing": 1,
-        "past": 7,
+        "past": 4,
         "offsite": 1
       },
       "officialLeadUrls": [

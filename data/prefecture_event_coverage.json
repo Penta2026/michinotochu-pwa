@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "basisUpdatedAt": "2026-10-13",
+  "basisUpdatedAt": "2026-10-14",
   "definitions": {
     "observed": "Only the dated events currently present in data/road_events.json.",
     "targetedFeed": "An explicitly configured station source, not proof of parsing or future-event availability.",
@@ -79,7 +79,7 @@
     "zeroRegisteredPrefectures": 11,
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
-    "registeredEvents": 60,
+    "registeredEvents": 59,
     "targetedStationFeedPrefectures": 27,
     "notReconfirmedEvents": 1,
     "unknownPrefectures": []
@@ -124,7 +124,7 @@
       "prefectureCount": 1,
       "observedPrefectures": 1,
       "zeroRegisteredPrefectures": [],
-      "registeredEventCount": 3,
+      "registeredEventCount": 2,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 13
     },
@@ -223,14 +223,13 @@
     {
       "prefecture": "北海道",
       "reportingRegion": "北海道",
-      "eventCount": 3,
+      "eventCount": 2,
       "observedStations": [
         "しらぬか恋問館",
-        "たきかわ",
-        "真狩フラワーセンター"
+        "たきかわ"
       ],
       "historicallyObserved": true,
-      "observedStationCount": 3,
+      "observedStationCount": 2,
       "targetedStationFeeds": [
         "しらぬか恋問館"
       ],

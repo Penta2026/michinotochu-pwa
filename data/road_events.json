@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-13",
+  "updatedAt": "2026-10-14",
   "events": [
     {
       "roadName": "親不知ピアパーク",
@@ -100,16 +100,6 @@
       "endDate": "2026-11-23",
       "publishedAt": "",
       "url": "https://creativeweek.net/event-detail.php?no=37",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "真狩フラワーセンター",
-      "prefecture": "北海道",
-      "title": "泊村×真狩村 観光物産展 開催!!",
-      "startDate": "2026-10-13",
-      "endDate": "2026-10-13",
-      "publishedAt": "",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823/",
       "status": "scheduled"
     },
     {

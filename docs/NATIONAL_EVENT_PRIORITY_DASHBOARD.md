@@ -10,7 +10,7 @@
 | 九州・沖縄 | 6 | 熊本県、大分県 | discovery / reachable | verify_event_listing_and_build_safe_adapter |
 | 北陸 | 4 | 富山県 | discovery / reachable | verify_event_listing_and_build_safe_adapter |
 | 中部 | 13 | なし | discovery / reachable | verify_event_listing_and_build_safe_adapter |
-| 北海道 | 3 | なし | discovery / reachable | verify_event_listing_and_build_safe_adapter |
+| 北海道 | 2 | なし | discovery / reachable | verify_event_listing_and_build_safe_adapter |
 | 近畿 | 9 | 福井県、滋賀県 | adapter / reachable | audit_station_matching_and_missing_prefectures |
 | 中国 | 5 | 鳥取県 | adapter / reachable | audit_station_matching_and_missing_prefectures |
 | 四国 | 4 | 徳島県 | adapter / reachable | audit_station_matching_and_missing_prefectures |
@@ -38,7 +38,7 @@
 | 九州・沖縄 | 28 | 28 | 2 | 0 |
 | 北陸 | 15 | 不明 | 4 | 0 |
 | 中部 | None | None | None | None |
-| 北海道 | 6 | 6 | 2 | 0 |
+| 北海道 | 6 | 6 | 1 | 0 |
 | 近畿 | 18 | 18 | 4 | 0 |
 | 中国 | 695 | None | 4 | 不明 |
 | 四国 | 19 | None | 3 | 不明 |
@@ -76,7 +76,7 @@
 | 静岡県 | 3 | 1 | 1 | 10 | 0 | 0 | published_events_observed |
 | 愛知県 | 1 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
 | 三重県 | 4 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
-| 北海道 | 3 | 1 | 1 | 1 | 0 | 0 | published_events_observed |
+| 北海道 | 2 | 1 | 1 | 1 | 0 | 0 | published_events_observed |
 | 福井県 | 0 | 2 | 2 | 162 | 0 | 0 | targeted_feed_configured_no_current_publication |
 | 滋賀県 | 0 | 0 | 0 | 0 | 0 | 0 | regional_homepage_only_or_unknown |
 | 京都府 | 3 | 2 | 0 | 0 | 0 | 0 | published_events_observed |
