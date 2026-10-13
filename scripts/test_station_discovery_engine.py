@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 from station_discovery_engine import (
     _article_record, _links, _period, _official_url, _validate_sources,
-    collect_configured_station_events,
+    collect_configured_station_events, _plan_article_inspection,
 )
 
 TODAY = date(2026, 10, 10)
@@ -45,6 +45,12 @@ def soup(html):
                              "data/station_event_discovery_sources.json").read_text(encoding="utf-8"))
         source = next(x for x in config["sources"] if x["id"] == "fukui_nanjezen_sankairi")
         self.assertEqual(source["maxArticles"], 12)
+        self.assertEqual(source["explorationSlots"], 6)
+        links = {f"https://kineno-nanjo.com/info/news/post-{i}/": f"news {i}" for i in range(30)}
+        selected, diag = _plan_article_inspection(links, source, TODAY)
+        self.assertEqual(len(selected), 12)
+        self.assertEqual(diag["explorationSlots"], 6)
+        self.assertEqual(diag["uninspectedCandidates"], 18)
         self.assertLessEqual(source["maxArticles"], 12)
         self.assertEqual(source["articlePathPattern"], "^/info/(?:news|event)/post-[0-9]+/?$")
 
