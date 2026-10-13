@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-13",
+  "structurallyValid": true,
+  "blockingIssues": [],
+  "warnings": [
+    "adapter_audit_date_unknown:東北",
+    "adapter_audit_date_unknown:北陸",
+    "adapter_audit_date_unknown:中部",
+    "adapter_audit_date_unknown:近畿",
+    "adapter_audit_date_unknown:中国",
+    "adapter_audit_date_unknown:四国",
+    "adapter_audit_date_unknown:九州・沖縄"
+  ],
+  "regions": [
+    {
+      "region": "北海道",
+      "homepageReachable": true,
+      "adapterAuditFile": "hokkaido_event_audit.json",
+      "adapterAuditPresent": true,
+      "adapterAuditIsFresh": true
+    },
+    {
+      "region": "東北",
+      "homepageReachable": true,
+      "adapterAuditFile": "tohoku_event_adapter_audit.json",
+      "adapterAuditPresent": true,
+      "adapterAuditIsFresh": null
+    },
+    {
+      "region": "関東",
+      "homepageReachable": true,
+      "adapterAuditFile": "kanto_association_event_audit.json",
+      "adapterAuditPresent": true,
+      "adapterAuditIsFresh": true
+    },
+    {
+      "region": "北陸",
+      "homepageReachable": true,
+      "adapterAuditFile": "hokuriku_event_audit.json",
+      "adapterAuditPresent": true,
+      "adapterAuditIsFresh": null
+    },
+    {
+      "region": "中部",
+      "homepageReachable": true,
+      "adapterAuditFile": "chubu_event_layout_report.json",
+      "adapterAuditPresent": true,
+      "adapterAuditIsFresh": null
+    },
+    {
+      "region": "近畿",
+      "homepageReachable": true,
+      "adapterAuditFile": "kinki_five_prefectures_audit.json",
+      "adapterAuditPresent": true,
+      "adapterAuditIsFresh": null
+    },
+    {
+      "region": "中国",
+      "homepageReachable": true,
+      "adapterAuditFile": "chugoku_event_adapter_audit.json",
+      "adapterAuditPresent": true,
+      "adapterAuditIsFresh": null
+    },
+    {
+      "region": "四国",
+      "homepageReachable": true,
+      "adapterAuditFile": "shikoku_event_adapter_audit.json",
+      "adapterAuditPresent": true,
+      "adapterAuditIsFresh": null
+    },
+    {
+      "region": "九州・沖縄",
+      "homepageReachable": true,
+      "adapterAuditFile": "kyushu_okinawa_event_audit.json",
+      "adapterAuditPresent": true,
+      "adapterAuditIsFresh": null
+    }
+  ],
+  "publishedEvents": 60,
+  "publishedPrefectures": 36,
+  "prefecturesWithoutCurrentPublication": [
+    "千葉県",
+    "大分県",
+    "富山県",
+    "山形県",
+    "徳島県",
+    "栃木県",
+    "滋賀県",
+    "熊本県",
+    "福井県",
+    "長野県",
+    "鳥取県"
+  ],
+  "note": "Homepage reachability and audit presence do not prove article coverage or successful publication."
+}

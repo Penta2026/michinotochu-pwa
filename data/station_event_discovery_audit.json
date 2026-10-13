@@ -846,7 +846,7 @@
       "listingUrl": "https://kineno-nanjo.com/news/",
       "listingError": "",
       "candidates": 152,
-      "checked": 8,
+      "checked": 12,
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
@@ -859,7 +859,8 @@
       "reasons": {
         "undated": 3,
         "venue_missing": 1,
-        "past": 4
+        "past": 7,
+        "offsite": 1
       },
       "examples": [],
       "rejectedExamples": [
@@ -902,13 +903,33 @@
           "title": "お知らせ 2025.10.19 ふたりでマルシェ",
           "url": "https://kineno-nanjo.com/info/news/post-4714/",
           "reason": "past"
+        },
+        {
+          "title": "新着情報 2025.09.24 10/16(木) 第11回 ママ・マルシェ開催!",
+          "url": "https://kineno-nanjo.com/info/event/post-4664/",
+          "reason": "offsite"
+        },
+        {
+          "title": "イベント 2025.08.22 第3回 屋上から「おかし」が降ってくる!",
+          "url": "https://kineno-nanjo.com/info/event/post-4612/",
+          "reason": "past"
+        },
+        {
+          "title": "イベント 2025.07.24 夏の感謝祭(7/26-7/27)",
+          "url": "https://kineno-nanjo.com/info/event/post-4526/",
+          "reason": "past"
+        },
+        {
+          "title": "イベント 2025.03.13 VERCOSTA FUKUI 地域交流イベント",
+          "url": "https://kineno-nanjo.com/info/event/post-4283/",
+          "reason": "past"
         }
       ],
       "eligibleCandidates": 152,
-      "uninspectedCandidates": 144,
+      "uninspectedCandidates": 140,
       "explorationStart": 4,
-      "explorationNext": 6,
-      "explorationSlots": 2,
+      "explorationNext": 10,
+      "explorationSlots": 6,
       "explorationPool": 146
     },
     {
@@ -1124,8 +1145,8 @@
           "reason": "not_event"
         },
         {
-          "title": "リサイクルフェア2026の開催について",
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2026081200014/",
+          "title": "個人情報の取り扱いについて",
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2014101600012/",
           "reason": "not_event"
         },
         {
@@ -1142,9 +1163,9 @@
       "eligibleCandidates": 19,
       "uninspectedCandidates": 7,
       "explorationStart": 4,
-      "explorationNext": 6,
-      "explorationSlots": 2,
-      "explorationPool": 9
+      "explorationNext": 7,
+      "explorationSlots": 3,
+      "explorationPool": 10
     },
     {
       "id": "nagasaki_himawari",

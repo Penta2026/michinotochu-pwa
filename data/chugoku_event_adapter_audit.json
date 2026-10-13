@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "unmatched": 0,
+  "unknown_station": 302,
+  "not_event": 227,
+  "missing_publication": 0,
+  "invalid_date": 162,
+  "candidateArticles": 695,
+  "acceptedByAdapter": 4,
+  "listFetched": true
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-13",
+  "source": "https://www.kanto-michinoeki.jp/archives/category/イベント情報",
+  "candidateCount": 4,
+  "acceptedByAdapter": 1,
+  "articleFetchSucceeded": 4,
+  "articleFetchFailed": 0,
+  "decisions": [
+    {
+      "url": "https://www.kanto-michinoeki.jp/archives/18244.html",
+      "reason": "onsite_venue_unverified"
+    },
+    {
+      "url": "https://www.kanto-michinoeki.jp/archives/18237.html",
+      "reason": "accepted_by_adapter"
+    },
+    {
+      "url": "https://www.kanto-michinoeki.jp/archives/18167.html",
+      "reason": "expired"
+    },
+    {
+      "url": "https://www.kanto-michinoeki.jp/archives/18132.html",
+      "reason": "onsite_venue_unverified"
+    }
+  ],
+  "note": "Not final publication count"
+}

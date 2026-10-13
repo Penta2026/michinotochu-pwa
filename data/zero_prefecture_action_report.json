@@ -101,14 +101,15 @@
       "currentEvents": 0,
       "configuredStationDiscoverySources": 2,
       "listingCandidates": 162,
-      "articlesChecked": 16,
+      "articlesChecked": 20,
       "acceptedByDiscoveryAdapter": 0,
-      "uninspectedCandidates": 146,
+      "uninspectedCandidates": 142,
       "rejectionReasons": {
         "not_event": 7,
         "undated": 4,
         "venue_missing": 1,
-        "past": 4
+        "past": 7,
+        "offsite": 1
       },
       "officialLeadUrls": [
         "https://kineno-nanjo.com/news/"

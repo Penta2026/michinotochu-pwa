@@ -11,12 +11,12 @@ URL不一致は取りこぼし確定ではありません。開催日と駅構�
 |---|---:|
 | 監査に含めた公式情報源 | 10 |
 | 取得できた公式情報源 | 10 |
-| 公式告知見出しの比較数 | 81 |
-| 公式記事URLが公開データと一致 | 10 |
+| 公式告知見出しの比較数 | 80 |
+| 公式記事URLが公開データと一致 | 8 |
 | 対応する公開イベント未発見（要確認） | 45 |
 | 同じ公式URLだが題名不一致（要確認） | 1 |
 | 別URLの同一催しの可能性 | 2 |
-| 道の駅名を特定できない見出し | 23 |
+| 道の駅名を特定できない見出し | 24 |
 
 ## 要確認候補の優先順位（登録可否の判定ではありません）
 
@@ -53,8 +53,8 @@ URL不一致は取りこぼし確定ではありません。開催日と駅構�
 | date_and_venue_verification_needed | 中国 | 島根県 奥出雲おろちループ | 【奥出雲おろちループ】第３回 奥出雲おろちループ グルメマラソン開催 10月11日(日) | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000639.pdf) |
 | date_and_venue_verification_needed | 中国 | 島根県 キララ多伎 | 【キララ多伎】シルバーウィークフェスティバル ９月１９日（土）～２３日（祝） | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000683.pdf) |
 | date_and_venue_verification_needed | 中国 | 山口県 おふく | 【おふく】ビール＆ジビエ フェス2026 9月20日（日）・21日（月・祝）12時～21時 | [原文](https://www.chugoku-michinoeki.jp/news/pdf/news00000691.pdf) |
-| date_and_venue_verification_needed | 全国道の駅連絡会 | 滋賀県 奥永源寺 渓流の里 | 2026年9月30日 滋賀県 【道の駅奥永源寺渓流の里】開駅１１周年記念祭を開催します。 | [原文](https://www.michi-no-eki.jp/notices/views/23236) |
 | date_and_venue_verification_needed | 全国道の駅連絡会 | 青森県 なみおか | 2026年10月7日 青森県 【道の駅なみおか】アップルヒル 秋の大収穫祭 | [原文](https://www.michi-no-eki.jp/notices/views/23244) |
+| date_and_venue_verification_needed | 全国道の駅連絡会 | 広島県 三矢の里あきたかた | 2026年10月11日 広島県 【道の駅三矢の里あきたかた】収穫祭2026 | [原文](https://www.michi-no-eki.jp/notices/views/23245) |
 | date_and_venue_verification_needed | 近畿 | 兵庫県 みき | 【道の駅 みき】1/10(土)～12(月・祝) 産地直送！相生産牡蠣祭り | [原文](https://www.kinki-michinoeki.com/news/%E3%80%90%E9%81%93%E3%81%AE%E9%A7%85-%E3%81%BF%E3%81%8D%E3%80%911-10%E5%9C%9F%EF%BD%9E12%E6%9C%88%E3%83%BB%E7%A5%9D%E3%80%80%E7%94%A3%E5%9C%B0%E7%9B%B4%E9%80%81%EF%BC%81%E7%9B%B8%E7%94%9F%E7%94%A3) |
 | date_and_venue_verification_needed | 近畿 | 兵庫県 みき | 【道の駅 みき】12/6(土)～7(日) ながさわ道の駅みき店 冬の大感謝祭 | [原文](https://www.kinki-michinoeki.com/news/%E3%80%90%E9%81%93%E3%81%AE%E9%A7%85-%E3%81%BF%E3%81%8D%E3%80%9112-6%E5%9C%9F%EF%BD%9E7%E6%97%A5-%E3%81%AA%E3%81%8C%E3%81%95%E3%82%8F%E9%81%93%E3%81%AE%E9%A7%85%E3%81%BF%E3%81%8D%E5%BA%97) |
 | date_and_venue_verification_needed | 近畿 | 奈良県 クロスウェイなかまち | 【道の駅クロスウェイなかまち】2/21（土）～3/1（日）「奈良のいちごフェア」開催中！ | [原文](https://www.kinki-michinoeki.com/news/cw-nakamachi_2026-0222) |

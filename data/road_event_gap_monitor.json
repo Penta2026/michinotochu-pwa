@@ -32,8 +32,8 @@
       "no_individually_dated_sections": 8,
       "no_strict_official_calendar_cards": 1,
       "not_event": 54,
-      "offsite": 1,
-      "past": 16,
+      "offsite": 2,
+      "past": 19,
       "undated": 26,
       "venue_missing": 10
     },
@@ -42,8 +42,8 @@
     "sourcesWithZeroCandidates": 2,
     "sourcesAtCheckLimit": 9,
     "sourcesUsingRotatingInspection": 9,
-    "rotatingInspectionSlots": 17,
-    "uninspectedCandidateSlots": 163,
+    "rotatingInspectionSlots": 22,
+    "uninspectedCandidateSlots": 159,
     "reviewWithExplicitFutureHint": 2,
     "reviewWithExplicitPastHint": 4,
     "warnings": 11,
@@ -52,7 +52,7 @@
       "repeatedly_empty_listing": 1,
       "suspended_unavailable_official_evidence": 1
     },
-    "unreconfirmedEvents": 0,
+    "unreconfirmedEvents": 1,
     "officialListingReconfirmationCandidates": 7,
     "officialListingReconfirmationChecked": 7,
     "officialListingReconfirmationFailed": 0,
@@ -11068,7 +11068,16 @@
       "status": "unverified_candidate"
     }
   ],
-  "unreconfirmedEvents": [],
+  "unreconfirmedEvents": [
+    {
+      "roadName": "こすげ",
+      "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)",
+      "url": "https://www.kanto-michinoeki.jp/archives/18244.html",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-24",
+      "status": "needs_reconfirmation"
+    }
+  ],
   "unavailableOfficialEvidence": [
     {
       "id": "ehime_city_official_festival_pdf",
@@ -11159,8 +11168,8 @@
       "prefecture": "福井県",
       "severity": "notice",
       "candidateCount": 152,
-      "checkedCount": 8,
-      "uninspectedCandidateCount": 144
+      "checkedCount": 12,
+      "uninspectedCandidateCount": 140
     },
     {
       "kind": "article_check_limit",
@@ -11554,7 +11563,7 @@
       "checkedOn": "2026-10-13",
       "status": "review_candidates",
       "candidateCount": 152,
-      "checkedCount": 8,
+      "checkedCount": 12,
       "acceptedCount": 0,
       "reconfirmedCount": 0,
       "knownSkippedCount": 0,
@@ -11568,8 +11577,8 @@
       "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": true,
-      "uninspectedCandidateCount": 144,
-      "explorationSlots": 2,
+      "uninspectedCandidateCount": 140,
+      "explorationSlots": 6,
       "explorationPool": 146
     },
     {
@@ -11673,8 +11682,8 @@
       "emptyCandidateDayStreak": 0,
       "mayHaveUnreviewedCandidates": true,
       "uninspectedCandidateCount": 7,
-      "explorationSlots": 2,
-      "explorationPool": 9
+      "explorationSlots": 3,
+      "explorationPool": 10
     },
     {
       "id": "nagasaki_himawari",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 60,
-  "inputCollected": 60,
+  "inputCollected": 59,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -96,10 +96,6 @@
     {
       "roadName": "しろいし",
       "title": "秋の収穫祭"
-    },
-    {
-      "roadName": "こすげ",
-      "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)"
     },
     {
       "roadName": "庄和",
@@ -247,7 +243,16 @@
     }
   ],
   "possibleDuplicates": [],
-  "notReconfirmed": [],
+  "notReconfirmed": [
+    {
+      "roadName": "こすげ",
+      "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-24",
+      "url": "https://www.kanto-michinoeki.jp/archives/18244.html",
+      "reason": "not_found_in_current_collection"
+    }
+  ],
   "finalCount": 60,
   "futurePublicationDatesCleared": [
     {

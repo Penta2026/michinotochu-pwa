@@ -4,13 +4,13 @@
   "summary": {
     "officialSources": 10,
     "reachableSources": 10,
-    "announcementsCompared": 81,
+    "announcementsCompared": 80,
     "statuses": {
       "unmatched_official_notice": 45,
       "same_official_url_title_needs_review": 1,
       "possible_same_event_other_url": 2,
-      "station_not_unambiguously_identified": 23,
-      "published_same_official_url": 10
+      "station_not_unambiguously_identified": 24,
+      "published_same_official_url": 8
     },
     "candidatesForManualReview": 46,
     "sampleVerifiedOnSite": 3,
@@ -217,10 +217,10 @@
     },
     {
       "source": "全国道の駅連絡会",
-      "title": "2026年9月30日 滋賀県 【道の駅奥永源寺渓流の里】開駅１１周年記念祭を開催します。",
-      "url": "https://www.michi-no-eki.jp/notices/views/23236",
-      "prefecture": "滋賀県",
-      "roadName": "奥永源寺 渓流の里",
+      "title": "2026年10月7日 青森県 【道の駅なみおか】アップルヒル 秋の大収穫祭",
+      "url": "https://www.michi-no-eki.jp/notices/views/23244",
+      "prefecture": "青森県",
+      "roadName": "なみおか",
       "status": "unmatched_official_notice",
       "possibleOverlapUrls": [],
       "headlineDateHint": "unknown_date",
@@ -229,10 +229,10 @@
     },
     {
       "source": "全国道の駅連絡会",
-      "title": "2026年10月7日 青森県 【道の駅なみおか】アップルヒル 秋の大収穫祭",
-      "url": "https://www.michi-no-eki.jp/notices/views/23244",
-      "prefecture": "青森県",
-      "roadName": "なみおか",
+      "title": "2026年10月11日 広島県 【道の駅三矢の里あきたかた】収穫祭2026",
+      "url": "https://www.michi-no-eki.jp/notices/views/23245",
+      "prefecture": "広島県",
+      "roadName": "三矢の里あきたかた",
       "status": "unmatched_official_notice",
       "possibleOverlapUrls": [],
       "headlineDateHint": "unknown_date",
@@ -373,6 +373,18 @@
       "possibleOverlapUrls": [
         "https://www.sk-michinoeki.jp/events/4219"
       ],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "全国道の駅連絡会",
+      "title": "2026年10月12日 北海道 【道の駅びえい】「丘のくら」 『収穫マルシェ』開催！！",
+      "url": "https://www.michi-no-eki.jp/notices/views/23246",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
       "headlineDateHint": "unknown_date",
       "reviewPriority": "date_and_venue_verification_needed",
       "evidenceStatus": "listing_only_not_date_or_venue_verified"
@@ -539,18 +551,6 @@
       "url": "https://www.chugoku-michinoeki.jp/news/pdf/news00000694.pdf",
       "prefecture": "島根県",
       "roadName": "頓原",
-      "status": "published_same_official_url",
-      "possibleOverlapUrls": [],
-      "headlineDateHint": "unknown_date",
-      "reviewPriority": "date_and_venue_verification_needed",
-      "evidenceStatus": "listing_only_not_date_or_venue_verified"
-    },
-    {
-      "source": "全国道の駅連絡会",
-      "title": "2026年9月28日 兵庫県 【道の駅神鍋高原】第35回マロニエまつり／JAたじま日高ふれあいまつり｜2026年10月25日（日）10:00〜14:00",
-      "url": "https://www.michi-no-eki.jp/notices/views/23233",
-      "prefecture": "兵庫県",
-      "roadName": "神鍋高原",
       "status": "published_same_official_url",
       "possibleOverlapUrls": [],
       "headlineDateHint": "unknown_date",
@@ -816,18 +816,6 @@
       "prefecture": "",
       "roadName": "",
       "status": "station_not_unambiguously_identified",
-      "possibleOverlapUrls": [],
-      "headlineDateHint": "past_schedule_hint",
-      "reviewPriority": "past_schedule_hint",
-      "evidenceStatus": "listing_only_not_date_or_venue_verified"
-    },
-    {
-      "source": "全国道の駅連絡会",
-      "title": "2026年9月28日 兵庫県 【道の駅神鍋高原】開催決定 神鍋高原イチョウまつり｜イチョウ並木の季節に、道の駅「神鍋高原」で10月25日（日）〜11月29日（日）の土日祝13日間",
-      "url": "https://www.michi-no-eki.jp/notices/views/23234",
-      "prefecture": "兵庫県",
-      "roadName": "神鍋高原",
-      "status": "published_same_official_url",
       "possibleOverlapUrls": [],
       "headlineDateHint": "past_schedule_hint",
       "reviewPriority": "past_schedule_hint",

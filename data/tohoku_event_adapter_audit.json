@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "namiokaCandidates": 6,
+  "namiokaArticlesChecked": 6,
+  "namiokaAccepted": 1,
+  "otherCollectorFailures": [],
+  "acceptedByAdapter": 5,
+  "note": "Only Namioka has individual article check counts."
+}

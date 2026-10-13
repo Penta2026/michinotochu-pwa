@@ -81,11 +81,13 @@
     "historicalNeverObservedPrefectures": 0,
     "registeredEvents": 60,
     "targetedStationFeedPrefectures": 27,
-    "notReconfirmedEvents": 0,
+    "notReconfirmedEvents": 1,
     "unknownPrefectures": []
   },
   "priorities": {
-    "reconfirm": [],
+    "reconfirm": [
+      "山梨県"
+    ],
     "historicalNeverObserved": [],
     "previouslyObservedWithoutCurrentEvents": [
       "山形県",
@@ -486,9 +488,9 @@
       "historicallyObserved": true,
       "observedStationCount": 1,
       "targetedStationFeeds": [],
-      "notReconfirmedCount": 0,
-      "state": "events_observed",
-      "nextAction": "expand_station_coverage",
+      "notReconfirmedCount": 1,
+      "state": "needs_reconfirmation",
+      "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
