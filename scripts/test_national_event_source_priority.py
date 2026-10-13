@@ -92,6 +92,21 @@ class NationwidePriorityTests(unittest.TestCase):
         self.assertEqual(region["中部"]["datedPdfRows"], 2)
         self.assertIsNone(region["中部"]["adapterAccepted"])
 
+    def test_hokkaido_audit_uses_actual_check_count(self):
+        coverage = {"summary": {"observedPrefectures": 0, "zeroRegisteredPrefectures": 0},
+                    "regions": [{"region": "北海道", "prefectureCount": 1,
+                                 "zeroRegisteredPrefectures": [], "registeredEventCount": 0}]}
+        report = make_report(coverage, {"sources": []})
+        attach_regional_adapter_health(report, {"北海道": {
+            "candidateCount": 7, "articleChecked": 5,
+            "acceptedByAdapter": 2, "fetchFailed": 1, "dateUnverified": 2}})
+        standardize_nine_region_audits(report)
+        health = report["regions"][0]["collectionHealth"]
+        self.assertEqual(health["articleChecked"], 5)
+        self.assertEqual(health["adapterAccepted"], 2)
+        self.assertEqual(health["adapterCandidates"], 7)
+        self.assertIsNone(health["lastSuccessfulCollectionAt"])
+
     def test_unreachable_source_gets_first_priority(self):
         coverage = {"summary": {"observedPrefectures": 1, "zeroRegisteredPrefectures": 1},
                     "regions": [{"region": "東北", "prefectureCount": 1,
