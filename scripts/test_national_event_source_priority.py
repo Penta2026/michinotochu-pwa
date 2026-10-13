@@ -75,6 +75,23 @@ class NationwidePriorityTests(unittest.TestCase):
         self.assertEqual(by_region["関東"]["collectionHealth"]["articleFetchFailed"], 1)
         self.assertIsNone(by_region["九州・沖縄"]["collectionHealth"]["lastSuccessfulCollectionAt"])
 
+    def test_kinki_and_chubu_source_evidence(self):
+        coverage = {"summary": {"observedPrefectures": 0, "zeroRegisteredPrefectures": 0},
+                    "regions": [{"region": n, "prefectureCount": 1,
+                                 "zeroRegisteredPrefectures": [], "registeredEventCount": 0}
+                                for n in ("近畿", "中部")]}
+        report = make_report(coverage, {"sources": []})
+        attach_regional_adapter_health(report, {
+            "近畿": {"sources": [{"candidates": 5, "checked": 3, "accepted": 1,
+                                "undated": 2, "listingError": ""}], "accepted": 1},
+            "中部": {"pages": [{"dated_rows": ["10月1日", "10月2日"]}]}})
+        standardize_nine_region_audits(report)
+        region = {r["region"]: r["collectionHealth"] for r in report["regions"]}
+        self.assertEqual(region["近畿"]["articleChecked"], 3)
+        self.assertEqual(region["近畿"]["adapterAccepted"], 1)
+        self.assertEqual(region["中部"]["datedPdfRows"], 2)
+        self.assertIsNone(region["中部"]["adapterAccepted"])
+
     def test_unreachable_source_gets_first_priority(self):
         coverage = {"summary": {"observedPrefectures": 1, "zeroRegisteredPrefectures": 1},
                     "regions": [{"region": "東北", "prefectureCount": 1,
