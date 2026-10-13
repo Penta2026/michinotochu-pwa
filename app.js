@@ -68,7 +68,7 @@ function runInterest(){
   const status=window.tourEventCacheStatus?.()||{ready:false,total:0};
   const statusNode=$("interestEventCacheStatus");
   if(statusNode)statusNode.textContent=status.ready
-   ?("最終取得："+(status.checkedAt?new Date(status.checkedAt).toLocaleString("ja-JP"):"日時不明")+" / 登録"+status.total+"件")
+   ?("最終取得："+(status.checkedAt?new Date(status.checkedAt).toLocaleString("ja-JP"):"日時不明")+" / 元データ更新："+(status.sourceUpdatedAt||"不明")+" / 登録"+status.total+"件")
    :"イベント情報は未取得です";
   if(!status.ready){
    out.innerHTML='<div class="panel full interest-event-empty">イベント情報が未取得です。上の「イベント情報を更新」を押すと、都道府県別の開催駅を探せます。</div>';
