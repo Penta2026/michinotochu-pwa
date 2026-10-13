@@ -55,9 +55,9 @@ class NationwidePriorityTests(unittest.TestCase):
                                 for x in ("関東", "北陸", "九州・沖縄")]}
         report = make_report(coverage, {"sources": []})
         attach_regional_adapter_health(report, {
-            "北陸": {"pages": [{"staticMatched": 1, "browserMatched": 2, "browserError": ""}]},
+            "北陸": {"pages": [{"staticMatched": 1, "browserMatched": 2, "browserError": ""}], "duplicateCards": 2, "browserRenderedPages": 1},
             "九州・沖縄": {"sources": [{"candidates": 5, "failed": 1, "accepted": 1}], "accepted": 1},
-            "関東": {"candidateCount": 4, "acceptedByAdapter": 1, "decisions": []}})
+            "関東": {"candidateCount": 4, "acceptedByAdapter": 1, "articleFetchSucceeded": 2, "articleFetchFailed": 1, "decisions": []}})
         by_region = {x["region"]: x for x in report["regions"]}
         self.assertEqual(by_region["北陸"]["adapterAudit"]["candidateMatches"], 3)
         self.assertEqual(by_region["九州・沖縄"]["adapterAudit"]["fetchProblems"], 1)
@@ -69,6 +69,10 @@ class NationwidePriorityTests(unittest.TestCase):
         self.assertEqual(by_region["関東"]["collectionHealth"]["adapterAccepted"], 1)
         self.assertEqual(by_region["関東"]["collectionHealth"]["articleChecked"], 0)
         self.assertIsNone(by_region["北陸"]["collectionHealth"]["articleChecked"])
+        self.assertEqual(by_region["北陸"]["collectionHealth"]["duplicateCards"], 2)
+        self.assertEqual(by_region["北陸"]["collectionHealth"]["browserRenderedPages"], 1)
+        self.assertEqual(by_region["関東"]["collectionHealth"]["articleFetchSucceeded"], 2)
+        self.assertEqual(by_region["関東"]["collectionHealth"]["articleFetchFailed"], 1)
         self.assertIsNone(by_region["九州・沖縄"]["collectionHealth"]["lastSuccessfulCollectionAt"])
 
     def test_unreachable_source_gets_first_priority(self):
