@@ -44,6 +44,10 @@ def make_report(coverage, source_audit):
             "listingCandidatesSeen": audit.get("candidateCount", 0),
             "secondaryListingState": secondary.get("state", "not_configured"),
             "secondaryListingCandidates": secondary.get("candidateCount", 0),
+            "regionalAuditError": audit.get("error", ""),
+            "secondaryAuditError": secondary.get("error", ""),
+            "regionalArticleChecked": None,
+            "regionalArticleAccepted": None,
             "prefectureEvidence": [{
                 "prefecture": p["prefecture"],
                 "currentPublishedEvents": p.get("eventCount", 0),
@@ -136,7 +140,14 @@ def format_dashboard(report):
         lines.append("| {region} | {currentPublishedEventCount} | {gap} | {mode} / {reach} | {nextAction} |".format(
             **r, gap="、".join(r["prefecturesWithoutCurrentPublishedEvents"]) or "なし",
             mode=r["existingSourceMode"], reach=r["sourceAuditState"]))
-    lines += ["", "## 47都道府県の収集根拠", "",
+    lines += ["", "## 広域サイト監査結果", "",
+              "| 地域 | サイト候補 | 追加一覧状態 | 追加候補 | エラー |",
+              "|---|---:|---|---:|---|"]
+    for r in report["regions"]:
+        lines.append("| {} | {} | {} | {} | {} |".format(
+            r["region"], r["listingCandidatesSeen"], r["secondaryListingState"],
+            r["secondaryListingCandidates"], r["regionalAuditError"] or r["secondaryAuditError"] or "なし"))
+    lines += ["", "※広域サイトの候補数は検証済みイベント数ではない。", "", "## 47都道府県の収集根拠", "",
               "| 都道府県 | 公開件数 | 設定数 | 個別監査元 | 記事候補 | 記事採用 | 取得障害元 | 根拠 |",
               "|---|---:|---:|---:|---:|---:|---:|---|"]
     for r in report["regions"]:
