@@ -76,6 +76,8 @@ def _validate_sources(sources):
         if (not _official_url(spec["listingUrl"], spec, article=False) or
             int(spec.get("maxArticles", 6)) not in range(1, 13)):
             raise ValueError(f"Unsafe discovery source: {spec['id']}")
+        if not 1 <= int(spec.get("explorationSlots", 2)) <= max(1, int(spec.get("maxArticles", 6)) // 2):
+            raise ValueError(f"Invalid rotating inspection slots: {spec['id']}")
         re.compile(spec["articlePathPattern"])
         if spec.get("allowOfficialListingEventDate") and (
                 not spec.get("requireVenueLabel") or
@@ -135,7 +137,7 @@ def _plan_article_inspection(links, source, today, known_urls=None,
             "explorationStart": 0, "explorationNext": 0,
             "explorationSlots": 0, "explorationPool": 0,
         }
-    exploration_slots = min(2, max(1, budget // 4))
+    exploration_slots = min(int(source.get("explorationSlots", 2)), max(1, budget // 2))
     primary_count = budget - exploration_slots
     preferred = eligible[:primary_count]
     remainder = eligible[primary_count:]
