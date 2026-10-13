@@ -6,6 +6,13 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M1広域監査比較 — 9地域の候補・追加一覧・取得エラーを並列表示
+
+- 実装：`scripts/national_event_source_priority.py` に広域サイトのトップ候補数、追加イベント一覧の監査状態／候補数、両方のエラー欄を導入し、`docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md` に9地域の比較表を追加。既存日次ワークフローが更新する構成。
+- 誤判定防止：`regionalArticleChecked`／`regionalArticleAccepted` は現行監査で根拠がないため `null` に固定。広域サイトの候補件数をイベント採用数とは表示しない。
+- テスト：`scripts/test_national_event_source_priority.py` に未確認の採用件数と新しい広域比較表の検査を追加。コードとテストはコミット済み、本番Actionsの成功は未確認。
+- **次テーマ M2**：広域サイトの候補記事に対して公式の駅ID・明示的開催日時・構内会場を検証する小規模アダプターを改善。発見と採用の差、および失敗理由を情報源別に記録。最初は関東記事候補と北陸・九州沖縄の掲載入口の実績を検査し、同じ採用基準を9地域に広げる。
+
 ## 2026-10-13 M1補強 — 都道府県別の個別収集器監査を全国ダッシュボードへ統合
 
 - **実装**：`scripts/national_event_source_priority.py` に `attach_station_source_health` を追加。`data/station_event_discovery_audit.json` の最新監査結果を都道府県別に集計し、監査された個別収集元数、一覧取得成功元数、取得障害元数、記事候補数、本文チェック数、収集器採用数、未確認候補数を `data/national_event_source_priority.json` と `docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md` へ反映する。既存の日次 `road-events.yml` が引き続き生成する。
