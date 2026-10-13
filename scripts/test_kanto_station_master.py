@@ -22,6 +22,9 @@ class KantoMasterMatchingTests(unittest.TestCase):
         self.assertFalse(onsite_venue("道の駅こすげの近隣で開催", "こすげ"))
         self.assertFalse(onsite_venue("会場：市役所。道の駅こすげでも宣伝", "こすげ"))
         self.assertTrue(onsite_venue("会場：道の駅こすげ 交流広場", "こすげ"))
+        self.assertTrue(onsite_venue("開催場所 : 道の駅 こすげ 交流広場", "こすげ"))
+        self.assertTrue(onsite_venue("日時：10月24日。会場：道の駅こすげ", "こすげ"))
+        self.assertFalse(onsite_venue("会場 : 市役所前広場。主催：道の駅こすげ", "こすげ"))
 
     def test_explicit_year_does_not_require_publication_stamp(self):
         self.assertEqual(event_period("2026年10月24日 秋のマルシェ", None),
