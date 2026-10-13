@@ -6,6 +6,13 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M2 — 関東広域候補の採否理由を日次監査に保存
+
+- **実装**：`scripts/kanto_events.py` で公式イベント候補ごとに `accepted_by_adapter`／`station_unmatched`／`article_fetch_failed`／`article_or_date_unverified`／`onsite_venue_unverified`／`cancelled_or_postponed`／`expired` の理由を記録。毎日の収集で `data/kanto_association_event_audit.json` を作り、候補件数・収集器採用件数・候補URL・判定を保持。既存の最終公開判定は維持し、収集器採用を公開イベント件数と混同しない。
+- **連携**：`.github/workflows/road-events.yml` に同監査ファイルのGitコミット対象を追加。既存の収集器から監査が自動生成される。コード保存済み。本番での生成・Actionsの成功・採否実績は未確認。
+- **残課題**：記事タイトルに駅名【】のないものなど、抽出の入口段階で対象外になった記事は、今回の候補件数には含まれない。関東の別系統・九州・北陸の監査と横並びで比較するには入口段階の対象外理由も記録し、地域別の最終掲載件数まで紐づける必要がある。
+- **次テーマ**：生成された関東採否台帳の実測結果を確認、必要に応じて駅名・日付・会場の解析を改善。次いで九州・沖縄と北陸の公式イベント情報源でも同様に候補・採否理由を永続化し、9地域共通の統計へ統合する。
+
 ## 2026-10-13 M2開始 — 関東広域イベント記事の会場・日付検証を改善
 
 - **実装**：`scripts/kanto_events.py` の会場判定の正規表現を修正。従来のエスケープ誤りで会場ラベルを拾えない可能性を解消し、`開催場所：道の駅○○`／`会場：道の駅○○` のような明示された会場欄だけを採用する。本文中に駅名が現れるだけの別会場イベントは拒否。駅名は引き続き全1,234駅マスタで一意照合する。
