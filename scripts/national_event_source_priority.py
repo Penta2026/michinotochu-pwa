@@ -14,6 +14,9 @@ DASHBOARD = ROOT / "docs" / "NATIONAL_EVENT_PRIORITY_DASHBOARD.md"
 def make_report(coverage, source_audit):
     regions = {s["region"]: s for s in source_audit.get("sources", [])}
     result = []
+    region_prefectures = {}
+    for p in coverage.get("prefectures", []):
+        region_prefectures.setdefault(p.get("reportingRegion"), []).append(p)
     for region in coverage.get("regions", []):
         name = region["region"]
         audit = regions.get(name, {})
@@ -28,6 +31,8 @@ def make_report(coverage, source_audit):
             next_action = "audit_station_matching_and_missing_prefectures"
         else:
             next_action = "maintain_and_expand_existing_adapter"
+        secondary = audit.get("curatedEventListing", {})
+        prefectures = region_prefectures.get(name, [])
         result.append({
             "region": name,
             "prefectureCount": region["prefectureCount"],
@@ -37,6 +42,17 @@ def make_report(coverage, source_audit):
             "sourceAuditState": "reachable" if reachable else "unreachable_or_unknown",
             "existingSourceMode": audit.get("status", "unknown"),
             "listingCandidatesSeen": audit.get("candidateCount", 0),
+            "secondaryListingState": secondary.get("state", "not_configured"),
+            "secondaryListingCandidates": secondary.get("candidateCount", 0),
+            "prefectureEvidence": [{
+                "prefecture": p["prefecture"],
+                "currentPublishedEvents": p.get("eventCount", 0),
+                "targetedStationFeedCount": len(p.get("targetedStationFeeds", [])),
+                "regionalHomepageReachable": p.get("regionalHomepageReachable", False),
+                "evidenceLevel": ("published_events_observed" if p.get("eventCount", 0) > 0
+                    else "targeted_feed_configured_no_current_publication"
+                    if p.get("targetedStationFeeds") else "regional_homepage_only_or_unknown"),
+            } for p in prefectures],
             "note": "Source audit candidates are not verified station events.",
             "nextAction": next_action,
         })
@@ -50,6 +66,9 @@ def make_report(coverage, source_audit):
         "schemaVersion": 1, "strategy": ["nationwide_official_source_coverage",
                                         "verified_high_traffic_stations",
                                         "remaining_individual_stations"],
+        "auditEvidenceDate": coverage.get("basisUpdatedAt", ""),
+        "regionAuditCount": len(result),
+        "prefectureEvidenceCount": sum(len(x["prefectureEvidence"]) for x in result),
         "publishedPrefectureCount": coverage["summary"]["observedPrefectures"],
         "prefecturesWithNoCurrentPublishedEvents": coverage["summary"]["zeroRegisteredPrefectures"],
         "regions": result,
@@ -68,6 +87,12 @@ def format_dashboard(report):
         lines.append("| {region} | {currentPublishedEventCount} | {gap} | {mode} / {reach} | {nextAction} |".format(
             **r, gap="、".join(r["prefecturesWithoutCurrentPublishedEvents"]) or "なし",
             mode=r["existingSourceMode"], reach=r["sourceAuditState"]))
+    lines += ["", "## 47都道府県の収集根拠", "",
+              "| 都道府県 | 現行公開イベント | 個別設定数 | 判断できる範囲 |",
+              "|---|---:|---:|---|"]
+    for r in report["regions"]:
+        for p in r["prefectureEvidence"]:
+            lines.append("| {prefecture} | {currentPublishedEvents} | {targetedStationFeedCount} | {evidenceLevel} |".format(**p))
     lines += ["", "※広域サイトに接続できたことは、イベントを抽出・公開できた証明ではない。",
               "※人気駅の優先順位は、客観的な利用・来場者データを確認後に別途付与する。",
               "※既存のイベント公開判定・重複除去・日付／駅構内会場の照合は変更しない。", ""]
