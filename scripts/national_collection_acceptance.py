@@ -30,7 +30,7 @@ def check(coverage, sources, priority, audit_files, checked_on):
     if actual != expected or len(coverage.get("regions", [])) != 9:
         issues.append("coverage_regions_not_nine")
     home = {r.get("region"): r for r in sources.get("sources", [])}
-    if not expected.issubset(home):
+    if len(home) != 9 or not expected.issubset(home):
         issues.append("regional_source_audit_missing_regions")
     pri = priority.get("regions", [])
     if {r.get("region") for r in pri} != expected or len(pri) != 9:
@@ -50,6 +50,8 @@ def check(coverage, sources, priority, audit_files, checked_on):
             warnings.append("missing_adapter_audit:" + region)
         elif "schemaVersion" not in recorded:
             warnings.append("unversioned_adapter_audit:" + region)
+        elif recorded.get("checkedOn") and recorded["checkedOn"] != checked_on:
+            warnings.append("stale_adapter_audit:" + region)
         if not info.get("reachable"):
             warnings.append("regional_homepage_unreachable:" + region)
         status.append({"region": region, "homepageReachable": info.get("reachable"),
