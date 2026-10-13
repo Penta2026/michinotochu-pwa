@@ -1,5 +1,5 @@
 import unittest
-from nationwide_source_audit import scan_event_listing, match_station_hints
+from nationwide_source_audit import scan_event_listing, match_station_hints, SECONDARY_EVENT_LISTINGS
 
 class FakeResponse:
     def __init__(self, code, body):
@@ -37,6 +37,10 @@ class NationwideEventCategoryTests(unittest.TestCase):
         self.assertEqual(result["state"], "robots_unknown")
 
 class StationHintTests(unittest.TestCase):
+    def test_three_regions_have_secondary_discovery_sources(self):
+        self.assertTrue({"関東", "北陸", "九州・沖縄"}.issubset(SECONDARY_EVENT_LISTINGS))
+
+
     def test_matches_station_without_claiming_event(self):
         audit = {"sources": [{"region": "関東", "candidates": [
             {"title": "【こすげ】秋のマルシェ開催", "url": "https://example.org/article"}]}]}
