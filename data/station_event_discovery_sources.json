@@ -491,6 +491,7 @@
         "まつり"
       ],
       "maxArticles": 12,
+      "explorationSlots": 6,
       "allowExplicitDatedParagraph": true,
       "useListingPublicationDate": true
     },
