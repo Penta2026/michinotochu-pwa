@@ -187,14 +187,19 @@ def render_hokuriku(browser, url):
 
 AUDIT_FILE = Path(__file__).resolve().parents[1] / "data" / "hokuriku_event_audit.json"
 
-def save_hokuriku_audit(pages, total):
-    audit = {"schemaVersion": 1, "pages": pages, "accepted": total}
+def save_hokuriku_audit(pages, total, duplicate_cards=0):
+    audit = {"schemaVersion": 1, "pages": pages, "accepted": total,
+             "duplicateCards": duplicate_cards,
+             "browserRenderedPages": sum(p.get("browserHtmlSize", 0) > 0 for p in pages),
+             "browserFailedPages": sum(bool(p.get("browserError")) for p in pages),
+             "staticFetchFailedPages": sum(bool(p.get("error")) for p in pages)}
     content = json.dumps(audit, ensure_ascii=False, indent=2) + "\n"
     if not AUDIT_FILE.exists() or AUDIT_FILE.read_text(encoding="utf-8") != content:
         AUDIT_FILE.write_text(content, encoding="utf-8")
 
 def collect_hokuriku(today):
     found, audits = {}, []
+    duplicate_cards = 0
     browser, browser_error = None, None
     # The official homepage typically previews near-future events. The weekly
     # calendar expands coverage after that. Static requests remain diagnostic.
@@ -238,6 +243,8 @@ def collect_hokuriku(today):
                 else:
                     key = (item["url"], item["roadName"], item["startDate"], item["endDate"])
                 prev = found.get(key)
+                if prev is not None:
+                    duplicate_cards += 1
                 if prev is None or len(item["title"]) < len(prev["title"]):
                     found[key] = item
             page_text = soup.get_text(" ", strip=True)
@@ -259,5 +266,5 @@ def collect_hokuriku(today):
     finally:
         if browser is not None:
             browser.quit()
-        save_hokuriku_audit(audits, len(found))
+        save_hokuriku_audit(audits, len(found), duplicate_cards)
     return list(found.values())
