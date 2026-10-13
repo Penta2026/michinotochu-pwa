@@ -179,15 +179,6 @@ def collect_murata(today):
           f"採用 {len(events)} / 日付なし {counts['date_missing']} / "
           f"過去 {counts['past']} / 会場不明 {counts['venue_missing']} / "
           f"取得失敗 {counts['fetch_failed']}")
-    audit = {"schemaVersion":1,"namiokaCandidates":len(candidates),
-             "namiokaArticlesChecked":checked_namioka,
-             "namiokaAccepted":namioka_accepted,
-             "otherCollectorFailures":collector_errors,
-             "acceptedByAdapter":len(events),
-             "note":"Only Namioka has individual article check counts."}
-    body = json.dumps(audit,ensure_ascii=False,indent=2)+"\n"
-    if not TOHOKU_AUDIT.exists() or TOHOKU_AUDIT.read_text(encoding="utf-8") != body:
-        TOHOKU_AUDIT.write_text(body,encoding="utf-8")
     return events
 
 TOHOKU_AUDIT = Path(__file__).resolve().parents[1] / "data" / "tohoku_event_adapter_audit.json"
@@ -235,4 +226,13 @@ def collect_tohoku(today=None):
         except (requests.RequestException,ValueError) as exc:
             collector_errors.append(name)
             print(f"東北・{name} の収集失敗（他の駅は継続）: {exc}")
+    audit = {"schemaVersion":1,"namiokaCandidates":len(candidates),
+             "namiokaArticlesChecked":checked_namioka,
+             "namiokaAccepted":namioka_accepted,
+             "otherCollectorFailures":collector_errors,
+             "acceptedByAdapter":len(events),
+             "note":"Only Namioka has individual article check counts."}
+    body = json.dumps(audit,ensure_ascii=False,indent=2)+"\n"
+    if not TOHOKU_AUDIT.exists() or TOHOKU_AUDIT.read_text(encoding="utf-8") != body:
+        TOHOKU_AUDIT.write_text(body,encoding="utf-8")
     return events
