@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-13",
+  "prefecturesWithoutCurrentEvents": 11,
+  "prefecturesWithOfficialReviewLeads": 11,
+  "uncoveredPrefectures": [],
+  "prefectures": [
+    {
+      "prefecture": "山形県",
+      "region": "東北",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 1,
+      "listingCandidates": 1,
+      "articlesChecked": 1,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {
+        "no_grounded_program_event": 1
+      },
+      "officialLeadUrls": [
+        "https://www.michi-no-eki.jp/notices"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "verify_existing_adapter_rejections",
+      "sourceIds": [
+        "yamagata_takahata"
+      ]
+    },
+    {
+      "prefecture": "栃木県",
+      "region": "関東",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 0,
+      "listingCandidates": 0,
+      "articlesChecked": 0,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {},
+      "officialLeadUrls": [
+        "https://www.michi-no-eki.jp/notices"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "configure_and_verify_new_official_station_feed",
+      "sourceIds": []
+    },
+    {
+      "prefecture": "千葉県",
+      "region": "関東",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 0,
+      "listingCandidates": 0,
+      "articlesChecked": 0,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {},
+      "officialLeadUrls": [
+        "https://www.chiba-dourokousha.or.jp/category/event/"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "configure_and_verify_new_official_station_feed",
+      "sourceIds": []
+    },
+    {
+      "prefecture": "長野県",
+      "region": "関東",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 0,
+      "listingCandidates": 0,
+      "articlesChecked": 0,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {},
+      "officialLeadUrls": [
+        "https://michinoeki-net.org/",
+        "https://nagano-michinoeki.jp/"
+      ],
+      "officialLeadCount": 2,
+      "nextAction": "configure_and_verify_new_official_station_feed",
+      "sourceIds": []
+    },
+    {
+      "prefecture": "富山県",
+      "region": "北陸",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 0,
+      "listingCandidates": 0,
+      "articlesChecked": 0,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {},
+      "officialLeadUrls": [
+        "https://michinoeki-oyabe.com/2026/"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "configure_and_verify_new_official_station_feed",
+      "sourceIds": []
+    },
+    {
+      "prefecture": "福井県",
+      "region": "近畿",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 2,
+      "listingCandidates": 162,
+      "articlesChecked": 16,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 146,
+      "rejectionReasons": {
+        "not_event": 7,
+        "undated": 4,
+        "venue_missing": 1,
+        "past": 4
+      },
+      "officialLeadUrls": [
+        "https://kineno-nanjo.com/news/"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "verify_existing_adapter_rejections",
+      "sourceIds": [
+        "fukui_hamabiyori",
+        "fukui_nanjezen_sankairi"
+      ]
+    },
+    {
+      "prefecture": "滋賀県",
+      "region": "近畿",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 0,
+      "listingCandidates": 0,
+      "articlesChecked": 0,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {},
+      "officialLeadUrls": [
+        "https://aito-ms.or.jp/event/index.html"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "configure_and_verify_new_official_station_feed",
+      "sourceIds": []
+    },
+    {
+      "prefecture": "鳥取県",
+      "region": "中国",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 0,
+      "listingCandidates": 0,
+      "articlesChecked": 0,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {},
+      "officialLeadUrls": [
+        "https://www.michi-no-eki.jp/notices"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "configure_and_verify_new_official_station_feed",
+      "sourceIds": []
+    },
+    {
+      "prefecture": "徳島県",
+      "region": "四国",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 0,
+      "listingCandidates": 0,
+      "articlesChecked": 0,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {},
+      "officialLeadUrls": [
+        "https://www.awanavi.jp/archives/event/"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "configure_and_verify_new_official_station_feed",
+      "sourceIds": []
+    },
+    {
+      "prefecture": "熊本県",
+      "region": "九州・沖縄",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 1,
+      "listingCandidates": 1,
+      "articlesChecked": 1,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {
+        "no_strict_official_calendar_cards": 1
+      },
+      "officialLeadUrls": [
+        "https://www.michi-no-eki.jp/notices"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "verify_existing_adapter_rejections",
+      "sourceIds": [
+        "kumamoto_minamiaso_official_tourism"
+      ]
+    },
+    {
+      "prefecture": "大分県",
+      "region": "九州・沖縄",
+      "currentEvents": 0,
+      "configuredStationDiscoverySources": 0,
+      "listingCandidates": 0,
+      "articlesChecked": 0,
+      "acceptedByDiscoveryAdapter": 0,
+      "uninspectedCandidates": 0,
+      "rejectionReasons": {},
+      "officialLeadUrls": [
+        "https://www.visit-oita.jp/events/index"
+      ],
+      "officialLeadCount": 1,
+      "nextAction": "configure_and_verify_new_official_station_feed",
+      "sourceIds": []
+    }
+  ],
+  "limitations": "Leads are NOT confirmed valid event records. Adapter acceptance is not final publication."
+}
