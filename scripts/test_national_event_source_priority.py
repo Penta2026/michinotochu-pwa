@@ -12,6 +12,8 @@ class NationwidePriorityTests(unittest.TestCase):
         self.assertEqual(result["regions"][0]["nextAction"], "verify_event_listing_and_build_safe_adapter")
         self.assertEqual(result["regions"][0]["prefecturesWithoutCurrentPublishedEvents"], ["富山県"])
         self.assertEqual(result["highTrafficStationPriority"]["state"], "awaiting_objective_visitation_evidence")
+        self.assertIsNone(result["regions"][0]["regionalArticleAccepted"])
+        self.assertIn("広域サイト監査結果", format_dashboard(result))
 
     def test_prefecture_evidence_count(self):
         coverage = {"summary": {"observedPrefectures": 0, "zeroRegisteredPrefectures": 1},
