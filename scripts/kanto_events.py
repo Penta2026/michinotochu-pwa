@@ -2,13 +2,39 @@
 import re
 import unicodedata
 from datetime import date
+from pathlib import Path
+from station_coverage_registry import read_app_stations, station_key
 from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 
 SOURCE = "https://www.kanto-michinoeki.jp/archives/category/イベント情報"
 HEADERS = {"User-Agent": "MichinotochuRoadEventBot/1.5 (official notices; daily)"}
-PREFS = {"こすげ":"山梨県","庄和":"埼玉県"}
+MASTER = Path(__file__).resolve().parents[1] / "data" / "app_data.js"
+
+def station_index(roads):
+    index = {}
+    for r in roads:
+        index.setdefault(station_key(r["prefecture"], r["name"])[1], []).append(r)
+    return index
+
+def resolve_station(title, index):
+    m = STATION.search(title)
+    if not m:
+        return None
+    key = station_key("", m.group(1))[1]
+    matches = index.get(key, [])
+    return matches[0] if len(matches) == 1 else None
+
+def onsite_venue(body, road):
+    """Require article text to explicitly say the event is held at this station."""
+    key = station_key("", road)[1]
+    labelled = re.findall(r"(?:開催場所|会場|場所|開催会場)\\s*[：:]?\\s*(.{0,90})", body)
+    for value in labelled:
+        cleaned = station_key("", value)[1]
+        if key in cleaned and ("道の駅" in value or key == cleaned[:len(key)]):
+            return True
+    return False
 TERMS = ("祭","まつり","イベント","マルシェ","フェア","体験","コンサート","収穫")
 STATION = re.compile(r"[【〖](?:道の駅\s*)?([^】〗]+)[】〗]")
 DATE = re.compile(r"(?:(20\d{2})年)?\s*(\d{1,2})月\s*(\d{1,2})日")
@@ -49,6 +75,8 @@ def collect_kanto(today):
     response=session.get(SOURCE,timeout=15,headers=HEADERS)
     response.raise_for_status()
     soup=BeautifulSoup(response.text,"html.parser")
+    roads = read_app_stations(MASTER.read_text(encoding="utf-8"))
+    index = station_index(roads)
     found=[]; seen=set(); stats={"candidate":0,"unmatched":0,"undated":0,"past":0,"failed":0}
     for a in soup.select("a[href]"):
         url=urljoin(response.url,a["href"])
@@ -61,8 +89,8 @@ def collect_kanto(today):
         if any(word in title for word in ("中止","延期","休館","休業")):
             continue
         seen.add(url);stats["candidate"]+=1
-        road=m.group(1).replace("道の駅","").strip()
-        if road not in PREFS:
+        station=resolve_station(title, index)
+        if station is None:
             stats["unmatched"]+=1
             continue
         try:
@@ -77,6 +105,11 @@ def collect_kanto(today):
             stats["undated"]+=1
             continue
         body=clean(article.get_text(" ",strip=True))
+        if any(x in body for x in ("開催中止", "イベント中止", "開催を中止", "開催延期")):
+            continue
+        if not onsite_venue(body, station["name"]):
+            stats["unmatched"]+=1
+            continue
         stamp=POSTED.search(body)
         if not stamp:
             # Publication marker might be just outside the article wrapper.
@@ -96,7 +129,7 @@ def collect_kanto(today):
         if parsed[1]<today.isoformat():
             stats["past"]+=1
             continue
-        found.append({"roadName":road,"prefecture":PREFS[road],"title":title,
+        found.append({"roadName":station["name"],"prefecture":station["prefecture"],"title":title,
                       "startDate":parsed[0],"endDate":parsed[1],
                       "publishedAt":published.isoformat(),"url":url,"status":"scheduled"})
     print(f"関東公式: 候補 {stats['candidate']} / 採用 {len(found)} / 未照合駅 {stats['unmatched']} / 日付未判定 {stats['undated']} / 過去 {stats['past']} / 取得失敗 {stats['failed']}")
