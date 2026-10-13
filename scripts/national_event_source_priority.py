@@ -168,6 +168,30 @@ def attach_regional_adapter_health(report, audits):
             "rejectionReasons": {reason: sum(1 for d in kan.get("decisions", []) if d.get("reason") == reason)
                                  for reason in set(d.get("reason") for d in kan.get("decisions", []))},
         }
+    kin = audits.get("近畿", {})
+    if "近畿" in lookup and "sources" in kin:
+        sources = kin["sources"]
+        lookup["近畿"]["adapterAudit"] = {
+            "auditedSources": len(sources),
+            "candidateMatches": sum(x.get("candidates", 0) for x in sources),
+            "articleChecked": sum(x.get("checked", 0) for x in sources),
+            "acceptedByAdapter": kin.get("accepted"),
+            "fetchProblems": sum(bool(x.get("listingError")) or x.get("failed", 0) > 0 for x in sources),
+            "rejectionReasons": {key: sum(x.get(key, 0) for x in sources)
+                                 for key in ("past", "undated", "venueMismatch", "failed")},
+        }
+    chubu = audits.get("中部", {})
+    if "中部" in lookup and "pages" in chubu:
+        pages = chubu["pages"]
+        lookup["中部"]["adapterAudit"] = {
+            "auditedPages": len(pages),
+            "datedPdfRows": sum(len(x.get("dated_rows", [])) for x in pages),
+            "candidateMatches": None,
+            "articleChecked": None,
+            "acceptedByAdapter": None,
+            "fetchProblems": None,
+            "auditEvidence": "pdf_layout_only",
+        }
     return report
 
 def standardize_nine_region_audits(report):
@@ -192,6 +216,7 @@ def standardize_nine_region_audits(report):
             "browserRenderedPages": a.get("browserRenderedPages"),
             "browserFailedPages": a.get("browserFailedPages"),
             "duplicateCards": a.get("duplicateCards"),
+            "datedPdfRows": a.get("datedPdfRows"),
             "auditEvidence": ("adapter_audit_available" if a else "regional_links_only"),
             "region": region,
         }
@@ -248,7 +273,9 @@ def main():
     audits = {}
     for region, filename in (("北陸", "hokuriku_event_audit.json"),
                              ("九州・沖縄", "kyushu_okinawa_event_audit.json"),
-                             ("関東", "kanto_association_event_audit.json")):
+                             ("関東", "kanto_association_event_audit.json"),
+                             ("近畿", "kinki_five_prefectures_audit.json"),
+                             ("中部", "chubu_event_layout_report.json")):
         path = DATA / filename
         if path.exists():
             audits[region] = json.loads(path.read_text(encoding="utf-8"))
