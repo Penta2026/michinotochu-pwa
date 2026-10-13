@@ -145,7 +145,22 @@
         }
       ],
       "candidateCount": 5,
-      "error": ""
+      "error": "",
+      "curatedEventListing": {
+        "url": "https://www.kanto-michinoeki.jp/archives/category/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1",
+        "state": "inspected",
+        "candidateCount": 8,
+        "candidateUrlsUnverified": [
+          "https://www.kanto-michinoeki.jp/archives/18046.html",
+          "https://www.kanto-michinoeki.jp/archives/18118.html",
+          "https://www.kanto-michinoeki.jp/archives/18132.html",
+          "https://www.kanto-michinoeki.jp/archives/18154.html",
+          "https://www.kanto-michinoeki.jp/archives/18167.html",
+          "https://www.kanto-michinoeki.jp/archives/18221.html",
+          "https://www.kanto-michinoeki.jp/archives/18237.html",
+          "https://www.kanto-michinoeki.jp/archives/18244.html"
+        ]
+      }
     },
     {
       "region": "北陸",
