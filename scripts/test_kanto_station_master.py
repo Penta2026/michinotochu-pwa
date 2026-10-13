@@ -30,7 +30,7 @@ class KantoMasterMatchingTests(unittest.TestCase):
     def test_venue_does_not_confuse_other_station_or_organizer(self):
         self.assertFalse(onsite_venue("主催：道の駅こすげ。会場：市民ホール", "こすげ"))
         self.assertFalse(onsite_venue("会場：道の駅こすげ以外の場所", "こすげ"))
-        self.assertTrue(onsite_venue("開催日時：10月24日\\n会場：道の駅こすげ 広場", "こすげ"))
+        self.assertTrue(onsite_venue("開催日時：10月24日\n会場：道の駅こすげ 広場", "こすげ"))
 
     def test_iso_and_slash_event_dates_are_grounded(self):
         self.assertEqual(event_period("2026/10/24 秋のマルシェ", None),
