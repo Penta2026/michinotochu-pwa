@@ -31,12 +31,12 @@ def resolve_station(title, index):
 def onsite_venue(body, road):
     """Require an explicit venue label naming this station, not mere mention."""
     key = station_key("", road)[1]
-    for line in re.split(r"[\\n。]", body):
-        m = re.search(r"(?:開催場所|開催会場|会場|場所)\\s*[：:]\\s*(.{1,100})", line)
+    for line in re.split(r"[\n。]", body):
+        m = re.search(r"(?:開催場所|開催会場|会場|場所)\s*[：:]\s*(.{1,100})", line)
         if not m:
             continue
         venue = m.group(1).split("日時", 1)[0]
-        station_form = re.search(r"道の駅\\s*[・･]?\\s*([^\\s、,（(]{2,40})", venue)
+        station_form = re.search(r"道の駅\s*[・･]?\s*([^\s、,（(]{2,40})", venue)
         if station_form and station_key("", station_form.group(1))[1].startswith(key):
             return True
     return False
