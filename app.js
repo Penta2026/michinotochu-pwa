@@ -34,6 +34,31 @@ function interestStationEventCard(station,events){
    (e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">公式イベント案内 ↗</a>':'')+
    '</div>').join("")+'</div></div>';
 }
+let interestEventCoords=null;
+function interestEventPriority(dateString){
+ const now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ const day=(today.getDay()+6)%7;
+ const saturday=new Date(today);saturday.setDate(today.getDate()+(5-day+7)%7);
+ const sunday=new Date(saturday);sunday.setDate(saturday.getDate()+1);
+ const date=new Date(dateString+"T00:00:00");
+ if(Number.isNaN(+date))return 99;
+ if(date<=today)return 0;
+ if(date<=sunday && date>=saturday)return 1;
+ return 2;
+}
+function interestDistanceKm(a,b){
+ if(!Number.isFinite(+a.lat)||!Number.isFinite(+a.lng)||!Number.isFinite(+b.lat)||!Number.isFinite(+b.lng))return Infinity;
+ const radians=x=>x*Math.PI/180,dlat=radians(+a.lat-(+b.lat)),dlng=radians(+a.lng-(+b.lng));
+ const v=Math.sin(dlat/2)**2+Math.cos(radians(+a.lat))*Math.cos(radians(+b.lat))*Math.sin(dlng/2)**2;
+ return 6371*2*Math.atan2(Math.sqrt(v),Math.sqrt(Math.max(0,1-v)));
+}
+async function interestChooseEventSort(){
+ if($("interestEventSort")?.value!=="distance"){runInterest();return;}
+ const node=$("interestEventSortStatus");if(node)node.textContent="📍 現在地を取得しています…";
+ try{interestEventCoords=await geo();if(node)node.textContent="📍 現在地からの直線距離順（道路距離ではありません）";}
+ catch(e){interestEventCoords=null;if(node)node.textContent="位置情報が取得できません。開催日の近い順で表示します。";}
+ runInterest();
+}
 function runInterest(){
  const pref=$("interestPref").value,type=$("interestType").value;
  const feature=$("interestFeature").value;
@@ -55,8 +80,19 @@ function runInterest(){
    .map(station=>({station,events:(window.tourEventsForStation?.(station)||[])
     .slice().sort((a,b)=>a.startDate.localeCompare(b.startDate))}))
    .filter(x=>x.events.length)
-   .sort((a,b)=>a.events[0].startDate.localeCompare(b.events[0].startDate)||
-    a.station.name.localeCompare(b.station.name,"ja"));
+   .sort((a,b)=>{
+    const mode=$("interestEventSort")?.value||"weekend";
+    if(mode==="distance"&&interestEventCoords){
+     const delta=interestDistanceKm(a.station,interestEventCoords)-interestDistanceKm(b.station,interestEventCoords);
+     if(Number.isFinite(delta)&&Math.abs(delta)>0.001)return delta;
+    }
+    if(mode==="weekend"){
+     const priority=interestEventPriority(a.events[0].startDate)-interestEventPriority(b.events[0].startDate);
+     if(priority)return priority;
+    }
+    return a.events[0].startDate.localeCompare(b.events[0].startDate)||
+      a.station.name.localeCompare(b.station.name,"ja");
+   });
   const count=stations.reduce((n,x)=>n+x.events.length,0);
   out.innerHTML='<div class="panel full interest-event-summary">'+esc(pref)+
    ' / イベント開催駅 '+stations.length+'駅・開催終了前 '+count+'件</div>'+
