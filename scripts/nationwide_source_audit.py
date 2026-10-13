@@ -69,6 +69,28 @@ def scan_event_listing(url, fetch=requests.get):
     return {"state": "inspected", "candidateCount": len(links),
             "candidateUrlsUnverified": sorted(links)}
 
+
+def match_station_hints(report, roads):
+    """Annotate article candidates with unique IDs; never infer an event."""
+    from station_coverage_registry import station_key
+    lookup = {}
+    for road in roads:
+        lookup.setdefault(station_key(road["prefecture"], road["name"])[1], []).append(road)
+    for source in report["sources"]:
+        for candidate in source.get("candidates", []):
+            title = candidate.get("title", "")
+            names = re.findall(r"【([^】]+)】", title)
+            hits = {}
+            for name in names:
+                for road in lookup.get(station_key("", name.replace("道の駅", ""))[1], []):
+                    hits[road["id"]] = road
+            candidate["stationIdHint"] = next(iter(hits)) if len(hits) == 1 else ""
+            candidate["identityStatus"] = ("single_station_hint" if len(hits) == 1
+                                           else "ambiguous" if len(hits) > 1
+                                           else "unmatched")
+            candidate["eventVerified"] = False
+    return report
+
 def audit_sources(now=None):
     now = now or datetime.now()
     result = {"checkedAt": now.isoformat(timespec="seconds"), "sources": []}
@@ -114,6 +136,9 @@ def audit_sources(now=None):
         result["sources"].append(item)
         print(f"地域監査 {source['region']}: 接続={'OK' if item['reachable'] else 'NG'} / "
               f"公式告知候補={item['candidateCount']} / 公開解析={source['status']}")
+    from station_coverage_registry import DATA, read_app_stations
+    roads = read_app_stations((DATA / "app_data.js").read_text(encoding="utf-8"))
+    match_station_hints(result, roads)
     previous = json.loads(REPORT.read_text(encoding="utf-8")) if REPORT.exists() else {}
     # Avoid changing git history every day when only the scan timestamp differs.
     stable = {"schemaVersion": 1, "sources": result["sources"]}
