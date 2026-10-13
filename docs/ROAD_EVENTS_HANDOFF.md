@@ -6,6 +6,14 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M2 実測値の接続
+
+九州・沖縄の既存監査から記事確認件数と理由別の保留件数を全国比較へ接続。関東の候補判定ログからも確認件数と判定理由を集計。北陸には個別記事の確認件数がないため不明値を維持する。最終成功日時も未計測のままにする。
+
+`scripts/national_event_source_priority.py` と回帰テストをコミット済み。変更後のGitHub Actions成功・生成データ反映は未確認。
+
+**次のテーマ**：関東の記事本文取得実績と北陸のブラウザ取得・重複実績を正確に測定し、9地域共通の監査精度を上げる。公開イベントへの採用とは分けて扱う。
+
 ## 2026-10-13 M2共通化 — 全国9地域の収集健康度を同じ形式で管理
 
 - **実装**：`scripts/national_event_source_priority.py` に `standardize_nine_region_audits` を追加。地域ごとの `collectionHealth` に広域サイト接続、候補URL、追加一覧状態、収集器候補、収集器採用、取得障害、地域公開件数、監査根拠を格納。9地域すべてに同一キーを設定する。
