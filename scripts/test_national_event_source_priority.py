@@ -1,5 +1,5 @@
 import unittest
-from national_event_source_priority import make_report, attach_station_source_health, format_dashboard
+from national_event_source_priority import make_report, attach_station_source_health, attach_regional_adapter_health, format_dashboard
 
 class NationwidePriorityTests(unittest.TestCase):
     def test_region_gap_does_not_claim_no_events_or_verified_coverage(self):
@@ -47,6 +47,22 @@ class NationwidePriorityTests(unittest.TestCase):
         self.assertEqual(pref["articlesAcceptedByDiscovery"], 1)
         self.assertEqual(pref["currentPublishedEvents"], 0)
         self.assertIn("富山県", format_dashboard(updated))
+
+    def test_three_regional_adapter_metrics_are_not_published_counts(self):
+        coverage = {"summary": {"observedPrefectures": 0, "zeroRegisteredPrefectures": 0},
+                    "regions": [{"region": x, "prefectureCount": 1,
+                                 "zeroRegisteredPrefectures": [], "registeredEventCount": 0}
+                                for x in ("関東", "北陸", "九州・沖縄")]}
+        report = make_report(coverage, {"sources": []})
+        attach_regional_adapter_health(report, {
+            "北陸": {"pages": [{"staticMatched": 1, "browserMatched": 2, "browserError": ""}]},
+            "九州・沖縄": {"sources": [{"candidates": 5, "failed": 1, "accepted": 1}], "accepted": 1},
+            "関東": {"candidateCount": 4, "acceptedByAdapter": 1, "decisions": []}})
+        by_region = {x["region"]: x for x in report["regions"]}
+        self.assertEqual(by_region["北陸"]["adapterAudit"]["candidateMatches"], 3)
+        self.assertEqual(by_region["九州・沖縄"]["adapterAudit"]["fetchProblems"], 1)
+        self.assertEqual(by_region["関東"]["adapterAudit"]["acceptedByAdapter"], 1)
+        self.assertEqual(by_region["関東"]["currentPublishedEventCount"], 0)
 
     def test_unreachable_source_gets_first_priority(self):
         coverage = {"summary": {"observedPrefectures": 1, "zeroRegisteredPrefectures": 1},
