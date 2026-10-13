@@ -108,16 +108,25 @@ def list_cards(soup):
                     yield p
                 break
 
+def save_regional_collect_audit(filename, info):
+    target=ROOT / "data" / filename
+    body=json.dumps({"schemaVersion":1, **info},ensure_ascii=False,indent=2)+"\n"
+    if not target.exists() or target.read_text(encoding="utf-8")!=body:
+        target.write_text(body,encoding="utf-8")
+
 def collect_shikoku():
     result = []
+    audit = {"candidateCards":0,"acceptedByAdapter":0,"pagesChecked":0}
     session = requests.Session()
     for page in range(1,5):
         url = SOURCE if page == 1 else f"{SOURCE}/page/{page}"
         res = session.get(url,timeout=18,headers=HEADERS)
         res.raise_for_status()
         soup = BeautifulSoup(res.text,"html.parser")
+        audit["pagesChecked"]+=1
         count = 0
         for card in list_cards(soup):
+            audit["candidateCards"]+=1
             item=extract_from_card(card)
             if item:
                 result.append(item)
@@ -125,6 +134,8 @@ def collect_shikoku():
         print(f"四国 page {page}: 適合 {count} 件")
         if not soup.find("a", href=re.compile(r"/events/page/"+str(page+1))):
             break
+    audit["acceptedByAdapter"]=len(result)
+    save_regional_collect_audit("shikoku_event_adapter_audit.json",audit)
     return result
 
 
