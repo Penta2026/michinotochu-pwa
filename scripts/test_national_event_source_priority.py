@@ -1,5 +1,5 @@
 import unittest
-from national_event_source_priority import make_report, attach_station_source_health, attach_regional_adapter_health, format_dashboard
+from national_event_source_priority import make_report, attach_station_source_health, attach_regional_adapter_health, standardize_nine_region_audits, format_dashboard
 
 class NationwidePriorityTests(unittest.TestCase):
     def test_region_gap_does_not_claim_no_events_or_verified_coverage(self):
@@ -63,6 +63,10 @@ class NationwidePriorityTests(unittest.TestCase):
         self.assertEqual(by_region["九州・沖縄"]["adapterAudit"]["fetchProblems"], 1)
         self.assertEqual(by_region["関東"]["adapterAudit"]["acceptedByAdapter"], 1)
         self.assertEqual(by_region["関東"]["currentPublishedEventCount"], 0)
+        standardize_nine_region_audits(report)
+        self.assertIsNone(by_region["北陸"]["collectionHealth"]["adapterAccepted"])
+        self.assertEqual(by_region["関東"]["collectionHealth"]["adapterAccepted"], 1)
+        self.assertIsNone(by_region["九州・沖縄"]["collectionHealth"]["lastSuccessfulCollectionAt"])
 
     def test_unreachable_source_gets_first_priority(self):
         coverage = {"summary": {"observedPrefectures": 1, "zeroRegisteredPrefectures": 1},
