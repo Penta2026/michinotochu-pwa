@@ -1,9 +1,6 @@
 name: 全国1234駅の公式リンク候補・分散巡回
 
 on:
-  schedule:
-    - cron: "0 2 * * *"
-      timezone: "Asia/Tokyo"
   workflow_dispatch:
 
 permissions:
@@ -40,8 +37,6 @@ jobs:
         run: python scripts/station_website_review_queue.py
       - name: Prioritize nationwide station website review
         run: python scripts/station_website_priority.py
-      - name: Inspect up to twelve candidate station websites
-        run: python scripts/station_website_batch_review.py
       - name: Save URL hints and all-station dashboard together
         run: |
           git add data/station_website_batch_audit.json data/station_website_priority.json data/station_official_directory_candidates.json data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md data/station_website_review_queue.json
