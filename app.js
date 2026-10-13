@@ -52,12 +52,31 @@ function interestDistanceKm(a,b){
  const v=Math.sin(dlat/2)**2+Math.cos(radians(+a.lat))*Math.cos(radians(+b.lat))*Math.sin(dlng/2)**2;
  return 6371*2*Math.atan2(Math.sqrt(v),Math.sqrt(Math.max(0,1-v)));
 }
+let appliedInterestEventSort="weekend";
 async function interestChooseEventSort(){
- if($("interestEventSort")?.value!=="distance"){runInterest();return;}
- const node=$("interestEventSortStatus");if(node)node.textContent="📍 現在地を取得しています…";
- try{interestEventCoords=await geo();if(node)node.textContent="📍 現在地からの直線距離順（道路距離ではありません）";}
- catch(e){interestEventCoords=null;if(node)node.textContent="位置情報が取得できません。開催日の近い順で表示します。";}
- runInterest();
+ const selected=$("interestEventSort")?.value||"weekend";
+ const node=$("interestEventSortStatus"),button=$("interestApplyEventSort");
+ if(button){button.disabled=true;button.textContent="⏳ 並べ替え中…";}
+ try{
+  if(selected==="distance"){
+   if(node)node.textContent="📍 並び替えのため現在地を取得しています…";
+   try{
+    interestEventCoords=await geo();
+    appliedInterestEventSort="distance";
+    if(node)node.textContent="📍 現在地からの直線距離順（道路距離ではありません）";
+   }catch(e){
+    interestEventCoords=null;
+    appliedInterestEventSort="date";
+    if(node)node.textContent="位置情報を取得できないため、開催日の近い順にしました。";
+   }
+  }else{
+   appliedInterestEventSort=selected;
+   if(node)node.textContent=selected==="weekend"?"今日・今週末を優先しています。":"開催日が近い順に表示しています。";
+  }
+  runInterest();
+ }finally{
+  if(button){button.disabled=false;button.textContent="🔃 並び順を変更";}
+ }
 }
 function runInterest(){
  const pref=$("interestPref").value,type=$("interestType").value;
@@ -81,7 +100,7 @@ function runInterest(){
     .slice().sort((a,b)=>a.startDate.localeCompare(b.startDate))}))
    .filter(x=>x.events.length)
    .sort((a,b)=>{
-    const mode=$("interestEventSort")?.value||"weekend";
+    const mode=appliedInterestEventSort;
     if(mode==="distance"&&interestEventCoords){
      const delta=interestDistanceKm(a.station,interestEventCoords)-interestDistanceKm(b.station,interestEventCoords);
      if(Number.isFinite(delta)&&Math.abs(delta)>0.001)return delta;
