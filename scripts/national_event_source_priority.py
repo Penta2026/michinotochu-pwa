@@ -77,6 +77,51 @@ def make_report(coverage, source_audit):
         "interpretation": "Current event count is not source recall; no events published does not mean no event exists.",
     }
 
+
+def attach_station_source_health(report, discovery):
+    """Join the latest per-station audit without inventing per-source timestamps.
+
+    checkedOn is the date of the whole audit. It is not a historical
+    'last successful fetch' unless this snapshot reports a successful fetch.
+    Regional source reachability remains independent.
+    """
+    by_pref = {}
+    for row in discovery.get("sources", []):
+        pref = row.get("prefecture")
+        if not pref:
+            continue
+        data = by_pref.setdefault(pref, {"configuredSourcesAudited": 0,
+            "sourcesWithFetchProblems": 0, "sourcesWithSuccessfulListing": 0,
+            "candidateArticles": 0, "articlesChecked": 0,
+            "articlesAcceptedByDiscovery": 0, "articlesUnverified": 0})
+        data["configuredSourcesAudited"] += 1
+        count = lambda field: max(0, int(row.get(field, 0) or 0))
+        candidates = count("candidates")
+        inspected = count("checked")
+        accepted = count("accepted")
+        data["candidateArticles"] += candidates
+        data["articlesChecked"] += inspected
+        data["articlesAcceptedByDiscovery"] += accepted
+        data["articlesUnverified"] += max(0, candidates - inspected - count("knownSkipped"))
+        trouble = bool(row.get("listingError")) or count("fetchFailed") > 0
+        if trouble:
+            data["sourcesWithFetchProblems"] += 1
+        if not row.get("listingError"):
+            data["sourcesWithSuccessfulListing"] += 1
+    for region in report["regions"]:
+        for pref in region["prefectureEvidence"]:
+            stats = by_pref.get(pref["prefecture"], {})
+            pref["dedicatedSourceLatestAuditDate"] = discovery.get("checkedOn", "") if stats else ""
+            for key in ("configuredSourcesAudited", "sourcesWithFetchProblems",
+                        "sourcesWithSuccessfulListing", "candidateArticles",
+                        "articlesChecked", "articlesAcceptedByDiscovery",
+                        "articlesUnverified"):
+                pref[key] = stats.get(key, 0)
+            pref["sourceHealthEvidence"] = "audited_dedicated_sources" if stats else "no_dedicated_audit"
+    report["stationSourceAuditDate"] = discovery.get("checkedOn", "")
+    report["stationSourcesAudited"] = sum(v["configuredSourcesAudited"] for v in by_pref.values())
+    return report
+
 def format_dashboard(report):
     lines = ["# 全国優先・道の駅イベント収集 改善台帳", "",
         "全国公式ソースを優先し、次に来場者等の根拠がある高稼働駅、最後に全個別駅を補完する。", "",
@@ -88,11 +133,11 @@ def format_dashboard(report):
             **r, gap="、".join(r["prefecturesWithoutCurrentPublishedEvents"]) or "なし",
             mode=r["existingSourceMode"], reach=r["sourceAuditState"]))
     lines += ["", "## 47都道府県の収集根拠", "",
-              "| 都道府県 | 現行公開イベント | 個別設定数 | 判断できる範囲 |",
-              "|---|---:|---:|---|"]
+              "| 都道府県 | 公開件数 | 設定数 | 個別監査元 | 記事候補 | 記事採用 | 取得障害元 | 根拠 |",
+              "|---|---:|---:|---:|---:|---:|---:|---|"]
     for r in report["regions"]:
         for p in r["prefectureEvidence"]:
-            lines.append("| {prefecture} | {currentPublishedEvents} | {targetedStationFeedCount} | {evidenceLevel} |".format(**p))
+            lines.append("| {prefecture} | {currentPublishedEvents} | {targetedStationFeedCount} | {configuredSourcesAudited} | {candidateArticles} | {articlesAcceptedByDiscovery} | {sourcesWithFetchProblems} | {evidenceLevel} |".format(**p))
     lines += ["", "※広域サイトに接続できたことは、イベントを抽出・公開できた証明ではない。",
               "※人気駅の優先順位は、客観的な利用・来場者データを確認後に別途付与する。",
               "※既存のイベント公開判定・重複除去・日付／駅構内会場の照合は変更しない。", ""]
@@ -102,6 +147,9 @@ def main():
     coverage = json.loads((DATA / "prefecture_event_coverage.json").read_text(encoding="utf-8"))
     audit = json.loads((DATA / "road_event_sources_report.json").read_text(encoding="utf-8"))
     report = make_report(coverage, audit)
+    discovery_path = DATA / "station_event_discovery_audit.json"
+    discovery = json.loads(discovery_path.read_text(encoding="utf-8")) if discovery_path.exists() else {}
+    report = attach_station_source_health(report, discovery)
     output = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     dashboard = format_dashboard(report)
     for path, content in ((OUTPUT, output), (DASHBOARD, dashboard)):
