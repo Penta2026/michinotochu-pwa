@@ -150,12 +150,15 @@ def attach_regional_adapter_health(report, audits):
             "candidateMatches": sum(p.get("candidates", 0) for p in sources),
             "fetchProblems": sum(bool(p.get("error")) or p.get("failed", 0) > 0 for p in sources),
             "acceptedByAdapter": kyu.get("accepted"),
+            "articleChecked": sum(x.get("checked", 0) for x in sources),
+            "rejectionReasons": {k: sum(x.get(k, 0) for x in sources) for k in ("missingPublication", "missingEventDate", "past", "failed")},
         }
     kan = audits.get("関東", {})
     if "関東" in lookup and kan:
         lookup["関東"]["adapterAudit"] = {
             "candidateMatches": kan.get("candidateCount", 0),
             "acceptedByAdapter": kan.get("acceptedByAdapter"),
+            "articleChecked": sum(1 for d in kan.get("decisions", []) if d.get("reason") not in ("station_unmatched",)),
             "rejectionReasons": {reason: sum(1 for d in kan.get("decisions", []) if d.get("reason") == reason)
                                  for reason in set(d.get("reason") for d in kan.get("decisions", []))},
         }
@@ -175,8 +178,9 @@ def standardize_nine_region_audits(report):
             "adapterAccepted": a.get("acceptedByAdapter"),
             "adapterFetchProblems": a.get("fetchProblems"),
             "publishedEventsInRegion": row["currentPublishedEventCount"],
-            "articleChecked": None,
+            "articleChecked": a.get("articleChecked"),
             "lastSuccessfulCollectionAt": None,
+            "rejectionReasons": a.get("rejectionReasons"),
             "auditEvidence": ("adapter_audit_available" if a else "regional_links_only"),
             "region": region,
         }
@@ -200,14 +204,14 @@ def format_dashboard(report):
             r["region"], r["listingCandidatesSeen"], r["secondaryListingState"],
             r["secondaryListingCandidates"], r["regionalAuditError"] or r["secondaryAuditError"] or "なし"))
     lines += ["", "## 広域アダプター実績（監査データのある地域のみ）", "",
-              "| 地域 | 候補・検出件数 | 収集器採用 | 取得障害元・頁 |",
-              "|---|---:|---:|---:|"]
+              "| 地域 | 候補・検出件数 | 記事確認 | 収集器採用 | 取得障害元・頁 |",
+              "|---|---:|---:|---:|---:|"]
     for r in report["regions"]:
         a = r.get("adapterAudit")
         if a:
-            lines.append("| {} | {} | {} | {} |".format(r["region"],
-                a.get("candidateMatches", "不明"), a.get("acceptedByAdapter", "不明"),
-                a.get("fetchProblems", "不明")))
+            lines.append("| {} | {} | {} | {} | {} |".format(r["region"],
+                a.get("candidateMatches", "不明"), a.get("articleChecked", "不明"),
+                a.get("acceptedByAdapter", "不明"), a.get("fetchProblems", "不明")))
     lines += ["", "※47県均等化の比較には各地域の collectionHealth を用いる。未計測の指標は null（不明）。",
               "※北陸の検出件数は走査ページ間で重複する場合がある。収集器採用は最終公開件数ではない。",
               "※広域サイトの候補数は検証済みイベント数ではない。", "", "## 47都道府県の収集根拠", "",
