@@ -1,5 +1,7 @@
 """Offline Phase 2 tests: new-event discovery from official HTML station rules."""
 import unittest
+import json
+from pathlib import Path
 from datetime import date
 from bs4 import BeautifulSoup
 
@@ -38,6 +40,14 @@ ARTICLE = """<article><h1>10/24(土) 秋の物産展を開催！</h1>
 
 def soup(html):
     return BeautifulSoup(html, "html.parser")
+    def test_fukui_large_official_listing_gets_bounded_extra_inspections(self):
+        config = json.loads((Path(__file__).resolve().parents[1] /
+                             "data/station_event_discovery_sources.json").read_text(encoding="utf-8"))
+        source = next(x for x in config["sources"] if x["id"] == "fukui_nanjezen_sankairi")
+        self.assertEqual(source["maxArticles"], 12)
+        self.assertLessEqual(source["maxArticles"], 12)
+        self.assertEqual(source["articlePathPattern"], "^/info/(?:news|event)/post-[0-9]+/?$")
+
 
 class ConfiguredDiscoveryTests(unittest.TestCase):
     def test_registry_must_have_official_https_host(self):
