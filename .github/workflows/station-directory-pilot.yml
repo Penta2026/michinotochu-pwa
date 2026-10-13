@@ -31,16 +31,18 @@ jobs:
       - name: Refresh station scan cursor to latest main
         run: git pull --rebase origin main
       - name: Test safe national directory extraction offline
-        run: PYTHONPATH=scripts python -m unittest scripts/test_station_official_directory_discovery.py scripts/test_station_coverage_registry.py scripts/test_station_website_review_queue.py
+        run: PYTHONPATH=scripts python -m unittest scripts/test_station_official_directory_discovery.py scripts/test_station_coverage_registry.py scripts/test_station_website_review_queue.py scripts/test_station_website_priority.py
       - name: Respect robots policy and inspect at most 24 station details
         run: PYTHONPATH=scripts python scripts/station_official_directory_discovery.py
       - name: Refresh all 1234 station coverage records in the SAME job
         run: python scripts/station_coverage_registry.py
       - name: Prepare unverified station website review backlog
         run: python scripts/station_website_review_queue.py
+      - name: Prioritize nationwide station website review
+        run: python scripts/station_website_priority.py
       - name: Save URL hints and all-station dashboard together
         run: |
-          git add data/station_official_directory_candidates.json data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md data/station_website_review_queue.json
+          git add data/station_website_priority.json data/station_official_directory_candidates.json data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md data/station_website_review_queue.json
           if git diff --cached --quiet; then
             echo "公式名簿由来のURL候補は変更なし"
             exit 0
