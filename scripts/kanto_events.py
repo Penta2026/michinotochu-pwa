@@ -29,16 +29,20 @@ def resolve_station(title, index):
     return matches[0] if len(matches) == 1 else None
 
 def onsite_venue(body, road):
-    """Require an explicit venue label naming this station, not mere mention."""
+    """Venue label must identify the station itself, not a nearby organizer."""
     key = station_key("", road)[1]
-    for line in re.split(r"[\n。]", body):
-        m = re.search(r"(?:開催場所|開催会場|会場|場所)\s*[：:]\s*(.{1,100})", line)
-        if not m:
+    for line in re.split(r"[\\n。]", body):
+        match = re.search(r"(?:開催場所|開催会場|会場|場所)\\s*[：:]\\s*(.{1,100})", line)
+        if not match:
             continue
-        venue = m.group(1).split("日時", 1)[0]
-        station_form = re.search(r"道の駅\s*[・･]?\s*([^\s、,（(]{2,40})", venue)
-        if station_form and station_key("", station_form.group(1))[1].startswith(key):
-            return True
+        value = match.group(1).split("日時", 1)[0]
+        for m in re.finditer(r"道の駅\\s*[・･]?\\s*([^\\s、,（(。]{2,40})", value):
+            normalized = station_key("", m.group(1))[1]
+            if normalized == key or (
+                normalized.startswith(key) and
+                normalized[len(key):].startswith(("交流", "駐車", "広場", "館内", "特設", "屋外"))
+            ):
+                return True
     return False
 
 TERMS = ("祭","まつり","イベント","マルシェ","フェア","体験","コンサート","収穫")
@@ -116,7 +120,7 @@ def collect_kanto(today):
             stats["undated"]+=1
             decisions.append({"url":url,"reason":"article_or_date_unverified"})
             continue
-        body=clean(article.get_text(" ",strip=True))
+        body=unicodedata.normalize("NFKC",article.get_text("\\n",strip=True))
         if any(x in body for x in ("開催中止", "イベント中止", "開催を中止", "開催延期")):
             decisions.append({"url":url,"reason":"cancelled_or_postponed"})
             continue
@@ -132,6 +136,15 @@ def collect_kanto(today):
             published=date(int(stamp.group(3)),int(stamp.group(1)),int(stamp.group(2))) if stamp else None
         except ValueError:
             published=None
+        if published is None:
+            meta=detail.select_one('meta[property="article:published_time"], time[datetime]')
+            raw=(meta.get("content") or meta.get("datetime") or "") if meta else ""
+            match=re.match(r"(20\\d{2})-(\\d{2})-(\\d{2})",raw)
+            if match:
+                try:
+                    published=date(*map(int, match.groups()))
+                except ValueError:
+                    pass
         parsed=event_period(title,published)
         if not parsed:
             for match in re.finditer(r"(?:開催日時|開催日|日時|日程)\s*[：:]?\s*(.{4,75})",body):
