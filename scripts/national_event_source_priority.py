@@ -192,6 +192,16 @@ def attach_regional_adapter_health(report, audits):
             "fetchProblems": None,
             "auditEvidence": "pdf_layout_only",
         }
+    hokai = audits.get("北海道", {})
+    if "北海道" in lookup and "candidateCount" in hokai:
+        lookup["北海道"]["adapterAudit"] = {
+            "candidateMatches": hokai["candidateCount"],
+            "articleChecked": hokai.get("articleChecked"),
+            "acceptedByAdapter": hokai.get("acceptedByAdapter"),
+            "fetchProblems": hokai.get("fetchFailed"),
+            "rejectionReasons": {"dateUnverified": hokai.get("dateUnverified"),
+                                 "expired": hokai.get("expired")},
+        }
     return report
 
 def standardize_nine_region_audits(report):
@@ -275,7 +285,8 @@ def main():
                              ("九州・沖縄", "kyushu_okinawa_event_audit.json"),
                              ("関東", "kanto_association_event_audit.json"),
                              ("近畿", "kinki_five_prefectures_audit.json"),
-                             ("中部", "chubu_event_layout_report.json")):
+                             ("中部", "chubu_event_layout_report.json"),
+                             ("北海道", "hokkaido_event_audit.json")):
         path = DATA / filename
         if path.exists():
             audits[region] = json.loads(path.read_text(encoding="utf-8"))
