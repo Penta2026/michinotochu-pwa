@@ -51,6 +51,12 @@ def soup(html):
         self.assertEqual(len(selected), 12)
         self.assertEqual(diag["explorationSlots"], 6)
         self.assertEqual(diag["uninspectedCandidates"], 18)
+        next_selected, next_diag = _plan_article_inspection(
+            links, source, TODAY, exploration_start=diag["explorationNext"])
+        self.assertEqual(next_diag["explorationSlots"], 6)
+        self.assertEqual(len(next_selected), 12)
+        self.assertEqual(len(set(next_selected) - set(selected)), 6)
+        self.assertEqual(len(set(selected) & set(next_selected)), 6)
         self.assertLessEqual(source["maxArticles"], 12)
         self.assertEqual(source["articlePathPattern"], "^/info/(?:news|event)/post-[0-9]+/?$")
 
