@@ -6,6 +6,13 @@
 イベント: [data/road_events.json](../data/road_events.json)  
 **県別最新レポート**: [data/prefecture_event_coverage.json](../data/prefecture_event_coverage.json)（**初回自動生成と47県分の検査を確認済み**）
 
+## 2026-10-13 M2統合 — 関東・北陸・九州沖縄の既存収集監査を全国比較へ接続
+
+- **実装**：`scripts/national_event_source_priority.py` に `attach_regional_adapter_health` を追加し、既存の `data/hokuriku_event_audit.json`（静的／ブラウザ抽出、ブラウザ障害）、`data/kyushu_okinawa_event_audit.json`（候補・取得失敗・採用）、`data/kanto_association_event_audit.json`（候補・採否理由、生成後に読込）の3種類を全国優先台帳に取り込んだ。日次生成する `docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md` に収集器別の実績表を追加。
+- **厳密な区別**：北陸のページ検出は重複可能な件数、九州沖縄の accepted は個別駅収集器の採用、関東の acceptedByAdapter も最終公開ではない。未保存の監査ファイルはスキップ、未知の採用数は推定しない。既存のイベント公開判定は変更せず。
+- **テスト**：`scripts/test_national_event_source_priority.py` に3地域の監査統合と最終公開件数の非混同を検査するケースを追加。実装とテストはGitHubに保存済み。Actionsおよび生成ダッシュボードの本番更新は未確認。
+- **次テーマ**：本番監査の採否理由を読んで関東の会場・日付抽出を重点修正。次いで9地域共通の監査項目（候補、検査、採用、最終公開、失敗、最終成功）を各アダプターへ拡張し、地方間の取得精度比較と47都道府県の偏り対策を進める。
+
 ## 2026-10-13 M2 — 関東広域候補の採否理由を日次監査に保存
 
 - **実装**：`scripts/kanto_events.py` で公式イベント候補ごとに `accepted_by_adapter`／`station_unmatched`／`article_fetch_failed`／`article_or_date_unverified`／`onsite_venue_unverified`／`cancelled_or_postponed`／`expired` の理由を記録。毎日の収集で `data/kanto_association_event_audit.json` を作り、候補件数・収集器採用件数・候補URL・判定を保持。既存の最終公開判定は維持し、収集器採用を公開イベント件数と混同しない。
