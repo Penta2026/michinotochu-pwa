@@ -30,6 +30,8 @@ SOURCES = [
 # Do not treat category pages or their links as verified future events.
 SECONDARY_EVENT_LISTINGS = {
     "関東": "https://www.kanto-michinoeki.jp/archives/category/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1",
+    "北陸": "https://www.hokuriku-michinoeki.jp/contents/event/",
+    "九州・沖縄": "https://qo-renrakukai.jp/",
 }
 KEYWORDS = ("イベント", "催し", "祭", "フェス", "マルシェ", "催事", "開催", "カレンダー")
 EXCLUDE = ("ログイン", "プライバシー", "お問い合わせ", "スタンプラリー", "会社概要")
