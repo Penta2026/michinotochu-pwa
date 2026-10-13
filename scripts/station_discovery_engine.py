@@ -76,7 +76,7 @@ def _validate_sources(sources):
         if (not _official_url(spec["listingUrl"], spec, article=False) or
             int(spec.get("maxArticles", 6)) not in range(1, 13)):
             raise ValueError(f"Unsafe discovery source: {spec['id']}")
-        if not 1 <= int(spec.get("explorationSlots", 2)) <= max(1, int(spec.get("maxArticles", 6)) // 2):
+        if not 1 <= int(spec.get("explorationSlots", min(2, max(1, int(spec.get("maxArticles", 6)) // 2)))) <= max(1, int(spec.get("maxArticles", 6)) // 2):
             raise ValueError(f"Invalid rotating inspection slots: {spec['id']}")
         re.compile(spec["articlePathPattern"])
         if spec.get("allowOfficialListingEventDate") and (
