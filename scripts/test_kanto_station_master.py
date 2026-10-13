@@ -1,6 +1,6 @@
 """Phase 16 Kanto station master and onsite-venue checks."""
 import unittest
-from kanto_events import station_index, resolve_station, onsite_venue
+from kanto_events import station_index, resolve_station, onsite_venue, event_period
 
 class KantoMasterMatchingTests(unittest.TestCase):
     def setUp(self):
@@ -20,6 +20,13 @@ class KantoMasterMatchingTests(unittest.TestCase):
         self.assertTrue(onsite_venue("開催場所：道の駅こすげ 広場にて実施", "こすげ"))
         self.assertFalse(onsite_venue("開催場所：市役所前広場", "こすげ"))
         self.assertFalse(onsite_venue("道の駅こすげの近隣で開催", "こすげ"))
+        self.assertFalse(onsite_venue("会場：市役所。道の駅こすげでも宣伝", "こすげ"))
+        self.assertTrue(onsite_venue("会場：道の駅こすげ 交流広場", "こすげ"))
+
+    def test_explicit_year_does_not_require_publication_stamp(self):
+        self.assertEqual(event_period("2026年10月24日 秋のマルシェ", None),
+                         ("2026-10-24", "2026-10-24"))
+        self.assertIsNone(event_period("10月24日 秋のマルシェ", None))
 
 if __name__ == "__main__":
     unittest.main()
