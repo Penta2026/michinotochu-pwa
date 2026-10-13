@@ -67,7 +67,7 @@ class NationwidePriorityTests(unittest.TestCase):
         standardize_nine_region_audits(report)
         self.assertIsNone(by_region["北陸"]["collectionHealth"]["adapterAccepted"])
         self.assertEqual(by_region["関東"]["collectionHealth"]["adapterAccepted"], 1)
-        self.assertEqual(by_region["関東"]["collectionHealth"]["articleChecked"], 0)
+        self.assertEqual(by_region["関東"]["collectionHealth"]["articleChecked"], 2)
         self.assertIsNone(by_region["北陸"]["collectionHealth"]["articleChecked"])
         self.assertEqual(by_region["北陸"]["collectionHealth"]["duplicateCards"], 2)
         self.assertEqual(by_region["北陸"]["collectionHealth"]["browserRenderedPages"], 1)
