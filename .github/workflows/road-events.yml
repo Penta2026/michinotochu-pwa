@@ -51,6 +51,10 @@ jobs:
         run: python scripts/road_event_recall_audit.py
       - name: Update the all-station coverage and missing-official-URL queue
         run: python scripts/station_coverage_registry.py
+      - name: Flag collection failure for GitHub notifications
+        if: failure()
+        run: |
+          echo "::error title=道の駅イベント更新失敗::収集または品質検査が失敗しました。GitHub Actions のログを確認してください。"
       - name: Show update status in GitHub Actions summary
         if: always()
         env:
