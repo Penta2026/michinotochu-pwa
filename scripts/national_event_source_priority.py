@@ -135,7 +135,7 @@ def attach_regional_adapter_health(report, audits):
     lookup = {r["region"]: r for r in report["regions"]}
     hok = audits.get("北陸", {})
     pages = hok.get("pages", [])
-    if "北陸" in lookup:
+    if "北陸" in lookup and "pages" in hok:
         lookup["北陸"]["adapterAudit"] = {
             "auditedPages": len(pages),
             "candidateMatches": sum(p.get("staticMatched", 0) + p.get("browserMatched", 0) for p in pages),
@@ -147,7 +147,7 @@ def attach_regional_adapter_health(report, audits):
             "staticFetchFailedPages": hok.get("staticFetchFailedPages"),
         }
     kyu = audits.get("九州・沖縄", {})
-    if "九州・沖縄" in lookup:
+    if "九州・沖縄" in lookup and "sources" in kyu:
         sources = kyu.get("sources", [])
         lookup["九州・沖縄"]["adapterAudit"] = {
             "auditedSources": len(sources),
@@ -164,7 +164,7 @@ def attach_regional_adapter_health(report, audits):
             "acceptedByAdapter": kan.get("acceptedByAdapter"),
             "articleFetchSucceeded": kan.get("articleFetchSucceeded"),
             "articleFetchFailed": kan.get("articleFetchFailed"),
-            "articleChecked": sum(1 for d in kan.get("decisions", []) if d.get("reason") not in ("station_unmatched",)),
+            "articleChecked": kan.get("articleFetchSucceeded", sum(1 for d in kan.get("decisions", []) if d.get("reason") not in ("station_unmatched", "article_fetch_failed"))),
             "rejectionReasons": {reason: sum(1 for d in kan.get("decisions", []) if d.get("reason") == reason)
                                  for reason in set(d.get("reason") for d in kan.get("decisions", []))},
         }
@@ -244,7 +244,8 @@ def standardize_nine_region_audits(report):
             "browserFailedPages": a.get("browserFailedPages"),
             "duplicateCards": a.get("duplicateCards"),
             "datedPdfRows": a.get("datedPdfRows"),
-            "auditEvidence": ("adapter_audit_available" if a else "regional_links_only"),
+            "auditEvidence": (a.get("auditEvidence") if a.get("auditEvidence") else
+                              "adapter_audit_available" if a else "regional_links_only"),
             "region": region,
         }
     return report
