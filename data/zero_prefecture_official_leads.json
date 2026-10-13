@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "scope": "11 prefectures with zero current published events at 2026-10-13",
+  "notes": "Official and station-affiliated leads are research candidates, not automatically publishable event feeds. Verify event date, on-site venue and 1234-station identity before any publication.",
+  "sources": [
+    {
+      "prefecture": "山形県",
+      "url": "https://www.michi-no-eki.jp/notices",
+      "kind": "national_official_index",
+      "note": "Configured takahata source has one rejected article; seek station-hosted event detail"
+    },
+    {
+      "prefecture": "栃木県",
+      "url": "https://www.michi-no-eki.jp/notices",
+      "kind": "national_official_index",
+      "note": "No Phase 2 station discovery source; use official index as entry point"
+    },
+    {
+      "prefecture": "千葉県",
+      "url": "https://www.chiba-dourokousha.or.jp/category/event/",
+      "kind": "road_authority",
+      "note": "Includes roadside-station event references but offsite and past articles must be excluded"
+    },
+    {
+      "prefecture": "長野県",
+      "url": "https://michinoeki-net.org/",
+      "kind": "regional_station_association",
+      "note": "Official Nagano station association, events may span many stations"
+    },
+    {
+      "prefecture": "長野県",
+      "url": "https://nagano-michinoeki.jp/",
+      "kind": "station_official",
+      "station": "信州新町",
+      "note": "Individual station news and event announcements"
+    },
+    {
+      "prefecture": "富山県",
+      "url": "https://michinoeki-oyabe.com/2026/",
+      "kind": "station_official",
+      "station": "メルヘンおやべ",
+      "note": "2026/10/24-25 anniversary event; detail venue/date confirmation required"
+    },
+    {
+      "prefecture": "福井県",
+      "url": "https://kineno-nanjo.com/news/",
+      "kind": "station_official",
+      "station": "南えちぜん山海里",
+      "note": "Existing configured source; 152 candidates and older audit inspected 8; new rotation not yet verified"
+    },
+    {
+      "prefecture": "滋賀県",
+      "url": "https://aito-ms.or.jp/event/index.html",
+      "kind": "station_official",
+      "station": "あいとうマーガレットステーション",
+      "note": "Station-owned event schedule; yearly table needs each event period and site verification"
+    },
+    {
+      "prefecture": "鳥取県",
+      "url": "https://www.michi-no-eki.jp/notices",
+      "kind": "national_official_index",
+      "note": "No Phase 2 station discovery source; research station-hosted feed"
+    },
+    {
+      "prefecture": "徳島県",
+      "url": "https://www.awanavi.jp/archives/event/",
+      "kind": "official_tourism",
+      "note": "Official tourism event list includes named roadside-station venue; no automatic adoption without detail check"
+    },
+    {
+      "prefecture": "熊本県",
+      "url": "https://www.michi-no-eki.jp/notices",
+      "kind": "national_official_index",
+      "note": "Existing Minamiaso tourism source rejects ungrounded calendar cards; locate individual on-site notices"
+    },
+    {
+      "prefecture": "大分県",
+      "url": "https://www.visit-oita.jp/events/index",
+      "kind": "official_tourism",
+      "note": "Official tourism categories include 物産・道の駅; filter actual onsite station events"
+    }
+  ]
+}
