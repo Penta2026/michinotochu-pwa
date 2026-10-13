@@ -129,6 +129,31 @@ class NationwidePriorityTests(unittest.TestCase):
         self.assertEqual(h["中国"]["adapterAccepted"], 2)
         self.assertEqual(h["四国"]["adapterCandidates"], 5)
 
+    def test_missing_audits_are_not_claimed_as_adapter_evidence(self):
+        coverage = {"summary": {"observedPrefectures": 0, "zeroRegisteredPrefectures": 0},
+                    "regions": [{"region": n, "prefectureCount": 1,
+                                 "zeroRegisteredPrefectures": [], "registeredEventCount": 0}
+                                for n in ("北陸", "九州・沖縄")]}
+        report = make_report(coverage, {"sources": []})
+        attach_regional_adapter_health(report, {})
+        standardize_nine_region_audits(report)
+        for r in report["regions"]:
+            self.assertEqual(r["collectionHealth"]["auditEvidence"], "regional_links_only")
+            self.assertIsNone(r["collectionHealth"]["adapterAccepted"])
+
+    def test_failed_article_fetch_not_counted_as_checked(self):
+        coverage = {"summary": {"observedPrefectures": 0, "zeroRegisteredPrefectures": 0},
+                    "regions": [{"region": "関東", "prefectureCount": 1,
+                                 "zeroRegisteredPrefectures": [], "registeredEventCount": 0}]}
+        report = make_report(coverage, {"sources": []})
+        attach_regional_adapter_health(report, {"関東": {
+            "candidateCount": 3, "articleFetchSucceeded": 1,
+            "articleFetchFailed": 1, "decisions": [
+                {"reason": "station_unmatched"}, {"reason": "article_fetch_failed"},
+                {"reason": "onsite_venue_unverified"}]}})
+        standardize_nine_region_audits(report)
+        self.assertEqual(report["regions"][0]["collectionHealth"]["articleChecked"], 1)
+
     def test_unreachable_source_gets_first_priority(self):
         coverage = {"summary": {"observedPrefectures": 1, "zeroRegisteredPrefectures": 1},
                     "regions": [{"region": "東北", "prefectureCount": 1,
