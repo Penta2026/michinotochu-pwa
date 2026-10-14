@@ -8,6 +8,13 @@
       "reachable": true,
       "candidates": [
         {
+          "title": "道の駅なないろ・ななえ🌈イベント情報✨ NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nanaeinfo/69883/",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
           "title": "【びえい】「丘のくら」 『収穫マルシェ』開催！！ NEW",
           "url": "https://hokkaido-michinoeki.jp/michiekiinfo/bieiokainfo/69848/",
           "stationIdHint": "",
@@ -52,13 +59,6 @@
         {
           "title": "10月17日、18日は道の駅たきかわ大収穫祭です！",
           "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/",
-          "stationIdHint": "",
-          "identityStatus": "unmatched",
-          "eventVerified": false
-        },
-        {
-          "title": "道の駅「羊のまち 侍・しべつ」秋まつり開催！！",
-          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shibetsuinfo/69720/",
           "stationIdHint": "",
           "identityStatus": "unmatched",
           "eventVerified": false

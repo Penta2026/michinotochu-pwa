@@ -1,13 +1,8 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 60,
+  "inputPrevious": 59,
   "inputCollected": 58,
-  "expiredOrInvalid": [
-    {
-      "roadName": "真狩フラワーセンター",
-      "title": "泊村×真狩村 観光物産展 開催!!"
-    }
-  ],
+  "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
     {

@@ -1,6 +1,6 @@
 # 道の駅イベント・取りこぼし監視ダッシュボード
 
-監査日（日本時間）: **2026-10-14**
+監査日（日本時間）: **2026-10-15**
 
 > **注意:** このページは収集漏れの「可能性」を探すための監査です。
 > 未登録イベント数や全国の収集率を推定したものではありません。
@@ -22,7 +22,7 @@
 | 日替わり巡回を実施する収集先 | 9 |
 | 日替わり巡回に割り当てた記事枠 | 22 |
 | 要確認候補のうち将来開催日の明記あり | 2 |
-| 記事の要確認サンプル | 56 |
+| 記事の要確認サンプル | 55 |
 | 一覧から既存イベントを再確認する候補URL | 7 |
 | 公式一覧経由の既存URL再検査 | 7 |
 | 公式一覧経由の再検査で取得失敗 | 0 |
@@ -63,7 +63,6 @@
 |---|---|---|---|---|---|
 | 大阪府 | いずみ山愛の里 | 開催予定 午後のミニコンサート ハープの音で癒されるって本当ですか?Vol.7 2026.10.18(日)開催 | future_schedule_hint | onsite_venue_unverified | [記事を確認](https://izuminambu-rc.jp/nb_event/%e5%8d%88%e5%be%8c%e3%81%ae%e3%83%9f%e3%83%8b%e3%82%b3%e3%83%b3%e3%82%b5%e3%83%bc%e3%83%88%e3%80%80%e3%83%8f%e3%83%bc%e3%83%97%e3%81%ae%e9%9f%b3/) |
 | 大阪府 | いずみ山愛の里 | 開催予定 午後のミニコンサート ~ロマン派のピアノ小品たち~ 2026.11.22(日)開催 | future_schedule_hint | onsite_venue_unverified | [記事を確認](https://izuminambu-rc.jp/nb_event/%e5%8d%88%e5%be%8c%e3%81%ae%e3%83%9f%e3%83%8b%e3%82%b3%e3%83%b3%e3%82%b5%e3%83%bc%e3%83%88%e3%80%80%e3%83%ad%e3%83%9e%e3%83%b3%e6%b4%be%e3%81%ae%e3%83%94%e3%82%a2%e3%83%8e%e5%b0%8f%e5%93%81%e3%81%9f/) |
-| 和歌山県 | 海南サクアス | 7月後半イベント | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4361/) |
 | 和歌山県 | 海南サクアス | 8月イベント | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4382/) |
 | 和歌山県 | 海南サクアス | オリジナル海鮮丼コンテスト開催! | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4441/) |
 | 和歌山県 | 海南サクアス | 3周年祭🎉 | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4457/) |
@@ -71,21 +70,22 @@
 | 和歌山県 | 海南サクアス | 10月イベントカレンダー前半 | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4534/) |
 | 和歌山県 | 海南サクアス | 10月イベント情報 | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4555/) |
 | 和歌山県 | 海南サクアス | 10月イベントカレンダー後半 | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4578/) |
+| 和歌山県 | 海南サクアス | 10月後半イベント | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4589/) |
 | 和歌山県 | 四季の郷公園 | Event イ | unknown_date | event_date_unverified | [記事を確認](https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab-2-2/) |
 | 和歌山県 | 四季の郷公園 | Event イ | unknown_date | event_date_unverified | [記事を確認](https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab-2/) |
 | 奈良県 | クロスウェイなかまち | 2026年シルバーウィーク特別企画「グラウンド・ランタン祭り&夜市」 道の駅「クロスウェイなかまち」では、2026年9月19日(土)から9月23日(水・祝)までの5日間、地域住民から観光客まで、誰もが | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20260919) |
 | 奈良県 | クロスウェイなかまち | 10/3(土)あの「まほろばの宴」がやって来る! Youtubeチャンネル登録者数5万人の DTMer奏人kanato と、仲間の演者たちが、また道の駅「クロスウェイなかまち」にやってきます!秋の特別 | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261003) |
 | 奈良県 | クロスウェイなかまち | 10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪ 道の駅「クロスウェイなかまち」では、2026年10月11日(日)に、日本伝統芸能 猿まわし「お猿の森」の公演を開催します。今回は、久 | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261011) |
 | 奈良県 | クロスウェイなかまち | 10/31(土)あの「まほろばの宴」が再びやって来る! Youtubeチャンネル登録者数5万人を超える DTMer奏人kanato と、奈良・大阪・京都を中心に活動する達人の演者名手たちが、クロスウェ | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261031) |
+| 奈良県 | クロスウェイなかまち | 11/3(火・祝)シンポジウム「近世藩窯を考える」開催! 近世(江戸時代)、全国の諸藩が管轄する窯では多種多様、実に個性的な焼き物が作られていました。これを藩窯といいます。あまり知られてはいませんが、 | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261103) |
 | 宮崎県 | 都城NiQLL | イベント 【NiQLL’sスクール】令和8年10月の講座のご案内 多目的室で開催する令和8年10月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 「道の駅」 | unknown_date | event_date_unverified | [記事を確認](https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b410%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/) |
 | 宮崎県 | 都城NiQLL | イベント 【NiQLL’sスクール】令和8年9月の講座のご案内 多目的室で開催する令和8年9月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新しいラ | unknown_date | event_date_unverified | [記事を確認](https://coconiqll.co.jp/%e3%80%90niqlls%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%80%91%e4%bb%a4%e5%92%8c8%e5%b9%b49%e6%9c%88%e3%81%ae%e8%ac%9b%e5%ba%a7%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/) |
 | 宮崎県 | 都城NiQLL | イベント 【NiQLL’sスクール】令和8年11月の講座のご案内 多目的室で開催する令和8年11月の講座のご案内をします!各講座参加料は500円となります。講座を楽しんでいただくとともに、 都城の新し | unknown_date | event_date_unverified | [記事を確認](https://coconiqll.co.jp/3768-2/) |
 | 山口県 | 阿武町 | 2025/04/28 7/6(土)第6回 ABUスイムラン道の駅フェスタ2025。森里海の市とカレーフェスタも同時開催。 詳しいことは阿武町のホームページから。https://www.town.abu | unknown_date | onsite_venue_unverified | [記事を確認](https://www.abucreation.com/topics/7-6%e5%9c%9f%e7%ac%ac%ef%bc%96%e5%9b%9e-abu%e3%82%b9%e3%82%a4%e3%83%a0%e3%83%a9%e3%83%b3%e9%81%93%e3%81%ae%e9%a7%85%e3%83%95%e3%82%a7%e3%82%b9%e3%82%bf2025%e3%80%82%e6%a3%ae%e9%87%8c%e6%b5%b7/) |
+| 岩手県 | 遠野風の丘 | 日程:8月12日(水)~8月13日(木) 時間:屋外切り花販売 7:00~ 屋内は通常通り営業 9:00~ | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%8a%e7%9b%86%e6%9c%9d%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%90%ef%bc%98%e6%9c%8812%e6%97%a5%e6%b0%b4/) |
 | 岩手県 | 遠野風の丘 | 遠野風の丘フードマルシェ 日程:9月6日(日) 10:00~16:00 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%83%95%e3%83%bc%e3%83%89%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a7%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%829%e6%9c%886%e6%97%a5%e6%97%a5/) |
 | 岩手県 | 遠野風の丘 | 防災イベント 開催日:9月6日(日) 時 間:10:00~15:00 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%98%b2%e7%81%bd%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%909%e6%9c%886%e6%97%a5%e6%97%a5%e3%80%91/) |
-| 岩手県 | 遠野風の丘 | 日程8月23日(日) 時間:10時~15時 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%ae%e7%a9%ba%e3%83%8e%e5%b8%82-8%e6%9c%88%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%908%e6%9c%8823%e6%97%a5%e6%97%a5%e3%80%91/) |
 | 岩手県 | 遠野風の丘 | 風の丘の空ノ市 日程:9月27日(日) 時間:10時~15時 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%ae%e7%a9%ba%e3%83%8e%e5%b8%82-9%e6%9c%88%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%909%e6%9c%8827%e6%97%a5%e6%97%a5%e3%80%91/) |
-| 愛媛県 | 八幡浜みなっと | 第13回やわたはま産業まつりについて | unknown_date | onsite_venue_unverified | [記事を確認](https://www.city.yawatahama.ehime.jp/doc/2026081300028/) |
 
 ## 収集先について
 

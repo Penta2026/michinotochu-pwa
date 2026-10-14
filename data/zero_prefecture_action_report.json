@@ -106,10 +106,9 @@
       "uninspectedCandidates": 142,
       "rejectionReasons": {
         "not_event": 7,
-        "undated": 7,
-        "venue_missing": 1,
-        "past": 4,
-        "offsite": 1
+        "undated": 4,
+        "venue_missing": 2,
+        "past": 7
       },
       "officialLeadUrls": [
         "https://kineno-nanjo.com/news/"

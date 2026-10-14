@@ -38,7 +38,7 @@
 | 九州・沖縄 | 28 | 28 | 2 | 0 |
 | 北陸 | 15 | 不明 | 4 | 0 |
 | 中部 | None | None | None | None |
-| 北海道 | 6 | 6 | 1 | 0 |
+| 北海道 | 7 | 7 | 1 | 0 |
 | 近畿 | 18 | 18 | 4 | 0 |
 | 中国 | 695 | None | 4 | 不明 |
 | 四国 | 19 | None | 3 | 不明 |
@@ -82,7 +82,7 @@
 | 京都府 | 3 | 2 | 0 | 0 | 0 | 0 | published_events_observed |
 | 大阪府 | 2 | 2 | 2 | 12 | 0 | 0 | published_events_observed |
 | 兵庫県 | 2 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
-| 奈良県 | 1 | 1 | 1 | 4 | 0 | 0 | published_events_observed |
+| 奈良県 | 1 | 1 | 1 | 5 | 0 | 0 | published_events_observed |
 | 和歌山県 | 1 | 4 | 3 | 22 | 0 | 0 | published_events_observed |
 | 鳥取県 | 0 | 0 | 0 | 0 | 0 | 0 | regional_homepage_only_or_unknown |
 | 島根県 | 2 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
