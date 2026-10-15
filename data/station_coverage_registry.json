@@ -11,20 +11,20 @@
   ],
   "summary": {
     "appStations": 1234,
-    "individualSourcesWithListing": 25,
-    "individualSourcesIncludingRecheck": 30,
+    "individualSourcesWithListing": 27,
+    "individualSourcesIncludingRecheck": 32,
     "stationsWithCurrentVerifiedEvent": 45,
     "currentVerifiedEventRecords": 61,
-    "stationsWithAnyDedicatedCollector": 41,
-    "stationsWithoutDedicatedSource": 1193,
+    "stationsWithAnyDedicatedCollector": 43,
+    "stationsWithoutDedicatedSource": 1191,
     "masterWebsiteUrlCandidatesUnverified": 83,
     "nationalDirectoryStationPagesChecked": 83,
     "nationalDirectoryLinkCandidateStations": 83,
     "statuses": {
       "current_official_event_verified": 45,
       "dedicated_source_checked_no_verified_future_event": 8,
-      "dedicated_source_configured_not_checked": 3,
-      "no_dedicated_source": 1172,
+      "dedicated_source_configured_not_checked": 5,
+      "no_dedicated_source": 1170,
       "other_dedicated_collector_configured": 6
     },
     "confirmedNoEventStations": 0,
@@ -19501,41 +19501,49 @@
       "id": "RS0959",
       "prefecture": "広島県",
       "roadName": "みはら神明の里",
-      "coverageState": "no_dedicated_source",
+      "coverageState": "dedicated_source_configured_not_checked",
       "officialWebsiteCandidateUrlsUnverified": [],
       "directoryDetailUrl": "",
       "lastDirectoryChecked": "",
       "officialSiteOwnershipVerified": false,
-      "dedicatedSourceIds": [],
-      "dedicatedOfficialListingUrls": [],
+      "dedicatedSourceIds": [
+        "hiroshima_shinmei"
+      ],
+      "dedicatedOfficialListingUrls": [
+        "https://www.shinmeinosato.jp/index.html"
+      ],
       "knownArticleRecheckSourceIds": [],
-      "dedicatedCollectorCoveredAcrossAllModes": false,
+      "dedicatedCollectorCoveredAcrossAllModes": true,
       "latestSourceAuditOn": "",
       "latestSourceFetchFailed": 0,
       "latestSourceListingErrors": [],
       "currentVerifiedEvents": 0,
       "eventAbsentConfirmed": false,
-      "nextAction": "review_official_website_url"
+      "nextAction": "continue_verified_source_checks"
     },
     {
       "id": "RS0960",
       "prefecture": "広島県",
       "roadName": "たかの",
-      "coverageState": "no_dedicated_source",
+      "coverageState": "dedicated_source_configured_not_checked",
       "officialWebsiteCandidateUrlsUnverified": [],
       "directoryDetailUrl": "",
       "lastDirectoryChecked": "",
       "officialSiteOwnershipVerified": false,
-      "dedicatedSourceIds": [],
-      "dedicatedOfficialListingUrls": [],
+      "dedicatedSourceIds": [
+        "hiroshima_takano"
+      ],
+      "dedicatedOfficialListingUrls": [
+        "https://takanoyama.jp/news_event/"
+      ],
       "knownArticleRecheckSourceIds": [],
-      "dedicatedCollectorCoveredAcrossAllModes": false,
+      "dedicatedCollectorCoveredAcrossAllModes": true,
       "latestSourceAuditOn": "",
       "latestSourceFetchFailed": 0,
       "latestSourceListingErrors": [],
       "currentVerifiedEvents": 0,
       "eventAbsentConfirmed": false,
-      "nextAction": "review_official_website_url"
+      "nextAction": "continue_verified_source_checks"
     },
     {
       "id": "RS0961",
