@@ -1,4 +1,4 @@
-"""Inspect 12 candidate station homepages per run; keep every result unverified."""
+"""Inspect up to 36 candidate homepages per day; never auto-publish sources."""
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 DATA = Path(__file__).resolve().parents[1] / "data"
 OUTPUT = DATA / "station_website_batch_audit.json"
-MAX_SITES = 12
+MAX_SITES = 36
 TERMS = ("イベント", "催し", "行事", "お知らせ", "祭", "event", "news")
 AGENT = "MichinotochuStationSiteReview/1.0"
 
