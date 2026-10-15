@@ -5,7 +5,7 @@
     "verified_high_traffic_stations",
     "remaining_individual_stations"
   ],
-  "auditEvidenceDate": "2026-10-14",
+  "auditEvidenceDate": "2026-10-15",
   "regionAuditCount": 9,
   "prefectureEvidenceCount": 47,
   "publishedPrefectureCount": 36,
@@ -23,7 +23,7 @@
       "officialSourceUrl": "https://www.kanto-michinoeki.jp/",
       "sourceAuditState": "reachable",
       "existingSourceMode": "discovery",
-      "listingCandidatesSeen": 5,
+      "listingCandidatesSeen": 6,
       "secondaryListingState": "inspected",
       "secondaryListingCandidates": 8,
       "regionalAuditError": "",
@@ -186,13 +186,13 @@
         "articleChecked": 4,
         "rejectionReasons": {
           "accepted_by_adapter": 1,
-          "expired": 1,
-          "onsite_venue_unverified": 2
+          "onsite_venue_unverified": 2,
+          "expired": 1
         }
       },
       "collectionHealth": {
         "homepageReachable": true,
-        "homepageCandidateLinks": 5,
+        "homepageCandidateLinks": 6,
         "secondaryListingState": "inspected",
         "secondaryCandidateLinks": 8,
         "adapterCandidates": 4,
@@ -203,8 +203,8 @@
         "lastSuccessfulCollectionAt": null,
         "rejectionReasons": {
           "accepted_by_adapter": 1,
-          "expired": 1,
-          "onsite_venue_unverified": 2
+          "onsite_venue_unverified": 2,
+          "expired": 1
         },
         "articleFetchSucceeded": 4,
         "articleFetchFailed": 0,
@@ -871,7 +871,7 @@
       "prefecturesWithoutCurrentPublishedEvents": [
         "鳥取県"
       ],
-      "currentPublishedEventCount": 5,
+      "currentPublishedEventCount": 6,
       "officialSourceUrl": "https://chugoku-michinoeki.jp/news/index.php",
       "sourceAuditState": "reachable",
       "existingSourceMode": "adapter",
@@ -933,11 +933,11 @@
         },
         {
           "prefecture": "広島県",
-          "currentPublishedEvents": 1,
+          "currentPublishedEvents": 2,
           "targetedStationFeedCount": 1,
           "configuredSourcesAudited": 1,
           "candidateArticles": 8,
-          "articlesAcceptedByDiscovery": 0,
+          "articlesAcceptedByDiscovery": 1,
           "sourcesWithFetchProblems": 0,
           "regionalHomepageReachable": true,
           "evidenceLevel": "published_events_observed",
@@ -986,7 +986,7 @@
         "adapterCandidates": 695,
         "adapterAccepted": 4,
         "adapterFetchProblems": null,
-        "publishedEventsInRegion": 5,
+        "publishedEventsInRegion": 6,
         "articleChecked": null,
         "lastSuccessfulCollectionAt": null,
         "rejectionReasons": {

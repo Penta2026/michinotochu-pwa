@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T11:35:08.028694+09:00",
+  "generatedAt": "2026-10-15T11:48:42.568982+09:00",
   "mode": "fetch",
   "cycleDays": 7,
   "stationsTotal": 1234,
@@ -41,10 +41,10 @@
       "status": "changed"
     },
     {
-      "id": "hiroshima_fukutomi",
-      "prefecture": "広島県",
-      "roadName": "湖畔の里福富",
-      "url": "https://kohannosato.co.jp/news/",
+      "id": "kagoshima_tarumizu_official",
+      "prefecture": "鹿児島県",
+      "roadName": "たるみずはまびら",
+      "url": "https://tarumizuhamabira.jp/information/",
       "status": "changed"
     }
   ],

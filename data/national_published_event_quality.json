@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "checkedOn": "2026-10-15",
-  "publishedCount": 59,
+  "publishedCount": 60,
   "criticalCount": 0,
   "manualReviewCount": 6,
   "critical": [],
@@ -31,7 +31,7 @@
       "reason": "station_identity_needs_review"
     },
     {
-      "index": 52,
+      "index": 53,
       "prefecture": "静岡県",
       "station": "伊豆ゲートウェイ函南",
       "title": "翠のピスタチオ",
@@ -39,7 +39,7 @@
       "reason": "station_identity_needs_review"
     },
     {
-      "index": 56,
+      "index": 57,
       "prefecture": "京都府",
       "station": "京丹波 味夢の里",
       "title": "11月15日(日)『あんマルシェ2026&譲渡会』を開催します!",
@@ -47,7 +47,7 @@
       "reason": "station_identity_needs_review"
     },
     {
-      "index": 57,
+      "index": 58,
       "prefecture": "静岡県",
       "station": "伊豆ゲートウェイ函南",
       "title": "ゲートウェイ食市 干し柿づくり",

@@ -196,6 +196,13 @@
       "reachable": true,
       "candidates": [
         {
+          "title": "那須ロイヤル高原マルシェ",
+          "url": "https://www.kanto-michinoeki.jp/map_single.php?id_name=1&single_name=3",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
           "title": "イベント情報",
           "url": "https://www.kanto-michinoeki.jp/archives/category/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1",
           "stationIdHint": "",
@@ -231,7 +238,7 @@
           "eventVerified": false
         }
       ],
-      "candidateCount": 5,
+      "candidateCount": 6,
       "error": "",
       "curatedEventListing": {
         "url": "https://www.kanto-michinoeki.jp/archives/category/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1",

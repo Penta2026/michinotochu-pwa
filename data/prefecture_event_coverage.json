@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "basisUpdatedAt": "2026-10-14",
+  "basisUpdatedAt": "2026-10-15",
   "definitions": {
     "observed": "Only the dated events currently present in data/road_events.json.",
     "targetedFeed": "An explicitly configured station source, not proof of parsing or future-event availability.",
@@ -79,7 +79,7 @@
     "zeroRegisteredPrefectures": 11,
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
-    "registeredEvents": 59,
+    "registeredEvents": 60,
     "targetedStationFeedPrefectures": 28,
     "notReconfirmedEvents": 1,
     "unknownPrefectures": []
@@ -150,7 +150,7 @@
       ],
       "registeredEventCount": 8,
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5
+      "regionalHomepageListingCandidates": 6
     },
     {
       "region": "北陸",
@@ -191,7 +191,7 @@
       "zeroRegisteredPrefectures": [
         "鳥取県"
       ],
-      "registeredEventCount": 5,
+      "registeredEventCount": 6,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35
     },
@@ -365,7 +365,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -382,7 +382,7 @@
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -401,7 +401,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -418,7 +418,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -436,7 +436,7 @@
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -455,7 +455,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -474,7 +474,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -491,7 +491,7 @@
       "state": "needs_reconfirmation",
       "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -506,7 +506,7 @@
       "state": "no_registered_events",
       "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 5,
+      "regionalHomepageListingCandidates": 6,
       "regionalAuditMode": "discovery"
     },
     {
@@ -817,12 +817,13 @@
     {
       "prefecture": "広島県",
       "reportingRegion": "中国",
-      "eventCount": 1,
+      "eventCount": 2,
       "observedStations": [
-        "びんご府中"
+        "びんご府中",
+        "湖畔の里福富"
       ],
       "historicallyObserved": true,
-      "observedStationCount": 1,
+      "observedStationCount": 2,
       "targetedStationFeeds": [
         "湖畔の里福富"
       ],

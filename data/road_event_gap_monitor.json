@@ -10,20 +10,20 @@
   "summary": {
     "historicalPrefecturesReached": 47,
     "prefecturesWithCurrentEvents": 36,
-    "currentEvents": 59,
+    "currentEvents": 60,
     "phase2SourcesConfigured": 29,
     "phase2SourcesAudited": 29,
     "phase2AuditFresh": true,
     "regionalHomepagesAudited": 9,
     "targetedStationPrefectures": 28,
-    "publishedStations": 43,
+    "publishedStations": 44,
     "publishedStationsWithoutDirectTarget": 21,
     "appMasterStations": 1234,
     "appMasterWithDedicatedSource": 39,
     "appMasterWithoutDedicatedSource": 1195,
-    "appMasterCurrentlyPublishedStations": 43,
+    "appMasterCurrentlyPublishedStations": 44,
     "configuredTargetNamesNotMatchedToAppMaster": 0,
-    "potentialReviewSamples": 58,
+    "potentialReviewSamples": 57,
     "rejectedReasonCounts": {
       "no_article": 4,
       "no_grounded_program_event": 1,
@@ -34,7 +34,7 @@
       "not_event": 61,
       "offsite": 1,
       "past": 20,
-      "undated": 26,
+      "undated": 25,
       "venue_missing": 12
     },
     "sourcesWithFetchProblems": 0,
@@ -7816,7 +7816,7 @@
       "prefecture": "広島県",
       "roadName": "湖畔の里福富",
       "dedicatedSourceConfigured": true,
-      "currentlyPublishedEvent": false,
+      "currentlyPublishedEvent": true,
       "status": "dedicated_source_configured"
     },
     {
@@ -10196,7 +10196,7 @@
       "prefecture": "広島県",
       "masterStations": 21,
       "dedicatedSources": 1,
-      "publishedStations": 1,
+      "publishedStations": 2,
       "noDedicatedSource": 20
     },
     {
@@ -10698,18 +10698,6 @@
       "title": "2026.08.31 お知らせ しゃくなげ湖納涼花火大会 募金のお礼・ご報告",
       "sourceReason": "venue_missing",
       "reviewReason": "onsite_venue_unverified",
-      "priority": "high",
-      "headlineScheduleHint": "unknown_date",
-      "status": "unverified_candidate"
-    },
-    {
-      "sourceId": "hiroshima_fukutomi",
-      "prefecture": "広島県",
-      "roadName": "湖畔の里福富",
-      "url": "https://kohannosato.co.jp/news/%e3%83%ac%e3%83%88%e3%83%ad%e3%82%ab%e3%83%bc%e3%83%95%e3%82%a7%e3%82%b9%e3%82%bf2026%e3%80%80%e3%82%a8%e3%83%b3%e3%83%88%e3%83%aa%e3%83%bc%e9%96%8b%e5%a7%8b%ef%bc%81/",
-      "title": "2026.09.23 レトロカーフェスタ2026 エントリー開始!",
-      "sourceReason": "undated",
-      "reviewReason": "event_date_unverified",
       "priority": "high",
       "headlineScheduleHint": "unknown_date",
       "status": "unverified_candidate"
@@ -11954,7 +11942,7 @@
       "status": "review_candidates",
       "candidateCount": 8,
       "checkedCount": 8,
-      "acceptedCount": 0,
+      "acceptedCount": 1,
       "reconfirmedCount": 0,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
@@ -11991,7 +11979,7 @@
       "region": "関東",
       "mode": "discovery",
       "homepageReachable": true,
-      "homepageCandidateCount": 5,
+      "homepageCandidateCount": 6,
       "note": "Regional homepage status does NOT prove that its stations' events were parsed."
     },
     {

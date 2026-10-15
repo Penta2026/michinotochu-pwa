@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-15",
   "events": [
     {
       "roadName": "親不知ピアパーク",
@@ -510,6 +510,16 @@
       "endDate": "2026-11-01",
       "publishedAt": "",
       "url": "https://www.michinoeki-shiroishi.jp/news/%e7%a7%8b%e3%81%ae%e5%8f%8e%e7%a9%ab%e7%a5%ad-2/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "湖畔の里福富",
+      "prefecture": "広島県",
+      "title": "レトロカーフェスタ2026 エントリー開始!",
+      "startDate": "2026-11-03",
+      "endDate": "2026-11-03",
+      "publishedAt": "",
+      "url": "https://kohannosato.co.jp/news/%e3%83%ac%e3%83%88%e3%83%ad%e3%82%ab%e3%83%bc%e3%83%95%e3%82%a7%e3%82%b9%e3%82%bf2026%e3%80%80%e3%82%a8%e3%83%b3%e3%83%88%e3%83%aa%e3%83%bc%e9%96%8b%e5%a7%8b%ef%bc%81/",
       "status": "scheduled"
     },
     {
