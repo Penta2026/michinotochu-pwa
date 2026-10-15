@@ -87,7 +87,7 @@
 | 鳥取県 | 0 | 0 | 0 | 0 | 0 | 0 | regional_homepage_only_or_unknown |
 | 島根県 | 2 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
 | 岡山県 | 1 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
-| 広島県 | 3 | 2 | 2 | 21 | 1 | 0 | published_events_observed |
+| 広島県 | 3 | 4 | 4 | 30 | 0 | 0 | published_events_observed |
 | 山口県 | 1 | 2 | 2 | 10 | 0 | 0 | published_events_observed |
 | 徳島県 | 0 | 0 | 0 | 0 | 0 | 0 | regional_homepage_only_or_unknown |
 | 香川県 | 2 | 0 | 0 | 0 | 0 | 0 | published_events_observed |

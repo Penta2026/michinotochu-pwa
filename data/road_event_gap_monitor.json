@@ -11,19 +11,19 @@
     "historicalPrefecturesReached": 47,
     "prefecturesWithCurrentEvents": 36,
     "currentEvents": 61,
-    "phase2SourcesConfigured": 30,
-    "phase2SourcesAudited": 30,
+    "phase2SourcesConfigured": 32,
+    "phase2SourcesAudited": 32,
     "phase2AuditFresh": true,
     "regionalHomepagesAudited": 9,
     "targetedStationPrefectures": 28,
     "publishedStations": 45,
     "publishedStationsWithoutDirectTarget": 21,
     "appMasterStations": 1234,
-    "appMasterWithDedicatedSource": 40,
-    "appMasterWithoutDedicatedSource": 1194,
+    "appMasterWithDedicatedSource": 42,
+    "appMasterWithoutDedicatedSource": 1192,
     "appMasterCurrentlyPublishedStations": 45,
     "configuredTargetNamesNotMatchedToAppMaster": 0,
-    "potentialReviewSamples": 58,
+    "potentialReviewSamples": 68,
     "rejectedReasonCounts": {
       "no_article": 4,
       "no_grounded_program_event": 1,
@@ -34,7 +34,7 @@
       "not_event": 62,
       "offsite": 5,
       "past": 23,
-      "undated": 25,
+      "undated": 35,
       "venue_missing": 13
     },
     "sourcesWithFetchProblems": 0,
@@ -43,7 +43,7 @@
     "sourcesAtCheckLimit": 10,
     "sourcesUsingRotatingInspection": 10,
     "rotatingInspectionSlots": 25,
-    "uninspectedCandidateSlots": 163,
+    "uninspectedCandidateSlots": 162,
     "reviewWithExplicitFutureHint": 2,
     "reviewWithExplicitPastHint": 3,
     "warnings": 13,
@@ -52,11 +52,11 @@
       "repeatedly_empty_listing": 2,
       "suspended_unavailable_official_evidence": 1
     },
-    "unreconfirmedEvents": 1,
-    "officialListingReconfirmationCandidates": 8,
-    "officialListingReconfirmationChecked": 8,
+    "unreconfirmedEvents": 2,
+    "officialListingReconfirmationCandidates": 9,
+    "officialListingReconfirmationChecked": 9,
     "officialListingReconfirmationFailed": 0,
-    "officialListingReconfirmedEvents": 18
+    "officialListingReconfirmedEvents": 19
   },
   "publishedStationsWithoutDirectTarget": [
     {
@@ -7831,17 +7831,17 @@
       "id": "RS0959",
       "prefecture": "広島県",
       "roadName": "みはら神明の里",
-      "dedicatedSourceConfigured": false,
+      "dedicatedSourceConfigured": true,
       "currentlyPublishedEvent": false,
-      "status": "no_dedicated_source"
+      "status": "dedicated_source_configured"
     },
     {
       "id": "RS0960",
       "prefecture": "広島県",
       "roadName": "たかの",
-      "dedicatedSourceConfigured": false,
+      "dedicatedSourceConfigured": true,
       "currentlyPublishedEvent": false,
-      "status": "no_dedicated_source"
+      "status": "dedicated_source_configured"
     },
     {
       "id": "RS0961",
@@ -10195,9 +10195,9 @@
     {
       "prefecture": "広島県",
       "masterStations": 21,
-      "dedicatedSources": 2,
+      "dedicatedSources": 4,
       "publishedStations": 3,
-      "noDedicatedSource": 19
+      "noDedicatedSource": 17
     },
     {
       "prefecture": "徳島県",
@@ -10706,6 +10706,18 @@
       "sourceId": "hiroshima_nonta",
       "prefecture": "広島県",
       "roadName": "西条のん太の酒蔵",
+      "url": "https://www.nonta-sakagura.com/news/%e3%80%90%e5%87%ba%e8%8d%b7%e8%80%85%e5%8b%9f%e9%9b%86%e3%80%91%e9%81%93%e3%81%ae%e9%a7%85%e8%a5%bf%e6%9d%a1%e3%81%ae%e3%82%93%e5%a4%aa%e3%81%ae%e9%85%92%e8%94%b5%e5%87%ba%e8%8d%b7%e8%80%85%e5%8b%9f",
+      "title": "出荷者募集",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_nonta",
+      "prefecture": "広島県",
+      "roadName": "西条のん太の酒蔵",
       "url": "https://www.nonta-sakagura.com/news/%e6%95%b7%e5%9c%b0%e3%83%bb%e8%bb%92%e4%b8%8b%e3%81%b2%e3%82%8d%e3%81%b0%e5%87%ba%e5%ba%97%e5%8b%9f%e9%9b%86%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b",
       "title": "イベント出店者募集",
       "sourceReason": "undated",
@@ -10722,6 +10734,114 @@
       "title": "読む東広島",
       "sourceReason": "venue_missing",
       "reviewReason": "onsite_venue_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "url": "https://www.shinmeinosato.jp/eat.html",
+      "title": "レストラン ルマーダ",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "url": "https://www.shinmeinosato.jp/features.html",
+      "title": "三原の紹介",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "url": "https://www.shinmeinosato.jp/index.html",
+      "title": "スタッフからの情報",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "url": "https://www.shinmeinosato.jp/info.html",
+      "title": "お問い合わせ",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "url": "https://www.shinmeinosato.jp/mailform.html",
+      "title": "お問い合わせ",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "url": "https://www.shinmeinosato.jp/michinoekimihara.html",
+      "title": "道の駅みはら神明の里",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "url": "https://www.shinmeinosato.jp/shop.html",
+      "title": "農産物・農産物加工品",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "url": "https://www.shinmeinosato.jp/the-community.html",
+      "title": "個人情報保護方針",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_takano",
+      "prefecture": "広島県",
+      "roadName": "たかの",
+      "url": "https://takanoyama.jp/news_event/",
+      "title": "お知らせ・イベント情報",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
       "priority": "high",
       "headlineScheduleHint": "unknown_date",
       "status": "unverified_candidate"
@@ -11089,6 +11209,14 @@
   ],
   "unreconfirmedEvents": [
     {
+      "roadName": "たきかわ",
+      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "status": "needs_reconfirmation"
+    },
+    {
       "roadName": "こすげ",
       "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)",
       "url": "https://www.kanto-michinoeki.jp/archives/18244.html",
@@ -11221,8 +11349,8 @@
       "prefecture": "広島県",
       "severity": "notice",
       "candidateCount": 13,
-      "checkedCount": 10,
-      "uninspectedCandidateCount": 3
+      "checkedCount": 11,
+      "uninspectedCandidateCount": 2
     }
   ],
   "sources": [
@@ -11988,8 +12116,34 @@
       "checkedOn": "2026-10-15",
       "status": "review_candidates",
       "candidateCount": 13,
-      "checkedCount": 10,
-      "acceptedCount": 1,
+      "checkedCount": 11,
+      "acceptedCount": 0,
+      "reconfirmedCount": 1,
+      "knownSkippedCount": 1,
+      "fetchFailedCount": 0,
+      "reconfirmationCandidates": 1,
+      "reconfirmationChecked": 1,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
+      "listingError": "",
+      "fetchErrors": [],
+      "failureDayStreak": 0,
+      "emptyCandidateDayStreak": 0,
+      "mayHaveUnreviewedCandidates": true,
+      "uninspectedCandidateCount": 2,
+      "explorationSlots": 3,
+      "explorationPool": 5
+    },
+    {
+      "id": "hiroshima_takano",
+      "prefecture": "広島県",
+      "roadName": "たかの",
+      "url": "https://takanoyama.jp/news_event/",
+      "checkedOn": "2026-10-15",
+      "status": "review_candidates",
+      "candidateCount": 1,
+      "checkedCount": 1,
+      "acceptedCount": 0,
       "reconfirmedCount": 0,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
@@ -12001,10 +12155,36 @@
       "fetchErrors": [],
       "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
-      "mayHaveUnreviewedCandidates": true,
-      "uninspectedCandidateCount": 3,
-      "explorationSlots": 3,
-      "explorationPool": 6
+      "mayHaveUnreviewedCandidates": false,
+      "uninspectedCandidateCount": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
+    },
+    {
+      "id": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "url": "https://www.shinmeinosato.jp/index.html",
+      "checkedOn": "2026-10-15",
+      "status": "review_candidates",
+      "candidateCount": 8,
+      "checkedCount": 8,
+      "acceptedCount": 0,
+      "reconfirmedCount": 0,
+      "knownSkippedCount": 0,
+      "fetchFailedCount": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
+      "listingError": "",
+      "fetchErrors": [],
+      "failureDayStreak": 0,
+      "emptyCandidateDayStreak": 0,
+      "mayHaveUnreviewedCandidates": false,
+      "uninspectedCandidateCount": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
     }
   ],
   "regionalHomepages": [

@@ -1565,12 +1565,12 @@
       "listingUrl": "https://www.nonta-sakagura.com/news_category/cate01",
       "listingError": "",
       "candidates": 13,
-      "checked": 10,
-      "accepted": 1,
-      "reconfirmed": 0,
-      "knownSkipped": 0,
-      "reconfirmationCandidates": 0,
-      "reconfirmationChecked": 0,
+      "checked": 11,
+      "accepted": 0,
+      "reconfirmed": 1,
+      "knownSkipped": 1,
+      "reconfirmationCandidates": 1,
+      "reconfirmationChecked": 1,
       "reconfirmationFailed": 0,
       "reconfirmationUninspected": 0,
       "fetchFailed": 0,
@@ -1578,17 +1578,10 @@
       "reasons": {
         "past": 3,
         "offsite": 4,
-        "undated": 1,
+        "undated": 2,
         "venue_missing": 1
       },
-      "examples": [
-        {
-          "title": "ぶちうまい!東広島お米フェス2026を開催いたします。",
-          "start": "2026-11-28",
-          "end": "2026-11-29",
-          "url": "https://www.nonta-sakagura.com/news/%e3%81%b6%e3%81%a1%e3%81%86%e3%81%be%e3%81%84%ef%bc%81%e6%9d%b1%e5%ba%83%e5%b3%b6%e3%81%8a%e7%b1%b3%e3%83%95%e3%82%a7%e3%82%b92026%e3%82%92%e9%96%8b%e5%82%ac%e3%81%84%e3%81%9f%e3%81%97%e3%81%be"
-        }
-      ],
+      "examples": [],
       "rejectedExamples": [
         {
           "title": "イベント 2026.09.13 ※終了したイベントです。 シルバーウィークに「秋祭り」を開催します!",
@@ -1634,16 +1627,126 @@
           "title": "読む東広島",
           "url": "https://www.nonta-sakagura.com/news/%e8%aa%ad%e3%82%80%e6%9d%b1%e5%ba%83%e5%b3%b6-%e5%9c%9f%e3%81%94%e3%81%a8%e3%81%ae%e6%96%b0%e8%81%9e",
           "reason": "venue_missing"
+        },
+        {
+          "title": "出荷者募集",
+          "url": "https://www.nonta-sakagura.com/news/%e3%80%90%e5%87%ba%e8%8d%b7%e8%80%85%e5%8b%9f%e9%9b%86%e3%80%91%e9%81%93%e3%81%ae%e9%a7%85%e8%a5%bf%e6%9d%a1%e3%81%ae%e3%82%93%e5%a4%aa%e3%81%ae%e9%85%92%e8%94%b5%e5%87%ba%e8%8d%b7%e8%80%85%e5%8b%9f",
+          "reason": "undated"
         }
       ],
-      "eligibleCandidates": 13,
-      "uninspectedCandidates": 3,
+      "eligibleCandidates": 12,
+      "uninspectedCandidates": 2,
       "explorationStart": 0,
       "explorationNext": 3,
       "explorationSlots": 3,
-      "explorationPool": 6
+      "explorationPool": 5
+    },
+    {
+      "id": "hiroshima_takano",
+      "prefecture": "広島県",
+      "roadName": "たかの",
+      "listingUrl": "https://takanoyama.jp/news_event/",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 0,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {
+        "undated": 1
+      },
+      "examples": [],
+      "rejectedExamples": [
+        {
+          "title": "お知らせ・イベント情報",
+          "url": "https://takanoyama.jp/news_event/",
+          "reason": "undated"
+        }
+      ],
+      "eligibleCandidates": 1,
+      "uninspectedCandidates": 0,
+      "explorationStart": 0,
+      "explorationNext": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
+    },
+    {
+      "id": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "listingUrl": "https://www.shinmeinosato.jp/index.html",
+      "listingError": "",
+      "candidates": 8,
+      "checked": 8,
+      "accepted": 0,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {
+        "undated": 8
+      },
+      "examples": [],
+      "rejectedExamples": [
+        {
+          "title": "道の駅みはら神明の里",
+          "url": "https://www.shinmeinosato.jp/michinoekimihara.html",
+          "reason": "undated"
+        },
+        {
+          "title": "三原の紹介",
+          "url": "https://www.shinmeinosato.jp/features.html",
+          "reason": "undated"
+        },
+        {
+          "title": "スタッフからの情報",
+          "url": "https://www.shinmeinosato.jp/index.html",
+          "reason": "undated"
+        },
+        {
+          "title": "レストラン ルマーダ",
+          "url": "https://www.shinmeinosato.jp/eat.html",
+          "reason": "undated"
+        },
+        {
+          "title": "農産物・農産物加工品",
+          "url": "https://www.shinmeinosato.jp/shop.html",
+          "reason": "undated"
+        },
+        {
+          "title": "お問い合わせ",
+          "url": "https://www.shinmeinosato.jp/mailform.html",
+          "reason": "undated"
+        },
+        {
+          "title": "個人情報保護方針",
+          "url": "https://www.shinmeinosato.jp/the-community.html",
+          "reason": "undated"
+        },
+        {
+          "title": "お問い合わせ",
+          "url": "https://www.shinmeinosato.jp/info.html",
+          "reason": "undated"
+        }
+      ],
+      "eligibleCandidates": 8,
+      "uninspectedCandidates": 0,
+      "explorationStart": 0,
+      "explorationNext": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
     }
   ],
-  "newEvents": 1,
-  "reconfirmedEvents": 18
+  "newEvents": 0,
+  "reconfirmedEvents": 19
 }

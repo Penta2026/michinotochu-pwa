@@ -185,9 +185,9 @@
         "articleFetchFailed": 0,
         "articleChecked": 4,
         "rejectionReasons": {
-          "accepted_by_adapter": 1,
           "expired": 1,
-          "onsite_venue_unverified": 2
+          "onsite_venue_unverified": 2,
+          "accepted_by_adapter": 1
         }
       },
       "collectionHealth": {
@@ -202,9 +202,9 @@
         "articleChecked": 4,
         "lastSuccessfulCollectionAt": null,
         "rejectionReasons": {
-          "accepted_by_adapter": 1,
           "expired": 1,
-          "onsite_venue_unverified": 2
+          "onsite_venue_unverified": 2,
+          "accepted_by_adapter": 1
         },
         "articleFetchSucceeded": 4,
         "articleFetchFailed": 0,
@@ -934,17 +934,17 @@
         {
           "prefecture": "広島県",
           "currentPublishedEvents": 3,
-          "targetedStationFeedCount": 2,
-          "configuredSourcesAudited": 2,
-          "candidateArticles": 21,
-          "articlesAcceptedByDiscovery": 1,
+          "targetedStationFeedCount": 4,
+          "configuredSourcesAudited": 4,
+          "candidateArticles": 30,
+          "articlesAcceptedByDiscovery": 0,
           "sourcesWithFetchProblems": 0,
           "regionalHomepageReachable": true,
           "evidenceLevel": "published_events_observed",
           "dedicatedSourceLatestAuditDate": "2026-10-15",
-          "sourcesWithSuccessfulListing": 2,
-          "articlesChecked": 18,
-          "articlesUnverified": 3,
+          "sourcesWithSuccessfulListing": 4,
+          "articlesChecked": 28,
+          "articlesUnverified": 1,
           "sourceHealthEvidence": "audited_dedicated_sources"
         },
         {
@@ -1272,5 +1272,5 @@
   },
   "interpretation": "Current event count is not source recall; no events published does not mean no event exists.",
   "stationSourceAuditDate": "2026-10-15",
-  "stationSourcesAudited": 30
+  "stationSourcesAudited": 32
 }
