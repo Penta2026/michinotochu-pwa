@@ -23,7 +23,7 @@
 | RS0953 | ふぉレスト君田 | [全国道の駅連絡会・個別情報](https://www.michi-no-eki.jp/stations/views/19581) | 温泉運営者サイトの現行公式性・HTTPS・催し告知を要照合 | 要調査 |
 | RS0954 | クロスロードみつぎ | [施設公式サイト](https://crossroad-mitsugi.com/) | イベント情報導線あり。個別HTML構造を確認 | 高 |
 | RS0955 | 舞ロードＩＣ千代田 | [駅公式サイト](https://kitahiro-ichiba.com/) | 「秋の大感謝祭」等の告知あり。公式本文の年・日付・会場と記事リンクを抽出試験 | 最優先 |
-| RS0956 | 北の関宿安芸高田 | [駅案内・公的情報](https://www.michi-no-eki.jp/) | 旧候補 `http://www.kitanosekijyuku.jp/` はHTTPS未検証。公式イベントURL未確定 | 要調査 |
+| RS0956 | 北の関宿安芸高田 | [全国道の駅連絡会・個別情報](https://www.michi-no-eki.jp/stations/views/19584) | 旧候補 `http://www.kitanosekijyuku.jp/` はHTTPS未検証。公式イベントURL未確定 | 要調査 |
 | RS0958 | たけはら | [駅運営会社](https://www.iine-takehara.com/michinoekitakehara)、[竹原観光協会](https://www.takeharakankou.jp/event/) | 運営会社の告知はWix形式。観光協会の駅内会場のみ採用可能、10月末の「憧憬の路」は町並み保存地区開催なので**駅内イベントと誤登録しない** | 高 |
 | RS0961 | 世羅 | [世羅町観光協会・道の駅世羅イベント](https://seranan.jp/road-side-station/event/) | 年付き日時・駅会場を複数独立ブロックに記載。複数告知の日時・会場が隣記事と混ざらない専門抽出が必要 | 最優先 |
 | RS0962 | びんご府中 | [道の駅公式サイト](https://eki.bingofuchu.jp/) | 開業10周年行事告知あり。本文の年・日・会場を再検証してから収集先設定 | 高 |
