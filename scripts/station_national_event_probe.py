@@ -124,7 +124,10 @@ def parse_strict_event(html, station, url, today):
     # A generic news listing with many event headlines is NOT one event.
     headings = [h.get_text(" ", strip=True) for h in container.select("h1,h2,h3")]
     named = [h for h in headings if any(w in h for w in EVENT_WORDS)
-             and not any(b in h for b in BLOCK)]
+             and not any(b in h for b in BLOCK)
+             and h.strip() not in ("イベント一覧", "イベント案内", "イベント情報",
+                                    "イベント情報一覧", "イベントのお知らせ",
+                                    "イベント開催情報", "催し物一覧", "NEWS", "お知らせ")]
     if len(named) != 1:
         return None, "no_unique_event_headline"
     lines = _text_lines(container)
