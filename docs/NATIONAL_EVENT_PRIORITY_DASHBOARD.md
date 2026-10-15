@@ -12,7 +12,7 @@
 | 中部 | 13 | なし | discovery / reachable | verify_event_listing_and_build_safe_adapter |
 | 北海道 | 2 | なし | discovery / reachable | verify_event_listing_and_build_safe_adapter |
 | 近畿 | 9 | 福井県、滋賀県 | adapter / reachable | audit_station_matching_and_missing_prefectures |
-| 中国 | 6 | 鳥取県 | adapter / reachable | audit_station_matching_and_missing_prefectures |
+| 中国 | 7 | 鳥取県 | adapter / reachable | audit_station_matching_and_missing_prefectures |
 | 四国 | 4 | 徳島県 | adapter / reachable | audit_station_matching_and_missing_prefectures |
 | 東北 | 8 | 山形県 | adapter / reachable | audit_station_matching_and_missing_prefectures |
 
@@ -87,7 +87,7 @@
 | 鳥取県 | 0 | 0 | 0 | 0 | 0 | 0 | regional_homepage_only_or_unknown |
 | 島根県 | 2 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
 | 岡山県 | 1 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
-| 広島県 | 2 | 2 | 2 | 21 | 0 | 0 | published_events_observed |
+| 広島県 | 3 | 2 | 2 | 21 | 1 | 0 | published_events_observed |
 | 山口県 | 1 | 2 | 2 | 10 | 0 | 0 | published_events_observed |
 | 徳島県 | 0 | 0 | 0 | 0 | 0 | 0 | regional_homepage_only_or_unknown |
 | 香川県 | 2 | 0 | 0 | 0 | 0 | 0 | published_events_observed |

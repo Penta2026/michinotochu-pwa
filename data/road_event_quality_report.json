@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 60,
-  "inputCollected": 59,
+  "inputCollected": 60,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -253,7 +253,7 @@
       "reason": "not_found_in_current_collection"
     }
   ],
-  "finalCount": 60,
+  "finalCount": 61,
   "futurePublicationDatesCleared": [
     {
       "url": "https://wachi-nagomi.com/topics/post-10529/",

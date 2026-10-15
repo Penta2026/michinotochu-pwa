@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T12:07:33.018054+09:00",
+  "generatedAt": "2026-10-15T12:45:12.111533+09:00",
   "mode": "fetch",
   "cycleDays": 7,
   "stationsTotal": 1234,
@@ -8,9 +8,8 @@
   "verifiedDueToday": 18,
   "requestsAttempted": 18,
   "statusCounts": {
-    "changed": 6,
-    "unchanged": 11,
-    "first_seen": 1
+    "changed": 7,
+    "unchanged": 11
   },
   "newOrChanged": [
     {
@@ -42,6 +41,13 @@
       "status": "changed"
     },
     {
+      "id": "miyazaki_niqll",
+      "prefecture": "宮崎県",
+      "roadName": "都城NiQLL",
+      "url": "https://coconiqll.co.jp/info/",
+      "status": "changed"
+    },
+    {
       "id": "kagoshima_tarumizu_official",
       "prefecture": "鹿児島県",
       "roadName": "たるみずはまびら",
@@ -54,13 +60,6 @@
       "roadName": "湖畔の里福富",
       "url": "https://kohannosato.co.jp/news/",
       "status": "changed"
-    },
-    {
-      "id": "hiroshima_nonta",
-      "prefecture": "広島県",
-      "roadName": "西条のん太の酒蔵",
-      "url": "https://www.nonta-sakagura.com/news_category/cate01",
-      "status": "first_seen"
     }
   ],
   "limitations": [

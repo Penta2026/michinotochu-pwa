@@ -185,8 +185,8 @@
         "articleFetchFailed": 0,
         "articleChecked": 4,
         "rejectionReasons": {
-          "expired": 1,
           "accepted_by_adapter": 1,
+          "expired": 1,
           "onsite_venue_unverified": 2
         }
       },
@@ -202,8 +202,8 @@
         "articleChecked": 4,
         "lastSuccessfulCollectionAt": null,
         "rejectionReasons": {
-          "expired": 1,
           "accepted_by_adapter": 1,
+          "expired": 1,
           "onsite_venue_unverified": 2
         },
         "articleFetchSucceeded": 4,
@@ -871,7 +871,7 @@
       "prefecturesWithoutCurrentPublishedEvents": [
         "鳥取県"
       ],
-      "currentPublishedEventCount": 6,
+      "currentPublishedEventCount": 7,
       "officialSourceUrl": "https://chugoku-michinoeki.jp/news/index.php",
       "sourceAuditState": "reachable",
       "existingSourceMode": "adapter",
@@ -933,11 +933,11 @@
         },
         {
           "prefecture": "広島県",
-          "currentPublishedEvents": 2,
+          "currentPublishedEvents": 3,
           "targetedStationFeedCount": 2,
           "configuredSourcesAudited": 2,
           "candidateArticles": 21,
-          "articlesAcceptedByDiscovery": 0,
+          "articlesAcceptedByDiscovery": 1,
           "sourcesWithFetchProblems": 0,
           "regionalHomepageReachable": true,
           "evidenceLevel": "published_events_observed",
@@ -986,7 +986,7 @@
         "adapterCandidates": 695,
         "adapterAccepted": 4,
         "adapterFetchProblems": null,
-        "publishedEventsInRegion": 6,
+        "publishedEventsInRegion": 7,
         "articleChecked": null,
         "lastSuccessfulCollectionAt": null,
         "rejectionReasons": {

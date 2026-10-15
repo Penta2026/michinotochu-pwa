@@ -79,7 +79,7 @@
     "zeroRegisteredPrefectures": 11,
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
-    "registeredEvents": 60,
+    "registeredEvents": 61,
     "targetedStationFeedPrefectures": 28,
     "notReconfirmedEvents": 1,
     "unknownPrefectures": []
@@ -191,7 +191,7 @@
       "zeroRegisteredPrefectures": [
         "鳥取県"
       ],
-      "registeredEventCount": 6,
+      "registeredEventCount": 7,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 35
     },
@@ -817,13 +817,14 @@
     {
       "prefecture": "広島県",
       "reportingRegion": "中国",
-      "eventCount": 2,
+      "eventCount": 3,
       "observedStations": [
         "びんご府中",
-        "湖畔の里福富"
+        "湖畔の里福富",
+        "西条のん太の酒蔵"
       ],
       "historicallyObserved": true,
-      "observedStationCount": 2,
+      "observedStationCount": 3,
       "targetedStationFeeds": [
         "湖畔の里福富",
         "西条のん太の酒蔵"
