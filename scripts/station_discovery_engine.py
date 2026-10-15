@@ -129,7 +129,11 @@ def _plan_article_inspection(links, source, today, known_urls=None,
     budget = int(source.get("maxArticles", 6))
     eligible = [(url, title) for url, title in links.items()
                 if url not in known_urls]
-    eligible.sort(key=lambda item: _listing_date_priority(item[1], today))
+    preferred_titles = source.get("preferredTitles", [])
+    eligible.sort(key=lambda item: (
+        not any(word in item[1] for word in preferred_titles) if preferred_titles else False,
+        _listing_date_priority(item[1], today),
+    ))
     if len(eligible) <= budget:
         return dict(eligible), {
             "eligibleCandidates": len(eligible),
