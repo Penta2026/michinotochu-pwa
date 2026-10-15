@@ -24,7 +24,7 @@ from kanto_three_prefectures import collect_three_kanto_prefectures
 from kanto_remaining_prefectures import collect_kanto_remaining
 from kinki_five_prefectures import collect_kinki_five
 from chubu_events import audit_chubu_bulletin
-from road_event_quality import reconcile, write_report
+from road_event_quality import reconcile, write_report, plausible
 from verified_station_engine import reconfirm_known_articles
 from station_discovery_engine import collect_configured_station_events
 from bs4 import BeautifulSoup
@@ -366,6 +366,31 @@ def collect_nationwide():
     print(f"全国公式: 投稿 {counted['posts']} / イベント語句 {counted['event_words']} / 日付あり {counted['dated']} / 採用 {len(collected)}")
     return collected
 
+def collect_national_station_stage(today, path=None):
+    """Ingest ONLY events already vetted by strict national station page probe.
+
+    This staging JSON is produced separately from unverified URL hints.
+    Its events still go through the ordinary national reconciliation.
+    """
+    path = path or ROOT / "data" / "station_national_event_candidates.json"
+    if not path.exists():
+        return []
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    if doc.get("schemaVersion") != 1 or not isinstance(doc.get("events"), list):
+        raise ValueError("National staged events schema invalid")
+    result = []
+    for event in doc["events"]:
+        if not isinstance(event, dict) or not plausible(event, today):
+            continue
+        if event.get("status") == "cancelled":
+            continue
+        if not (event.get("prefecture") and event.get("startDate")
+                and event.get("endDate") and event.get("url", "").startswith("https://")):
+            continue
+        result.append(event)
+    return result
+
+
 def main():
     previous=json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
     old=previous.get("events",[])
@@ -439,6 +464,14 @@ def main():
         collected += discovered
     except Exception as exc:
         print(f"設定型新着記事収集失敗。既存イベントを維持: {type(exc).__name__}: {exc}", file=sys.stderr)
+    # Strictly dated, on-station events found during the nationwide 10-12 day
+    # candidate-site bootstrap. URL hints themselves are never public events.
+    try:
+        station_national = collect_national_station_stage(NOW)
+        collected += station_national
+        print(f"全国駅サイト厳密検査から {len(station_national)} 件を取込み")
+    except (ValueError, OSError, TypeError) as exc:
+        print(f"全国候補イベント監査データ失敗。既存イベント維持: {exc}", file=sys.stderr)
     # Config-driven, conservative fallback for previously verified events
     # missing from listing collectors this time. No invented events/dates.
     try:
