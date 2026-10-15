@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-15T04:40:44.405752+00:00",
+  "maxSitesPerRun": 36,
+  "newlyChecked": 31,
+  "results": [
+    {
+      "stationId": "RS0002",
+      "prefecture": "北海道",
+      "roadName": "スタープラザ　芦別",
+      "url": "https://go-to-ashibetsu.com/media/2018/04/01/20",
+      "status": "http_or_size_rejected",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0004",
+      "prefecture": "北海道",
+      "roadName": "しらぬか恋問館",
+      "url": "https://michinoeki-shiranuka.jp/",
+      "status": "identity_not_found",
+      "stationNameMentioned": false,
+      "eventLinkHints": [
+        "https://michinoeki-shiranuka.jp/news/news_cat/event/",
+        "https://michinoeki-shiranuka.jp/news/%e6%97%a5%e6%9c%ac%e5%90%84%e5%9c%b0%e3%81%ae%e3%80%8c%e7%be%8e%e5%91%b3%e3%81%97%e3%81%84%e3%80%8d%e3%81%8c%e3%82%84%e3%81%a3%e3%81%a6%e3%81%8d%e3%81%9f%ef%bc%81%e7%ac%ac9%e5%bc%be%e6%9c%ac%e6%97%a5/",
+        "https://michinoeki-shiranuka.jp/news/news_cat/info",
+        "https://michinoeki-shiranuka.jp/news/10%e6%9c%88%e3%81%af%e3%83%8f%e3%83%ad%e3%82%a6%e3%82%a3%e3%83%b3%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e9%96%8b%e5%82%ac%ef%bc%81/",
+        "https://michinoeki-shiranuka.jp/news/%e6%97%a5%e6%9c%ac%e3%81%ae%e7%be%8e%e5%91%b3%e3%81%97%e3%81%84%e3%82%82%e3%81%ae%e3%82%b7%e3%83%aa%e3%83%bc%e3%82%ba-%e7%ac%ac8%e5%bc%be%ef%bc%81/",
+        "https://michinoeki-shiranuka.jp/news/news_cat/event",
+        "https://michinoeki-shiranuka.jp/#jmp_event"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0009",
+      "prefecture": "北海道",
+      "roadName": "忠類",
+      "url": "https://hotel-arco.jp/sightseeing/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0018",
+      "prefecture": "北海道",
+      "roadName": "よってけ！島牧",
+      "url": "https://michinoekishimamaki.jimdofree.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0028",
+      "prefecture": "北海道",
+      "roadName": "阿寒丹頂の里",
+      "url": "https://www.akan.jp/",
+      "status": "http_or_size_rejected",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0029",
+      "prefecture": "北海道",
+      "roadName": "おとふけ",
+      "url": "https://michinoeki-otofuke.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://michinoeki-otofuke.jp/xo_event/",
+        "https://michinoeki-otofuke.jp/category/news/",
+        "https://michinoeki-otofuke.jp/post-5422/",
+        "https://michinoeki-otofuke.jp/category/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88/",
+        "https://michinoeki-otofuke.jp/post-5363/",
+        "https://michinoeki-otofuke.jp/post-5261/",
+        "https://michinoeki-otofuke.jp/xo_event/xo_event-5367/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0030",
+      "prefecture": "北海道",
+      "roadName": "ピンネシリ",
+      "url": "https://pinneshiri-autocamp.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0034",
+      "prefecture": "北海道",
+      "roadName": "マオイの丘公園",
+      "url": "https://maoinooka.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://maoinooka.jp/news/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0046",
+      "prefecture": "北海道",
+      "roadName": "スペース・アップルよいち",
+      "url": "https://www.spacedome.jp",
+      "status": "robots_blocked",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0052",
+      "prefecture": "北海道",
+      "roadName": "森と湖の里ほろかない",
+      "url": "https://horokanaisoba.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://horokanaisoba.com/event/1425/",
+        "https://horokanaisoba.com/event/1423/",
+        "https://horokanaisoba.com/event/1419/",
+        "https://horokanaisoba.com/event/1415/",
+        "https://horokanaisoba.com/event/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0061",
+      "prefecture": "北海道",
+      "roadName": "さらべつ",
+      "url": "https://www.instagram.com/mitinoekisarabetsu/",
+      "status": "robots_blocked",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0066",
+      "prefecture": "北海道",
+      "roadName": "オーロラタウン９３りくべつ",
+      "url": "https://www.rikubetsu.jp/kanko/michinoeki/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.rikubetsu.jp/kanko/",
+        "https://www.rikubetsu.jp/kanko/event/",
+        "https://www.rikubetsu.jp/kanko"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0073",
+      "prefecture": "北海道",
+      "roadName": "ぐるっとパノラマ美幌峠",
+      "url": "https://bihoropass.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://bihoropass.jp/news/blog/2024/10/28/akimatsuri2024/",
+        "https://bihoropass.jp/news/blog/2024/06/20/%e6%9c%89%e6%96%99%e3%82%b4%e3%83%9f%e5%9b%9e%e5%8f%8e%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e9%96%8b%e5%a7%8b/",
+        "https://bihoropass.jp/news/blog/2024/06/20/%e3%80%8c%e9%9b%b2%e6%b5%b7%e5%89%8d%e5%a4%9c%e3%81%ae%e3%83%ac%e3%82%b9%e3%83%88%e3%83%a9%e3%83%b3%e3%80%8d%e3%83%97%e3%83%ac%e3%83%8f%e3%83%96%e5%86%85%e3%81%ae%e5%86%b7%e5%87%8d%e8%87%aa%e8%b2%a9/",
+        "https://bihoropass.jp/news/blog/2024/04/22/%e5%a4%8f%e5%ad%a3%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://bihoropass.jp/news/blog/2024/01/09/%e6%84%9f%e8%ac%9d%e7%a5%ad%e6%8a%bd%e9%81%b8%e7%b5%90%e6%9e%9c%e7%99%ba%e8%a1%a8/",
+        "https://bihoropass.jp/news/blog/2023/11/07/%e9%81%93%e3%81%ae%e9%a7%85%e3%80%8c%e3%81%90%e3%82%8b%e3%81%a3%e3%81%a8%e3%83%91%e3%83%8e%e3%83%a9%e3%83%9e%e7%be%8e%e5%b9%8c%e5%b3%a0%e3%80%8d%e6%84%9f%e8%ac%9d%e7%a5%ad%e9%96%8b%e5%82%ac%e4%b8%ad/",
+        "https://bihoropass.jp/news/blog/2023/11/07/%e5%86%ac%e5%ad%a3%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://bihoropass.jp/news/blog/2023/06/16/%e3%80%90%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e3%80%91/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0075",
+      "prefecture": "北海道",
+      "roadName": "とようら",
+      "url": "https://toyoura-rss.amebaownd.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://toyoura-rss.amebaownd.com/posts/18614584",
+        "https://toyoura-rss.amebaownd.com/posts/17649196",
+        "https://toyoura-rss.amebaownd.com/posts/14798794",
+        "https://toyoura-rss.amebaownd.com/posts/14798471"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0078",
+      "prefecture": "北海道",
+      "roadName": "あいおい",
+      "url": "https://michinoeki-aioi.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0084",
+      "prefecture": "北海道",
+      "roadName": "花ロードえにわ",
+      "url": "https://hanafuru.jp/facility/hanaroad.html",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0104",
+      "prefecture": "北海道",
+      "roadName": "ステラ★ほんべつ",
+      "url": "https://www.facebook.com/道の駅ステラほんべつ-213161028715975/",
+      "status": "robots_blocked",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0107",
+      "prefecture": "北海道",
+      "roadName": "しんしのつ",
+      "url": "https://tappunoyuonsen.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0199",
+      "prefecture": "宮城県",
+      "roadName": "路田里はなやま",
+      "url": "https://visit-kurihara.travel/spots/143",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://visit-kurihara.travel/events"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0203",
+      "prefecture": "宮城県",
+      "roadName": "あ・ら・伊達な道の駅",
+      "url": "https://ala-date.com",
+      "status": "robots_blocked",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0205",
+      "prefecture": "宮城県",
+      "roadName": "上品の郷",
+      "url": "https://joubon.com",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://joubon.com/calendar/action~agenda/request_format~json/cat_ids~23/",
+        "https://joubon.com/calendar/action~agenda/request_format~json/cat_ids~14/",
+        "https://joubon.com/calendar/cat_ids~23/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0157",
+      "prefecture": "岩手県",
+      "roadName": "石鳥谷",
+      "url": "https://www.sakashokan.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0158",
+      "prefecture": "岩手県",
+      "roadName": "高田松原",
+      "url": "https://takata-matsubara.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://takata-matsubara.com/topics/%e3%81%99%e3%81%aa%e3%81%b0%e7%8f%88%e7%90%b2%e9%ab%98%e7%94%b0%e6%9d%be%e5%8e%9f%e5%ba%97%e3%80%812026%e5%b9%b410%e6%9c%88%e3%81%ae%e5%96%b6%e6%a5%ad%e6%97%a5%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
+        "https://takata-matsubara.com/topics/autumn-recommendations/",
+        "https://takata-matsubara.com/topics/%e3%80%8c%e9%81%93%e3%81%ae%e9%a7%85%e9%ab%98%e7%94%b0%e6%9d%be%e5%8e%9f%e3%80%8d%e6%ad%a9%e3%81%bf/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0163",
+      "prefecture": "岩手県",
+      "roadName": "のだ",
+      "url": "https://pa-puru.nodaeki.com",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://pa-puru.nodaeki.com/%e6%9c%9d%e9%a3%9f%e5%96%b6%e6%a5%ad%e4%bc%91%e6%a5%ad%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://pa-puru.nodaeki.com/%e7%ac%ac8%e5%9b%9e%e6%b6%bc%e6%b5%b7%e3%81%ae%e4%b8%98%e3%83%af%e3%82%a4%e3%83%8a%e3%83%aa%e3%83%bc%e5%a4%a7%e5%8f%8e%e7%a9%ab%e7%a5%adin%e3%83%9e%e3%83%aa%e3%83%b3%e3%83%ad%e3%83%bc%e3%82%ba/",
+        "https://pa-puru.nodaeki.com/news/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0174",
+      "prefecture": "岩手県",
+      "roadName": "さんりく",
+      "url": "https://www.sunfull-shop.jp",
+      "status": "robots_blocked",
+      "eventLinkHints": []
+    },
+    {
+      "stationId": "RS0174",
+      "prefecture": "岩手県",
+      "roadName": "さんりく",
+      "url": "https://www.sunfull.jp",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.sunfull.jp/news-list/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0184",
+      "prefecture": "岩手県",
+      "roadName": "みやこ",
+      "url": "https://oasis385.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://oasis385.jp/info/",
+        "https://oasis385.jp/info/1783/",
+        "https://oasis385.jp/info/1780/",
+        "https://oasis385.jp/info/1775/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0141",
+      "prefecture": "青森県",
+      "roadName": "なんごう",
+      "url": "https://www.michinoeki-nango.com",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.michinoeki-nango.com/news/",
+        "https://www.michinoeki-nango.com/category/news/",
+        "https://www.michinoeki-nango.com/news"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0146",
+      "prefecture": "青森県",
+      "roadName": "よこはま",
+      "url": "https://www.nanohana-plaza.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.nanohana-plaza.com/topics",
+        "https://www.nanohana-plaza.com/2680",
+        "https://www.nanohana-plaza.com/2588",
+        "https://www.nanohana-plaza.com/720",
+        "https://www.nanohana-plaza.com/2444",
+        "https://www.nanohana-plaza.com/2351"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0148",
+      "prefecture": "青森県",
+      "roadName": "こどまり",
+      "url": "https://www.aomori-yamaka.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false
+    },
+    {
+      "stationId": "RS0155",
+      "prefecture": "青森県",
+      "roadName": "ろくのへ",
+      "url": "https://rokunohe.wixsite.com/home/",
+      "status": "http_or_size_rejected",
+      "eventLinkHints": []
+    }
+  ],
+  "nextBatchEligible": 0,
+  "limitations": "Station mentions and candidate links are not verified ownership, event dates, or publishable events."
+}
