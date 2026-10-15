@@ -1023,18 +1023,35 @@
       "allowedHosts": [
         "takanoyama.jp"
       ],
-      "articlePathPattern": "^/(?:news_event|[0-9]{4}/[0-9]{2}/[^/?#]+)/?$",
+      "articlePathPattern": "^/[0-9]{3,7}/?$",
       "listingLinkSelector": "a[href]",
       "articleSelector": "main, article, .entry-content",
       "titleSelectors": [
-        "h1",
-        "article h1",
-        "main h1"
+        "main h2",
+        "article h2",
+        "h2",
+        "h1"
       ],
       "requiredVenueTokens": [
         "道の駅たかの"
       ],
-      "maxArticles": 8
+      "maxArticles": 8,
+      "allowedEventWords": [
+        "イベント",
+        "祭",
+        "まつり",
+        "フェア",
+        "マルシェ",
+        "収穫",
+        "公演",
+        "コンサート",
+        "体験",
+        "周年",
+        "感謝祭",
+        "ライブ",
+        "ワークショップ",
+        "開催"
+      ]
     },
     {
       "id": "hiroshima_shinmei",
@@ -1045,7 +1062,7 @@
       "allowedHosts": [
         "www.shinmeinosato.jp"
       ],
-      "articlePathPattern": "^/[^?#]+\\.html$",
+      "articlePathPattern": "^/index\\.html$",
       "listingLinkSelector": "a[href]",
       "articleSelector": "main, article, body",
       "titleSelectors": [
@@ -1055,7 +1072,18 @@
       "requiredVenueTokens": [
         "みはら神明の里"
       ],
-      "maxArticles": 8
+      "maxArticles": 1,
+      "articleMode": "dated_news_listing",
+      "allowedEventWords": [
+        "イベント",
+        "祭",
+        "まつり",
+        "フェア",
+        "マルシェ",
+        "周年",
+        "感謝祭",
+        "開催"
+      ]
     }
   ]
 }
