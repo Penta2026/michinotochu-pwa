@@ -8,19 +8,19 @@ class BatchReviewTests(unittest.TestCase):
                  "roadName": "テスト駅", "directoryInspectionState": "checked",
                  "candidates": [{"url": "https://station.example/%s" % i,
                     "kind": "station_or_partner_site_unverified",
-                    "reviewStatus": "awaiting_review"}]} for i in range(1, 41)]
+                    "reviewStatus": "awaiting_review"}]} for i in range(1, 125)]
         queue = {"stations": rows}
         class Response:
             status_code = 200
             content = "<html><body>テスト駅 <a href='/events'>イベント</a></body></html>".encode()
         first = run(queue, {}, lambda url: Response(), lambda url: True)
-        self.assertEqual(first["newlyChecked"], 36)
+        self.assertEqual(first["newlyChecked"], 120)
         self.assertEqual(first["nextBatchEligible"], 4)
         self.assertFalse(first["results"][0]["ownershipVerified"])
         self.assertEqual(first["results"][0]["eventLinkHints"], ["https://station.example/events"])
         second = run(queue, first, lambda url: Response(), lambda url: True)
         self.assertEqual(second["newlyChecked"], 4)
-        self.assertEqual(len(second["results"]), 40)
+        self.assertEqual(len(second["results"]), 124)
 
     def test_respects_robots_and_never_fetches_disallowed_url(self):
         queue = {"stations": [{"id": "RS0001", "prefecture": "北海道",
@@ -58,9 +58,34 @@ class BatchReviewTests(unittest.TestCase):
         self.assertFalse(any(r["url"] == "https://unsafe.example"
                              for r in result["results"]))
 
+    def test_first_pass_station_fairness_before_secondary_urls(self):
+        rows = [
+            {"id": "RS0001", "prefecture": "北海道", "roadName": "駅A",
+             "directoryInspectionState": "checked", "candidates": [
+                {"url": "https://one.example/a", "kind": "station_or_partner_site_unverified",
+                 "reviewStatus": "awaiting_review"},
+                {"url": "https://one.example/b", "kind": "station_or_partner_site_unverified",
+                 "reviewStatus": "awaiting_review"}]},
+            {"id": "RS0002", "prefecture": "北海道", "roadName": "駅B",
+             "directoryInspectionState": "checked", "candidates": [
+                {"url": "https://two.example/", "kind": "station_or_partner_site_unverified",
+                 "reviewStatus": "awaiting_review"}]}]
+        class Response:
+            status_code = 200
+            content = b"<html></html>"
+        called = []
+        first = run({"stations": rows}, {},
+                    lambda url: (called.append(url) or Response()),
+                    lambda url: True, limit=2)
+        self.assertEqual(called, ["https://one.example/a", "https://two.example/"])
+        second = run({"stations": rows}, first,
+                     lambda url: (called.append(url) or Response()),
+                     lambda url: True, limit=2)
+        self.assertEqual(called[-1], "https://one.example/b")
+
     def test_budget_cap(self):
         with self.assertRaises(ValueError):
-            run({"stations": []}, {}, lambda url: None, lambda url: True, limit=37)
+            run({"stations": []}, {}, lambda url: None, lambda url: True, limit=121)
 
 
 if __name__ == "__main__":
