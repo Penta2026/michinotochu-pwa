@@ -49,10 +49,22 @@ def build_queue(directory, inventory=None, previous=None):
         old = previous_rows.get(code, {})
         old_candidates = {x["url"]: x for x in old.get("candidates", [])}
         rows = []
-        for url in sorted(set(item.get("officialWebsiteCandidateUrlsUnverified", []))):
+        incoming = set(item.get("officialWebsiteCandidateUrlsUnverified", []))
+        # Try HTTPS for older directory records that still print HTTP.
+        # Never request plain HTTP or treat a successful TLS response as
+        # proof of official ownership.
+        secure_upgrades = {}
+        for raw in incoming:
+            p = urlsplit(raw)
+            if p.scheme == "http" and classify(raw) != "invalid":
+                upgraded = p._replace(scheme="https").geturl()
+                secure_upgrades[upgraded] = raw
+        for url in sorted(incoming | set(secure_upgrades)):
             category = classify(url)
             existing = old_candidates.get(url, {})
             rows.append({"url": url, "kind": category,
+                         "directoryOriginalUrl": secure_upgrades.get(url, url),
+                         "httpsUpgradeUnverified": url in secure_upgrades,
                          "ownershipVerified": bool(existing.get("ownershipVerified", False)),
                          "eventListingVerified": bool(existing.get("eventListingVerified", False)),
                          "reviewStatus": existing.get("reviewStatus", "blocked_invalid_url" if category == "invalid" else "awaiting_review")})
