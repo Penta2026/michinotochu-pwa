@@ -21329,7 +21329,7 @@
       "knownArticleRecheckSourceIds": [],
       "dedicatedCollectorCoveredAcrossAllModes": true,
       "latestSourceAuditOn": "2026-10-15",
-      "latestSourceFetchFailed": 1,
+      "latestSourceFetchFailed": 0,
       "latestSourceListingErrors": [],
       "currentVerifiedEvents": 1,
       "eventAbsentConfirmed": false,

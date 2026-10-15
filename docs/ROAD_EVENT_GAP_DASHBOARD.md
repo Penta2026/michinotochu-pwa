@@ -14,7 +14,7 @@
 | 現在イベントのある都道府県 | 36/47 |
 | 現在の公開イベント | 59 |
 | 設定型の公式収集ルート（監査済/設定） | 29/29 |
-| 収集先の取得問題 | 1 |
+| 収集先の取得問題 | 0 |
 | 一時停止中の公式証拠（未復旧・要確認） | 1 |
 | 候補が0件の収集先 | 2 |
 | 記事チェック上限に達した収集先 | 9 |
@@ -44,7 +44,6 @@
 - **article_check_limit** — yamaguchi_abu_roadstation （notice）
 - **article_check_limit** — fukui_nanjezen_sankairi （notice）
 - **article_check_limit** — miyazaki_niqll （notice）
-- **source_fetch_error** — ehime_yawatahama_city_events （warning）
 - **article_check_limit** — ehime_yawatahama_city_events （notice）
 
 ## 公式の一次資料が取得できず保留中の収集先

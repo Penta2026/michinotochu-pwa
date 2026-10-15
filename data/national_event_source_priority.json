@@ -185,9 +185,9 @@
         "articleFetchFailed": 0,
         "articleChecked": 4,
         "rejectionReasons": {
-          "onsite_venue_unverified": 2,
           "accepted_by_adapter": 1,
-          "expired": 1
+          "expired": 1,
+          "onsite_venue_unverified": 2
         }
       },
       "collectionHealth": {
@@ -202,9 +202,9 @@
         "articleChecked": 4,
         "lastSuccessfulCollectionAt": null,
         "rejectionReasons": {
-          "onsite_venue_unverified": 2,
           "accepted_by_adapter": 1,
-          "expired": 1
+          "expired": 1,
+          "onsite_venue_unverified": 2
         },
         "articleFetchSucceeded": 4,
         "articleFetchFailed": 0,
@@ -1062,13 +1062,13 @@
           "configuredSourcesAudited": 3,
           "candidateArticles": 21,
           "articlesAcceptedByDiscovery": 0,
-          "sourcesWithFetchProblems": 1,
+          "sourcesWithFetchProblems": 0,
           "regionalHomepageReachable": true,
           "evidenceLevel": "published_events_observed",
           "dedicatedSourceLatestAuditDate": "2026-10-15",
           "sourcesWithSuccessfulListing": 3,
-          "articlesChecked": 12,
-          "articlesUnverified": 9,
+          "articlesChecked": 13,
+          "articlesUnverified": 8,
           "sourceHealthEvidence": "audited_dedicated_sources"
         },
         {

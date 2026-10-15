@@ -1087,7 +1087,7 @@
       "listingUrl": "https://www.city.yawatahama.ehime.jp/event/2026/",
       "listingError": "",
       "candidates": 20,
-      "checked": 11,
+      "checked": 12,
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
@@ -1095,17 +1095,11 @@
       "reconfirmationChecked": 0,
       "reconfirmationFailed": 0,
       "reconfirmationUninspected": 0,
-      "fetchFailed": 1,
-      "fetchErrors": [
-        {
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2022110800019/",
-          "type": "ReadTimeout",
-          "detail": "HTTPSConnectionPool(host='www.city.yawatahama.ehime.jp', port=443): Read timed out. (read timeout=9)"
-        }
-      ],
+      "fetchFailed": 0,
+      "fetchErrors": [],
       "reasons": {
         "venue_missing": 1,
-        "not_event": 10
+        "not_event": 11
       },
       "examples": [],
       "rejectedExamples": [
@@ -1122,6 +1116,11 @@
         {
           "title": "市営駐車場",
           "url": "https://www.city.yawatahama.ehime.jp/doc/2019100100020/",
+          "reason": "not_event"
+        },
+        {
+          "title": "観光情報誌",
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2022110800019/",
           "reason": "not_event"
         },
         {
@@ -1520,7 +1519,18 @@
         {
           "title": "2026.09.23 レトロカーフェスタ2026 エントリー開始!",
           "url": "https://kohannosato.co.jp/news/%e3%83%ac%e3%83%88%e3%83%ad%e3%82%ab%e3%83%bc%e3%83%95%e3%82%a7%e3%82%b9%e3%82%bf2026%e3%80%80%e3%82%a8%e3%83%b3%e3%83%88%e3%83%aa%e3%83%bc%e9%96%8b%e5%a7%8b%ef%bc%81/",
-          "reason": "undated"
+          "reason": "undated",
+          "dateDiagnosis": {
+            "articleTextExcerpt": "レトロカーフェスタ2026 エントリー開始! 🚗 11月3日はレトロカーフェスタ2026in福富 🚙 11月3日(火・祝)、道の駅湖畔の里福富にレトロな自動車/バイクが大集合するイベント 「レトロカーフェスタ」を開催いたします✨ それに伴い、現在当日お越し頂けるレトロカーをお持ちの方のエントリーを募集しております! ・お車での参加 2500円 ・バイクでの参加 1500円 となっております。 お申し込みは下記のリンクまたはチラシのQRコードからお願いいたします! https://select-type.com/rsv/?id=VKQjYxPynkk&c_id=456380 たくさんのお越しをお待ちしております😊 お知らせ一覧へ",
+            "imageHints": [
+              {
+                "alt": "",
+                "src": "http://kohannosato.co.jp/wp-content/uploads/2026/09/レトロカーフェスタ-768x1024.png"
+              }
+            ],
+            "documentLinks": [],
+            "note": "Evidence for debugging only; dates in images are not parsed or invented."
+          }
         },
         {
           "title": "2026.08.31 お知らせ しゃくなげ湖納涼花火大会 募金のお礼・ご報告",

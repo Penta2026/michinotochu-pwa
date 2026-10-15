@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T11:08:53.735254+09:00",
+  "generatedAt": "2026-10-15T11:35:08.028694+09:00",
   "mode": "fetch",
   "cycleDays": 7,
   "stationsTotal": 1234,
@@ -8,9 +8,8 @@
   "verifiedDueToday": 17,
   "requestsAttempted": 17,
   "statusCounts": {
-    "changed": 4,
-    "unchanged": 12,
-    "first_seen": 1
+    "changed": 5,
+    "unchanged": 12
   },
   "newOrChanged": [
     {
@@ -46,7 +45,7 @@
       "prefecture": "広島県",
       "roadName": "湖畔の里福富",
       "url": "https://kohannosato.co.jp/news/",
-      "status": "first_seen"
+      "status": "changed"
     }
   ],
   "limitations": [
