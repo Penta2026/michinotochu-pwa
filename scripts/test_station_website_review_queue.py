@@ -43,6 +43,17 @@ class WebsiteReviewQueueTests(unittest.TestCase):
         self.assertEqual(result["stations"][1]["homepageExistence"], "unknown")
         self.assertEqual(result["stations"][1]["eventCoverageState"], "not_assessed")
 
+    def test_old_http_station_links_get_unverified_https_trial(self):
+        r = build_queue({"stations": [{"id": "RS0020", "prefecture": "広島県",
+            "roadName": "試験道の駅", "officialWebsiteCandidateUrlsUnverified":
+            ["http://station.example/news/"]}]})
+        row = r["stations"][0]
+        secure = next(c for c in row["candidates"] if c["url"].startswith("https:"))
+        self.assertEqual(secure["directoryOriginalUrl"], "http://station.example/news/")
+        self.assertTrue(secure["httpsUpgradeUnverified"])
+        self.assertFalse(secure["ownershipVerified"])
+        self.assertFalse(secure["eventListingVerified"])
+
     def test_rejects_suspicious_urls(self):
         self.assertEqual(classify("file:///etc/passwd"), "invalid")
         self.assertEqual(classify("http://localhost/admin"), "invalid")
