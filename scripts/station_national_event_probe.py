@@ -29,6 +29,12 @@ MAX_ARTICLES_PER_STATION = 3
 JST = timezone(timedelta(hours=9))
 DATE = re.compile(r"(?<![0-9])20[0-9]{2}[年./-][0-9]{1,2}[月./-][0-9]{1,2}日?")
 DATE_LABEL = re.compile(r"開催日|開催日時|開催期間|イベント日時|実施日|日時|日程")
+STRICT_EVENT_WORDS = (
+    "イベント", "祭", "まつり", "フェア", "マルシェ", "収穫",
+    "公演", "コンサート", "物産展", "文化祭", "朝市", "販売会",
+    "フリマ", "花火", "感謝祭", "ライブ", "ワークショップ",
+    "フェス", "開催"
+)
 
 
 def safe_same_host(url, home):
@@ -123,7 +129,7 @@ def parse_strict_event(html, station, url, today):
         return None, "no_article"
     # A generic news listing with many event headlines is NOT one event.
     headings = [h.get_text(" ", strip=True) for h in container.select("h1,h2,h3")]
-    named = [h for h in headings if any(w in h for w in EVENT_WORDS)
+    named = [h for h in headings if any(w in h for w in STRICT_EVENT_WORDS)
              and not any(b in h for b in BLOCK)
              and h.strip() not in ("イベント一覧", "イベント案内", "イベント情報",
                                     "イベント情報一覧", "イベントのお知らせ",
@@ -155,7 +161,7 @@ def parse_strict_event(html, station, url, today):
         "requiredVenueTokens": ["道の駅" + name],
         "venueProofPattern": venue_pattern,
         "requireVenueLabel": True,
-        "allowedEventWords": list(EVENT_WORDS),
+        "allowedEventWords": list(STRICT_EVENT_WORDS),
         "splitArticleTextLines": True,
     }
     event, why = _article_record(spec, soup, named[0], today, url)
@@ -191,7 +197,7 @@ def listing_event_links(html, base):
     found = []
     for a in container.select("a[href]"):
         text = " ".join(a.get_text(" ", strip=True).split())
-        if (len(text) < 7 or not any(w in text for w in EVENT_WORDS)
+        if (len(text) < 7 or not any(w in text for w in STRICT_EVENT_WORDS)
                 or any(x in text for x in BLOCK)):
             continue
         url = urljoin(base, a.get("href", ""))
