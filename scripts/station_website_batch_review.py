@@ -1,6 +1,6 @@
 """Inspect up to 120 candidate station sites per day; never auto-publish sources."""
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlparse, urljoin
 from urllib.robotparser import RobotFileParser
@@ -14,18 +14,32 @@ TERMS = ("イベント", "催し", "行事", "お知らせ", "祭", "event", "ne
 AGENT = "MichinotochuStationSiteReview/1.0"
 
 
-def eligible(queue, previous):
-    seen = {(r["stationId"], r["url"]) for r in previous.get("results", [])}
+def eligible(queue, previous, *, today=None):
+    today = today or datetime.now(timezone.utc).date()
+    seen = {(r["stationId"], r["url"]): r for r in previous.get("results", [])}
+    default_time = previous.get("checkedAt", "")
     for station in queue["stations"]:
         if station.get("directoryInspectionState") != "checked":
             continue
         for hint in station.get("candidates", []):
             p = urlparse(hint["url"])
-            if (hint.get("reviewStatus") == "awaiting_review"
+            if not (hint.get("reviewStatus") == "awaiting_review"
                     and hint.get("kind") == "station_or_partner_site_unverified"
                     and p.scheme == "https" and p.hostname and not p.username
-                    and not p.password and not p.port
-                    and (station["id"], hint["url"]) not in seen):
+                    and not p.password and not p.port):
+                continue
+            record = seen.get((station["id"], hint["url"]))
+            if record is None:
+                yield station, hint["url"]
+                continue
+            # Recheck on a weekly cadence *after* new station sites.
+            # A station may announce an event long after its first visit.
+            try:
+                last = datetime.fromisoformat(
+                    record.get("checkedAt") or default_time).date()
+            except (ValueError, TypeError):
+                last = today
+            if (today - last).days >= 7:
                 yield station, hint["url"]
 
 
@@ -92,7 +106,8 @@ def run(queue, previous, fetch, allowed, limit=MAX_SITES, priority=None):
             except requests.RequestException as error:
                 result = {"status": "fetch_failed", "errorType": type(error).__name__,
                           "eventLinkHints": []}
-        additions.append({**record, **result})
+        additions.append({**record, **result,
+                          "checkedAt": datetime.now(timezone.utc).isoformat()})
     return {"schemaVersion": 1, "checkedAt": datetime.now(timezone.utc).isoformat(),
             "maxSitesPerRun": limit, "newlyChecked": len(additions),
             "results": previous.get("results", []) + additions,
