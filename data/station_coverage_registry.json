@@ -11,20 +11,20 @@
   ],
   "summary": {
     "appStations": 1234,
-    "individualSourcesWithListing": 23,
-    "individualSourcesIncludingRecheck": 28,
+    "individualSourcesWithListing": 24,
+    "individualSourcesIncludingRecheck": 29,
     "stationsWithCurrentVerifiedEvent": 43,
     "currentVerifiedEventRecords": 59,
-    "stationsWithAnyDedicatedCollector": 39,
-    "stationsWithoutDedicatedSource": 1195,
+    "stationsWithAnyDedicatedCollector": 40,
+    "stationsWithoutDedicatedSource": 1194,
     "masterWebsiteUrlCandidatesUnverified": 83,
     "nationalDirectoryStationPagesChecked": 83,
     "nationalDirectoryLinkCandidateStations": 83,
     "statuses": {
       "current_official_event_verified": 43,
       "dedicated_source_checked_no_verified_future_event": 8,
-      "dedicated_source_configured_not_checked": 3,
-      "no_dedicated_source": 1174,
+      "dedicated_source_configured_not_checked": 4,
+      "no_dedicated_source": 1173,
       "other_dedicated_collector_configured": 6
     },
     "confirmedNoEventStations": 0,
@@ -19457,21 +19457,25 @@
       "id": "RS0957",
       "prefecture": "広島県",
       "roadName": "湖畔の里福富",
-      "coverageState": "no_dedicated_source",
+      "coverageState": "dedicated_source_configured_not_checked",
       "officialWebsiteCandidateUrlsUnverified": [],
       "directoryDetailUrl": "",
       "lastDirectoryChecked": "",
       "officialSiteOwnershipVerified": false,
-      "dedicatedSourceIds": [],
-      "dedicatedOfficialListingUrls": [],
+      "dedicatedSourceIds": [
+        "hiroshima_fukutomi"
+      ],
+      "dedicatedOfficialListingUrls": [
+        "https://kohannosato.co.jp/news/"
+      ],
       "knownArticleRecheckSourceIds": [],
-      "dedicatedCollectorCoveredAcrossAllModes": false,
+      "dedicatedCollectorCoveredAcrossAllModes": true,
       "latestSourceAuditOn": "",
       "latestSourceFetchFailed": 0,
       "latestSourceListingErrors": [],
       "currentVerifiedEvents": 0,
       "eventAbsentConfirmed": false,
-      "nextAction": "review_official_website_url"
+      "nextAction": "continue_verified_source_checks"
     },
     {
       "id": "RS0958",
