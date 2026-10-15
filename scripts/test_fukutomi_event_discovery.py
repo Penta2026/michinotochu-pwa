@@ -20,6 +20,18 @@ class FukutomiTests(unittest.TestCase):
         self.assertIsNotNone(record,reason)
         self.assertEqual(record["startDate"],"2026-11-03")
         self.assertEqual(record["roadName"],"湖畔の里福富")
+    def test_year_from_event_title_and_month_day_from_body(self):
+        html = '<main><h1>レトロカーフェスタ2026 エントリー開始！</h1><p>11月3日(火・祝)、道の駅湖畔の里福富にレトロな自動車が大集合するイベントを開催いたします。</p><p>参加募集</p></main>'
+        record, reason = _article_record(SOURCE, BeautifulSoup(html, "html.parser"), "2026.09.23 レトロカーフェスタ2026 エントリー開始！", date(2026, 10, 15), "https://kohannosato.co.jp/news/retrocar-festa2026/")
+        self.assertIsNotNone(record, reason)
+        self.assertEqual(record["startDate"], "2026-11-03")
+        self.assertEqual(record["endDate"], "2026-11-03")
+
+    def test_reject_ambiguous_event_days(self):
+        html = '<main><h1>レトロカーフェスタ2026</h1><p>11月3日に開催予定</p><p>11月4日にイベントを開催予定</p><p>道の駅湖畔の里福富</p></main>'
+        record, _ = _article_record(SOURCE, BeautifulSoup(html, "html.parser"), "レトロカーフェスタ2026", date(2026, 10, 15), "https://kohannosato.co.jp/news/retrocar-festa2026/")
+        self.assertIsNone(record)
+
     def test_post_date_is_not_event_date(self):
         html='<main><h1>レトロカーフェスタ2026 エントリー開始！</h1><p>2026年9月23日 更新</p><p>道の駅湖畔の里福富で開催予定</p></main>'
         record,_=_article_record(SOURCE,BeautifulSoup(html,"html.parser"),"レトロカーフェスタ2026",date(2026,10,15),"https://kohannosato.co.jp/news/retrocar-festa2026/")
