@@ -1,6 +1,10 @@
 """Offline tests for nationwide station event publication gate."""
 import unittest
+import json
+from tempfile import TemporaryDirectory
+from pathlib import Path
 from datetime import date
+from collect_road_events import collect_national_station_stage
 from station_national_event_probe import (
     safe_same_host, eligible_targets, parse_strict_event, collect,
 )
@@ -91,6 +95,21 @@ class NationwideStationEventProbeTests(unittest.TestCase):
         self.assertEqual(blocked["events"], [])
         self.assertEqual(blocked_audit["todayDetails"][0]["rejectedReasons"],
                          {"robots_blocked": 1})
+
+    def test_stage_reader_accepts_only_nonexpired_well_formed_events(self):
+        good, why = parse_strict_event(DETAIL, STATION, URL, TODAY)
+        self.assertEqual(why, "")
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "events.json"
+            path.write_text(json.dumps({"schemaVersion": 1, "events": [
+                good, {**good, "startDate": "2026-02-01", "endDate": "2026-02-01"},
+                {**good, "status": "cancelled"}
+            ]}), encoding="utf-8")
+            found = collect_national_station_stage(TODAY, path)
+            self.assertEqual(found, [good])
+            path.write_text(json.dumps({"schemaVersion": 9, "events": [good]}), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                collect_national_station_stage(TODAY, path)
 
 
 if __name__ == "__main__":
