@@ -1,20 +1,114 @@
 {
   "schemaVersion": 1,
-  "basisCheckedAt": "2026-10-15T04:40:44.405752+00:00",
+  "basisCheckedAt": "2026-10-15T04:56:25.418836+00:00",
   "masterStations": 1234,
   "configuredStationCount": 27,
-  "inspectedStationWebsiteUrls": 31,
+  "inspectedStationWebsiteUrls": 64,
   "reviewStatuses": {
-    "http_or_size_rejected": 3,
-    "identity_mentioned_unverified": 19,
+    "http_or_size_rejected": 6,
+    "identity_mentioned_unverified": 35,
     "identity_not_found": 1,
-    "robots_blocked": 8
+    "robots_blocked": 22
   },
-  "potentialStationSites": 19,
-  "potentialEventListingSites": 14,
-  "shortlisted": 19,
+  "potentialStationSites": 35,
+  "potentialEventListingSites": 26,
+  "shortlisted": 35,
   "remainingPotentialSites": 0,
   "shortlist": [
+    {
+      "stationId": "RS0330",
+      "prefecture": "栃木県",
+      "roadName": "明治の森・黒磯",
+      "websiteUrl": "https://meijinomori.jp/",
+      "eventLinkHints": [
+        "https://meijinomori.jp/",
+        "https://meijinomori.jp/news/699",
+        "https://meijinomori.jp/news/1729",
+        "https://meijinomori.jp/news/1687",
+        "https://meijinomori.jp/news-list"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0338",
+      "prefecture": "栃木県",
+      "roadName": "みかも",
+      "websiteUrl": "https://www.michinoeki-mikamo.jp/",
+      "eventLinkHints": [
+        "https://www.michinoeki-mikamo.jp/information",
+        "https://www.michinoeki-mikamo.jp/event",
+        "https://www.michinoeki-mikamo.jp/512"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0331",
+      "prefecture": "栃木県",
+      "roadName": "ばとう",
+      "websiteUrl": "https://www.michinoeki-bato.jp",
+      "eventLinkHints": [
+        "https://www.michinoeki-bato.jp/informations/7436/",
+        "https://www.michinoeki-bato.jp/news"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0333",
+      "prefecture": "栃木県",
+      "roadName": "きつれがわ",
+      "websiteUrl": "https://michinoeki-kitsuregawa.jp",
+      "eventLinkHints": [
+        "https://michinoeki-kitsuregawa.jp/category/news",
+        "https://michinoeki-kitsuregawa.jp/news/4806"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0250",
+      "prefecture": "山形県",
+      "roadName": "河北",
+      "websiteUrl": "https://sites.google.com/view/ekikahoku/home",
+      "eventLinkHints": [],
+      "discoveryTier": "station_name_only",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0260",
+      "prefecture": "山形県",
+      "roadName": "おおえ",
+      "websiteUrl": "https://oe-terume.co.jp/roadside-station-oe/",
+      "eventLinkHints": [],
+      "discoveryTier": "station_name_only",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
     {
       "stationId": "RS0073",
       "prefecture": "北海道",
@@ -29,6 +123,50 @@
         "https://bihoropass.jp/news/blog/2023/11/07/%e9%81%93%e3%81%ae%e9%a7%85%e3%80%8c%e3%81%90%e3%82%8b%e3%81%a3%e3%81%a8%e3%83%91%e3%83%8e%e3%83%a9%e3%83%9e%e7%be%8e%e5%b9%8c%e5%b3%a0%e3%80%8d%e6%84%9f%e8%ac%9d%e7%a5%ad%e9%96%8b%e5%82%ac%e4%b8%ad/",
         "https://bihoropass.jp/news/blog/2023/11/07/%e5%86%ac%e5%ad%a3%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
         "https://bihoropass.jp/news/blog/2023/06/16/%e3%80%90%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e3%80%91/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0220",
+      "prefecture": "秋田県",
+      "roadName": "かづの",
+      "websiteUrl": "https://explorekazuno.jp/",
+      "eventLinkHints": [
+        "https://explorekazuno.jp/event/",
+        "https://explorekazuno.jp/event",
+        "https://explorekazuno.jp/event/hachimantai-guide20260922/",
+        "https://explorekazuno.jp/pickup/hanawabayashi/",
+        "https://explorekazuno.jp/pickup/kazuno-matsuri/",
+        "https://explorekazuno.jp/pickup/kazuno-jinja/",
+        "https://explorekazuno.jp/tourizm/hanawa/matsuritenjikan/",
+        "https://explorekazuno.jp/news/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0244",
+      "prefecture": "秋田県",
+      "roadName": "大館能代空港",
+      "websiteUrl": "https://onj-airterminal.com/",
+      "eventLinkHints": [
+        "https://onj-airterminal.com/news/p20260612172727",
+        "https://onj-airterminal.com/news-list?news_label=news_label-important",
+        "https://onj-airterminal.com/news/p20260928115736",
+        "https://onj-airterminal.com/news/p20261012114935",
+        "https://onj-airterminal.com/news/p20250730151238",
+        "https://onj-airterminal.com/news/p20261008114219",
+        "https://onj-airterminal.com/news/p20260826101537",
+        "https://onj-airterminal.com/news/p20260613102100"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": false,
@@ -98,6 +236,25 @@
       "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
     },
     {
+      "stationId": "RS0224",
+      "prefecture": "秋田県",
+      "roadName": "かみこあに",
+      "websiteUrl": "https://michinoeki-kamikoani.jp/",
+      "eventLinkHints": [
+        "https://michinoeki-kamikoani.jp/news_cat",
+        "https://michinoeki-kamikoani.jp/news_cat/8006/",
+        "https://michinoeki-kamikoani.jp/news_cat/7980/",
+        "https://michinoeki-kamikoani.jp/news_cat/7865/",
+        "https://michinoeki-kamikoani.jp/news_cat/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
       "stationId": "RS0075",
       "prefecture": "北海道",
       "roadName": "とようら",
@@ -125,6 +282,24 @@
         "https://oasis385.jp/info/1783/",
         "https://oasis385.jp/info/1780/",
         "https://oasis385.jp/info/1775/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0220",
+      "prefecture": "秋田県",
+      "roadName": "かづの",
+      "websiteUrl": "https://antlerkazuno.jp/",
+      "eventLinkHints": [
+        "https://antlerkazuno.jp/hanawa-bayashi/",
+        "https://antlerkazuno.jp/jitsuen2026/",
+        "https://antlerkazuno.jp/mission-hanawa/",
+        "https://antlerkazuno.jp/softserve2025/"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": false,
@@ -219,6 +394,38 @@
       "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
     },
     {
+      "stationId": "RS0240",
+      "prefecture": "秋田県",
+      "roadName": "十文字",
+      "websiteUrl": "https://mamederaga.com/",
+      "eventLinkHints": [
+        "https://mamederaga.com/event-cal/",
+        "https://mamederaga.com/2026/10/11/%e3%80%90%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e3%80%91%e9%9b%bb%e8%a9%b1%e3%81%ae%e9%8c%b2%e9%9f%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0299",
+      "prefecture": "福島県",
+      "roadName": "からむし織の里しょうわ",
+      "websiteUrl": "https://www.karamushi.co.jp/",
+      "eventLinkHints": [
+        "https://www.karamushi.co.jp/news",
+        "https://www.karamushi.co.jp/shirakabasou/news/news-detail.php?id=223"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
       "stationId": "RS0034",
       "prefecture": "北海道",
       "roadName": "マオイの丘公園",
@@ -255,6 +462,36 @@
       "websiteUrl": "https://visit-kurihara.travel/spots/143",
       "eventLinkHints": [
         "https://visit-kurihara.travel/events"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0241",
+      "prefecture": "秋田県",
+      "roadName": "おおがた",
+      "websiteUrl": "https://katanomise.com/",
+      "eventLinkHints": [
+        "https://katanomise.com/newslist"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0278",
+      "prefecture": "福島県",
+      "roadName": "ならは",
+      "websiteUrl": "https://michinoeki-naraha.jp",
+      "eventLinkHints": [
+        "https://michinoeki-naraha.jp/detail/2067/news/news-947527.html"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": false,
@@ -320,6 +557,32 @@
       "prefecture": "青森県",
       "roadName": "こどまり",
       "websiteUrl": "https://www.aomori-yamaka.com/",
+      "eventLinkHints": [],
+      "discoveryTier": "station_name_only",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0217",
+      "prefecture": "秋田県",
+      "roadName": "にしめ",
+      "websiteUrl": "https://michinoeki-nishime.com/",
+      "eventLinkHints": [],
+      "discoveryTier": "station_name_only",
+      "zeroCurrentEventPrefecture": false,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0299",
+      "prefecture": "福島県",
+      "roadName": "からむし織の里しょうわ",
+      "websiteUrl": "https://michieki-showa.shop/",
       "eventLinkHints": [],
       "discoveryTier": "station_name_only",
       "zeroCurrentEventPrefecture": false,

@@ -1,12 +1,435 @@
 {
   "schemaVersion": 1,
   "masterStations": 1234,
-  "directoryInspected": 179,
-  "directoryRemaining": 1055,
-  "stationsWithUnverifiedCandidates": 166,
-  "candidateUrlsAwaitingReview": 255,
-  "zeroCurrentEventPrefectureCandidates": 0,
+  "directoryInspected": 275,
+  "directoryRemaining": 959,
+  "stationsWithUnverifiedCandidates": 254,
+  "candidateUrlsAwaitingReview": 371,
+  "zeroCurrentEventPrefectureCandidates": 47,
   "reviewPriority": [
+    {
+      "stationId": "RS0249",
+      "prefecture": "山形県",
+      "roadName": "月山",
+      "url": "http://www.gassanasahi-hakubutsumura.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0250",
+      "prefecture": "山形県",
+      "roadName": "河北",
+      "url": "https://benibananosato.com/watch/burattopia/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0250",
+      "prefecture": "山形県",
+      "roadName": "河北",
+      "url": "https://sites.google.com/view/ekikahoku/home",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0251",
+      "prefecture": "山形県",
+      "roadName": "寒河江",
+      "url": "http://www.cherryland.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0252",
+      "prefecture": "山形県",
+      "roadName": "あつみ",
+      "url": "http://www.at-syarin.com",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0253",
+      "prefecture": "山形県",
+      "roadName": "にしかわ",
+      "url": "http://www.gassan.co.jp/meisuikan/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0254",
+      "prefecture": "山形県",
+      "roadName": "いいで",
+      "url": "http://mezami113.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0255",
+      "prefecture": "山形県",
+      "roadName": "むらやま",
+      "url": "http://www.rs-murayama.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0256",
+      "prefecture": "山形県",
+      "roadName": "とざわ",
+      "url": "http://www.kouraikan.com/tozawa.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0257",
+      "prefecture": "山形県",
+      "roadName": "鳥海",
+      "url": "http://chokai-flat.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0258",
+      "prefecture": "山形県",
+      "roadName": "田沢",
+      "url": "http://www.tazawa-forest.com/nagomi/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0259",
+      "prefecture": "山形県",
+      "roadName": "白い森おぐに",
+      "url": "http://michinoeki-oguni.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0260",
+      "prefecture": "山形県",
+      "roadName": "おおえ",
+      "url": "https://oe-terume.co.jp/roadside-station-oe/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0260",
+      "prefecture": "山形県",
+      "roadName": "おおえ",
+      "url": "https://www.instagram.com/michinoeki_oe/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0261",
+      "prefecture": "山形県",
+      "roadName": "庄内みかわ",
+      "url": "http://www.iroribinosato.info/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0262",
+      "prefecture": "山形県",
+      "roadName": "たかはた",
+      "url": "http://www.rstakahata.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0264",
+      "prefecture": "山形県",
+      "roadName": "尾花沢",
+      "url": "http://www.mitinoku.or.jp/nemaru/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0265",
+      "prefecture": "山形県",
+      "roadName": "白鷹ヤナ公園",
+      "url": "http://www.ayuchaya.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0326",
+      "prefecture": "栃木県",
+      "roadName": "もてぎ",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000071.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0326",
+      "prefecture": "栃木県",
+      "roadName": "もてぎ",
+      "url": "http://www.motegiplaza.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0327",
+      "prefecture": "栃木県",
+      "roadName": "にのみや",
+      "url": "http://michinoeki-ninomiya.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0327",
+      "prefecture": "栃木県",
+      "roadName": "にのみや",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000072.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0328",
+      "prefecture": "栃木県",
+      "roadName": "湯の香しおばら",
+      "url": "http://www.agripal-shiobara.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0328",
+      "prefecture": "栃木県",
+      "roadName": "湯の香しおばら",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000057.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0329",
+      "prefecture": "栃木県",
+      "roadName": "那須高原友愛の森",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000058.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0329",
+      "prefecture": "栃木県",
+      "roadName": "那須高原友愛の森",
+      "url": "http://www.yuainomori.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0330",
+      "prefecture": "栃木県",
+      "roadName": "明治の森・黒磯",
+      "url": "https://meijinomori.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0330",
+      "prefecture": "栃木県",
+      "roadName": "明治の森・黒磯",
+      "url": "https://www.instagram.com/meijinomori/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0331",
+      "prefecture": "栃木県",
+      "roadName": "ばとう",
+      "url": "http://www.tck.or.jp/michinoeki/eki/batou.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0331",
+      "prefecture": "栃木県",
+      "roadName": "ばとう",
+      "url": "https://www.michinoeki-bato.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0332",
+      "prefecture": "栃木県",
+      "roadName": "東山道伊王野",
+      "url": "http://michinoeki-tosando.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0332",
+      "prefecture": "栃木県",
+      "roadName": "東山道伊王野",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000104.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0333",
+      "prefecture": "栃木県",
+      "roadName": "きつれがわ",
+      "url": "https://michinoeki-kitsuregawa.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0334",
+      "prefecture": "栃木県",
+      "roadName": "どまんなか　たぬま",
+      "url": "http://domannaka.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0334",
+      "prefecture": "栃木県",
+      "roadName": "どまんなか　たぬま",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000050.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0335",
+      "prefecture": "栃木県",
+      "roadName": "はが",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000044.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0335",
+      "prefecture": "栃木県",
+      "roadName": "はが",
+      "url": "http://www.michinoeki-haga.gr.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0336",
+      "prefecture": "栃木県",
+      "roadName": "那須与一の郷",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000042.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0336",
+      "prefecture": "栃木県",
+      "roadName": "那須与一の郷",
+      "url": "http://www.nasuno-yoichi.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0337",
+      "prefecture": "栃木県",
+      "roadName": "那須野が原博物館",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000046.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0338",
+      "prefecture": "栃木県",
+      "roadName": "みかも",
+      "url": "https://www.instagram.com/roadside13mikamo/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0338",
+      "prefecture": "栃木県",
+      "roadName": "みかも",
+      "url": "https://www.michinoeki-mikamo.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0339",
+      "prefecture": "栃木県",
+      "roadName": "思川",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000047.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0339",
+      "prefecture": "栃木県",
+      "roadName": "思川",
+      "url": "http://www.michinoekiomoigawa.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0263",
+      "prefecture": "山形県",
+      "roadName": "天童温泉",
+      "url": "http://www.city.tendo.yamagata.jp/busiindust/nourin/mori-na_tendo.html",
+      "kind": "municipal_information",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0333",
+      "prefecture": "栃木県",
+      "roadName": "きつれがわ",
+      "url": "http://www.city.tochigi-sakura.lg.jp/site/michi-kitsuregawa/",
+      "kind": "municipal_information",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0337",
+      "prefecture": "栃木県",
+      "roadName": "那須野が原博物館",
+      "url": "http://www2.city.nasushiobara.lg.jp/hakubutsukan/",
+      "kind": "municipal_information",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
     {
       "stationId": "RS0002",
       "prefecture": "北海道",
@@ -899,10 +1322,541 @@
       "verified": false
     },
     {
+      "stationId": "RS0275",
+      "prefecture": "福島県",
+      "roadName": "たじま",
+      "url": "http://aizukogen-yume.jp/tajima/index.php",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0276",
+      "prefecture": "福島県",
+      "roadName": "喜多の郷",
+      "url": "http://www.furusatosinkou.co.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0277",
+      "prefecture": "福島県",
+      "roadName": "裏磐梯",
+      "url": "http://www.michinoeki-urabandai.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0278",
+      "prefecture": "福島県",
+      "roadName": "ならは",
+      "url": "https://michinoeki-naraha.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0279",
+      "prefecture": "福島県",
+      "roadName": "そうま",
+      "url": "https://michinoekisoma.main.jp/index.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0280",
+      "prefecture": "福島県",
+      "roadName": "はなわ",
+      "url": "https://www.michinoeki-hanawa.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0281",
+      "prefecture": "福島県",
+      "roadName": "会津柳津",
+      "url": "http://yanaizu-kousya.info/seiryu.shtml",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0282",
+      "prefecture": "福島県",
+      "roadName": "ふくしま東和",
+      "url": "http://www.touwanosato.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0283",
+      "prefecture": "福島県",
+      "roadName": "にしあいづ",
+      "url": "http://www.w-aizu.jp/yorisse/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0285",
+      "prefecture": "福島県",
+      "roadName": "たまかわ",
+      "url": "http://www.kobushinosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0286",
+      "prefecture": "福島県",
+      "roadName": "羽鳥湖高原",
+      "url": "http://www.hatoriko.jp/around/eki.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0287",
+      "prefecture": "福島県",
+      "roadName": "南相馬",
+      "url": "http://www.nomaoinosato.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0289",
+      "prefecture": "福島県",
+      "roadName": "ひらた",
+      "url": "http://www.michinoeki-hirata.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0290",
+      "prefecture": "福島県",
+      "roadName": "よつくら港",
+      "url": "https://www.michinoeki-yotsukurakou.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0291",
+      "prefecture": "福島県",
+      "roadName": "ばんだい",
+      "url": "http://www.michinoekibandai.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0292",
+      "prefecture": "福島県",
+      "roadName": "ふるどの",
+      "url": "http://ofukuro-eki.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0293",
+      "prefecture": "福島県",
+      "roadName": "番屋",
+      "url": "http://www.kanko-aizu.com/kau/3213/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0294",
+      "prefecture": "福島県",
+      "roadName": "季の里天栄",
+      "url": "http://www.kinosato.fukushima.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0295",
+      "prefecture": "福島県",
+      "roadName": "きらら２８９",
+      "url": "http://www.kirara289.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0296",
+      "prefecture": "福島県",
+      "roadName": "奥会津かねやま",
+      "url": "http://okuaizukaneyama.blog.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0297",
+      "prefecture": "福島県",
+      "roadName": "さくらの郷",
+      "url": "https://www.sakura-no-sato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0298",
+      "prefecture": "福島県",
+      "roadName": "あいづ　湯川・会津坂下",
+      "url": "http://heso-aizu.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0299",
+      "prefecture": "福島県",
+      "roadName": "からむし織の里しょうわ",
+      "url": "https://michieki-showa.shop/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0299",
+      "prefecture": "福島県",
+      "roadName": "からむし織の里しょうわ",
+      "url": "https://www.karamushi.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
       "stationId": "RS0216",
       "prefecture": "秋田県",
       "roadName": "ふたつい",
       "url": "http://michinoeki-futatsui.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0217",
+      "prefecture": "秋田県",
+      "roadName": "にしめ",
+      "url": "https://michinoeki-nishime.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0218",
+      "prefecture": "秋田県",
+      "roadName": "やたて峠",
+      "url": "http://ohdate-yatate.com",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0220",
+      "prefecture": "秋田県",
+      "roadName": "かづの",
+      "url": "https://antlerkazuno.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0220",
+      "prefecture": "秋田県",
+      "roadName": "かづの",
+      "url": "https://explorekazuno.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0221",
+      "prefecture": "秋田県",
+      "roadName": "かみおか",
+      "url": "https://www.chayakko.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0224",
+      "prefecture": "秋田県",
+      "roadName": "かみこあに",
+      "url": "https://michinoeki-kamikoani.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0225",
+      "prefecture": "秋田県",
+      "roadName": "象潟",
+      "url": "https://www.kisakata.nemunooka.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0226",
+      "prefecture": "秋田県",
+      "roadName": "なかせん",
+      "url": "http://nakasen.hana.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0227",
+      "prefecture": "秋田県",
+      "roadName": "おがち",
+      "url": "http://www.michinoeki-ogachi.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0228",
+      "prefecture": "秋田県",
+      "roadName": "てんのう",
+      "url": "http://www.kurara-spa.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0230",
+      "prefecture": "秋田県",
+      "roadName": "しょうわ",
+      "url": "http://www.blume-messe.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0232",
+      "prefecture": "秋田県",
+      "roadName": "さんない",
+      "url": "http://a-woodyland.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0236",
+      "prefecture": "秋田県",
+      "roadName": "五城目",
+      "url": "https://gojome-st.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0238",
+      "prefecture": "秋田県",
+      "roadName": "美郷",
+      "url": "http://akita-misato.com/gantaro/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0240",
+      "prefecture": "秋田県",
+      "roadName": "十文字",
+      "url": "https://mamederaga.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0241",
+      "prefecture": "秋田県",
+      "roadName": "おおがた",
+      "url": "https://katanomise.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0242",
+      "prefecture": "秋田県",
+      "roadName": "あきた港",
+      "url": "http://www.selion-akita.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0244",
+      "prefecture": "秋田県",
+      "roadName": "大館能代空港",
+      "url": "https://onj-airterminal.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0310",
+      "prefecture": "茨城県",
+      "roadName": "かつら",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000023.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0310",
+      "prefecture": "茨城県",
+      "roadName": "かつら",
+      "url": "http://www.m-katsura.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0311",
+      "prefecture": "茨城県",
+      "roadName": "さとみ",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000055.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0311",
+      "prefecture": "茨城県",
+      "roadName": "さとみ",
+      "url": "https://www.instagram.com/michinoeki.satomi",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0312",
+      "prefecture": "茨城県",
+      "roadName": "さかい",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000056.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0312",
+      "prefecture": "茨城県",
+      "roadName": "さかい",
+      "url": "https://www.sakaimachi.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0313",
+      "prefecture": "茨城県",
+      "roadName": "奥久慈だいご",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000100.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0314",
+      "prefecture": "茨城県",
+      "roadName": "しもつま",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000068.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0315",
+      "prefecture": "茨城県",
+      "roadName": "たまつくり",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000059.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0315",
+      "prefecture": "茨城県",
+      "roadName": "たまつくり",
+      "url": "http://www.namegata-koikoi.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0316",
+      "prefecture": "茨城県",
+      "roadName": "いたこ",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000060.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0316",
+      "prefecture": "茨城県",
+      "roadName": "いたこ",
+      "url": "http://www.michinoeki-itako.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0317",
+      "prefecture": "茨城県",
+      "roadName": "ごか",
+      "url": "https://www.michinoeki-goka.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0318",
+      "prefecture": "茨城県",
+      "roadName": "まくらがの里　こが",
+      "url": "http://www.dynac-japan.com/michinoeki-koga/index.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0318",
+      "prefecture": "茨城県",
+      "roadName": "まくらがの里　こが",
+      "url": "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000064.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0319",
+      "prefecture": "茨城県",
+      "roadName": "日立おさかなセンター",
+      "url": "https://hitachi-osakana-center.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0319",
+      "prefecture": "茨城県",
+      "roadName": "日立おさかなセンター",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000065.html",
       "kind": "station_or_partner_site_unverified",
       "reason": "unverified_official_website_hint",
       "verified": false
@@ -1322,10 +2276,100 @@
       "verified": false
     },
     {
+      "stationId": "RS0274",
+      "prefecture": "福島県",
+      "roadName": "川俣",
+      "url": "http://www.town.kawamata.lg.jp/site/kanko-event/silkpia-shisetsuannai.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0278",
+      "prefecture": "福島県",
+      "roadName": "ならは",
+      "url": "https://www.town.naraha.lg.jp",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
       "stationId": "RS0215",
       "prefecture": "秋田県",
       "roadName": "たかのす",
       "url": "http://www.city.kitaakita.akita.jp/industdb/shotengaidb/212.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0222",
+      "prefecture": "秋田県",
+      "roadName": "ことおか",
+      "url": "http://www.town.mitane.akita.jp/kyuhp/kotooka/mapp06.htm",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0231",
+      "prefecture": "秋田県",
+      "roadName": "みねはま",
+      "url": "http://www.town.happou.akita.jp/docs/2017021600018/",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0234",
+      "prefecture": "秋田県",
+      "roadName": "あに",
+      "url": "https://www.city.kitaakita.akita.jp/kankou/category/kankou_shisetsu/ani/402.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0235",
+      "prefecture": "秋田県",
+      "roadName": "ひない",
+      "url": "http://www.city.odate.akita.jp/dcity/sitemanager.nsf/doc/michinoeki_hinai.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0239",
+      "prefecture": "秋田県",
+      "roadName": "協和",
+      "url": "http://www.city.daisen.akita.jp/docs/2013101800194/",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0243",
+      "prefecture": "秋田県",
+      "roadName": "こさか七滝",
+      "url": "https://www.town.kosaka.akita.jp/machinososhiki/kankosangyoka/kankoshokohan/3/kosakakankouspot/1663.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0313",
+      "prefecture": "茨城県",
+      "roadName": "奥久慈だいご",
+      "url": "http://www.town.daigo.ibaraki.jp/sp/page/page000026.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0314",
+      "prefecture": "茨城県",
+      "roadName": "しもつま",
+      "url": "http://www.city.shimotsuma.lg.jp/page/dir001734.html",
       "kind": "municipal_information",
       "reason": "unverified_official_website_hint",
       "verified": false
