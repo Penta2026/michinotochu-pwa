@@ -256,12 +256,23 @@ def network_fetch(session):
 
 def main():
     old = json.loads(OUTPUT.read_text(encoding="utf-8")) if OUTPUT.exists() else {}
-    with requests.Session() as session:
-        session.headers.update({"User-Agent": AGENT, "Accept": "text/html"})
-        fetch = network_fetch(session)
-        allowed = robots_policy(fetch)
-        result = crawl_batch(fetch, robots_allowed=allowed, old=old,
-                             max_details=MAX_DAILY_DETAILS, pause=time.sleep)
+    try:
+        with requests.Session() as session:
+            session.headers.update({"User-Agent": AGENT, "Accept": "text/html"})
+            fetch = network_fetch(session)
+            allowed = robots_policy(fetch)
+            result = crawl_batch(fetch, robots_allowed=allowed, old=old,
+                                 max_details=MAX_DAILY_DETAILS, pause=time.sleep)
+    except (RuntimeError, ValueError, requests.RequestException) as exc:
+        # The public directory occasionally serves a 200 response without
+        # station cards. A failed listing is NOT evidence of completion.
+        # Keep the exact cursor and previously checked identity records;
+        # let downstream website/event batches continue independently.
+        if not old.get("stations"):
+            raise
+        result = {**old, "lastDirectoryError": type(exc).__name__ + ": " + str(exc)[:220],
+                  "lastDirectoryErrorDate": datetime.now(JST).date().isoformat()}
+        print("::warning title=全国駅名簿の一時不調::" + result["lastDirectoryError"])
     text = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != text:
         OUTPUT.write_text(text, encoding="utf-8")
