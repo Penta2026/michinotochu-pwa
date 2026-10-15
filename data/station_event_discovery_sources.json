@@ -976,6 +976,43 @@
       "allowExplicitDatedParagraph": true,
       "splitArticleTextLines": true,
       "allowEventTitleYearForArticleMonthDay": true
+    },
+    {
+      "id": "hiroshima_nonta",
+      "enabled": true,
+      "prefecture": "広島県",
+      "roadName": "西条のん太の酒蔵",
+      "listingUrl": "https://www.nonta-sakagura.com/news_category/cate01",
+      "allowedHosts": [
+        "www.nonta-sakagura.com"
+      ],
+      "articlePathPattern": "^/news/[^/?#]+/?$",
+      "listingLinkSelector": "a[href]",
+      "articleSelector": "main, article, .entry-content, body",
+      "titleSelectors": [
+        "h1",
+        ".entry-title",
+        "main h1"
+      ],
+      "requiredVenueTokens": [
+        "道の駅西条のん太の酒蔵",
+        "道の駅 西条のん太の酒蔵"
+      ],
+      "allowedEventWords": [
+        "フェス",
+        "イベント",
+        "まつり",
+        "祭",
+        "フェア",
+        "開催"
+      ],
+      "preferredTitles": [
+        "東広島お米フェス2026"
+      ],
+      "maxArticles": 10,
+      "explorationSlots": 3,
+      "splitArticleTextLines": true,
+      "allowEventTitleYearTwoDayPeriod": true
     }
   ]
 }
