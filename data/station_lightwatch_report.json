@@ -1,15 +1,16 @@
 {
-  "generatedAt": "2026-10-15T11:48:42.568982+09:00",
+  "generatedAt": "2026-10-15T12:07:33.018054+09:00",
   "mode": "fetch",
   "cycleDays": 7,
   "stationsTotal": 1234,
   "stationsScheduledToday": 208,
-  "verifiedListingSources": 17,
-  "verifiedDueToday": 17,
-  "requestsAttempted": 17,
+  "verifiedListingSources": 18,
+  "verifiedDueToday": 18,
+  "requestsAttempted": 18,
   "statusCounts": {
-    "changed": 5,
-    "unchanged": 12
+    "changed": 6,
+    "unchanged": 11,
+    "first_seen": 1
   },
   "newOrChanged": [
     {
@@ -46,6 +47,20 @@
       "roadName": "たるみずはまびら",
       "url": "https://tarumizuhamabira.jp/information/",
       "status": "changed"
+    },
+    {
+      "id": "hiroshima_fukutomi",
+      "prefecture": "広島県",
+      "roadName": "湖畔の里福富",
+      "url": "https://kohannosato.co.jp/news/",
+      "status": "changed"
+    },
+    {
+      "id": "hiroshima_nonta",
+      "prefecture": "広島県",
+      "roadName": "西条のん太の酒蔵",
+      "url": "https://www.nonta-sakagura.com/news_category/cate01",
+      "status": "first_seen"
     }
   ],
   "limitations": [

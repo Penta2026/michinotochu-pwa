@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 59,
+  "inputPrevious": 60,
   "inputCollected": 59,
   "expiredOrInvalid": [],
   "corrected": [],
@@ -236,6 +236,10 @@
     {
       "roadName": "しらぬか恋問館",
       "title": "日本各地の「美味しい」がやってきた!第9弾"
+    },
+    {
+      "roadName": "湖畔の里福富",
+      "title": "レトロカーフェスタ2026 エントリー開始!"
     }
   ],
   "possibleDuplicates": [],

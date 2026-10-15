@@ -11,19 +11,19 @@
     "historicalPrefecturesReached": 47,
     "prefecturesWithCurrentEvents": 36,
     "currentEvents": 60,
-    "phase2SourcesConfigured": 29,
-    "phase2SourcesAudited": 29,
+    "phase2SourcesConfigured": 30,
+    "phase2SourcesAudited": 30,
     "phase2AuditFresh": true,
     "regionalHomepagesAudited": 9,
     "targetedStationPrefectures": 28,
     "publishedStations": 44,
     "publishedStationsWithoutDirectTarget": 21,
     "appMasterStations": 1234,
-    "appMasterWithDedicatedSource": 39,
-    "appMasterWithoutDedicatedSource": 1195,
+    "appMasterWithDedicatedSource": 40,
+    "appMasterWithoutDedicatedSource": 1194,
     "appMasterCurrentlyPublishedStations": 44,
     "configuredTargetNamesNotMatchedToAppMaster": 0,
-    "potentialReviewSamples": 57,
+    "potentialReviewSamples": 60,
     "rejectedReasonCounts": {
       "no_article": 4,
       "no_grounded_program_event": 1,
@@ -32,31 +32,31 @@
       "no_individually_dated_sections": 8,
       "no_strict_official_calendar_cards": 1,
       "not_event": 61,
-      "offsite": 1,
-      "past": 20,
-      "undated": 25,
-      "venue_missing": 12
+      "offsite": 5,
+      "past": 23,
+      "undated": 27,
+      "venue_missing": 13
     },
     "sourcesWithFetchProblems": 0,
     "suspendedUnavailableOfficialEvidence": 1,
     "sourcesWithZeroCandidates": 2,
-    "sourcesAtCheckLimit": 9,
-    "sourcesUsingRotatingInspection": 9,
-    "rotatingInspectionSlots": 22,
-    "uninspectedCandidateSlots": 160,
+    "sourcesAtCheckLimit": 10,
+    "sourcesUsingRotatingInspection": 10,
+    "rotatingInspectionSlots": 25,
+    "uninspectedCandidateSlots": 163,
     "reviewWithExplicitFutureHint": 2,
     "reviewWithExplicitPastHint": 3,
-    "warnings": 12,
+    "warnings": 13,
     "warningKinds": {
-      "article_check_limit": 9,
+      "article_check_limit": 10,
       "repeatedly_empty_listing": 2,
       "suspended_unavailable_official_evidence": 1
     },
     "unreconfirmedEvents": 1,
-    "officialListingReconfirmationCandidates": 7,
-    "officialListingReconfirmationChecked": 7,
+    "officialListingReconfirmationCandidates": 8,
+    "officialListingReconfirmationChecked": 8,
     "officialListingReconfirmationFailed": 0,
-    "officialListingReconfirmedEvents": 17
+    "officialListingReconfirmedEvents": 18
   },
   "publishedStationsWithoutDirectTarget": [
     {
@@ -7871,9 +7871,9 @@
       "id": "RS0964",
       "prefecture": "広島県",
       "roadName": "西条のん太の酒蔵",
-      "dedicatedSourceConfigured": false,
+      "dedicatedSourceConfigured": true,
       "currentlyPublishedEvent": false,
-      "status": "no_dedicated_source"
+      "status": "dedicated_source_configured"
     },
     {
       "id": "RS0965",
@@ -10195,9 +10195,9 @@
     {
       "prefecture": "広島県",
       "masterStations": 21,
-      "dedicatedSources": 1,
+      "dedicatedSources": 2,
       "publishedStations": 2,
-      "noDedicatedSource": 20
+      "noDedicatedSource": 19
     },
     {
       "prefecture": "徳島県",
@@ -10715,6 +10715,42 @@
       "status": "unverified_candidate"
     },
     {
+      "sourceId": "hiroshima_nonta",
+      "prefecture": "広島県",
+      "roadName": "西条のん太の酒蔵",
+      "url": "https://www.nonta-sakagura.com/news/%e3%80%90%e5%87%ba%e8%8d%b7%e8%80%85%e5%8b%9f%e9%9b%86%e3%80%91%e9%81%93%e3%81%ae%e9%a7%85%e8%a5%bf%e6%9d%a1%e3%81%ae%e3%82%93%e5%a4%aa%e3%81%ae%e9%85%92%e8%94%b5%e5%87%ba%e8%8d%b7%e8%80%85%e5%8b%9f",
+      "title": "出荷者募集",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_nonta",
+      "prefecture": "広島県",
+      "roadName": "西条のん太の酒蔵",
+      "url": "https://www.nonta-sakagura.com/news/%e6%95%b7%e5%9c%b0%e3%83%bb%e8%bb%92%e4%b8%8b%e3%81%b2%e3%82%8d%e3%81%b0%e5%87%ba%e5%ba%97%e5%8b%9f%e9%9b%86%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b",
+      "title": "イベント出店者募集",
+      "sourceReason": "undated",
+      "reviewReason": "event_date_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
+      "sourceId": "hiroshima_nonta",
+      "prefecture": "広島県",
+      "roadName": "西条のん太の酒蔵",
+      "url": "https://www.nonta-sakagura.com/news/%e8%aa%ad%e3%82%80%e6%9d%b1%e5%ba%83%e5%b3%b6-%e5%9c%9f%e3%81%94%e3%81%a8%e3%81%ae%e6%96%b0%e8%81%9e",
+      "title": "読む東広島",
+      "sourceReason": "venue_missing",
+      "reviewReason": "onsite_venue_unverified",
+      "priority": "high",
+      "headlineScheduleHint": "unknown_date",
+      "status": "unverified_candidate"
+    },
+    {
       "sourceId": "ehime_yawatahama_city_events",
       "prefecture": "愛媛県",
       "roadName": "八幡浜みなっと",
@@ -11202,6 +11238,15 @@
       "candidateCount": 20,
       "checkedCount": 12,
       "uninspectedCandidateCount": 8
+    },
+    {
+      "kind": "article_check_limit",
+      "sourceId": "hiroshima_nonta",
+      "prefecture": "広島県",
+      "severity": "notice",
+      "candidateCount": 13,
+      "checkedCount": 10,
+      "uninspectedCandidateCount": 3
     }
   ],
   "sources": [
@@ -11942,7 +11987,33 @@
       "status": "review_candidates",
       "candidateCount": 8,
       "checkedCount": 8,
-      "acceptedCount": 1,
+      "acceptedCount": 0,
+      "reconfirmedCount": 1,
+      "knownSkippedCount": 1,
+      "fetchFailedCount": 0,
+      "reconfirmationCandidates": 1,
+      "reconfirmationChecked": 1,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
+      "listingError": "",
+      "fetchErrors": [],
+      "failureDayStreak": 0,
+      "emptyCandidateDayStreak": 0,
+      "mayHaveUnreviewedCandidates": false,
+      "uninspectedCandidateCount": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
+    },
+    {
+      "id": "hiroshima_nonta",
+      "prefecture": "広島県",
+      "roadName": "西条のん太の酒蔵",
+      "url": "https://www.nonta-sakagura.com/news_category/cate01",
+      "checkedOn": "2026-10-15",
+      "status": "review_candidates",
+      "candidateCount": 13,
+      "checkedCount": 10,
+      "acceptedCount": 0,
       "reconfirmedCount": 0,
       "knownSkippedCount": 0,
       "fetchFailedCount": 0,
@@ -11954,10 +12025,10 @@
       "fetchErrors": [],
       "failureDayStreak": 0,
       "emptyCandidateDayStreak": 0,
-      "mayHaveUnreviewedCandidates": false,
-      "uninspectedCandidateCount": 0,
-      "explorationSlots": 0,
-      "explorationPool": 0
+      "mayHaveUnreviewedCandidates": true,
+      "uninspectedCandidateCount": 3,
+      "explorationSlots": 3,
+      "explorationPool": 6
     }
   ],
   "regionalHomepages": [
@@ -11979,7 +12050,7 @@
       "region": "関東",
       "mode": "discovery",
       "homepageReachable": true,
-      "homepageCandidateCount": 6,
+      "homepageCandidateCount": 5,
       "note": "Regional homepage status does NOT prove that its stations' events were parsed."
     },
     {

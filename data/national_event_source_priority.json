@@ -23,7 +23,7 @@
       "officialSourceUrl": "https://www.kanto-michinoeki.jp/",
       "sourceAuditState": "reachable",
       "existingSourceMode": "discovery",
-      "listingCandidatesSeen": 6,
+      "listingCandidatesSeen": 5,
       "secondaryListingState": "inspected",
       "secondaryListingCandidates": 8,
       "regionalAuditError": "",
@@ -185,14 +185,14 @@
         "articleFetchFailed": 0,
         "articleChecked": 4,
         "rejectionReasons": {
+          "expired": 1,
           "accepted_by_adapter": 1,
-          "onsite_venue_unverified": 2,
-          "expired": 1
+          "onsite_venue_unverified": 2
         }
       },
       "collectionHealth": {
         "homepageReachable": true,
-        "homepageCandidateLinks": 6,
+        "homepageCandidateLinks": 5,
         "secondaryListingState": "inspected",
         "secondaryCandidateLinks": 8,
         "adapterCandidates": 4,
@@ -202,9 +202,9 @@
         "articleChecked": 4,
         "lastSuccessfulCollectionAt": null,
         "rejectionReasons": {
+          "expired": 1,
           "accepted_by_adapter": 1,
-          "onsite_venue_unverified": 2,
-          "expired": 1
+          "onsite_venue_unverified": 2
         },
         "articleFetchSucceeded": 4,
         "articleFetchFailed": 0,
@@ -934,17 +934,17 @@
         {
           "prefecture": "広島県",
           "currentPublishedEvents": 2,
-          "targetedStationFeedCount": 1,
-          "configuredSourcesAudited": 1,
-          "candidateArticles": 8,
-          "articlesAcceptedByDiscovery": 1,
+          "targetedStationFeedCount": 2,
+          "configuredSourcesAudited": 2,
+          "candidateArticles": 21,
+          "articlesAcceptedByDiscovery": 0,
           "sourcesWithFetchProblems": 0,
           "regionalHomepageReachable": true,
           "evidenceLevel": "published_events_observed",
           "dedicatedSourceLatestAuditDate": "2026-10-15",
-          "sourcesWithSuccessfulListing": 1,
-          "articlesChecked": 8,
-          "articlesUnverified": 0,
+          "sourcesWithSuccessfulListing": 2,
+          "articlesChecked": 18,
+          "articlesUnverified": 3,
           "sourceHealthEvidence": "audited_dedicated_sources"
         },
         {
@@ -1272,5 +1272,5 @@
   },
   "interpretation": "Current event count is not source recall; no events published does not mean no event exists.",
   "stationSourceAuditDate": "2026-10-15",
-  "stationSourcesAudited": 29
+  "stationSourcesAudited": 30
 }
