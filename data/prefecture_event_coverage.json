@@ -80,7 +80,7 @@
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
     "registeredEvents": 59,
-    "targetedStationFeedPrefectures": 27,
+    "targetedStationFeedPrefectures": 28,
     "notReconfirmedEvents": 1,
     "unknownPrefectures": []
   },
@@ -823,7 +823,9 @@
       ],
       "historicallyObserved": true,
       "observedStationCount": 1,
-      "targetedStationFeeds": [],
+      "targetedStationFeeds": [
+        "湖畔の里福富"
+      ],
       "notReconfirmedCount": 0,
       "state": "events_observed",
       "nextAction": "expand_station_coverage",

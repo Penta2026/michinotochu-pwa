@@ -185,8 +185,8 @@
         "articleFetchFailed": 0,
         "articleChecked": 4,
         "rejectionReasons": {
-          "accepted_by_adapter": 1,
           "onsite_venue_unverified": 2,
+          "accepted_by_adapter": 1,
           "expired": 1
         }
       },
@@ -202,8 +202,8 @@
         "articleChecked": 4,
         "lastSuccessfulCollectionAt": null,
         "rejectionReasons": {
-          "accepted_by_adapter": 1,
           "onsite_venue_unverified": 2,
+          "accepted_by_adapter": 1,
           "expired": 1
         },
         "articleFetchSucceeded": 4,
@@ -934,18 +934,18 @@
         {
           "prefecture": "広島県",
           "currentPublishedEvents": 1,
-          "targetedStationFeedCount": 0,
-          "configuredSourcesAudited": 0,
-          "candidateArticles": 0,
+          "targetedStationFeedCount": 1,
+          "configuredSourcesAudited": 1,
+          "candidateArticles": 8,
           "articlesAcceptedByDiscovery": 0,
           "sourcesWithFetchProblems": 0,
           "regionalHomepageReachable": true,
           "evidenceLevel": "published_events_observed",
-          "dedicatedSourceLatestAuditDate": "",
-          "sourcesWithSuccessfulListing": 0,
-          "articlesChecked": 0,
+          "dedicatedSourceLatestAuditDate": "2026-10-15",
+          "sourcesWithSuccessfulListing": 1,
+          "articlesChecked": 8,
           "articlesUnverified": 0,
-          "sourceHealthEvidence": "no_dedicated_audit"
+          "sourceHealthEvidence": "audited_dedicated_sources"
         },
         {
           "prefecture": "山口県",
@@ -1062,13 +1062,13 @@
           "configuredSourcesAudited": 3,
           "candidateArticles": 21,
           "articlesAcceptedByDiscovery": 0,
-          "sourcesWithFetchProblems": 0,
+          "sourcesWithFetchProblems": 1,
           "regionalHomepageReachable": true,
           "evidenceLevel": "published_events_observed",
           "dedicatedSourceLatestAuditDate": "2026-10-15",
           "sourcesWithSuccessfulListing": 3,
-          "articlesChecked": 13,
-          "articlesUnverified": 8,
+          "articlesChecked": 12,
+          "articlesUnverified": 9,
           "sourceHealthEvidence": "audited_dedicated_sources"
         },
         {
@@ -1272,5 +1272,5 @@
   },
   "interpretation": "Current event count is not source recall; no events published does not mean no event exists.",
   "stationSourceAuditDate": "2026-10-15",
-  "stationSourcesAudited": 28
+  "stationSourcesAudited": 29
 }

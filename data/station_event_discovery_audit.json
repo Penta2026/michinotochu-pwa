@@ -1087,7 +1087,7 @@
       "listingUrl": "https://www.city.yawatahama.ehime.jp/event/2026/",
       "listingError": "",
       "candidates": 20,
-      "checked": 12,
+      "checked": 11,
       "accepted": 0,
       "reconfirmed": 0,
       "knownSkipped": 0,
@@ -1095,11 +1095,17 @@
       "reconfirmationChecked": 0,
       "reconfirmationFailed": 0,
       "reconfirmationUninspected": 0,
-      "fetchFailed": 0,
-      "fetchErrors": [],
+      "fetchFailed": 1,
+      "fetchErrors": [
+        {
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2022110800019/",
+          "type": "ReadTimeout",
+          "detail": "HTTPSConnectionPool(host='www.city.yawatahama.ehime.jp', port=443): Read timed out. (read timeout=9)"
+        }
+      ],
       "reasons": {
         "venue_missing": 1,
-        "not_event": 11
+        "not_event": 10
       },
       "examples": [],
       "rejectedExamples": [
@@ -1116,11 +1122,6 @@
         {
           "title": "市営駐車場",
           "url": "https://www.city.yawatahama.ehime.jp/doc/2019100100020/",
-          "reason": "not_event"
-        },
-        {
-          "title": "観光情報誌",
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2022110800019/",
           "reason": "not_event"
         },
         {
@@ -1485,6 +1486,79 @@
         }
       ],
       "eligibleCandidates": 4,
+      "uninspectedCandidates": 0,
+      "explorationStart": 0,
+      "explorationNext": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
+    },
+    {
+      "id": "hiroshima_fukutomi",
+      "prefecture": "広島県",
+      "roadName": "湖畔の里福富",
+      "listingUrl": "https://kohannosato.co.jp/news/",
+      "listingError": "",
+      "candidates": 8,
+      "checked": 8,
+      "accepted": 0,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {
+        "undated": 1,
+        "venue_missing": 2,
+        "not_event": 4,
+        "past": 1
+      },
+      "examples": [],
+      "rejectedExamples": [
+        {
+          "title": "2026.09.23 レトロカーフェスタ2026 エントリー開始!",
+          "url": "https://kohannosato.co.jp/news/%e3%83%ac%e3%83%88%e3%83%ad%e3%82%ab%e3%83%bc%e3%83%95%e3%82%a7%e3%82%b9%e3%82%bf2026%e3%80%80%e3%82%a8%e3%83%b3%e3%83%88%e3%83%aa%e3%83%bc%e9%96%8b%e5%a7%8b%ef%bc%81/",
+          "reason": "undated"
+        },
+        {
+          "title": "2026.08.31 お知らせ しゃくなげ湖納涼花火大会 募金のお礼・ご報告",
+          "url": "https://kohannosato.co.jp/news/%e3%81%97%e3%82%83%e3%81%8f%e3%81%aa%e3%81%92%e6%b9%96%e7%b4%8d%e6%b6%bc%e8%8a%b1%e7%81%ab%e5%a4%a7%e4%bc%9a%e3%80%80%e5%8b%9f%e9%87%91%e3%81%ae%e3%81%8a%e7%a4%bc%e3%83%bb%e3%81%94%e5%a0%b1%e5%91%8a/",
+          "reason": "venue_missing"
+        },
+        {
+          "title": "2026.08.15 イベント お知らせ 花火大会 交通規制と駐車場について",
+          "url": "https://kohannosato.co.jp/news/%e8%8a%b1%e7%81%ab%e5%a4%a7%e4%bc%9a%e3%80%80%e4%ba%a4%e9%80%9a%e8%a6%8f%e5%88%b6%e3%81%a8%e9%a7%90%e8%bb%8a%e5%a0%b4%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e3%80%80/",
+          "reason": "venue_missing"
+        },
+        {
+          "title": "2026.08.12 イベント お知らせ 【3次募集開始】第4回しゃくなげ湖納涼花火大会",
+          "url": "https://kohannosato.co.jp/news/%e3%81%97%e3%82%83%e3%81%8f%e3%81%aa%e3%81%92%e6%b9%96%e7%b4%8d%e6%b6%bc%e8%8a%b1%e7%81%ab%e5%a4%a7%e4%bc%9a%e3%80%803%e6%ac%a1%e5%8b%9f%e9%9b%86%e9%96%8b%e5%a7%8b%ef%bc%81/",
+          "reason": "not_event"
+        },
+        {
+          "title": "2026.10.07 野菜館 秋の実りが続々と入荷しております!",
+          "url": "https://kohannosato.co.jp/news/%e9%87%8e%e8%8f%9c%e9%a4%a8%e3%80%80%e7%a7%8b%e3%81%ae%e5%ae%9f%e3%82%8a%e3%81%8c%e7%b6%9a%e3%80%85%e3%81%a8%e5%85%a5%e8%8d%b7%e3%81%97%e3%81%a6%e3%81%8a%e3%82%8a%e3%81%be%e3%81%99%ef%bc%81/",
+          "reason": "not_event"
+        },
+        {
+          "title": "2026.09.30 アンケートに答えてジェラートをお得にゲット!",
+          "url": "https://kohannosato.co.jp/news/%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e3%81%ab%e7%ad%94%e3%81%88%e3%81%a6%e3%82%b8%e3%82%a7%e3%83%a9%e3%83%bc%e3%83%88%e3%82%92%e3%81%8a%e5%be%97%e3%81%ab%e3%82%b2%e3%83%83%e3%83%88%ef%bc%81/",
+          "reason": "not_event"
+        },
+        {
+          "title": "2026.07.29 お知らせ 【重要】ご予約後のチケット引換え期限のお知らせ",
+          "url": "https://kohannosato.co.jp/news/%e3%80%90%e9%87%8d%e8%a6%81%e3%80%91%e3%81%94%e4%ba%88%e7%b4%84%e5%be%8c%e3%81%ae%e3%83%81%e3%82%b1%e3%83%83%e3%83%88%e5%bc%95%e6%8f%9b%e3%81%88%e6%9c%9f%e9%99%90%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89/",
+          "reason": "not_event"
+        },
+        {
+          "title": "2026.09.06 イベント 「第19回虹の架け橋」開催!!",
+          "url": "https://kohannosato.co.jp/news/%e3%80%8c%e7%ac%ac19%e5%9b%9e%e8%99%b9%e3%81%ae%e6%9e%b6%e3%81%91%e6%a9%8b%e3%80%8d%e9%96%8b%e5%82%ac%ef%bc%81%ef%bc%81/",
+          "reason": "past"
+        }
+      ],
+      "eligibleCandidates": 8,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,
