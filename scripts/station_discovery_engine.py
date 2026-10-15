@@ -357,6 +357,35 @@ def _linked_official_listing_period(source, listing_title, article_title, today)
     return day.isoformat(), day.isoformat()
 
 
+def _event_title_year_month_day(title, lines, today):
+    """Use explicit event year in title with a matching article-local month/day.
+
+    Never borrow an article publication year. Only apply to an opt-in station
+    with a single named event year and date in event context.
+    """
+    years = set(re.findall(r"(?<![0-9])(20[0-9]{2})(?![0-9])", title))
+    if len(years) != 1:
+        return None
+    year = int(next(iter(years)))
+    dates = set()
+    for line in lines:
+        if re.search(r"投稿日|更新日|公開日|掲載日|受付|申込|締切|募集期間", line):
+            continue
+        if not re.search(r"開催|日時|日程|イベント|フェスタ|まつり|祭|[0-9]{1,2}月[0-9]{1,2}日は", line):
+            continue
+        for mo, day in re.findall(r"(?<![0-9])([0-9]{1,2})月\s*([0-9]{1,2})日", line):
+            try:
+                candidate = date(year, int(mo), int(day))
+            except ValueError:
+                continue
+            if candidate >= today:
+                dates.add(candidate)
+    if len(dates) != 1:
+        return None
+    day = next(iter(dates)).isoformat()
+    return day, day
+
+
 def _article_record(source, soup, listing_title, today, url):
     article = _pick_article(soup, source)
     if article is None:
@@ -410,6 +439,8 @@ def _article_record(source, soup, listing_title, today, url):
     if posted is None and source.get("useListingPublicationDate"):
         posted = _listing_posted(listing_title, today)
     period = _article_period(title, lines, posted)
+    if period is None and source.get("allowEventTitleYearForArticleMonthDay"):
+        period = _event_title_year_month_day(title, lines, today)
     if period is None and source.get("allowExplicitDatedParagraph"):
         # An individually titled official event notice may put the date in
         # an unlabeled <p>; do not interpret the posting timestamp as event.
