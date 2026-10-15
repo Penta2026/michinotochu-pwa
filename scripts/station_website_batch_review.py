@@ -1,4 +1,4 @@
-"""Inspect up to 36 candidate homepages per day; never auto-publish sources."""
+"""Inspect up to 120 candidate station sites per day; never auto-publish sources."""
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 DATA = Path(__file__).resolve().parents[1] / "data"
 OUTPUT = DATA / "station_website_batch_audit.json"
-MAX_SITES = 36
+MAX_SITES = 120
 TERMS = ("イベント", "催し", "行事", "お知らせ", "祭", "event", "news")
 AGENT = "MichinotochuStationSiteReview/1.0"
 
@@ -52,14 +52,34 @@ def run(queue, previous, fetch, allowed, limit=MAX_SITES, priority=None):
     if not 1 <= limit <= MAX_SITES:
         raise ValueError("Too many external station requests")
     candidates = list(eligible(queue, previous))
+    # First-pass fairness: one URL for every station before secondary
+    # partner/municipal hints. Otherwise early stations consume the budget.
+    already_seen_stations = {r["stationId"] for r in previous.get("results", [])}
     if priority is not None:
         # Prioritize provinces without published events; all entries are
         # still taken exclusively from the same validated review queue.
         ranked = {(p["stationId"], p["url"]): i
                   for i, p in enumerate(priority)}
         candidates.sort(key=lambda item: (
+            item[0]["id"] in already_seen_stations,
             ranked.get((item[0]["id"], item[1]), len(ranked)),
             item[0]["id"], item[1]))
+    else:
+        candidates.sort(key=lambda item: (
+            item[0]["id"] in already_seen_stations, item[0]["id"], item[1]))
+    # Also avoid secondary URLs from the same station *within* today's
+    # first-pass budget while other stations remain unvisited.
+    unique_stations = []
+    secondary = []
+    first_station_ids = set(already_seen_stations)
+    for item in candidates:
+        code = item[0]["id"]
+        if code not in first_station_ids:
+            unique_stations.append(item)
+            first_station_ids.add(code)
+        else:
+            secondary.append(item)
+    candidates = unique_stations + secondary
     additions = []
     for station, url in candidates[:limit]:
         record = {"stationId": station["id"], "prefecture": station["prefecture"],
@@ -94,7 +114,7 @@ def main():
         host = p.scheme + "://" + p.netloc
         if host not in robots:
             try:
-                r = session.get(host + "/robots.txt", timeout=8, allow_redirects=False)
+                r = session.get(host + "/robots.txt", timeout=5, allow_redirects=False)
                 parser = RobotFileParser()
                 parser.parse(r.text.splitlines())
                 robots[host] = parser if r.status_code == 200 else None
@@ -102,7 +122,7 @@ def main():
                 robots[host] = None
         return bool(robots[host] and robots[host].can_fetch(AGENT, url))
     result = run(queue, previous,
-                 lambda url: session.get(url, timeout=12, allow_redirects=False),
+                 lambda url: session.get(url, timeout=9, allow_redirects=False),
                  allowed, priority=priority)
     data = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != data:
