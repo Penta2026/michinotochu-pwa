@@ -32,6 +32,32 @@ class BatchReviewTests(unittest.TestCase):
                      lambda url: False)
         self.assertEqual(result["results"][0]["status"], "robots_blocked")
 
+    def test_priority_order_preserves_queue_membership_and_budget(self):
+        rows = []
+        for i in range(1, 5):
+            rows.append({"id": "RS%04d" % i, "prefecture": "広島県",
+                "roadName": "テスト駅", "directoryInspectionState": "checked",
+                "candidates": [{"url": "https://station.example/%d" % i,
+                    "kind": "station_or_partner_site_unverified",
+                    "reviewStatus": "awaiting_review"}]})
+        queue = {"stations": rows}
+        class Response:
+            status_code = 200
+            content = b"<html><body>test</body></html>"
+        ordered = [{"stationId": "RS0004", "url": "https://station.example/4"},
+                   {"stationId": "RS0002", "url": "https://station.example/2"},
+                   {"stationId": "RS9999", "url": "https://unsafe.example"}]
+        called = []
+        def fetch(url):
+            called.append(url)
+            return Response()
+        result = run(queue, {}, fetch, lambda url: True, limit=2, priority=ordered)
+        self.assertEqual(called, ["https://station.example/4", "https://station.example/2"])
+        self.assertEqual(result["newlyChecked"], 2)
+        self.assertEqual(result["nextBatchEligible"], 2)
+        self.assertFalse(any(r["url"] == "https://unsafe.example"
+                             for r in result["results"]))
+
     def test_budget_cap(self):
         with self.assertRaises(ValueError):
             run({"stations": []}, {}, lambda url: None, lambda url: True, limit=13)
