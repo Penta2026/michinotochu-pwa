@@ -1280,8 +1280,28 @@ def collect_configured_station_events(today, prior=None, sources=None, fetch=Non
             elif reconfirmed_this_url == 0:
                 summary["reasons"][why] = summary["reasons"].get(why, 0) + 1
                 if len(summary["rejectedExamples"]) < 16:
-                    summary["rejectedExamples"].append({
-                        "title": text[:100], "url": url, "reason": why})
+                    rejected = {"title": text[:100], "url": url, "reason": why}
+                    # Targeted diagnosis for a verified official article whose
+                    # event date cannot be parsed. No inferred event publication.
+                    if spec["id"] == "hiroshima_fukutomi" and why == "undated":
+                        node = _pick_article(detail, spec)
+                        if node is not None:
+                            rejected["dateDiagnosis"] = {
+                                "articleTextExcerpt": clean(node.get_text(" ", strip=True))[:1200],
+                                "imageHints": [
+                                    {"alt": clean(img.get("alt", ""))[:180],
+                                     "src": urljoin(url, img.get("src", ""))[:350]}
+                                    for img in node.select("img[src]")[:8]
+                                ],
+                                "documentLinks": [
+                                    {"text": clean(a.get_text(" ", strip=True))[:100],
+                                     "url": urljoin(url, a.get("href", ""))[:350]}
+                                    for a in node.select("a[href]")
+                                    if a.get("href", "").lower().split("?")[0].endswith(".pdf")
+                                ][:8],
+                                "note": "Evidence for debugging only; dates in images are not parsed or invented."
+                            }
+                    summary["rejectedExamples"].append(rejected)
         summaries.append(summary)
         print(f"設定型新規収集 {spec['prefecture']} {spec['roadName']}: "
               f"候補={summary['candidates']} 新規採用={summary['accepted']} "
