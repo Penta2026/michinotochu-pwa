@@ -24,6 +24,7 @@ OUTPUT = DATA / "station_official_directory_candidates.json"
 JST = timezone(timedelta(hours=9))
 AGENT = "MichinotochuStationLinkAudit/1.0 (bounded public-directory lookups)"
 MAX_DETAIL_PAGES = 24
+MAX_DAILY_DETAILS = 96  # Up to four bounded page chunks per day; 1.5s delay per detail
 MAX_BYTES = 750_000
 
 
@@ -160,6 +161,10 @@ def crawl_once(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES,
             if pause:
                 pause(1.5)
             code, detail = fetch(url)
+            # Back off immediately on overload; do not advance the persisted
+            # cursor past a station that the directory did not serve.
+            if code in (429, 503):
+                raise RuntimeError(f"National directory rate-limited: HTTP {code}")
             inspected += 1
             if code != 200:
                 status = "http_" + str(code)
@@ -204,18 +209,18 @@ def crawl_once(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES,
 def crawl_batch(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES,
                 scanned_on=None, pause=None):
     """Spend today's small request budget across page boundaries safely."""
-    if not 1 <= max_details <= 24:
+    if not 1 <= max_details <= MAX_DAILY_DETAILS:
         raise ValueError("Unreasonable daily directory request budget")
     current = old or {}
     remaining = max_details
     totals = {"listCount": 0, "inspected": 0, "matched": 0,
               "errors": 0, "examined": 0, "listingPagesVisited": 0}
-    for _ in range(4):  # normally at most two, defensive cap
+    for _ in range(8):  # allow cross-page batches; never exceed the daily request budget
         if not remaining or current.get("listingTraversalCompleted"):
             break
         previous = current.get("cursor", {"page": 0, "offset": 0})
         result = crawl_once(fetch, robots_allowed=robots_allowed, old=current,
-                            max_details=remaining, scanned_on=scanned_on,
+                            max_details=min(remaining, MAX_DETAIL_PAGES), scanned_on=scanned_on,
                             pause=pause)
         run = result["lastRun"]
         # Checked rows includes robots-blocked rows with no HTTP GET.
@@ -256,7 +261,8 @@ def main():
         session.headers.update({"User-Agent": AGENT, "Accept": "text/html"})
         fetch = network_fetch(session)
         allowed = robots_policy(fetch)
-        result = crawl_batch(fetch, robots_allowed=allowed, old=old, pause=time.sleep)
+        result = crawl_batch(fetch, robots_allowed=allowed, old=old,
+                             max_details=MAX_DAILY_DETAILS, pause=time.sleep)
     text = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != text:
         OUTPUT.write_text(text, encoding="utf-8")
