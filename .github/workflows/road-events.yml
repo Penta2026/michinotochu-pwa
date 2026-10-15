@@ -1,7 +1,8 @@
 name: 道の駅イベント情報（全国・地域別）
 on:
   schedule:
-    - cron: "0 0 * * *"
+    # Run after the 03:00 JST national source scan (up to 85 minutes).
+    - cron: "0 6 * * *"
       timezone: "Asia/Tokyo"
   workflow_dispatch:
 
@@ -30,7 +31,7 @@ jobs:
       - name: Check Python syntax
         run: python -m compileall -q scripts
       - name: Test event date extraction
-        run: PYTHONPATH=scripts python -m unittest scripts/test_regional_association_events.py scripts/test_prefecture_event_coverage.py scripts/test_kanto_three_prefectures.py scripts/test_kanto_remaining_prefectures.py scripts/test_kinki_five_prefectures.py scripts/test_verified_station_engine.py scripts/test_station_discovery_engine.py scripts/test_fukutomi_event_discovery.py scripts/test_nonta_two_day_events.py scripts/test_station_batch_onboarding.py scripts/test_road_event_gap_monitor.py scripts/test_road_event_recall_audit.py scripts/test_national_event_source_priority.py scripts/test_nationwide_source_audit.py scripts/test_kanto_station_master.py scripts/test_national_collection_acceptance.py scripts/test_zero_prefecture_action_report.py scripts/test_national_published_event_quality.py
+        run: PYTHONPATH=scripts python -m unittest scripts/test_regional_association_events.py scripts/test_prefecture_event_coverage.py scripts/test_kanto_three_prefectures.py scripts/test_kanto_remaining_prefectures.py scripts/test_kinki_five_prefectures.py scripts/test_verified_station_engine.py scripts/test_station_discovery_engine.py scripts/test_fukutomi_event_discovery.py scripts/test_nonta_two_day_events.py scripts/test_station_batch_onboarding.py scripts/test_road_event_gap_monitor.py scripts/test_road_event_recall_audit.py scripts/test_national_event_source_priority.py scripts/test_nationwide_source_audit.py scripts/test_kanto_station_master.py scripts/test_national_collection_acceptance.py scripts/test_zero_prefecture_action_report.py scripts/test_national_published_event_quality.py scripts/test_station_national_event_probe.py
       - name: Audit nine official regional sources
         run: python scripts/nationwide_source_audit.py
       - name: Retrieve official event listings
@@ -76,7 +77,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit only if event data changed
         run: |
-          git add data/station_lightwatch_report.json data/station_lightwatch_state.json data/national_published_event_quality.json data/zero_prefecture_action_report.json data/national_collection_acceptance.json data/national_event_source_priority.json docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md data/road_events.json data/tohoku_event_adapter_audit.json data/chugoku_event_adapter_audit.json data/shikoku_event_adapter_audit.json data/hokkaido_event_audit.json data/kanto_association_event_audit.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json data/hokuriku_event_audit.json data/kyushu_okinawa_event_audit.json data/kyushu_six_prefectures_audit.json data/prefecture_event_coverage.json data/kanto_three_prefectures_audit.json data/kanto_remaining_prefectures_audit.json data/kinki_five_prefectures_audit.json data/verified_station_reconfirmation_audit.json data/station_event_discovery_audit.json data/road_event_gap_monitor.json docs/ROAD_EVENT_GAP_DASHBOARD.md data/road_event_recall_audit.json docs/ROAD_EVENT_RECALL_DASHBOARD.md data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md
+          git add data/station_national_event_candidates.json data/station_national_event_probe_audit.json data/station_lightwatch_report.json data/station_lightwatch_state.json data/national_published_event_quality.json data/zero_prefecture_action_report.json data/national_collection_acceptance.json data/national_event_source_priority.json docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md data/road_events.json data/tohoku_event_adapter_audit.json data/chugoku_event_adapter_audit.json data/shikoku_event_adapter_audit.json data/hokkaido_event_audit.json data/kanto_association_event_audit.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json data/hokuriku_event_audit.json data/kyushu_okinawa_event_audit.json data/kyushu_six_prefectures_audit.json data/prefecture_event_coverage.json data/kanto_three_prefectures_audit.json data/kanto_remaining_prefectures_audit.json data/kinki_five_prefectures_audit.json data/verified_station_reconfirmation_audit.json data/station_event_discovery_audit.json data/road_event_gap_monitor.json docs/ROAD_EVENT_GAP_DASHBOARD.md data/road_event_recall_audit.json docs/ROAD_EVENT_RECALL_DASHBOARD.md data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md
           if git diff --cached --quiet; then
             echo "イベントデータに変更なし"
             exit 0
