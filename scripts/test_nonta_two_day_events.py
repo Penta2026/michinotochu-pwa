@@ -5,13 +5,26 @@ from datetime import date
 from pathlib import Path
 from bs4 import BeautifulSoup
 from station_discovery_engine import (
-    _article_record, _event_title_year_two_day_period, _validate_sources
+    _article_record, _event_title_year_two_day_period, _validate_sources, _plan_article_inspection
 )
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = next(s for s in json.loads((ROOT / "data/station_event_discovery_sources.json").read_text(encoding="utf-8"))["sources"] if s["id"] == "hiroshima_nonta")
 
 class NontaTwoDayTest(unittest.TestCase):
+    def test_target_is_not_starved_by_ten_article_budget(self):
+        links = {
+            "https://www.nonta-sakagura.com/news/old" + str(i):
+                "イベント 2026.09.13 過去の秋祭りお知らせ" + str(i)
+            for i in range(12)
+        }
+        wanted = "https://www.nonta-sakagura.com/news/okomefes"
+        links[wanted] = "イベント 2026.09.19 ぶちうまい！東広島お米フェス2026を開催いたします。"
+        selected, info = _plan_article_inspection(links, SOURCE, date(2026,10,15))
+        self.assertIn(wanted, selected)
+        self.assertEqual(len(selected), 10)
+        self.assertEqual(info["uninspectedCandidates"], 3)
+
     def test_source_valid(self):
         _validate_sources([SOURCE])
 
