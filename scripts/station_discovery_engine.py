@@ -469,8 +469,10 @@ def _article_record(source, soup, listing_title, today, url):
     if posted is None and source.get("useListingPublicationDate"):
         posted = _listing_posted(listing_title, today)
     period = _article_period(title, lines, posted)
-    if period is None and source.get("allowEventTitleYearTwoDayPeriod"):
-        period = _event_title_year_two_day_period(title, lines, today)
+    if source.get("allowEventTitleYearTwoDayPeriod"):
+        two_day = _event_title_year_two_day_period(title, lines, today)
+        if two_day and (period is None or period == (two_day[0], two_day[0])):
+            period = two_day
     if period is None and source.get("allowEventTitleYearForArticleMonthDay"):
         period = _event_title_year_month_day(title, lines, today)
     if period is None and source.get("allowExplicitDatedParagraph"):
