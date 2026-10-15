@@ -2,136 +2,136 @@
   "sources": {
     "tokyo_hachioji": {
       "status": "changed",
-      "sha256": "2e0b727d1f74e53213f6281f0833da04be4ff8576bf350b50fc9243b3cdedd3c",
+      "sha256": "91360e7aa6e54467ec38847b698da41498423e4fd07663eefcb592f7bd59d055",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "kanagawa_chigasaki": {
       "status": "unchanged",
       "sha256": "5d4d26e9f595fcccadfeb28aeecde62b58fedbf6703c6caca5857717b3d44407",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "nara_nakamachi": {
       "status": "unchanged",
       "sha256": "2e9e9d6a56a1114e8d157b81a1c11fa143a1887fc964a0b3f621272322f50036",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "fukui_hamabiyori": {
       "status": "unchanged",
       "sha256": "7a7b5c0c0330e2d44b42e149f96c1de0c79896b1956d154455334aaff8f3a27f",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "osaka_izumi_regional_center": {
       "status": "unchanged",
       "sha256": "214565b8d3af98b128db94afbd7d5635c8adf3c8a43a329c9a97f897d4bccb36",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "wakayama_shikinosato": {
       "status": "unchanged",
       "sha256": "22ace2d1b77474d4305b842a2d85f2ea451f45875d7e096c99c6a642999b681c",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "iwate_tono_kazenooka": {
       "status": "changed",
-      "sha256": "ea312f0f19cefd882a4b94a7b236eb53e8da89dfe611b573d12a7f00ce7f1821",
+      "sha256": "90a8d6f30d38f7a81649c337108b00c2b1ce0fdf562455d7ba9e891c024c6a28",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "fukushima_michinoeki": {
       "status": "unchanged",
       "sha256": "f6224afa51cbb92db455dd7502bef133f5fbe3a51f7afa7583123a37f347501a",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "yamaguchi_aio": {
       "status": "unchanged",
       "sha256": "2c08a01756691303c4cbccbceb4a6d7a09097e5abc725ca3628fb306d35fbf70",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "ehime_minatto": {
       "status": "changed",
-      "sha256": "0ad9a29d62dc1dd0a81a6d3497a9148db6deb5c0df4de637df4ad5eff5494bfe",
+      "sha256": "78cd07cd4b152708309510222b70ac4103a13adee294034d8a7c80859faaf430",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "yamaguchi_abu_roadstation": {
       "status": "unchanged",
       "sha256": "30c60f782a6c89e3c55dfb610667191322e608d9caa917c9e73b99e99de8860e",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "fukui_nanjezen_sankairi": {
       "status": "changed",
-      "sha256": "ff38f39d1b148b0d3070ce547226bce0302e3e84b4e2199add63495b47daa21e",
+      "sha256": "d348e44db92385885af8f22db5c02d4b0a7950e841a977e49c2b653354e817fa",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "miyazaki_niqll": {
       "status": "unchanged",
       "sha256": "899bb8e258cf40cbf0136d6b55226807d35ae94ef631dbdfd4e6a54b0d1cfb6a",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "ehime_yawatahama_city_events": {
       "status": "unchanged",
       "sha256": "98fb2eb61387b4d5b6af4f6b844c0cc6c826d47892ecb7a108e82d1cbe6b99aa",
       "etag": "\"6ad02207-770a\"",
       "modified": "Thu, 15 Oct 2026 00:44:55 GMT",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "kagoshima_tarumizu_official": {
-      "status": "changed",
+      "status": "unchanged",
       "sha256": "8fb2d98638e821d64eb45387524cb34c7784e4a31b42f422f5fdbb7b60784c65",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "akita_tenno_official": {
       "status": "unchanged",
       "sha256": "e897e6863ccff73ed35fe0c6eac08bc0582620e1ded10f27a8f43c28128bdc74",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "hiroshima_fukutomi": {
-      "status": "unchanged",
-      "sha256": "02eb8f9d715d45ecee46a081f9552ad623acc22601908234f9b93c28f3c888ac",
+      "status": "changed",
+      "sha256": "7d4fdc58ef385965a43a3ebe433710674394c1910de6c558cc16d0e8aab2a505",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "hiroshima_nonta": {
       "status": "unchanged",
       "sha256": "142171081e781a49c908ae69b220bed8613bca6d929e06a36099405267b2a06c",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "hiroshima_takano": {
-      "status": "first_seen",
+      "status": "unchanged",
       "sha256": "012f89305811e802383fc5b5868b0eb8925ca8aece64d0aa82d06cb1bb49d30c",
       "etag": "",
       "modified": "",
-      "checkedAt": "2026-10-15T13:03:53.553449+09:00"
+      "checkedAt": "2026-10-15T13:24:53.475223+09:00"
     },
     "hiroshima_shinmei": {
       "status": "first_seen",

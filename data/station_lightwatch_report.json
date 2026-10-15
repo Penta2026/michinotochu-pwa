@@ -1,16 +1,15 @@
 {
-  "generatedAt": "2026-10-15T13:03:53.553449+09:00",
+  "generatedAt": "2026-10-15T13:24:53.475223+09:00",
   "mode": "fetch",
   "cycleDays": 7,
   "stationsTotal": 1234,
   "stationsScheduledToday": 208,
-  "verifiedListingSources": 20,
-  "verifiedDueToday": 20,
-  "requestsAttempted": 20,
+  "verifiedListingSources": 19,
+  "verifiedDueToday": 19,
+  "requestsAttempted": 19,
   "statusCounts": {
     "changed": 5,
-    "unchanged": 13,
-    "first_seen": 2
+    "unchanged": 14
   },
   "newOrChanged": [
     {
@@ -42,25 +41,11 @@
       "status": "changed"
     },
     {
-      "id": "kagoshima_tarumizu_official",
-      "prefecture": "鹿児島県",
-      "roadName": "たるみずはまびら",
-      "url": "https://tarumizuhamabira.jp/information/",
+      "id": "hiroshima_fukutomi",
+      "prefecture": "広島県",
+      "roadName": "湖畔の里福富",
+      "url": "https://kohannosato.co.jp/news/",
       "status": "changed"
-    },
-    {
-      "id": "hiroshima_takano",
-      "prefecture": "広島県",
-      "roadName": "たかの",
-      "url": "https://takanoyama.jp/news_event/",
-      "status": "first_seen"
-    },
-    {
-      "id": "hiroshima_shinmei",
-      "prefecture": "広島県",
-      "roadName": "みはら神明の里",
-      "url": "https://www.shinmeinosato.jp/index.html",
-      "status": "first_seen"
     }
   ],
   "limitations": [

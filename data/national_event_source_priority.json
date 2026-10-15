@@ -186,8 +186,8 @@
         "articleChecked": 4,
         "rejectionReasons": {
           "expired": 1,
-          "onsite_venue_unverified": 2,
-          "accepted_by_adapter": 1
+          "accepted_by_adapter": 1,
+          "onsite_venue_unverified": 2
         }
       },
       "collectionHealth": {
@@ -203,8 +203,8 @@
         "lastSuccessfulCollectionAt": null,
         "rejectionReasons": {
           "expired": 1,
-          "onsite_venue_unverified": 2,
-          "accepted_by_adapter": 1
+          "accepted_by_adapter": 1,
+          "onsite_venue_unverified": 2
         },
         "articleFetchSucceeded": 4,
         "articleFetchFailed": 0,

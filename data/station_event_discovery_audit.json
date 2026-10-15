@@ -1647,41 +1647,6 @@
       "roadName": "たかの",
       "listingUrl": "https://takanoyama.jp/news_event/",
       "listingError": "",
-      "candidates": 1,
-      "checked": 1,
-      "accepted": 0,
-      "reconfirmed": 0,
-      "knownSkipped": 0,
-      "reconfirmationCandidates": 0,
-      "reconfirmationChecked": 0,
-      "reconfirmationFailed": 0,
-      "reconfirmationUninspected": 0,
-      "fetchFailed": 0,
-      "fetchErrors": [],
-      "reasons": {
-        "undated": 1
-      },
-      "examples": [],
-      "rejectedExamples": [
-        {
-          "title": "お知らせ・イベント情報",
-          "url": "https://takanoyama.jp/news_event/",
-          "reason": "undated"
-        }
-      ],
-      "eligibleCandidates": 1,
-      "uninspectedCandidates": 0,
-      "explorationStart": 0,
-      "explorationNext": 0,
-      "explorationSlots": 0,
-      "explorationPool": 0
-    },
-    {
-      "id": "hiroshima_shinmei",
-      "prefecture": "広島県",
-      "roadName": "みはら神明の里",
-      "listingUrl": "https://www.shinmeinosato.jp/index.html",
-      "listingError": "",
       "candidates": 8,
       "checked": 8,
       "accepted": 0,
@@ -1694,52 +1659,89 @@
       "fetchFailed": 0,
       "fetchErrors": [],
       "reasons": {
-        "undated": 8
+        "undated": 1,
+        "not_event": 6,
+        "offsite": 1
       },
       "examples": [],
       "rejectedExamples": [
         {
-          "title": "道の駅みはら神明の里",
-          "url": "https://www.shinmeinosato.jp/michinoekimihara.html",
+          "title": "news 2026.04.05 ~ 2026.06.30 『庄原里山マルシェ』について🚩",
+          "url": "https://takanoyama.jp/12232/",
           "reason": "undated"
         },
         {
-          "title": "三原の紹介",
-          "url": "https://www.shinmeinosato.jp/features.html",
-          "reason": "undated"
+          "title": "news 2026.09.18 ~ 2026.11.30 🍎りんご狩り🍎予約受付開始!",
+          "url": "https://takanoyama.jp/12605/",
+          "reason": "not_event"
         },
         {
-          "title": "スタッフからの情報",
-          "url": "https://www.shinmeinosato.jp/index.html",
-          "reason": "undated"
+          "title": "news 2026.10.06 ~ 2026.10.31 [10月]レストラン営業内容変更のお知らせ",
+          "url": "https://takanoyama.jp/10782/",
+          "reason": "not_event"
         },
         {
-          "title": "レストラン ルマーダ",
-          "url": "https://www.shinmeinosato.jp/eat.html",
-          "reason": "undated"
+          "title": "news 2026.04.25 ~ 2026.05.31 オンラインショップ「道の駅たかのアップルパイ」販売再開!",
+          "url": "https://takanoyama.jp/11778/",
+          "reason": "not_event"
         },
         {
-          "title": "農産物・農産物加工品",
-          "url": "https://www.shinmeinosato.jp/shop.html",
-          "reason": "undated"
+          "title": "news 2025.08.29 庄原産農産物 出荷時期カレンダー",
+          "url": "https://takanoyama.jp/10916/",
+          "reason": "not_event"
         },
         {
-          "title": "お問い合わせ",
-          "url": "https://www.shinmeinosato.jp/mailform.html",
-          "reason": "undated"
+          "title": "news 2024.12.10 オンラインショップでの会員情報について",
+          "url": "https://takanoyama.jp/9006/",
+          "reason": "not_event"
         },
         {
-          "title": "個人情報保護方針",
-          "url": "https://www.shinmeinosato.jp/the-community.html",
-          "reason": "undated"
+          "title": "news 2022.10.15 『熟じゃが』2026.10.10 解禁!",
+          "url": "https://takanoyama.jp/4483/",
+          "reason": "not_event"
         },
         {
-          "title": "お問い合わせ",
-          "url": "https://www.shinmeinosato.jp/info.html",
-          "reason": "undated"
+          "title": "news 2026.09.30 ~ 2026.10.06 『庄原里山マルシェ』in広島駅 開催決定!",
+          "url": "https://takanoyama.jp/12619/",
+          "reason": "offsite"
         }
       ],
       "eligibleCandidates": 8,
+      "uninspectedCandidates": 0,
+      "explorationStart": 0,
+      "explorationNext": 0,
+      "explorationSlots": 0,
+      "explorationPool": 0
+    },
+    {
+      "id": "hiroshima_shinmei",
+      "prefecture": "広島県",
+      "roadName": "みはら神明の里",
+      "listingUrl": "https://www.shinmeinosato.jp/index.html",
+      "listingError": "",
+      "candidates": 1,
+      "checked": 1,
+      "accepted": 0,
+      "reconfirmed": 0,
+      "knownSkipped": 0,
+      "reconfirmationCandidates": 0,
+      "reconfirmationChecked": 0,
+      "reconfirmationFailed": 0,
+      "reconfirmationUninspected": 0,
+      "fetchFailed": 0,
+      "fetchErrors": [],
+      "reasons": {
+        "no_strictly_dated_news_notice": 1
+      },
+      "examples": [],
+      "rejectedExamples": [
+        {
+          "title": "公式開催案内",
+          "url": "https://www.shinmeinosato.jp/index.html",
+          "reason": "no_strictly_dated_news_notice"
+        }
+      ],
+      "eligibleCandidates": 1,
       "uninspectedCandidates": 0,
       "explorationStart": 0,
       "explorationNext": 0,

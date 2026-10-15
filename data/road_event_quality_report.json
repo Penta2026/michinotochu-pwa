@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inputPrevious": 61,
-  "inputCollected": 59,
+  "inputCollected": 60,
   "expiredOrInvalid": [],
   "corrected": [],
   "exactDuplicates": [
@@ -60,6 +60,10 @@
     {
       "roadName": "村田",
       "title": "古民具・アート（工房四季庵）展"
+    },
+    {
+      "roadName": "たきかわ",
+      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!"
     },
     {
       "roadName": "親不知ピアパーク",
@@ -244,14 +248,6 @@
   ],
   "possibleDuplicates": [],
   "notReconfirmed": [
-    {
-      "roadName": "たきかわ",
-      "title": "10月17日、18日は道の駅たきかわ大収穫祭です!",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/",
-      "reason": "not_found_in_current_collection"
-    },
     {
       "roadName": "こすげ",
       "title": "【道の駅こすげ】ミニイベント 秋まつり 2026年10月24日(土)",

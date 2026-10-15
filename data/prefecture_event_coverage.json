@@ -81,12 +81,11 @@
     "historicalNeverObservedPrefectures": 0,
     "registeredEvents": 61,
     "targetedStationFeedPrefectures": 28,
-    "notReconfirmedEvents": 2,
+    "notReconfirmedEvents": 1,
     "unknownPrefectures": []
   },
   "priorities": {
     "reconfirm": [
-      "北海道",
       "山梨県"
     ],
     "historicalNeverObserved": [],
@@ -234,9 +233,9 @@
       "targetedStationFeeds": [
         "しらぬか恋問館"
       ],
-      "notReconfirmedCount": 1,
-      "state": "needs_reconfirmation",
-      "nextAction": "recheck_known_event",
+      "notReconfirmedCount": 0,
+      "state": "events_observed",
+      "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 13,
       "regionalAuditMode": "discovery"
