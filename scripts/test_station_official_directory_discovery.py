@@ -133,6 +133,44 @@ class OfficialDirectoryPilotTests(unittest.TestCase):
         self.assertEqual(fetched.count(LIST_BASE+"?page=1"),1)
         self.assertFalse(any("hokkaido-michinoeki.jp" in u for u in fetched))
 
+    def test_national_daily_48_scans_multiple_chunks_of_same_listing_page(self):
+        roads = [{"id": "RS%04d" % i, "prefecture": "広島県",
+                  "name": "架空駅%03d" % i} for i in range(1, 51)]
+        listing = "<main>" + "".join(
+            '<a href="/stations/views/%d">架空駅%03d 広島県</a>' % (30000+i, i)
+            for i in range(1, 51)) + (
+                '<a href="/stations/search/all/all/all?page=1">次ページ</a></main>')
+        calls = []
+        def fetch(url):
+            calls.append(url)
+            if url == LIST_BASE:
+                return 200, listing
+            i = int(url.rsplit("/", 1)[-1]) - 30000
+            return 200, '<h2>道の駅「架空駅%03d」</h2>' % i
+        with patch("station_official_directory_discovery.read_app_stations",
+                   return_value=roads):
+            result = crawl_batch(fetch, robots_allowed=lambda _: True,
+                                 max_details=48, scanned_on="2026-10-15")
+        self.assertEqual(result["cursor"], {"page": 0, "offset": 48})
+        self.assertEqual(result["lastRun"]["examined"], 48)
+        self.assertEqual(result["lastRun"]["inspected"], 48)
+        self.assertEqual(len(result["stations"]), 48)
+        self.assertEqual(calls.count(LIST_BASE), 2)
+        self.assertFalse(result["listingTraversalCompleted"])
+
+    def test_directory_rate_limit_aborts_instead_of_skipping_station(self):
+        listing = '<main><a href="/stations/views/18786">三笠 北海道</a></main>'
+        def fetch(url):
+            return (200, listing) if url == LIST_BASE else (429, "busy")
+        with patch("station_official_directory_discovery.read_app_stations",
+                   return_value=self.roads):
+            with self.assertRaisesRegex(RuntimeError, "rate-limited"):
+                crawl_batch(fetch, robots_allowed=lambda _: True,
+                            max_details=1, scanned_on="2026-10-15")
+        with self.assertRaises(ValueError):
+            crawl_batch(lambda _: None, robots_allowed=lambda _: True,
+                        max_details=97)
+
     def test_end_of_nationwide_listing_marks_complete_and_preserves_error_row(self):
         html='<main><a href="/stations/views/18786">三笠 北海道 三笠市</a></main>'
         with patch("station_official_directory_discovery.read_app_stations",
