@@ -974,7 +974,8 @@
       "maxArticles": 10,
       "explorationSlots": 3,
       "allowExplicitDatedParagraph": true,
-      "splitArticleTextLines": true
+      "splitArticleTextLines": true,
+      "allowEventTitleYearForArticleMonthDay": true
     }
   ]
 }
