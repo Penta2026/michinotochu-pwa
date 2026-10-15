@@ -1,15 +1,6 @@
 name: 全国1234駅の公式リンク候補・分散巡回
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/station-directory-pilot.yml"
-      - "scripts/station_official_directory_discovery.py"
-      - "scripts/station_website_batch_review.py"
-      - "scripts/station_source_triage.py"
-      - "scripts/station_national_event_probe.py"
-      - "scripts/station_bootstrap_dashboard.py"
   # 03:00 JST (18:00 UTC on the preceding day). Bounded national daily
   # budget: 96 directory details + 120 candidate sites + 60 event-site probes.
   schedule:
