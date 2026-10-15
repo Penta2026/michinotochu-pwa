@@ -386,6 +386,36 @@ def _event_title_year_month_day(title, lines, today):
     return day, day
 
 
+def _event_title_year_two_day_period(title, lines, today):
+    """Narrow opt-in: title event year plus two consecutive days in one article line."""
+    years = set(re.findall(r"(?<![0-9])(20[0-9]{2})(?![0-9])", title))
+    if len(years) != 1:
+        return None
+    year = int(next(iter(years)))
+    candidates = set()
+    for line in lines:
+        if re.search(r"投稿日|更新日|公開日|掲載日|申込|締切|募集期間|受付期間", line):
+            continue
+        if not re.search(r"日時|開催|日程|イベント|フェス", line):
+            continue
+        # E.g. 日時：11月28日（土）29日（日）10時～15時
+        m = re.search(
+            r"(?<![0-9])([0-9]{1,2})月\\s*([0-9]{1,2})日"
+            r"(?:\\s*[（(][^）)]{1,12}[）)])?\\s*"
+            r"(?:～|〜|~|・|、|,|から)?\\s*"
+            r"([0-9]{1,2})日", line)
+        if not m:
+            continue
+        mo, first, last = map(int, m.groups())
+        try:
+            start, end = date(year, mo, first), date(year, mo, last)
+        except ValueError:
+            continue
+        if start >= today and (end - start).days == 1:
+            candidates.add((start.isoformat(), end.isoformat()))
+    return next(iter(candidates)) if len(candidates) == 1 else None
+
+
 def _article_record(source, soup, listing_title, today, url):
     article = _pick_article(soup, source)
     if article is None:
@@ -439,6 +469,8 @@ def _article_record(source, soup, listing_title, today, url):
     if posted is None and source.get("useListingPublicationDate"):
         posted = _listing_posted(listing_title, today)
     period = _article_period(title, lines, posted)
+    if period is None and source.get("allowEventTitleYearTwoDayPeriod"):
+        period = _event_title_year_two_day_period(title, lines, today)
     if period is None and source.get("allowEventTitleYearForArticleMonthDay"):
         period = _event_title_year_month_day(title, lines, today)
     if period is None and source.get("allowExplicitDatedParagraph"):
