@@ -35,6 +35,8 @@ jobs:
         run: python scripts/nationwide_source_audit.py
       - name: Retrieve official event listings
         run: python scripts/collect_road_events.py
+      - name: Watch verified station listings (no event publishing)
+        run: python scripts/station_lightwatch.py --fetch --daily-verified --max-requests 40
       - name: Audit 47-prefecture coverage
         run: python scripts/prefecture_event_coverage.py
       - name: Build nationwide-first regional source priority dashboard
@@ -74,7 +76,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit only if event data changed
         run: |
-          git add data/national_published_event_quality.json data/zero_prefecture_action_report.json data/national_collection_acceptance.json data/national_event_source_priority.json docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md data/road_events.json data/tohoku_event_adapter_audit.json data/chugoku_event_adapter_audit.json data/shikoku_event_adapter_audit.json data/hokkaido_event_audit.json data/kanto_association_event_audit.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json data/hokuriku_event_audit.json data/kyushu_okinawa_event_audit.json data/kyushu_six_prefectures_audit.json data/prefecture_event_coverage.json data/kanto_three_prefectures_audit.json data/kanto_remaining_prefectures_audit.json data/kinki_five_prefectures_audit.json data/verified_station_reconfirmation_audit.json data/station_event_discovery_audit.json data/road_event_gap_monitor.json docs/ROAD_EVENT_GAP_DASHBOARD.md data/road_event_recall_audit.json docs/ROAD_EVENT_RECALL_DASHBOARD.md data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md
+          git add data/station_lightwatch_report.json data/station_lightwatch_state.json data/national_published_event_quality.json data/zero_prefecture_action_report.json data/national_collection_acceptance.json data/national_event_source_priority.json docs/NATIONAL_EVENT_PRIORITY_DASHBOARD.md data/road_events.json data/tohoku_event_adapter_audit.json data/chugoku_event_adapter_audit.json data/shikoku_event_adapter_audit.json data/hokkaido_event_audit.json data/kanto_association_event_audit.json data/road_event_sources_report.json data/chubu_event_layout_report.json data/road_event_quality_report.json data/hokuriku_event_audit.json data/kyushu_okinawa_event_audit.json data/kyushu_six_prefectures_audit.json data/prefecture_event_coverage.json data/kanto_three_prefectures_audit.json data/kanto_remaining_prefectures_audit.json data/kinki_five_prefectures_audit.json data/verified_station_reconfirmation_audit.json data/station_event_discovery_audit.json data/road_event_gap_monitor.json docs/ROAD_EVENT_GAP_DASHBOARD.md data/road_event_recall_audit.json docs/ROAD_EVENT_RECALL_DASHBOARD.md data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md
           if git diff --cached --quiet; then
             echo "イベントデータに変更なし"
             exit 0
