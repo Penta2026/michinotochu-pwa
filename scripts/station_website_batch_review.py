@@ -48,10 +48,18 @@ def analyze(station, url, response):
             "ownershipVerified": False, "eventListingVerified": False}
 
 
-def run(queue, previous, fetch, allowed, limit=MAX_SITES):
+def run(queue, previous, fetch, allowed, limit=MAX_SITES, priority=None):
     if not 1 <= limit <= MAX_SITES:
         raise ValueError("Too many external station requests")
     candidates = list(eligible(queue, previous))
+    if priority is not None:
+        # Prioritize provinces without published events; all entries are
+        # still taken exclusively from the same validated review queue.
+        ranked = {(p["stationId"], p["url"]): i
+                  for i, p in enumerate(priority)}
+        candidates.sort(key=lambda item: (
+            ranked.get((item[0]["id"], item[1]), len(ranked)),
+            item[0]["id"], item[1]))
     additions = []
     for station, url in candidates[:limit]:
         record = {"stationId": station["id"], "prefecture": station["prefecture"],
@@ -75,6 +83,9 @@ def run(queue, previous, fetch, allowed, limit=MAX_SITES):
 def main():
     queue = json.loads((DATA / "station_website_review_queue.json").read_text(encoding="utf-8"))
     previous = json.loads(OUTPUT.read_text(encoding="utf-8")) if OUTPUT.exists() else {}
+    priority_file = DATA / "station_website_priority.json"
+    priority = json.loads(priority_file.read_text(encoding="utf-8")).get(
+        "reviewPriority", []) if priority_file.exists() else None
     session = requests.Session()
     session.headers.update({"User-Agent": AGENT})
     robots = {}
@@ -92,7 +103,7 @@ def main():
         return bool(robots[host] and robots[host].can_fetch(AGENT, url))
     result = run(queue, previous,
                  lambda url: session.get(url, timeout=12, allow_redirects=False),
-                 allowed)
+                 allowed, priority=priority)
     data = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != data:
         OUTPUT.write_text(data, encoding="utf-8")
