@@ -236,8 +236,7 @@ def crawl_batch(fetch, *, robots_allowed, old=None, max_details=MAX_DETAIL_PAGES
         totals["listCount"] = run["listCount"]
         remaining -= examined
         current = result
-        if (current.get("listingTraversalCompleted")
-                or result["cursor"]["page"] == previous["page"]):
+        if current.get("listingTraversalCompleted"):
             break
     if not current:
         raise RuntimeError("Directory batch produced no output")
