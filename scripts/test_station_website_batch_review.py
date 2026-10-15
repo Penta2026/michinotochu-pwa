@@ -1,4 +1,5 @@
 import unittest
+from datetime import date
 from station_website_batch_review import run, eligible
 
 
@@ -82,6 +83,31 @@ class BatchReviewTests(unittest.TestCase):
                      lambda url: (called.append(url) or Response()),
                      lambda url: True, limit=2)
         self.assertEqual(called[-1], "https://one.example/b")
+
+    def test_weekly_refresh_does_not_starve_new_station(self):
+        rows = []
+        for code in (1, 2):
+            rows.append({"id": "RS%04d" % code, "prefecture": "北海道",
+                "roadName": "テスト駅", "directoryInspectionState": "checked",
+                "candidates": [{"url": "https://station.example/%s" % code,
+                    "kind": "station_or_partner_site_unverified",
+                    "reviewStatus": "awaiting_review"}]})
+        previous = {"checkedAt": "2026-10-01T00:00:00+00:00",
+                    "results": [{"stationId": "RS0001",
+                                 "url": "https://station.example/1",
+                                 "checkedAt": "2026-10-01T00:00:00+00:00"}]}
+        # A new station appears first; an old site is eligible for recheck.
+        available = list(eligible({"stations": rows}, previous,
+                                  today=date(2026, 10, 15)))
+        self.assertEqual(len(available), 2)
+        class Response:
+            status_code = 200
+            content = b"<html></html>"
+        urls = []
+        run({"stations": rows}, previous,
+            lambda url: (urls.append(url) or Response()), lambda _: True,
+            limit=1)
+        self.assertEqual(urls, ["https://station.example/2"])
 
     def test_budget_cap(self):
         with self.assertRaises(ValueError):
