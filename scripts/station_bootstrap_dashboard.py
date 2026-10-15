@@ -1,7 +1,7 @@
 """Track a 10–12-day first-pass target without calling unknown stations verified."""
 import json
 from collections import Counter
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from math import ceil
 from pathlib import Path
 
@@ -75,7 +75,7 @@ def main():
     text = render(read("station_official_directory_candidates.json"),
                   read("station_website_batch_audit.json"),
                   read("station_national_event_probe_audit.json"),
-                  read("road_events.json"), today=date.today())
+                  read("road_events.json"), today=datetime.now(timezone(timedelta(hours=9))).date())
     DASHBOARD.write_text(text, encoding="utf-8")
     print("Nationwide bootstrap dashboard: " + str(DASHBOARD))
 
