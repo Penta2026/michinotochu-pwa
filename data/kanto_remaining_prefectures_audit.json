@@ -7,11 +7,11 @@
       "station": "しょうなん",
       "source": "https://www.michinoeki-shonan.jp/",
       "listingError": "",
-      "candidates": 7,
-      "checked": 7,
+      "candidates": 8,
+      "checked": 8,
       "accepted": 0,
       "past": 2,
-      "undated": 5,
+      "undated": 6,
       "skipped": 0,
       "errors": 0,
       "examples": [],
@@ -29,8 +29,8 @@
           "url": "https://www.michinoeki-shonan.jp/news/1682/"
         },
         {
-          "title": "知産知消マルシェ「熊本の道の駅応援フェア」を開催します",
-          "url": "https://www.michinoeki-shonan.jp/news/3187/"
+          "title": "2026年10月15日(木) お知らせ ちゃのごカフェ 10月16日 ちゃのごカフェ「しょうなん野菜バーガー かぶ」販売開始",
+          "url": "https://www.michinoeki-shonan.jp/news/3190/"
         }
       ]
     },
@@ -40,10 +40,10 @@
       "station": "保田小学校",
       "source": "https://hotasho.jp/news-list/",
       "listingError": "",
-      "candidates": 2,
-      "checked": 2,
+      "candidates": 0,
+      "checked": 0,
       "accepted": 0,
-      "past": 2,
+      "past": 0,
       "undated": 0,
       "skipped": 0,
       "errors": 0,
@@ -72,10 +72,10 @@
       "station": "湘南ちがさき",
       "source": "https://m-shonanchigasaki.com/topics/",
       "listingError": "",
-      "candidates": 3,
-      "checked": 3,
+      "candidates": 2,
+      "checked": 2,
       "accepted": 0,
-      "past": 1,
+      "past": 0,
       "undated": 2,
       "skipped": 0,
       "errors": 0,

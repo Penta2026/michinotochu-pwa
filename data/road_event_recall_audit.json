@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-15",
+  "checkedOn": "2026-10-16",
   "summary": {
     "officialSources": 10,
     "reachableSources": 10,
-    "announcementsCompared": 80,
+    "announcementsCompared": 82,
     "statuses": {
       "unmatched_official_notice": 45,
       "same_official_url_title_needs_review": 1,
       "possible_same_event_other_url": 2,
-      "station_not_unambiguously_identified": 26,
+      "station_not_unambiguously_identified": 28,
       "published_same_official_url": 6
     },
     "candidatesForManualReview": 46,
@@ -391,7 +391,7 @@
     },
     {
       "source": "北海道",
-      "title": "【びえい】「丘のくら」 『収穫マルシェ』開催！！ NEW",
+      "title": "【びえい】「丘のくら」 『収穫マルシェ』開催！！",
       "url": "https://hokkaido-michinoeki.jp/michiekiinfo/bieiokainfo/69848",
       "prefecture": "",
       "roadName": "",
@@ -561,6 +561,30 @@
       "source": "近畿",
       "title": "「道の駅 奥永源寺渓流の里」開駅１１周年記念祭を開催します。",
       "url": "https://www.kinki-michinoeki.com/news/%E9%96%8B%E9%A7%85%EF%BC%91%EF%BC%91%E5%91%A8%E5%B9%B4%E8%A8%98%E5%BF%B5%E7%A5%AD%E3%82%92%E9%96%8B%E5%82%AC%E3%81%97%E3%81%BE%E3%81%99%E3%80%82",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "関東",
+      "title": "子ども広場にあるぶどうの実ドームと小坂田マルシェ７９０内のDELI＆BREAD",
+      "url": "https://www.kanto-michinoeki.jp/map_single.php?id_name=8&single_name=3",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "関東",
+      "title": "マルシェ黒耀",
+      "url": "https://www.kanto-michinoeki.jp/map_single.php?id_name=8&single_name=9",
       "prefecture": "",
       "roadName": "",
       "status": "station_not_unambiguously_identified",

@@ -3,7 +3,7 @@
   "checkedOn": "2026-10-15",
   "publishedCount": 61,
   "criticalCount": 0,
-  "manualReviewCount": 6,
+  "manualReviewCount": 7,
   "critical": [],
   "review": [
     {
@@ -13,6 +13,14 @@
       "title": "BikeJINツーリングトロフィー 今年もツーリングシーズンはじまりました！道の駅「親不…",
       "url": "https://www.hokuriku-michinoeki.jp/contents/event/?dc=2026-03-17&article=000942",
       "reason": "long_running_event_over_120_days"
+    },
+    {
+      "index": 10,
+      "prefecture": "京都府",
+      "station": "和",
+      "title": "<坂原アグリ主催>黒大豆枝豆もぎとり収穫体験のご案内(2026年10/16〜11/3)",
+      "url": "https://wachi-nagomi.com/topics/post-10529/",
+      "reason": "future_publication_timestamp"
     },
     {
       "index": 18,

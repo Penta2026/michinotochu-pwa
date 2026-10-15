@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-10-15T13:24:53.475223+09:00",
+  "generatedAt": "2026-10-16T06:29:47.056621+09:00",
   "mode": "fetch",
   "cycleDays": 7,
   "stationsTotal": 1234,
-  "stationsScheduledToday": 208,
+  "stationsScheduledToday": 182,
   "verifiedListingSources": 19,
   "verifiedDueToday": 19,
   "requestsAttempted": 19,
   "statusCounts": {
-    "changed": 5,
-    "unchanged": 14
+    "changed": 9,
+    "unchanged": 10
   },
   "newOrChanged": [
     {
@@ -17,6 +17,13 @@
       "prefecture": "東京都",
       "roadName": "八王子滝山",
       "url": "https://www.michinoeki-hachioji.net/",
+      "status": "changed"
+    },
+    {
+      "id": "kanagawa_chigasaki",
+      "prefecture": "神奈川県",
+      "roadName": "湘南ちがさき",
+      "url": "https://m-shonanchigasaki.com/topics/",
       "status": "changed"
     },
     {
@@ -38,6 +45,27 @@
       "prefecture": "福井県",
       "roadName": "南えちぜん山海里",
       "url": "https://kineno-nanjo.com/news/",
+      "status": "changed"
+    },
+    {
+      "id": "miyazaki_niqll",
+      "prefecture": "宮崎県",
+      "roadName": "都城NiQLL",
+      "url": "https://coconiqll.co.jp/info/",
+      "status": "changed"
+    },
+    {
+      "id": "kagoshima_tarumizu_official",
+      "prefecture": "鹿児島県",
+      "roadName": "たるみずはまびら",
+      "url": "https://tarumizuhamabira.jp/information/",
+      "status": "changed"
+    },
+    {
+      "id": "akita_tenno_official",
+      "prefecture": "秋田県",
+      "roadName": "てんのう",
+      "url": "https://michinoeki-tenno.jp/",
       "status": "changed"
     },
     {

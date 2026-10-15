@@ -258,14 +258,7 @@
     }
   ],
   "finalCount": 61,
-  "futurePublicationDatesCleared": [
-    {
-      "url": "https://wachi-nagomi.com/topics/post-10529/",
-      "roadName": "和",
-      "publishedAt": "2026-10-16",
-      "reason": "publication_date_in_future"
-    }
-  ],
+  "futurePublicationDatesCleared": [],
   "collapsedHokurikuDuplicates": {
     "previous": 0,
     "collected": 0

@@ -1,6 +1,6 @@
 # 道の駅イベント・取りこぼし監視ダッシュボード
 
-監査日（日本時間）: **2026-10-15**
+監査日（日本時間）: **2026-10-16**
 
 > **注意:** このページは収集漏れの「可能性」を探すための監査です。
 > 未登録イベント数や全国の収集率を推定したものではありません。
@@ -22,7 +22,7 @@
 | 日替わり巡回を実施する収集先 | 10 |
 | 日替わり巡回に割り当てた記事枠 | 25 |
 | 要確認候補のうち将来開催日の明記あり | 2 |
-| 記事の要確認サンプル | 61 |
+| 記事の要確認サンプル | 63 |
 | 一覧から既存イベントを再確認する候補URL | 9 |
 | 公式一覧経由の既存URL再検査 | 9 |
 | 公式一覧経由の再検査で取得失敗 | 0 |
@@ -74,6 +74,7 @@
 | 和歌山県 | 海南サクアス | 10月後半イベント | unknown_date | event_sections_unparsed | [記事を確認](https://sakuas.com/event/4589/) |
 | 和歌山県 | 四季の郷公園 | Event イ | unknown_date | event_date_unverified | [記事を確認](https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab-2-2/) |
 | 和歌山県 | 四季の郷公園 | Event イ | unknown_date | event_date_unverified | [記事を確認](https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab-2/) |
+| 和歌山県 | 四季の郷公園 | Event イ | unknown_date | event_date_unverified | [記事を確認](https://fh-park.jp/events/%e2%98%85%ef%bc%98%e6%9c%88%e6%9c%80%e6%96%b0%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1-%e6%a5%bd%e3%81%97%e3%81%8f%e6%b6%bc%e3%81%97%e3%81%8f%e5%a4%8f%e3%82%92%e6%ba%80%e5%96%ab/) |
 | 奈良県 | クロスウェイなかまち | 2026年シルバーウィーク特別企画「グラウンド・ランタン祭り&夜市」 道の駅「クロスウェイなかまち」では、2026年9月19日(土)から9月23日(水・祝)までの5日間、地域住民から観光客まで、誰もが | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20260919) |
 | 奈良県 | クロスウェイなかまち | 10/3(土)あの「まほろばの宴」がやって来る! Youtubeチャンネル登録者数5万人の DTMer奏人kanato と、仲間の演者たちが、また道の駅「クロスウェイなかまち」にやってきます!秋の特別 | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261003) |
 | 奈良県 | クロスウェイなかまち | 10/11(日)日本伝統芸能 猿まわし「お猿の森」、ご祝儀大歓迎♪ 道の駅「クロスウェイなかまち」では、2026年10月11日(日)に、日本伝統芸能 猿まわし「お猿の森」の公演を開催します。今回は、久 | unknown_date | event_date_unverified | [記事を確認](https://michi-no-eki-crosswaynakamachi.pref.nara.jp/events/20261011) |
@@ -85,8 +86,7 @@
 | 岩手県 | 遠野風の丘 | 日程:8月12日(水)~8月13日(木) 時間:屋外切り花販売 7:00~ 屋内は通常通り営業 9:00~ | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%8a%e7%9b%86%e6%9c%9d%e5%b8%82%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%90%ef%bc%98%e6%9c%8812%e6%97%a5%e6%b0%b4/) |
 | 岩手県 | 遠野風の丘 | 遠野風の丘フードマルシェ 日程:9月6日(日) 10:00~16:00 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e3%83%95%e3%83%bc%e3%83%89%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a7%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%829%e6%9c%886%e6%97%a5%e6%97%a5/) |
 | 岩手県 | 遠野風の丘 | 防災イベント 開催日:9月6日(日) 時 間:10:00~15:00 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%98%b2%e7%81%bd%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%909%e6%9c%886%e6%97%a5%e6%97%a5%e3%80%91/) |
-| 岩手県 | 遠野風の丘 | 風の丘の空ノ市 日程:9月27日(日) 時間:10時~15時 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%ae%e7%a9%ba%e3%83%8e%e5%b8%82-9%e6%9c%88%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%909%e6%9c%8827%e6%97%a5%e6%97%a5%e3%80%91/) |
-| 広島県 | 湖畔の里福富 | 2026.08.31 お知らせ しゃくなげ湖納涼花火大会 募金のお礼・ご報告 | unknown_date | onsite_venue_unverified | [記事を確認](https://kohannosato.co.jp/news/%e3%81%97%e3%82%83%e3%81%8f%e3%81%aa%e3%81%92%e6%b9%96%e7%b4%8d%e6%b6%bc%e8%8a%b1%e7%81%ab%e5%a4%a7%e4%bc%9a%e3%80%80%e5%8b%9f%e9%87%91%e3%81%ae%e3%81%8a%e7%a4%bc%e3%83%bb%e3%81%94%e5%a0%b1%e5%91%8a/) |
+| 岩手県 | 遠野風の丘 | 日程8月23日(日) 時間:10時~15時 | unknown_date | event_date_unverified | [記事を確認](https://kazenooka.tonofurusato.jp/news/%e9%a2%a8%e3%81%ae%e4%b8%98%e3%81%ae%e7%a9%ba%e3%83%8e%e5%b8%82-8%e6%9c%88%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%82%e3%80%908%e6%9c%8823%e6%97%a5%e6%97%a5%e3%80%91/) |
 
 ## 収集先について
 

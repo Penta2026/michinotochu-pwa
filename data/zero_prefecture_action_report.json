@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-15",
+  "checkedOn": "2026-10-16",
   "prefecturesWithoutCurrentEvents": 11,
   "prefecturesWithOfficialReviewLeads": 11,
   "uncoveredPrefectures": [],
@@ -105,10 +105,10 @@
       "acceptedByDiscoveryAdapter": 0,
       "uninspectedCandidates": 142,
       "rejectionReasons": {
-        "not_event": 7,
+        "not_event": 10,
         "undated": 4,
-        "venue_missing": 2,
-        "past": 7
+        "venue_missing": 1,
+        "past": 5
       },
       "officialLeadUrls": [
         "https://kineno-nanjo.com/news/"

@@ -22,7 +22,7 @@
           "eventVerified": false
         },
         {
-          "title": "【びえい】「丘のくら」 『収穫マルシェ』開催！！ NEW",
+          "title": "【びえい】「丘のくら」 『収穫マルシェ』開催！！",
           "url": "https://hokkaido-michinoeki.jp/michiekiinfo/bieiokainfo/69848/",
           "stationIdHint": "",
           "identityStatus": "unmatched",
@@ -196,6 +196,20 @@
       "reachable": true,
       "candidates": [
         {
+          "title": "子ども広場にあるぶどうの実ドームと小坂田マルシェ７９０内のDELI＆BREAD",
+          "url": "https://www.kanto-michinoeki.jp/map_single.php?id_name=8&single_name=3",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
+          "title": "マルシェ黒耀",
+          "url": "https://www.kanto-michinoeki.jp/map_single.php?id_name=8&single_name=9",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
           "title": "イベント情報",
           "url": "https://www.kanto-michinoeki.jp/archives/category/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1",
           "stationIdHint": "",
@@ -231,7 +245,7 @@
           "eventVerified": false
         }
       ],
-      "candidateCount": 5,
+      "candidateCount": 7,
       "error": "",
       "curatedEventListing": {
         "url": "https://www.kanto-michinoeki.jp/archives/category/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1",
