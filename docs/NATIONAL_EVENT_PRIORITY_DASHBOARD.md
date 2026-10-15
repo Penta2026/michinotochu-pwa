@@ -91,7 +91,7 @@
 | 山口県 | 1 | 2 | 2 | 10 | 0 | 0 | published_events_observed |
 | 徳島県 | 0 | 0 | 0 | 0 | 0 | 0 | regional_homepage_only_or_unknown |
 | 香川県 | 2 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
-| 愛媛県 | 1 | 1 | 3 | 20 | 0 | 0 | published_events_observed |
+| 愛媛県 | 1 | 1 | 3 | 21 | 0 | 0 | published_events_observed |
 | 高知県 | 1 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
 | 青森県 | 1 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
 | 岩手県 | 2 | 1 | 1 | 11 | 0 | 0 | published_events_observed |

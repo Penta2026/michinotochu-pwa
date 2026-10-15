@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-10-15T10:53:12.582854+09:00",
+  "mode": "fetch",
+  "cycleDays": 7,
+  "stationsTotal": 1234,
+  "stationsScheduledToday": 208,
+  "verifiedListingSources": 16,
+  "verifiedDueToday": 16,
+  "requestsAttempted": 16,
+  "statusCounts": {
+    "first_seen": 16
+  },
+  "newOrChanged": [
+    {
+      "id": "tokyo_hachioji",
+      "prefecture": "東京都",
+      "roadName": "八王子滝山",
+      "url": "https://www.michinoeki-hachioji.net/",
+      "status": "first_seen"
+    },
+    {
+      "id": "kanagawa_chigasaki",
+      "prefecture": "神奈川県",
+      "roadName": "湘南ちがさき",
+      "url": "https://m-shonanchigasaki.com/topics/",
+      "status": "first_seen"
+    },
+    {
+      "id": "nara_nakamachi",
+      "prefecture": "奈良県",
+      "roadName": "クロスウェイなかまち",
+      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
+      "status": "first_seen"
+    },
+    {
+      "id": "fukui_hamabiyori",
+      "prefecture": "福井県",
+      "roadName": "若狭美浜はまびより",
+      "url": "https://hamabiyori.com/events/",
+      "status": "first_seen"
+    },
+    {
+      "id": "osaka_izumi_regional_center",
+      "prefecture": "大阪府",
+      "roadName": "いずみ山愛の里",
+      "url": "https://izuminambu-rc.jp/nb_event/",
+      "status": "first_seen"
+    },
+    {
+      "id": "wakayama_shikinosato",
+      "prefecture": "和歌山県",
+      "roadName": "四季の郷公園",
+      "url": "https://fh-park.jp/events/",
+      "status": "first_seen"
+    },
+    {
+      "id": "iwate_tono_kazenooka",
+      "prefecture": "岩手県",
+      "roadName": "遠野風の丘",
+      "url": "https://kazenooka.tonofurusato.jp/",
+      "status": "first_seen"
+    },
+    {
+      "id": "fukushima_michinoeki",
+      "prefecture": "福島県",
+      "roadName": "ふくしま",
+      "url": "https://m-fukushima.com/info/?category=2",
+      "status": "first_seen"
+    },
+    {
+      "id": "yamaguchi_aio",
+      "prefecture": "山口県",
+      "roadName": "あいお",
+      "url": "https://michinoeki-aio.com/news/",
+      "status": "first_seen"
+    },
+    {
+      "id": "ehime_minatto",
+      "prefecture": "愛媛県",
+      "roadName": "八幡浜みなっと",
+      "url": "https://www.minatto.net/",
+      "status": "first_seen"
+    },
+    {
+      "id": "yamaguchi_abu_roadstation",
+      "prefecture": "山口県",
+      "roadName": "阿武町",
+      "url": "https://www.abucreation.com/topics/",
+      "status": "first_seen"
+    },
+    {
+      "id": "fukui_nanjezen_sankairi",
+      "prefecture": "福井県",
+      "roadName": "南えちぜん山海里",
+      "url": "https://kineno-nanjo.com/news/",
+      "status": "first_seen"
+    },
+    {
+      "id": "miyazaki_niqll",
+      "prefecture": "宮崎県",
+      "roadName": "都城NiQLL",
+      "url": "https://coconiqll.co.jp/info/",
+      "status": "first_seen"
+    },
+    {
+      "id": "ehime_yawatahama_city_events",
+      "prefecture": "愛媛県",
+      "roadName": "八幡浜みなっと",
+      "url": "https://www.city.yawatahama.ehime.jp/event/2026/",
+      "status": "first_seen"
+    },
+    {
+      "id": "kagoshima_tarumizu_official",
+      "prefecture": "鹿児島県",
+      "roadName": "たるみずはまびら",
+      "url": "https://tarumizuhamabira.jp/information/",
+      "status": "first_seen"
+    },
+    {
+      "id": "akita_tenno_official",
+      "prefecture": "秋田県",
+      "roadName": "てんのう",
+      "url": "https://michinoeki-tenno.jp/",
+      "status": "first_seen"
+    }
+  ],
+  "limitations": [
+    "Changes are NOT verified events or automatically published.",
+    "Unverified official-site candidates are not fetched.",
+    "No events found never means none exist."
+  ]
+}

@@ -8,6 +8,13 @@
       "reachable": true,
       "candidates": [
         {
+          "title": "中学生が道の駅でミニマルシェを開催します📣 NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/piashihoroinfo/69906/",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
           "title": "道の駅なないろ・ななえ🌈イベント情報✨ NEW",
           "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nanaeinfo/69883/",
           "stationIdHint": "",
@@ -52,13 +59,6 @@
         {
           "title": "日高町道の駅フェスト開催のお知らせ",
           "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
-          "stationIdHint": "",
-          "identityStatus": "unmatched",
-          "eventVerified": false
-        },
-        {
-          "title": "10月17日、18日は道の駅たきかわ大収穫祭です！",
-          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759/",
           "stationIdHint": "",
           "identityStatus": "unmatched",
           "eventVerified": false

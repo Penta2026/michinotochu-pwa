@@ -9,8 +9,8 @@
       "unmatched_official_notice": 45,
       "same_official_url_title_needs_review": 1,
       "possible_same_event_other_url": 2,
-      "station_not_unambiguously_identified": 25,
-      "published_same_official_url": 7
+      "station_not_unambiguously_identified": 26,
+      "published_same_official_url": 6
     },
     "candidatesForManualReview": 46,
     "sampleVerifiedOnSite": 3,
@@ -463,6 +463,18 @@
     },
     {
       "source": "北海道",
+      "title": "中学生が道の駅でミニマルシェを開催します📣 NEW",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/piashihoroinfo/69906",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
       "title": "７月２５日のつきがた夏まつり開催に伴うレストラン営業時間の延長について",
       "url": "https://hokkaido-michinoeki.jp/rinjiinfo/68148",
       "prefecture": "",
@@ -573,18 +585,6 @@
       "source": "北海道",
       "title": "日本各地の「美味しい」がやってきた！第9弾 ! 開催中!!",
       "url": "https://hokkaido-michinoeki.jp/michiekiinfo/shiranukainfo/69826",
-      "prefecture": "",
-      "roadName": "",
-      "status": "published_same_official_url",
-      "possibleOverlapUrls": [],
-      "headlineDateHint": "unknown_date",
-      "reviewPriority": "date_and_venue_verification_needed",
-      "evidenceStatus": "listing_only_not_date_or_venue_verified"
-    },
-    {
-      "source": "北海道",
-      "title": "10月17日、18日は道の駅たきかわ大収穫祭です！",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/takikawainfo/69759",
       "prefecture": "",
       "roadName": "",
       "status": "published_same_official_url",

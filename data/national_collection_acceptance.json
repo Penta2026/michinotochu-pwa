@@ -1,12 +1,10 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-14",
+  "checkedOn": "2026-10-15",
   "structurallyValid": true,
   "blockingIssues": [],
   "warnings": [
-    "stale_adapter_audit:北海道",
     "adapter_audit_date_unknown:東北",
-    "stale_adapter_audit:関東",
     "adapter_audit_date_unknown:北陸",
     "adapter_audit_date_unknown:中部",
     "adapter_audit_date_unknown:近畿",
@@ -20,7 +18,7 @@
       "homepageReachable": true,
       "adapterAuditFile": "hokkaido_event_audit.json",
       "adapterAuditPresent": true,
-      "adapterAuditIsFresh": false
+      "adapterAuditIsFresh": true
     },
     {
       "region": "東北",
@@ -34,7 +32,7 @@
       "homepageReachable": true,
       "adapterAuditFile": "kanto_association_event_audit.json",
       "adapterAuditPresent": true,
-      "adapterAuditIsFresh": false
+      "adapterAuditIsFresh": true
     },
     {
       "region": "北陸",

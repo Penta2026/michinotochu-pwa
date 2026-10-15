@@ -1086,7 +1086,7 @@
       "roadName": "八幡浜みなっと",
       "listingUrl": "https://www.city.yawatahama.ehime.jp/event/2026/",
       "listingError": "",
-      "candidates": 19,
+      "candidates": 20,
       "checked": 12,
       "accepted": 0,
       "reconfirmed": 0,
@@ -1129,6 +1129,11 @@
           "reason": "not_event"
         },
         {
+          "title": "Comican11月映画上映会のお知らせ",
+          "url": "https://www.city.yawatahama.ehime.jp/doc/2026101300021/",
+          "reason": "not_event"
+        },
+        {
           "title": "令和8年7月24日(金)に、クルーズ船「MITSUI OCEAN FUJI(三井オーシャンフジ)」が八幡浜港に寄港します。",
           "url": "https://www.city.yawatahama.ehime.jp/doc/2026071300038/",
           "reason": "not_event"
@@ -1157,19 +1162,14 @@
           "title": "愛媛FCマッチシティ「八幡浜市の日」を開催します",
           "url": "https://www.city.yawatahama.ehime.jp/doc/2026093000053/",
           "reason": "not_event"
-        },
-        {
-          "title": "【国保・高齢者医療保険限定】「はまぽん健康塾2026」を開催します",
-          "url": "https://www.city.yawatahama.ehime.jp/doc/2026091500036/",
-          "reason": "not_event"
         }
       ],
-      "eligibleCandidates": 19,
-      "uninspectedCandidates": 7,
+      "eligibleCandidates": 20,
+      "uninspectedCandidates": 8,
       "explorationStart": 0,
       "explorationNext": 3,
       "explorationSlots": 3,
-      "explorationPool": 10
+      "explorationPool": 11
     },
     {
       "id": "nagasaki_himawari",
