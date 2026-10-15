@@ -1,8 +1,8 @@
 name: 全国1234駅の公式リンク候補・分散巡回
 
 on:
-  # 03:00 JST (18:00 UTC on the preceding day); bounded 24 directory
-  # detail pages + 12 candidate websites per day, not 1234 requests at once.
+  # 03:00 JST (18:00 UTC on the preceding day). Bounded national daily
+  # budget: 96 directory details (1.5s per request) + 36 candidate sites.
   schedule:
     - cron: "0 18 * * *"
   workflow_dispatch:
@@ -17,7 +17,7 @@ concurrency:
 jobs:
   pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,8 +32,8 @@ jobs:
       - name: Refresh station scan cursor to latest main
         run: git pull --rebase origin main
       - name: Test safe national directory extraction offline
-        run: PYTHONPATH=scripts python -m unittest scripts/test_station_official_directory_discovery.py scripts/test_station_coverage_registry.py scripts/test_station_website_review_queue.py scripts/test_station_website_priority.py scripts/test_station_website_batch_review.py
-      - name: Respect robots policy and inspect at most 24 station details
+        run: PYTHONPATH=scripts python -m unittest scripts/test_station_official_directory_discovery.py scripts/test_station_coverage_registry.py scripts/test_station_website_review_queue.py scripts/test_station_website_priority.py scripts/test_station_website_batch_review.py scripts/test_station_source_triage.py
+      - name: Respect robots policy and inspect at most 96 station details
         run: PYTHONPATH=scripts python scripts/station_official_directory_discovery.py
       - name: Refresh all 1234 station coverage records in the SAME job
         run: python scripts/station_coverage_registry.py
@@ -41,11 +41,13 @@ jobs:
         run: python scripts/station_website_review_queue.py
       - name: Prioritize nationwide station website review
         run: python scripts/station_website_priority.py
-      - name: Review up to 12 queued official website hints without publishing events
+      - name: Review up to 36 queued official website hints without publishing events
         run: python scripts/station_website_batch_review.py
+      - name: Prepare up to 50 nonpublishing station source proposals
+        run: python scripts/station_source_triage.py
       - name: Save URL hints and all-station dashboard together
         run: |
-          git add data/station_website_batch_audit.json data/station_website_priority.json data/station_official_directory_candidates.json data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md data/station_website_review_queue.json
+          git add data/station_source_triage.json docs/STATION_SOURCE_TRIAGE_DASHBOARD.md data/station_website_batch_audit.json data/station_website_priority.json data/station_official_directory_candidates.json data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md data/station_website_review_queue.json
           if git diff --cached --quiet; then
             echo "公式名簿由来のURL候補は変更なし"
             exit 0
