@@ -1,6 +1,10 @@
 name: 全国1234駅の公式リンク候補・分散巡回
 
 on:
+  # 03:00 JST (18:00 UTC on the preceding day); bounded 24 directory
+  # detail pages + 12 candidate websites per day, not 1234 requests at once.
+  schedule:
+    - cron: "0 18 * * *"
   workflow_dispatch:
 
 permissions:
@@ -37,6 +41,8 @@ jobs:
         run: python scripts/station_website_review_queue.py
       - name: Prioritize nationwide station website review
         run: python scripts/station_website_priority.py
+      - name: Review up to 12 queued official website hints without publishing events
+        run: python scripts/station_website_batch_review.py
       - name: Save URL hints and all-station dashboard together
         run: |
           git add data/station_website_batch_audit.json data/station_website_priority.json data/station_official_directory_candidates.json data/station_coverage_registry.json docs/STATION_COVERAGE_DASHBOARD.md data/station_website_review_queue.json
