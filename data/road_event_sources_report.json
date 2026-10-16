@@ -8,6 +8,13 @@
       "reachable": true,
       "candidates": [
         {
+          "title": "【販売予定一覧あり】今年も群馬県吉岡町”よしおかふるさと祭り”に参加します‼ NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/taikiinfo/69927/",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
           "title": "中学生が道の駅でミニマルシェを開催します📣 NEW",
           "url": "https://hokkaido-michinoeki.jp/michiekiinfo/piashihoroinfo/69906/",
           "stationIdHint": "",
@@ -50,15 +57,8 @@
           "eventVerified": false
         },
         {
-          "title": "道の駅なないろ・ななえ🌈イベント情報✨",
-          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nanaeinfo/69782/",
-          "stationIdHint": "",
-          "identityStatus": "unmatched",
-          "eventVerified": false
-        },
-        {
-          "title": "日高町道の駅フェスト開催のお知らせ",
-          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/hidakajukaiinfo/69778/",
+          "title": "イベント開催に伴う冬季営業時間変更のお知らせ(11月1日～12月6日) NEW",
+          "url": "https://hokkaido-michinoeki.jp/rinjiinfo/69915/",
           "stationIdHint": "",
           "identityStatus": "unmatched",
           "eventVerified": false
@@ -85,13 +85,6 @@
           "eventVerified": false
         },
         {
-          "title": "７月２５日のつきがた夏まつり開催に伴うレストラン営業時間の延長について",
-          "url": "https://hokkaido-michinoeki.jp/rinjiinfo/68148/",
-          "stationIdHint": "",
-          "identityStatus": "unmatched",
-          "eventVerified": false
-        },
-        {
           "title": "第14回全国「道の駅」シンポジウムin留萌開催のお知らせ！",
           "url": "https://hokkaido-michinoeki.jp/topics/68349/",
           "stationIdHint": "",
@@ -99,7 +92,7 @@
           "eventVerified": false
         }
       ],
-      "candidateCount": 13,
+      "candidateCount": 12,
       "error": ""
     },
     {
@@ -196,20 +189,6 @@
       "reachable": true,
       "candidates": [
         {
-          "title": "子ども広場にあるぶどうの実ドームと小坂田マルシェ７９０内のDELI＆BREAD",
-          "url": "https://www.kanto-michinoeki.jp/map_single.php?id_name=8&single_name=3",
-          "stationIdHint": "",
-          "identityStatus": "unmatched",
-          "eventVerified": false
-        },
-        {
-          "title": "マルシェ黒耀",
-          "url": "https://www.kanto-michinoeki.jp/map_single.php?id_name=8&single_name=9",
-          "stationIdHint": "",
-          "identityStatus": "unmatched",
-          "eventVerified": false
-        },
-        {
           "title": "イベント情報",
           "url": "https://www.kanto-michinoeki.jp/archives/category/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1",
           "stationIdHint": "",
@@ -245,7 +224,7 @@
           "eventVerified": false
         }
       ],
-      "candidateCount": 7,
+      "candidateCount": 5,
       "error": "",
       "curatedEventListing": {
         "url": "https://www.kanto-michinoeki.jp/archives/category/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%83%85%e5%a0%b1",

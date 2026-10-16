@@ -89,11 +89,11 @@
       "listUrl": "https://michinoeki-kadena.jp/news/",
       "candidates": 18,
       "checked": 18,
-      "accepted": 1,
+      "accepted": 2,
       "noDate": 6,
       "missingPublication": 0,
       "missingEventDate": 6,
-      "past": 11,
+      "past": 10,
       "failed": 0,
       "sampleMissingPublication": [],
       "sampleMissingEventDate": [
@@ -124,6 +124,11 @@
       ],
       "sampleAccepted": [
         {
+          "title": "道の駅かでな『ハロウィンイベント2026★10月31日(土)』",
+          "start": "2026-10-31",
+          "end": "2026-10-31"
+        },
+        {
           "title": "月眺みぬ会開催のお知らせ",
           "start": "2026-10-17",
           "end": "2026-10-17"
@@ -131,6 +136,10 @@
       ],
       "error": "",
       "sampleCandidates": [
+        {
+          "title": "道の駅かでな『ハロウィンイベント2026★10月31日(土)』",
+          "url": "https://michinoeki-kadena.jp/news/n3358495.html"
+        },
         {
           "title": "9月27日(日) チャレンジステーション@道の駅かでな開催",
           "url": "https://michinoeki-kadena.jp/news/n3340294.html"
@@ -158,13 +167,9 @@
         {
           "title": "7月26日(日) チャレンジステーション@道の駅かでな開催",
           "url": "https://michinoeki-kadena.jp/news/n3294075.html"
-        },
-        {
-          "title": "ビールイベント開催!",
-          "url": "https://michinoeki-kadena.jp/news/n3292962.html"
         }
       ]
     }
   ],
-  "accepted": 2
+  "accepted": 3
 }

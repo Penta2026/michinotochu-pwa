@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "basisUpdatedAt": "2026-10-16",
+  "basisUpdatedAt": "2026-10-17",
   "definitions": {
     "observed": "Only the dated events currently present in data/road_events.json.",
     "targetedFeed": "An explicitly configured station source, not proof of parsing or future-event availability.",
@@ -79,7 +79,7 @@
     "zeroRegisteredPrefectures": 11,
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
-    "registeredEvents": 61,
+    "registeredEvents": 64,
     "targetedStationFeedPrefectures": 28,
     "notReconfirmedEvents": 1,
     "unknownPrefectures": []
@@ -126,7 +126,7 @@
       "zeroRegisteredPrefectures": [],
       "registeredEventCount": 2,
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 13
+      "regionalHomepageListingCandidates": 12
     },
     {
       "region": "東北",
@@ -148,9 +148,9 @@
         "千葉県",
         "長野県"
       ],
-      "registeredEventCount": 8,
+      "registeredEventCount": 10,
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7
+      "regionalHomepageListingCandidates": 5
     },
     {
       "region": "北陸",
@@ -214,7 +214,7 @@
         "熊本県",
         "大分県"
       ],
-      "registeredEventCount": 6,
+      "registeredEventCount": 7,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0
     }
@@ -237,7 +237,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 13,
+      "regionalHomepageListingCandidates": 12,
       "regionalAuditMode": "discovery"
     },
     {
@@ -351,7 +351,7 @@
     {
       "prefecture": "茨城県",
       "reportingRegion": "関東",
-      "eventCount": 3,
+      "eventCount": 4,
       "observedStations": [
         "かさま"
       ],
@@ -365,7 +365,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -382,7 +382,7 @@
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -401,7 +401,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -418,7 +418,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -436,13 +436,13 @@
       "state": "targeted_feed_no_registered_events",
       "nextAction": "inspect_official_article_dates",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
       "prefecture": "東京都",
       "reportingRegion": "関東",
-      "eventCount": 1,
+      "eventCount": 2,
       "observedStations": [
         "八王子滝山"
       ],
@@ -455,7 +455,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -474,7 +474,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -491,7 +491,7 @@
       "state": "needs_reconfirmation",
       "nextAction": "recheck_known_event",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -506,7 +506,7 @@
       "state": "no_registered_events",
       "nextAction": "discover_prefecture_station_feeds",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 7,
+      "regionalHomepageListingCandidates": 5,
       "regionalAuditMode": "discovery"
     },
     {
@@ -1060,7 +1060,7 @@
     {
       "prefecture": "沖縄県",
       "reportingRegion": "九州・沖縄",
-      "eventCount": 1,
+      "eventCount": 2,
       "observedStations": [
         "かでな"
       ],

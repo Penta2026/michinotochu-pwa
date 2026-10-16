@@ -15,8 +15,14 @@
       "source": "https://m-kasama.com/event",
       "status": "checked",
       "candidates": 40,
-      "accepted": 3,
+      "accepted": 4,
       "examples": [
+        {
+          "roadName": "かさま",
+          "title": "2026.10.16 イベント 【イベント】10/31『トリックオアトリート大作戦』を開催します",
+          "startDate": "2026-10-31",
+          "endDate": "2026-10-31"
+        },
         {
           "roadName": "かさま",
           "title": "2026.09.28 イベント お知らせ 10/24・25リフティングパフォーマンス公演",
@@ -64,5 +70,5 @@
       "error": ""
     }
   ],
-  "accepted": 4
+  "accepted": 5
 }

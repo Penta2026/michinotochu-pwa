@@ -6,8 +6,8 @@
 
 | 地域 | 現行公開件数 | 現行0件の県 | 広域サイト監査 | 次の改善 |
 |---|---:|---|---|---|
-| 関東 | 8 | 栃木県、千葉県、長野県 | discovery / reachable | verify_event_listing_and_build_safe_adapter |
-| 九州・沖縄 | 6 | 熊本県、大分県 | discovery / reachable | verify_event_listing_and_build_safe_adapter |
+| 関東 | 10 | 栃木県、千葉県、長野県 | discovery / reachable | verify_event_listing_and_build_safe_adapter |
+| 九州・沖縄 | 7 | 熊本県、大分県 | discovery / reachable | verify_event_listing_and_build_safe_adapter |
 | 北陸 | 4 | 富山県 | discovery / reachable | verify_event_listing_and_build_safe_adapter |
 | 中部 | 13 | なし | discovery / reachable | verify_event_listing_and_build_safe_adapter |
 | 北海道 | 2 | なし | discovery / reachable | verify_event_listing_and_build_safe_adapter |
@@ -20,11 +20,11 @@
 
 | 地域 | サイト候補 | 追加一覧状態 | 追加候補 | エラー |
 |---|---:|---|---:|---|
-| 関東 | 7 | inspected | 8 | なし |
+| 関東 | 5 | inspected | 8 | なし |
 | 九州・沖縄 | 0 | inspected | 0 | なし |
 | 北陸 | 0 | inspected | 0 | なし |
 | 中部 | 0 | not_configured | 0 | なし |
-| 北海道 | 13 | not_configured | 0 | なし |
+| 北海道 | 12 | not_configured | 0 | なし |
 | 近畿 | 11 | not_configured | 0 | なし |
 | 中国 | 35 | not_configured | 0 | なし |
 | 四国 | 5 | not_configured | 0 | なし |
@@ -35,11 +35,11 @@
 | 地域 | 候補・検出件数 | 記事確認 | 収集器採用 | 取得障害元・頁 |
 |---|---:|---:|---:|---:|
 | 関東 | 4 | 4 | 1 | 不明 |
-| 九州・沖縄 | 28 | 28 | 2 | 0 |
+| 九州・沖縄 | 28 | 28 | 3 | 0 |
 | 北陸 | 14 | 不明 | 4 | 0 |
 | 中部 | None | None | None | None |
-| 北海道 | 7 | 7 | 1 | 0 |
-| 近畿 | 18 | 18 | 4 | 0 |
+| 北海道 | 6 | 6 | 1 | 0 |
+| 近畿 | 16 | 16 | 4 | 0 |
 | 中国 | 695 | None | 4 | 不明 |
 | 四国 | 19 | None | 3 | 不明 |
 | 東北 | 6 | 6 | 5 | 0 |
@@ -52,12 +52,12 @@
 
 | 都道府県 | 公開件数 | 設定数 | 個別監査元 | 記事候補 | 記事採用 | 取得障害元 | 根拠 |
 |---|---:|---:|---:|---:|---:|---:|---|
-| 茨城県 | 3 | 2 | 0 | 0 | 0 | 0 | published_events_observed |
+| 茨城県 | 4 | 2 | 0 | 0 | 0 | 0 | published_events_observed |
 | 栃木県 | 0 | 1 | 0 | 0 | 0 | 0 | targeted_feed_configured_no_current_publication |
 | 群馬県 | 1 | 1 | 0 | 0 | 0 | 0 | published_events_observed |
 | 埼玉県 | 1 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
 | 千葉県 | 0 | 2 | 0 | 0 | 0 | 0 | targeted_feed_configured_no_current_publication |
-| 東京都 | 1 | 1 | 2 | 7 | 0 | 0 | published_events_observed |
+| 東京都 | 2 | 1 | 2 | 7 | 1 | 0 | published_events_observed |
 | 神奈川県 | 1 | 1 | 2 | 10 | 0 | 0 | published_events_observed |
 | 山梨県 | 1 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
 | 長野県 | 0 | 0 | 0 | 0 | 0 | 0 | regional_homepage_only_or_unknown |
@@ -68,7 +68,7 @@
 | 大分県 | 0 | 1 | 0 | 0 | 0 | 0 | targeted_feed_configured_no_current_publication |
 | 宮崎県 | 1 | 1 | 1 | 13 | 0 | 0 | published_events_observed |
 | 鹿児島県 | 1 | 1 | 2 | 11 | 0 | 0 | published_events_observed |
-| 沖縄県 | 1 | 1 | 0 | 0 | 0 | 0 | published_events_observed |
+| 沖縄県 | 2 | 1 | 0 | 0 | 0 | 0 | published_events_observed |
 | 新潟県 | 2 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
 | 富山県 | 0 | 0 | 0 | 0 | 0 | 0 | regional_homepage_only_or_unknown |
 | 石川県 | 2 | 0 | 0 | 0 | 0 | 0 | published_events_observed |
