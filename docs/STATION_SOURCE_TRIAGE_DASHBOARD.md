@@ -3,10 +3,10 @@
 ※ **公式サイト確定・イベント登録の台帳ではない**。駅名がページ内に現れた未確認サイト候補を整理したもの。
 
 - 全国道の駅台帳: 1234駅
-- 調査済みホームページ候補URL: 304件
-- 駅名の現れたサイト候補: 90件
-- イベントらしいリンクを持つ候補: 72件
-- 今回の優先レビュー枠: 50件 / 残り候補 40件
+- 調査済みホームページ候補URL: 424件
+- 駅名の現れたサイト候補: 112件
+- イベントらしいリンクを持つ候補: 88件
+- 今回の優先レビュー枠: 50件 / 残り候補 62件
 
 | 駅ID | 県 | 道の駅 | 優先理由 | 催しリンク候補数 | 調査するURL |
 |---|---|---|---|---:|---|
@@ -24,6 +24,7 @@
 | RS0342 | 栃木県 | にしかた | 掲載0県・イベントらしいリンク | 3 | https://michinoeki-nishikata.com/7-26%ef%bc%88%e6%97%a5%ef%bc%89%e3%81%af%e5%a4%8f%e3%81%ae%e6%84%9f%e8%ac%9d%e7%a5%ad/ |
 | RS0345 | 栃木県 | 湧水の郷しおや | 掲載0県・イベントらしいリンク | 3 | https://michinoeki-shioya.com/1924/ |
 | RS0573 | 長野県 | 中条 | 掲載0県・イベントらしいリンク | 3 | https://michinoekinakajo.eternal-story.com/%e7%ac%ac20%e5%9b%9e%e8%a8%98%e5%bf%b5-%e4%bf%a1%e5%b7%9e%e3%82%80%e3%81%97%e3%81%8f%e3%82%89%e3%81%be%e3%81%a4%e3%82%8a%e9%96%8b%e5%82%ac%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/ |
+| RS0605 | 長野県 | 花の里いいじま | 掲載0県・イベントらしいリンク | 3 | https://hananosato-iijima.jp/5470 |
 | RS0259 | 山形県 | 白い森おぐに | 掲載0県・イベントらしいリンク | 2 | https://michinoeki-oguni.jp/post/news/ |
 | RS0331 | 栃木県 | ばとう | 掲載0県・イベントらしいリンク | 2 | https://www.michinoeki-bato.jp/informations/7436/ |
 | RS0333 | 栃木県 | きつれがわ | 掲載0県・イベントらしいリンク | 2 | https://michinoeki-kitsuregawa.jp/category/news |
@@ -36,11 +37,14 @@
 | RS0488 | 富山県 | 福光 | 掲載0県・イベントらしいリンク | 1 | https://www.fukumitsu.net |
 | RS0489 | 富山県 | たいら | 掲載0県・イベントらしいリンク | 1 | https://gokayama-washinosato.com/topics/ |
 | RS0592 | 長野県 | あおき | 掲載0県・イベントらしいリンク | 1 | https://michinoeki-aoki.eek.jp/%e4%bb%a4%e5%92%8c8%e5%b9%b47%e6%9c%8825%e6%97%a5%e5%9c%9f%ef%bd%9e%e5%a4%8f%e3%81%ae%e6%84%9f%e8%ac%9d%e7%a5%ad%ef%bc%81%e3%82%bf%e3%83%81%e3%82%a2%e3%82%ab%e3%83%8d%e5%af%92%e3%81%96%e3%82%89-10335.html |
+| RS0604 | 長野県 | 信州新野千石平 | 掲載0県・イベントらしいリンク | 1 | https://goheimochi.biz/?pid=13103491 |
 | RS0250 | 山形県 | 河北 | 掲載0県・駅名一致のみ | 0 | https://sites.google.com/view/ekikahoku/home |
 | RS0260 | 山形県 | おおえ | 掲載0県・駅名一致のみ | 0 | https://oe-terume.co.jp/roadside-station-oe/ |
 | RS0414 | 千葉県 | 多古 | 掲載0県・駅名一致のみ | 0 | https://www.michinoeki-tako.com/ |
 | RS0427 | 千葉県 | 発酵の里こうざき | 掲載0県・駅名一致のみ | 0 | https://www.hakkounosato.com/ |
 | RS0594 | 長野県 | 美ヶ原高原 | 掲載0県・駅名一致のみ | 0 | https://m-utsukushigahara.jp/ |
+| RS0599 | 長野県 | 信州平谷 | 掲載0県・駅名一致のみ | 0 | https://hiraya-himawarinoyu.com/ichiba.php |
+| RS0606 | 長野県 | 遠山郷 | 掲載0県・駅名一致のみ | 0 | https://michinoeki-tohyamago.com/ |
 | RS0073 | 北海道 | ぐるっとパノラマ美幌峠 | イベントらしいリンク | 8 | https://bihoropass.jp/news/blog/2024/10/28/akimatsuri2024/ |
 | RS0220 | 秋田県 | かづの | イベントらしいリンク | 8 | https://explorekazuno.jp/event/ |
 | RS0244 | 秋田県 | 大館能代空港 | イベントらしいリンク | 8 | https://onj-airterminal.com/news/p20260612172727 |
@@ -52,14 +56,10 @@
 | RS0175 | 岩手県 | 錦秋湖 | イベントらしいリンク | 7 | https://michinoeki.nishiwaga.biz/category/event/ |
 | RS0204 | 宮城県 | 林林館 | イベントらしいリンク | 7 | https://rinrinkan.jp/news/category/infomation/ |
 | RS0146 | 青森県 | よこはま | イベントらしいリンク | 6 | https://www.nanohana-plaza.com/topics |
+| RS0238 | 秋田県 | 美郷 | イベントらしいリンク | 6 | https://akita-misato.com/gantaro/info |
 | RS0456 | 新潟県 | まつだいふるさと会館 | イベントらしいリンク | 6 | https://furusato-kaikan.matsudai.jp/post/ |
+| RS0622 | 岐阜県 | 賤母 | イベントらしいリンク | 6 | https://sizumo.jp/news/ |
 | RS0052 | 北海道 | 森と湖の里ほろかない | イベントらしいリンク | 5 | https://horokanaisoba.com/event/1425/ |
-| RS0093 | 北海道 | 名水の郷きょうごく | イベントらしいリンク | 5 | https://meisui-plaza.com/topics |
-| RS0177 | 岩手県 | 石神の丘 | イベントらしいリンク | 5 | https://isigaminooka.jp/news/ |
-| RS0224 | 秋田県 | かみこあに | イベントらしいリンク | 5 | https://michinoeki-kamikoani.jp/news_cat |
-| RS0007 | 北海道 | 望羊中山 | イベントらしいリンク | 4 | https://ageimo.com/917 |
-| RS0075 | 北海道 | とようら | イベントらしいリンク | 4 | https://toyoura-rss.amebaownd.com/posts/18614584 |
-| RS0184 | 岩手県 | みやこ | イベントらしいリンク | 4 | https://oasis385.jp/info/ |
 
 ## 次に確認すること
 
