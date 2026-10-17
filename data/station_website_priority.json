@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "masterStations": 1234,
-  "directoryInspected": 563,
-  "directoryRemaining": 671,
-  "stationsWithUnverifiedCandidates": 541,
-  "candidateUrlsAwaitingReview": 1501,
-  "zeroCurrentEventPrefectureCandidates": 342,
+  "directoryInspected": 659,
+  "directoryRemaining": 575,
+  "stationsWithUnverifiedCandidates": 637,
+  "candidateUrlsAwaitingReview": 1734,
+  "zeroCurrentEventPrefectureCandidates": 423,
   "reviewPriority": [
     {
       "stationId": "RS0405",
@@ -1952,6 +1952,735 @@
       "verified": false
     },
     {
+      "stationId": "RS0741",
+      "prefecture": "滋賀県",
+      "roadName": "あいの土山",
+      "url": "http://www.ainotutiyama.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0741",
+      "prefecture": "滋賀県",
+      "roadName": "あいの土山",
+      "url": "https://www.ainotutiyama.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0741",
+      "prefecture": "滋賀県",
+      "roadName": "あいの土山",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/ainotsuchiyama.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0742",
+      "prefecture": "滋賀県",
+      "roadName": "くつき新本陣",
+      "url": "http://kutsuki.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0742",
+      "prefecture": "滋賀県",
+      "roadName": "くつき新本陣",
+      "url": "https://kutsuki.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0742",
+      "prefecture": "滋賀県",
+      "roadName": "くつき新本陣",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/kutsukishinhonjin.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0743",
+      "prefecture": "滋賀県",
+      "roadName": "しんあさひ風車村",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/shinasahi.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0744",
+      "prefecture": "滋賀県",
+      "roadName": "東近江市あいとうマーガレットステーション",
+      "url": "http://www.aito-ms.or.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0744",
+      "prefecture": "滋賀県",
+      "roadName": "東近江市あいとうマーガレットステーション",
+      "url": "https://www.aito-ms.or.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0744",
+      "prefecture": "滋賀県",
+      "roadName": "東近江市あいとうマーガレットステーション",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/margueritestation.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0745",
+      "prefecture": "滋賀県",
+      "roadName": "びわ湖大橋米プラザ",
+      "url": "http://www.umino-eki.jp/biwakoohashi/index.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0745",
+      "prefecture": "滋賀県",
+      "roadName": "びわ湖大橋米プラザ",
+      "url": "https://www.shiga-dourokousha.or.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0745",
+      "prefecture": "滋賀県",
+      "roadName": "びわ湖大橋米プラザ",
+      "url": "https://www.umino-eki.jp/biwakoohashi/index.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0746",
+      "prefecture": "滋賀県",
+      "roadName": "近江母の郷",
+      "url": "http://www.omihahanosato.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0746",
+      "prefecture": "滋賀県",
+      "roadName": "近江母の郷",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/omihahanosato.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0746",
+      "prefecture": "滋賀県",
+      "roadName": "近江母の郷",
+      "url": "https://www.omihahanosato.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0747",
+      "prefecture": "滋賀県",
+      "roadName": "こんぜの里りっとう",
+      "url": "http://ritto-konze-no-sato.or.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0747",
+      "prefecture": "滋賀県",
+      "roadName": "こんぜの里りっとう",
+      "url": "https://ritto-konze-no-sato.or.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0747",
+      "prefecture": "滋賀県",
+      "roadName": "こんぜの里りっとう",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/konzenosatorittou.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0748",
+      "prefecture": "滋賀県",
+      "roadName": "湖北みずどりステーション",
+      "url": "https://mizudori-st.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0748",
+      "prefecture": "滋賀県",
+      "roadName": "湖北みずどりステーション",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/kohokumizudoristation.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0749",
+      "prefecture": "滋賀県",
+      "roadName": "草津",
+      "url": "http://www.karasuma.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0749",
+      "prefecture": "滋賀県",
+      "roadName": "草津",
+      "url": "https://www.karasuma.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0749",
+      "prefecture": "滋賀県",
+      "roadName": "草津",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/kusatsu.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0750",
+      "prefecture": "滋賀県",
+      "roadName": "竜王かがみの里",
+      "url": "https://www.kagaminosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0750",
+      "prefecture": "滋賀県",
+      "roadName": "竜王かがみの里",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/ryuoukagaminosato.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0751",
+      "prefecture": "滋賀県",
+      "roadName": "アグリの郷栗東",
+      "url": "http://www.agurinosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0751",
+      "prefecture": "滋賀県",
+      "roadName": "アグリの郷栗東",
+      "url": "https://www.agurinosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0751",
+      "prefecture": "滋賀県",
+      "roadName": "アグリの郷栗東",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/agurinosatorittou.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0752",
+      "prefecture": "滋賀県",
+      "roadName": "マキノ追坂峠",
+      "url": "http://ossaka-touge.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0752",
+      "prefecture": "滋賀県",
+      "roadName": "マキノ追坂峠",
+      "url": "https://ossaka-touge.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0753",
+      "prefecture": "滋賀県",
+      "roadName": "藤樹の里あどがわ",
+      "url": "http://adogawa.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0753",
+      "prefecture": "滋賀県",
+      "roadName": "藤樹の里あどがわ",
+      "url": "https://adogawa.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0753",
+      "prefecture": "滋賀県",
+      "roadName": "藤樹の里あどがわ",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/adogawa.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0754",
+      "prefecture": "滋賀県",
+      "roadName": "伊吹の里",
+      "url": "http://shunsainomori.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0754",
+      "prefecture": "滋賀県",
+      "roadName": "伊吹の里",
+      "url": "https://shunsainomori.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0754",
+      "prefecture": "滋賀県",
+      "roadName": "伊吹の里",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/ibukinosato.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0755",
+      "prefecture": "滋賀県",
+      "roadName": "塩津海道あぢかまの里",
+      "url": "http://www.koti.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0755",
+      "prefecture": "滋賀県",
+      "roadName": "塩津海道あぢかまの里",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/adikama.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0755",
+      "prefecture": "滋賀県",
+      "roadName": "塩津海道あぢかまの里",
+      "url": "https://www.koti.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0756",
+      "prefecture": "滋賀県",
+      "roadName": "せせらぎの里こうら",
+      "url": "http://www.m-koura.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0756",
+      "prefecture": "滋賀県",
+      "roadName": "せせらぎの里こうら",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/seseraginosato.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0756",
+      "prefecture": "滋賀県",
+      "roadName": "せせらぎの里こうら",
+      "url": "https://www.m-koura.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0757",
+      "prefecture": "滋賀県",
+      "roadName": "妹子の郷",
+      "url": "http://www.imokonosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0757",
+      "prefecture": "滋賀県",
+      "roadName": "妹子の郷",
+      "url": "https://www.imokonosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0757",
+      "prefecture": "滋賀県",
+      "roadName": "妹子の郷",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/imokonosato.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0758",
+      "prefecture": "滋賀県",
+      "roadName": "奥永源寺 渓流の里",
+      "url": "http://www.okueigenji-keiryunosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0758",
+      "prefecture": "滋賀県",
+      "roadName": "奥永源寺 渓流の里",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/okueigenji.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0758",
+      "prefecture": "滋賀県",
+      "roadName": "奥永源寺 渓流の里",
+      "url": "https://www.okueigenji-keiryunosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0525",
+      "prefecture": "福井県",
+      "roadName": "河野",
+      "url": "http://www.fuku-e.com/010_spot/index.php?id=411",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0525",
+      "prefecture": "福井県",
+      "roadName": "河野",
+      "url": "https://www.fuku-e.com/010_spot/index.php?id=411",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0526",
+      "prefecture": "福井県",
+      "roadName": "九頭竜",
+      "url": "http://www.kuzuryu2300.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0526",
+      "prefecture": "福井県",
+      "roadName": "九頭竜",
+      "url": "https://www.kuzuryu2300.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0527",
+      "prefecture": "福井県",
+      "roadName": "パークイン丹生ヶ丘",
+      "url": "https://parkin-nyugaoka.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0528",
+      "prefecture": "福井県",
+      "roadName": "名田庄",
+      "url": "http://www.wakasa-ohi.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0528",
+      "prefecture": "福井県",
+      "roadName": "名田庄",
+      "url": "https://www.wakasa-ohi.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0529",
+      "prefecture": "福井県",
+      "roadName": "みくに",
+      "url": "https://www.sanrihama.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0530",
+      "prefecture": "福井県",
+      "roadName": "若狭熊川宿",
+      "url": "http://kumagawajuku.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0530",
+      "prefecture": "福井県",
+      "roadName": "若狭熊川宿",
+      "url": "https://kumagawajuku.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0530",
+      "prefecture": "福井県",
+      "roadName": "若狭熊川宿",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/fukui/wakasakumakawasyuku.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0531",
+      "prefecture": "福井県",
+      "roadName": "さかい",
+      "url": "http://www.inesu.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0531",
+      "prefecture": "福井県",
+      "roadName": "さかい",
+      "url": "https://www.inesu.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0532",
+      "prefecture": "福井県",
+      "roadName": "シーサイド高浜",
+      "url": "https://peraichi.com/landing_pages/view/michinoeki-seasidetakahama",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0532",
+      "prefecture": "福井県",
+      "roadName": "シーサイド高浜",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/fukui/seasidetakahama.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0533",
+      "prefecture": "福井県",
+      "roadName": "若狭おばま",
+      "url": "http://obamakankokyoku.com/station/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0533",
+      "prefecture": "福井県",
+      "roadName": "若狭おばま",
+      "url": "https://obamakankokyoku.com/station/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0533",
+      "prefecture": "福井県",
+      "roadName": "若狭おばま",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/fukui/wakasaobama.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0534",
+      "prefecture": "福井県",
+      "roadName": "うみんぴあ大飯",
+      "url": "http://michinoeki-ohi.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0534",
+      "prefecture": "福井県",
+      "roadName": "うみんぴあ大飯",
+      "url": "https://michinoeki-ohi.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0534",
+      "prefecture": "福井県",
+      "roadName": "うみんぴあ大飯",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/fukui/uminpiaooi.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0535",
+      "prefecture": "福井県",
+      "roadName": "西山公園",
+      "url": "http://www.nishiyama-park.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0535",
+      "prefecture": "福井県",
+      "roadName": "西山公園",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/fukui/nisiyamakouen.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0535",
+      "prefecture": "福井県",
+      "roadName": "西山公園",
+      "url": "https://www.nishiyama-park.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0536",
+      "prefecture": "福井県",
+      "roadName": "越前",
+      "url": "http://www.echizen-kk.jp/michinoeki.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0536",
+      "prefecture": "福井県",
+      "roadName": "越前",
+      "url": "https://www.echizen-kk.jp/michinoeki.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0536",
+      "prefecture": "福井県",
+      "roadName": "越前",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/fukui/echizen.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0537",
+      "prefecture": "福井県",
+      "roadName": "三方五湖",
+      "url": "http://www.facebook.com/RSmikatagoko",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0537",
+      "prefecture": "福井県",
+      "roadName": "三方五湖",
+      "url": "https://www.facebook.com/RSmikatagoko",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0537",
+      "prefecture": "福井県",
+      "roadName": "三方五湖",
+      "url": "https://www.wakasa-mikatagoko.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0538",
+      "prefecture": "福井県",
+      "roadName": "一乗谷あさくら水の駅",
+      "url": "https://asakura-mizunoeki.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0538",
+      "prefecture": "福井県",
+      "roadName": "一乗谷あさくら水の駅",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/fukui/ichijoudaniasakura.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
       "stationId": "RS0568",
       "prefecture": "長野県",
       "roadName": "信州新町",
@@ -3083,6 +3812,861 @@
       "url": "https://www.vill.ogawa.nagano.jp/kankou/spot/michinoeki/",
       "kind": "municipal_information",
       "reason": "zero_current_event_prefecture",
+      "verified": false
+    },
+    {
+      "stationId": "RS0723",
+      "prefecture": "三重県",
+      "roadName": "飯高駅",
+      "url": "http://www.iitakaeki.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0723",
+      "prefecture": "三重県",
+      "roadName": "飯高駅",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie01.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0723",
+      "prefecture": "三重県",
+      "roadName": "飯高駅",
+      "url": "https://www.iitakaeki.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0724",
+      "prefecture": "三重県",
+      "roadName": "菰野",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie02.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0724",
+      "prefecture": "三重県",
+      "roadName": "菰野",
+      "url": "https://www.kanko-komono.com/spots/299/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0725",
+      "prefecture": "三重県",
+      "roadName": "紀宝町ウミガメ公園",
+      "url": "https://umigamekouen.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0725",
+      "prefecture": "三重県",
+      "roadName": "紀宝町ウミガメ公園",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie03.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0726",
+      "prefecture": "三重県",
+      "roadName": "パーク七里御浜",
+      "url": "http://michinoeki-mihama.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0726",
+      "prefecture": "三重県",
+      "roadName": "パーク七里御浜",
+      "url": "https://michinoeki-mihama.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0726",
+      "prefecture": "三重県",
+      "roadName": "パーク七里御浜",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie04.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0727",
+      "prefecture": "三重県",
+      "roadName": "海山",
+      "url": "http://michinoeki-miyama.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0727",
+      "prefecture": "三重県",
+      "roadName": "海山",
+      "url": "https://michinoeki-miyama.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0727",
+      "prefecture": "三重県",
+      "roadName": "海山",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie05.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0728",
+      "prefecture": "三重県",
+      "roadName": "奥伊勢木つつ木館",
+      "url": "https://kitutukikan.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0728",
+      "prefecture": "三重県",
+      "roadName": "奥伊勢木つつ木館",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie06.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0729",
+      "prefecture": "三重県",
+      "roadName": "熊野きのくに",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie07.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0729",
+      "prefecture": "三重県",
+      "roadName": "熊野きのくに",
+      "url": "https://www.zc.ztv.ne.jp/kumanokinokuni/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0730",
+      "prefecture": "三重県",
+      "roadName": "茶倉駅",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie08.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0730",
+      "prefecture": "三重県",
+      "roadName": "茶倉駅",
+      "url": "https://www.everglades.jp/riversidechakra/chakrastation/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0731",
+      "prefecture": "三重県",
+      "roadName": "奥伊勢おおだい",
+      "url": "http://www.okuise-odai.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0731",
+      "prefecture": "三重県",
+      "roadName": "奥伊勢おおだい",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie09.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0731",
+      "prefecture": "三重県",
+      "roadName": "奥伊勢おおだい",
+      "url": "https://www.okuise-odai.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0732",
+      "prefecture": "三重県",
+      "roadName": "美杉",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie10.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0732",
+      "prefecture": "三重県",
+      "roadName": "美杉",
+      "url": "https://www.kankomie.or.jp/spot/detail_3967.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0733",
+      "prefecture": "三重県",
+      "roadName": "関宿",
+      "url": "http://kameyama-kanko.com/area/seki/%E3%80%8C%E9%81%93%E3%81%AE%E9%A7%85%E3%80%8D%E9%96%A2%E5%AE%BF/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0733",
+      "prefecture": "三重県",
+      "roadName": "関宿",
+      "url": "https://kameyama-kanko.com/area/seki/%E3%80%8C%E9%81%93%E3%81%AE%E9%A7%85%E3%80%8D%E9%96%A2%E5%AE%BF/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0733",
+      "prefecture": "三重県",
+      "roadName": "関宿",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie11.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0734",
+      "prefecture": "三重県",
+      "roadName": "伊勢志摩",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie12.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0734",
+      "prefecture": "三重県",
+      "roadName": "伊勢志摩",
+      "url": "https://www.kankomie.or.jp/spot/detail_3980.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0735",
+      "prefecture": "三重県",
+      "roadName": "紀伊長島マンボウ",
+      "url": "http://42manbou.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0735",
+      "prefecture": "三重県",
+      "roadName": "紀伊長島マンボウ",
+      "url": "https://42manbou.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0735",
+      "prefecture": "三重県",
+      "roadName": "紀伊長島マンボウ",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie13.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0736",
+      "prefecture": "三重県",
+      "roadName": "あやま",
+      "url": "http://www.michinoeki-ayama.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0736",
+      "prefecture": "三重県",
+      "roadName": "あやま",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie14.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0736",
+      "prefecture": "三重県",
+      "roadName": "あやま",
+      "url": "https://www.michinoeki-ayama.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0737",
+      "prefecture": "三重県",
+      "roadName": "いが",
+      "url": "https://www.anzen-kameyama.jp/servicearea#a02",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0737",
+      "prefecture": "三重県",
+      "roadName": "いが",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/mie/mie15.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0761",
+      "prefecture": "京都府",
+      "roadName": "舟屋の里伊根",
+      "url": "https://www.ine-aburaya.com/michi-no-eki/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0761",
+      "prefecture": "京都府",
+      "roadName": "舟屋の里伊根",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/funayanosatoine.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0762",
+      "prefecture": "京都府",
+      "roadName": "シルクのまち　かや",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/silknomachikaya.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0762",
+      "prefecture": "京都府",
+      "roadName": "シルクのまち　かや",
+      "url": "https://yosano-kankou.net/vegesta/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0763",
+      "prefecture": "京都府",
+      "roadName": "てんきてんき丹後",
+      "url": "http://tenkitenki-mura.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0763",
+      "prefecture": "京都府",
+      "roadName": "てんきてんき丹後",
+      "url": "https://tenkitenki-mura.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0763",
+      "prefecture": "京都府",
+      "roadName": "てんきてんき丹後",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/tenkitenkitango.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0764",
+      "prefecture": "京都府",
+      "roadName": "和",
+      "url": "http://wachi-nagomi.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0764",
+      "prefecture": "京都府",
+      "roadName": "和",
+      "url": "https://wachi-nagomi.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0764",
+      "prefecture": "京都府",
+      "roadName": "和",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/nagomi.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0765",
+      "prefecture": "京都府",
+      "roadName": "ガレリアかめおか",
+      "url": "https://www.galleria.or.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0766",
+      "prefecture": "京都府",
+      "roadName": "丹波マーケス",
+      "url": "https://tamba-markeds.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0766",
+      "prefecture": "京都府",
+      "roadName": "丹波マーケス",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/tanbamakesu.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0767",
+      "prefecture": "京都府",
+      "roadName": "瑞穂の里・さらびき",
+      "url": "https://www.greenlandmizuho.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0768",
+      "prefecture": "京都府",
+      "roadName": "農匠の郷やくの",
+      "url": "https://yakuno-kougenichi.jimdofree.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0769",
+      "prefecture": "京都府",
+      "roadName": "舞鶴港とれとれセンター",
+      "url": "http://www.toretore.org/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0769",
+      "prefecture": "京都府",
+      "roadName": "舞鶴港とれとれセンター",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/toretorecenter.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0769",
+      "prefecture": "京都府",
+      "roadName": "舞鶴港とれとれセンター",
+      "url": "https://www.toretore.org/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0770",
+      "prefecture": "京都府",
+      "roadName": "京都新光悦村",
+      "url": "http://www.cans.zaq.ne.jp/ekikouetsu/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0770",
+      "prefecture": "京都府",
+      "roadName": "京都新光悦村",
+      "url": "https://www.cans.zaq.ne.jp/ekikouetsu/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0770",
+      "prefecture": "京都府",
+      "roadName": "京都新光悦村",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/shinkoetsu.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0771",
+      "prefecture": "京都府",
+      "roadName": "丹後王国「食のみやこ」",
+      "url": "https://tangooukoku.com",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0771",
+      "prefecture": "京都府",
+      "roadName": "丹後王国「食のみやこ」",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/tangooukoku.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0772",
+      "prefecture": "京都府",
+      "roadName": "美山ふれあい広場",
+      "url": "https://miyamanavi.com/sightseeing/fureaihiroba",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0772",
+      "prefecture": "京都府",
+      "roadName": "美山ふれあい広場",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/miyamafureaihiroba.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0773",
+      "prefecture": "京都府",
+      "roadName": "ウッディー京北",
+      "url": "http://fuw.jp/woody/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0773",
+      "prefecture": "京都府",
+      "roadName": "ウッディー京北",
+      "url": "https://fuw.jp/woody/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0773",
+      "prefecture": "京都府",
+      "roadName": "ウッディー京北",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/woodykeihoku.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0774",
+      "prefecture": "京都府",
+      "roadName": "くみはまSANKAIKAN",
+      "url": "http://www.sankaikan.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0774",
+      "prefecture": "京都府",
+      "roadName": "くみはまSANKAIKAN",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/kumihamasankaikan.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0774",
+      "prefecture": "京都府",
+      "roadName": "くみはまSANKAIKAN",
+      "url": "https://www.sankaikan.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0775",
+      "prefecture": "京都府",
+      "roadName": "スプリングスひよし",
+      "url": "http://www.springs-hiyoshi.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0775",
+      "prefecture": "京都府",
+      "roadName": "スプリングスひよし",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/springshiyoshi.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0775",
+      "prefecture": "京都府",
+      "roadName": "スプリングスひよし",
+      "url": "https://www.springs-hiyoshi.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0776",
+      "prefecture": "京都府",
+      "roadName": "京丹波　味夢の里",
+      "url": "http://ajim.info/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0776",
+      "prefecture": "京都府",
+      "roadName": "京丹波　味夢の里",
+      "url": "https://ajim.info/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0776",
+      "prefecture": "京都府",
+      "roadName": "京丹波　味夢の里",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/kyotambaajimnosato.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0789",
+      "prefecture": "兵庫県",
+      "roadName": "はが",
+      "url": "http://www.haga-net.co.jp/haga.php",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0789",
+      "prefecture": "兵庫県",
+      "roadName": "はが",
+      "url": "https://www.haga-net.co.jp/haga.php",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0789",
+      "prefecture": "兵庫県",
+      "roadName": "はが",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/haga.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0790",
+      "prefecture": "兵庫県",
+      "roadName": "あさご",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/asago.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0791",
+      "prefecture": "兵庫県",
+      "roadName": "ちくさ",
+      "url": "https://mitinoekichikusa.wixsite.com/home",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0792",
+      "prefecture": "兵庫県",
+      "roadName": "神鍋高原",
+      "url": "https://michinoeki-kannabe.com",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0792",
+      "prefecture": "兵庫県",
+      "roadName": "神鍋高原",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/kannabe.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0793",
+      "prefecture": "兵庫県",
+      "roadName": "村岡ファームガーデン",
+      "url": "http://www.farm-garden.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0793",
+      "prefecture": "兵庫県",
+      "roadName": "村岡ファームガーデン",
+      "url": "https://www.farm-garden.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0793",
+      "prefecture": "兵庫県",
+      "roadName": "村岡ファームガーデン",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/muraokafarmgarden.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0794",
+      "prefecture": "兵庫県",
+      "roadName": "やぶ",
+      "url": "https://www.instagram.com/michino_eki_yabu/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0794",
+      "prefecture": "兵庫県",
+      "roadName": "やぶ",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/yabu.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0795",
+      "prefecture": "兵庫県",
+      "roadName": "但馬楽座",
+      "url": "http://www.tajima-rakuza.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0795",
+      "prefecture": "兵庫県",
+      "roadName": "但馬楽座",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/tanbarakuza.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0795",
+      "prefecture": "兵庫県",
+      "roadName": "但馬楽座",
+      "url": "https://www.tajima-rakuza.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0796",
+      "prefecture": "兵庫県",
+      "roadName": "みなみ波賀",
+      "url": "http://www.haga-net.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0796",
+      "prefecture": "兵庫県",
+      "roadName": "みなみ波賀",
+      "url": "https://www.haga-net.co.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0796",
+      "prefecture": "兵庫県",
+      "roadName": "みなみ波賀",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/minamihaga.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0797",
+      "prefecture": "兵庫県",
+      "roadName": "しんぐう",
+      "url": "http://www.pkp-shiteikanri.com/shinguu/index.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0797",
+      "prefecture": "兵庫県",
+      "roadName": "しんぐう",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/shinguu.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0797",
+      "prefecture": "兵庫県",
+      "roadName": "しんぐう",
+      "url": "https://www.pkp-shiteikanri.com/shinguu/index.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
       "verified": false
     },
     {
@@ -4638,6 +6222,150 @@
       "prefecture": "埼玉県",
       "roadName": "みなの",
       "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000218.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0779",
+      "prefecture": "大阪府",
+      "roadName": "ちはやあかさか",
+      "url": "https://chihaya-class.com/michinoeki-chihayaakasaka",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0779",
+      "prefecture": "大阪府",
+      "roadName": "ちはやあかさか",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/chihayaakasaka.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0780",
+      "prefecture": "大阪府",
+      "roadName": "近つ飛鳥の里太子",
+      "url": "http://www.taishi-kankou.jp/spot/shop/michinoeki.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0780",
+      "prefecture": "大阪府",
+      "roadName": "近つ飛鳥の里太子",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/chikatuasukanosatotaishi.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0780",
+      "prefecture": "大阪府",
+      "roadName": "近つ飛鳥の里太子",
+      "url": "https://www.taishi-kankou.jp/spot/shop/michinoeki.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0781",
+      "prefecture": "大阪府",
+      "roadName": "能勢（くりの郷）",
+      "url": "https://www.facebook.com/mitinoekiNOSE/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0781",
+      "prefecture": "大阪府",
+      "roadName": "能勢（くりの郷）",
+      "url": "https://www.michinoeki-nose.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0782",
+      "prefecture": "大阪府",
+      "roadName": "かなん",
+      "url": "http://www.osaka-michinoeki-kanan.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0782",
+      "prefecture": "大阪府",
+      "roadName": "かなん",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/kanan.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0782",
+      "prefecture": "大阪府",
+      "roadName": "かなん",
+      "url": "https://www.osaka-michinoeki-kanan.jp",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0784",
+      "prefecture": "大阪府",
+      "roadName": "いずみ山愛の里",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/izumiyamaai.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0784",
+      "prefecture": "大阪府",
+      "roadName": "いずみ山愛の里",
+      "url": "https://www.yamaainosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0785",
+      "prefecture": "大阪府",
+      "roadName": "とっとパーク小島",
+      "url": "http://minnaga.com/totopark/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0785",
+      "prefecture": "大阪府",
+      "roadName": "とっとパーク小島",
+      "url": "https://minnaga.com/totopark/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0785",
+      "prefecture": "大阪府",
+      "roadName": "とっとパーク小島",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/tottopark.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0786",
+      "prefecture": "大阪府",
+      "roadName": "愛彩ランド",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/aisai_land.html",
       "kind": "station_or_partner_site_unverified",
       "reason": "unverified_official_website_hint",
       "verified": false
@@ -6699,6 +8427,339 @@
       "prefecture": "岩手県",
       "roadName": "くじ",
       "url": "https://dofukan.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0704",
+      "prefecture": "愛知県",
+      "roadName": "豊根グリーンポート宮嶋",
+      "url": "http://www.toyonemura-kanko.jp/greenport/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0704",
+      "prefecture": "愛知県",
+      "roadName": "豊根グリーンポート宮嶋",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi01.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0704",
+      "prefecture": "愛知県",
+      "roadName": "豊根グリーンポート宮嶋",
+      "url": "https://www.toyonemura-kanko.jp/greenport/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0705",
+      "prefecture": "愛知県",
+      "roadName": "鳳来三河三石",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi02.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0705",
+      "prefecture": "愛知県",
+      "roadName": "鳳来三河三石",
+      "url": "https://www.okuminavi.jp/search/detail.php?id=169",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0706",
+      "prefecture": "愛知県",
+      "roadName": "田原めっくんはうす",
+      "url": "https://tahara-michinoeki.com/mekkunhouse",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0706",
+      "prefecture": "愛知県",
+      "roadName": "田原めっくんはうす",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi03.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0707",
+      "prefecture": "愛知県",
+      "roadName": "伊良湖クリスタルポルト",
+      "url": "https://www.tahara-michinoeki.com",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0708",
+      "prefecture": "愛知県",
+      "roadName": "つぐ高原グリーンパーク",
+      "url": "http://www.green-park.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0708",
+      "prefecture": "愛知県",
+      "roadName": "つぐ高原グリーンパーク",
+      "url": "https://www.green-park.net/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0709",
+      "prefecture": "愛知県",
+      "roadName": "どんぐりの里　いなぶ",
+      "url": "http://www.dongurinosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0709",
+      "prefecture": "愛知県",
+      "roadName": "どんぐりの里　いなぶ",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi06.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0709",
+      "prefecture": "愛知県",
+      "roadName": "どんぐりの里　いなぶ",
+      "url": "https://www.dongurinosato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0710",
+      "prefecture": "愛知県",
+      "roadName": "アグリステーションなぐら",
+      "url": "https://aguristationnagura.jimdofree.com",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0710",
+      "prefecture": "愛知県",
+      "roadName": "アグリステーションなぐら",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi07.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0711",
+      "prefecture": "愛知県",
+      "roadName": "デンパーク安城",
+      "url": "http://www.denpark.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0711",
+      "prefecture": "愛知県",
+      "roadName": "デンパーク安城",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi08.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0711",
+      "prefecture": "愛知県",
+      "roadName": "デンパーク安城",
+      "url": "https://www.denpark.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0712",
+      "prefecture": "愛知県",
+      "roadName": "つくで手作り村",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi09.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0712",
+      "prefecture": "愛知県",
+      "roadName": "つくで手作り村",
+      "url": "https://www.tedukurimura.com",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0713",
+      "prefecture": "愛知県",
+      "roadName": "ふれあいの里HASUパーク",
+      "url": "https://hasupark-aisai.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0713",
+      "prefecture": "愛知県",
+      "roadName": "ふれあいの里HASUパーク",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi10.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0714",
+      "prefecture": "愛知県",
+      "roadName": "あかばねロコステーション",
+      "url": "https://tahara-michinoeki.com/akabane",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0714",
+      "prefecture": "愛知県",
+      "roadName": "あかばねロコステーション",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi11.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0715",
+      "prefecture": "愛知県",
+      "roadName": "筆柿の里・幸田",
+      "url": "http://www.fudegaki-sato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0715",
+      "prefecture": "愛知県",
+      "roadName": "筆柿の里・幸田",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi12.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0715",
+      "prefecture": "愛知県",
+      "roadName": "筆柿の里・幸田",
+      "url": "https://www.fudegaki-sato.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0716",
+      "prefecture": "愛知県",
+      "roadName": "にしお岡ノ山",
+      "url": "http://okanoyama.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0716",
+      "prefecture": "愛知県",
+      "roadName": "にしお岡ノ山",
+      "url": "https://okanoyama.com/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0716",
+      "prefecture": "愛知県",
+      "roadName": "にしお岡ノ山",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi13.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0717",
+      "prefecture": "愛知県",
+      "roadName": "瀬戸しなの",
+      "url": "http://www.setoshinano.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0717",
+      "prefecture": "愛知県",
+      "roadName": "瀬戸しなの",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi14.html",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0717",
+      "prefecture": "愛知県",
+      "roadName": "瀬戸しなの",
+      "url": "https://www.setoshinano.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0718",
+      "prefecture": "愛知県",
+      "roadName": "藤川宿",
+      "url": "https://okazaki-kanko.jp/feature/michinoeki.hujikawa-juku/top",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0719",
+      "prefecture": "愛知県",
+      "roadName": "もっくる新城",
+      "url": "http://mokkulu.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0719",
+      "prefecture": "愛知県",
+      "roadName": "もっくる新城",
+      "url": "https://mokkulu.jp/",
+      "kind": "station_or_partner_site_unverified",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0719",
+      "prefecture": "愛知県",
+      "roadName": "もっくる新城",
+      "url": "https://www.cbr.mlit.go.jp/michinoeki/aichi/aichi16.html",
       "kind": "station_or_partner_site_unverified",
       "reason": "unverified_official_website_hint",
       "verified": false
@@ -10592,6 +12653,24 @@
       "verified": false
     },
     {
+      "stationId": "RS0768",
+      "prefecture": "京都府",
+      "roadName": "農匠の郷やくの",
+      "url": "https://www.city.fukuchiyama.lg.jp/soshiki/64/2012.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0790",
+      "prefecture": "兵庫県",
+      "roadName": "あさご",
+      "url": "https://www.city.asago.hyogo.jp/0000000338.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
       "stationId": "RS0001",
       "prefecture": "北海道",
       "roadName": "三笠",
@@ -11028,6 +13107,24 @@
       "prefecture": "埼玉県",
       "roadName": "みなの",
       "url": "https://www.town.minano.saitama.jp/section/kankou/965.htm",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0783",
+      "prefecture": "大阪府",
+      "roadName": "しらとりの郷・羽曳野",
+      "url": "https://www.city.habikino.lg.jp/soshiki/seikatsukankyo/kanko/shiratorinosato/255.html",
+      "kind": "municipal_information",
+      "reason": "unverified_official_website_hint",
+      "verified": false
+    },
+    {
+      "stationId": "RS0786",
+      "prefecture": "大阪府",
+      "roadName": "愛彩ランド",
+      "url": "https://www.city.kishiwada.osaka.jp/soshiki/141/michinoekiaisailand.html",
       "kind": "municipal_information",
       "reason": "unverified_official_website_hint",
       "verified": false
