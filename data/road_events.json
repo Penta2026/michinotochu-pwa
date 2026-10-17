@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-17",
+  "updatedAt": "2026-10-18",
   "events": [
     {
       "roadName": "親不知ピアパーク",
@@ -143,16 +143,6 @@
       "status": "scheduled"
     },
     {
-      "roadName": "かでな",
-      "prefecture": "沖縄県",
-      "title": "月眺みぬ会開催のお知らせ",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "publishedAt": "2026-09-06",
-      "url": "https://michinoeki-kadena.jp/news/n3328631.html",
-      "status": "scheduled"
-    },
-    {
       "roadName": "くるめ",
       "prefecture": "福岡県",
       "title": "【イベント情報】新米フェアのお知らせ",
@@ -180,16 +170,6 @@
       "endDate": "2026-10-18",
       "publishedAt": "",
       "url": "https://www.applehill.co.jp/contents/infodetail?post=478",
-      "status": "scheduled"
-    },
-    {
-      "roadName": "伊豆ゲートウェイ函南",
-      "prefecture": "静岡県",
-      "title": "ゲートウェイ食市 新米すくい",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "publishedAt": "2026-08-30",
-      "url": "https://www.izugateway.com/event/6723/",
       "status": "scheduled"
     },
     {
@@ -320,6 +300,16 @@
       "endDate": "2026-10-25",
       "publishedAt": "",
       "url": "https://kuromaro.com/event/list/page/4/",
+      "status": "scheduled"
+    },
+    {
+      "roadName": "遠野風の丘",
+      "prefecture": "岩手県",
+      "title": "遠野風の丘収穫感謝祭withハロウインを開催します。【10月24日(土)~10月25日(日)】",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "publishedAt": "2026-10-17",
+      "url": "https://kazenooka.tonofurusato.jp/news/%e9%81%a0%e9%87%8e%e9%a2%a8%e3%81%ae%e4%b8%98%e5%8f%8e%e7%a9%ab%e6%84%9f%e8%ac%9d%e7%a5%adwith%e3%83%8f%e3%83%ad%e3%82%a6%e3%82%a4%e3%83%b3%e3%82%92%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99-2/",
       "status": "scheduled"
     },
     {

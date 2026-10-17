@@ -1,8 +1,17 @@
 {
   "schemaVersion": 1,
-  "inputPrevious": 61,
-  "inputCollected": 63,
-  "expiredOrInvalid": [],
+  "inputPrevious": 64,
+  "inputCollected": 62,
+  "expiredOrInvalid": [
+    {
+      "roadName": "かでな",
+      "title": "月眺みぬ会開催のお知らせ"
+    },
+    {
+      "roadName": "伊豆ゲートウェイ函南",
+      "title": "ゲートウェイ食市 新米すくい"
+    }
+  ],
   "corrected": [],
   "exactDuplicates": [
     {
@@ -87,7 +96,7 @@
     },
     {
       "roadName": "かでな",
-      "title": "月眺みぬ会開催のお知らせ"
+      "title": "道の駅かでな『ハロウィンイベント2026★10月31日(土)』"
     },
     {
       "roadName": "しろいし",
@@ -96,6 +105,10 @@
     {
       "roadName": "庄和",
       "title": "【道の駅庄和】わくわく体験イベント"
+    },
+    {
+      "roadName": "かさま",
+      "title": "2026.10.16 イベント 【イベント】10/31『トリックオアトリート大作戦』を開催します"
     },
     {
       "roadName": "かさま",
@@ -170,12 +183,12 @@
       "title": "●10月17日(土)~25日(日) 『滝原宮グッズフェア』"
     },
     {
-      "roadName": "いずみ山愛の里",
-      "title": "いずみの山の小さなマルシェ10月"
+      "roadName": "八王子滝山",
+      "title": "滝山城跡散策ツアー~2026年秋~"
     },
     {
-      "roadName": "遠野風の丘",
-      "title": "珈琲とおやつ展開催します【10月17日(土)~10月18日(日)】"
+      "roadName": "いずみ山愛の里",
+      "title": "いずみの山の小さなマルシェ10月"
     },
     {
       "roadName": "遠野風の丘",
@@ -192,10 +205,6 @@
     {
       "roadName": "伊豆ゲートウェイ函南",
       "title": "ゲートウェイ食市 干し柿づくり"
-    },
-    {
-      "roadName": "伊豆ゲートウェイ函南",
-      "title": "ゲートウェイ食市 新米すくい"
     },
     {
       "roadName": "阿武町",
@@ -244,6 +253,10 @@
     {
       "roadName": "西条のん太の酒蔵",
       "title": "ぶちうまい!東広島お米フェス2026を開催いたします。"
+    },
+    {
+      "roadName": "遠野風の丘",
+      "title": "珈琲とおやつ展開催します【10月17日(土)~10月18日(日)】"
     }
   ],
   "possibleDuplicates": [],
@@ -257,7 +270,7 @@
       "reason": "not_found_in_current_collection"
     }
   ],
-  "finalCount": 64,
+  "finalCount": 63,
   "futurePublicationDatesCleared": [],
   "collapsedHokurikuDuplicates": {
     "previous": 0,

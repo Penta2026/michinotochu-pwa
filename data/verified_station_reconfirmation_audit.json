@@ -1,11 +1,26 @@
 {
   "schemaVersion": 1,
-  "checked": 0,
-  "reconfirmed": 0,
+  "checked": 1,
+  "reconfirmed": 1,
   "alreadyCollected": 60,
   "outsideRegistry": 1,
   "failed": 0,
   "inconclusive": 0,
-  "sources": {},
-  "checks": []
+  "sources": {
+    "tono_kazenooka": {
+      "checked": 1,
+      "reconfirmed": 1,
+      "failed": 0,
+      "inconclusive": 0
+    }
+  },
+  "checks": [
+    {
+      "station": "遠野風の丘",
+      "prefecture": "岩手県",
+      "title": "珈琲とおやつ展開催します【10月17日(土)~10月18日(日)】",
+      "url": "https://kazenooka.tonofurusato.jp/news/%e7%8f%88%e7%90%b2%e3%81%a8%e3%81%8a%e3%82%84%e3%81%a4%e5%b1%95%e9%96%8b%e5%82%ac%e3%81%97%e3%81%be%e3%81%99%e3%80%9010%e6%9c%8817%e6%97%a5%e5%9c%9f%ef%bd%9e10%e6%9c%8818%e6%97%a5%e6%97%a5%e3%80%91/",
+      "result": "reconfirmed"
+    }
+  ]
 }

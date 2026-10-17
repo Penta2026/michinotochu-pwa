@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "basisUpdatedAt": "2026-10-17",
+  "basisUpdatedAt": "2026-10-18",
   "definitions": {
     "observed": "Only the dated events currently present in data/road_events.json.",
     "targetedFeed": "An explicitly configured station source, not proof of parsing or future-event availability.",
@@ -79,7 +79,7 @@
     "zeroRegisteredPrefectures": 11,
     "historicalObservedPrefectures": 47,
     "historicalNeverObservedPrefectures": 0,
-    "registeredEvents": 64,
+    "registeredEvents": 63,
     "targetedStationFeedPrefectures": 28,
     "notReconfirmedEvents": 1,
     "unknownPrefectures": []
@@ -126,7 +126,7 @@
       "zeroRegisteredPrefectures": [],
       "registeredEventCount": 2,
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 12
+      "regionalHomepageListingCandidates": 15
     },
     {
       "region": "東北",
@@ -135,7 +135,7 @@
       "zeroRegisteredPrefectures": [
         "山形県"
       ],
-      "registeredEventCount": 8,
+      "registeredEventCount": 9,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 11
     },
@@ -168,7 +168,7 @@
       "prefectureCount": 4,
       "observedPrefectures": 4,
       "zeroRegisteredPrefectures": [],
-      "registeredEventCount": 13,
+      "registeredEventCount": 12,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0
     },
@@ -214,7 +214,7 @@
         "熊本県",
         "大分県"
       ],
-      "registeredEventCount": 7,
+      "registeredEventCount": 6,
       "regionalHomepageReachable": true,
       "regionalHomepageListingCandidates": 0
     }
@@ -237,7 +237,7 @@
       "state": "events_observed",
       "nextAction": "expand_station_coverage",
       "regionalHomepageReachable": true,
-      "regionalHomepageListingCandidates": 12,
+      "regionalHomepageListingCandidates": 15,
       "regionalAuditMode": "discovery"
     },
     {
@@ -260,7 +260,7 @@
     {
       "prefecture": "岩手県",
       "reportingRegion": "東北",
-      "eventCount": 2,
+      "eventCount": 3,
       "observedStations": [
         "遠野風の丘"
       ],
@@ -581,7 +581,7 @@
     {
       "prefecture": "静岡県",
       "reportingRegion": "中部",
-      "eventCount": 3,
+      "eventCount": 2,
       "observedStations": [
         "伊豆ゲートウェイ函南"
       ],
@@ -1060,7 +1060,7 @@
     {
       "prefecture": "沖縄県",
       "reportingRegion": "九州・沖縄",
-      "eventCount": 2,
+      "eventCount": 1,
       "observedStations": [
         "かでな"
       ],

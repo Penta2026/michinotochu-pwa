@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-17",
+  "checkedOn": "2026-10-18",
   "summary": {
     "officialSources": 10,
     "reachableSources": 10,
-    "announcementsCompared": 80,
+    "announcementsCompared": 83,
     "statuses": {
       "unmatched_official_notice": 46,
       "same_official_url_title_needs_review": 1,
       "possible_same_event_other_url": 2,
-      "station_not_unambiguously_identified": 25,
+      "station_not_unambiguously_identified": 28,
       "published_same_official_url": 6
     },
     "candidatesForManualReview": 47,
@@ -415,18 +415,6 @@
     },
     {
       "source": "北海道",
-      "title": "キッチンカーがやって来る！ 道の駅感謝祭！",
-      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/horokanaiinfo/69795",
-      "prefecture": "",
-      "roadName": "",
-      "status": "station_not_unambiguously_identified",
-      "possibleOverlapUrls": [],
-      "headlineDateHint": "unknown_date",
-      "reviewPriority": "date_and_venue_verification_needed",
-      "evidenceStatus": "listing_only_not_date_or_venue_verified"
-    },
-    {
-      "source": "北海道",
       "title": "泊村×真狩村 観光物産展 開催！！",
       "url": "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823",
       "prefecture": "",
@@ -439,8 +427,44 @@
     },
     {
       "source": "北海道",
-      "title": "道の駅なないろ・ななえ🌈イベント情報✨ NEW",
+      "title": "【10/17、18】道の駅なかさつない 秋の感謝祭開催！ NEW",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nakasatsunaiinfo/69975",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "道の駅なないろ・ななえ🌈イベント情報✨",
       "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nanaeinfo/69883",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "ハロウィン ワークショップ開催中！！ NEW",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/onneyuinfo/69963",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "【10月18日(日) 開催】音更ら～麺村2026 NEW",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/otofukeinfo/69972",
       "prefecture": "",
       "roadName": "",
       "status": "station_not_unambiguously_identified",
@@ -453,6 +477,18 @@
       "source": "北海道",
       "title": "中学生が道の駅でミニマルシェを開催します📣 NEW",
       "url": "https://hokkaido-michinoeki.jp/michiekiinfo/piashihoroinfo/69906",
+      "prefecture": "",
+      "roadName": "",
+      "status": "station_not_unambiguously_identified",
+      "possibleOverlapUrls": [],
+      "headlineDateHint": "unknown_date",
+      "reviewPriority": "date_and_venue_verification_needed",
+      "evidenceStatus": "listing_only_not_date_or_venue_verified"
+    },
+    {
+      "source": "北海道",
+      "title": "越冬野菜市を開催 NEW",
+      "url": "https://hokkaido-michinoeki.jp/michiekiinfo/sattsuruinfo/69989",
       "prefecture": "",
       "roadName": "",
       "status": "station_not_unambiguously_identified",

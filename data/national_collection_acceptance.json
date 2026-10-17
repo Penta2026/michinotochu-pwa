@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-16",
+  "checkedOn": "2026-10-17",
   "structurallyValid": true,
   "blockingIssues": [],
   "warnings": [
@@ -79,7 +79,7 @@
       "adapterAuditIsFresh": null
     }
   ],
-  "publishedEvents": 64,
+  "publishedEvents": 63,
   "publishedPrefectures": 36,
   "prefecturesWithoutCurrentPublication": [
     "千葉県",

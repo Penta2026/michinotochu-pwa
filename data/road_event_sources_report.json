@@ -8,6 +8,34 @@
       "reachable": true,
       "candidates": [
         {
+          "title": "越冬野菜市を開催 NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/sattsuruinfo/69989/",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
+          "title": "【10/17、18】道の駅なかさつない 秋の感謝祭開催！ NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nakasatsunaiinfo/69975/",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
+          "title": "【10月18日(日) 開催】音更ら～麺村2026 NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/otofukeinfo/69972/",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
+          "title": "ハロウィン ワークショップ開催中！！ NEW",
+          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/onneyuinfo/69963/",
+          "stationIdHint": "",
+          "identityStatus": "unmatched",
+          "eventVerified": false
+        },
+        {
           "title": "【販売予定一覧あり】今年も群馬県吉岡町”よしおかふるさと祭り”に参加します‼ NEW",
           "url": "https://hokkaido-michinoeki.jp/michiekiinfo/taikiinfo/69927/",
           "stationIdHint": "",
@@ -22,7 +50,7 @@
           "eventVerified": false
         },
         {
-          "title": "道の駅なないろ・ななえ🌈イベント情報✨ NEW",
+          "title": "道の駅なないろ・ななえ🌈イベント情報✨",
           "url": "https://hokkaido-michinoeki.jp/michiekiinfo/nanaeinfo/69883/",
           "stationIdHint": "",
           "identityStatus": "unmatched",
@@ -45,13 +73,6 @@
         {
           "title": "泊村×真狩村 観光物産展 開催！！",
           "url": "https://hokkaido-michinoeki.jp/michiekiinfo/makkariinfo/69823/",
-          "stationIdHint": "",
-          "identityStatus": "unmatched",
-          "eventVerified": false
-        },
-        {
-          "title": "キッチンカーがやって来る！ 道の駅感謝祭！",
-          "url": "https://hokkaido-michinoeki.jp/michiekiinfo/horokanaiinfo/69795/",
           "stationIdHint": "",
           "identityStatus": "unmatched",
           "eventVerified": false
@@ -92,7 +113,7 @@
           "eventVerified": false
         }
       ],
-      "candidateCount": 12,
+      "candidateCount": 15,
       "error": ""
     },
     {

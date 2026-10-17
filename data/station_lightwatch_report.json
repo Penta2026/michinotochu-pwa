@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-17T06:25:45.388936+09:00",
+  "generatedAt": "2026-10-18T06:21:52.850954+09:00",
   "mode": "fetch",
   "cycleDays": 7,
   "stationsTotal": 1234,
-  "stationsScheduledToday": 177,
+  "stationsScheduledToday": 162,
   "verifiedListingSources": 19,
   "verifiedDueToday": 19,
   "requestsAttempted": 19,
@@ -20,17 +20,10 @@
       "status": "changed"
     },
     {
-      "id": "nara_nakamachi",
-      "prefecture": "奈良県",
-      "roadName": "クロスウェイなかまち",
-      "url": "https://michi-no-eki-crosswaynakamachi.pref.nara.jp/newslist",
-      "status": "changed"
-    },
-    {
-      "id": "wakayama_shikinosato",
-      "prefecture": "和歌山県",
-      "roadName": "四季の郷公園",
-      "url": "https://fh-park.jp/events/",
+      "id": "kanagawa_chigasaki",
+      "prefecture": "神奈川県",
+      "roadName": "湘南ちがさき",
+      "url": "https://m-shonanchigasaki.com/topics/",
       "status": "changed"
     },
     {
@@ -80,6 +73,13 @@
       "prefecture": "広島県",
       "roadName": "湖畔の里福富",
       "url": "https://kohannosato.co.jp/news/",
+      "status": "changed"
+    },
+    {
+      "id": "hiroshima_nonta",
+      "prefecture": "広島県",
+      "roadName": "西条のん太の酒蔵",
+      "url": "https://www.nonta-sakagura.com/news_category/cate01",
       "status": "changed"
     }
   ],

@@ -5,12 +5,12 @@
       "station": "くるめ",
       "prefecture": "福岡県",
       "listUrl": "https://www.michinoeki-kurume.com/category/event/",
-      "candidates": 10,
-      "checked": 10,
+      "candidates": 11,
+      "checked": 11,
       "accepted": 1,
-      "noDate": 4,
+      "noDate": 5,
       "missingPublication": 0,
-      "missingEventDate": 4,
+      "missingEventDate": 5,
       "past": 5,
       "failed": 0,
       "sampleMissingPublication": [],
@@ -89,11 +89,11 @@
       "listUrl": "https://michinoeki-kadena.jp/news/",
       "candidates": 18,
       "checked": 18,
-      "accepted": 2,
+      "accepted": 1,
       "noDate": 6,
       "missingPublication": 0,
       "missingEventDate": 6,
-      "past": 10,
+      "past": 11,
       "failed": 0,
       "sampleMissingPublication": [],
       "sampleMissingEventDate": [
@@ -127,11 +127,6 @@
           "title": "道の駅かでな『ハロウィンイベント2026★10月31日(土)』",
           "start": "2026-10-31",
           "end": "2026-10-31"
-        },
-        {
-          "title": "月眺みぬ会開催のお知らせ",
-          "start": "2026-10-17",
-          "end": "2026-10-17"
         }
       ],
       "error": "",
@@ -171,5 +166,5 @@
       ]
     }
   ],
-  "accepted": 3
+  "accepted": 2
 }
