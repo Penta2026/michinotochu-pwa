@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "basisCheckedAt": "2026-10-17T18:24:01.663974+00:00",
+  "basisCheckedAt": "2026-10-18T18:23:57.857848+00:00",
   "masterStations": 1234,
   "configuredStationCount": 27,
-  "inspectedStationWebsiteUrls": 544,
+  "inspectedStationWebsiteUrls": 664,
   "reviewStatuses": {
-    "http_or_size_rejected": 36,
-    "identity_mentioned_unverified": 161,
-    "identity_not_found": 13,
-    "robots_blocked": 334
+    "http_or_size_rejected": 44,
+    "identity_mentioned_unverified": 214,
+    "identity_not_found": 41,
+    "robots_blocked": 365
   },
-  "potentialStationSites": 159,
-  "potentialEventListingSites": 111,
+  "potentialStationSites": 212,
+  "potentialEventListingSites": 131,
   "shortlisted": 50,
-  "remainingPotentialSites": 109,
+  "remainingPotentialSites": 162,
   "shortlist": [
     {
       "stationId": "RS0265",
@@ -211,6 +211,25 @@
         "https://shunsainomori.com/info/2026/04/2107/",
         "https://shunsainomori.com/info/2026/02/2089/",
         "https://shunsainomori.com/info/2025/12/2074/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0885",
+      "prefecture": "鳥取県",
+      "roadName": "はっとう",
+      "websiteUrl": "https://www.cgr.mlit.go.jp/douro/Michi-no-Eki/index.html",
+      "eventLinkHints": [
+        "https://www.cgr.mlit.go.jp/kisya/pdf/20230309-1top.pdf",
+        "https://www.cgr.mlit.go.jp/kisya/pdf/20230222-1top.pdf",
+        "https://www.cgr.mlit.go.jp/kisya/pdf/20230209-1top.pdf",
+        "https://www.cgr.mlit.go.jp/kisya/pdf/20230126-1top.pdf",
+        "https://www.cgr.mlit.go.jp/kisya/pdf/20230112-2top.pdf"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
@@ -477,6 +496,22 @@
       "eventLinkHints": [
         "https://mizudori-st.jp/topic/news/",
         "https://mizudori-st.jp/topic/event/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0888",
+      "prefecture": "鳥取県",
+      "roadName": "神話の里　白うさぎ",
+      "websiteUrl": "https://sirousagi.com/",
+      "eventLinkHints": [
+        "https://sirousagi.com/%e3%80%8c%e7%99%bd%e5%85%8e%e5%91%a8%e9%81%8a%e3%82%b9%e3%82%bf%e3%83%b3%e3%83%97%e3%83%a9%e3%83%aa%e3%83%bc%ef%bc%86%e3%82%af%e3%82%a4%e3%82%ba%e3%80%8d%e3%82%b9%e3%82%bf%e3%83%bc%e3%83%88%ef%bc%81-2/",
+        "https://sirousagi.com/%e3%81%8a%e3%81%95%e3%81%8b%e3%81%aa%e3%83%80%e3%82%a4%e3%83%8b%e3%83%b3%e3%82%b0%e3%81%8e%e3%82%93%e3%82%8a%e3%82%93%e4%ba%ad%e3%80%80%e3%81%8a%e7%9b%86%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e3%81%ae/"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
@@ -780,41 +815,6 @@
       "eventLinkHints": [],
       "discoveryTier": "station_name_only",
       "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0758",
-      "prefecture": "滋賀県",
-      "roadName": "奥永源寺 渓流の里",
-      "websiteUrl": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/okueigenji.html",
-      "eventLinkHints": [],
-      "discoveryTier": "station_name_only",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0073",
-      "prefecture": "北海道",
-      "roadName": "ぐるっとパノラマ美幌峠",
-      "websiteUrl": "https://bihoropass.jp/",
-      "eventLinkHints": [
-        "https://bihoropass.jp/news/blog/2024/10/28/akimatsuri2024/",
-        "https://bihoropass.jp/news/blog/2024/06/20/%e6%9c%89%e6%96%99%e3%82%b4%e3%83%9f%e5%9b%9e%e5%8f%8e%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e9%96%8b%e5%a7%8b/",
-        "https://bihoropass.jp/news/blog/2024/06/20/%e3%80%8c%e9%9b%b2%e6%b5%b7%e5%89%8d%e5%a4%9c%e3%81%ae%e3%83%ac%e3%82%b9%e3%83%88%e3%83%a9%e3%83%b3%e3%80%8d%e3%83%97%e3%83%ac%e3%83%8f%e3%83%96%e5%86%85%e3%81%ae%e5%86%b7%e5%87%8d%e8%87%aa%e8%b2%a9/",
-        "https://bihoropass.jp/news/blog/2024/04/22/%e5%a4%8f%e5%ad%a3%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
-        "https://bihoropass.jp/news/blog/2024/01/09/%e6%84%9f%e8%ac%9d%e7%a5%ad%e6%8a%bd%e9%81%b8%e7%b5%90%e6%9e%9c%e7%99%ba%e8%a1%a8/",
-        "https://bihoropass.jp/news/blog/2023/11/07/%e9%81%93%e3%81%ae%e9%a7%85%e3%80%8c%e3%81%90%e3%82%8b%e3%81%a3%e3%81%a8%e3%83%91%e3%83%8e%e3%83%a9%e3%83%9e%e7%be%8e%e5%b9%8c%e5%b3%a0%e3%80%8d%e6%84%9f%e8%ac%9d%e7%a5%ad%e9%96%8b%e5%82%ac%e4%b8%ad/",
-        "https://bihoropass.jp/news/blog/2023/11/07/%e5%86%ac%e5%ad%a3%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
-        "https://bihoropass.jp/news/blog/2023/06/16/%e3%80%90%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e3%80%91/"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": false,
       "officialSiteOwnershipVerified": false,
       "eventListingVerified": false,
       "readyForPublishing": false,

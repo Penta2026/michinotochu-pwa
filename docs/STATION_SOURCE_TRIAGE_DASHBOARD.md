@@ -3,10 +3,10 @@
 ※ **公式サイト確定・イベント登録の台帳ではない**。駅名がページ内に現れた未確認サイト候補を整理したもの。
 
 - 全国道の駅台帳: 1234駅
-- 調査済みホームページ候補URL: 544件
-- 駅名の現れたサイト候補: 159件
-- イベントらしいリンクを持つ候補: 111件
-- 今回の優先レビュー枠: 50件 / 残り候補 109件
+- 調査済みホームページ候補URL: 664件
+- 駅名の現れたサイト候補: 212件
+- イベントらしいリンクを持つ候補: 131件
+- 今回の優先レビュー枠: 50件 / 残り候補 162件
 
 | 駅ID | 県 | 道の駅 | 優先理由 | 催しリンク候補数 | 調査するURL |
 |---|---|---|---|---:|---|
@@ -20,6 +20,7 @@
 | RS0405 | 千葉県 | とみうら | 掲載0県・イベントらしいリンク | 5 | https://www.biwakurabu.jp/news/index.html |
 | RS0571 | 長野県 | 小坂田公園 | 掲載0県・イベントらしいリンク | 5 | https://osakada-park.jp/information/category/news |
 | RS0754 | 滋賀県 | 伊吹の里 | 掲載0県・イベントらしいリンク | 5 | https://shunsainomori.com/category/info/ |
+| RS0885 | 鳥取県 | はっとう | 掲載0県・イベントらしいリンク | 5 | https://www.cgr.mlit.go.jp/kisya/pdf/20230309-1top.pdf |
 | RS0568 | 長野県 | 信州新町 | 掲載0県・イベントらしいリンク | 4 | https://nagano-michinoeki.jp/2026/03/16/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%80%91%e6%98%a5%e3%81%ae%e9%81%93%e3%81%ae%e9%a7%85%e3%83%95%e3%82%a7%e3%82%b9%e3%82%bf%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/ |
 | RS0577 | 長野県 | マルメロの駅ながと | 掲載0県・イベントらしいリンク | 4 | https://marche-kokuyou.jp/news_info/ |
 | RS0338 | 栃木県 | みかも | 掲載0県・イベントらしいリンク | 3 | https://www.michinoeki-mikamo.jp/information |
@@ -36,6 +37,7 @@
 | RS0575 | 長野県 | 白馬 | 掲載0県・イベントらしいリンク | 2 | https://michino-eki.hakubakousha.com/2026/06/05/%e3%81%8a%e8%a9%ab%e3%81%b3%e3%81%a8%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/ |
 | RS0585 | 長野県 | しなの | 掲載0県・イベントらしいリンク | 2 | https://f-tenbou.com/info/%f0%9f%8c%bd%e5%a4%8f%e6%9c%9f%e5%96%b6%e6%a5%ad%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%f0%9f%8c%bd/ |
 | RS0748 | 滋賀県 | 湖北みずどりステーション | 掲載0県・イベントらしいリンク | 2 | https://mizudori-st.jp/topic/news/ |
+| RS0888 | 鳥取県 | 神話の里　白うさぎ | 掲載0県・イベントらしいリンク | 2 | https://sirousagi.com/%e3%80%8c%e7%99%bd%e5%85%8e%e5%91%a8%e9%81%8a%e3%82%b9%e3%82%bf%e3%83%b3%e3%83%97%e3%83%a9%e3%83%aa%e3%83%bc%ef%bc%86%e3%82%af%e3%82%a4%e3%82%ba%e3%80%8d%e3%82%b9%e3%82%bf%e3%83%bc%e3%83%88%ef%bc%81-2/ |
 | RS0327 | 栃木県 | にのみや | 掲載0県・イベントらしいリンク | 1 | https://michinoeki-ninomiya.jp/news-archive/ |
 | RS0420 | 千葉県 | オライはすぬま | 掲載0県・イベントらしいリンク | 1 | https://oraihasunuma.com/html/event.html |
 | RS0488 | 富山県 | 福光 | 掲載0県・イベントらしいリンク | 1 | https://www.fukumitsu.net |
@@ -58,8 +60,6 @@
 | RS0753 | 滋賀県 | 藤樹の里あどがわ | 掲載0県・駅名一致のみ | 0 | https://adogawa.net/ |
 | RS0755 | 滋賀県 | 塩津海道あぢかまの里 | 掲載0県・駅名一致のみ | 0 | https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/adikama.html |
 | RS0756 | 滋賀県 | せせらぎの里こうら | 掲載0県・駅名一致のみ | 0 | https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/seseraginosato.html |
-| RS0758 | 滋賀県 | 奥永源寺 渓流の里 | 掲載0県・駅名一致のみ | 0 | https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/okueigenji.html |
-| RS0073 | 北海道 | ぐるっとパノラマ美幌峠 | イベントらしいリンク | 8 | https://bihoropass.jp/news/blog/2024/10/28/akimatsuri2024/ |
 
 ## 次に確認すること
 
