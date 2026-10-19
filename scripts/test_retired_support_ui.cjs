@@ -42,14 +42,14 @@ test("payment cache entries and current-term solicitations are retired", () => {
   assert.match(legal, /キャンセル・返金/);
 });
 
-test("retirement release consistently replaces PWA shell cache", () => {
+test("PWA app and service-worker versions stay consistent after updates", () => {
   const ver = JSON.parse(read("data/version.json"));
   const html = read("index.html");
   const pwa = read("pwa.js");
   const worker = read("service-worker.js");
-  assert.equal(ver.appVersion, "1.6.27");
-  assert.match(html, /app\.js\?v=1\.6\.27/);
-  assert.match(pwa, /PWA_APP_VERSION="1\.6\.27"/);
-  assert.match(worker, /michino-shell-v1\.6\.27/);
-  assert.match(worker, /app\.js\?v=1\.6\.27/);
+  assert.equal(ver.appVersion, "1.6.30");
+  assert.match(html, /app\.js\?v=1\.6\.30/);
+  assert.match(pwa, /PWA_APP_VERSION="1\.6\.30"/);
+  assert.match(worker, /michino-shell-v1\.6\.30/);
+  assert.match(worker, /app\.js\?v=1\.6\.30/);
 });
