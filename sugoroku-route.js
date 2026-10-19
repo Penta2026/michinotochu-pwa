@@ -11,8 +11,6 @@
   const R = Math.PI / 180;
   const KM_PER_DEGREE = 111.195;
   const LABELS = ["北", "北東", "東", "南東", "南", "南西", "西", "北西"];
-  const DIR_BEARINGS = {north: 0, northeast: 45, east: 90, southeast: 135,
-    south: 180, southwest: 225, west: 270, northwest: 315};
 
   function km(a, b) {
     const la = Number(a.lat) * R, lb = Number(b.lat) * R;
@@ -60,6 +58,7 @@
       return {station, along, sideways};
     }).filter(p => p.station !== goal &&
       p.station.id !== undefined && p.station.id !== goal.id &&
+      difference(heading(origin, p.station), heading(origin, goal)) <= 45 &&
       p.along > Math.max(1, direct * 0.04) &&
       p.along < direct - Math.max(1, direct * 0.04) &&
       p.sideways <= corridorKm &&
@@ -122,50 +121,50 @@
     return best;
   }
 
-  function plan({origin, stations, distanceKm, toleranceKm = 10, count = 3,
-                 direction = "all", random = Math.random}) {
+  function plan({origin, stations, distanceKm, toleranceKm = null, count = 3,
+                 random = Math.random}) {
     if (!usable(origin) || !Array.isArray(stations) || !Number.isFinite(distanceKm) ||
-        distanceKm <= 0 || !Number.isFinite(toleranceKm) || toleranceKm < 0 ||
-        !Number.isInteger(count) || count < 1 || count > 6 ||
-        !(direction === "all" || Object.hasOwn(DIR_BEARINGS, direction))) {
+        distanceKm <= 0 || (toleranceKm !== null &&
+        (!Number.isFinite(toleranceKm) || toleranceKm < 0)) ||
+        !Number.isInteger(count) || count < 1 || count > 6) {
       return {ok: false, reason: "invalid_input"};
     }
+    // "50 km ahead" means a destination around 50 km away, not any
+    // station within a 50 km radius; direction is decided by the draw.
+    const tolerance = toleranceKm === null ? Math.max(10, distanceKm * 0.12)
+                                           : toleranceKm;
     const pool = stations.filter(s => usable(s) && s.id !== undefined &&
-      s.id !== null && s.gacha !== false);
+      s.id !== null && s.gacha !== false &&
+      km(origin, s) > 1);
     const goals = pool.map(station => ({
       station, distance: km(origin, station), bearing: heading(origin, station)
-    })).filter(g => g.distance >= Math.max(1, distanceKm - toleranceKm) &&
-      g.distance <= distanceKm + toleranceKm &&
-      (direction === "all" || difference(g.bearing, DIR_BEARINGS[direction]) <= 45));
-    // Prefer destinations near the user-selected distance; keep gacha variety.
-    goals.sort((a, b) => Math.abs(a.distance - distanceKm) -
-                               Math.abs(b.distance - distanceKm));
-    const options = [];
-    for (const candidate of goals) {
-      const corridorKm = Math.min(35, Math.max(6, candidate.distance * 0.20));
-      const route = makeRoute(origin, candidate.station, pool, count,
-                              candidate.distance, corridorKm);
-      if (!route) continue;
-      options.push({
-        ...route, goal: candidate.station, goalDistanceKm: candidate.distance,
-        bearingDegrees: candidate.bearing, directionName: compass(candidate.bearing),
-        corridorKm,
-        straightDetourRatio: route.straightLegKm / candidate.distance,
-      });
+    })).filter(g => g.distance >= Math.max(1, distanceKm - tolerance) &&
+      g.distance <= distanceKm + tolerance);
+    if (!goals.length) return {ok: false, reason: "no_goal", goalCandidates: 0};
+    const unitRandom = Number(random());
+    const index = Math.min(goals.length - 1, Math.max(0,
+      Math.floor((Number.isFinite(unitRandom) ? unitRandom : 0) * goals.length)));
+    // Choose the goal FIRST, randomly in any direction. From then on,
+    // only progressively forward stations inside that goal's ±45° sector
+    // may be used, regardless of the number originally requested.
+    const pickedGoal = goals[index], goal = pickedGoal.station;
+    const corridorKm = Math.min(35, Math.max(6, pickedGoal.distance * 0.20));
+    let route = null;
+    for (let maximum = count; maximum >= 1; maximum--) {
+      route = makeRoute(origin, goal, pool, maximum,
+                        pickedGoal.distance, corridorKm);
+      if (route) break;
     }
-    if (!options.length) {
-      return {ok: false, reason: goals.length ? "insufficient_forward_stations" : "no_goal",
-              goalCandidates: goals.length};
-    }
-    options.sort((a, b) =>
-      Math.abs(a.goalDistanceKm - distanceKm) - Math.abs(b.goalDistanceKm - distanceKm) ||
-      a.straightDetourRatio - b.straightDetourRatio);
-    // Random among the twelve closest workable destinations, not all distant ones.
-    const shortlist = options.slice(0, 12);
-    const picked = shortlist[Math.min(shortlist.length - 1,
-      Math.max(0, Math.floor(random() * shortlist.length)))];
-    return {ok: true, ...picked, goalCandidates: goals.length,
-      viableGoals: options.length};
+    // makeRoute always allows a direct single-goal route.
+    return {
+      ok: true, ...route, goal, requestedCount: count,
+      goalDistanceKm: pickedGoal.distance,
+      toleranceKm: tolerance,
+      bearingDegrees: pickedGoal.bearing,
+      directionName: compass(pickedGoal.bearing),
+      corridorKm, goalCandidates: goals.length,
+      straightDetourRatio: route.straightLegKm / pickedGoal.distance
+    };
   }
 
   return {km, heading, compass, relative, stopCandidates, plan};
