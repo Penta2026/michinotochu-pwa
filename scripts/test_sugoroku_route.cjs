@@ -90,3 +90,19 @@ test("invalid count and distance do not generate a route",()=>{
   assert.equal(plan({origin,stations:[eastGoal],distanceKm:50,count:7}).ok,false);
   assert.equal(plan({origin,stations:[eastGoal],distanceKm:50,count:0}).ok,false);
 });
+
+
+test("public sugoroku never loads or offers rate-limited road-distance services",()=>{
+  const fs=require("node:fs");
+  const path=require("node:path");
+  const root=path.resolve(__dirname,"..");
+  const html=fs.readFileSync(path.join(root,"index.html"),"utf8");
+  const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
+  const worker=fs.readFileSync(path.join(root,"service-worker.js"),"utf8");
+  for(const source of [html,app,worker]) {
+    assert.doesNotMatch(source,/sugoroku-road-distance|sugRoadDistance|showSugorokuRoadDistance|routing\.openstreetmap\.de/);
+  }
+  assert.match(app,/const o=window\.SugorokuRoute\.plan/);
+  assert.match(html,/ゴールまでの目安直線距離/);
+  assert.doesNotMatch(html,/id="sugTravel"/);
+});
