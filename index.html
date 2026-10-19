@@ -8,22 +8,22 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="道の途中。">
-<link rel="manifest" href="manifest.webmanifest?v=1.6.29">
-<link rel="apple-touch-icon" href="icons/icon-192.png?v=1.6.29">
-<link rel="stylesheet" href="style.css?v=1.6.29">
+<link rel="manifest" href="manifest.webmanifest?v=1.6.30">
+<link rel="apple-touch-icon" href="icons/icon-192.png?v=1.6.30">
+<link rel="stylesheet" href="style.css?v=1.6.30">
 <script src="data/app_data.js"></script>
-<script src="data/road_summaries_chugoku.js?v=1.6.29"></script>
-<script src="data/road_summaries_shikoku.js?v=1.6.29"></script>
-<script src="data/road_summaries_kyushu_okinawa.js?v=1.6.29"></script>
-<script src="data/road_summaries_kinki.js?v=1.6.29"></script>
-<script src="data/road_summaries_chubu.js?v=1.6.29"></script>
-<script src="data/road_summaries_kanto.js?v=1.6.29"></script>
-<script src="data/road_summaries_tohoku.js?v=1.6.29"></script>
-<script src="data/road_summaries_hokkaido.js?v=1.6.29"></script>
-<script src="data/road_summaries_final.js?v=1.6.29"></script>
-<script src="data/spot_overrides.js?v=1.6.29"></script>
-<script src="data/riders_cafes.js?v=1.6.29"></script>
-<script src="data/riders_cafes_public_additions.js?v=1.6.29"></script>
+<script src="data/road_summaries_chugoku.js?v=1.6.30"></script>
+<script src="data/road_summaries_shikoku.js?v=1.6.30"></script>
+<script src="data/road_summaries_kyushu_okinawa.js?v=1.6.30"></script>
+<script src="data/road_summaries_kinki.js?v=1.6.30"></script>
+<script src="data/road_summaries_chubu.js?v=1.6.30"></script>
+<script src="data/road_summaries_kanto.js?v=1.6.30"></script>
+<script src="data/road_summaries_tohoku.js?v=1.6.30"></script>
+<script src="data/road_summaries_hokkaido.js?v=1.6.30"></script>
+<script src="data/road_summaries_final.js?v=1.6.30"></script>
+<script src="data/spot_overrides.js?v=1.6.30"></script>
+<script src="data/riders_cafes.js?v=1.6.30"></script>
+<script src="data/riders_cafes_public_additions.js?v=1.6.30"></script>
 </head>
 <body class="pwa-starting">
 <div id="pwaStartupGate" class="pwa-startup-gate" role="status" aria-live="polite">
@@ -34,7 +34,7 @@
   </div>
 </div>
 <header class="topbar">
-<div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.6.29</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
+<div class="brand"><h1>道の途中。 <span>PWA</span> <small class="version-tag">Ver1.6.30</small></h1><p>気の向くままに、どこかへ行こう。寄り道が、最高の目的地になる。</p></div>
 </header>
 <div class="shell">
 <nav class="side" id="sideNav">
@@ -56,7 +56,7 @@
   <div class="home-stage">
     <div class="home-title" aria-label="旅の途中。"><span class="home-title-trip">旅</span><span class="home-title-no">の</span><span class="home-title-way">途中。</span></div>
     <div class="home-tagline">－ さあ、どこへ行こう？－</div>
-    <div class="home-version">PWA Ver1.6.29</div>
+    <div class="home-version">PWA Ver1.6.30</div>
     <button type="button" class="home-usage-button" onclick="openUsageGuide()">？ 使い方</button>
     <div class="home-spacer" aria-hidden="true"></div>
     <div class="home-image-grid">
@@ -82,11 +82,11 @@
 <section id="sug" class="view"><div class="screen-card menu-sug">
   <div class="screen-title-card"><h2>🎲  道の駅すごろく</h2><button class="screen-close" onclick="showView('home')">×</button></div>
   <div class="screen-body"><div id="sugStart"></div>
-    <div class="choice-section"><h3>📏 目的地までの最大直線距離</h3><select id="sugRadius" class="logic-control"><option selected>50</option><option>100</option><option>150</option><option>200</option><option>300</option><option>500</option></select><div class="choice-grid" data-target="sugRadius" data-values="50,100,150,200,300,500"></div><div class="free-number"><input id="sugRadiusFree" type="number" min="1" max="2000" placeholder="自由入力"><span>km</span></div></div>
-    <div class="choice-section"><h3>🛣 目標総走行距離</h3><select id="sugTravel" class="logic-control"><option selected>100</option><option>200</option><option>300</option><option>400</option><option>500</option></select><div class="choice-grid" data-target="sugTravel" data-values="100,200,300,400,500"></div><div class="free-number"><input id="sugTravelFree" type="number" min="1" max="3000" placeholder="自由入力"><span>km</span></div></div>
-    <div class="choice-section"><h3>🎯 立ち寄る道の駅の数</h3><select id="sugCount" class="logic-control"><option value="0" selected>ランダム</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select><div class="choice-grid" data-target="sugCount" data-values="0,1,2,3,4,5,6" data-labels="ランダム,1,2,3,4,5,6"></div></div>
+    <div class="choice-section"><h3>📏 ゴールまでの目安直線距離</h3><select id="sugRadius" class="logic-control"><option selected>50</option><option>100</option><option>150</option><option>200</option><option>300</option><option>500</option></select><div class="choice-grid" data-target="sugRadius" data-values="50,100,150,200,300,500"></div><div class="free-number"><input id="sugRadiusFree" type="number" min="1" max="2000" placeholder="自由入力"><span>km</span></div></div>
+    <div class="note">🎲 ゴールと方角はランダム。指定距離の近くから道の駅を選び、その方向へ進みます。</div>
+    <div class="choice-section"><h3>🎯 立ち寄る道の駅の上限（ゴール込み）</h3><select id="sugCount" class="logic-control"><option value="0" selected>ランダム</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select><div class="choice-grid" data-target="sugCount" data-values="0,1,2,3,4,5,6" data-labels="ランダム,1,2,3,4,5,6"></div></div>
     <div class="choice-section"><h3>🎁 ミッション</h3><input type="checkbox" id="sugMission" checked class="logic-control"><div class="toggle-choice"><button data-mission="on" class="active">あり</button><button data-mission="off">なし</button></div></div>
-    <div class="note">※ 距離は地図上の直線距離です。実際の走行距離は道路状況やルートにより増減します。</div><button class="primary action-main" onclick="runSugoroku()">🎲 すごろく開始！</button>
+    <div class="note">※ 経由駅はゴール方面の±45°以内から、ゴールに近づく順に選びます。上限まで駅がなければ少ない駅数で終了します。距離は直線であり、実際の走行距離はナビで確認してください。</div><button class="primary action-main" onclick="runSugoroku()">🎲 すごろく開始！</button>
     <div id="sugResult" class="result empty">条件を設定してください。</div>
   </div></div></section>
 
@@ -286,7 +286,7 @@
 </main>
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
-<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.6.29 / DB Ver2.8.20</span></footer>
+<footer>製作者：ぺんた / © 2026 Penta<br><a href="history.html">更新履歴</a> ｜ <a href="terms.html">利用規約・免責事項</a> ｜ <a href="privacy.html">プライバシーポリシー</a> ｜ <a href="legal.html">特定商取引法に基づく表記</a><br><span id="footerVersion">PWA Ver1.6.30 / DB Ver2.8.20</span></footer>
 <script>
 (function(){
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -296,12 +296,13 @@
   }
 })();
 </script>
-<script src="assets/home/home_sprite_0.js?v=1.6.29"></script>
-<script src="assets/home/home_sprite_1.js?v=1.6.29"></script>
-<script src="assets/home/home_sprite_2.js?v=1.6.29"></script>
-<script src="assets/home/home_sprite_3.js?v=1.6.29"></script>
-<script src="app.js?v=1.6.29"></script>
-<script src="tour-plan.js?v=1.6.29"></script>
-<script src="pwa.js?v=1.6.29"></script>
+<script src="assets/home/home_sprite_0.js?v=1.6.30"></script>
+<script src="assets/home/home_sprite_1.js?v=1.6.30"></script>
+<script src="assets/home/home_sprite_2.js?v=1.6.30"></script>
+<script src="assets/home/home_sprite_3.js?v=1.6.30"></script>
+<script src="sugoroku-route.js?v=1.6.30"></script>
+<script src="app.js?v=1.6.30"></script>
+<script src="tour-plan.js?v=1.6.30"></script>
+<script src="pwa.js?v=1.6.30"></script>
 </body>
 </html>
