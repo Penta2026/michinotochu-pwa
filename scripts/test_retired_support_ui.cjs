@@ -47,9 +47,9 @@ test("PWA app and service-worker versions stay consistent after updates", () => 
   const html = read("index.html");
   const pwa = read("pwa.js");
   const worker = read("service-worker.js");
-  assert.equal(ver.appVersion, "1.6.30");
-  assert.match(html, /app\.js\?v=1\.6\.30/);
-  assert.match(pwa, /PWA_APP_VERSION="1\.6\.30"/);
-  assert.match(worker, /michino-shell-v1\.6\.30/);
-  assert.match(worker, /app\.js\?v=1\.6\.30/);
+  assert.equal(ver.appVersion, "1.6.31");
+  assert.match(html, /app\.js\?v=1\.6\.31/);
+  assert.match(pwa, /PWA_APP_VERSION="1\.6\.31"/);
+  assert.match(worker, /michino-shell-v1\.6\.31/);
+  assert.match(worker, /app\.js\?v=1\.6\.31/);
 });
