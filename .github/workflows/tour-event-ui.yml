@@ -6,8 +6,6 @@ on:
     paths:
       - "tour-plan.js"
       - "sugoroku-route.js"
-      - "sugoroku-road-distance.js"
-      - "scripts/test_sugoroku_road_distance.cjs"
       - "scripts/test_sugoroku_route.cjs"
       - "app.js"
       - "index.html"
@@ -38,6 +36,6 @@ jobs:
         with:
           node-version: "20"
       - name: JavaScript syntax
-        run: node --check tour-plan.js && node --check app.js && node --check sugoroku-route.js && node --check sugoroku-road-distance.js && node --check pwa.js
+        run: node --check tour-plan.js && node --check app.js && node --check sugoroku-route.js && node --check pwa.js
       - name: Tour event distance UI regression
-        run: node --test scripts/test_sugoroku_route.cjs scripts/test_sugoroku_road_distance.cjs scripts/test_tour_event_distance.cjs scripts/test_interest_road_events.cjs scripts/test_retired_support_ui.cjs
+        run: node --test scripts/test_sugoroku_route.cjs scripts/test_tour_event_distance.cjs scripts/test_interest_road_events.cjs scripts/test_retired_support_ui.cjs
