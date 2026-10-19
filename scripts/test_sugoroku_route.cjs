@@ -72,6 +72,19 @@ test("route straight-leg sum is explicitly different from actual road distance",
   assert.ok(result.straightLegKm>=result.goalDistanceKm-0.001);
 });
 
+test("northbound sugoroku may go northeast, northwest, then north without southward backtracking",()=>{
+  const start={lat:35,lng:132};
+  const goal=entry("北ゴール",35.5,132);
+  const northeast=entry("北東駅",35.18,132.09);
+  const northwest=entry("北西駅",35.35,131.95);
+  const r=plan({origin:start,stations:[goal,northeast,northwest],
+                distanceKm:56,count:3,random:()=>0});
+  assert.equal(r.ok,true);
+  assert.deepEqual(r.points.map(s=>s.id),["北東駅","北西駅","北ゴール"]);
+  assert.equal(r.directionName,"北");
+  assert.ok(r.straightDetourRatio<=1.30);
+});
+
 test("invalid count and distance do not generate a route",()=>{
   assert.equal(plan({origin,stations:[eastGoal],distanceKm:0,count:5}).ok,false);
   assert.equal(plan({origin,stations:[eastGoal],distanceKm:50,count:7}).ok,false);
