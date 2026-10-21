@@ -168,6 +168,45 @@ function deleteSelected(){const id=el("tourSavedPlans").value;if(id)deletePlan(i
 function sendToDetour(){if(!origin()||!state.target)return alert("先に出発地点と目標地点を指定してください");const snapshot=planSnapshot();if(!snapshot)return;window.tourImportToDetour?.(snapshot);showView("detour")}
 function importFromDetour(){const chosen=window.tourExportFromDetour?.();if(!chosen)return alert("寄り道から取り込む地点がありません");if(chosen.length>2)return alert("寄り道は最大2地点です。寄り道しようで選択数を減らしてください");state.stops=chosen.map(p=>({name:p.name||"寄り道地点",lat:p.lat,lng:p.lng,navQuery:p.navQuery||""}));render();showView("ride");alert("寄り道"+chosen.length+"地点を反映しました。保存すると計画を更新できます。")}
 
+
+function exportPoints(){
+ const from=origin();
+ if(!valid(from)||!valid(state.target))throw new Error("出発地点と目標地点を設定してね。");
+ let ret;
+ if(el("tourReturnSame").checked)ret=from;
+ else {
+  const typed=el("tourReturnName").value.trim();
+  ret=typed?null:(typeof origins!=="undefined"?origins.tourReturn:null);
+  if(!valid(ret))throw new Error("帰着地点は座標で指定してね。地図か現在地から選べるよ。");
+ }
+ const stops=[state.target,...state.stops];
+ if(stops.length>6)throw new Error("経由地は最大6地点までだよ。");
+ const all=[{role:"START",point:from},...stops.map(point=>({role:"VIA",point})),{role:"GOAL",point:ret}];
+ if(all.some(x=>!valid(x.point)))throw new Error("座標を持たない地点があるよ。");
+ const cell=value=>'"'+String(value??"").replace(/"/g,'""').replace(/[\\r\\n]+/g," ")+'"';
+ return "BIKENAV-ROUTE/1\\n"+all.map(({role,point})=>
+  [role,cell(point.name||point.label||({"START":"出発地","VIA":"経由地","GOAL":"目的地"}[role])),Number(point.lat).toFixed(7),Number(point.lng).toFixed(7)].join(",")
+ ).join("\\n");
+}
+async function copyExportText(text){
+ if(navigator.clipboard&&window.isSecureContext){try{await navigator.clipboard.writeText(text);return true}catch(e){}}
+ const elText=document.createElement("textarea");elText.value=text;elText.style.position="fixed";elText.style.left="-9999px";document.body.appendChild(elText);elText.select();
+ const ok=document.execCommand("copy");elText.remove();return ok;
+}
+async function copyRoutePoints(){
+ try{const value=exportPoints();if(!await copyExportText(value))throw new Error("コピーできなかったよ。ブラウザの権限を確認してね。");alert("地点データをコピーしたよ。BikeNavigatorの貼り付け画面で使ってね。")}
+ catch(e){alert(e.message||"コピーに失敗しました。")}
+}
+async function shareRoutePoints(){
+ try{
+  const value=exportPoints();
+  if(navigator.share){try{await navigator.share({title:"道の途中。 地点データ",text:value});return}catch(e){if(e.name==="AbortError")return}}
+  if(await copyExportText(value))alert("共有に対応していないので、地点データをコピーしたよ。");
+  else throw new Error("共有・コピーに失敗したよ。");
+ }catch(e){alert(e.message||"共有に失敗しました。")}
+}
+
+window.tourCopyRoutePoints=copyRoutePoints;window.tourShareRoutePoints=shareRoutePoints;
 window.tourEventsForStation=activeRoadEvents;window.tourEventCacheStatus=roadEventCacheStatus;window.tourChooseEvent=chooseEvent;window.tourRefreshCandidates=searchSilently;window.tourRefreshEventList=renderRoadEventList;window.tourPreviewRoute=previewRoute;window.tourToggleEventList=toggleRoadEventList;window.tourUpdateRoadEvents=updateRoadEvents;window.tourRenderFavoritePlans=renderFavoritePlans;window.tourOpenFavoritePlan=openFavoritePlan;window.tourMapFavoritePlan=mapFavoritePlan;window.tourGroupChanged=changeGroup;window.tourSavePlan=()=>savePlan(false);window.tourSavePlanAs=()=>savePlan(true);window.tourLoadSelected=loadSelected;window.tourDeleteSelected=deleteSelected;window.tourSendToDetour=sendToDetour;window.tourImportFromDetour=importFromDetour;window.tourNearGroupChanged=changeNearGroup;window.tourChooseSelected=chooseSelected;window.tourAddNearbySelected=addNearbySelected;window.tourSearch=search;window.tourChoose=choose;window.tourSearchNearby=nearby;window.tourAddNearby=addNearby;window.tourRemove=remove;window.tourReturnChanged=changeReturn;window.tourOpenMaps=openMaps;
 document.addEventListener("DOMContentLoaded",()=>{if(el("tourGroup")){
  changeGroup();changeNearGroup();render();changeReturn();renderPlans();loadLocalRoadEvents();
