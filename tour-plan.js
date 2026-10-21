@@ -183,10 +183,10 @@ function exportPoints(){
  if(stops.length>6)throw new Error("経由地は最大6地点までだよ。");
  const all=[{role:"START",point:from},...stops.map(point=>({role:"VIA",point})),{role:"GOAL",point:ret}];
  if(all.some(x=>!valid(x.point)))throw new Error("座標を持たない地点があるよ。");
- const cell=value=>'"'+String(value??"").replace(/"/g,'""').replace(/[\\r\\n]+/g," ")+'"';
- return "BIKENAV-ROUTE/1\\n"+all.map(({role,point})=>
+ const cell=value=>'"'+String(value??"").replace(/"/g,'""').replace(/[\r\n]+/g," ")+'"';
+ return "BIKENAV-ROUTE/1\n"+all.map(({role,point})=>
   [role,cell(point.name||point.label||({"START":"出発地","VIA":"経由地","GOAL":"目的地"}[role])),Number(point.lat).toFixed(7),Number(point.lng).toFixed(7)].join(",")
- ).join("\\n");
+ ).join("\n");
 }
 async function copyExportText(text){
  if(navigator.clipboard&&window.isSecureContext){try{await navigator.clipboard.writeText(text);return true}catch(e){}}
