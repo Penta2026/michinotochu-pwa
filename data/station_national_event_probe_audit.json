@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-21",
-  "stationUrlsInspected": 15,
+  "checkedAt": "2026-10-22",
+  "stationUrlsInspected": 55,
   "newlyAccepted": 0,
   "stations": [
     {
       "stationId": "RS0007",
       "roadName": "望羊中山",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -17,7 +17,7 @@
     {
       "stationId": "RS0029",
       "roadName": "おとふけ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -28,7 +28,7 @@
     {
       "stationId": "RS0031",
       "roadName": "上ノ国もんじゅ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 1,
       "accepted": 0,
       "rejectedReasons": {
@@ -38,17 +38,18 @@
     {
       "stationId": "RS0034",
       "roadName": "マオイの丘公園",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_unique_event_headline": 3
+        "no_unique_event_headline": 2,
+        "no_explicit_on_site_venue": 1
       }
     },
     {
       "stationId": "RS0052",
       "roadName": "森と湖の里ほろかない",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -59,7 +60,7 @@
     {
       "stationId": "RS0056",
       "roadName": "スワン４４ねむろ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 2,
       "accepted": 0,
       "rejectedReasons": {
@@ -69,7 +70,7 @@
     {
       "stationId": "RS0063",
       "roadName": "あさひかわ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -80,7 +81,7 @@
     {
       "stationId": "RS0066",
       "roadName": "オーロラタウン９３りくべつ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -91,7 +92,7 @@
     {
       "stationId": "RS0073",
       "roadName": "ぐるっとパノラマ美幌峠",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -101,7 +102,7 @@
     {
       "stationId": "RS0075",
       "roadName": "とようら",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -111,7 +112,7 @@
     {
       "stationId": "RS0092",
       "roadName": "しほろ温泉",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -121,7 +122,7 @@
     {
       "stationId": "RS0093",
       "roadName": "名水の郷きょうごく",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -132,12 +133,31 @@
     {
       "stationId": "RS0110",
       "roadName": "縄文ロマン　南かやべ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 1
+      }
+    },
+    {
+      "stationId": "RS0113",
+      "roadName": "みそぎの郷　きこない",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_unique_event_headline": 1,
-        "no_explicit_year_event_date": 2
+        "multiple_articles": 3
+      }
+    },
+    {
+      "stationId": "RS0114",
+      "roadName": "しかべ間歇泉公園",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 3
       }
     },
     {
@@ -166,12 +186,11 @@
     {
       "stationId": "RS0141",
       "roadName": "なんごう",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_unique_event_headline": 1,
-        "no_explicit_year_event_date": 2
+        "robots_blocked": 3
       }
     },
     {
@@ -188,7 +207,7 @@
     {
       "stationId": "RS0146",
       "roadName": "よこはま",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -242,7 +261,7 @@
     {
       "stationId": "RS0158",
       "roadName": "高田松原",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -263,7 +282,7 @@
     {
       "stationId": "RS0174",
       "roadName": "さんりく",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 1,
       "accepted": 0,
       "rejectedReasons": {
@@ -317,7 +336,7 @@
     {
       "stationId": "RS0184",
       "roadName": "みやこ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -327,7 +346,7 @@
     {
       "stationId": "RS0199",
       "roadName": "路田里はなやま",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 1,
       "accepted": 0,
       "rejectedReasons": {
@@ -348,11 +367,11 @@
     {
       "stationId": "RS0205",
       "roadName": "上品の郷",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_unique_event_headline": 3
+        "robots_blocked": 3
       }
     },
     {
@@ -369,23 +388,22 @@
     {
       "stationId": "RS0220",
       "roadName": "かづの",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_explicit_year_event_date": 2,
-        "no_unique_event_headline": 1
+        "no_unique_event_headline": 2,
+        "no_explicit_year_event_date": 1
       }
     },
     {
       "stationId": "RS0224",
       "roadName": "かみこあに",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "fetch_failed": 1,
-        "no_unique_event_headline": 2
+        "robots_blocked": 3
       }
     },
     {
@@ -401,7 +419,7 @@
     {
       "stationId": "RS0240",
       "roadName": "十文字",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 2,
       "accepted": 0,
       "rejectedReasons": {
@@ -411,11 +429,11 @@
     {
       "stationId": "RS0241",
       "roadName": "おおがた",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 1,
       "accepted": 0,
       "rejectedReasons": {
-        "no_unique_event_headline": 1
+        "robots_blocked": 1
       }
     },
     {
@@ -432,38 +450,37 @@
     {
       "stationId": "RS0244",
       "roadName": "大館能代空港",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_explicit_year_event_date": 1,
-        "no_unique_event_headline": 2
+        "robots_blocked": 3
       }
     },
     {
       "stationId": "RS0259",
       "roadName": "白い森おぐに",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 2,
       "accepted": 0,
       "rejectedReasons": {
-        "no_explicit_year_event_date": 2
+        "robots_blocked": 2
       }
     },
     {
       "stationId": "RS0265",
       "roadName": "白鷹ヤナ公園",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_unique_event_headline": 3
+        "robots_blocked": 3
       }
     },
     {
       "stationId": "RS0278",
       "roadName": "ならは",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 1,
       "accepted": 0,
       "rejectedReasons": {
@@ -485,7 +502,7 @@
     {
       "stationId": "RS0299",
       "roadName": "からむし織の里しょうわ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 2,
       "accepted": 0,
       "rejectedReasons": {
@@ -495,7 +512,7 @@
     {
       "stationId": "RS0327",
       "roadName": "にのみや",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 1,
       "accepted": 0,
       "rejectedReasons": {
@@ -505,17 +522,17 @@
     {
       "stationId": "RS0330",
       "roadName": "明治の森・黒磯",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_unique_event_headline": 3
+        "robots_blocked": 3
       }
     },
     {
       "stationId": "RS0331",
       "roadName": "ばとう",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 2,
       "accepted": 0,
       "rejectedReasons": {
@@ -526,7 +543,18 @@
     {
       "stationId": "RS0333",
       "roadName": "きつれがわ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 1,
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0338",
+      "roadName": "みかも",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -535,30 +563,20 @@
       }
     },
     {
-      "stationId": "RS0338",
-      "roadName": "みかも",
-      "lastChecked": "2026-10-15",
-      "articlePagesChecked": 3,
-      "accepted": 0,
-      "rejectedReasons": {
-        "no_unique_event_headline": 2,
-        "no_explicit_year_event_date": 1
-      }
-    },
-    {
       "stationId": "RS0342",
       "roadName": "にしかた",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "robots_blocked": 3
+        "no_explicit_year_event_date": 1,
+        "no_unique_event_headline": 2
       }
     },
     {
       "stationId": "RS0345",
       "roadName": "湧水の郷しおや",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -591,7 +609,7 @@
     {
       "stationId": "RS0384",
       "roadName": "あらかわ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -601,7 +619,7 @@
     {
       "stationId": "RS0395",
       "roadName": "ちちぶ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -611,7 +629,7 @@
     {
       "stationId": "RS0397",
       "roadName": "果樹公園あしがくぼ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -622,7 +640,7 @@
     {
       "stationId": "RS0405",
       "roadName": "とみうら",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -633,7 +651,7 @@
     {
       "stationId": "RS0407",
       "roadName": "やちよ",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -644,7 +662,7 @@
     {
       "stationId": "RS0420",
       "roadName": "オライはすぬま",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 1,
       "accepted": 0,
       "rejectedReasons": {
@@ -654,11 +672,33 @@
     {
       "stationId": "RS0424",
       "roadName": "水の郷さわら",
-      "lastChecked": "2026-10-15",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
         "no_unique_event_headline": 3
+      }
+    },
+    {
+      "stationId": "RS0429",
+      "roadName": "保田小学校",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 1,
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0430",
+      "roadName": "みのりの郷東金",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 1,
+        "no_explicit_year_event_date": 2
       }
     },
     {
@@ -1648,6 +1688,90 @@
       }
     },
     {
+      "stationId": "RS1144",
+      "roadName": "うしぶか海彩館",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "fetch_failed": 1,
+        "no_unique_event_headline": 2
+      }
+    },
+    {
+      "stationId": "RS1160",
+      "roadName": "佐賀関",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 2,
+        "no_explicit_year_event_date": 1
+      }
+    },
+    {
+      "stationId": "RS1163",
+      "roadName": "あさじ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 2,
+        "no_article": 1
+      }
+    },
+    {
+      "stationId": "RS1178",
+      "roadName": "すごう",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 1
+      }
+    },
+    {
+      "stationId": "RS1198",
+      "roadName": "えびの",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 2
+      }
+    },
+    {
+      "stationId": "RS1216",
+      "roadName": "いぶすき",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 1
+      }
+    },
+    {
+      "stationId": "RS1217",
+      "roadName": "たるみず",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 2,
+        "no_explicit_year_event_date": 1
+      }
+    },
+    {
+      "stationId": "RS1232",
+      "roadName": "ぎのざ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 3
+      }
+    },
+    {
       "stationId": "RS_CUR_36007",
       "roadName": "公方の郷なかがわ",
       "lastChecked": "2026-10-20",
@@ -1660,63 +1784,114 @@
   ],
   "todayDetails": [
     {
-      "stationId": "RS1029",
-      "roadName": "内子フレッシュパークからり",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS0113",
+      "roadName": "みそぎの郷　きこない",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "fetch_failed": 2,
-        "no_unique_event_headline": 1
+        "multiple_articles": 3
       }
     },
     {
-      "stationId": "RS1040",
-      "roadName": "みかわ",
-      "lastChecked": "2026-10-21",
-      "articlePagesChecked": 1,
+      "stationId": "RS0114",
+      "roadName": "しかべ間歇泉公園",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_unique_event_headline": 1
+        "multiple_articles": 3
       }
     },
     {
-      "stationId": "RS1041",
-      "roadName": "清流の里ひじかわ",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS0429",
+      "roadName": "保田小学校",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 2,
       "accepted": 0,
       "rejectedReasons": {
+        "no_explicit_year_event_date": 1,
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0430",
+      "roadName": "みのりの郷東金",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 1,
+        "no_explicit_year_event_date": 2
+      }
+    },
+    {
+      "stationId": "RS1144",
+      "roadName": "うしぶか海彩館",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "fetch_failed": 1,
         "no_unique_event_headline": 2
       }
     },
     {
-      "stationId": "RS1045",
-      "roadName": "小田の郷せせらぎ",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS1160",
+      "roadName": "佐賀関",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_unique_event_headline": 1,
-        "past": 1,
+        "multiple_articles": 2,
         "no_explicit_year_event_date": 1
       }
     },
     {
-      "stationId": "RS1046",
-      "roadName": "うわじま　きさいや広場",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS1163",
+      "roadName": "あさじ",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_explicit_year_event_date": 2,
-        "no_unique_event_headline": 1
+        "multiple_articles": 2,
+        "no_article": 1
       }
     },
     {
-      "stationId": "RS1051",
-      "roadName": "天空の郷さんさん",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS1178",
+      "roadName": "すごう",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 1
+      }
+    },
+    {
+      "stationId": "RS1198",
+      "roadName": "えびの",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 2
+      }
+    },
+    {
+      "stationId": "RS1216",
+      "roadName": "いぶすき",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 1
+      }
+    },
+    {
+      "stationId": "RS1217",
+      "roadName": "たるみず",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -1725,9 +1900,40 @@
       }
     },
     {
-      "stationId": "RS1065",
-      "roadName": "かわうその里すさき",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS1232",
+      "roadName": "ぎのざ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 3
+      }
+    },
+    {
+      "stationId": "RS0007",
+      "roadName": "望羊中山",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 3
+      }
+    },
+    {
+      "stationId": "RS0029",
+      "roadName": "おとふけ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 2,
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0031",
+      "roadName": "上ノ国もんじゅ",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 1,
       "accepted": 0,
       "rejectedReasons": {
@@ -1735,31 +1941,63 @@
       }
     },
     {
-      "stationId": "RS1073",
-      "roadName": "四万十とおわ",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS0034",
+      "roadName": "マオイの丘公園",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_explicit_year_event_date": 1,
+        "no_unique_event_headline": 2,
+        "no_explicit_on_site_venue": 1
+      }
+    },
+    {
+      "stationId": "RS0052",
+      "roadName": "森と湖の里ほろかない",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 2,
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0056",
+      "roadName": "スワン４４ねむろ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
         "no_unique_event_headline": 2
       }
     },
     {
-      "stationId": "RS1087",
-      "roadName": "歓遊舎ひこさん",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS0063",
+      "roadName": "あさひかわ",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "no_explicit_year_event_date": 1,
-        "no_unique_event_headline": 2
+        "no_unique_event_headline": 2,
+        "no_article": 1
       }
     },
     {
-      "stationId": "RS1088",
-      "roadName": "むなかた",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS0066",
+      "roadName": "オーロラタウン９３りくべつ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 2,
+        "fetch_failed": 1
+      }
+    },
+    {
+      "stationId": "RS0073",
+      "roadName": "ぐるっとパノラマ美幌峠",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -1767,9 +2005,9 @@
       }
     },
     {
-      "stationId": "RS1089",
-      "roadName": "くるめ",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS0075",
+      "roadName": "とようら",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
@@ -1777,48 +2015,347 @@
       }
     },
     {
-      "stationId": "RS1099",
-      "roadName": "桃山天下市",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS0092",
+      "roadName": "しほろ温泉",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
-        "multiple_articles": 3
+        "no_unique_event_headline": 3
       }
     },
     {
-      "stationId": "RS1114",
-      "roadName": "遣唐使ふるさと館",
-      "lastChecked": "2026-10-21",
-      "articlePagesChecked": 3,
-      "accepted": 0,
-      "rejectedReasons": {
-        "multiple_articles": 1,
-        "no_unique_event_headline": 2
-      }
-    },
-    {
-      "stationId": "RS1129",
-      "roadName": "きくすい",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS0093",
+      "roadName": "名水の郷きょうごく",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 3,
       "accepted": 0,
       "rejectedReasons": {
         "fetch_failed": 1,
-        "multiple_articles": 2
+        "no_explicit_year_event_date": 2
       }
     },
     {
-      "stationId": "RS1135",
-      "roadName": "子守唄の里　五木",
-      "lastChecked": "2026-10-21",
+      "stationId": "RS0110",
+      "roadName": "縄文ロマン　南かやべ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 1
+      }
+    },
+    {
+      "stationId": "RS0141",
+      "roadName": "なんごう",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 3
+      }
+    },
+    {
+      "stationId": "RS0146",
+      "roadName": "よこはま",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 1,
+        "no_explicit_year_event_date": 2
+      }
+    },
+    {
+      "stationId": "RS0158",
+      "roadName": "高田松原",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 3
+      }
+    },
+    {
+      "stationId": "RS0174",
+      "roadName": "さんりく",
+      "lastChecked": "2026-10-22",
       "articlePagesChecked": 1,
       "accepted": 0,
       "rejectedReasons": {
         "no_unique_event_headline": 1
       }
+    },
+    {
+      "stationId": "RS0184",
+      "roadName": "みやこ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 3
+      }
+    },
+    {
+      "stationId": "RS0199",
+      "roadName": "路田里はなやま",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 1
+      }
+    },
+    {
+      "stationId": "RS0205",
+      "roadName": "上品の郷",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 3
+      }
+    },
+    {
+      "stationId": "RS0220",
+      "roadName": "かづの",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 2,
+        "no_explicit_year_event_date": 1
+      }
+    },
+    {
+      "stationId": "RS0224",
+      "roadName": "かみこあに",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 3
+      }
+    },
+    {
+      "stationId": "RS0240",
+      "roadName": "十文字",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 2
+      }
+    },
+    {
+      "stationId": "RS0241",
+      "roadName": "おおがた",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 1
+      }
+    },
+    {
+      "stationId": "RS0244",
+      "roadName": "大館能代空港",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 3
+      }
+    },
+    {
+      "stationId": "RS0259",
+      "roadName": "白い森おぐに",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 2
+      }
+    },
+    {
+      "stationId": "RS0265",
+      "roadName": "白鷹ヤナ公園",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 3
+      }
+    },
+    {
+      "stationId": "RS0278",
+      "roadName": "ならは",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0299",
+      "roadName": "からむし織の里しょうわ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 2
+      }
+    },
+    {
+      "stationId": "RS0327",
+      "roadName": "にのみや",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0330",
+      "roadName": "明治の森・黒磯",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "robots_blocked": 3
+      }
+    },
+    {
+      "stationId": "RS0331",
+      "roadName": "ばとう",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
+        "multiple_articles": 1,
+        "fetch_failed": 1
+      }
+    },
+    {
+      "stationId": "RS0333",
+      "roadName": "きつれがわ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 2,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 1,
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0338",
+      "roadName": "みかも",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 1,
+        "no_explicit_year_event_date": 2
+      }
+    },
+    {
+      "stationId": "RS0342",
+      "roadName": "にしかた",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 1,
+        "no_unique_event_headline": 2
+      }
+    },
+    {
+      "stationId": "RS0345",
+      "roadName": "湧水の郷しおや",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "offsite": 1,
+        "no_explicit_year_event_date": 2
+      }
+    },
+    {
+      "stationId": "RS0384",
+      "roadName": "あらかわ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 3
+      }
+    },
+    {
+      "stationId": "RS0395",
+      "roadName": "ちちぶ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 3
+      }
+    },
+    {
+      "stationId": "RS0397",
+      "roadName": "果樹公園あしがくぼ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 1,
+        "fetch_failed": 2
+      }
+    },
+    {
+      "stationId": "RS0405",
+      "roadName": "とみうら",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 1,
+        "no_explicit_year_event_date": 2
+      }
+    },
+    {
+      "stationId": "RS0407",
+      "roadName": "やちよ",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_explicit_year_event_date": 2,
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0420",
+      "roadName": "オライはすぬま",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 1,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 1
+      }
+    },
+    {
+      "stationId": "RS0424",
+      "roadName": "水の郷さわら",
+      "lastChecked": "2026-10-22",
+      "articlePagesChecked": 3,
+      "accepted": 0,
+      "rejectedReasons": {
+        "no_unique_event_headline": 3
+      }
     }
   ],
   "publicationGate": "explicit event full-year date and labelled on-station venue",
-  "eligibleStationSitesBeforeBudget": 15
+  "eligibleStationSitesBeforeBudget": 55
 }

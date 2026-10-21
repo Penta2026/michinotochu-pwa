@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "basisCheckedAt": "2026-10-20T18:32:57.553730+00:00",
+  "basisCheckedAt": "2026-10-21T18:31:11.470971+00:00",
   "masterStations": 1234,
   "configuredStationCount": 27,
-  "inspectedStationWebsiteUrls": 904,
+  "inspectedStationWebsiteUrls": 1024,
   "reviewStatuses": {
     "fetch_failed": 1,
-    "http_or_size_rejected": 56,
-    "identity_mentioned_unverified": 289,
-    "identity_not_found": 76,
-    "robots_blocked": 482
+    "http_or_size_rejected": 69,
+    "identity_mentioned_unverified": 315,
+    "identity_not_found": 77,
+    "robots_blocked": 562
   },
-  "potentialStationSites": 284,
-  "potentialEventListingSites": 177,
+  "potentialStationSites": 309,
+  "potentialEventListingSites": 190,
   "shortlisted": 50,
-  "remainingPotentialSites": 234,
+  "remainingPotentialSites": 259,
   "shortlist": [
     {
       "stationId": "RS0265",
@@ -52,6 +52,28 @@
         "https://www.michinoeki-yachiyo.jp/topics/news-info-2610091-2/",
         "https://www.michinoeki-yachiyo.jp/topics/%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e5%a4%89%e6%9b%b4%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
         "https://www.michinoeki-yachiyo.jp/topics/10%e6%9c%88%e3%83%bb11%e6%9c%88%e4%ba%88%e5%ae%9a%e8%a1%a8-2/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0430",
+      "prefecture": "千葉県",
+      "roadName": "みのりの郷東金",
+      "websiteUrl": "https://minorinosato-togane.com",
+      "eventLinkHints": [
+        "https://minorinosato-togane.com/category/event",
+        "https://minorinosato-togane.com/category/event/event-reports",
+        "https://minorinosato-togane.com/event_info",
+        "https://minorinosato-togane.com/information",
+        "https://minorinosato-togane.com/2026/10/13/60544",
+        "https://minorinosato-togane.com/2026/10/21/60651",
+        "https://minorinosato-togane.com/2026/10/20/60614",
+        "https://minorinosato-togane.com/2026/10/18/60610"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
@@ -240,6 +262,44 @@
       "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
     },
     {
+      "stationId": "RS1160",
+      "prefecture": "大分県",
+      "roadName": "佐賀関",
+      "websiteUrl": "https://rs-seki.com/",
+      "eventLinkHints": [
+        "https://rs-seki.com/list301/",
+        "https://rs-seki.com/list101/",
+        "https://rs-seki.com/list301/%e5%a4%a7%e5%89%b5%e6%a5%ad%e7%a5%ad-4/",
+        "https://rs-seki.com/list301/%ef%bc%93%ef%bc%90%e4%ba%ba%e9%99%90%e5%ae%9a%e3%83%bb%e4%ba%ba%e6%b0%97%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88/",
+        "https://rs-seki.com/list301/%e5%a4%a7%e5%89%b5%e6%a5%ad%e7%a5%ad-3/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS1163",
+      "prefecture": "大分県",
+      "roadName": "あさじ",
+      "websiteUrl": "https://michinoeki-asaji.com/",
+      "eventLinkHints": [
+        "https://michinoeki-asaji.com/archives/2175/",
+        "https://michinoeki-asaji.com/archives/2156/",
+        "https://michinoeki-asaji.com/wp-content/uploads/2024/04/道の駅あさじ25周年記念感謝祭.pdf",
+        "https://michinoeki-asaji.com/wp-content/uploads/2020/09/道の駅あさじ新米祭り2020.pdf",
+        "https://michinoeki-asaji.com/wp-content/uploads/2019/04/20周年チラシ.pdf"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
       "stationId": "RS0568",
       "prefecture": "長野県",
       "roadName": "信州新町",
@@ -303,6 +363,24 @@
         "https://kikusuiromankan.jp/2026/09/25/romanhatuduku/",
         "https://kikusuiromankan.jp/category/event/",
         "https://kikusuiromankan.jp/2026/06/14/rogo/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS1144",
+      "prefecture": "熊本県",
+      "roadName": "うしぶか海彩館",
+      "websiteUrl": "https://kaisaikan.com",
+      "eventLinkHints": [
+        "https://kaisaikan.com/news",
+        "https://kaisaikan.com/news/%e5%ae%9a%e4%bc%91%e6%97%a5%e5%bb%83%e6%ad%a2%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://kaisaikan.com/news/%e5%a4%a7%e6%bc%81%e9%a3%9f%e5%a0%82%e3%81%82%e3%81%8a%e3%81%95%e3%82%88%e3%82%8a%e3%80%8c%e6%9b%9c%e6%97%a5%e9%99%90%e5%ae%9a%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%80%8d%e9%96%8b%e5%82%ac%e3%81%ae/",
+        "https://kaisaikan.com/news/%e5%a4%a2%e5%b8%82%e5%a0%b4%e3%82%88%e3%82%8a%e6%9c%9f%e9%96%93%e9%99%90%e5%ae%9a%e5%95%86%e5%93%81%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
@@ -504,6 +582,22 @@
       "eventLinkHints": [
         "https://michinoeki-kitsuregawa.jp/category/news",
         "https://michinoeki-kitsuregawa.jp/news/4806"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0429",
+      "prefecture": "千葉県",
+      "roadName": "保田小学校",
+      "websiteUrl": "https://hotasho.jp/",
+      "eventLinkHints": [
+        "https://hotasho.jp/category/event/",
+        "https://hotasho.jp/news-list/"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
@@ -785,73 +879,6 @@
         "https://www.itsuki-bussan.net/news"
       ],
       "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS_CUR_36007",
-      "prefecture": "徳島県",
-      "roadName": "公方の郷なかがわ",
-      "websiteUrl": "https://nakaroadstation.wixsite.com/nakagawa",
-      "eventLinkHints": [
-        "https://nakaroadstation.wixsite.com/nakagawa/blank-2"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0250",
-      "prefecture": "山形県",
-      "roadName": "河北",
-      "websiteUrl": "https://sites.google.com/view/ekikahoku/home",
-      "eventLinkHints": [],
-      "discoveryTier": "station_name_only",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0260",
-      "prefecture": "山形県",
-      "roadName": "おおえ",
-      "websiteUrl": "https://oe-terume.co.jp/roadside-station-oe/",
-      "eventLinkHints": [],
-      "discoveryTier": "station_name_only",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0414",
-      "prefecture": "千葉県",
-      "roadName": "多古",
-      "websiteUrl": "https://www.michinoeki-tako.com/",
-      "eventLinkHints": [],
-      "discoveryTier": "station_name_only",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0427",
-      "prefecture": "千葉県",
-      "roadName": "発酵の里こうざき",
-      "websiteUrl": "https://www.hakkounosato.com/",
-      "eventLinkHints": [],
-      "discoveryTier": "station_name_only",
       "zeroCurrentEventPrefecture": true,
       "officialSiteOwnershipVerified": false,
       "eventListingVerified": false,
