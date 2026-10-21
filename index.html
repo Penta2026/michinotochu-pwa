@@ -229,6 +229,7 @@
 <label>車両区分<select id="tourVehicle"><option value="125">125cc以下（高速・有料を回避）</option><option value="250" selected>250cc以上（高速・有料も可）</option></select></label></div>
 <div class="panel tour-plan-summary"><h3>🧭 計画した地点</h3><div id="tourPlanState"></div></div>
 <button class="primary action-main tour-action tour-route-final" onclick="tourOpenMaps()">🗺️ Googleマップでルートを確認</button>
+<div class="panel"><h3>📋 地点データをほかのナビへ</h3><p class="note">出発地 → 目標地点 → 寄り道 → 帰着地点を順番にコピー・共有します。経路そのものは送らず、受け取ったアプリ側で計算します。座標を持つ地点だけ対応します。</p><div class="actions"><button type="button" class="soft" onclick="tourCopyRoutePoints()">📋 地点データをコピー</button><button type="button" class="soft" onclick="tourShareRoutePoints()">📤 地点データを共有</button></div><p class="note">BikeNavigator連携形式：BIKENAV-ROUTE/1。その他のナビは、上のGoogleマップ用ボタンを利用してね。</p></div>
 <div class="panel form-grid"><h3 class="full">💾 ツーリング計画を保存</h3><label class="full">計画名<input id="tourPlanName" placeholder="例：週末の山方面ツーリング"></label><button type="button" class="soft tour-action tour-action-save" onclick="tourSavePlan()">💾 保存・上書き</button><button type="button" class="soft tour-action tour-action-save" onclick="tourSavePlanAs()">📑 別名で保存</button><label class="full">保存した計画<select id="tourSavedPlans"><option value="">保存した計画を選択</option></select></label><button type="button" class="soft tour-action tour-action-select" onclick="tourLoadSelected()">📂 読み込む</button><button type="button" class="soft tour-action tour-action-danger" onclick="tourDeleteSelected()">🗑 削除</button><button type="button" class="primary full tour-action tour-action-main" onclick="tourSendToDetour()">🛣️ この計画で「寄り道しよう」へ</button></div>
 <div class="note">距離は候補を探す直線距離。実走行距離・フェリー・通行規制・経由地の順序はGoogleマップで確認・調整してね。125cc以下の回避指定は通行可能性を保証しないよ。</div>
 </div></div></section>
@@ -302,7 +303,7 @@
 <script src="assets/home/home_sprite_3.js?v=1.6.32"></script>
 <script src="sugoroku-route.js?v=1.6.32"></script>
 <script src="app.js?v=1.6.32"></script>
-<script src="tour-plan.js?v=1.6.32"></script>
+<script src="tour-plan.js?v=1.6.32-points1"></script>
 <script src="pwa.js?v=1.6.32"></script>
 </body>
 </html>
