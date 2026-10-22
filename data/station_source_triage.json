@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "basisCheckedAt": "2026-10-21T18:31:11.470971+00:00",
+  "basisCheckedAt": "2026-10-22T18:31:36.811707+00:00",
   "masterStations": 1234,
   "configuredStationCount": 27,
-  "inspectedStationWebsiteUrls": 1024,
+  "inspectedStationWebsiteUrls": 1144,
   "reviewStatuses": {
     "fetch_failed": 1,
-    "http_or_size_rejected": 69,
-    "identity_mentioned_unverified": 315,
-    "identity_not_found": 77,
-    "robots_blocked": 562
+    "http_or_size_rejected": 78,
+    "identity_mentioned_unverified": 358,
+    "identity_not_found": 84,
+    "robots_blocked": 623
   },
-  "potentialStationSites": 309,
-  "potentialEventListingSites": 190,
+  "potentialStationSites": 348,
+  "potentialEventListingSites": 215,
   "shortlisted": 50,
-  "remainingPotentialSites": 259,
+  "remainingPotentialSites": 298,
   "shortlist": [
     {
       "stationId": "RS0265",
@@ -127,6 +127,48 @@
       "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
     },
     {
+      "stationId": "RS0268",
+      "prefecture": "山形県",
+      "roadName": "川のみなと長井",
+      "websiteUrl": "https://kawanominato.jp/",
+      "eventLinkHints": [
+        "https://kawanominato.jp/news",
+        "https://kawanominato.jp/news/251/",
+        "https://kawanominato.jp/news_category/event/",
+        "https://kawanominato.jp/news/270/",
+        "https://kawanominato.jp/news/264/",
+        "https://kawanominato.jp/news/262/",
+        "https://kawanominato.jp/news/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0269",
+      "prefecture": "山形県",
+      "roadName": "米沢",
+      "websiteUrl": "https://michinoeki-yonezawa.jp/",
+      "eventLinkHints": [
+        "https://michinoeki-yonezawa.jp/blogs/news",
+        "https://michinoeki-yonezawa.jp/blogs/news/%E5%BE%A9%E6%97%A7%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B-%E4%B8%80%E9%83%A8%E6%B1%BA%E6%B8%88%E6%89%8B%E6%AE%B5-paypay-%E3%82%B3%E3%83%B3%E3%83%93%E3%83%8B%E6%B1%BA%E6%B8%88-%E3%81%94%E5%88%A9%E7%94%A8%E5%86%8D%E9%96%8B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6",
+        "https://michinoeki-yonezawa.jp/blogs/news/%E9%87%8D%E8%A6%81-%E4%B8%80%E9%83%A8%E6%B1%BA%E6%B8%88%E6%89%8B%E6%AE%B5-paypay-%E3%82%B3%E3%83%B3%E3%83%93%E3%83%8B%E6%B1%BA%E6%B8%88-%E3%81%AE%E4%B8%80%E6%99%82%E5%81%9C%E6%AD%A2%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B",
+        "https://michinoeki-yonezawa.jp/blogs/news/%E9%B6%B4%E5%9F%8E%E5%95%86%E3%83%83%E3%83%97-%E9%96%8B%E5%82%AC",
+        "https://michinoeki-yonezawa.jp/blogs/news/%F0%9F%9A%9A%E3%81%AA%E3%81%94%E3%81%BF%E3%81%AE%E7%B1%B3%E5%B1%8B-%E5%87%BA%E5%BA%97%E6%83%85%E5%A0%B1%F0%9F%9A%9A",
+        "https://michinoeki-yonezawa.jp/blogs/news/2026%E5%B9%B410%E6%9C%887%E6%97%A5%E9%81%93%E3%81%AE%E9%A7%85%E7%B1%B3%E6%B2%A2%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97-%E9%80%9A%E4%BF%A1%E8%B2%A9%E5%A3%B2%E4%BA%8B%E6%A5%AD%E6%89%80-%E9%9B%BB%E8%A9%B1%E5%BF%9C%E5%AF%BE%E4%B8%80%E6%99%82%E4%BC%91%E6%AD%A2%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B",
+        "https://michinoeki-yonezawa.jp/blogs/news/%E2%9C%A8%E7%B1%B3%E6%B2%A2%E9%80%B8%E5%93%81%E5%B1%95-%E9%96%8B%E5%82%AC%E2%9C%A8"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
       "stationId": "RS0424",
       "prefecture": "千葉県",
       "roadName": "水の郷さわら",
@@ -147,6 +189,26 @@
       "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
     },
     {
+      "stationId": "RS0432",
+      "prefecture": "千葉県",
+      "roadName": "いちかわ",
+      "websiteUrl": "https://www.michinoeki-ichikawa.jp/",
+      "eventLinkHints": [
+        "https://www.michinoeki-ichikawa.jp/event/",
+        "https://www.michinoeki-ichikawa.jp/news/",
+        "https://www.michinoeki-ichikawa.jp/news/5717/",
+        "https://www.michinoeki-ichikawa.jp/news/5663/",
+        "https://www.michinoeki-ichikawa.jp/event/5683/",
+        "https://www.michinoeki-ichikawa.jp/event/4430/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
       "stationId": "RS0591",
       "prefecture": "長野県",
       "roadName": "花の駅　千曲川",
@@ -158,6 +220,26 @@
         "https://www.chikumagawa.net/news/news-4471/",
         "https://www.chikumagawa.net/news/category/topics/",
         "https://www.chikumagawa.net/news/news-3986/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS1151",
+      "prefecture": "熊本県",
+      "roadName": "人吉",
+      "websiteUrl": "https://h-craftpark.com/",
+      "eventLinkHints": [
+        "https://h-craftpark.com/2026/10/22/%e7%9f%b3%e9%87%8e%e5%85%ac%e5%9c%92%e7%a5%ad%e3%82%8awith%e9%81%93%e3%81%ae%e9%a7%85%e4%ba%ba%e5%90%89%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a7%e3%81%ae%e9%96%8b%e5%82%ac%e5%bb%b6%e6%9c%9f%e3%81%ab/",
+        "https://h-craftpark.com/2026/10/20/%e7%9f%b3%e9%87%8e%e5%85%ac%e5%9c%92%e3%81%be%e3%81%a4%e3%82%8awith%e9%81%93%e3%81%ae%e9%a7%85%e4%ba%ba%e5%90%89%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a7%e9%96%8b%e5%82%ac%e3%81%ae%e3%81%8a%e7%9f%a5/",
+        "https://h-craftpark.com/notice_of_resumption_of_business0802",
+        "https://h-craftpark.com/2026/07/30/%ef%bc%97%e6%9c%88%ef%bc%93%ef%bc%91%e6%97%a5%ef%bc%88%e9%87%91%ef%bc%89%e9%81%93%e3%81%ae%e9%a7%85%e4%ba%ba%e5%90%89%e3%81%ae%e8%87%a8%e6%99%82%e4%bc%91%e5%9c%92%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89/",
+        "https://h-craftpark.com/2026/07/30/%ef%bc%97%e6%9c%88%ef%bc%93%ef%bc%90%e6%97%a5%ef%bc%88%e6%9c%a8%ef%bc%89%e9%81%93%e3%81%ae%e9%a7%85%e4%ba%ba%e5%90%89%e3%81%ae%e8%87%a8%e6%99%82%e4%bc%91%e5%9c%92%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89/",
+        "https://h-craftpark.com/2026/01/21/carp_streamer"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
@@ -751,6 +833,22 @@
       "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
     },
     {
+      "stationId": "RS1003",
+      "prefecture": "徳島県",
+      "roadName": "みまの里",
+      "websiteUrl": "https://www.sk-michinoeki.jp/michinoeki/1771",
+      "eventLinkHints": [
+        "https://www.sk-michinoeki.jp/events/",
+        "https://www.sk-michinoeki.jp/archives/category/news"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
       "stationId": "RS0327",
       "prefecture": "栃木県",
       "roadName": "にのみや",
@@ -781,102 +879,27 @@
       "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
     },
     {
+      "stationId": "RS0431",
+      "prefecture": "千葉県",
+      "roadName": "木更津 うまくたの里",
+      "websiteUrl": "https://chiba-kisarazu.com/",
+      "eventLinkHints": [
+        "https://chiba-kisarazu.com/blog"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
       "stationId": "RS0488",
       "prefecture": "富山県",
       "roadName": "福光",
       "websiteUrl": "https://www.fukumitsu.net",
       "eventLinkHints": [
         "https://www.fukumitsu.net"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0489",
-      "prefecture": "富山県",
-      "roadName": "たいら",
-      "websiteUrl": "https://gokayama-washinosato.com/",
-      "eventLinkHints": [
-        "https://gokayama-washinosato.com/topics/"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0592",
-      "prefecture": "長野県",
-      "roadName": "あおき",
-      "websiteUrl": "https://michinoeki-aoki.eek.jp/",
-      "eventLinkHints": [
-        "https://michinoeki-aoki.eek.jp/%e4%bb%a4%e5%92%8c8%e5%b9%b47%e6%9c%8825%e6%97%a5%e5%9c%9f%ef%bd%9e%e5%a4%8f%e3%81%ae%e6%84%9f%e8%ac%9d%e7%a5%ad%ef%bc%81%e3%82%bf%e3%83%81%e3%82%a2%e3%82%ab%e3%83%8d%e5%af%92%e3%81%96%e3%82%89-10335.html"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0604",
-      "prefecture": "長野県",
-      "roadName": "信州新野千石平",
-      "websiteUrl": "https://goheimochi.biz/",
-      "eventLinkHints": [
-        "https://goheimochi.biz/?pid=13103491"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0749",
-      "prefecture": "滋賀県",
-      "roadName": "草津",
-      "websiteUrl": "https://www.karasuma.co.jp/",
-      "eventLinkHints": [
-        "https://www.karasuma.co.jp/134-2/"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0991",
-      "prefecture": "徳島県",
-      "roadName": "宍喰温泉",
-      "websiteUrl": "https://www.kaiyo-kankou.jp/spots/spots-1321/",
-      "eventLinkHints": [
-        "https://www.kaiyo-kankou.jp/event/"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS1135",
-      "prefecture": "熊本県",
-      "roadName": "子守唄の里　五木",
-      "websiteUrl": "https://www.itsuki-bussan.net/",
-      "eventLinkHints": [
-        "https://www.itsuki-bussan.net/news"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "source": "https://www.michi-no-eki.jp/search",
-  "lastChecked": "2026-10-22",
+  "lastChecked": "2026-10-23",
   "cursor": {
-    "page": 29,
-    "offset": 11
+    "page": 32,
+    "offset": 2
   },
   "listingTraversalCompleted": false,
   "stations": [
@@ -1563,6 +1563,140 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0115",
+      "prefecture": "北海道",
+      "roadName": "ノンキーランド　ひがしもこと",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19888",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/13538/",
+        "http://www.nonkyland.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0116",
+      "prefecture": "北海道",
+      "roadName": "北欧の風　道の駅とうべつ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19889",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/13542/",
+        "https://tobest.co.jp/michinoeki/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0117",
+      "prefecture": "北海道",
+      "roadName": "石狩「あいろーど厚田」",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19897",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://aikaze.co.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0118",
+      "prefecture": "北海道",
+      "roadName": "なないろ・ななえ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19898",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://nanairo-nanae.jp/",
+        "https://shop.nanairo-nanae.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0119",
+      "prefecture": "北海道",
+      "roadName": "びえい「白金ビルケ」",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19914",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/16028/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0120",
+      "prefecture": "北海道",
+      "roadName": "北オホーツクはまとんべつ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19927",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0121",
+      "prefecture": "北海道",
+      "roadName": "あびら D51ステーション",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19928",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://d51-station.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0122",
+      "prefecture": "北海道",
+      "roadName": "遠軽 森のオホーツク",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19936",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://engaru-mori-no-okhotsk.jp/",
+        "https://www.engaru-kankou.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0123",
+      "prefecture": "北海道",
+      "roadName": "かみしほろ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19942",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://karch.jp/michinoeki/",
+        "https://michinoeki-kamishihoro.shop/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0124",
+      "prefecture": "北海道",
+      "roadName": "るもい",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19943",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hokkaido-michinoeki.jp/michinoeki/23225/",
+        "https://web.michinoeki-rumoi.info/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0129",
       "prefecture": "青森県",
       "roadName": "しちのへ",
@@ -1897,6 +2031,19 @@
       "directoryCheckStatus": "directory_identity_checked",
       "officialWebsiteCandidateUrlsUnverified": [
         "https://rokunohe.wixsite.com/home/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0156",
+      "prefecture": "青森県",
+      "roadName": "津軽白神",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19899",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.tsugaru-shirakami.com/"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -2272,6 +2419,44 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0188",
+      "prefecture": "岩手県",
+      "roadName": "平泉",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19876",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://hiraizumi.town"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0189",
+      "prefecture": "岩手県",
+      "roadName": "むろね",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19900",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://murone.theshop.jp",
+        "https://www.instagram.com/michieki.murone/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0190",
+      "prefecture": "岩手県",
+      "roadName": "はなまき西南",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19944",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0196",
       "prefecture": "宮城県",
       "roadName": "七ヶ宿",
@@ -2430,6 +2615,32 @@
       "directoryCheckStatus": "directory_identity_checked",
       "officialWebsiteCandidateUrlsUnverified": [
         "https://mitakido.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0209",
+      "prefecture": "宮城県",
+      "roadName": "かくだ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19929",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://kakudanotakara.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0210",
+      "prefecture": "宮城県",
+      "roadName": "おおさき",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19935",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.michinoekiosaki.jp/"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -2816,6 +3027,46 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0245",
+      "prefecture": "秋田県",
+      "roadName": "うご",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19860",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.hanuinosato.jp/",
+        "https://www.facebook.com/michinoekiugo/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0246",
+      "prefecture": "秋田県",
+      "roadName": "おおゆ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19901",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://yunoeki-oyu.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0247",
+      "prefecture": "秋田県",
+      "roadName": "おが",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19915",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://michinoekioga.co.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0249",
       "prefecture": "山形県",
       "roadName": "月山",
@@ -3047,6 +3298,45 @@
       "directoryCheckStatus": "directory_identity_checked",
       "officialWebsiteCandidateUrlsUnverified": [
         "https://ringo-no-mori.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0267",
+      "prefecture": "山形県",
+      "roadName": "しょうない",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19861",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.town.shonai.lg.jp/fusyaichiba/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0268",
+      "prefecture": "山形県",
+      "roadName": "川のみなと長井",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19878",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://kawanominato.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0269",
+      "prefecture": "山形県",
+      "roadName": "米沢",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19902",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://michinoeki-yonezawa.jp/"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -3399,6 +3689,70 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0300",
+      "prefecture": "福島県",
+      "roadName": "猪苗代",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19862",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.michinoeki-inawashiro.co.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0301",
+      "prefecture": "福島県",
+      "roadName": "国見　あつかしの郷",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19877",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.michinoeki923.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0302",
+      "prefecture": "福島県",
+      "roadName": "いいたて村の道の駅までい館",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19890",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://madeikan.com"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0303",
+      "prefecture": "福島県",
+      "roadName": "尾瀬檜枝岐",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19891",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0304",
+      "prefecture": "福島県",
+      "roadName": "伊達の郷りょうぜん",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19903",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://michinoeki-datenosato-ryozen.jp/",
+        "https://www.youtube.com/watch?v=H46qw1VwSNo"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0310",
       "prefecture": "茨城県",
       "roadName": "かつら",
@@ -3546,6 +3900,19 @@
       "directoryCheckStatus": "directory_identity_checked",
       "officialWebsiteCandidateUrlsUnverified": [
         "http://www.hitachiota-michinoeki.jp/page/dir000002.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0322",
+      "prefecture": "茨城県",
+      "roadName": "グランテラス筑西",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19937",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://granterrace-chikusei.com"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -3868,6 +4235,33 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000115.html",
         "http://www.nikko-honjin.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0349",
+      "prefecture": "栃木県",
+      "roadName": "ましこ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19863",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://m-mashiko.com/",
+        "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000129.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0350",
+      "prefecture": "栃木県",
+      "roadName": "たかねざわ　元気あっぷむら",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19938",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.genkiupmura.com/"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -4303,6 +4697,20 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0382",
+      "prefecture": "群馬県",
+      "roadName": "尾瀬かたしな",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19904",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000199.html",
+        "https://oze-katashina.info/michinoeki"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0384",
       "prefecture": "埼玉県",
       "roadName": "あらかわ",
@@ -4558,6 +4966,20 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000218.html",
         "http://www.town.minano.saitama.jp/section/kankou/965.htm"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0403",
+      "prefecture": "埼玉県",
+      "roadName": "和紙の里ひがしちちぶ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19880",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000219.html",
+        "http://www.washinosato.co.jp"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -4905,6 +5327,33 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000246.html",
         "https://minorinosato-togane.com"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0431",
+      "prefecture": "千葉県",
+      "roadName": "木更津 うまくたの里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19892",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://chiba-kisarazu.com/",
+        "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000247.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0432",
+      "prefecture": "千葉県",
+      "roadName": "いちかわ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19905",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.michinoeki-ichikawa.jp/"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -5466,6 +5915,34 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0478",
+      "prefecture": "新潟県",
+      "roadName": "燕三条地場産センター",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19847",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.tsjiba.or.jp/michi/",
+        "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000038"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0479",
+      "prefecture": "新潟県",
+      "roadName": "庭園の郷 保内",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19881",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://honai-gardens.com",
+        "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000077"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0483",
       "prefecture": "富山県",
       "roadName": "細入",
@@ -5655,6 +6132,19 @@
       "directoryCheckStatus": "directory_identity_checked",
       "officialWebsiteCandidateUrlsUnverified": [
         "https://michinoeki-oyabe.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0497",
+      "prefecture": "富山県",
+      "roadName": "雨晴",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19909",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://michinoeki-amaharashi.jp/"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -5976,6 +6466,47 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0522",
+      "prefecture": "石川県",
+      "roadName": "あなみず",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19848",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.pref.ishikawa.jp/douken/page2/main27.html",
+        "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000076"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0523",
+      "prefecture": "石川県",
+      "roadName": "のと千里浜",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19882",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://noto-chirihama.com/",
+        "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000078"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0524",
+      "prefecture": "石川県",
+      "roadName": "めぐみ白山",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19910",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://megumi-hakusan.com"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0525",
       "prefecture": "福井県",
       "roadName": "河野",
@@ -6161,6 +6692,20 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "https://asakura-mizunoeki.com/",
         "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/fukui/ichijoudaniasakura.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0539",
+      "prefecture": "福井県",
+      "roadName": "禅の里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19849",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://michinoeki-zennosato.jp",
+        "https://www.instagram.com/michinoeki_zennosato/"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -6421,6 +6966,33 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "http://kosuge-eki.jp/",
         "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000268.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0565",
+      "prefecture": "山梨県",
+      "roadName": "つる",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19864",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.1000nentsuru.com/",
+        "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000269.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0566",
+      "prefecture": "山梨県",
+      "roadName": "なんぶ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19906",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000270.html"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -7001,6 +7573,127 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "http://www.farmus.jp/",
         "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000299.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0610",
+      "prefecture": "長野県",
+      "roadName": "田切の里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19867",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://tagirinosato.jp/",
+        "https://www.cbr.mlit.go.jp/michinoeki/nagano/nagano14.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0611",
+      "prefecture": "長野県",
+      "roadName": "ヘルシーテラス佐久南",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19879",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.healthyterrace-saku.jp/",
+        "http://www.ktr.mlit.go.jp/honkyoku/road/Michi-no-Eki/station/nagano_sakuminami/index.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0612",
+      "prefecture": "長野県",
+      "roadName": "女神の里たてしな",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19907",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://nonki-mura.com/megaminosato/",
+        "http://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000301.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0613",
+      "prefecture": "長野県",
+      "roadName": "南信州とよおかマルシェ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19908",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.cbr.mlit.go.jp/michinoeki/nagano/nagano15.html",
+        "https://www.toyooka-marche.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0614",
+      "prefecture": "長野県",
+      "roadName": "大芝高原",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19916",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://oshiba.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0615",
+      "prefecture": "長野県",
+      "roadName": "南信州　うるぎ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19917",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.cbr.mlit.go.jp/michinoeki/nagano/nagano17.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0616",
+      "prefecture": "長野県",
+      "roadName": "歌舞伎の里大鹿",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19918",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.cbr.mlit.go.jp/michinoeki/nagano/nagano18.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0617",
+      "prefecture": "長野県",
+      "roadName": "いくさかの郷",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19919",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.village.ikusaka.nagano.jp/ikusakanosato/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0618",
+      "prefecture": "長野県",
+      "roadName": "野沢温泉",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19939",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.nozawa-onsen.jp/"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -7715,6 +8408,32 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0674",
+      "prefecture": "岐阜県",
+      "roadName": "清流の里しろとり",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19866",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.okumino-shirotori.com/pg453.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0675",
+      "prefecture": "岐阜県",
+      "roadName": "パレットピアおおの",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19893",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://pallettepia-ono.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0677",
       "prefecture": "静岡県",
       "roadName": "富士",
@@ -8022,6 +8741,33 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0699",
+      "prefecture": "静岡県",
+      "roadName": "伊豆ゲートウェイ函南 ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19883",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.instagram.com/izugateway/",
+        "https://www.izugateway.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0700",
+      "prefecture": "静岡県",
+      "roadName": "伊豆月ケ瀬",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19940",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.izutsukigase.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0704",
       "prefecture": "愛知県",
       "roadName": "豊根グリーンポート宮嶋",
@@ -8243,6 +8989,19 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0720",
+      "prefecture": "愛知県",
+      "roadName": "とよはし",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19930",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.michinoeki-toyohashi.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0723",
       "prefecture": "三重県",
       "roadName": "飯高駅",
@@ -8448,6 +9207,46 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "https://www.anzen-kameyama.jp/servicearea#a02",
         "https://www.cbr.mlit.go.jp/michinoeki/mie/mie15.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0738",
+      "prefecture": "三重県",
+      "roadName": "津かわげ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19850",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.cbr.mlit.go.jp/michinoeki/mie/mie16.html",
+        "http://www.tsukawage.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0739",
+      "prefecture": "三重県",
+      "roadName": "熊野・花の窟",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19865",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.cbr.mlit.go.jp/michinoeki/mie/mie17.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0740",
+      "prefecture": "三重県",
+      "roadName": "熊野・板屋九郎兵衛の里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19911",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://kurobee.net"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -8717,6 +9516,20 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0760",
+      "prefecture": "滋賀県",
+      "roadName": "浅井三姉妹の郷",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19851",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://azai3-st.jp/",
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/azaisansimai.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0761",
       "prefecture": "京都府",
       "roadName": "舟屋の里伊根",
@@ -8939,6 +9752,34 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0777",
+      "prefecture": "京都府",
+      "roadName": "海の京都　宮津",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19852",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://michinoeki-miyazu.jp/",
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/uminokyoutomiyazu.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0778",
+      "prefecture": "京都府",
+      "roadName": "お茶の京都　みなみやましろ村",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19884",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://michinoeki.kyoto.jp/",
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/kyoto/ocyanokyotominamiyamashiromura.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0779",
       "prefecture": "大阪府",
       "roadName": "ちはやあかさか",
@@ -9045,6 +9886,33 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "https://www.city.kishiwada.osaka.jp/soshiki/141/michinoekiaisailand.html",
         "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/aisai_land.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0787",
+      "prefecture": "大阪府",
+      "roadName": "みさき",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19875",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/misaki.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0788",
+      "prefecture": "大阪府",
+      "roadName": "奥河内くろまろの郷",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19925",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://kuromaro.com/",
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/osaka/kuromaronosato.html"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -9451,6 +10319,61 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0818",
+      "prefecture": "兵庫県",
+      "roadName": "山田錦発祥のまち・多可",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19853",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/Yamada-nishik-taka.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0819",
+      "prefecture": "兵庫県",
+      "roadName": "神戸フルーツ・フラワーパーク大沢",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19868",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://fruit-flowerpark.jp/",
+        "https://www.instagram.com/fruitflowerpark.kobe/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0820",
+      "prefecture": "兵庫県",
+      "roadName": "山陰海岸ジオパーク浜坂の郷",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19885",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://hamasakanosato.com/",
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/saninkaiganjioparkhamasakanosato.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0821",
+      "prefecture": "兵庫県",
+      "roadName": "銀の馬車道・神河",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19894",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://michinoeki-ginnobasyamichi-kamikawa.com/",
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/hyogo/ginnobasyamichi.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0826",
       "prefecture": "奈良県",
       "roadName": "吉野路　大塔",
@@ -9611,6 +10534,45 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "https://mitsue.life/services/station/"
       ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0838",
+      "prefecture": "奈良県",
+      "roadName": "かつらぎ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19869",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://michinoeki-katsuragi.jp/",
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/nara/katsuragi.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0839",
+      "prefecture": "奈良県",
+      "roadName": "レスティ唐古・鍵",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19912",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.town.tawaramoto.nara.jp/soshki/sangyo/kanko/kanko_1/mitinoeki/7102.html",
+        "https://resti-karako-kagi.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0840",
+      "prefecture": "奈良県",
+      "roadName": "飛鳥",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19920",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
     },
@@ -10023,6 +10985,47 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0875",
+      "prefecture": "和歌山県",
+      "roadName": "青洲の里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19854",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://seishunosato.com",
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/wakayama/seishunosato.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0876",
+      "prefecture": "和歌山県",
+      "roadName": "くしがきの里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19874",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/wakayama/kushigakinosato.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0877",
+      "prefecture": "和歌山県",
+      "roadName": "ねごろ歴史の丘",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19895",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.city.iwade.lg.jp/kanko/2017-0426-1141-58.html",
+        "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/wakayama/negororekishinooka.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0881",
       "prefecture": "鳥取県",
       "roadName": "大栄",
@@ -10198,6 +11201,46 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "http://www.cgr.mlit.go.jp/chiki/doyroj/Michi-no-Eki/index.html",
         "http://www.okudaisen.org/station/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0895",
+      "prefecture": "鳥取県",
+      "roadName": "にちなん日野川の郷",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19855",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://nichinan-hinogawanosato.jp/",
+        "http://www.cgr.mlit.go.jp/chiki/doyroj/Michi-no-Eki/index.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0896",
+      "prefecture": "鳥取県",
+      "roadName": "琴の浦",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19886",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.kotoura-kankou.com/kankou-category/facility/michinoekikotonoura/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS0897",
+      "prefecture": "鳥取県",
+      "roadName": "西いなば 気楽里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19931",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://nishiinaba.jp"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -11060,6 +12103,20 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0962",
+      "prefecture": "広島県",
+      "roadName": "びんご府中",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19870",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.cgr.mlit.go.jp/chiki/doyroj/Michi-no-Eki/index.html",
+        "https://eki.bingofuchu.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0965",
       "prefecture": "山口県",
       "roadName": "阿武町",
@@ -11376,6 +12433,20 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS0988",
+      "prefecture": "山口県",
+      "roadName": "センザキッチン",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19913",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://nanavi.jp/senzakitchen/",
+        "https://www.facebook.com/senzakitchen/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS0989",
       "prefecture": "徳島県",
       "roadName": "貞光ゆうゆう館",
@@ -11565,6 +12636,20 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "http://hinanosato.wp.xdomain.jp/",
         "https://www.skr.mlit.go.jp/road/rstation/eki/to15_katsuura.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1003",
+      "prefecture": "徳島県",
+      "roadName": "みまの里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19921",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://mimanosato.jp/",
+        "https://www.sk-michinoeki.jp/michinoeki/1771"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -12196,6 +13281,19 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS1052",
+      "prefecture": "愛媛県",
+      "roadName": "なかやま",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19922",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.michinoekinakayama.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS1053",
       "prefecture": "高知県",
       "roadName": "大杉",
@@ -12495,6 +13593,33 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS1075",
+      "prefecture": "高知県",
+      "roadName": "よって西土佐",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19856",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.yotte.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1076",
+      "prefecture": "高知県",
+      "roadName": "なかとさ",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19896",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.facebook.com/道の駅なかとさ-観光インフォメーション-631032887106265/",
+        "https://www.nakatosa.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS1079",
       "prefecture": "福岡県",
       "roadName": "原鶴",
@@ -12719,6 +13844,19 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS1095",
+      "prefecture": "福岡県",
+      "roadName": "筑前みなみの里",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19941",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://chikuzen-minaminosato.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS1096",
       "prefecture": "佐賀県",
       "roadName": "鹿島",
@@ -12825,6 +13963,19 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "http://www.qsr.mlit.go.jp/n-michi/michi_no_eki/kobetu/tara/tara.html",
         "https://www.tarafukukan.com/frmDefault.aspx"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1104",
+      "prefecture": "佐賀県",
+      "roadName": "しろいし",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19887",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://www.michinoeki-shiroishi.jp/"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -12947,6 +14098,33 @@
       "officialWebsiteCandidateUrlsUnverified": [
         "http://www.qsr.mlit.go.jp/n-michi/michi_no_eki/kobetu/takarajima/takarajima.html",
         "http://www.takarajima-rs.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1116",
+      "prefecture": "長崎県",
+      "roadName": "させぼっくす　９９",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19857",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://sasebox99.com"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1117",
+      "prefecture": "長崎県",
+      "roadName": "長崎街道鈴田峠",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19858",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.michinoeki-suzutatouge.com/",
+        "https://www.city.omura.nagasaki.jp/kankou/kanko/michinoeki/index.html"
       ],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
@@ -13314,6 +14492,85 @@
       "officialSiteOwnershipVerified": false
     },
     {
+      "id": "RS1146",
+      "prefecture": "熊本県",
+      "roadName": "水辺プラザかもと",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19859",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.mizube-plaza.co.jp/",
+        "http://www.qsr.mlit.go.jp/n-michi/michi_no_eki/kobetu/mizubeplazakamoto/kamoto.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1147",
+      "prefecture": "熊本県",
+      "roadName": "すいかの里植木",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19871",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://suikanosato-ueki.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1148",
+      "prefecture": "熊本県",
+      "roadName": "芦北でこぽん",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19872",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1149",
+      "prefecture": "熊本県",
+      "roadName": "﨑津",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19923",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://sakituguidance.amakusa-web.jp/MyHp/Pub/",
+        "http://www.qsr.mlit.go.jp/n-michi/michi_no_eki/kobetu/sakitsu/sakitsu.html"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1150",
+      "prefecture": "熊本県",
+      "roadName": "天草市イルカセンター",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19932",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.qsr.mlit.go.jp/n-michi/michi_no_eki/kobetu/amakusairuka/amakusairuka.html",
+        "https://www.amakusa-dolphin.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1151",
+      "prefecture": "熊本県",
+      "roadName": "人吉",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19933",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "https://h-craftpark.com/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
       "id": "RS1157",
       "prefecture": "大分県",
       "roadName": "原尻の滝",
@@ -13627,6 +14884,30 @@
         "http://michinoeki-nakatsu.com/",
         "http://www.qsr.mlit.go.jp/n-michi/michi_no_eki/kobetu/nakatu/nakatu.html"
       ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1180",
+      "prefecture": "大分県",
+      "roadName": "慈恩の滝　くす",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19873",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [
+        "http://www.kusu-michinoeki.jp/"
+      ],
+      "evidence": "national_station_association_directory_detail_only",
+      "officialSiteOwnershipVerified": false
+    },
+    {
+      "id": "RS1181",
+      "prefecture": "大分県",
+      "roadName": "のつはる",
+      "directoryDetailUrl": "https://www.michi-no-eki.jp/stations/views/19934",
+      "lastDirectoryChecked": "2026-10-23",
+      "directoryCheckStatus": "directory_identity_checked",
+      "officialWebsiteCandidateUrlsUnverified": [],
       "evidence": "national_station_association_directory_detail_only",
       "officialSiteOwnershipVerified": false
     },
@@ -14267,7 +15548,7 @@
     }
   ],
   "lastRun": {
-    "listCount": 35,
+    "listCount": 34,
     "inspected": 96,
     "matched": 96,
     "errors": 0,

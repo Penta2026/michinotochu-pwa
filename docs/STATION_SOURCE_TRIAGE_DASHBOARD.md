@@ -3,10 +3,10 @@
 ※ **公式サイト確定・イベント登録の台帳ではない**。駅名がページ内に現れた未確認サイト候補を整理したもの。
 
 - 全国道の駅台帳: 1234駅
-- 調査済みホームページ候補URL: 1024件
-- 駅名の現れたサイト候補: 309件
-- イベントらしいリンクを持つ候補: 190件
-- 今回の優先レビュー枠: 50件 / 残り候補 259件
+- 調査済みホームページ候補URL: 1144件
+- 駅名の現れたサイト候補: 348件
+- イベントらしいリンクを持つ候補: 215件
+- 今回の優先レビュー枠: 50件 / 残り候補 298件
 
 | 駅ID | 県 | 道の駅 | 優先理由 | 催しリンク候補数 | 調査するURL |
 |---|---|---|---|---:|---|
@@ -15,8 +15,12 @@
 | RS0430 | 千葉県 | みのりの郷東金 | 掲載0県・イベントらしいリンク | 8 | https://minorinosato-togane.com/category/event |
 | RS0496 | 富山県 | メルヘンおやべ | 掲載0県・イベントらしいリンク | 8 | https://michinoeki-oyabe.com/category/news/ |
 | RS0538 | 福井県 | 一乗谷あさくら水の駅 | 掲載0県・イベントらしいリンク | 8 | https://asakura-mizunoeki.com/events |
+| RS0268 | 山形県 | 川のみなと長井 | 掲載0県・イベントらしいリンク | 7 | https://kawanominato.jp/news |
+| RS0269 | 山形県 | 米沢 | 掲載0県・イベントらしいリンク | 7 | https://michinoeki-yonezawa.jp/blogs/news |
 | RS0424 | 千葉県 | 水の郷さわら | 掲載0県・イベントらしいリンク | 6 | https://www.e-sawara.com/news/ |
+| RS0432 | 千葉県 | いちかわ | 掲載0県・イベントらしいリンク | 6 | https://www.michinoeki-ichikawa.jp/event/ |
 | RS0591 | 長野県 | 花の駅　千曲川 | 掲載0県・イベントらしいリンク | 6 | https://www.chikumagawa.net/news/news-4502/ |
+| RS1151 | 熊本県 | 人吉 | 掲載0県・イベントらしいリンク | 6 | https://h-craftpark.com/2026/10/22/%e7%9f%b3%e9%87%8e%e5%85%ac%e5%9c%92%e7%a5%ad%e3%82%8awith%e9%81%93%e3%81%ae%e9%a7%85%e4%ba%ba%e5%90%89%e3%83%9e%e3%83%ab%e3%82%b7%e3%82%a7%e3%81%ae%e9%96%8b%e5%82%ac%e5%bb%b6%e6%9c%9f%e3%81%ab/ |
 | RS0330 | 栃木県 | 明治の森・黒磯 | 掲載0県・イベントらしいリンク | 5 | https://meijinomori.jp/ |
 | RS0405 | 千葉県 | とみうら | 掲載0県・イベントらしいリンク | 5 | https://www.biwakurabu.jp/news/index.html |
 | RS0571 | 長野県 | 小坂田公園 | 掲載0県・イベントらしいリンク | 5 | https://osakada-park.jp/information/category/news |
@@ -51,15 +55,11 @@
 | RS0989 | 徳島県 | 貞光ゆうゆう館 | 掲載0県・イベントらしいリンク | 2 | https://yuyukan.jp/news/ |
 | RS0994 | 徳島県 | わじき | 掲載0県・イベントらしいリンク | 2 | https://www.sk-michinoeki.jp/events/ |
 | RS0997 | 徳島県 | 藍ランドうだつ | 掲載0県・イベントらしいリンク | 2 | https://www.sk-michinoeki.jp/events/ |
+| RS1003 | 徳島県 | みまの里 | 掲載0県・イベントらしいリンク | 2 | https://www.sk-michinoeki.jp/events/ |
 | RS0327 | 栃木県 | にのみや | 掲載0県・イベントらしいリンク | 1 | https://michinoeki-ninomiya.jp/news-archive/ |
 | RS0420 | 千葉県 | オライはすぬま | 掲載0県・イベントらしいリンク | 1 | https://oraihasunuma.com/html/event.html |
+| RS0431 | 千葉県 | 木更津 うまくたの里 | 掲載0県・イベントらしいリンク | 1 | https://chiba-kisarazu.com/blog |
 | RS0488 | 富山県 | 福光 | 掲載0県・イベントらしいリンク | 1 | https://www.fukumitsu.net |
-| RS0489 | 富山県 | たいら | 掲載0県・イベントらしいリンク | 1 | https://gokayama-washinosato.com/topics/ |
-| RS0592 | 長野県 | あおき | 掲載0県・イベントらしいリンク | 1 | https://michinoeki-aoki.eek.jp/%e4%bb%a4%e5%92%8c8%e5%b9%b47%e6%9c%8825%e6%97%a5%e5%9c%9f%ef%bd%9e%e5%a4%8f%e3%81%ae%e6%84%9f%e8%ac%9d%e7%a5%ad%ef%bc%81%e3%82%bf%e3%83%81%e3%82%a2%e3%82%ab%e3%83%8d%e5%af%92%e3%81%96%e3%82%89-10335.html |
-| RS0604 | 長野県 | 信州新野千石平 | 掲載0県・イベントらしいリンク | 1 | https://goheimochi.biz/?pid=13103491 |
-| RS0749 | 滋賀県 | 草津 | 掲載0県・イベントらしいリンク | 1 | https://www.karasuma.co.jp/134-2/ |
-| RS0991 | 徳島県 | 宍喰温泉 | 掲載0県・イベントらしいリンク | 1 | https://www.kaiyo-kankou.jp/event/ |
-| RS1135 | 熊本県 | 子守唄の里　五木 | 掲載0県・イベントらしいリンク | 1 | https://www.itsuki-bussan.net/news |
 
 ## 次に確認すること
 
