@@ -15554,5 +15554,7 @@
     "errors": 0,
     "examined": 96,
     "listingPagesVisited": 6
-  }
+  },
+  "lastDirectoryError": "RuntimeError: directory listing HTTP 502",
+  "lastDirectoryErrorDate": "2026-10-24"
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-22T18:31:36.811707+00:00",
+  "checkedAt": "2026-10-23T18:27:46.069075+00:00",
   "maxSitesPerRun": 120,
   "newlyChecked": 120,
   "results": [
@@ -13025,6 +13025,1272 @@
       "status": "robots_blocked",
       "eventLinkHints": [],
       "checkedAt": "2026-10-22T18:31:36.811703+00:00"
+    },
+    {
+      "stationId": "RS0405",
+      "prefecture": "千葉県",
+      "roadName": "とみうら",
+      "url": "https://www.biwakurabu.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.biwakurabu.jp/news/index.html",
+        "https://www.biwakurabu.jp/event/index.html",
+        "https://www.biwakurabu.jp/event/",
+        "https://www.biwakurabu.jp/gallery/index.html",
+        "https://www.biwakurabu.jp/event/nenkan.html"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:25:46.555419+00:00"
+    },
+    {
+      "stationId": "RS0405",
+      "prefecture": "千葉県",
+      "roadName": "とみうら",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000220.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:46.924330+00:00"
+    },
+    {
+      "stationId": "RS0406",
+      "prefecture": "千葉県",
+      "roadName": "三芳村",
+      "url": "https://www.hinanosato.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:48.031173+00:00"
+    },
+    {
+      "stationId": "RS0406",
+      "prefecture": "千葉県",
+      "roadName": "三芳村",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000221.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:48.031205+00:00"
+    },
+    {
+      "stationId": "RS0407",
+      "prefecture": "千葉県",
+      "roadName": "やちよ",
+      "url": "https://www.michinoeki-yachiyo.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.michinoeki-yachiyo.jp/topics/news-info-2603151/",
+        "https://www.michinoeki-yachiyo.jp/topics/news-info-26101515/",
+        "https://www.michinoeki-yachiyo.jp/topics/news-info-2610151/",
+        "https://www.michinoeki-yachiyo.jp/topics/course-cooking-2610151/",
+        "https://www.michinoeki-yachiyo.jp/topics/course-cooking-2610152/",
+        "https://www.michinoeki-yachiyo.jp/topics/news-info-2610091-2/",
+        "https://www.michinoeki-yachiyo.jp/topics/%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e5%a4%89%e6%9b%b4%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://www.michinoeki-yachiyo.jp/topics/10%e6%9c%88%e3%83%bb11%e6%9c%88%e4%ba%88%e5%ae%9a%e8%a1%a8-2/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:25:49.131652+00:00"
+    },
+    {
+      "stationId": "RS0408",
+      "prefecture": "千葉県",
+      "roadName": "きょなん",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000223.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:49.131674+00:00"
+    },
+    {
+      "stationId": "RS0409",
+      "prefecture": "千葉県",
+      "roadName": "鴨川オーシャンパーク",
+      "url": "https://kamogawaocean-park.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:50.297630+00:00"
+    },
+    {
+      "stationId": "RS0409",
+      "prefecture": "千葉県",
+      "roadName": "鴨川オーシャンパーク",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000224.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:50.297656+00:00"
+    },
+    {
+      "stationId": "RS0410",
+      "prefecture": "千葉県",
+      "roadName": "ローズマリー公園",
+      "url": "https://rosemary-park.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:51.115732+00:00"
+    },
+    {
+      "stationId": "RS0410",
+      "prefecture": "千葉県",
+      "roadName": "ローズマリー公園",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000225.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:51.115767+00:00"
+    },
+    {
+      "stationId": "RS0411",
+      "prefecture": "千葉県",
+      "roadName": "ふれあいパーク・きみつ",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000226.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:51.115780+00:00"
+    },
+    {
+      "stationId": "RS0412",
+      "prefecture": "千葉県",
+      "roadName": "しょうなん",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000227.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:51.115791+00:00"
+    },
+    {
+      "stationId": "RS0412",
+      "prefecture": "千葉県",
+      "roadName": "しょうなん",
+      "url": "https://www.michinoeki-shonan.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.michinoeki-shonan.jp/news/3189/",
+        "https://www.michinoeki-shonan.jp/news/3190/",
+        "https://www.michinoeki-shonan.jp/news/3187/",
+        "https://www.michinoeki-shonan.jp/news/3170/",
+        "https://www.michinoeki-shonan.jp/news/3181/",
+        "https://www.michinoeki-shonan.jp/news/",
+        "https://www.michinoeki-shonan.jp/event/#event"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:25:52.772918+00:00"
+    },
+    {
+      "stationId": "RS0413",
+      "prefecture": "千葉県",
+      "roadName": "たけゆらの里おおたき",
+      "url": "https://takeyura.net",
+      "status": "http_or_size_rejected",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:53.141190+00:00"
+    },
+    {
+      "stationId": "RS0413",
+      "prefecture": "千葉県",
+      "roadName": "たけゆらの里おおたき",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000228.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:53.141215+00:00"
+    },
+    {
+      "stationId": "RS0414",
+      "prefecture": "千葉県",
+      "roadName": "多古",
+      "url": "https://www.michinoeki-tako.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:25:54.343409+00:00"
+    },
+    {
+      "stationId": "RS0415",
+      "prefecture": "千葉県",
+      "roadName": "あずの里いちはら",
+      "url": "https://www.ichihara-kankou.or.jp/azunosato/index.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:54.364891+00:00"
+    },
+    {
+      "stationId": "RS0415",
+      "prefecture": "千葉県",
+      "roadName": "あずの里いちはら",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000230.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:54.364926+00:00"
+    },
+    {
+      "stationId": "RS0417",
+      "prefecture": "千葉県",
+      "roadName": "ちくら・潮風王国",
+      "url": "https://shiokaze-oukoku.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:59.869767+00:00"
+    },
+    {
+      "stationId": "RS0417",
+      "prefecture": "千葉県",
+      "roadName": "ちくら・潮風王国",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000232.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:25:59.869827+00:00"
+    },
+    {
+      "stationId": "RS0418",
+      "prefecture": "千葉県",
+      "roadName": "富楽里とみやま",
+      "url": "https://www.furaritomiyama.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:01.634165+00:00"
+    },
+    {
+      "stationId": "RS0418",
+      "prefecture": "千葉県",
+      "roadName": "富楽里とみやま",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000233.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:01.634207+00:00"
+    },
+    {
+      "stationId": "RS0419",
+      "prefecture": "千葉県",
+      "roadName": "おおつの里",
+      "url": "https://www.hana-kurabu.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:02.774685+00:00"
+    },
+    {
+      "stationId": "RS0419",
+      "prefecture": "千葉県",
+      "roadName": "おおつの里",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000234.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:02.774726+00:00"
+    },
+    {
+      "stationId": "RS0420",
+      "prefecture": "千葉県",
+      "roadName": "オライはすぬま",
+      "url": "https://oraihasunuma.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://oraihasunuma.com/html/event.html"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:04.526976+00:00"
+    },
+    {
+      "stationId": "RS0420",
+      "prefecture": "千葉県",
+      "roadName": "オライはすぬま",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000235.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:04.527002+00:00"
+    },
+    {
+      "stationId": "RS0421",
+      "prefecture": "千葉県",
+      "roadName": "ながら",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000236.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:04.527015+00:00"
+    },
+    {
+      "stationId": "RS0421",
+      "prefecture": "千葉県",
+      "roadName": "ながら",
+      "url": "https://www.nagaramitinoeki.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:05.523968+00:00"
+    },
+    {
+      "stationId": "RS0422",
+      "prefecture": "千葉県",
+      "roadName": "むつざわスマートウェルネスタウン・道の駅・つどいの郷",
+      "url": "https://ja-jp.facebook.com/help/289207354498410",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:05.660939+00:00"
+    },
+    {
+      "stationId": "RS0422",
+      "prefecture": "千葉県",
+      "roadName": "むつざわスマートウェルネスタウン・道の駅・つどいの郷",
+      "url": "https://mutsuzawa-swt.jp",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://mutsuzawa-swt.jp/info/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%80%9110-3%ef%bc%88%e5%9c%9f%ef%bc%89%e9%81%93%e3%81%ae%e9%a7%85%e3%82%80%e3%81%a4%e3%81%96%e3%82%8f%e3%81%ae%e9%98%b2%e7%81%bd%e5%ba%83%e5%a0%b4/",
+        "https://mutsuzawa-swt.jp/info/taihuu-rinjikyugyo/",
+        "https://mutsuzawa-swt.jp/info/%e3%80%90%e3%82%80%e3%81%a4%e3%81%96%e3%82%8f%e6%b8%a9%e6%b3%89%e3%80%91%e3%82%b7%e3%83%ab%e3%83%90%e3%83%bc%e3%82%a6%e3%82%a3%e3%83%bc%e3%82%af%e6%9c%9f%e9%96%939-19%ef%bc%88%e5%9c%9f%ef%bc%89/",
+        "https://mutsuzawa-swt.jp/event/%e3%80%9010%e6%9c%88%e3%80%91%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%ab%e3%83%ac%e3%83%b3%e3%83%80%e3%83%bc-4/",
+        "https://mutsuzawa-swt.jp/event/%e3%80%909%e6%9c%88%e3%80%91%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%ab%e3%83%ac%e3%83%b3%e3%83%80%e3%83%bc-3/",
+        "https://mutsuzawa-swt.jp/event/eventcalender_2608"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:08.661440+00:00"
+    },
+    {
+      "stationId": "RS0423",
+      "prefecture": "千葉県",
+      "roadName": "白浜野島崎",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000238.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:08.661471+00:00"
+    },
+    {
+      "stationId": "RS0424",
+      "prefecture": "千葉県",
+      "roadName": "水の郷さわら",
+      "url": "https://www.e-sawara.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.e-sawara.com/news/",
+        "https://www.e-sawara.com/events/",
+        "https://www.e-sawara.com/2026/10/14/basser-allstar-classic-2026-%e9%a7%90%e8%bb%8a%e5%a0%b4%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
+        "https://www.e-sawara.com/2026/10/06/%e3%83%9e%e3%83%aa%e3%83%bc%e3%83%8a%e4%bc%91%e6%a5%ad%e6%97%a5%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://www.e-sawara.com/2026/09/25/%e3%83%9e%e3%83%aa%e3%83%bc%e3%83%8a%e9%96%8b%e6%94%be%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b-3/",
+        "https://www.e-sawara.com/2026/09/18/%e3%83%aa%e3%83%90%e3%83%bc%e3%83%ac%e3%83%b3%e3%82%b8%e3%83%a3%e3%83%bc%e4%bd%93%e9%a8%93%e4%bc%9a%e3%80%80%e5%86%8d%e5%bb%b6%e6%9c%9f%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:12.850548+00:00"
+    },
+    {
+      "stationId": "RS0424",
+      "prefecture": "千葉県",
+      "roadName": "水の郷さわら",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000240.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:12.850574+00:00"
+    },
+    {
+      "stationId": "RS0425",
+      "prefecture": "千葉県",
+      "roadName": "風和里しばやま",
+      "url": "https://www.fuwarishibayama.com",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:13.846568+00:00"
+    },
+    {
+      "stationId": "RS0425",
+      "prefecture": "千葉県",
+      "roadName": "風和里しばやま",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000241.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:13.846598+00:00"
+    },
+    {
+      "stationId": "RS0426",
+      "prefecture": "千葉県",
+      "roadName": "和田浦　WA・O！",
+      "url": "https://wa-o.awa.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:19.379603+00:00"
+    },
+    {
+      "stationId": "RS0426",
+      "prefecture": "千葉県",
+      "roadName": "和田浦　WA・O！",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000242.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:19.379657+00:00"
+    },
+    {
+      "stationId": "RS0427",
+      "prefecture": "千葉県",
+      "roadName": "発酵の里こうざき",
+      "url": "https://www.hakkounosato.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:23.656147+00:00"
+    },
+    {
+      "stationId": "RS0427",
+      "prefecture": "千葉県",
+      "roadName": "発酵の里こうざき",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000243.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:23.656186+00:00"
+    },
+    {
+      "stationId": "RS0483",
+      "prefecture": "富山県",
+      "roadName": "細入",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000039",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:24.380134+00:00"
+    },
+    {
+      "stationId": "RS0483",
+      "prefecture": "富山県",
+      "roadName": "細入",
+      "url": "https://www.tenkomori.info/rinrintop.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:26.928630+00:00"
+    },
+    {
+      "stationId": "RS0484",
+      "prefecture": "富山県",
+      "roadName": "砺波",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000040",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:26.928658+00:00"
+    },
+    {
+      "stationId": "RS0484",
+      "prefecture": "富山県",
+      "roadName": "砺波",
+      "url": "https://www.tonami-kankou.org/michinoeki/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.tonami-kankou.org/event/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:29.021958+00:00"
+    },
+    {
+      "stationId": "RS0485",
+      "prefecture": "富山県",
+      "roadName": "上平",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000041",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:29.021989+00:00"
+    },
+    {
+      "stationId": "RS0485",
+      "prefecture": "富山県",
+      "roadName": "上平",
+      "url": "https://www2.tst.ne.jp/sasara/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:35.039487+00:00"
+    },
+    {
+      "stationId": "RS0486",
+      "prefecture": "富山県",
+      "roadName": "利賀",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000042",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:35.039547+00:00"
+    },
+    {
+      "stationId": "RS0487",
+      "prefecture": "富山県",
+      "roadName": "井波",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000043",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:35.039567+00:00"
+    },
+    {
+      "stationId": "RS0487",
+      "prefecture": "富山県",
+      "roadName": "井波",
+      "url": "https://www.kibori.co.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:36.821025+00:00"
+    },
+    {
+      "stationId": "RS0488",
+      "prefecture": "富山県",
+      "roadName": "福光",
+      "url": "https://www.fukumitsu.net",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.fukumitsu.net#section-6"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:37.968626+00:00"
+    },
+    {
+      "stationId": "RS0488",
+      "prefecture": "富山県",
+      "roadName": "福光",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000044",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:37.968653+00:00"
+    },
+    {
+      "stationId": "RS0489",
+      "prefecture": "富山県",
+      "roadName": "たいら",
+      "url": "https://gokayama-washinosato.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://gokayama-washinosato.com/topics/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:39.121374+00:00"
+    },
+    {
+      "stationId": "RS0489",
+      "prefecture": "富山県",
+      "roadName": "たいら",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000045",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:39.121415+00:00"
+    },
+    {
+      "stationId": "RS0490",
+      "prefecture": "富山県",
+      "roadName": "庄川",
+      "url": "https://michinoeki-shogawa.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:40.021444+00:00"
+    },
+    {
+      "stationId": "RS0490",
+      "prefecture": "富山県",
+      "roadName": "庄川",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000046",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:40.021491+00:00"
+    },
+    {
+      "stationId": "RS0491",
+      "prefecture": "富山県",
+      "roadName": "うなづき",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000047",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:40.021511+00:00"
+    },
+    {
+      "stationId": "RS0491",
+      "prefecture": "富山県",
+      "roadName": "うなづき",
+      "url": "https://www.unazuki-beer.jp/baiten/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:41.106496+00:00"
+    },
+    {
+      "stationId": "RS0492",
+      "prefecture": "富山県",
+      "roadName": "まるごと射水",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000048",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:41.106527+00:00"
+    },
+    {
+      "stationId": "RS0492",
+      "prefecture": "富山県",
+      "roadName": "まるごと射水",
+      "url": "https://www.shinminato.co.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:41.944277+00:00"
+    },
+    {
+      "stationId": "RS0493",
+      "prefecture": "富山県",
+      "roadName": "ウェーブパークなめりかわ",
+      "url": "https://hotaruikamuseum.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:42.643113+00:00"
+    },
+    {
+      "stationId": "RS0493",
+      "prefecture": "富山県",
+      "roadName": "ウェーブパークなめりかわ",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000049",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:42.643147+00:00"
+    },
+    {
+      "stationId": "RS0494",
+      "prefecture": "富山県",
+      "roadName": "氷見",
+      "url": "https://himi-banya.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://himi-banya.jp/event/",
+        "https://himi-banya.jp/event"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:44.843355+00:00"
+    },
+    {
+      "stationId": "RS0494",
+      "prefecture": "富山県",
+      "roadName": "氷見",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000050",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:44.843399+00:00"
+    },
+    {
+      "stationId": "RS0495",
+      "prefecture": "富山県",
+      "roadName": "万葉の里　高岡",
+      "url": "https://www.hokuriku-michinoeki.jp/contents/station/?sta=000051",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:44.843415+00:00"
+    },
+    {
+      "stationId": "RS0495",
+      "prefecture": "富山県",
+      "roadName": "万葉の里　高岡",
+      "url": "https://www.manyonosato.com",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.manyonosato.com/category/infomation/",
+        "https://www.manyonosato.com/category/event/",
+        "https://www.manyonosato.com/9%e6%9c%88%e6%84%9f%e8%ac%9d%e7%a5%ad-%e3%80%9c-9%e6%9c%8827%e6%97%a5%e6%97%a5-1000-%e3%80%9c/",
+        "https://www.manyonosato.com/%e3%80%90%e5%a4%a7%e5%88%87%e3%81%aa%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e3%80%91%e4%b8%80%e9%83%a8%e5%95%86%e5%93%81%e4%be%a1%e6%a0%bc%e3%81%ae%e6%94%b9%e5%ae%9a%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
+        "https://www.manyonosato.com/9%e6%9c%88%e3%81%ae%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://www.manyonosato.com/8%e6%9c%88%e6%84%9f%e8%ac%9d%e7%a5%ad/",
+        "https://www.manyonosato.com/%e3%80%9c-%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%a1%88%e5%86%852%e6%9c%8824%e6%97%a5-%e3%80%9c2%e6%9c%88%e6%84%9f%e8%ac%9d%e7%a5%ad/",
+        "https://www.manyonosato.com/%e5%9b%a3%e4%bd%93%e6%a7%98%e5%b0%82%e7%94%a8-%e6%96%b0%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:47.471510+00:00"
+    },
+    {
+      "stationId": "RS0496",
+      "prefecture": "富山県",
+      "roadName": "メルヘンおやべ",
+      "url": "https://michinoeki-oyabe.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://michinoeki-oyabe.com/category/news/",
+        "https://michinoeki-oyabe.com/category/event/",
+        "https://michinoeki-oyabe.com/2026/09/02/%e3%83%95%e3%83%bc%e3%83%89%e3%82%b3%e3%83%bc%e3%83%88%e7%94%b0%e8%88%8e%e8%87%a8%e6%99%82%e4%bc%91%e6%a5%ad%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b-2/",
+        "https://michinoeki-oyabe.com/2026/05/04/%e3%83%95%e3%83%bc%e3%83%89%e3%82%b3%e3%83%bc%e3%83%88%e7%94%b0%e8%88%8e%e3%82%88%e3%82%8a%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://michinoeki-oyabe.com//category/news/",
+        "https://michinoeki-oyabe.com/2026/10/10/%e2%98%86%ef%bc%91%ef%bc%97%e5%91%a8%e5%b9%b4%e7%a5%ad%e9%96%8b%e5%82%ac%e2%98%86%e3%80%8010-24-25/",
+        "https://michinoeki-oyabe.com/2026/02/14/%e4%bb%8a%e5%b9%b4%e3%82%82%e3%82%84%e3%82%8b%e3%82%88%ef%bc%81%e7%89%a1%e8%a0%a3%e7%a5%ad%e3%82%8a%e2%98%ba/",
+        "https://michinoeki-oyabe.com//category/event"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:26:53.441415+00:00"
+    },
+    {
+      "stationId": "RS0249",
+      "prefecture": "山形県",
+      "roadName": "月山",
+      "url": "https://www.gassanasahi-hakubutsumura.co.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:58.616712+00:00"
+    },
+    {
+      "stationId": "RS0251",
+      "prefecture": "山形県",
+      "roadName": "寒河江",
+      "url": "https://www.cherryland.co.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:26:59.679007+00:00"
+    },
+    {
+      "stationId": "RS0252",
+      "prefecture": "山形県",
+      "roadName": "あつみ",
+      "url": "https://www.at-syarin.com",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:01.395553+00:00"
+    },
+    {
+      "stationId": "RS0253",
+      "prefecture": "山形県",
+      "roadName": "にしかわ",
+      "url": "https://www.gassan.co.jp/meisuikan/",
+      "status": "http_or_size_rejected",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:02.965191+00:00"
+    },
+    {
+      "stationId": "RS0254",
+      "prefecture": "山形県",
+      "roadName": "いいで",
+      "url": "https://mezami113.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:04.163631+00:00"
+    },
+    {
+      "stationId": "RS0255",
+      "prefecture": "山形県",
+      "roadName": "むらやま",
+      "url": "https://www.rs-murayama.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:05.797457+00:00"
+    },
+    {
+      "stationId": "RS0256",
+      "prefecture": "山形県",
+      "roadName": "とざわ",
+      "url": "https://www.kouraikan.com/tozawa.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:06.641953+00:00"
+    },
+    {
+      "stationId": "RS0257",
+      "prefecture": "山形県",
+      "roadName": "鳥海",
+      "url": "https://chokai-flat.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:07.343841+00:00"
+    },
+    {
+      "stationId": "RS0258",
+      "prefecture": "山形県",
+      "roadName": "田沢",
+      "url": "https://www.tazawa-forest.com/nagomi/",
+      "status": "http_or_size_rejected",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:08.578180+00:00"
+    },
+    {
+      "stationId": "RS0259",
+      "prefecture": "山形県",
+      "roadName": "白い森おぐに",
+      "url": "https://michinoeki-oguni.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://michinoeki-oguni.jp/post/news/",
+        "https://michinoeki-oguni.jp/post/news/237/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:09.988473+00:00"
+    },
+    {
+      "stationId": "RS0261",
+      "prefecture": "山形県",
+      "roadName": "庄内みかわ",
+      "url": "https://www.iroribinosato.info/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:10.884260+00:00"
+    },
+    {
+      "stationId": "RS0262",
+      "prefecture": "山形県",
+      "roadName": "たかはた",
+      "url": "https://www.rstakahata.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:11.786751+00:00"
+    },
+    {
+      "stationId": "RS0264",
+      "prefecture": "山形県",
+      "roadName": "尾花沢",
+      "url": "https://www.mitinoku.or.jp/nemaru/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:12.772675+00:00"
+    },
+    {
+      "stationId": "RS0265",
+      "prefecture": "山形県",
+      "roadName": "白鷹ヤナ公園",
+      "url": "https://www.ayuchaya.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.ayuchaya.jp/tourism/",
+        "https://www.ayuchaya.jp/category/event/",
+        "https://www.ayuchaya.jp/information/",
+        "https://www.ayuchaya.jp/kansyasai2026/",
+        "https://www.ayuchaya.jp/261121sobamaturi/",
+        "https://www.ayuchaya.jp/261010gentei/",
+        "https://www.ayuchaya.jp/260919ayumaturi/",
+        "https://www.ayuchaya.jp/%e9%81%93%e3%81%ae%e9%a7%85%e7%99%bd%e9%b7%b9%e3%83%a4%e3%83%8a%e5%85%ac%e5%9c%92%e7%89%a9%e7%94%a3%e9%a4%a8%e3%81%ae%e4%b8%80%e9%83%a8%e6%94%b9%e8%a3%85%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:15.568311+00:00"
+    },
+    {
+      "stationId": "RS1001",
+      "prefecture": "徳島県",
+      "roadName": "大歩危",
+      "url": "https://yamashiro-info.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:16.505014+00:00"
+    },
+    {
+      "stationId": "RS1002",
+      "prefecture": "徳島県",
+      "roadName": "ひなの里かつうら",
+      "url": "https://www.skr.mlit.go.jp/road/rstation/eki/to15_katsuura.html",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:17.941817+00:00"
+    },
+    {
+      "stationId": "RS_CUR_36007",
+      "prefecture": "徳島県",
+      "roadName": "公方の郷なかがわ",
+      "url": "https://www.skr.mlit.go.jp/road/rstation/eki/to07_nakagawa.html",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:18.115342+00:00"
+    },
+    {
+      "stationId": "RS0326",
+      "prefecture": "栃木県",
+      "roadName": "もてぎ",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000071.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:18.115369+00:00"
+    },
+    {
+      "stationId": "RS0326",
+      "prefecture": "栃木県",
+      "roadName": "もてぎ",
+      "url": "https://www.motegiplaza.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:23.336513+00:00"
+    },
+    {
+      "stationId": "RS0327",
+      "prefecture": "栃木県",
+      "roadName": "にのみや",
+      "url": "https://michinoeki-ninomiya.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://michinoeki-ninomiya.jp/news-archive/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:25.957865+00:00"
+    },
+    {
+      "stationId": "RS0327",
+      "prefecture": "栃木県",
+      "roadName": "にのみや",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000072.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:25.957891+00:00"
+    },
+    {
+      "stationId": "RS0328",
+      "prefecture": "栃木県",
+      "roadName": "湯の香しおばら",
+      "url": "https://www.agripal-shiobara.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:27.210183+00:00"
+    },
+    {
+      "stationId": "RS0328",
+      "prefecture": "栃木県",
+      "roadName": "湯の香しおばら",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000057.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:27.210210+00:00"
+    },
+    {
+      "stationId": "RS0329",
+      "prefecture": "栃木県",
+      "roadName": "那須高原友愛の森",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000058.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:27.210223+00:00"
+    },
+    {
+      "stationId": "RS0329",
+      "prefecture": "栃木県",
+      "roadName": "那須高原友愛の森",
+      "url": "https://www.yuainomori.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:28.341898+00:00"
+    },
+    {
+      "stationId": "RS0331",
+      "prefecture": "栃木県",
+      "roadName": "ばとう",
+      "url": "https://www.tck.or.jp/michinoeki/eki/batou.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:28.765348+00:00"
+    },
+    {
+      "stationId": "RS0332",
+      "prefecture": "栃木県",
+      "roadName": "東山道伊王野",
+      "url": "https://michinoeki-tosando.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:29.979876+00:00"
+    },
+    {
+      "stationId": "RS0332",
+      "prefecture": "栃木県",
+      "roadName": "東山道伊王野",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000104.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:29.979922+00:00"
+    },
+    {
+      "stationId": "RS0334",
+      "prefecture": "栃木県",
+      "roadName": "どまんなか　たぬま",
+      "url": "https://domannaka.co.jp/",
+      "status": "identity_not_found",
+      "stationNameMentioned": false,
+      "eventLinkHints": [
+        "https://domannaka.co.jp/info/4109",
+        "https://domannaka.co.jp/info/4085",
+        "https://domannaka.co.jp/info/4084",
+        "https://domannaka.co.jp/info/3831",
+        "https://domannaka.co.jp/info/3788",
+        "https://domannaka.co.jp/info/3770"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:31.159900+00:00"
+    },
+    {
+      "stationId": "RS0334",
+      "prefecture": "栃木県",
+      "roadName": "どまんなか　たぬま",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000050.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:31.159926+00:00"
+    },
+    {
+      "stationId": "RS0335",
+      "prefecture": "栃木県",
+      "roadName": "はが",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000044.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:31.159938+00:00"
+    },
+    {
+      "stationId": "RS0335",
+      "prefecture": "栃木県",
+      "roadName": "はが",
+      "url": "https://www.michinoeki-haga.gr.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:31.397287+00:00"
+    },
+    {
+      "stationId": "RS0336",
+      "prefecture": "栃木県",
+      "roadName": "那須与一の郷",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000042.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:31.397322+00:00"
+    },
+    {
+      "stationId": "RS0336",
+      "prefecture": "栃木県",
+      "roadName": "那須与一の郷",
+      "url": "https://www.nasuno-yoichi.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.nasuno-yoichi.jp/contents-cat/event/",
+        "https://www.nasuno-yoichi.jp/contents-cat/news/",
+        "https://www.nasuno-yoichi.jp/contents/contents-1117/",
+        "https://www.nasuno-yoichi.jp/contents/contents-1323/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:33.469747+00:00"
+    },
+    {
+      "stationId": "RS0337",
+      "prefecture": "栃木県",
+      "roadName": "那須野が原博物館",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000046.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:33.469773+00:00"
+    },
+    {
+      "stationId": "RS0339",
+      "prefecture": "栃木県",
+      "roadName": "思川",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000047.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:33.469786+00:00"
+    },
+    {
+      "stationId": "RS0339",
+      "prefecture": "栃木県",
+      "roadName": "思川",
+      "url": "https://www.michinoekiomoigawa.co.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:34.347520+00:00"
+    },
+    {
+      "stationId": "RS0340",
+      "prefecture": "栃木県",
+      "roadName": "湯西川",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000076.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:34.347552+00:00"
+    },
+    {
+      "stationId": "RS0340",
+      "prefecture": "栃木県",
+      "roadName": "湯西川",
+      "url": "https://www.michinoeki-yunishigawa.jp/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://www.michinoeki-yunishigawa.jp/event",
+        "https://www.michinoeki-yunishigawa.jp/news",
+        "https://www.michinoeki-yunishigawa.jp/news/",
+        "https://www.michinoeki-yunishigawa.jp/event/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:36.599472+00:00"
+    },
+    {
+      "stationId": "RS0341",
+      "prefecture": "栃木県",
+      "roadName": "みぶ",
+      "url": "https://michinoeki-mibu.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:37.745259+00:00"
+    },
+    {
+      "stationId": "RS0341",
+      "prefecture": "栃木県",
+      "roadName": "みぶ",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000108.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:37.745290+00:00"
+    },
+    {
+      "stationId": "RS0342",
+      "prefecture": "栃木県",
+      "roadName": "にしかた",
+      "url": "https://michinoeki-nishikata.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://michinoeki-nishikata.com/7-26%ef%bc%88%e6%97%a5%ef%bc%89%e3%81%af%e5%a4%8f%e3%81%ae%e6%84%9f%e8%ac%9d%e7%a5%ad/",
+        "https://michinoeki-nishikata.com/information/",
+        "https://michinoeki-nishikata.com/event/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:38.775513+00:00"
+    },
+    {
+      "stationId": "RS0342",
+      "prefecture": "栃木県",
+      "roadName": "にしかた",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000109.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:38.775536+00:00"
+    },
+    {
+      "stationId": "RS0343",
+      "prefecture": "栃木県",
+      "roadName": "しもつけ",
+      "url": "https://www.kanpi-shimotsuke.co.jp/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:39.810268+00:00"
+    },
+    {
+      "stationId": "RS0343",
+      "prefecture": "栃木県",
+      "roadName": "しもつけ",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000110.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:39.810530+00:00"
+    },
+    {
+      "stationId": "RS0344",
+      "prefecture": "栃木県",
+      "roadName": "やいた",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000111.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:39.810545+00:00"
+    },
+    {
+      "stationId": "RS0344",
+      "prefecture": "栃木県",
+      "roadName": "やいた",
+      "url": "https://www.michinoeki-yaita.com/",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:40.468504+00:00"
+    },
+    {
+      "stationId": "RS0345",
+      "prefecture": "栃木県",
+      "roadName": "湧水の郷しおや",
+      "url": "https://michinoeki-shioya.com/",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [
+        "https://michinoeki-shioya.com/1924/",
+        "https://michinoeki-shioya.com/1903/",
+        "https://michinoeki-shioya.com/1899/"
+      ],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:41.649306+00:00"
+    },
+    {
+      "stationId": "RS0345",
+      "prefecture": "栃木県",
+      "roadName": "湧水の郷しおや",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000112.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:41.649331+00:00"
+    },
+    {
+      "stationId": "RS0346",
+      "prefecture": "栃木県",
+      "roadName": "うつのみや　ろまんちっく村",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000113.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:41.649344+00:00"
+    },
+    {
+      "stationId": "RS0346",
+      "prefecture": "栃木県",
+      "roadName": "うつのみや　ろまんちっく村",
+      "url": "https://www.romanticmura.com/",
+      "status": "http_or_size_rejected",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:41.845910+00:00"
+    },
+    {
+      "stationId": "RS0347",
+      "prefecture": "栃木県",
+      "roadName": "サシバの里いちかい",
+      "url": "https://michinoeki-ichikai.jp",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:42.527205+00:00"
+    },
+    {
+      "stationId": "RS0347",
+      "prefecture": "栃木県",
+      "roadName": "サシバの里いちかい",
+      "url": "https://www.ktr.mlit.go.jp/road/chiiki/road_chiiki00000114.html",
+      "status": "robots_blocked",
+      "eventLinkHints": [],
+      "checkedAt": "2026-10-23T18:27:42.527232+00:00"
+    },
+    {
+      "stationId": "RS0741",
+      "prefecture": "滋賀県",
+      "roadName": "あいの土山",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/ainotsuchiyama.html",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:44.606192+00:00"
+    },
+    {
+      "stationId": "RS0742",
+      "prefecture": "滋賀県",
+      "roadName": "くつき新本陣",
+      "url": "https://www.kkr.mlit.go.jp/road/michi_no_eki/contents/shiga/kutsukishinhonjin.html",
+      "status": "identity_mentioned_unverified",
+      "stationNameMentioned": true,
+      "eventLinkHints": [],
+      "ownershipVerified": false,
+      "eventListingVerified": false,
+      "checkedAt": "2026-10-23T18:27:46.069060+00:00"
     }
   ],
   "nextBatchEligible": 788,

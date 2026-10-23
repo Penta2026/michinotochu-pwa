@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "basisCheckedAt": "2026-10-22T18:31:36.811707+00:00",
+  "basisCheckedAt": "2026-10-23T18:27:46.069075+00:00",
   "masterStations": 1234,
   "configuredStationCount": 27,
-  "inspectedStationWebsiteUrls": 1144,
+  "inspectedStationWebsiteUrls": 1196,
   "reviewStatuses": {
     "fetch_failed": 1,
     "http_or_size_rejected": 78,
-    "identity_mentioned_unverified": 358,
+    "identity_mentioned_unverified": 368,
     "identity_not_found": 84,
-    "robots_blocked": 623
+    "robots_blocked": 665
   },
-  "potentialStationSites": 348,
-  "potentialEventListingSites": 215,
+  "potentialStationSites": 358,
+  "potentialEventListingSites": 220,
   "shortlisted": 50,
-  "remainingPotentialSites": 298,
+  "remainingPotentialSites": 308,
   "shortlist": [
     {
       "stationId": "RS0265",
@@ -74,6 +74,28 @@
         "https://minorinosato-togane.com/2026/10/21/60651",
         "https://minorinosato-togane.com/2026/10/20/60614",
         "https://minorinosato-togane.com/2026/10/18/60610"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0495",
+      "prefecture": "富山県",
+      "roadName": "万葉の里　高岡",
+      "websiteUrl": "https://www.manyonosato.com",
+      "eventLinkHints": [
+        "https://www.manyonosato.com/category/infomation/",
+        "https://www.manyonosato.com/category/event/",
+        "https://www.manyonosato.com/9%e6%9c%88%e6%84%9f%e8%ac%9d%e7%a5%ad-%e3%80%9c-9%e6%9c%8827%e6%97%a5%e6%97%a5-1000-%e3%80%9c/",
+        "https://www.manyonosato.com/%e3%80%90%e5%a4%a7%e5%88%87%e3%81%aa%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e3%80%91%e4%b8%80%e9%83%a8%e5%95%86%e5%93%81%e4%be%a1%e6%a0%bc%e3%81%ae%e6%94%b9%e5%ae%9a%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
+        "https://www.manyonosato.com/9%e6%9c%88%e3%81%ae%e5%96%b6%e6%a5%ad%e6%99%82%e9%96%93%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://www.manyonosato.com/8%e6%9c%88%e6%84%9f%e8%ac%9d%e7%a5%ad/",
+        "https://www.manyonosato.com/%e3%80%9c-%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e6%a1%88%e5%86%852%e6%9c%8824%e6%97%a5-%e3%80%9c2%e6%9c%88%e6%84%9f%e8%ac%9d%e7%a5%ad/",
+        "https://www.manyonosato.com/%e5%9b%a3%e4%bd%93%e6%a7%98%e5%b0%82%e7%94%a8-%e6%96%b0%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bc%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
@@ -160,6 +182,47 @@
         "https://michinoeki-yonezawa.jp/blogs/news/%F0%9F%9A%9A%E3%81%AA%E3%81%94%E3%81%BF%E3%81%AE%E7%B1%B3%E5%B1%8B-%E5%87%BA%E5%BA%97%E6%83%85%E5%A0%B1%F0%9F%9A%9A",
         "https://michinoeki-yonezawa.jp/blogs/news/2026%E5%B9%B410%E6%9C%887%E6%97%A5%E9%81%93%E3%81%AE%E9%A7%85%E7%B1%B3%E6%B2%A2%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97-%E9%80%9A%E4%BF%A1%E8%B2%A9%E5%A3%B2%E4%BA%8B%E6%A5%AD%E6%89%80-%E9%9B%BB%E8%A9%B1%E5%BF%9C%E5%AF%BE%E4%B8%80%E6%99%82%E4%BC%91%E6%AD%A2%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B",
         "https://michinoeki-yonezawa.jp/blogs/news/%E2%9C%A8%E7%B1%B3%E6%B2%A2%E9%80%B8%E5%93%81%E5%B1%95-%E9%96%8B%E5%82%AC%E2%9C%A8"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0412",
+      "prefecture": "千葉県",
+      "roadName": "しょうなん",
+      "websiteUrl": "https://www.michinoeki-shonan.jp/",
+      "eventLinkHints": [
+        "https://www.michinoeki-shonan.jp/news/3189/",
+        "https://www.michinoeki-shonan.jp/news/3190/",
+        "https://www.michinoeki-shonan.jp/news/3187/",
+        "https://www.michinoeki-shonan.jp/news/3170/",
+        "https://www.michinoeki-shonan.jp/news/3181/",
+        "https://www.michinoeki-shonan.jp/news/",
+        "https://www.michinoeki-shonan.jp/event/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0422",
+      "prefecture": "千葉県",
+      "roadName": "むつざわスマートウェルネスタウン・道の駅・つどいの郷",
+      "websiteUrl": "https://mutsuzawa-swt.jp",
+      "eventLinkHints": [
+        "https://mutsuzawa-swt.jp/info/%e3%80%90%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%80%9110-3%ef%bc%88%e5%9c%9f%ef%bc%89%e9%81%93%e3%81%ae%e9%a7%85%e3%82%80%e3%81%a4%e3%81%96%e3%82%8f%e3%81%ae%e9%98%b2%e7%81%bd%e5%ba%83%e5%a0%b4/",
+        "https://mutsuzawa-swt.jp/info/taihuu-rinjikyugyo/",
+        "https://mutsuzawa-swt.jp/info/%e3%80%90%e3%82%80%e3%81%a4%e3%81%96%e3%82%8f%e6%b8%a9%e6%b3%89%e3%80%91%e3%82%b7%e3%83%ab%e3%83%90%e3%83%bc%e3%82%a6%e3%82%a3%e3%83%bc%e3%82%af%e6%9c%9f%e9%96%939-19%ef%bc%88%e5%9c%9f%ef%bc%89/",
+        "https://mutsuzawa-swt.jp/event/%e3%80%9010%e6%9c%88%e3%80%91%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%ab%e3%83%ac%e3%83%b3%e3%83%80%e3%83%bc-4/",
+        "https://mutsuzawa-swt.jp/event/%e3%80%909%e6%9c%88%e3%80%91%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%ab%e3%83%ac%e3%83%b3%e3%83%80%e3%83%bc-3/",
+        "https://mutsuzawa-swt.jp/event/eventcalender_2608"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
@@ -373,6 +436,42 @@
         "https://michinoeki-asaji.com/wp-content/uploads/2024/04/道の駅あさじ25周年記念感謝祭.pdf",
         "https://michinoeki-asaji.com/wp-content/uploads/2020/09/道の駅あさじ新米祭り2020.pdf",
         "https://michinoeki-asaji.com/wp-content/uploads/2019/04/20周年チラシ.pdf"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0336",
+      "prefecture": "栃木県",
+      "roadName": "那須与一の郷",
+      "websiteUrl": "https://www.nasuno-yoichi.jp/",
+      "eventLinkHints": [
+        "https://www.nasuno-yoichi.jp/contents-cat/event/",
+        "https://www.nasuno-yoichi.jp/contents-cat/news/",
+        "https://www.nasuno-yoichi.jp/contents/contents-1117/",
+        "https://www.nasuno-yoichi.jp/contents/contents-1323/"
+      ],
+      "discoveryTier": "linked_notice_candidate",
+      "zeroCurrentEventPrefecture": true,
+      "officialSiteOwnershipVerified": false,
+      "eventListingVerified": false,
+      "readyForPublishing": false,
+      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
+    },
+    {
+      "stationId": "RS0340",
+      "prefecture": "栃木県",
+      "roadName": "湯西川",
+      "websiteUrl": "https://www.michinoeki-yunishigawa.jp/",
+      "eventLinkHints": [
+        "https://www.michinoeki-yunishigawa.jp/event",
+        "https://www.michinoeki-yunishigawa.jp/news",
+        "https://www.michinoeki-yunishigawa.jp/news/",
+        "https://www.michinoeki-yunishigawa.jp/event/"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
@@ -689,22 +788,6 @@
       "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
     },
     {
-      "stationId": "RS0493",
-      "prefecture": "富山県",
-      "roadName": "ウェーブパークなめりかわ",
-      "websiteUrl": "https://hotaruikamuseum.com/",
-      "eventLinkHints": [
-        "https://hotaruikamuseum.com/information/20184",
-        "https://hotaruikamuseum.com/restaurant/plan"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
       "stationId": "RS0494",
       "prefecture": "富山県",
       "roadName": "氷見",
@@ -840,66 +923,6 @@
       "eventLinkHints": [
         "https://www.sk-michinoeki.jp/events/",
         "https://www.sk-michinoeki.jp/archives/category/news"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0327",
-      "prefecture": "栃木県",
-      "roadName": "にのみや",
-      "websiteUrl": "https://michinoeki-ninomiya.jp/",
-      "eventLinkHints": [
-        "https://michinoeki-ninomiya.jp/news-archive/"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0420",
-      "prefecture": "千葉県",
-      "roadName": "オライはすぬま",
-      "websiteUrl": "https://oraihasunuma.com/",
-      "eventLinkHints": [
-        "https://oraihasunuma.com/html/event.html"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0431",
-      "prefecture": "千葉県",
-      "roadName": "木更津 うまくたの里",
-      "websiteUrl": "https://chiba-kisarazu.com/",
-      "eventLinkHints": [
-        "https://chiba-kisarazu.com/blog"
-      ],
-      "discoveryTier": "linked_notice_candidate",
-      "zeroCurrentEventPrefecture": true,
-      "officialSiteOwnershipVerified": false,
-      "eventListingVerified": false,
-      "readyForPublishing": false,
-      "nextAction": "Verify official ownership, dated individual notices, and on-site event venue before source onboarding"
-    },
-    {
-      "stationId": "RS0488",
-      "prefecture": "富山県",
-      "roadName": "福光",
-      "websiteUrl": "https://www.fukumitsu.net",
-      "eventLinkHints": [
-        "https://www.fukumitsu.net"
       ],
       "discoveryTier": "linked_notice_candidate",
       "zeroCurrentEventPrefecture": true,
